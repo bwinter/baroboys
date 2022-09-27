@@ -1,0 +1,43 @@
+sudo apt-get install lib32gcc1
+sudo apt-get install lib32gcc-s1
+mkdir ~/Steam && cd ~/Steam
+curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
+sudo apt-get install tmux screen -y;
+export DLPATH = ./
+export DLPATH=.
+set -eux     && mkdir -p ${DLPATH}/.steam/sdk32     && mkdir -p ${DLPATH}/.steam/sdk64     && cp /usr/lib/steamcmd/linux32/steamclient.so ${DLPATH}/.steam/sdk32/steamclient.so     && cp /usr/lib/steamcmd/linux64/steamclient.so ${DLPATH}/.steam/sdk64/steamclient.so
+sudo apt install libsdl2-dev
+sudo apt install libsdl2-dev
+sudo apt install libsdl2
+sudo apt install libsdl2-2.0-0
+sudo apt-get install git curl libsdl2-mixer-2.0-0 libsdl2-image-2.0-0 libsdl2-2.0-0
+export STEAMAPPID=1026340
+DLPATH="$HOME/Steam"
+set -eux     && mkdir -p ${DLPATH}/.steam/sdk32     && mkdir -p ${DLPATH}/.steam/sdk64     && cp linux32/steamclient.so ${DLPATH}/.steam/sdk32/steamclient.so     && cp linux64/steamclient.so ${DLPATH}/.steam/sdk64/steamclient.so
+mv .steam/ ../
+sudo apt install tree
+cd steamapps/common/Barotrauma\ Dedicated\ Server/
+vim serversettings.xml
+mv LocalMods.zip Steam/steamapps/common/Barotrauma\ Dedicated\ Server/LocalMods/
+cd Steam/steamapps/common/Barotrauma\ Dedicated\ Server/LocalMods/
+sudo apt install unzip
+unzip LocalMods.zip
+ls Daedalic\ Entertainment\ GmbH/Barotrauma/Multiplayer/
+vim Data/clientpermissions.xml
+mv Multiplayer.zip Steam/steamapps/common/Barotrauma\ Dedicated\ Server/Daedalic\ Entertainment\ GmbH/Barotrauma/Multiplayer/
+cd Steam/steamapps/common/Barotrauma\ Dedicated\ Server/Daedalic\ Entertainment\ GmbH/Barotrauma/Multiplayer/
+unzip Multiplayer.zip
+export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/ ./steamcmd.sh
+export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/
+./steamcmd.sh
+sudo iptables -A INPUT -p udp -m udp --sport 27015 -j ACCEPT
+sudo iptables -A INPUT -p udp -m udp --sport 27016 -j ACCEPT
+sudo iptables -A OUTPUT -p udp -m udp --dport 27015 -j ACCEPT
+sudo iptables -A OUTPUT -p udp -m udp --dport 27016 -j ACCEPT
+vim steamapps/common/Barotrauma\ Dedicated\ Server/serversettings.xml
+sudo apt install wget
+wget https://drive.google.com/drive/folders/1P_1W5kUse7XNuHkUl0U6Z8Iog_VHrk7x?usp=sharing
+mv tiny_sub.zip steamapps/common/Barotrauma\ Dedicated\ Server/LocalMods/
+cd steamapps/common/Barotrauma\ Dedicated\ Server/LocalMods/
+unzip tiny_sub.zip
+vim config_player.xml

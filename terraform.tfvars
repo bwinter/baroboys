@@ -1,0 +1,6 @@
+project               = "europan-world"
+service_account_email = "git-service-account@europan-world.iam.gserviceaccount.com"
+region                = "us-west1"
+zone                  = "us-west1-b"
+machine_type          = "e2-micro"
+machine_name          = "terraform-test-vm"
