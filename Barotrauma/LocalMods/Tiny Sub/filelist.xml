@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Tiny Sub" modversion="1.0.12" corepackage="False" gameversion="0.18.15.1">
+  <Submarine file="%ModDir%/Tiny Sub.sub" />
+</contentpackage>

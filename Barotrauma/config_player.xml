@@ -1,95 +1,95 @@
 ﻿<config
-  language="English"
-  verboselogging="false"
-  savedebugconsolelogs="false"
-  subeditorundobuffer="32"
-  maxautosaves="8"
-  autosaveintervalseconds="300"
-  subeditorbackground="#0D2545"
-  enablesplashscreen="true"
-  pauseonfocuslost="true"
-  aimassistamount="0.5"
-  enablemouselook="true"
-  chatopen="true"
-  crewmenuopen="true"
-  campaigndisclaimershown="false"
-  editordisclaimershown="false"
-  showoffensiveserverprompt="true"
-  tutorialskipwarning="true"
-  corpsedespawndelay="600"
-  corpsespersubdespawnthreshold="5"
-  usedualmodesockets="true"
-  disableingamehints="false"
-  enablesubmarineautosave="true"
-  quickstartsub="">
-  <graphicssettings
-    width="0"
-    height="0"
-    vsync="true"
-    compresstextures="true"
-    framelimit="300"
-    displaymode="BorderlessWindowed"
-    particlelimit="1500"
-    specularity="true"
-    chromaticaberration="true"
-    losmode="Transparent"
-    hudscale="1"
-    inventoryscale="1"
-    lightmapscale="1"
-    visiblelightlimit="50"
-    textscale="1"
-    radialdistortion="true" />
-  <audio
-    musicvolume="0.3"
-    soundvolume="0.5"
-    uivolume="0.3"
-    voicechatvolume="0.5"
-    voicechatcutoffprevention="0"
-    microphonevolume="5"
-    muteonfocuslost="false"
-    dynamicrangecompressionenabled="true"
-    usedirectionalvoicechat="true"
-    voipattenuationenabled="true"
-    voicesetting="PushToTalk"
-    audiooutputdevice=""
-    voicecapturedevice=""
-    noisegatethreshold="0"
-    disablevoicechatfilters="false" />
-  <contentpackages>
-    <!--Vanilla-->
-    <corepackage
-      path="Content/ContentPackages/Vanilla.xml" />
-    <regularpackages>
-      <!--DagonLing Blueprint-->
-      <package
-        path="LocalMods/DagonLing Blueprint/filelist.xml" />
-      <!--Ling-->
-      <package
-        path="LocalMods/Ling/filelist.xml" />
-      <!--Dagon v4-->
-      <package
-        path="LocalMods/Dagon v4/filelist.xml" />
-      <!--Dagon v3-->
-      <package
-        path="LocalMods/Dagon v3/filelist.xml" />
-      <!--Dagon V2-->
-      <package
-        path="LocalMods/Dagon V2/filelist.xml" />
-      <!--Dagon-->
-      <package
-        path="LocalMods/Dagon/filelist.xml" />
-      <!--Tiny Sub-->
-      <package
-	path="LocalMods/Tiny Sub/filelist.xml" />
-      <!--Beacons Extended-->
-      <package
-	      path="Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2389600483/filelist.xml" />
-      <!--Shipwrecks Extended-->
-      <package
-	      path="Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2095211492/filelist.xml" />
-      <!--Stations from beyond-->
-      <package
-	      path="Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2585543390/filelist.xml" />
-    </regularpackages>
-  </contentpackages>
+        language="English"
+        verboselogging="false"
+        savedebugconsolelogs="false"
+        subeditorundobuffer="32"
+        maxautosaves="8"
+        autosaveintervalseconds="300"
+        subeditorbackground="#0D2545"
+        enablesplashscreen="true"
+        pauseonfocuslost="true"
+        aimassistamount="0.5"
+        enablemouselook="true"
+        chatopen="true"
+        crewmenuopen="true"
+        campaigndisclaimershown="false"
+        editordisclaimershown="false"
+        showoffensiveserverprompt="true"
+        tutorialskipwarning="true"
+        corpsedespawndelay="600"
+        corpsespersubdespawnthreshold="5"
+        usedualmodesockets="true"
+        disableingamehints="false"
+        enablesubmarineautosave="true"
+        quickstartsub="">
+    <graphicssettings
+            width="0"
+            height="0"
+            vsync="true"
+            compresstextures="true"
+            framelimit="300"
+            displaymode="BorderlessWindowed"
+            particlelimit="1500"
+            specularity="true"
+            chromaticaberration="true"
+            losmode="Transparent"
+            hudscale="1"
+            inventoryscale="1"
+            lightmapscale="1"
+            visiblelightlimit="50"
+            textscale="1"
+            radialdistortion="true"/>
+    <audio
+            musicvolume="0.3"
+            soundvolume="0.5"
+            uivolume="0.3"
+            voicechatvolume="0.5"
+            voicechatcutoffprevention="0"
+            microphonevolume="5"
+            muteonfocuslost="false"
+            dynamicrangecompressionenabled="true"
+            usedirectionalvoicechat="true"
+            voipattenuationenabled="true"
+            voicesetting="PushToTalk"
+            audiooutputdevice=""
+            voicecapturedevice=""
+            noisegatethreshold="0"
+            disablevoicechatfilters="false"/>
+    <contentpackages>
+        <!--Vanilla-->
+        <corepackage
+                path="Content/ContentPackages/Vanilla.xml"/>
+        <regularpackages>
+            <!--DagonLing Blueprint-->
+            <package
+                    path="LocalMods/DagonLing Blueprint/filelist.xml"/>
+            <!--Ling-->
+            <package
+                    path="LocalMods/Ling/filelist.xml"/>
+            <!--Dagon v4-->
+            <package
+                    path="LocalMods/Dagon v4/filelist.xml"/>
+            <!--Dagon v3-->
+            <package
+                    path="LocalMods/Dagon v3/filelist.xml"/>
+            <!--Dagon V2-->
+            <package
+                    path="LocalMods/Dagon V2/filelist.xml"/>
+            <!--Dagon-->
+            <package
+                    path="LocalMods/Dagon/filelist.xml"/>
+            <!--Tiny Sub-->
+            <package
+                    path="LocalMods/Tiny Sub/filelist.xml"/>
+            <!--Beacons Extended-->
+            <package
+                    path="Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/2389600483/filelist.xml"/>
+            <!--Shipwrecks Extended-->
+            <package
+                    path="Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/2095211492/filelist.xml"/>
+            <!--Stations from beyond-->
+            <package
+                    path="Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/2585543390/filelist.xml"/>
+        </regularpackages>
+    </contentpackages>
 </config>
