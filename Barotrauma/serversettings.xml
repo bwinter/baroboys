@@ -45,7 +45,7 @@
   DestructibleOutposts="False"
   KillableNPCs="True"
   BanAfterWrongPassword="False"
-  MaxPasswordRetriesBeforeBan="3"
+  MaxPasswordRetriesBeforeBan="10"
   SelectedSubmarine=""
   SelectedShuttle=""
   TraitorsEnabled="No"
