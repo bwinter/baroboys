@@ -16,25 +16,27 @@
 
 // Configure the Google Cloud provider
 provider "google" {
+  # Service account: terraform@europan-world.iam.gserviceaccount.com
+  # Keys
   credentials = file("europan-world-6c508b9a66f6.json")
   project     = var.project
   region      = var.region
 }
 
+// Bucket needs user: terraform@europan-world.iam.gserviceaccount.com
+// with: Storage Object Admin
 terraform {
   backend "gcs" {
     credentials = "./europan-world-6c508b9a66f6.json"
-    bucket = "tf-state-baroboys"
-    prefix = "terraform/state"
+    bucket      = "tf-state-baroboys"
+    prefix      = "terraform/state"
   }
 }
-
 
 // Terraform plugin for creating random ids
 resource "random_id" "instance_id" {
   byte_length = 8
 }
-
 
 // A Single Compute Engine instance
 resource "google_compute_instance" "default" {
@@ -62,7 +64,6 @@ resource "google_compute_instance" "default" {
   }
   service_account {
     // Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    // This non production example uses the default compute service account.
     email  = var.service_account_email
     scopes = ["cloud-platform"]
   }
