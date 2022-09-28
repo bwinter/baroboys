@@ -11,6 +11,6 @@ su - bwinter_sc81 <<EOF
 
   ln -sf "/home/bwinter_sc81/baroboys/Barotrauma/Multiplayer" "/home/bwinter_sc81/.local/share/Daedalic Entertainment GmbH/Barotrauma/Multiplayer"
   ln -sf "/home/bwinter_sc81/baroboys/Barotrauma/WorkshopMods" "/home/bwinter_sc81/.local/share/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods"
-EOF
 
-screen -S baro-server -d -m "./barotrauma/DedicatedServer"
+  screen -S baro-server -d -m "./barotrauma/DedicatedServer"
+EOF

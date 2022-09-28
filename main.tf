@@ -68,32 +68,3 @@ resource "google_compute_instance" "default" {
     scopes = ["cloud-platform"]
   }
 }
-
-// Cloud Ops Agent Policy
-//module "agent_policy" {
-//  source  = "terraform-google-modules/cloud-operations/google//modules/agent-policy"
-//  version = "~> 0.1.0"
-//
-//  project_id = var.project
-//  policy_id  = "ops-agents-example-policy"
-//  agent_rules = [
-//    {
-//      type               = "ops-agent"
-//      version            = "current-major"
-//      package_state      = "installed"
-//      enable_autoupgrade = true
-//    },
-//  ]
-//  group_labels = [
-//    {
-//      created_by = "terraform"
-//    }
-//  ]
-//
-//  os_types = [
-//    {
-//      short_name = "debian"
-//      version    = "11"
-//    },
-//  ]
-//}
