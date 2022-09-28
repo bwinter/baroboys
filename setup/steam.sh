@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# /usr/games/steamcmd +force_install_dir '/home/bwinter_sc81/.local/share/Daedalic Entertainment GmbH/Barotrauma' +login anonymous +app_update ${STEAMAPPID} validate +quit
+
 
 # Prep for team by filling in TOS
 echo steam steam/question select "I AGREE" | debconf-set-selections
@@ -13,7 +13,13 @@ su bwinter_sc81 -c 'mkdir -p "/home/bwinter_sc81/.steam/sdk32"'
 su bwinter_sc81 -c 'ln -s "/home/bwinter_sc81/.local/share/Steam/steamcmd/linux64/steamclient.so" "/home/bwinter_sc81/.steam/sdk64/steamclient.so"'
 su bwinter_sc81 -c 'ln -s "/home/bwinter_sc81/.local/share/Steam/steamcmd/linux32/steamclient.so" "/home/bwinter_sc81/.steam/sdk32/steamclient.so"'
 
-su bwinter_sc81 -c '/usr/games/steamcmd +runscript "/home/bwinter_sc81/.local/share/Daedalic\ Entertainment\ GmbH/setup/steamcmd_script.txt"'
+su bwinter_sc81 -c << EOF
+  pushd "/home/bwinter_sc81/.local/share/Daedalic\ Entertainment\ GmbH/"
+  ls
+  /usr/games/steamcmd +force_install_dir './Barotrauma' +login anonymous +app_update 1026340 validate +quit
+EOF
+
+# /usr/games/steamcmd +runscript "./setup/steamcmd_script.txt"'
 
 # su bwinter_sc81 -c "mkdir -p '/home/bwinter_sc81/.local/share/Daedalic Entertainment GmbH/Barotrauma'"
 
