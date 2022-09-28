@@ -4,6 +4,9 @@
 echo steam steam/question select "I AGREE" | debconf-set-selections
 echo steam steam/license note "" | debconf-set-selections
 
+### steam
+echo "deb [arch=i386,amd64] http://repo.steampowered.com/steam/ precise steam" | tee "/etc/apt/sources.list.d/steampowered-repo.list"
+apt-get -yq update
 apt-get install -yq steamcmd libicu67
 
 su bwinter_sc81 -c 'mkdir -p "/home/bwinter_sc81/.steam/sdk64"'

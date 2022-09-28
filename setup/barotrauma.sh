@@ -13,10 +13,4 @@ su - bwinter_sc81 <<EOF
   ln -sf "/home/bwinter_sc81/baroboys/Barotrauma/WorkshopMods" "/home/bwinter_sc81/.local/share/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods"
 EOF
 
-# echo screen -S baro-server -d -m "./barotrauma/DedicatedServer"
-
-# apt-get install -yq
-
-# apt-get install -yq build-essential \
-#   wget apt-transport-https dirmngr \
-#   apt-transport-https ca-certificates gnupg
+screen -S baro-server -d -m "./barotrauma/DedicatedServer"
