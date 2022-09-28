@@ -83,13 +83,13 @@
                     path="LocalMods/Tiny Sub/filelist.xml"/>
             <!--Beacons Extended-->
             <package
-                    path="WorkshopMods/2389600483/filelist.xml"/>
+                    path="Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/2389600483/filelist.xml"/>
             <!--Shipwrecks Extended-->
             <package
-                    path="WorkshopMods/2095211492/filelist.xml"/>
+                    path="Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/2095211492/filelist.xml"/>
             <!--Stations from beyond-->
             <package
-                    path="WorkshopMods/2585543390/filelist.xml"/>
+                    path="Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/2585543390/filelist.xml"/>
         </regularpackages>
     </contentpackages>
 </config>
