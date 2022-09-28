@@ -1,5 +1,7 @@
 #! /bin/bash
 
+sudo su bwinter_sc81
+
 # Need Service Account: git-service-account@europan-world.iam.gserviceaccount.com
 # With Scopes: Secret Manager Secret Accessor
 # Get Github Deploy Key
