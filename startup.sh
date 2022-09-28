@@ -21,18 +21,25 @@ deb http://deb.debian.org/debian bullseye-backports main
 deb-src http://deb.debian.org/debian bullseye-backports main
 " | tee "/etc/apt/sources.list"
 
-### gcloud
-echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee "/etc/apt/sources.list.d/google-cloud-sdk.list"
-### steam
-echo "deb [arch=i386,amd64] http://repo.steampowered.com/steam/ precise steam" | tee "/etc/apt/sources.list.d/steampowered-repo.list"
-
 dpkg --add-architecture i386
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F24AEA9FB05498B7
 apt-get remove -y --purge man-db
 apt-get -yq update
-apt-get install -yq google-cloud-cli git curl screen silversearcher-ag
+apt-get -yq upgrade
+apt-get install -yq git curl screen silversearcher-ag build-essential wget dirmngr apt-transport-https ca-certificates gnupg
 
+### gcloud
 curl "https://packages.cloud.google.com/apt/doc/apt-key.gpg" | tee "/usr/share/keyrings/cloud.google.gpg"
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee "/etc/apt/sources.list.d/google-cloud-sdk.list"
+apt-get -yq update
+apt-get install -yq google-cloud-cli
+
+# echo '"projects/europan-world/zones/us-west1-b/instances/terraform-test-vm","[{""type"":""ops-agent""}]"' > agents_to_install.csv && \
+# curl -sSO "https://dl.google.com/cloudagents/mass-provision-google-cloud-ops-agents.py" && \
+# python3 mass-provision-google-cloud-ops-agents.py --file agents_to_install.csv
+
+curl -sSO "https://dl.google.com/cloudagents/add-google-cloud-ops-agent-repo.sh"
+bash "add-google-cloud-ops-agent-repo.sh" --also-install
 
 # Need Service Account: git-service-account@europan-world.iam.gserviceaccount.com
 # With Scopes: Secret Manager Secret Accessor
