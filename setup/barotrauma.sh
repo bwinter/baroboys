@@ -5,10 +5,10 @@ su - bwinter_sc81 <<EOF
 EOF
 
 # shellcheck disable=SC2016 (I want the HOME of the sub-shell.)
-su bwinter_sc81 -c 'mkdir -p "${HOME}/.local/share/Daedalic\ Entertainment\ GmbH/Barotrauma/"'
+su bwinter_sc81 -c 'mkdir -p "${HOME}/.local/share/Daedalic Entertainment GmbH/Barotrauma/"'
 
-su bwinter_sc81 -c 'ln -s "${HOME}/baroboys/Barotrauma/Multiplayer" "${HOME}/.local/share/Daedalic\ Entertainment\ GmbH/Barotrauma/Multiplayer"'
-su bwinter_sc81 -c 'ln -s "${HOME}/baroboys/Barotrauma/WorkshopMods" "${HOME}/.local/share/Daedalic\ Entertainment\ GmbH/Barotrauma/WorkshopMods"'
+su bwinter_sc81 -c 'ln -s "${HOME}/baroboys/Barotrauma/Multiplayer" "${HOME}/.local/share/Daedalic Entertainment GmbH/Barotrauma/Multiplayer"'
+su bwinter_sc81 -c 'ln -s "${HOME}/baroboys/Barotrauma/WorkshopMods" "${HOME}/.local/share/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods"'
 
 # echo screen -S baro-server -d -m "./barotrauma/DedicatedServer"
 
