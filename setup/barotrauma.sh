@@ -13,7 +13,7 @@ su bwinter_sc81 -c 'ln -s "home/bwinter_sc81/baroboys/Barotrauma/WorkshopMods" "
 
 # echo screen -S baro-server -d -m "./barotrauma/DedicatedServer"
 
-# apt-get install -yq screen silversearcher-ag
+# apt-get install -yq
 
 # apt-get install -yq build-essential \
 #   wget apt-transport-https dirmngr \

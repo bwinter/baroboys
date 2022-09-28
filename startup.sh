@@ -30,7 +30,7 @@ dpkg --add-architecture i386
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F24AEA9FB05498B7
 apt-get remove -y --purge man-db
 apt-get -yq update
-apt-get install -yq google-cloud-cli git curl
+apt-get install -yq google-cloud-cli git curl screen silversearcher-ag
 
 curl "https://packages.cloud.google.com/apt/doc/apt-key.gpg" | tee "/usr/share/keyrings/cloud.google.gpg"
 
