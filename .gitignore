@@ -2,6 +2,7 @@
 europan-world-*.json
 id_ecdsa
 id_ecdsa.pub
+barotrauma
 
 # Compiled files
 *.tfstate
