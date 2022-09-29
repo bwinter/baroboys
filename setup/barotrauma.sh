@@ -11,4 +11,7 @@ su - bwinter_sc81 <<EOF
 
   ln -sf "/home/bwinter_sc81/baroboys/Barotrauma/Multiplayer" "/home/bwinter_sc81/.local/share/Daedalic Entertainment GmbH/Barotrauma/Multiplayer"
   ln -sf "/home/bwinter_sc81/baroboys/Barotrauma/WorkshopMods" "/home/bwinter_sc81/.local/share/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods"
+
+  echo "" >> '/home/bwinter_sc81/.profile'
+  echo "export EDITOR=vim" >> '/home/bwinter_sc81/.profile'
 EOF
