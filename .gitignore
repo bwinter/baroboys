@@ -3,6 +3,7 @@ europan-world-*.json
 id_ecdsa
 id_ecdsa.pub
 Barotrauma
+Barotrauma-Save-Decompressor*
 
 # Compiled files
 *.tfstate
