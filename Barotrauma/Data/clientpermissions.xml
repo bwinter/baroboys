@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClientPermissions>
   <Client
-    name="dema"
-    steamid="76561198066093559"
-    permissions="All" />
-  <Client
-    name="Brendan"
+    name="bwinter.sc81"
     steamid="76561198061206633"
     permissions="All">
     <command
@@ -271,4 +267,8 @@
     <command
       name="water" />
   </Client>
+  <Client
+    name="dema"
+    steamid="76561198066093559"
+    permissions="All" />
 </ClientPermissions>
