@@ -7,7 +7,7 @@
   password="Max"
   enableupnp="false"
   autorestart="false"
-  LevelDifficulty="70"
+  LevelDifficulty="80"
   ServerMessage=""
   HiddenSubs=""
   AllowedRandomMissionTypes="Salvage,Monster,Cargo,Combat"
