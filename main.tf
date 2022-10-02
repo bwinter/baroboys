@@ -15,7 +15,7 @@
  */
 
 // Configure the Google Cloud provider
-provider "google" {
+provider "google-beta" {
   # Service account: terraform@europan-world.iam.gserviceaccount.com
   # Keys
   credentials = file("europan-world-6c508b9a66f6.json")
@@ -40,9 +40,15 @@ resource "random_id" "instance_id" {
 
 // A Single Compute Engine instance
 resource "google_compute_instance" "default" {
+  provider     = google-beta
   name         = var.machine_name
   machine_type = var.machine_type
   zone         = var.zone
+
+  advanced_machine_features {
+    threads_per_core   = 1
+    visible_core_count = 2
+  }
 
   metadata_startup_script = file("${path.module}/startup.sh")
 
