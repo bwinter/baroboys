@@ -66,15 +66,6 @@
             <!--Ling-->
             <package
                     path="LocalMods/Ling/filelist.xml"/>
-            <!--Dagon v4-->
-            <package
-                    path="LocalMods/Dagon v4/filelist.xml"/>
-            <!--Dagon v3-->
-            <package
-                    path="LocalMods/Dagon v3/filelist.xml"/>
-            <!--Dagon V2-->
-            <package
-                    path="LocalMods/Dagon V2/filelist.xml"/>
             <!--Dagon-->
             <package
                     path="LocalMods/Dagon/filelist.xml"/>
