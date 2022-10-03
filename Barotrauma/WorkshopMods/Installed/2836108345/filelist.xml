@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Passive Sonar Array [Vanilla]" steamworkshopid="2836108345" corepackage="false" modversion="1.0.0" gameversion="0.18.15.0" installtime="1657996476" altnames="Passive Sonar Array" expectedhash="346CA00874E16407D77FAA6A531E70FE">
+  <ItemAssembly file="%ModDir%/Passive Sonar Array.xml" />
+</contentpackage>

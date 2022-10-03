@@ -23,3 +23,10 @@ Also need to manually put holes in the VPC Firewall to allow the two ports throu
   ```shell
   ln -s '/Users/bwinter/personal-workspace/baroboys/Barotrauma/LocalMods/' '/Users/bwinter/Library/Application Support/Steam/steamapps/common/Barotrauma/Barotrauma.app/Contents/MacOS/LocalMods'
   ```
+  ```shell
+  ln -s '/Users/bwinter/personal-workspace/baroboys/Barotrauma/WorkshopMods/' '/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods'
+  ```
+  
+- Important Locations
+  - Local Content: /Users/bwinter/Library/Application Support/Steam/steamapps/common/Barotrauma/Barotrauma.app/Contents/MacOS
+  - Remote Content: /Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma

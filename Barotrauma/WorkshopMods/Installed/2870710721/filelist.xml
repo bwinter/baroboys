@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Dagon" steamworkshopid="2870710721" corepackage="false" modversion="1.0.2" gameversion="0.18.15.2" installtime="1664769839" expectedhash="82E7C87D1D3507E9FC8E497BC8C73BAB">
+  <Submarine file="%ModDir%/Dagon.sub" />
+</contentpackage>
