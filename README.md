@@ -30,3 +30,6 @@ Also need to manually put holes in the VPC Firewall to allow the two ports throu
 - Important Locations
   - Local Content: /Users/bwinter/Library/Application Support/Steam/steamapps/common/Barotrauma/Barotrauma.app/Contents/MacOS
   - Remote Content: /Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma
+
+- SSH keys are saved in GCP secret manager.
+- Keys for terraform need to be generated using the terraform service account.

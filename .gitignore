@@ -4,10 +4,6 @@ id_ecdsa
 id_ecdsa.pub
 Barotrauma-Save-Decompressor*
 
-# Compiled files
-*.tfstate
-*.tfstate.backup
-*.tfstate.lock.info*.terraform.lock.hcl
 # logs
 *.log
 
