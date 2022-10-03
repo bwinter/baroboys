@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CharacterData>
   <CharacterCampaignData name="joe" endpoint="97.113.167.16" steamid="76561199038927410">
-    <Character name="joe" originalname="joe" speciesname="human" tags="female,head12" salary="3228" experiencepoints="6477" unlockedtalents="tinkerer,quickfix,hullsealer" additionaltalentpoints="0" hairindex="16" beardindex="0" moustacheindex="0" faceattachmentindex="8" skincolor="171,112,70,255" haircolor="172,73,52,255" facialhaircolor="205,151,90,255" startitemsgiven="false" ragdoll="" personality="Tough" missionscompletedsincedeath="4">
+    <Character name="joe" originalname="joe" speciesname="human" tags="head12,female" salary="3228" experiencepoints="6477" unlockedtalents="tinkerer,quickfix,hullsealer" additionaltalentpoints="0" hairindex="16" beardindex="0" moustacheindex="0" faceattachmentindex="8" skincolor="171,112,70,255" haircolor="172,73,52,255" facialhaircolor="205,151,90,255" startitemsgiven="false" ragdoll="" personality="Tough" missionscompletedsincedeath="4">
       <job name="Mechanic" identifier="mechanic">
         <skill identifier="mechanical" level="53.353527" />
         <skill identifier="electrical" level="34.08119" />
@@ -662,7 +662,7 @@
     <Wallet balance="1320" rewarddistribution="0" />
   </CharacterCampaignData>
   <CharacterCampaignData name="Gunner" endpoint="66.171.188.209" steamid="76561198075324150">
-    <Character name="Gunner" originalname="Gunner" speciesname="human" tags="female,head4" salary="2930" experiencepoints="44639" unlockedtalents="bootcamp,gunsmith,physicalconditioning,navydiver,buccaneer,dualspecops,enforcer,beatcop,stonewall,tandemfire,warlord,implacable" additionaltalentpoints="2" hairindex="1" beardindex="0" moustacheindex="0" faceattachmentindex="0" skincolor="149,121,102,255" haircolor="199,125,82,255" facialhaircolor="199,125,82,255" startitemsgiven="false" ragdoll="" personality="Professional" missionscompletedsincedeath="40">
+    <Character name="Gunner" originalname="Gunner" speciesname="human" tags="head4,female" salary="2930" experiencepoints="44639" unlockedtalents="bootcamp,gunsmith,physicalconditioning,navydiver,buccaneer,dualspecops,enforcer,beatcop,stonewall,tandemfire,warlord,implacable" additionaltalentpoints="2" hairindex="1" beardindex="0" moustacheindex="0" faceattachmentindex="0" skincolor="149,121,102,255" haircolor="199,125,82,255" facialhaircolor="199,125,82,255" startitemsgiven="false" ragdoll="" personality="Professional" missionscompletedsincedeath="40">
       <job name="Security Officer" identifier="securityofficer">
         <skill identifier="weapons" level="100" />
         <skill identifier="medical" level="72.58215" />
@@ -1189,7 +1189,7 @@
     <Wallet balance="0" rewarddistribution="0" />
   </CharacterCampaignData>
   <CharacterCampaignData name="Brendan" endpoint="174.61.140.69" steamid="76561198061206633">
-    <Character name="Marco" originalname="Marco" speciesname="human" tags="male,head3" salary="3080" experiencepoints="43313" unlockedtalents="militaryapplications,remotemonitor,hazardousmaterials,collegeathletics,armsdealer,phdinnuclearphysics,justascratch,intheflow,optimizedpowerflow,allseeingeye,minorinmechanics,melodicrespite,electrochemist,castledoctrine,nuclearoption" additionaltalentpoints="3" hairindex="13" beardindex="4" moustacheindex="0" faceattachmentindex="15" skincolor="171,112,70,255" haircolor="52,48,48,255" facialhaircolor="52,48,48,255" startitemsgiven="false" ragdoll="" personality="Laid-back" missionscompletedsincedeath="76" hull="2708">
+    <Character name="Marco" originalname="Marco" speciesname="human" tags="male,head3" salary="3080" experiencepoints="43313" unlockedtalents="militaryapplications,remotemonitor,hazardousmaterials,collegeathletics,armsdealer,phdinnuclearphysics,justascratch,intheflow,optimizedpowerflow,allseeingeye,minorinmechanics,melodicrespite,electrochemist,castledoctrine,nuclearoption" additionaltalentpoints="3" hairindex="13" beardindex="4" moustacheindex="0" faceattachmentindex="15" skincolor="171,112,70,255" haircolor="52,48,48,255" facialhaircolor="52,48,48,255" startitemsgiven="false" ragdoll="" personality="Laid-back" missionscompletedsincedeath="76">
       <job name="Engineer" identifier="engineer">
         <skill identifier="electrical" level="100" />
         <skill identifier="mechanical" level="100" />
