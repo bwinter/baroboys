@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Dagon" modversion="1.0.0" corepackage="False" gameversion="0.18.15.2">
+<contentpackage name="Dagon" modversion="1.0.1" corepackage="False" steamworkshopid="2870710721" gameversion="0.18.15.2">
   <Submarine file="%ModDir%/Dagon.sub" />
 </contentpackage>
