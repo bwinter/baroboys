@@ -121,7 +121,7 @@
     <Wallet balance="0" rewarddistribution="0" />
   </CharacterCampaignData>
   <CharacterCampaignData name="menotquilty" endpoint="98.225.25.132" steamid="76561198025043162">
-    <Character name="Laozi" originalname="Laozi" speciesname="human" tags="head6,male" salary="4278" experiencepoints="35871" unlockedtalents="genetherapist,researchanddevelopment,geneharvester,fieldmedic,mechanicscourse,combatmedic,researchersintuition,advancedsplicing,doubleduty,dontdieonme,reverseengineer" additionaltalentpoints="0" hairindex="15" beardindex="9" moustacheindex="0" faceattachmentindex="0" skincolor="244,190,152,255" haircolor="222,215,204,255" facialhaircolor="222,215,204,255" startitemsgiven="false" ragdoll="" personality="Laid-back" missionscompletedsincedeath="48">
+    <Character name="Laozi" originalname="Laozi" speciesname="human" tags="male,head6" salary="4278" experiencepoints="35871" unlockedtalents="genetherapist,researchanddevelopment,geneharvester,fieldmedic,mechanicscourse,combatmedic,researchersintuition,advancedsplicing,doubleduty,dontdieonme,reverseengineer" additionaltalentpoints="0" hairindex="15" beardindex="9" moustacheindex="0" faceattachmentindex="0" skincolor="244,190,152,255" haircolor="222,215,204,255" facialhaircolor="222,215,204,255" startitemsgiven="false" ragdoll="" personality="Laid-back" missionscompletedsincedeath="48">
       <job name="Medical Doctor" identifier="medicaldoctor">
         <skill identifier="medical" level="100" />
         <skill identifier="weapons" level="28.03628" />
@@ -497,7 +497,7 @@
     <Wallet balance="4289" rewarddistribution="10" />
   </CharacterCampaignData>
   <CharacterCampaignData name="In5omniak" endpoint="198.27.162.11" steamid="76561198025138564">
-    <Character name="Pagliacci" originalname="Pagliacci" speciesname="human" tags="head6,male" salary="3336" experiencepoints="26767" unlockedtalents="enrollintoclowncollege,waterprankster,multitasker,psychoclown,truepotential,standanddeliver,aceofalltrades,skedaddle,survivalpackage" additionaltalentpoints="0" hairindex="8" beardindex="8" moustacheindex="0" faceattachmentindex="3" skincolor="200,165,131,255" haircolor="139,126,108,255" facialhaircolor="139,126,108,255" startitemsgiven="false" ragdoll="" personality="Crazy" missionscompletedsincedeath="33">
+    <Character name="Pagliacci" originalname="Pagliacci" speciesname="human" tags="male,head6" salary="3336" experiencepoints="26767" unlockedtalents="enrollintoclowncollege,waterprankster,multitasker,psychoclown,truepotential,standanddeliver,aceofalltrades,skedaddle,survivalpackage" additionaltalentpoints="0" hairindex="8" beardindex="8" moustacheindex="0" faceattachmentindex="3" skincolor="200,165,131,255" haircolor="139,126,108,255" facialhaircolor="139,126,108,255" startitemsgiven="false" ragdoll="" personality="Crazy" missionscompletedsincedeath="33">
       <job name="Assistant" identifier="assistant">
         <skill identifier="weapons" level="90.15903" />
         <skill identifier="mechanical" level="77.52006" />
@@ -661,284 +661,8 @@
     <orders />
     <Wallet balance="1320" rewarddistribution="0" />
   </CharacterCampaignData>
-  <CharacterCampaignData name="bwinter.sc81" endpoint="174.61.140.69" steamid="76561198061206633">
-    <Character name="Marco" originalname="Marco" speciesname="human" tags="head3,male" salary="3080" experiencepoints="43313" unlockedtalents="militaryapplications,remotemonitor,hazardousmaterials,collegeathletics,armsdealer,phdinnuclearphysics,justascratch,intheflow,optimizedpowerflow,allseeingeye,minorinmechanics,melodicrespite,electrochemist,castledoctrine,nuclearoption" additionaltalentpoints="3" hairindex="13" beardindex="4" moustacheindex="0" faceattachmentindex="15" skincolor="171,112,70,255" haircolor="52,48,48,255" facialhaircolor="52,48,48,255" startitemsgiven="false" ragdoll="" personality="Laid-back" missionscompletedsincedeath="76" hull="1927">
-      <job name="Engineer" identifier="engineer">
-        <skill identifier="electrical" level="100" />
-        <skill identifier="mechanical" level="100" />
-        <skill identifier="weapons" level="100" />
-        <skill identifier="medical" level="100" />
-        <skill identifier="helm" level="29.437874" />
-      </job>
-      <savedstatvalues>
-        <savedstatvalue stattype="IncreaseFabricationQuality" statidentifier="reactorfuel" statvalue="1" removeondeath="false" />
-        <savedstatvalue stattype="IncreaseFabricationQuality" statidentifier="mobilebattery" statvalue="1" removeondeath="false" />
-        <savedstatvalue stattype="ElectricalSkillBonus" statidentifier="optimizedpowerflow" statvalue="88" removeondeath="true" />
-        <savedstatvalue stattype="None" statidentifier="nuclearoption" statvalue="1" removeondeath="false" />
-      </savedstatvalues>
-    </Character>
-    <inventory>
-      <Item name="" identifier="idcard" ID="11361" rect="1227,109,16,16" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="1" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="smallitem,identitycard,name:Marco,id_engineer,jobid:engineer,id_security" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.5" HiddenInGame="False" i="0">
-        <IdCard TeamID="Team1" OwnerTags="head3,male" OwnerName="Marco" OwnerJobId="engineer" OwnerHairIndex="13" OwnerBeardIndex="4" OwnerMoustacheIndex="0" OwnerFaceAttachmentIndex="15" OwnerHairColor="52,48,48,255" OwnerFacialHairColor="52,48,48,255" OwnerSkinColor="171,112,70,255" OwnerSheetIndex="2,0" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-      </Item>
-      <Item name="" identifier="autoinjectorheadset" ID="11362" rect="1216,117,38,32" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="mobileradio,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.6" HiddenInGame="False" i="1">
-        <WifiComponent TeamID="Team1" Range="35000" Channel="0" AllowCrossTeamCommunication="False" LinkToChat="True" MinChatMessageInterval="0" DiscardDuplicateChatMessages="False" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" channelmemory="0,1,2,3,4,5,6,7,8,9" />
-        <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="" />
-        <Wearable PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" variant="1" />
-        <inventory />
-      </Item>
-      <Item name="" identifier="piratebandana" ID="11363" rect="1220,112,30,21" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="clothing,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.6" HiddenInGame="False" i="2">
-        <Wearable PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" variant="1" />
-      </Item>
-      <Item name="" identifier="pirateclothes" ID="11364" rect="1204,116,61,29" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="clothing,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.6" HiddenInGame="False" i="3">
-        <Wearable PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" variant="1" />
-      </Item>
-      <Item name="" identifier="pucs" ID="11365" flippedx="true" rect="1196,135,77,67" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="-0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="deepdiving,diving,provocative,divinggear_wearableindoors,light" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="4">
-        <ItemComponent PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-        <LightComponent Range="200" CastShadows="True" DrawBehindSubs="False" IsOn="True" Flicker="0" FlickerSpeed="1" PulseFrequency="0" PulseAmount="0" BlinkFrequency="0" LightColor="250,224,165,255" IsActive="True" MinVoltage="0.5" PowerConsumption="10" Voltage="1" VulnerableToEMP="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="False" Msg="" />
-        <Wearable PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgEquipSelect" variant="1" />
-        <Holdable HoldPos="0,-50" HoldAngle="45" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpUse" />
-        <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="11366," />
-        <inventory>
-          <Item name="" identifier="oxygentank" ID="11366" rect="1227,117,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="75.982704" InvulnerableToDamage="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-        </inventory>
-      </Item>
-      <Item name="" identifier="toolbelt" ID="11367" flippedx="true" rect="1207,115,56,27" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="-0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="mobilecontainer,smallitem,tool" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.6" HiddenInGame="False" i="7">
-        <Wearable PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgEquipSelect" variant="1" />
-        <Holdable HoldPos="0,-70" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpUse" />
-        <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="11368;11369;11370;11371;11372;11373;11374,11375;11376;11377;11378;11379;11380;11381,11382;11383,11384,11385;11386;11387;11388;11389;11390;11391;11392,11393;11395" />
-        <inventory>
-          <Item name="" identifier="oxygentank" ID="11368" rect="1227,117,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="oxygentank" ID="11369" rect="1227,117,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="oxygentank" ID="11370" rect="1227,117,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="oxygentank" ID="11371" rect="1227,117,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="oxygentank" ID="11372" rect="1227,117,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.97781" InvulnerableToDamage="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="oxygentank" ID="11373" rect="1227,117,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="oxygentank" ID="11374" rect="1227,117,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="weldingfueltank" ID="11375" rect="1227,117,11,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="weldingtoolfuel,weldingfuel,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="1">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="weldingfueltank" ID="11376" rect="1227,117,11,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="weldingtoolfuel,weldingfuel,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="1">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="weldingfueltank" ID="11377" rect="1227,117,11,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="weldingtoolfuel,weldingfuel,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="1">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="weldingfueltank" ID="11378" rect="1227,117,11,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="weldingtoolfuel,weldingfuel,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="1">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="weldingfueltank" ID="11379" rect="1227,117,11,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="weldingtoolfuel,weldingfuel,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="1">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="weldingfueltank" ID="11380" rect="1227,117,11,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="weldingtoolfuel,weldingfuel,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="1">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="weldingfueltank" ID="11381" rect="1227,117,11,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" OriginalOutpost="Tectamus Linea" Tags="weldingtoolfuel,weldingfuel,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="1">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="oxygentank" ID="11382" rect="1227,117,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="0" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="2">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="oxygentank" ID="11383" rect="1227,117,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="0" InvulnerableToDamage="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="2">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="weldingfueltank" ID="11384" rect="1227,117,11,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="0" InvulnerableToDamage="False" Tags="weldingtoolfuel,weldingfuel,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="3">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="oxygentank" ID="11385" rect="1227,117,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="4">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="oxygentank" ID="11386" rect="1227,117,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="4">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="oxygentank" ID="11387" rect="1227,117,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="4">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="oxygentank" ID="11388" rect="1227,117,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="4">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="oxygentank" ID="11389" rect="1227,117,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="4">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="oxygentank" ID="11390" rect="1227,117,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.97781" InvulnerableToDamage="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="4">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="oxygentank" ID="11391" rect="1227,117,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.97781" InvulnerableToDamage="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="4">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="oxygentank" ID="11392" rect="1227,117,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.97781" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="4">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-          <Item name="" identifier="alienpowercell" ID="11393" rect="1228,112,10,23" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.3" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" OriginalOutpost="Seosu" Tags="alienpowercell,alien,smallitem,light" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.7" HiddenInGame="False" i="5">
-            <LightComponent Range="100" CastShadows="False" DrawBehindSubs="False" IsOn="True" Flicker="0" FlickerSpeed="1" PulseFrequency="0" PulseAmount="0" BlinkFrequency="0" LightColor="112,146,190,30" IsActive="True" MinVoltage="0" PowerConsumption="0" Voltage="1" VulnerableToEMP="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="False" Msg="" />
-            <Holdable HoldPos="0,0" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="11394" />
-            <inventory>
-              <Item name="" identifier="alienprojectile" ID="11394" rect="1229,102,8,3" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="pistolammoitem,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
-                <Pickable PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-                <Projectile PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-              </Item>
-            </inventory>
-          </Item>
-          <Item name="" identifier="alienpowercell" ID="11395" rect="1228,112,10,23" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.3" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" OriginalOutpost="New Iapetus" Tags="alienpowercell,alien,smallitem,light" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.7" HiddenInGame="False" i="5">
-            <LightComponent Range="100" CastShadows="False" DrawBehindSubs="False" IsOn="True" Flicker="0" FlickerSpeed="1" PulseFrequency="0" PulseAmount="0" BlinkFrequency="0" LightColor="112,146,190,30" IsActive="True" MinVoltage="0" PowerConsumption="0" Voltage="1" VulnerableToEMP="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="False" Msg="" />
-            <Holdable HoldPos="0,0" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="11396" />
-            <inventory>
-              <Item name="" identifier="alienprojectile" ID="11396" rect="1229,102,8,3" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="pistolammoitem,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
-                <Pickable PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-                <Projectile PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-              </Item>
-            </inventory>
-          </Item>
-        </inventory>
-      </Item>
-      <Item name="" identifier="wrench" ID="11397" flippedx="true" rect="1219,106,32,10" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="-0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="mechanicalrepairtool,simpletool,mountableweapon,smallitem,tool,wrenchitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="8">
-        <MeleeWeapon Swing="True" SwingPos="2,0" SwingForce="3,-1" HoldPos="0,0" HoldAngle="60" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-        <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-      </Item>
-      <Item name="" identifier="screwdriver" ID="11398" flippedx="true" rect="1219,105,32,7" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="-0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="electricalrepairtool,simpletool,smallitem,tool" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="9">
-        <MeleeWeapon Swing="True" SwingPos="2,0" SwingForce="3,-1" HoldPos="0,0" HoldAngle="60" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-        <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-      </Item>
-      <Item name="" identifier="alienpistol" ID="11399" rect="1209,116,52,29" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" OriginalOutpost="Tectamus Linea" Tags="weapon,alien,mountableweapon,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="10">
-        <Holdable HoldPos="0,0" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-        <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="11400" />
-        <RangedWeapon PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="">
-          <requireditem items="alienpowercell" type="Contained" optional="false" ignoreineditor="false" excludebroken="true" excludefullcondition="false" targetslot="-1" allowvariants="true" />
-        </RangedWeapon>
-        <inventory>
-          <Item name="" identifier="alienpowercell" ID="11400" rect="1238,102,10,23" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.3" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="12" InvulnerableToDamage="False" OriginalOutpost="Annwn" Tags="alienpowercell,alien,smallitem,light" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.7" HiddenInGame="False" i="0">
-            <LightComponent Range="100" CastShadows="False" DrawBehindSubs="False" IsOn="True" Flicker="0" FlickerSpeed="1" PulseFrequency="0" PulseAmount="0" BlinkFrequency="0" LightColor="112,146,190,30" IsActive="True" MinVoltage="0" PowerConsumption="0" Voltage="1" VulnerableToEMP="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="False" Msg="" />
-            <Holdable HoldPos="0,0" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="11401" />
-            <inventory>
-              <Item name="" identifier="alienprojectile" ID="11401" rect="1239,92,8,3" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="pistolammoitem,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
-                <Pickable PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-                <Projectile PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-              </Item>
-            </inventory>
-          </Item>
-        </inventory>
-      </Item>
-      <Item name="" identifier="weldingtool" ID="11402" flippedx="true" rect="1197,123,76,44" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="-0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="weldingequipment,mountableweapon,smallitem,tool,light" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="11">
-        <Holdable HoldPos="0,0" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-        <LightComponent Range="100" CastShadows="True" DrawBehindSubs="False" IsOn="False" Flicker="0.5" FlickerSpeed="1" PulseFrequency="0" PulseAmount="0" BlinkFrequency="0" LightColor="255,229,178,255" MinVoltage="0" PowerConsumption="0" Voltage="1" VulnerableToEMP="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-        <RepairTool BarrelRotation="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="">
-          <requireditem items="weldingtoolfuel,oxygensource" type="Contained" optional="false" ignoreineditor="false" excludebroken="true" excludefullcondition="false" targetslot="-1" allowvariants="true" />
-        </RepairTool>
-        <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="11403" />
-        <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-        <inventory>
-          <Item name="" identifier="weldingfueltank" ID="11403" rect="1223,100,11,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="47.378227" InvulnerableToDamage="False" Tags="weldingtoolfuel,weldingfuel,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-        </inventory>
-      </Item>
-      <Item name="" identifier="plasmacutter" ID="11404" flippedx="true" rect="1195,123,79,43" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="-0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="cuttingequipment,mountableweapon,smallitem,tool,light" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="12">
-        <Holdable HoldPos="0,0" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-        <LightComponent Range="100" CastShadows="True" DrawBehindSubs="False" IsOn="False" Flicker="0.5" FlickerSpeed="1" PulseFrequency="0" PulseAmount="0" BlinkFrequency="0" LightColor="204,178,255,255" MinVoltage="0" PowerConsumption="0" Voltage="1" VulnerableToEMP="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-        <RepairTool BarrelRotation="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="">
-          <requireditem items="oxygensource,weldingtoolfuel" type="Contained" optional="false" ignoreineditor="false" excludebroken="true" excludefullcondition="false" targetslot="-1" allowvariants="true" />
-        </RepairTool>
-        <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="11405" />
-        <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-        <inventory>
-          <Item name="" identifier="oxygentank" ID="11405" rect="1227,98,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="21.968826" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,smallitem,oxygensource" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
-            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-        </inventory>
-      </Item>
-      <Item name="" identifier="handheldsonar" ID="11406" rect="1223,107,24,12" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="sonar,provocative,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="16">
-        <Holdable HoldPos="0,0" HoldAngle="30" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-        <Sonar UseTransducers="False" CenterOnTransducers="False" HasMineralScanner="True" MinVoltage="0.5" PowerConsumption="10" IsActive="True" Voltage="1" VulnerableToEMP="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-        <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="11407" />
-        <inventory>
-          <Item name="" identifier="batterycell" ID="11407" rect="1224,106,17,10" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="70" InvulnerableToDamage="False" Tags="loadable,smallitem,mobilebattery" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.8" HiddenInGame="False" i="0">
-            <Holdable HoldPos="0,0" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-            <Quality QualityLevel="3" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-          </Item>
-        </inventory>
-      </Item>
-      <Item name="" identifier="reactorpda" ID="11408" rect="1228,111,14,19" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="17">
-        <Holdable HoldPos="0,0" HoldAngle="30" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
-        <RemoteController PickingTime="0" CanBePicked="False" AllowInGameEditing="False" Msg="ItemMsgInteractSelect" />
-      </Item>
-      <Item name="" identifier="genesplicer" ID="11409" rect="1220,108,29,14" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.4" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.6" HiddenInGame="False" i="18">
-        <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="11410" />
-        <Wearable PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" variant="1" />
-        <inventory>
-          <Item name="" identifier="geneticmaterialthresher" ID="11410" rect="1225,109,16,16" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="11.947353" InvulnerableToDamage="False" Tags="geneticmaterial,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.6" HiddenInGame="False" i="0">
-            <GeneticMaterial Effect="decreasedoxygenconsumption" TaintedEffect="geneticmaterialdebuff" SelectedTaintedEffect="" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
-            <Holdable HoldPos="0,0" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="" />
-            <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="" />
-            <inventory />
-          </Item>
-        </inventory>
-      </Item>
-    </inventory>
-    <health>
-      <Affliction identifier="bloodloss" strength="3.0797832" />
-      <Affliction identifier="decreasedoxygenconsumption" strength="11.947353" />
-      <Affliction identifier="guarded" strength="10" />
-      <LimbHealth i="0" />
-      <LimbHealth i="1" />
-      <LimbHealth i="2" />
-      <LimbHealth i="3" />
-      <LimbHealth i="4" />
-      <LimbHealth i="5" />
-    </health>
-    <orders>
-      <order id="repairelectrical" priority="3" targettype="0" />
-    </orders>
-    <Wallet balance="0" rewarddistribution="10" />
-  </CharacterCampaignData>
   <CharacterCampaignData name="Gunner" endpoint="66.171.188.209" steamid="76561198075324150">
-    <Character name="Gunner" originalname="Gunner" speciesname="human" tags="female,head4" salary="2930" experiencepoints="44639" unlockedtalents="bootcamp,gunsmith,physicalconditioning,navydiver,buccaneer,dualspecops,enforcer,beatcop,stonewall,tandemfire,warlord,implacable" additionaltalentpoints="2" hairindex="1" beardindex="0" moustacheindex="0" faceattachmentindex="0" skincolor="149,121,102,255" haircolor="199,125,82,255" facialhaircolor="199,125,82,255" startitemsgiven="false" ragdoll="" personality="Professional" missionscompletedsincedeath="40" hull="1927">
+    <Character name="Gunner" originalname="Gunner" speciesname="human" tags="female,head4" salary="2930" experiencepoints="44639" unlockedtalents="bootcamp,gunsmith,physicalconditioning,navydiver,buccaneer,dualspecops,enforcer,beatcop,stonewall,tandemfire,warlord,implacable" additionaltalentpoints="2" hairindex="1" beardindex="0" moustacheindex="0" faceattachmentindex="0" skincolor="149,121,102,255" haircolor="199,125,82,255" facialhaircolor="199,125,82,255" startitemsgiven="false" ragdoll="" personality="Professional" missionscompletedsincedeath="40">
       <job name="Security Officer" identifier="securityofficer">
         <skill identifier="weapons" level="100" />
         <skill identifier="medical" level="72.58215" />
@@ -1202,7 +926,7 @@
     <Wallet balance="976" rewarddistribution="10" />
   </CharacterCampaignData>
   <CharacterCampaignData name="dema" endpoint="67.168.6.25" steamid="76561198066093559">
-    <Character name="Obediah Marsh" originalname="Obediah Marsh" speciesname="human" tags="male,head12" salary="3523" experiencepoints="71707" unlockedtalents="evasivemaneuvers,trustedcaptain,trucker,esteemedcaptain,commander,handsomestranger,maintenanceroutine,inspiretobattle,allhandsondeck,quickdraw,drunkensailor,bountyhunter" additionaltalentpoints="0" hairindex="7" beardindex="2" moustacheindex="0" faceattachmentindex="14" skincolor="200,165,131,255" haircolor="52,48,48,255" facialhaircolor="52,48,48,255" startitemsgiven="false" ragdoll="" personality="Joker" missionscompletedsincedeath="50" hull="1914">
+    <Character name="Obediah Marsh" originalname="Obediah Marsh" speciesname="human" tags="male,head12" salary="3523" experiencepoints="71707" unlockedtalents="evasivemaneuvers,trustedcaptain,trucker,esteemedcaptain,commander,handsomestranger,maintenanceroutine,inspiretobattle,allhandsondeck,quickdraw,drunkensailor,bountyhunter" additionaltalentpoints="0" hairindex="7" beardindex="2" moustacheindex="0" faceattachmentindex="14" skincolor="200,165,131,255" haircolor="52,48,48,255" facialhaircolor="52,48,48,255" startitemsgiven="false" ragdoll="" personality="Joker" missionscompletedsincedeath="50">
       <job name="Captain" identifier="captain">
         <skill identifier="helm" level="100" />
         <skill identifier="weapons" level="100" />
@@ -1463,5 +1187,281 @@
     </health>
     <orders />
     <Wallet balance="0" rewarddistribution="0" />
+  </CharacterCampaignData>
+  <CharacterCampaignData name="Brendan" endpoint="174.61.140.69" steamid="76561198061206633">
+    <Character name="Marco" originalname="Marco" speciesname="human" tags="male,head3" salary="3080" experiencepoints="43313" unlockedtalents="militaryapplications,remotemonitor,hazardousmaterials,collegeathletics,armsdealer,phdinnuclearphysics,justascratch,intheflow,optimizedpowerflow,allseeingeye,minorinmechanics,melodicrespite,electrochemist,castledoctrine,nuclearoption" additionaltalentpoints="3" hairindex="13" beardindex="4" moustacheindex="0" faceattachmentindex="15" skincolor="171,112,70,255" haircolor="52,48,48,255" facialhaircolor="52,48,48,255" startitemsgiven="false" ragdoll="" personality="Laid-back" missionscompletedsincedeath="76" hull="1853">
+      <job name="Engineer" identifier="engineer">
+        <skill identifier="electrical" level="100" />
+        <skill identifier="mechanical" level="100" />
+        <skill identifier="weapons" level="100" />
+        <skill identifier="medical" level="100" />
+        <skill identifier="helm" level="29.544296" />
+      </job>
+      <savedstatvalues>
+        <savedstatvalue stattype="IncreaseFabricationQuality" statidentifier="reactorfuel" statvalue="1" removeondeath="false" />
+        <savedstatvalue stattype="IncreaseFabricationQuality" statidentifier="mobilebattery" statvalue="1" removeondeath="false" />
+        <savedstatvalue stattype="ElectricalSkillBonus" statidentifier="optimizedpowerflow" statvalue="88" removeondeath="true" />
+        <savedstatvalue stattype="None" statidentifier="nuclearoption" statvalue="1" removeondeath="false" />
+      </savedstatvalues>
+    </Character>
+    <inventory>
+      <Item name="" identifier="idcard" ID="10950" rect="518,365,16,16" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="1" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="identitycard,smallitem,name:Marco,id_engineer,jobid:engineer,id_security" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.5" HiddenInGame="False" i="0">
+        <IdCard TeamID="Team1" OwnerTags="male,head3" OwnerName="Marco" OwnerJobId="engineer" OwnerHairIndex="13" OwnerBeardIndex="4" OwnerMoustacheIndex="0" OwnerFaceAttachmentIndex="15" OwnerHairColor="52,48,48,255" OwnerFacialHairColor="52,48,48,255" OwnerSkinColor="171,112,70,255" OwnerSheetIndex="2,0" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+      </Item>
+      <Item name="" identifier="autoinjectorheadset" ID="10951" rect="507,373,38,32" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="mobileradio,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.6" HiddenInGame="False" i="1">
+        <WifiComponent TeamID="Team1" Range="35000" Channel="0" AllowCrossTeamCommunication="False" LinkToChat="True" MinChatMessageInterval="0" DiscardDuplicateChatMessages="False" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" channelmemory="0,1,2,3,4,5,6,7,8,9" />
+        <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="" />
+        <Wearable PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" variant="1" />
+        <inventory />
+      </Item>
+      <Item name="" identifier="piratebandana" ID="10952" rect="511,368,30,21" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="clothing,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.6" HiddenInGame="False" i="2">
+        <Wearable PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" variant="1" />
+      </Item>
+      <Item name="" identifier="pirateclothes" ID="10953" rect="495,372,61,29" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="clothing,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.6" HiddenInGame="False" i="3">
+        <Wearable PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" variant="1" />
+      </Item>
+      <Item name="" identifier="pucs" ID="10954" flippedx="true" rect="487,391,77,67" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="-0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="diving,deepdiving,divinggear_wearableindoors,provocative,light" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="4">
+        <ItemComponent PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+        <LightComponent Range="200" CastShadows="True" DrawBehindSubs="False" IsOn="True" Flicker="0" FlickerSpeed="1" PulseFrequency="0" PulseAmount="0" BlinkFrequency="0" LightColor="250,224,165,255" IsActive="True" MinVoltage="0.5" PowerConsumption="10" Voltage="1" VulnerableToEMP="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="False" Msg="" />
+        <Wearable PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgEquipSelect" variant="1" />
+        <Holdable HoldPos="0,-50" HoldAngle="45" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpUse" />
+        <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="10955," />
+        <inventory>
+          <Item name="" identifier="oxygentank" ID="10955" rect="519,373,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="75.982704" InvulnerableToDamage="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+        </inventory>
+      </Item>
+      <Item name="" identifier="toolbelt" ID="10956" flippedx="true" rect="498,371,56,27" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="-0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="mobilecontainer,smallitem,tool" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.6" HiddenInGame="False" i="7">
+        <Wearable PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgEquipSelect" variant="1" />
+        <Holdable HoldPos="0,-70" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpUse" />
+        <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="10957;10958;10959;10960;10961;10962;10963,10964;10965;10966;10967;10968;10969;10970,10971;10972,10973,10974;10975;10976;10977;10978;10979;10980;10981,10982;10984" />
+        <inventory>
+          <Item name="" identifier="oxygentank" ID="10957" rect="519,373,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="oxygentank" ID="10958" rect="519,373,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="oxygentank" ID="10959" rect="519,373,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="oxygentank" ID="10960" rect="519,373,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="oxygentank" ID="10961" rect="519,373,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.97781" InvulnerableToDamage="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="oxygentank" ID="10962" rect="519,373,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="oxygentank" ID="10963" rect="519,373,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="weldingfueltank" ID="10964" rect="520,373,11,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="weldingtoolfuel,smallitem,weldingfuel" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="1">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="weldingfueltank" ID="10965" rect="520,373,11,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="weldingtoolfuel,smallitem,weldingfuel" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="1">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="weldingfueltank" ID="10966" rect="520,373,11,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="weldingtoolfuel,smallitem,weldingfuel" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="1">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="weldingfueltank" ID="10967" rect="520,373,11,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="weldingtoolfuel,smallitem,weldingfuel" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="1">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="weldingfueltank" ID="10968" rect="520,373,11,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="weldingtoolfuel,smallitem,weldingfuel" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="1">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="weldingfueltank" ID="10969" rect="520,373,11,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="weldingtoolfuel,smallitem,weldingfuel" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="1">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="weldingfueltank" ID="10970" rect="520,373,11,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" OriginalOutpost="Tectamus Linea" Tags="weldingtoolfuel,smallitem,weldingfuel" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="1">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="oxygentank" ID="10971" rect="519,373,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="0" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="2">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="oxygentank" ID="10972" rect="519,373,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="0" InvulnerableToDamage="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="2">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="weldingfueltank" ID="10973" rect="520,373,11,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="0" InvulnerableToDamage="False" Tags="weldingtoolfuel,smallitem,weldingfuel" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="3">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="oxygentank" ID="10974" rect="519,373,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="4">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="oxygentank" ID="10975" rect="519,373,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="4">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="oxygentank" ID="10976" rect="519,373,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="4">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="oxygentank" ID="10977" rect="519,373,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="4">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="oxygentank" ID="10978" rect="519,373,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.99851" InvulnerableToDamage="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="4">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="oxygentank" ID="10979" rect="519,373,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.97781" InvulnerableToDamage="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="4">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="oxygentank" ID="10980" rect="519,373,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.97781" InvulnerableToDamage="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="4">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="oxygentank" ID="10981" rect="519,373,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="119.97781" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="4">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+          <Item name="" identifier="alienpowercell" ID="10982" rect="520,368,10,23" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.3" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" OriginalOutpost="Seosu" Tags="smallitem,alienpowercell,alien,light" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.7" HiddenInGame="False" i="5">
+            <LightComponent Range="100" CastShadows="False" DrawBehindSubs="False" IsOn="True" Flicker="0" FlickerSpeed="1" PulseFrequency="0" PulseAmount="0" BlinkFrequency="0" LightColor="112,146,190,30" IsActive="True" MinVoltage="0" PowerConsumption="0" Voltage="1" VulnerableToEMP="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="False" Msg="" />
+            <Holdable HoldPos="0,0" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="10983" />
+            <inventory>
+              <Item name="" identifier="alienprojectile" ID="10983" rect="521,358,8,3" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="pistolammoitem,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
+                <Pickable PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+                <Projectile PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+              </Item>
+            </inventory>
+          </Item>
+          <Item name="" identifier="alienpowercell" ID="10984" rect="520,368,10,23" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.3" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" OriginalOutpost="New Iapetus" Tags="smallitem,alienpowercell,alien,light" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.7" HiddenInGame="False" i="5">
+            <LightComponent Range="100" CastShadows="False" DrawBehindSubs="False" IsOn="True" Flicker="0" FlickerSpeed="1" PulseFrequency="0" PulseAmount="0" BlinkFrequency="0" LightColor="112,146,190,30" IsActive="True" MinVoltage="0" PowerConsumption="0" Voltage="1" VulnerableToEMP="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="False" Msg="" />
+            <Holdable HoldPos="0,0" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="10985" />
+            <inventory>
+              <Item name="" identifier="alienprojectile" ID="10985" rect="521,358,8,3" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="pistolammoitem,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
+                <Pickable PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+                <Projectile PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+              </Item>
+            </inventory>
+          </Item>
+        </inventory>
+      </Item>
+      <Item name="" identifier="wrench" ID="10986" flippedx="true" rect="510,362,32,10" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="-0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="simpletool,mountableweapon,mechanicalrepairtool,smallitem,wrenchitem,tool" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="8">
+        <MeleeWeapon Swing="True" SwingPos="2,0" SwingForce="3,-1" HoldPos="0,0" HoldAngle="60" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+        <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+      </Item>
+      <Item name="" identifier="screwdriver" ID="10987" flippedx="true" rect="510,361,32,7" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="-0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="simpletool,smallitem,electricalrepairtool,tool" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="9">
+        <MeleeWeapon Swing="True" SwingPos="2,0" SwingForce="3,-1" HoldPos="0,0" HoldAngle="60" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+        <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+      </Item>
+      <Item name="" identifier="alienpistol" ID="10988" rect="500,372,52,29" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" OriginalOutpost="Tectamus Linea" Tags="weapon,mountableweapon,smallitem,alien" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="10">
+        <Holdable HoldPos="0,0" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+        <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="10989" />
+        <RangedWeapon PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="">
+          <requireditem items="alienpowercell" type="Contained" optional="false" ignoreineditor="false" excludebroken="true" excludefullcondition="false" targetslot="-1" allowvariants="true" />
+        </RangedWeapon>
+        <inventory>
+          <Item name="" identifier="alienpowercell" ID="10989" rect="530,358,10,23" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.3" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="12" InvulnerableToDamage="False" OriginalOutpost="Annwn" Tags="smallitem,alienpowercell,alien,light" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.7" HiddenInGame="False" i="0">
+            <LightComponent Range="100" CastShadows="False" DrawBehindSubs="False" IsOn="True" Flicker="0" FlickerSpeed="1" PulseFrequency="0" PulseAmount="0" BlinkFrequency="0" LightColor="112,146,190,30" IsActive="True" MinVoltage="0" PowerConsumption="0" Voltage="1" VulnerableToEMP="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="False" Msg="" />
+            <Holdable HoldPos="0,0" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="10990" />
+            <inventory>
+              <Item name="" identifier="alienprojectile" ID="10990" rect="531,348,8,3" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="pistolammoitem,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
+                <Pickable PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+                <Projectile PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+              </Item>
+            </inventory>
+          </Item>
+        </inventory>
+      </Item>
+      <Item name="" identifier="weldingtool" ID="10991" flippedx="true" rect="488,379,76,44" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="-0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="weldingequipment,mountableweapon,smallitem,tool,light" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="11">
+        <Holdable HoldPos="0,0" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+        <LightComponent Range="100" CastShadows="True" DrawBehindSubs="False" IsOn="False" Flicker="0.5" FlickerSpeed="1" PulseFrequency="0" PulseAmount="0" BlinkFrequency="0" LightColor="255,229,178,255" MinVoltage="0" PowerConsumption="0" Voltage="1" VulnerableToEMP="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+        <RepairTool BarrelRotation="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="">
+          <requireditem items="weldingtoolfuel,oxygensource" type="Contained" optional="false" ignoreineditor="false" excludebroken="true" excludefullcondition="false" targetslot="-1" allowvariants="true" />
+        </RepairTool>
+        <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="10992" />
+        <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+        <inventory>
+          <Item name="" identifier="weldingfueltank" ID="10992" rect="516,356,11,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="47.378227" InvulnerableToDamage="False" Tags="weldingtoolfuel,smallitem,weldingfuel" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+        </inventory>
+      </Item>
+      <Item name="" identifier="plasmacutter" ID="10993" flippedx="true" rect="486,379,79,43" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="-0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="mountableweapon,smallitem,cuttingequipment,tool,light" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="12">
+        <Holdable HoldPos="0,0" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+        <LightComponent Range="100" CastShadows="True" DrawBehindSubs="False" IsOn="False" Flicker="0.5" FlickerSpeed="1" PulseFrequency="0" PulseAmount="0" BlinkFrequency="0" LightColor="204,178,255,255" MinVoltage="0" PowerConsumption="0" Voltage="1" VulnerableToEMP="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+        <RepairTool BarrelRotation="0" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="">
+          <requireditem items="oxygensource,weldingtoolfuel" type="Contained" optional="false" ignoreineditor="false" excludebroken="true" excludefullcondition="false" targetslot="-1" allowvariants="true" />
+        </RepairTool>
+        <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="10994" />
+        <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+        <inventory>
+          <Item name="" identifier="oxygentank" ID="10994" rect="519,354,12,33" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="21.968826" InvulnerableToDamage="False" AllowStealing="False" Tags="refillableoxygensource,oxygensource,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="0">
+            <Holdable HoldPos="29.999998,-14.999999" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="2" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+        </inventory>
+      </Item>
+      <Item name="" identifier="handheldsonar" ID="10995" rect="514,363,24,12" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="smallitem,provocative,sonar" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="16">
+        <Holdable HoldPos="0,0" HoldAngle="30" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+        <Sonar UseTransducers="False" CenterOnTransducers="False" HasMineralScanner="True" MinVoltage="0.5" PowerConsumption="10" IsActive="True" Voltage="1" VulnerableToEMP="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+        <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="10996" />
+        <inventory>
+          <Item name="" identifier="batterycell" ID="10996" rect="517,362,17,10" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="70" InvulnerableToDamage="False" Tags="mobilebattery,smallitem,loadable" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.8" HiddenInGame="False" i="0">
+            <Holdable HoldPos="0,0" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+            <Quality QualityLevel="3" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+          </Item>
+        </inventory>
+      </Item>
+      <Item name="" identifier="reactorpda" ID="10997" rect="519,367,14,19" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.55" HiddenInGame="False" i="17">
+        <Holdable HoldPos="0,0" HoldAngle="30" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" />
+        <RemoteController PickingTime="0" CanBePicked="False" AllowInGameEditing="False" Msg="ItemMsgInteractSelect" />
+      </Item>
+      <Item name="" identifier="genesplicer" ID="10998" rect="511,364,29,14" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.4" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="100" InvulnerableToDamage="False" Tags="smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.6" HiddenInGame="False" i="18">
+        <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="10999" />
+        <Wearable PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgPickUpSelect" variant="1" />
+        <inventory>
+          <Item name="" identifier="geneticmaterialthresher" ID="10999" rect="517,365,16,16" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" Condition="11.947353" InvulnerableToDamage="False" Tags="geneticmaterial,smallitem" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.6" HiddenInGame="False" i="0">
+            <GeneticMaterial Effect="decreasedoxygenconsumption" TaintedEffect="geneticmaterialdebuff" SelectedTaintedEffect="" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+            <Holdable HoldPos="0,0" HoldAngle="0" SwingAmount="0,0" SwingSpeed="0" SwingWhenHolding="False" SwingWhenAiming="False" SwingWhenUsing="False" DisableHeadRotation="False" SpriteDepthWhenDropped="0.55" PickingTime="0" CanBePicked="True" AllowInGameEditing="True" Msg="" />
+            <ItemContainer ContainableRestrictions="" AutoFill="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" contained="" />
+            <inventory />
+          </Item>
+        </inventory>
+      </Item>
+    </inventory>
+    <health>
+      <Affliction identifier="bloodloss" strength="3.0797832" />
+      <Affliction identifier="decreasedoxygenconsumption" strength="11.947353" />
+      <Affliction identifier="guarded" strength="10" />
+      <LimbHealth i="0" />
+      <LimbHealth i="1" />
+      <LimbHealth i="2" />
+      <LimbHealth i="3" />
+      <LimbHealth i="4" />
+      <LimbHealth i="5" />
+    </health>
+    <orders>
+      <order id="repairelectrical" priority="3" targettype="0" />
+    </orders>
+    <Wallet balance="0" rewarddistribution="10" />
   </CharacterCampaignData>
 </CharacterData>
