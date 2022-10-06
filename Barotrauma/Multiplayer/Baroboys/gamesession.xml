@@ -6,7 +6,7 @@
   <MultiPlayerCampaign purchasedlostshuttles="false" purchasedhullrepairs="false" purchaseditemrepairs="false" cheatsenabled="false">
     <campaignsettings PresetName="" RadiationEnabled="False" MaxMissionCount="2" StartingBalanceAmount="Medium" Difficulty="Medium" StartItemSet="normal" />
     <stats totalplaytime="145683.39999878957" totalpassedlevels="53" />
-    <Wallet balance="78" rewarddistribution="0" />
+    <Wallet balance="20000" rewarddistribution="0" />
     <Metadata>
       <Data key="campaign.endings" value="0" type="System.Int32" />
       <Data key="reputation.location.2" value="28" type="System.Single" />
@@ -30,9 +30,9 @@
       <Data key="reputation.location.66" value="-10" type="System.Single" />
       <Data key="reputation.location.69" value="91.20003" type="System.Single" />
       <Data key="reputation.location.97" value="-15" type="System.Single" />
-      <Data key="upgrade.reactors.decreasefuelconsumption" value="1" type="System.Int32" />
-      <Data key="upgrade.reactors.increasereactoroutput" value="3" type="System.Int32" />
-      <Data key="upgrade.engines.decreasepowerconsumption" value="1" type="System.Int32" />
+      <Data key="upgrade.reactors.decreasefuelconsumption" value="0" type="System.Int32" />
+      <Data key="upgrade.reactors.increasereactoroutput" value="0" type="System.Int32" />
+      <Data key="upgrade.engines.decreasepowerconsumption" value="0" type="System.Int32" />
       <Data key="upgrade.pumps.decreasepowerconsumption" value="1" type="System.Int32" />
       <Data key="reputation.location.82" value="70" type="System.Single" />
       <Data key="reputation.location.101" value="0" type="System.Single" />
@@ -68,7 +68,7 @@
       <Data key="upgrade.supercapacitors.increasesupercapacitorcapacity" value="2" type="System.Int32" />
       <Data key="upgrade.weapons.turretincreaserotationlowskill" value="5" type="System.Int32" />
       <Data key="upgrade.deconstructors.decreasedeconstructiontime" value="5" type="System.Int32" />
-      <Data key="upgrade.engines.increaseenginemaxforce" value="5" type="System.Int32" />
+      <Data key="upgrade.engines.increaseenginemaxforce" value="0" type="System.Int32" />
       <Data key="reputation.location.47" value="30.829998" type="System.Single" />
       <Data key="subraevent_state" value="1" type="System.Single" />
       <Data key="reputation.location.62" value="45.73005" type="System.Single" />
