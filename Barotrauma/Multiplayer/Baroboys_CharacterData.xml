@@ -121,7 +121,7 @@
     <Wallet balance="0" rewarddistribution="0" />
   </CharacterCampaignData>
   <CharacterCampaignData name="menotquilty" address="98.225.25.132" accountid="STEAM_1:0:32388717">
-    <Character name="Laozi" originalname="Laozi" speciesname="human" tags="head6,male" salary="4278" experiencepoints="35871" unlockedtalents="genetherapist,researchanddevelopment,geneharvester,fieldmedic,mechanicscourse,combatmedic,researchersintuition,advancedsplicing,doubleduty,dontdieonme,reverseengineer" additionaltalentpoints="0" hairindex="15" beardindex="9" moustacheindex="0" faceattachmentindex="0" skincolor="244,190,152,255" haircolor="222,215,204,255" facialhaircolor="222,215,204,255" startitemsgiven="false" ragdoll="" personality="laid-back" missionscompletedsincedeath="48">
+    <Character name="Laozi" originalname="Laozi" speciesname="human" tags="male,head6" salary="4278" experiencepoints="35871" unlockedtalents="genetherapist,researchanddevelopment,geneharvester,fieldmedic,mechanicscourse,combatmedic,researchersintuition,advancedsplicing,doubleduty,dontdieonme,reverseengineer" additionaltalentpoints="0" hairindex="15" beardindex="9" moustacheindex="0" faceattachmentindex="0" skincolor="244,190,152,255" haircolor="222,215,204,255" facialhaircolor="222,215,204,255" startitemsgiven="false" ragdoll="" personality="laid-back" missionscompletedsincedeath="48">
       <job name="Medical Doctor" identifier="medicaldoctor">
         <skill identifier="medical" level="100" />
         <skill identifier="weapons" level="28.03628" />
@@ -497,7 +497,7 @@
     <Wallet balance="4289" rewarddistribution="10" />
   </CharacterCampaignData>
   <CharacterCampaignData name="In5omniak" address="198.27.162.11" accountid="STEAM_1:0:32436418">
-    <Character name="Pagliacci" originalname="Pagliacci" speciesname="human" tags="head6,male" salary="3336" experiencepoints="26767" unlockedtalents="enrollintoclowncollege,waterprankster,multitasker,psychoclown,truepotential,standanddeliver,aceofalltrades,skedaddle,survivalpackage" additionaltalentpoints="0" hairindex="8" beardindex="8" moustacheindex="0" faceattachmentindex="3" skincolor="200,165,131,255" haircolor="139,126,108,255" facialhaircolor="139,126,108,255" startitemsgiven="false" ragdoll="" personality="crazy" missionscompletedsincedeath="33">
+    <Character name="Pagliacci" originalname="Pagliacci" speciesname="human" tags="male,head6" salary="3336" experiencepoints="26767" unlockedtalents="enrollintoclowncollege,waterprankster,multitasker,psychoclown,truepotential,standanddeliver,aceofalltrades,skedaddle,survivalpackage" additionaltalentpoints="0" hairindex="8" beardindex="8" moustacheindex="0" faceattachmentindex="3" skincolor="200,165,131,255" haircolor="139,126,108,255" facialhaircolor="139,126,108,255" startitemsgiven="false" ragdoll="" personality="crazy" missionscompletedsincedeath="33">
       <job name="Assistant" identifier="assistant">
         <skill identifier="weapons" level="90.15903" />
         <skill identifier="mechanical" level="77.52006" />
@@ -926,7 +926,7 @@
     <Wallet balance="976" rewarddistribution="10" />
   </CharacterCampaignData>
   <CharacterCampaignData name="dema" address="67.168.6.25" accountid="STEAM_1:1:52913915">
-    <Character name="Obediah Marsh" originalname="Obediah Marsh" speciesname="human" tags="head12,male" salary="3523" experiencepoints="71707" unlockedtalents="evasivemaneuvers,trustedcaptain,trucker,esteemedcaptain,commander,handsomestranger,maintenanceroutine,inspiretobattle,allhandsondeck,quickdraw,drunkensailor,bountyhunter" additionaltalentpoints="0" hairindex="7" beardindex="2" moustacheindex="0" faceattachmentindex="14" skincolor="200,165,131,255" haircolor="52,48,48,255" facialhaircolor="52,48,48,255" startitemsgiven="false" ragdoll="" personality="joker" missionscompletedsincedeath="50">
+    <Character name="Obediah Marsh" originalname="Obediah Marsh" speciesname="human" tags="male,head12" salary="3523" experiencepoints="71707" unlockedtalents="evasivemaneuvers,trustedcaptain,trucker,esteemedcaptain,commander,handsomestranger,maintenanceroutine,inspiretobattle,allhandsondeck,quickdraw,drunkensailor,bountyhunter" additionaltalentpoints="0" hairindex="7" beardindex="2" moustacheindex="0" faceattachmentindex="14" skincolor="200,165,131,255" haircolor="52,48,48,255" facialhaircolor="52,48,48,255" startitemsgiven="false" ragdoll="" personality="joker" missionscompletedsincedeath="50">
       <job name="Captain" identifier="captain">
         <skill identifier="helm" level="100" />
         <skill identifier="weapons" level="100" />
@@ -1189,7 +1189,7 @@
     <Wallet balance="0" rewarddistribution="0" />
   </CharacterCampaignData>
   <CharacterCampaignData name="Brendan" address="STEAM_1:1:50470452" accountid="STEAM_1:1:50470452">
-    <Character name="Marco" originalname="Marco" speciesname="human" tags="head3,male" salary="3080" experiencepoints="43313" unlockedtalents="militaryapplications,remotemonitor,hazardousmaterials,collegeathletics,armsdealer,phdinnuclearphysics,justascratch,intheflow,optimizedpowerflow,allseeingeye,minorinmechanics,melodicrespite,electrochemist,castledoctrine,nuclearoption" additionaltalentpoints="3" hairindex="13" beardindex="4" moustacheindex="0" faceattachmentindex="15" skincolor="171,112,70,255" haircolor="52,48,48,255" facialhaircolor="52,48,48,255" startitemsgiven="false" ragdoll="" personality="laid-back" missionscompletedsincedeath="76" hull="1854">
+    <Character name="Marco" originalname="Marco" speciesname="human" tags="male,head3" salary="3080" experiencepoints="43313" unlockedtalents="militaryapplications,remotemonitor,hazardousmaterials,collegeathletics,armsdealer,phdinnuclearphysics,justascratch,intheflow,optimizedpowerflow,allseeingeye,minorinmechanics,melodicrespite,electrochemist,castledoctrine,nuclearoption" additionaltalentpoints="3" hairindex="13" beardindex="4" moustacheindex="0" faceattachmentindex="15" skincolor="171,112,70,255" haircolor="52,48,48,255" facialhaircolor="52,48,48,255" startitemsgiven="false" ragdoll="" personality="laid-back" missionscompletedsincedeath="76">
       <job name="Engineer" identifier="engineer">
         <skill identifier="electrical" level="100" />
         <skill identifier="mechanical" level="100" />
