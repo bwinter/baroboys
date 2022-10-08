@@ -20,12 +20,15 @@ Also need to manually put holes in the VPC Firewall to allow the two ports throu
 
 - Setup local env to use your repo:
 
+  Link Local Mods
   ```shell
   ln -s '/Users/bwinter/personal-workspace/baroboys/Barotrauma/LocalMods/' '/Users/bwinter/Library/Application Support/Steam/steamapps/common/Barotrauma/Barotrauma.app/Contents/MacOS/LocalMods'
   ```
+  Link Remote Mods
   ```shell
   ln -s '/Users/bwinter/personal-workspace/baroboys/Barotrauma/WorkshopMods/' '/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods'
   ```
+  Link Multiplayer Games
   ```shell
   ln -s '/Users/bwinter/personal-workspace/baroboys/Barotrauma/Multiplayer/' '/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/Multiplayer'
   ```
