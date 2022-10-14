@@ -60,6 +60,7 @@
   VoteRequiredRatio="0.6"
   VoteTimeout="30"
   KickVoteRequiredRatio="0.6"
+  DisallowKickVoteTime="120"
   KillDisconnectedTime="300"
   KickAFKTime="600"
   KarmaEnabled="True"
