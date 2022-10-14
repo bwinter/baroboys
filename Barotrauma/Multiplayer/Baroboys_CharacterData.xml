@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CharacterData>
   <CharacterCampaignData name="joe" address="97.113.167.16" accountid="STEAM_1:0:539330841">
-    <Character name="joe" originalname="joe" speciesname="human" tags="head12,female" salary="3228" experiencepoints="6477" unlockedtalents="tinkerer,quickfix,hullsealer" additionaltalentpoints="0" hairindex="16" beardindex="0" moustacheindex="0" faceattachmentindex="8" skincolor="171,112,70,255" haircolor="172,73,52,255" facialhaircolor="205,151,90,255" startitemsgiven="false" ragdoll="" personality="tough" missionscompletedsincedeath="4">
+    <Character name="joe" originalname="joe" speciesname="human" tags="female,head12" salary="3228" experiencepoints="6477" unlockedtalents="tinkerer,quickfix,hullsealer" additionaltalentpoints="0" hairindex="16" beardindex="0" moustacheindex="0" faceattachmentindex="8" skincolor="171,112,70,255" haircolor="172,73,52,255" facialhaircolor="205,151,90,255" startitemsgiven="false" ragdoll="" personality="tough" missionscompletedsincedeath="4">
       <job name="Mechanic" identifier="mechanic">
         <skill identifier="mechanical" level="53.353527" />
         <skill identifier="electrical" level="34.08119" />
@@ -926,7 +926,7 @@
     <Wallet balance="976" rewarddistribution="10" />
   </CharacterCampaignData>
   <CharacterCampaignData name="dema" address="67.168.6.25" accountid="STEAM_1:1:52913915">
-    <Character name="Obediah Marsh" originalname="Obediah Marsh" speciesname="human" tags="head12,male" salary="3523" experiencepoints="71707" unlockedtalents="evasivemaneuvers,trustedcaptain,trucker,esteemedcaptain,commander,handsomestranger,maintenanceroutine,inspiretobattle,allhandsondeck,quickdraw,drunkensailor,bountyhunter" additionaltalentpoints="0" hairindex="7" beardindex="2" moustacheindex="0" faceattachmentindex="14" skincolor="200,165,131,255" haircolor="52,48,48,255" facialhaircolor="52,48,48,255" startitemsgiven="false" ragdoll="" personality="joker" missionscompletedsincedeath="50">
+    <Character name="Obediah Marsh" originalname="Obediah Marsh" speciesname="human" tags="male,head12" salary="3523" experiencepoints="71707" unlockedtalents="evasivemaneuvers,trustedcaptain,trucker,esteemedcaptain,commander,handsomestranger,maintenanceroutine,inspiretobattle,allhandsondeck,quickdraw,drunkensailor,bountyhunter" additionaltalentpoints="0" hairindex="7" beardindex="2" moustacheindex="0" faceattachmentindex="14" skincolor="200,165,131,255" haircolor="52,48,48,255" facialhaircolor="52,48,48,255" startitemsgiven="false" ragdoll="" personality="joker" missionscompletedsincedeath="50">
       <job name="Captain" identifier="captain">
         <skill identifier="helm" level="100" />
         <skill identifier="weapons" level="100" />
@@ -1189,7 +1189,7 @@
     <Wallet balance="0" rewarddistribution="0" />
   </CharacterCampaignData>
   <CharacterCampaignData name="Brendan" address="STEAM_1:1:50470452" accountid="STEAM_1:1:50470452">
-    <Character name="Marco" originalname="Marco" speciesname="human" tags="head3,male" salary="3080" experiencepoints="43313" unlockedtalents="militaryapplications,remotemonitor,hazardousmaterials,collegeathletics,armsdealer,phdinnuclearphysics,justascratch,intheflow,optimizedpowerflow,allseeingeye,minorinmechanics,melodicrespite,electrochemist,castledoctrine,nuclearoption" additionaltalentpoints="3" hairindex="13" beardindex="4" moustacheindex="0" faceattachmentindex="15" skincolor="171,112,70,255" haircolor="52,48,48,255" facialhaircolor="52,48,48,255" startitemsgiven="false" ragdoll="" personality="laid-back" missionscompletedsincedeath="76" hull="7537">
+    <Character name="Marco" originalname="Marco" speciesname="human" tags="head3,male" salary="3080" experiencepoints="43313" unlockedtalents="militaryapplications,remotemonitor,hazardousmaterials,collegeathletics,armsdealer,phdinnuclearphysics,justascratch,intheflow,optimizedpowerflow,allseeingeye,minorinmechanics,melodicrespite,electrochemist,castledoctrine,nuclearoption" additionaltalentpoints="3" hairindex="13" beardindex="4" moustacheindex="0" faceattachmentindex="15" skincolor="171,112,70,255" haircolor="52,48,48,255" facialhaircolor="52,48,48,255" startitemsgiven="false" ragdoll="" personality="laid-back" missionscompletedsincedeath="76">
       <job name="Engineer" identifier="engineer">
         <skill identifier="electrical" level="100" />
         <skill identifier="mechanical" level="100" />
