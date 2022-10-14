@@ -23,8 +23,6 @@
     <command
       name="ban" />
     <command
-      name="banendpoint" />
-    <command
       name="banid" />
     <command
       name="botcount" />
@@ -259,13 +257,9 @@
     <command
       name="unban" />
     <command
-      name="unbanip" />
-    <command
       name="unlocktalents" />
     <command
       name="unmute" />
-    <command
-      name="upgradeitem" />
     <command
       name="verboselogging" />
     <command
