@@ -12,4 +12,4 @@ echo "github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHA
 
 su bwinter_sc81 -c 'git clone git@github.com:bwinter/baroboys.git "/home/bwinter_sc81/baroboys"'
 
-su bwinter_sc81 -c 'cp baroboys/.gitconfig /home/bwinter_sc81/.gitconfig'
+su bwinter_sc81 -c 'cp /home/bwinter_sc81/baroboys/.gitconfig /home/bwinter_sc81/.gitconfig'
