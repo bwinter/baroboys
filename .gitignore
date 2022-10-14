@@ -91,6 +91,7 @@ Barotrauma/System.Diagnostics.Tracing.dll
 Barotrauma/System.Drawing.Primitives.dll
 Barotrauma/System.Drawing.dll
 Barotrauma/System.Dynamic.Runtime.dll
+Barotrauma/System.Formats.Asn1.dll
 Barotrauma/System.Globalization.Calendars.dll
 Barotrauma/System.Globalization.Extensions.dll
 Barotrauma/System.Globalization.Native.so
@@ -119,6 +120,7 @@ Barotrauma/System.Linq.dll
 Barotrauma/System.Memory.dll
 Barotrauma/System.Native.a
 Barotrauma/System.Native.so
+Barotrauma/System.Net.Http.Json.dll
 Barotrauma/System.Net.Http.Native.a
 Barotrauma/System.Net.Http.Native.so
 Barotrauma/System.Net.Http.dll
@@ -128,6 +130,7 @@ Barotrauma/System.Net.NameResolution.dll
 Barotrauma/System.Net.NetworkInformation.dll
 Barotrauma/System.Net.Ping.dll
 Barotrauma/System.Net.Primitives.dll
+Barotrauma/System.Net.Quic.dll
 Barotrauma/System.Net.Requests.dll
 Barotrauma/System.Net.Security.Native.a
 Barotrauma/System.Net.Security.Native.so
@@ -236,6 +239,11 @@ Barotrauma/changelog.txt
 Barotrauma/createdump
 Barotrauma/daedalic_privacypolicy.txt
 Barotrauma/hintmanager.xml
+Barotrauma/libSystem.Globalization.Native.so
+Barotrauma/libSystem.IO.Compression.Native.so
+Barotrauma/libSystem.Native.so
+Barotrauma/libSystem.Net.Security.Native.so
+Barotrauma/libSystem.Security.Cryptography.Native.OpenSsl.so
 Barotrauma/libclrjit.so
 Barotrauma/libcoreclr.so
 Barotrauma/libcoreclrtraceptprovider.so
