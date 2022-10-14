@@ -8,6 +8,7 @@ echo steam steam/license note "" | debconf-set-selections
 echo "deb [arch=i386,amd64] http://repo.steampowered.com/steam/ precise steam" | tee "/etc/apt/sources.list.d/steampowered-repo.list"
 apt-get -yq update
 apt-get install -yq steamcmd libicu67
+apt-get autoremove
 
 su bwinter_sc81 -c 'mkdir -p "/home/bwinter_sc81/.steam/sdk64"'
 su bwinter_sc81 -c 'mkdir -p "/home/bwinter_sc81/.steam/sdk32"'

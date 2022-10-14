@@ -27,12 +27,14 @@ apt-get remove -y --purge man-db
 apt-get -yq update
 apt-get -yq upgrade
 apt-get install -yq git curl screen silversearcher-ag build-essential wget dirmngr apt-transport-https ca-certificates gnupg
+apt-get autoremove
 
 ### gcloud
 curl "https://packages.cloud.google.com/apt/doc/apt-key.gpg" | tee "/usr/share/keyrings/cloud.google.gpg"
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee "/etc/apt/sources.list.d/google-cloud-sdk.list"
 apt-get -yq update
 apt-get install -yq google-cloud-cli
+apt-get autoremove
 
 # echo '"projects/europan-world/zones/us-west1-b/instances/europa","[{""type"":""ops-agent""}]"' > agents_to_install.csv && \
 # curl -sSO "https://dl.google.com/cloudagents/mass-provision-google-cloud-ops-agents.py" && \
