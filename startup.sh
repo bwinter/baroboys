@@ -34,7 +34,7 @@ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.clou
 apt-get -yq update
 apt-get install -yq google-cloud-cli
 
-# echo '"projects/europan-world/zones/us-west1-b/instances/terraform-test-vm","[{""type"":""ops-agent""}]"' > agents_to_install.csv && \
+# echo '"projects/europan-world/zones/us-west1-b/instances/europa","[{""type"":""ops-agent""}]"' > agents_to_install.csv && \
 # curl -sSO "https://dl.google.com/cloudagents/mass-provision-google-cloud-ops-agents.py" && \
 # python3 mass-provision-google-cloud-ops-agents.py --file agents_to_install.csv
 

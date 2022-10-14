@@ -3,4 +3,4 @@ service_account_email = "git-service-account@europan-world.iam.gserviceaccount.c
 region                = "us-west1"
 zone                  = "us-west1-b"
 machine_type          = "e2-highcpu-4"
-machine_name          = "terraform-test-vm"
+machine_name          = "europa"
