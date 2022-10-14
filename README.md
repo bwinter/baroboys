@@ -15,7 +15,7 @@ Also need to manually put holes in the VPC Firewall to allow the two ports throu
 - SSH onto the machine:
 
   ```shell
-  gcloud compute ssh bwinter_sc81@terraform-test-vm --project=europan-world --zone=us-west1-b
+  gcloud compute ssh bwinter_sc81@europa --project=europan-world --zone=us-west1-b
   ```
 
 - Setup local env to use your repo:
