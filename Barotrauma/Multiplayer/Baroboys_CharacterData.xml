@@ -871,10 +871,7 @@
       <LimbHealth i="4" />
       <LimbHealth i="5" />
     </health>
-    <orders>
-      <order id="fightintruders" priority="3" targettype="0" ordergiverinfoid="75" />
-      <order id="follow" priority="2" targettype="0" />
-    </orders>
+    <orders />
     <Wallet balance="2349" rewarddistribution="10" />
   </CharacterCampaignData>
   <CharacterCampaignData name="bwinter.sc81" address="::ffff:174.61.140.69" accountid="STEAM_1:1:50470452">
@@ -1187,9 +1184,7 @@
         <Affliction identifier="blunttrauma" strength="0.4083333" />
       </LimbHealth>
     </health>
-    <orders>
-      <order id="operatereactor" priority="3" targettype="0" option="powerup" ordergiverinfoid="41" onmainsub="true" targetid="681" />
-    </orders>
+    <orders />
     <Wallet balance="0" rewarddistribution="0" />
   </CharacterCampaignData>
   <CharacterCampaignData name="joe" address="::ffff:174.21.30.212" accountid="STEAM_1:0:539330841">
@@ -1353,10 +1348,7 @@
         <Affliction identifier="blunttrauma" strength="2.3625" />
       </LimbHealth>
     </health>
-    <orders>
-      <order id="operateweapons" priority="3" targettype="0" ordergiverinfoid="41" onmainsub="true" targetid="5365" />
-      <order id="operatereactor" priority="2" targettype="0" option="powerup" onmainsub="true" targetid="683" />
-    </orders>
+    <orders />
     <Wallet balance="0" rewarddistribution="0" />
   </CharacterCampaignData>
   <CharacterCampaignData name="dema" address="::ffff:69.167.31.128" accountid="STEAM_1:1:52913915">
