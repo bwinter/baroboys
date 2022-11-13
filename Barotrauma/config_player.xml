@@ -66,12 +66,18 @@
             <!--Ling-->
             <package
                     path="LocalMods/Ling/filelist.xml"/>
+            <!--Sliver-->
+            <package
+                    path="LocalMods/Sliver/filelist.xml"/>
             <!--Dagon-->
             <package
                     path="LocalMods/Dagon/filelist.xml"/>
             <!--Tiny Sub-->
             <package
                     path="LocalMods/Tiny Sub/filelist.xml"/>
+            <!--Big Boat-->
+            <package
+                    path="LocalMods/Big Boat/filelist.xml"/>
             <!--Beacons Extended-->
             <package
                     path="/home/bwinter_sc81/.local/share/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2389600483/filelist.xml"/>
