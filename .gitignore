@@ -10,6 +10,10 @@ Barotrauma-Save-Decompressor*
 # Directories
 .terraform/
 
+# This is where I keep my uncompressed save.
+# To recude chances of copying the wrong version we want to clean this up every time.
+Barotrauma/Multiplayer/Baroboys
+
 # SSH Keys
 *.pem
 
