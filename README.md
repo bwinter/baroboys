@@ -39,3 +39,7 @@ Also need to manually put holes in the VPC Firewall to allow the two ports throu
 
 - SSH keys are saved in GCP secret manager.
 - Keys for terraform need to be generated using the terraform service account.
+
+# VirtualBox
+
+There is a screenshot as a reminder on how setting this up.
