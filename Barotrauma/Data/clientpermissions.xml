@@ -1,585 +1,585 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClientPermissions>
   <Client
-    name="Gunner"
-    accountid="STEAM_1:0:57529211"
-    permissions="All">
-    <command
-      name="heal" />
-    <command
-      name="autorestartinterval" />
-    <command
-      name="botcount" />
-    <command
-      name="lock" />
-    <command
-      name="power" />
-    <command
-      name="readycheck" />
-    <command
-      name="revive" />
-    <command
-      name="giveaffliction" />
-    <command
-      name="godmode_mainsub" />
-    <command
-      name="spawn" />
-    <command
-      name="fixhulls" />
-    <command
-      name="enablecrewai" />
-    <command
-      name="showperm" />
-    <command
-      name="lockx" />
-    <command
-      name="locky" />
-    <command
-      name="kickid" />
-    <command
-      name="clientlist" />
-    <command
-      name="ban" />
-    <command
-      name="kick" />
-    <command
-      name="autorestarttimer" />
-    <command
-      name="unbanaddress" />
-    <command
-      name="resetkarma" />
-    <command
-      name="difficulty" />
-    <command
-      name="fire" />
-    <command
-      name="mute" />
-    <command
-      name="campaigndestination" />
-    <command
-      name="respawnnow" />
-    <command
-      name="traitorlist" />
-    <command
-      name="setkarma" />
-    <command
-      name="unmute" />
-    <command
-      name="freecamera" />
-    <command
-      name="togglecampaignteleport" />
-    <command
-      name="explosion" />
-    <command
-      name="disablecrewai" />
-    <command
-      name="oxygen" />
-    <command
-      name="botspawnmode" />
-    <command
-      name="spawnitem" />
-    <command
-      name="togglekarmatestmode" />
-    <command
-      name="autorestart" />
-    <command
-      name="unban" />
-    <command
-      name="banid" />
-    <command
-      name="water" />
-    <command
-      name="campaigninfo" />
-    <command
-      name="teleportcharacter" />
-    <command
-      name="showkarma" />
-    <command
-      name="banaddress" />
-    <command
-      name="fixitems" />
-    <command
-      name="togglekarma" />
-    <command
-      name="setclientcharacter" />
-    <command
-      name="freeze" />
-    <command
-      name="godmode" />
-  </Client>
-  <Client
     name="menotquilty"
     accountid="STEAM_1:0:32388717"
     permissions="All">
     <command
-      name="heal" />
-    <command
-      name="autorestartinterval" />
-    <command
-      name="botcount" />
-    <command
-      name="lock" />
-    <command
-      name="power" />
-    <command
-      name="readycheck" />
-    <command
-      name="revive" />
-    <command
-      name="giveaffliction" />
-    <command
-      name="godmode_mainsub" />
-    <command
-      name="spawn" />
-    <command
-      name="fixhulls" />
-    <command
-      name="enablecrewai" />
-    <command
-      name="showperm" />
-    <command
-      name="lockx" />
-    <command
-      name="locky" />
-    <command
-      name="kickid" />
-    <command
-      name="clientlist" />
-    <command
-      name="ban" />
-    <command
-      name="kick" />
-    <command
-      name="autorestarttimer" />
-    <command
-      name="unbanaddress" />
-    <command
-      name="resetkarma" />
-    <command
-      name="difficulty" />
-    <command
-      name="fire" />
-    <command
-      name="mute" />
-    <command
-      name="campaigndestination" />
-    <command
-      name="respawnnow" />
-    <command
-      name="traitorlist" />
-    <command
-      name="setkarma" />
-    <command
-      name="unmute" />
-    <command
-      name="freecamera" />
-    <command
-      name="togglecampaignteleport" />
-    <command
-      name="explosion" />
-    <command
       name="disablecrewai" />
     <command
       name="oxygen" />
     <command
-      name="botspawnmode" />
-    <command
-      name="spawnitem" />
-    <command
-      name="togglekarmatestmode" />
-    <command
-      name="autorestart" />
-    <command
-      name="unban" />
-    <command
-      name="banid" />
-    <command
-      name="water" />
-    <command
-      name="campaigninfo" />
-    <command
-      name="teleportcharacter" />
-    <command
-      name="showkarma" />
-    <command
-      name="banaddress" />
-    <command
-      name="fixitems" />
-    <command
-      name="togglekarma" />
-    <command
-      name="setclientcharacter" />
+      name="campaigndestination" />
     <command
       name="freeze" />
     <command
+      name="autorestartinterval" />
+    <command
+      name="togglekarmatestmode" />
+    <command
+      name="showkarma" />
+    <command
+      name="campaigninfo" />
+    <command
+      name="unban" />
+    <command
+      name="teleportcharacter" />
+    <command
+      name="unbanaddress" />
+    <command
+      name="traitorlist" />
+    <command
+      name="setclientcharacter" />
+    <command
+      name="power" />
+    <command
+      name="kickid" />
+    <command
+      name="fixhulls" />
+    <command
+      name="readycheck" />
+    <command
+      name="showperm" />
+    <command
+      name="banaddress" />
+    <command
+      name="enablecrewai" />
+    <command
+      name="botspawnmode" />
+    <command
+      name="giveaffliction" />
+    <command
+      name="locky" />
+    <command
+      name="water" />
+    <command
+      name="difficulty" />
+    <command
       name="godmode" />
+    <command
+      name="resetkarma" />
+    <command
+      name="ban" />
+    <command
+      name="setkarma" />
+    <command
+      name="mute" />
+    <command
+      name="explosion" />
+    <command
+      name="fixitems" />
+    <command
+      name="lock" />
+    <command
+      name="spawn" />
+    <command
+      name="togglecampaignteleport" />
+    <command
+      name="fire" />
+    <command
+      name="freecamera" />
+    <command
+      name="revive" />
+    <command
+      name="clientlist" />
+    <command
+      name="spawnitem" />
+    <command
+      name="heal" />
+    <command
+      name="togglekarma" />
+    <command
+      name="lockx" />
+    <command
+      name="kick" />
+    <command
+      name="banid" />
+    <command
+      name="unmute" />
+    <command
+      name="autorestart" />
+    <command
+      name="godmode_mainsub" />
+    <command
+      name="botcount" />
+    <command
+      name="autorestarttimer" />
+    <command
+      name="respawnnow" />
   </Client>
   <Client
     name="bwinter.sc81"
     accountid="STEAM_1:1:50470452"
     permissions="All">
     <command
-      name="heal" />
-    <command
-      name="simulatedduplicateschance" />
-    <command
-      name="skipeventcooldown" />
-    <command
-      name="autorestartinterval" />
-    <command
-      name="ballastflora" />
-    <command
-      name="despawnnow" />
-    <command
-      name="sendchatmessage" />
-    <command
-      name="botcount" />
-    <command
-      name="startitems" />
-    <command
-      name="lock" />
-    <command
-      name="power" />
-    <command
-      name="gamemode" />
-    <command
-      name="setmaxplayers" />
-    <command
-      name="readycheck" />
-    <command
-      name="msg" />
-    <command
-      name="endgame" />
-    <command
-      name="revive" />
-    <command
-      name="killmonsters" />
-    <command
-      name="giveaffliction" />
-    <command
-      name="godmode_mainsub" />
-    <command
-      name="togglevoicechatfilters" />
-    <command
-      name="itemassemblies" />
-    <command
-      name="simulatedloss" />
-    <command
-      name="spawn" />
-    <command
-      name="fixhulls" />
-    <command
-      name="followsub" />
-    <command
-      name="enablecrewai" />
-    <command
-      name="toggleitemhighlights" />
-    <command
-      name="debugai" />
-    <command
-      name="showperm" />
-    <command
-      name="lockx" />
-    <command
-      name="simulatedlatency" />
-    <command
-      name="netstats" />
-    <command
-      name="toggleaitargets" />
-    <command
-      name="kill" />
-    <command
-      name="unlocktalents" />
-    <command
-      name="locky" />
-    <command
-      name="teleportsub" />
-    <command
-      name="growthdelay" />
-    <command
-      name="dumptofile" />
-    <command
-      name="kickid" />
-    <command
-      name="disableenemyai" />
-    <command
-      name="los" />
-    <command
-      name="setlocationreputation" />
-    <command
-      name="dumpids" />
-    <command
-      name="clientlist" />
-    <command
-      name="toggleupperhud" />
-    <command
-      name="enableenemyai" />
-    <command
-      name="ban" />
-    <command
-      name="kick" />
-    <command
-      name="setpassword" />
-    <command
-      name="autorestarttimer" />
-    <command
-      name="items" />
-    <command
-      name="say" />
-    <command
-      name="resetkarma" />
-    <command
-      name="showmoney" />
-    <command
-      name="lighting" />
-    <command
-      name="revokecommandperm" />
-    <command
-      name="exit" />
-    <command
-      name="difficulty" />
-    <command
-      name="enablecheats" />
-    <command
-      name="fire" />
-    <command
-      name="mute" />
-    <command
-      name="findentityids" />
-    <command
-      name="tags" />
-    <command
-      name="givetalent" />
-    <command
-      name="campaigndestination" />
-    <command
-      name="respawnnow" />
-    <command
-      name="traitorlist" />
-    <command
-      name="triggerevent" />
-    <command
-      name="setkarma" />
-    <command
-      name="verboselogging" />
-    <command
-      name="seed" />
-    <command
-      name="randomizeseed" />
-    <command
-      name="unmute" />
-    <command
-      name="listtasks" />
-    <command
-      name="giveperm" />
-    <command
-      name="ragdoll" />
-    <command
-      name="sub" />
-    <command
-      name="setdifficulty" />
-    <command
-      name="control" />
-    <command
       name="giverank" />
-    <command
-      name="revokeperm" />
-    <command
-      name="ambientlight" />
-    <command
-      name="freecamera" />
-    <command
-      name="money" />
-    <command
-      name="maxupgrades" />
-    <command
-      name="togglecampaignteleport" />
-    <command
-      name="explosion" />
     <command
       name="disablecrewai" />
     <command
       name="oxygen" />
     <command
-      name="botspawnmode" />
+      name="campaigndestination" />
     <command
-      name="togglehud" />
+      name="setmaxplayers" />
     <command
-      name="spawnitem" />
-    <command
-      name="togglekarmatestmode" />
-    <command
-      name="autorestart" />
-    <command
-      name="unban" />
-    <command
-      name="banid" />
-    <command
-      name="setskill" />
-    <command
-      name="water" />
-    <command
-      name="eventmanager" />
-    <command
-      name="campaigninfo" />
-    <command
-      name="startwhenclientsready" />
-    <command
-      name="togglecharacternames" />
-    <command
-      name="teleportcharacter" />
-    <command
-      name="startgame" />
-    <command
-      name="setreputation" />
-    <command
-      name="showkarma" />
-    <command
-      name="fixitems" />
-    <command
-      name="servername" />
-    <command
-      name="starttraitormissionimmediately" />
-    <command
-      name="help" />
-    <command
-      name="givecommandperm" />
-    <command
-      name="killdisconnectedtimer" />
-    <command
-      name="autoitemplacerdebug" />
-    <command
-      name="mission" />
-    <command
-      name="giveexperience" />
-    <command
-      name="togglekarma" />
-    <command
-      name="entitydata" />
-    <command
-      name="setclientcharacter" />
-    <command
-      name="showseed" />
-    <command
-      name="servermsg" />
-    <command
-      name="shuttle" />
+      name="listtasks" />
     <command
       name="freeze" />
     <command
+      name="givecommandperm" />
+    <command
+      name="autorestartinterval" />
+    <command
+      name="togglekarmatestmode" />
+    <command
+      name="showkarma" />
+    <command
+      name="enablecheats" />
+    <command
+      name="servermsg" />
+    <command
+      name="starttraitormissionimmediately" />
+    <command
+      name="simulatedduplicateschance" />
+    <command
+      name="netstats" />
+    <command
+      name="campaigninfo" />
+    <command
+      name="triggerevent" />
+    <command
+      name="growthdelay" />
+    <command
+      name="mission" />
+    <command
+      name="setreputation" />
+    <command
+      name="unban" />
+    <command
+      name="teleportcharacter" />
+    <command
+      name="despawnnow" />
+    <command
+      name="traitorlist" />
+    <command
+      name="setclientcharacter" />
+    <command
+      name="toggleitemhighlights" />
+    <command
+      name="power" />
+    <command
+      name="msg" />
+    <command
+      name="say" />
+    <command
+      name="kill" />
+    <command
+      name="setlocationreputation" />
+    <command
+      name="kickid" />
+    <command
+      name="control" />
+    <command
+      name="togglevoicechatfilters" />
+    <command
+      name="ragdoll" />
+    <command
+      name="eventmanager" />
+    <command
+      name="fixhulls" />
+    <command
+      name="readycheck" />
+    <command
+      name="givetalent" />
+    <command
+      name="showperm" />
+    <command
+      name="enablecrewai" />
+    <command
+      name="showmoney" />
+    <command
+      name="exit" />
+    <command
+      name="botspawnmode" />
+    <command
+      name="ambientlight" />
+    <command
+      name="revokecommandperm" />
+    <command
+      name="servername" />
+    <command
+      name="enableenemyai" />
+    <command
+      name="simulatedlatency" />
+    <command
+      name="giveaffliction" />
+    <command
+      name="tags" />
+    <command
+      name="locky" />
+    <command
+      name="disableenemyai" />
+    <command
+      name="unlocktalents" />
+    <command
+      name="setdifficulty" />
+    <command
+      name="water" />
+    <command
+      name="money" />
+    <command
+      name="difficulty" />
+    <command
       name="godmode" />
     <command
-      name="restart" />
+      name="lighting" />
+    <command
+      name="resetkarma" />
+    <command
+      name="ban" />
+    <command
+      name="dumpids" />
+    <command
+      name="killmonsters" />
+    <command
+      name="setkarma" />
+    <command
+      name="ballastflora" />
+    <command
+      name="mute" />
+    <command
+      name="followsub" />
+    <command
+      name="debugdraw" />
+    <command
+      name="shuttle" />
+    <command
+      name="explosion" />
+    <command
+      name="verboselogging" />
+    <command
+      name="sendchatmessage" />
+    <command
+      name="fixitems" />
+    <command
+      name="showseed" />
+    <command
+      name="endgame" />
+    <command
+      name="setpassword" />
+    <command
+      name="autoitemplacerdebug" />
+    <command
+      name="lock" />
+    <command
+      name="togglecharacternames" />
+    <command
+      name="help" />
+    <command
+      name="items" />
+    <command
+      name="spawn" />
+    <command
+      name="togglecampaignteleport" />
     <command
       name="calculatehashes" />
     <command
-      name="debugdraw" />
+      name="fire" />
+    <command
+      name="seed" />
+    <command
+      name="startwhenclientsready" />
+    <command
+      name="itemassemblies" />
+    <command
+      name="freecamera" />
+    <command
+      name="revive" />
+    <command
+      name="randomizeseed" />
+    <command
+      name="clientlist" />
+    <command
+      name="spawnitem" />
+    <command
+      name="heal" />
+    <command
+      name="skipeventcooldown" />
+    <command
+      name="simulatedloss" />
+    <command
+      name="togglekarma" />
+    <command
+      name="startitems" />
+    <command
+      name="revokeperm" />
+    <command
+      name="lockx" />
+    <command
+      name="giveperm" />
+    <command
+      name="teleportsub" />
+    <command
+      name="toggleaitargets" />
+    <command
+      name="restart" />
+    <command
+      name="kick" />
+    <command
+      name="los" />
+    <command
+      name="banid" />
+    <command
+      name="sub" />
+    <command
+      name="unmute" />
+    <command
+      name="findentityids" />
+    <command
+      name="toggleupperhud" />
+    <command
+      name="giveexperience" />
+    <command
+      name="togglehud" />
+    <command
+      name="startgame" />
+    <command
+      name="debugai" />
+    <command
+      name="autorestart" />
+    <command
+      name="godmode_mainsub" />
+    <command
+      name="killdisconnectedtimer" />
+    <command
+      name="maxupgrades" />
+    <command
+      name="botcount" />
+    <command
+      name="gamemode" />
+    <command
+      name="autorestarttimer" />
+    <command
+      name="dumptofile" />
+    <command
+      name="entitydata" />
+    <command
+      name="respawnnow" />
+    <command
+      name="setskill" />
   </Client>
   <Client
     name="dema"
     accountid="STEAM_1:1:52913915"
     permissions="All">
     <command
-      name="heal" />
+      name="disablecrewai" />
     <command
-      name="autorestartinterval" />
-    <command
-      name="botcount" />
-    <command
-      name="lock" />
-    <command
-      name="power" />
-    <command
-      name="readycheck" />
-    <command
-      name="revive" />
-    <command
-      name="giveaffliction" />
-    <command
-      name="godmode_mainsub" />
-    <command
-      name="spawn" />
-    <command
-      name="fixhulls" />
-    <command
-      name="enablecrewai" />
-    <command
-      name="showperm" />
-    <command
-      name="lockx" />
-    <command
-      name="locky" />
-    <command
-      name="kickid" />
-    <command
-      name="clientlist" />
-    <command
-      name="ban" />
-    <command
-      name="kick" />
-    <command
-      name="autorestarttimer" />
-    <command
-      name="unbanaddress" />
-    <command
-      name="resetkarma" />
-    <command
-      name="difficulty" />
-    <command
-      name="fire" />
-    <command
-      name="mute" />
+      name="oxygen" />
     <command
       name="campaigndestination" />
     <command
-      name="respawnnow" />
+      name="freeze" />
+    <command
+      name="autorestartinterval" />
+    <command
+      name="togglekarmatestmode" />
+    <command
+      name="showkarma" />
+    <command
+      name="campaigninfo" />
+    <command
+      name="unban" />
+    <command
+      name="teleportcharacter" />
+    <command
+      name="unbanaddress" />
     <command
       name="traitorlist" />
     <command
+      name="setclientcharacter" />
+    <command
+      name="power" />
+    <command
+      name="kickid" />
+    <command
+      name="fixhulls" />
+    <command
+      name="readycheck" />
+    <command
+      name="showperm" />
+    <command
+      name="banaddress" />
+    <command
+      name="enablecrewai" />
+    <command
+      name="botspawnmode" />
+    <command
+      name="giveaffliction" />
+    <command
+      name="locky" />
+    <command
+      name="water" />
+    <command
+      name="difficulty" />
+    <command
+      name="godmode" />
+    <command
+      name="resetkarma" />
+    <command
+      name="ban" />
+    <command
       name="setkarma" />
     <command
-      name="unmute" />
+      name="mute" />
     <command
-      name="freecamera" />
+      name="explosion" />
+    <command
+      name="fixitems" />
+    <command
+      name="lock" />
+    <command
+      name="spawn" />
     <command
       name="togglecampaignteleport" />
     <command
-      name="explosion" />
+      name="fire" />
+    <command
+      name="freecamera" />
+    <command
+      name="revive" />
+    <command
+      name="clientlist" />
+    <command
+      name="spawnitem" />
+    <command
+      name="heal" />
+    <command
+      name="togglekarma" />
+    <command
+      name="lockx" />
+    <command
+      name="kick" />
+    <command
+      name="banid" />
+    <command
+      name="unmute" />
+    <command
+      name="autorestart" />
+    <command
+      name="godmode_mainsub" />
+    <command
+      name="botcount" />
+    <command
+      name="autorestarttimer" />
+    <command
+      name="respawnnow" />
+  </Client>
+  <Client
+    name="Gunner"
+    accountid="STEAM_1:0:57529211"
+    permissions="All">
     <command
       name="disablecrewai" />
     <command
       name="oxygen" />
     <command
-      name="botspawnmode" />
-    <command
-      name="spawnitem" />
-    <command
-      name="togglekarmatestmode" />
-    <command
-      name="autorestart" />
-    <command
-      name="unban" />
-    <command
-      name="banid" />
-    <command
-      name="water" />
-    <command
-      name="campaigninfo" />
-    <command
-      name="teleportcharacter" />
-    <command
-      name="showkarma" />
-    <command
-      name="banaddress" />
-    <command
-      name="fixitems" />
-    <command
-      name="togglekarma" />
-    <command
-      name="setclientcharacter" />
+      name="campaigndestination" />
     <command
       name="freeze" />
     <command
+      name="autorestartinterval" />
+    <command
+      name="togglekarmatestmode" />
+    <command
+      name="showkarma" />
+    <command
+      name="campaigninfo" />
+    <command
+      name="unban" />
+    <command
+      name="teleportcharacter" />
+    <command
+      name="unbanaddress" />
+    <command
+      name="traitorlist" />
+    <command
+      name="setclientcharacter" />
+    <command
+      name="power" />
+    <command
+      name="kickid" />
+    <command
+      name="fixhulls" />
+    <command
+      name="readycheck" />
+    <command
+      name="showperm" />
+    <command
+      name="banaddress" />
+    <command
+      name="enablecrewai" />
+    <command
+      name="botspawnmode" />
+    <command
+      name="giveaffliction" />
+    <command
+      name="locky" />
+    <command
+      name="water" />
+    <command
+      name="difficulty" />
+    <command
       name="godmode" />
+    <command
+      name="resetkarma" />
+    <command
+      name="ban" />
+    <command
+      name="setkarma" />
+    <command
+      name="mute" />
+    <command
+      name="explosion" />
+    <command
+      name="fixitems" />
+    <command
+      name="lock" />
+    <command
+      name="spawn" />
+    <command
+      name="togglecampaignteleport" />
+    <command
+      name="fire" />
+    <command
+      name="freecamera" />
+    <command
+      name="revive" />
+    <command
+      name="clientlist" />
+    <command
+      name="spawnitem" />
+    <command
+      name="heal" />
+    <command
+      name="togglekarma" />
+    <command
+      name="lockx" />
+    <command
+      name="kick" />
+    <command
+      name="banid" />
+    <command
+      name="unmute" />
+    <command
+      name="autorestart" />
+    <command
+      name="godmode_mainsub" />
+    <command
+      name="botcount" />
+    <command
+      name="autorestarttimer" />
+    <command
+      name="respawnnow" />
   </Client>
 </ClientPermissions>
