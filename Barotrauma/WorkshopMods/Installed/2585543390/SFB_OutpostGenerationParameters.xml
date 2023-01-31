@@ -5,7 +5,7 @@
     <modulecount flag="EngineeringModule" count="1" />
     <modulecount flag="AdminModule" count="1" />
   </OutpostConfig>
-  <OutpostConfig identifier="outpost" replaceinradiation="abandonedoutpost" totalmodulecount="6" minhallwaylength="0" allowedlocationtypes="Outpost" spawncrewinsideoutpost="false">
+  <OutpostConfig identifier="outpost" replaceinradiation="abandonedoutpost" totalmodulecount="6" minhallwaylength="400" allowedlocationtypes="Outpost" spawncrewinsideoutpost="false">
     <modulecount flag="Airlock" count="1" />
     <modulecount flag="EngineeringModule" count="1" />
     <modulecount flag="AdminModule" count="1" />
@@ -22,12 +22,18 @@
       <npc from="outpostnpcs1" identifier="merchantengineering" />
       <npc from="outpostnpcs1" identifier="securitynpc" />
       <npc from="outpostnpcs1" identifier="securitynpc" />
+      <npc from="outpostnpcs1" identifier="securitynpc" />
+      <npc from="outpostnpcs1" identifier="securitynpc" />
+      <npc from="outpostnpcs1" identifier="securitynpc" />
       <npc from="outpostnpcs1" identifier="outpostmanager" />
       <npc from="outpostnpcs1" identifier="outpostdoctor" />
       <npc from="outpostnpcs1" identifier="commoner" />
+      <npc from="outpostnpcs1" identifier="commoner" />
+      <npc from="outpostnpcs1" identifier="commoner" />
+      <npc from="outpostnpcs1" identifier="commoner" />
     </npcs>
   </OutpostConfig>
-  <OutpostConfig identifier="miningoutpost" replaceinradiation="abandonedoutpost" totalmodulecount="7" minhallwaylength="0" allowedlocationtypes="Mine" spawncrewinsideoutpost="false">
+  <OutpostConfig identifier="miningoutpost" replaceinradiation="abandonedoutpost" totalmodulecount="7" minhallwaylength="400" allowedlocationtypes="Mine" spawncrewinsideoutpost="false">
     <modulecount flag="Airlock" count="1" />
     <modulecount flag="EngineeringModule" count="1" />
     <modulecount flag="AdminModule" count="1" />
@@ -45,13 +51,21 @@
       <npc from="outpostnpcs1" identifier="merchantengineering" />
       <npc from="outpostnpcs1" identifier="securitynpc" />
       <npc from="outpostnpcs1" identifier="securitynpc" />
+      <npc from="outpostnpcs1" identifier="securitynpc" />
+      <npc from="outpostnpcs1" identifier="securitynpc" />
+      <npc from="outpostnpcs1" identifier="securitynpc" />
       <npc from="outpostnpcs1" identifier="outpostmanager" />
       <npc from="outpostnpcs1" identifier="outpostdoctor" />
       <npc from="outpostnpcs1" identifier="miner" />
       <npc from="outpostnpcs1" identifier="miner" />
+      <npc from="outpostnpcs1" identifier="miner" />
+      <npc from="outpostnpcs1" identifier="miner" />
+      <npc from="outpostnpcs1" identifier="commoner" />
+      <npc from="outpostnpcs1" identifier="commoner" />
+      <npc from="outpostnpcs1" identifier="commoner" />
     </npcs>
   </OutpostConfig>
-  <OutpostConfig identifier="researchoutpost" replaceinradiation="abandonedoutpost" totalmodulecount="7" minhallwaylength="0" allowedlocationtypes="Research" spawncrewinsideoutpost="false">
+  <OutpostConfig identifier="researchoutpost" replaceinradiation="abandonedoutpost" totalmodulecount="7" minhallwaylength="400" allowedlocationtypes="Research" spawncrewinsideoutpost="false">
     <modulecount flag="Airlock" count="1" />
     <modulecount flag="EngineeringModule" count="1" />
     <modulecount flag="AdminModule" count="1" />
@@ -69,13 +83,21 @@
       <npc from="outpostnpcs1" identifier="merchantengineering" />
       <npc from="outpostnpcs1" identifier="securitynpc" />
       <npc from="outpostnpcs1" identifier="securitynpc" />
+      <npc from="outpostnpcs1" identifier="securitynpc" />
+      <npc from="outpostnpcs1" identifier="securitynpc" />
+      <npc from="outpostnpcs1" identifier="securitynpc" />
       <npc from="outpostnpcs1" identifier="outpostmanager" />
       <npc from="outpostnpcs1" identifier="outpostdoctor" />
       <npc from="outpostnpcs1" identifier="researcher" />
       <npc from="outpostnpcs1" identifier="researcher" />
+      <npc from="outpostnpcs1" identifier="researcher" />
+      <npc from="outpostnpcs1" identifier="researcher" />
+      <npc from="outpostnpcs1" identifier="researcher" />
+      <npc from="outpostnpcs1" identifier="commoner" />
+      <npc from="outpostnpcs1" identifier="commoner" />
     </npcs>
   </OutpostConfig>
-  <OutpostConfig identifier="militaryoutpost" replaceinradiation="abandonedoutpost" totalmodulecount="7" minhallwaylength="0" allowedlocationtypes="Military" spawncrewinsideoutpost="false">
+  <OutpostConfig identifier="militaryoutpost" replaceinradiation="abandonedoutpost" totalmodulecount="7" minhallwaylength="400" allowedlocationtypes="Military" spawncrewinsideoutpost="false">
     <modulecount flag="Airlock" count="1" />
     <modulecount flag="EngineeringModule" count="1" />
     <modulecount flag="AdminModule" count="1" />
@@ -95,8 +117,13 @@
       <npc from="outpostnpcs1" identifier="securitynpc" />
       <npc from="outpostnpcs1" identifier="securitynpc" />
       <npc from="outpostnpcs1" identifier="securitynpc" />
+      <npc from="outpostnpcs1" identifier="securitynpc" />
+      <npc from="outpostnpcs1" identifier="securitynpc" />
+      <npc from="outpostnpcs1" identifier="securitynpc" />
+      <npc from="outpostnpcs1" identifier="securitynpc" />
       <npc from="outpostnpcs1" identifier="outpostmanager" />
       <npc from="outpostnpcs1" identifier="outpostdoctor" />
+      <npc from="outpostnpcs1" identifier="commoner" />
       <npc from="outpostnpcs1" identifier="commoner" />
       <npc from="outpostnpcs1" identifier="commoner" />
     </npcs>
@@ -131,7 +158,7 @@
       <npc from="outpostnpcs1" identifier="commoner" />
     </npcs>
   </OutpostConfig>
-  <OutpostConfig identifier="abandonedoutpost" totalmodulecount="7" minhallwaylength="0" allowedlocationtypes="Abandoned" spawncrewinsideoutpost="false" alwaysdestructible="true" alwaysrewireable="true" allowstealing="true">
+  <OutpostConfig identifier="abandonedoutpost" totalmodulecount="7" minhallwaylength="500" allowedlocationtypes="Abandoned" spawncrewinsideoutpost="false" alwaysdestructible="true" alwaysrewireable="true" allowstealing="true">
     <modulecount flag="Airlock" count="1" />
     <modulecount flag="EngineeringModule" count="1" />
     <modulecount flag="AdminModule" count="1" />
