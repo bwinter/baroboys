@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Beacons Extended" steamworkshopid="2389600483" corepackage="false" modversion="1.0.7" gameversion="0.20.16.1" installtime="1674677496" expectedhash="7BC016BA7A1F91B2255A5FC6DD9FFD33">
+<contentpackage name="Beacons Extended" steamworkshopid="2389600483" corepackage="false" modversion="1.0.11" gameversion="0.21.6.0" installtime="1675350551" expectedhash="90C39B1D8C2487A824504ED99312A386">
   <BeaconStation file="%ModDir%/BeaconStations/BeaconRAV01.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconUBER01.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconUBER02.sub" />
@@ -37,7 +37,6 @@
   <BeaconStation file="%ModDir%/BeaconStations/BeaconRYR01.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconRYR02.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconRYR03.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconRYR04.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconSB02.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconSING01A.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconSING01B.sub" />
@@ -47,5 +46,6 @@
   <BeaconStation file="%ModDir%/BeaconStations/BeaconSING05.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconSING07.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconSING08.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconRYR04.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconSING10A_Bandit.sub" />
 </contentpackage>
