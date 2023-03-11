@@ -1,4 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Hagfish MkIII" modversion="1.0.3" corepackage="False" gameversion="0.21.6.0">
+<contentpackage name="Hagfish MkIII" modversion="1.0.7" corepackage="False" gameversion="0.21.6.0">
+  <Submarine file="%ModDir%/Hagfish MkC.sub" />
   <Submarine file="%ModDir%/Hagfish MkIII.sub" />
+  <Submarine file="%ModDir%/Hagfish DP 2023-03-11.sub" />
 </contentpackage>
