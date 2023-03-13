@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Hagfish MkIII" modversion="1.0.7" corepackage="False" gameversion="0.21.6.0">
+<contentpackage name="Hagfish MkIII" modversion="1.0.8" corepackage="False" gameversion="1.0.7.0">
   <Submarine file="%ModDir%/Hagfish MkC.sub" />
   <Submarine file="%ModDir%/Hagfish MkIII.sub" />
   <Submarine file="%ModDir%/Hagfish DP 2023-03-11.sub" />
+  <Submarine file="%ModDir%/Hagfish BW 2023-03-13.sub" />
+  <Submarine file="%ModDir%/Hagfish BW 2023-03-13 (+Dagon).sub" />
+  <Submarine file="%ModDir%/Hagfish BW 2023-03-13 (Pow Upg.sub" />
+  <Submarine file="%ModDir%/Hagfish BW 2023-03-13 Pwr WIP.sub" />
 </contentpackage>
