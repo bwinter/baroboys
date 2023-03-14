@@ -4,4 +4,7 @@
   <Submarine file="%ModDir%/Hagfish MkIII.sub" />
   <Submarine file="%ModDir%/Hagfish DP 2023-03-11.sub" />
   <Submarine file="%ModDir%/Hagfish BW 2023-03-13 Pwr WIP.sub" />
+  <Submarine file="%ModDir%/Hagfish BW 2023-03-13 Merge v0.sub" />
+  <Submarine file="%ModDir%/Hagfish BW 2023-03-13 Merge v1.sub" />
+  <Submarine file="%ModDir%/Hagfish BW 2023-03-14 dbug pwr.sub" />
 </contentpackage>
