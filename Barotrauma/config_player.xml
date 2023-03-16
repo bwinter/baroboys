@@ -72,6 +72,12 @@
             <!--Stations from beyond-->
             <package
                     path="/home/bwinter_sc81/.local/share/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2585543390/filelist.xml"/>
+            <!--Real Sonar-->
+            <package
+                    path="/home/bwinter_sc81/.local/share/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2936760984/filelist.xml" />
+            <!--Frith's Biomes-->
+            <package
+                    path="/home/bwinter_sc81/.local/share/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2020332046/filelist.xml" />
         </regularpackages>
     </contentpackages>
 </config>
