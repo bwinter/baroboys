@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Timid's Beacon Stations" steamworkshopid="2323680225" corepackage="false" modversion="1.0.0" gameversion="0.12.0.3" installtime="1617758316">
+  <BeaconStation file="%ModDir%/TimidBeaconStation1.sub" />
+  <BeaconStation file="%ModDir%/TimidBeaconStation2.sub" />
+  <BeaconStation file="%ModDir%/TimidBeaconStation3.sub" />
+</contentpackage>
