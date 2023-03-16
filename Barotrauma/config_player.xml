@@ -78,6 +78,15 @@
             <!--Frith's Biomes-->
             <package
                     path="/home/bwinter_sc81/.local/share/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2020332046/filelist.xml" />
+            <!--SIN Beacon Stations-->
+            <package
+                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2605405713/filelist.xml" />
+            <!--Timid's Beacon Stations-->
+            <package
+                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2323680225/filelist.xml" />
+            <!--ADV Beacon Stations-->
+            <package
+                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2544952900/filelist.xml" />
         </regularpackages>
     </contentpackages>
 </config>
