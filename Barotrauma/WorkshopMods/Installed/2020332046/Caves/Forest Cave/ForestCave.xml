@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CaveGenerationParameters>
+  <Override>
+    <Cave identifier="forestcave" minwidth="6000" maxwidth="8000" minheight="6000" maxheight="8000" commonness="0" minbranchcount="2" maxbranchcount="4" levelobjectamount="10000" destructiblewallratio="0.1">
+      <Wall texture="%ModDir%/Caves/Forest Cave/Objects/LevelWall.png" premultiplyalpha="false" />
+      <WallEdge texture="%ModDir%/Caves/Forest Cave/Objects/LevelWallEdge.png" />
+      <WallDestroyed texture="%ModDir%/Common/DestructibleWall.png" premultiplyalpha="false" />
+      <overridecommonness leveltype="europanridge" commonness="0.5" />
+      <overridecommonness leveltype="theaphoticplateau" commonness="0.5" />
+    </Cave>
+  </Override>
+</CaveGenerationParameters>

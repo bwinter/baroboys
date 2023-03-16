@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CaveGenerationParameters>
+  <Override>
+    <Cave identifier="rockcave" minwidth="7000" maxwidth="9000" minheight="7000" maxheight="9000" commonness="0" minbranchcount="2" maxbranchcount="4" levelobjectamount="10000" destructiblewallratio="0.1">
+      <Wall texture="%ModDir%/Caves/Rock Cave/Objects/LevelWall.png" premultiplyalpha="false" />
+      <WallEdge texture="%ModDir%/Caves/Rock Cave/Objects/LevelWallEdge.png" />
+      <WallDestroyed texture="%ModDir%/Common/DestructibleWall.png" premultiplyalpha="false" />
+      <overridecommonness leveltype="coldcaverns" commonness="0.2" />
+      <overridecommonness leveltype="europanridge" commonness="0.5" />
+      <overridecommonness leveltype="hydrothermalwastes" commonness="0.5" />
+      <overridecommonness leveltype="endzone" commonness="1" />
+      <overridecommonness leveltype="abyss" commonness="1" />
+    </Cave>
+  </Override>
+</CaveGenerationParameters>

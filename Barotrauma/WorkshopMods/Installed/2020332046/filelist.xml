@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Frith's Biomes" steamworkshopid="2020332046" corepackage="false" modversion="1.2.0" gameversion="1.0.7.0" installtime="1678724634" expectedhash="D1F8EC7B9E155858682A1B171910D496">
+  <LevelGenerationParameters file="%ModDir%/Biomes/OutpostLevel.xml" />
+  <LevelObjectPrefabs file="%ModDir%/Common/CommonObjects.xml" />
+  <LevelGenerationParameters file="%ModDir%/Biomes/OutpostLevel.xml" />
+  <LevelObjectPrefabs file="%ModDir%/Caves/Ice Cave/Objects/IceCaveObjects.xml" />
+  <CaveGenerationParameters file="%ModDir%/Caves/Ice Cave/IceCave.xml" />
+  <LevelObjectPrefabs file="%ModDir%/Caves/Crystal Cave/Objects/CrystalCaveObjects.xml" />
+  <CaveGenerationParameters file="%ModDir%/Caves/Crystal Cave/CrystalCave.xml" />
+  <LevelObjectPrefabs file="%ModDir%/Caves/Rock Cave/Objects/RockCaveObjects.xml" />
+  <CaveGenerationParameters file="%ModDir%/Caves/Rock Cave/RockCave.xml" />
+  <LevelObjectPrefabs file="%ModDir%/Caves/Mushroom Cave/Objects/MushroomCaveObjects.xml" />
+  <CaveGenerationParameters file="%ModDir%/Caves/Mushroom Cave/MushroomCave.xml" />
+  <LevelObjectPrefabs file="%ModDir%/Caves/Forest Cave/Objects/ForestCaveObjects.xml" />
+  <CaveGenerationParameters file="%ModDir%/Caves/Forest Cave/ForestCave.xml" />
+  <LevelObjectPrefabs file="%ModDir%/Caves/Bioluminescent Cave/Objects/BioluminescentCaveObjects.xml" />
+  <CaveGenerationParameters file="%ModDir%/Caves/Bioluminescent Cave/BioluminescentCave.xml" />
+  <LevelObjectPrefabs file="%ModDir%/Biomes/Cold Caverns/Objects/ColdCavernsObjects.xml" />
+  <LevelGenerationParameters file="%ModDir%/Biomes/Cold Caverns/ColdCavernsOutpostLevel.xml" />
+  <LevelGenerationParameters file="%ModDir%/Biomes/Cold Caverns/ColdCavernsBasic.xml" />
+  <LevelGenerationParameters file="%ModDir%/Biomes/Cold Caverns/ColdCavernsAdvanced.xml" />
+  <LevelGenerationParameters file="%ModDir%/Biomes/Cold Caverns/ColdCavernsMaze.xml" />
+  <LevelGenerationParameters file="%ModDir%/Biomes/Cold Caverns/ColdCavernsTransition.xml" />
+  <LevelObjectPrefabs file="%ModDir%/Biomes/Europan Ridge/Objects/EuropanRidgeObjects.xml" />
+  <LevelGenerationParameters file="%ModDir%/Biomes/Europan Ridge/RidgeOutpostLevel.xml" />
+  <LevelGenerationParameters file="%ModDir%/Biomes/Europan Ridge/RidgeBasic.xml" />
+  <LevelGenerationParameters file="%ModDir%/Biomes/Europan Ridge/RidgeAdvanced.xml" />
+  <LevelObjectPrefabs file="%ModDir%/Biomes/The Aphotic Plateau/Objects/AphoticPlateauObjects.xml" />
+  <LevelGenerationParameters file="%ModDir%/Biomes/The Aphotic Plateau/PlateauOutpostLevel.xml" />
+  <LevelGenerationParameters file="%ModDir%/Biomes/The Aphotic Plateau/PlateauBasic.xml" />
+  <LevelObjectPrefabs file="%ModDir%/Biomes/The Great Sea/Objects/GreatSeaObjects.xml" />
+  <Item file="%ModDir%/Biomes/The Great Sea/Objects/PiezoCrystal.xml" />
+  <LevelGenerationParameters file="%ModDir%/Biomes/The Great Sea/GreatSeaOutpostLevel.xml" />
+  <LevelGenerationParameters file="%ModDir%/Biomes/The Great Sea/GreatSeaBasic.xml" />
+  <LevelObjectPrefabs file="%ModDir%/Biomes/Hydrothermal Wastes/Objects/HydrothermalWastesObjects.xml" />
+  <LevelGenerationParameters file="%ModDir%/Biomes/Hydrothermal Wastes/WastesOutpostLevel.xml" />
+  <LevelGenerationParameters file="%ModDir%/Biomes/Hydrothermal Wastes/WastesBasic.xml" />
+  <LevelGenerationParameters file="%ModDir%/Biomes/Hydrothermal Wastes/EndLocationBasic.xml" />
+</contentpackage>

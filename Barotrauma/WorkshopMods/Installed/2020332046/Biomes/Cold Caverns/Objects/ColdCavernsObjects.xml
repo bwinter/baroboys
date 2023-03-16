@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<levelobjects>
+  <Override>
+    <BackgroundChunks1 identifier="coldcavernsbackgroundchunks1" spawnpos="Wall" minsurfacewidth="0" minsize="1" maxsize="3" randomrotation="-180,180" commonness="0" depthrange="1000,1500" alignment="TopLeft, BottomRight" clusteringamount="0" clusteringgroup="0" alignwithsurface="True" swingamount="0" swingfrequency="0" scaleoscillation="0,0" scaleoscillationfrequency="0" sonardisruption="0" maxcount="10000" randomoffset="100,100">
+      <overridecommonness leveltype="coldcaverns" commonness="90" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/BackgroundChunks.png" sourcerect="0,0,683,1024" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/BackgroundChunks.png" sourcerect="683,0,683,1024" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/BackgroundChunks.png" sourcerect="1365,0,683,1024" origin="0.5,0.5" />
+    </BackgroundChunks1>
+  </Override>
+  <Override>
+    <BackgroundChunks2 identifier="coldcavernsbackgroundchunks2" spawnpos="Wall" minsurfacewidth="0" minsize="3" maxsize="5" randomrotation="-180,180" commonness="0" depthrange="1555,2500" alignment="TopLeft, BottomRight" clusteringamount="0" clusteringgroup="0" alignwithsurface="True" swingamount="0" swingfrequency="0" scaleoscillation="0,0" scaleoscillationfrequency="0" sonardisruption="0" maxcount="10000" randomoffset="100,100">
+      <overridecommonness leveltype="coldcaverns" commonness="80" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/BackgroundChunks.png" sourcerect="683,0,683,1024" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/BackgroundChunks.png" sourcerect="1365,0,683,1024" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/BackgroundChunks.png" sourcerect="0,0,683,1024" origin="0.5,0.5" />
+    </BackgroundChunks2>
+  </Override>
+  <Override>
+    <BackgroundChunks3 identifier="coldcavernsbackgroundchunks3" spawnpos="Wall" minsurfacewidth="0" minsize="5" maxsize="8" randomrotation="-180,180" commonness="0" depthrange="2500,3000" alignment="TopLeft, BottomRight" clusteringamount="0" clusteringgroup="0" alignwithsurface="True" swingamount="0" swingfrequency="0" scaleoscillation="0,0" scaleoscillationfrequency="0" sonardisruption="0" maxcount="10000" randomoffset="100,100">
+      <overridecommonness leveltype="coldcaverns" commonness="70" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/BackgroundChunks.png" sourcerect="1365,0,683,1024" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/BackgroundChunks.png" sourcerect="0,0,683,1024" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/BackgroundChunks.png" sourcerect="683,0,683,1024" origin="0.5,0.5" />
+    </BackgroundChunks3>
+  </Override>
+  <Override>
+    <EdgeChunks identifier="coldcavernsedgechunks" spawnpos="Wall" minsurfacewidth="300" minsize="0.5" maxsize="1" randomrotation="-5,5" randomoffset="20,20" commonness="0" depthrange="-1,0" alignment="Top,TopLeft,TopRight,Bottom,BottomLeft,BottomRight" clusteringamount="0" clusteringgroup="0" alignwithsurface="True" swingamount="0" swingfrequency="0" scaleoscillation="0,0" scaleoscillationfrequency="0" sonardisruption="0" maxcount="10000">
+      <overridecommonness leveltype="coldcaverns" commonness="95" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/WallEdgeChunks.png" sourcerect="0,0,768,512" origin="0.5,0.8" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/WallEdgeChunks.png" sourcerect="768,0,768,512" origin="0.5,0.8" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/WallEdgeChunks.png" sourcerect="1536,0,512,512" origin="0.5,0.8" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/WallEdgeChunks.png" sourcerect="0,512,768,512" origin="0.5,0.8" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/WallEdgeChunks.png" sourcerect="768,512,768,512" origin="0.5,0.8" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/WallEdgeChunks.png" sourcerect="1536,512,512,512" origin="0.5,0.8" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/WallEdgeChunks.png" sourcerect="0,1024,768,512" origin="0.5,0.8" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/WallEdgeChunks.png" sourcerect="768,1024,768,512" origin="0.5,0.8" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/WallEdgeChunks.png" sourcerect="1536,1024,512,512" origin="0.5,0.8" />
+    </EdgeChunks>
+  </Override>
+  <!-- Plants -->
+  <Override>
+    <icyhair identifier="icyhair" spawnpos="Wall" minsurfacewidth="300" minsize="0.6" maxsize="1" randomrotation="-5,5" randomoffset="0,0" commonness="0" depthrange="-1,1" alignment="TopLeft, BottomRight" clusteringamount="0" clusteringgroup="0" alignwithsurface="True" swingamount="0.2" swingfrequency="0.2" scaleoscillation="0,0.2" scaleoscillationfrequency="0.1" sonardisruption="0" maxcount="10000">
+      <overridecommonness leveltype="coldcaverns" commonness="75" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/LevelObjects.png" sourcerect="0,0,512,512" origin="0.5,0.9" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/LevelObjects.png" sourcerect="512,0,512,512" origin="0.5,0.9" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/LevelObjects.png" sourcerect="1024,0,512,512" origin="0.5,0.9" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/LevelObjects.png" sourcerect="1536,0,512,512" origin="0.5,0.9" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/LevelObjects.png" sourcerect="0,512,512,512" origin="0.5,0.9" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/LevelObjects.png" sourcerect="512,512,512,512" origin="0.5,0.9" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/LevelObjects.png" sourcerect="1024,512,512,512" origin="0.5,0.9" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/LevelObjects.png" sourcerect="1536,512,512,512" origin="0.5,0.9" />
+    </icyhair>
+  </Override>
+  <Override>
+    <icebuckthorn identifier="icebuckthorn" spawnpos="Wall" minsurfacewidth="300" minsize="0.5" maxsize="0.8" randomrotation="-5,5" randomoffset="0,0" commonness="0" depthrange="-1,0" alignment="TopLeft, BottomRight" clusteringamount="0" clusteringgroup="0" alignwithsurface="True" swingamount="0.5" swingfrequency="0.2" scaleoscillation="0,0" scaleoscillationfrequency="0" sonardisruption="0" maxcount="10000">
+      <overridecommonness leveltype="coldcaverns" commonness="55" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/LevelObjects.png" sourcerect="0,1024,512,512" origin="0.5,0.9" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/LevelObjects.png" sourcerect="512,1024,512,512" origin="0.5,0.9" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/LevelObjects.png" sourcerect="1024,1024,512,512" origin="0.5,0.9" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/LevelObjects.png" sourcerect="1536,1024,512,512" origin="0.5,0.9" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/LevelObjects.png" sourcerect="0,1536,512,512" origin="0.5,0.9" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/LevelObjects.png" sourcerect="512,1536,512,512" origin="0.5,0.9" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/LevelObjects.png" sourcerect="1024,1536,512,512" origin="0.5,0.9" />
+      <Sprite texture="%ModDir%/Biomes/Cold Caverns/Objects/LevelObjects.png" sourcerect="1536,1536,512,512" origin="0.5,0.9" />
+    </icebuckthorn>
+  </Override>
+</levelobjects>

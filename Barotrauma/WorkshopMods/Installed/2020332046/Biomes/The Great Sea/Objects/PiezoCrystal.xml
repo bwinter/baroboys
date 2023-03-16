@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Items>
+    <Item name="" identifier="piezocrystal" category="Material" Tags="" canbepicked="false" description="" scale="0.5" sonarsize="30" health="50" damagedbyexplosions="true" damagedbyprojectiles="true" damagedbymeleeweapons="true" damagedbyrepairtools="true">
+      <Sprite texture="%ModDir%/Biomes/The Great Sea/Objects/PiezoCrystal.png" depth="1.0" sourcerect="0,4,1024,1020" origin="0.5,0.6" />
+      <Body width="500" height="500" density="25" bodytype="Static" />
+      <LightComponent lightcolor="178,196,207,255" range="4000.0" powerconsumption="0" flicker="1" flickerspeed="0.2" ison="true" drawbehindsubs="true">
+        <LightTexture texture="Content/Lights/pointlight_rays.png" origin="0.5,0.5" />
+      </LightComponent>
+      <LightComponent lightcolor="178,196,207,255" range="4000.0" powerconsumption="0" flicker="0.2" flickerspeed="1" ison="true" drawbehindsubs="true">
+        <LightTexture texture="Content/Lights/pointlight_rays.png" origin="0.5,0.5" />
+      </LightComponent>
+      <ElectricalDischarger duration="0.25" range="1250" rangemultiplierinwalls="1.5">
+        <Attack targetimpulse="50">
+          <Affliction identifier="stun" strength="5" />
+          <Affliction identifier="burn" strength="15" />
+        </Attack>
+        <StatusEffect type="OnUse">
+          <sound file="Content/Items/Weapons/WEAPONS_electricalDischarge1.ogg" range="6000" selectionmode="random" />
+          <sound file="Content/Items/Weapons/WEAPONS_electricalDischarge2.ogg" range="6000" />
+          <Explosion range="7000.0" camerashake="3" stun="0" force="0.0" flames="false" shockwave="false" sparks="false" underwaterbubble="false" />
+        </StatusEffect>
+        <StatusEffect type="OnUse">
+          <sound file="Content/Items/Weapons/ExplosionMedium1.ogg" range="10000" selectionmode="Random" />
+          <sound file="Content/Items/Weapons/ExplosionMedium2.ogg" range="10000" />
+          <sound file="Content/Items/Weapons/ExplosionMedium3.ogg" range="10000" />
+        </StatusEffect>
+      </ElectricalDischarger>
+      <ItemComponent>
+        <StatusEffect type="Always" target="NearbyItems" targettags="junctionbox" range="3000.0" setvalue="true" stackable="false" extraload="500" />
+        <StatusEffect type="Always" target="This" stackable="false" delay="20.0">
+          <Use />
+        </StatusEffect>
+        <StatusEffect type="Always" target="This">
+          <ParticleEmitter particle="ElectricShock" distancemin="100" distancemax="120" particlespersecond="5.0" particleamount="5" emitinterval="2.1" anglemin="0" anglemax="360" scalemin="1.0" scalemax="1.2" />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This" disabledeltatime="true">
+          <particleemitter particle="iceshards" particleamount="200" velocitymin="100" velocitymax="3000" anglemin="0" anglemax="360" scalemin="0.5" scalemax="3.0" />
+          <Explosion range="1000.0" structuredamage="2000" force="50.0" severlimbsprobability="1.5" decal="explosion" decalsize="1.0" camerashake="500" camerashakerange="50000" flashrange="10000" flashduration="5.0" screencolor="255,255,255,255" screencolorrange="5000" screencolorduration="3.0">
+            <Affliction identifier="burn" strength="300" />
+            <Affliction identifier="explosiondamage" strength="400" />
+            <Affliction identifier="stun" strength="20" />
+          </Explosion>
+          <RemoveItem />
+        </StatusEffect>
+      </ItemComponent>
+      <LevelResource deattachduration="Infinity" allowatstart="false">
+        <Commonness fixedquantity="true" clusterquantity="35" clustersize="1" leveltype="greatseabasic" isislandspecific="true" allowatstart="false" />
+        <RequiredItem items="funny easter egg ;)" type="Equipped" />
+      </LevelResource>
+    </Item>
+  </Items>
+</Override>
