@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CaveGenerationParameters>
+  <Override>
+    <Cave identifier="bioluminescentcave" minwidth="10000" maxwidth="10000" minheight="10000" maxheight="10000" commonness="0" minbranchcount="2" maxbranchcount="4" levelobjectamount="10000" destructiblewallratio="0.1">
+      <Wall texture="%ModDir%/Caves/Bioluminescent Cave/Objects/LevelWall.png" premultiplyalpha="false" />
+      <WallEdge texture="%ModDir%/Caves/Bioluminescent Cave/Objects/LevelWallEdge.png" />
+      <WallDestroyed texture="%ModDir%/Common/DestructibleWall.png" premultiplyalpha="false" />
+      <overridecommonness leveltype="thegreatsea" commonness="0.5" />
+      <overridecommonness leveltype="hydrothermalwastes" commonness="0.5" />
+    </Cave>
+  </Override>
+</CaveGenerationParameters>
