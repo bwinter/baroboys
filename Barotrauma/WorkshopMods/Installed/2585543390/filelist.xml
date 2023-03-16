@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Stations from beyond" steamworkshopid="2585543390" corepackage="false" modversion="1.0.219" gameversion="0.20.16.1" installtime="1675012878" expectedhash="577AE16E11E4AC2A5D0E59332CFBB972">
+<contentpackage name="Stations from beyond" steamworkshopid="2585543390" corepackage="false" modversion="1.0.221" gameversion="0.21.6.0" installtime="1676246694" expectedhash="81B92ED65DB44647CF6574C823AC9590">
   <OutpostModule file="%ModDir%/modules/Hall2wayModule_Vi3_Abandoned.sub" />
   <OutpostModule file="%ModDir%/modules/Hall2wayModule_Vi1_Abandoned.sub" />
   <Other file="%ModDir%/SFB.png" />
@@ -43,7 +43,6 @@
   <OutpostModule file="%ModDir%/modules/CrewModule_Vi1.sub" />
   <OutpostModule file="%ModDir%/modules/DockingModule_Vi1.sub" />
   <OutpostModule file="%ModDir%/modules/DockingModule_Vi3.sub" />
-  <OutpostModule file="%ModDir%/modules/EngModule_AP1.sub" />
   <OutpostModule file="%ModDir%/modules/EngModule_AP1_Abandoned.sub" />
   <OutpostModule file="%ModDir%/modules/EngModule_AP2.sub" />
   <OutpostModule file="%ModDir%/modules/EngModule_AP2_Abandoned.sub" />
@@ -99,11 +98,9 @@
   <OutpostModule file="%ModDir%/modules/HallwayModuleVertical_AP3.sub" />
   <OutpostModule file="%ModDir%/modules/HallwayModuleVertical_AP4.sub" />
   <OutpostModule file="%ModDir%/modules/HallwayVertical_AP1_Abandoned.sub" />
-  <OutpostModule file="%ModDir%/modules/MedicalModule_AP1.sub" />
   <OutpostModule file="%ModDir%/modules/MedicalModule_AP1_Abandoned.sub" />
   <OutpostModule file="%ModDir%/modules/MedicalModule_AP2.sub" />
   <OutpostModule file="%ModDir%/modules/MedicalModule_AP3.sub" />
-  <OutpostModule file="%ModDir%/modules/MedicalModule_LV1.sub" />
   <OutpostModule file="%ModDir%/modules/MedicalModule_LV2.sub" />
   <OutpostModule file="%ModDir%/modules/CrewModule_AP1.sub" />
   <OutpostModule file="%ModDir%/modules/MedicalModule_LV3.sub" />
@@ -124,8 +121,11 @@
   <OutpostModule file="%ModDir%/modules/Hall4wayModule_LV1.sub" />
   <OutpostModule file="%ModDir%/modules/EngModule_AP5.sub" />
   <OutpostModule file="%ModDir%/modules/MineModule_AP4.sub" />
-  <OutpostModule file="%ModDir%/modules/MineModule_AP3.sub" />
-  <OutpostModule file="%ModDir%/modules/MineModule_AP2.sub" />
   <OutpostModule file="%ModDir%/modules/MineModule_AP1.sub" />
+  <OutpostModule file="%ModDir%/modules/MineModule_AP2.sub" />
+  <OutpostModule file="%ModDir%/modules/MineModule_AP3.sub" />
   <OutpostModule file="%ModDir%/modules/MineModule_Vi1.sub" />
+  <OutpostModule file="%ModDir%/modules/EngModule_AP1.sub" />
+  <OutpostModule file="%ModDir%/modules/MedicalModule_LV1.sub" />
+  <OutpostModule file="%ModDir%/modules/MedicalModule_AP1.sub" />
 </contentpackage>
