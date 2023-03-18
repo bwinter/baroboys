@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Stations from beyond" steamworkshopid="2585543390" corepackage="false" modversion="1.0.221" gameversion="0.21.6.0" installtime="1676246694" expectedhash="81B92ED65DB44647CF6574C823AC9590">
+<contentpackage name="Stations from beyond" steamworkshopid="2585543390" corepackage="false" modversion="1.0.222" gameversion="1.0.8.0" installtime="1679042905" expectedhash="8D822AF508D968C66B89AEB11A18308C">
   <OutpostModule file="%ModDir%/modules/Hall2wayModule_Vi3_Abandoned.sub" />
   <OutpostModule file="%ModDir%/modules/Hall2wayModule_Vi1_Abandoned.sub" />
   <Other file="%ModDir%/SFB.png" />
