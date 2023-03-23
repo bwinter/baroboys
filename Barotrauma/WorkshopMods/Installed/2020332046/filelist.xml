@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Frith's Biomes" steamworkshopid="2020332046" corepackage="false" modversion="1.2.0" gameversion="1.0.7.0" installtime="1678724634" expectedhash="D1F8EC7B9E155858682A1B171910D496">
+<contentpackage name="Frith's Biomes" steamworkshopid="2020332046" corepackage="false" modversion="1.2.1" gameversion="1.0.8.0" installtime="1679203911" expectedhash="B9CDBAD066A98FBB5170183955A20BFA">
   <LevelGenerationParameters file="%ModDir%/Biomes/OutpostLevel.xml" />
   <LevelObjectPrefabs file="%ModDir%/Common/CommonObjects.xml" />
   <LevelGenerationParameters file="%ModDir%/Biomes/OutpostLevel.xml" />
