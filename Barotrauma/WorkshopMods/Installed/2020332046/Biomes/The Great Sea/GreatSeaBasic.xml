@@ -8,7 +8,7 @@
       <DestructibleWall texture="%ModDir%/Common/DestructibleWall.png" />
       <DestructibleWallEdge texture="%ModDir%/Common/DestructibleWallEdge.png" />
       <WallDestroyed texture="%ModDir%/Common/DestroyedWall.png" premultiplyalpha="false" />
-      <FlashSound file="Content/Items/Weapons/WEAPONS_electricalDischarge1.ogg" volume="0.2" />
+      <FlashSound file="%ModDir%/Biomes/The Great Sea/Objects/Thunder.ogg" />
     </GreatSeaBasic>
   </Override>
 </LevelGenerationParameters>
