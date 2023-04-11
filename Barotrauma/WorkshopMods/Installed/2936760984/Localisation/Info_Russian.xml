@@ -107,4 +107,29 @@
   <entitydescription.anechoicdivingsuit>Скрытный, легковесный скафандр, созданный для поглощения звуковых волн активного сонара, используя безэховое покрытие. В некоторой степени защищает и выдерживает давление на глубине до 6 000 м.</entitydescription.anechoicdivingsuit>
   <entityname.navremote>Пульт навигации</entityname.navremote>
   <entitydescription.navremote>Портативное устройство, позволяющее дистанционно контролировать сонар и двигатели подлодки.</entitydescription.navremote>
+  <!-- Menu -->
+  <realsonarsettings>Настройки Real Sonar</realsonarsettings>
+  <sonarpingvolume>Громкость сонара</sonarpingvolume>
+  <airpingvolume>Громкость импульса в воздухе</airpingvolume>
+  <waterpingvolume>Громкость импульса под водой</waterpingvolume>
+  <suitpingvolume>Громкость импульса</suitpingvolume>
+  <tinnitusvolume>Громкость эффекта тиннита</tinnitusvolume>
+  <distortionvolume>Громкость оглушения</distortionvolume>
+  <!-- Dialogue -->
+  <dialoggetanechoicsuit>Надо найти звукоизолирующий скафандр!</dialoggetanechoicsuit>
+  <dialoggetanechoicsuit>Мне нужен безэховый скафандр, чтобы чинить со включенным сонаром!</dialoggetanechoicsuit>
+  <dialoggetanechoicsuit>Мне нужно изолирующее снаряжение!</dialoggetanechoicsuit>
+  <dialogcantfindanechoicsuit>Я не нахожу изолирующих скафандров! Отключите сонар!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>У нас нет безэховых скафандров! Я туда не полезу!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Я не пойду туда, пока сонар включён!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Мне нечем изолироваться! Выключите сонар!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Я не смогу ничего починить, выключите сонар!</dialogcantfindanechoicsuit>
+  <dialogturnoffsonar>Выключите сонар!</dialogturnoffsonar>
+  <dialogturnoffsonar>Мои уши болят от чёртового сонара!</dialogturnoffsonar>
+  <dialogturnoffsonar>Отключите сонар!</dialogturnoffsonar>
+  <dialogturnoffsonar>Меня застало в сонаре!</dialogturnoffsonar>
+  <dialogturnoffsonar>Какой же громкий этот сонар!</dialogturnoffsonar>
+  <dialogturnoffsonar>Я под водой, отключите сонар!</dialogturnoffsonar>
+  <dialogturnoffsonar>Боже, отключите сонар!</dialogturnoffsonar>
+  <dialogturnoffsonar>Кто-нибудь, отключите сонар!</dialogturnoffsonar>
 </infotexts>

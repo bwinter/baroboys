@@ -106,4 +106,28 @@ Cuidado: Administrarla a un cerebro sano puede causar acumulaciones de presión 
   <entitydescription.anechoicdivingsuit>Un traje ligero y sigiloso diseñado para absorver ondas sonoras de un sonar activo con sus placas anecoicas. Ofrece protección minima contra los daños y puede soportar presiones de hasta 6.000 metros.</entitydescription.anechoicdivingsuit>
   <entityname.navremote>Control remoto de navegación</entityname.navremote>
   <entitydescription.navremote>Un dispositivo de mano que se puede utilizar para controlar de forma remota el sonar y los motores del submarino.</entitydescription.navremote>
+  <!-- Menu -->
+  <realsonarsettings>Opciones Real Sonar</realsonarsettings>
+  <sonarpingvolume>Volumen del Ping Sonar</sonarpingvolume>
+  <airpingvolume>Volumen del Ping por Aire</airpingvolume>
+  <waterpingvolume>Volumen del Ping por Agua</waterpingvolume>
+  <suitpingvolume>Volumen del Ping en Traje</suitpingvolume>
+  <tinnitusvolume>Volumen de Tinnitus</tinnitusvolume>
+  <distortionvolume>Volumen de Distorsión</distortionvolume>
+  <!-- Dialogue -->
+  <dialoggetanechoicsuit>¡Necesito equipo de buceo anecoico!</dialoggetanechoicsuit>
+  <dialoggetanechoicsuit>¡Necesito un traje de buceo anecoico para hacer reparaciones con el sonar encendido!</dialoggetanechoicsuit>
+  <dialoggetanechoicsuit>¡Debo encontrar un traje anecoico!</dialoggetanechoicsuit>
+  <dialogcantfindanechoicsuit>¡No puedo encontrar un traje anecoico! ¡Apaguen el sonar!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>¡No quedan trajes anecoicos! ¡No entraré ahí!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>¡No iré hasta que el sonar este aapagado!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>¡No tengo proteccion! ¡Apaguen el sonar!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>¡No puedo hacer reparaciones hasta que el sonar este apagado!</dialogcantfindanechoicsuit>
+  <dialogturnoffsonar>¡Apaguen el sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>¡Mis oídos sangran gracias a ese maldito sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>¡Me atrapó el sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>¡Dios, ese sonar es ruidoso!</dialogturnoffsonar>
+  <dialogturnoffsonar>¡Estoy en el agua, apaguen el sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>¡Oh dios, apaguen el sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>¡Alguien apague el sonar!</dialogturnoffsonar>
 </infotexts>

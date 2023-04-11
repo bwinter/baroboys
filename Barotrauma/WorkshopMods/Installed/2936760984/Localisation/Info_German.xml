@@ -102,8 +102,33 @@ WARNUNG: Injitzierung in ein Gesundes Gehirn kann einen Druckaufbau im Schädel 
   <entityname.smartgraft>Smarttransplantat</entityname.smartgraft>
   <entitydescription.smartgraft>Gentechnisch entwickelte Zellen, welche die DNS des Patienten kopieren, um komplexe anatomische System zur Heilung zu bringen. Oft bei perforierten Organen verwendet.</entitydescription.smartgraft>
   <!-- Items -->
-  <entityname.anechoicdivingsuit>Anechoic Diving Suit</entityname.anechoicdivingsuit>
+  <entityname.anechoicdivingsuit>Anechoischen Taucheranzug</entityname.anechoicdivingsuit>
   <entitydescription.anechoicdivingsuit>Ein leicht gebaute Anzug, welcher dafür konzipiert wurde, mit Anechoischen Platten Sonarwellen abzuwehren. Bietet leichten Schutz und hat eine maximale Tiefe von 6,000 Metern.</entitydescription.anechoicdivingsuit>
   <entityname.navremote>Navigations-Fernbedienung</entityname.navremote>
   <entitydescription.navremote>Ein tragbares Gerät, mit dem das Sonar und die Motoren des U-Bootes ferngesteuert werden können.</entitydescription.navremote>
+  <!-- Menu -->
+  <realsonarsettings>Real-Sonar Einstellungen</realsonarsettings>
+  <sonarpingvolume>Sonarecho-Lautstärke</sonarpingvolume>
+  <airpingvolume>Sonarecho-Lautstärke (Luft)</airpingvolume>
+  <waterpingvolume>Sonarecho-Lautstärke (Wasser)</waterpingvolume>
+  <suitpingvolume>Sonarecho-Lautstärke (Anzug)</suitpingvolume>
+  <tinnitusvolume>Tinitus-Lautstärke</tinnitusvolume>
+  <distortionvolume>Verzerrungs-Lautstärke</distortionvolume>
+  <!-- Dialogue -->
+  <dialoggetanechoicsuit>Ich brauche anechoische Taucherausrüstung!</dialoggetanechoicsuit>
+  <dialoggetanechoicsuit>Ich brauche einen anechoischen Taucheranzug, um trotz dem Sonar das Schiff zu reparieren!</dialoggetanechoicsuit>
+  <dialoggetanechoicsuit>Ich muss einen anechoischen Anzug finden!</dialoggetanechoicsuit>
+  <dialogcantfindanechoicsuit>Ich kann keinen Anzug finden! Schalte das Sonar aus!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Es gibt keine Schutzanzüge! Ich kann da nicht rein!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Ich gehe dort nicht rein, bis das Sonar aus ist!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Ich habe keinen Schutz! Mach das Sonar aus!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Ich kann das Schiff nicht reparieren, bis das Sonar aus ist!</dialogcantfindanechoicsuit>
+  <dialogturnoffsonar>Mach das Sonar aus!</dialogturnoffsonar>
+  <dialogturnoffsonar>Meine Ohren bluten vom scheiss Sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>Schalt das Sonar ab!</dialogturnoffsonar>
+  <dialogturnoffsonar>Ich bin im Sonarfeld!</dialogturnoffsonar>
+  <dialogturnoffsonar>Himmel, Arsch und Zwirn, ist das Sonar laut!</dialogturnoffsonar>
+  <dialogturnoffsonar>Ich bin im Wasser, mach das Sonar aus!</dialogturnoffsonar>
+  <dialogturnoffsonar>Herrgott nochmal, mach das aus!</dialogturnoffsonar>
+  <dialogturnoffsonar>Irgendwer, mach das aus!</dialogturnoffsonar>
 </infotexts>

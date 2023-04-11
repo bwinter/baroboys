@@ -106,4 +106,29 @@ Warning: Administering into a healthy brain environment can cause a dangerous pr
   <entitydescription.anechoicdivingsuit>A stealthy, lightweight suit designed to absorb the sound waves of active sonar with its anechoic plating. It offers minor protection against damage and can withstand pressures of up to 6,000 meters.</entitydescription.anechoicdivingsuit>
   <entityname.navremote>Nav Remote</entityname.navremote>
   <entitydescription.navremote>A handheld device that can be used to remotely control the submarine's sonar and engines.</entitydescription.navremote>
+  <!-- Menu -->
+  <realsonarsettings>Real Sonar Settings</realsonarsettings>
+  <sonarpingvolume>Sonar Ping Volume</sonarpingvolume>
+  <airpingvolume>Air Ping Volume</airpingvolume>
+  <waterpingvolume>Water Ping Volume</waterpingvolume>
+  <suitpingvolume>Suit Ping Volume</suitpingvolume>
+  <tinnitusvolume>Tinnitus Volume</tinnitusvolume>
+  <distortionvolume>Distortion Volume</distortionvolume>
+  <!-- Dialogue -->
+  <dialoggetanechoicsuit>I need anechoic diving gear!</dialoggetanechoicsuit>
+  <dialoggetanechoicsuit>I need an anechoic suit to do repairs with the sonar on!</dialoggetanechoicsuit>
+  <dialoggetanechoicsuit>Need to find an anechoic suit!</dialoggetanechoicsuit>
+  <dialogcantfindanechoicsuit>I can't find an anechoic suit! Turn off the sonar!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>There's no anechoic suits! I'm not going in there!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>I'm not going in there until the sonar is off!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>I don't have protection! Shut down the sonar!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>I can't do repairs until the sonar is off!</dialogcantfindanechoicsuit>
+  <dialogturnoffsonar>Turn off the sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>My ears are bleeding from that damn sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>Shut off the sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>I'm caught in the sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>Jesus, that sonar is loud!</dialogturnoffsonar>
+  <dialogturnoffsonar>I'm in the water, disable the sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>Oh god, disable the sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>Someone turn off the sonar!</dialogturnoffsonar>
 </infotexts>

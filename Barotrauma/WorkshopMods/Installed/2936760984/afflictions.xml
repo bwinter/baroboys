@@ -809,7 +809,7 @@
   <!-- END OF SOUND SYSTEM -->
   <!-- The following afflictions represents a single sonar ping. It applies other afflictions based on the player's distance from the ping. -->
   <!-- Nav Terminal ping -->
-  <Affliction name="Active sonar" identifier="activesonar" type="activesonar" maxstrength="100" karmachangeonapplied="-1" showiconthreshold="1000" limbspecific="false">
+  <Affliction name="Active sonar" identifier="activesonar" type="activesonar" maxstrength="200" karmachangeonapplied="-1" showiconthreshold="1000" limbspecific="false">
     <!-- Distance: Far. -->
     <Effect minstrength="0" maxstrength="25" strengthchange="-65">
       <StatusEffect target="Character" targetlimb="Head" comparison="and">
@@ -830,14 +830,10 @@
         <Conditional ishuman="true" />
         <Affliction identifier="vibrationdamage" strength="7" />
       </StatusEffect>
-      <StatusEffect target="Character" comparison="or">
-        <Conditional speciesname="crawler" />
-        <Conditional speciesname="mudraptor" />
-        <Conditional speciesname="spineling" />
-        <Conditional speciesname="mudraptor_unarmored" />
-        <Conditional speciesname="mudraptor_hatchling" />
-        <Conditional speciesname="tigerthresher" />
-        <Affliction identifier="aliendamage" strength="0.65" />
+      <StatusEffect target="Character" comparison="and">
+        <Conditional InWater="true" />
+        <Conditional ishuman="false" />
+        <Affliction identifier="creaturedamage" strength="0.65" />
       </StatusEffect>
     </Effect>
     <!-- Distance: Close. -->
@@ -883,18 +879,14 @@
         <Sound file="%ModDir%/Sounds/female_drown4.ogg" loop="false" volume="1.0" />
         <Sound file="%ModDir%/Sounds/female_drown5.ogg" loop="false" volume="1.0" />
       </StatusEffect>
-      <StatusEffect target="Character" comparison="or">
-        <Conditional speciesname="crawler" />
-        <Conditional speciesname="mudraptor" />
-        <Conditional speciesname="spineling" />
-        <Conditional speciesname="mudraptor_unarmored" />
-        <Conditional speciesname="mudraptor_hatchling" />
-        <Conditional speciesname="tigerthresher" />
-        <Affliction identifier="aliendamage" strength="1.25" />
+      <StatusEffect target="Character" comparison="and">
+        <Conditional InWater="true" />
+        <Conditional ishuman="false" />
+        <Affliction identifier="creaturedamage" strength="1.25" />
       </StatusEffect>
     </Effect>
     <!-- Distance: Very close. -->
-    <Effect minstrength="75" maxstrength="100" strengthchange="-65">
+    <Effect minstrength="75" maxstrength="200" strengthchange="-65">
       <StatusEffect target="Character" targetlimb="Head" comparison="and">
         <Conditional InWater="true" />
         <Conditional ishuman="true" />
@@ -919,19 +911,15 @@
         <Sound file="%ModDir%/Sounds/sonarDistortion3.ogg" loop="false" volume="1.0" />
         <Sound file="%ModDir%/Sounds/sonarDistortion4.ogg" loop="false" volume="1.0" />
       </StatusEffect>
-      <StatusEffect target="Character" comparison="or">
-        <Conditional speciesname="crawler" />
-        <Conditional speciesname="mudraptor" />
-        <Conditional speciesname="spineling" />
-        <Conditional speciesname="mudraptor_unarmored" />
-        <Conditional speciesname="mudraptor_hatchling" />
-        <Conditional speciesname="tigerthresher" />
-        <Affliction identifier="aliendamage" strength="2" />
+      <StatusEffect target="Character" comparison="and">
+        <Conditional InWater="true" />
+        <Conditional ishuman="false" />
+        <Affliction identifier="creaturedamage" strength="2" />
       </StatusEffect>
     </Effect>
   </Affliction>
   <!-- Sonar Monitor ping. -->
-  <Affliction name="Beacon station sonar" identifier="activesonarbeacon" type="activesonar" maxstrength="100" karmachangeonapplied="-1" showiconthreshold="1000" limbspecific="false">
+  <Affliction name="Beacon station sonar" identifier="activesonarbeacon" type="activesonar" maxstrength="200" karmachangeonapplied="-1" showiconthreshold="1000" limbspecific="false">
     <!-- Distance: Far. -->
     <Effect minstrength="0" maxstrength="25" strengthchange="-65">
       <StatusEffect target="Character" targetlimb="Head" comparison="and">
@@ -952,14 +940,10 @@
         <Conditional ishuman="true" />
         <Affliction identifier="vibrationdamage" strength="3.5" />
       </StatusEffect>
-      <StatusEffect target="Character" comparison="or">
-        <Conditional speciesname="crawler" />
-        <Conditional speciesname="mudraptor" />
-        <Conditional speciesname="spineling" />
-        <Conditional speciesname="mudraptor_unarmored" />
-        <Conditional speciesname="mudraptor_hatchling" />
-        <Conditional speciesname="tigerthresher" />
-        <Affliction identifier="aliendamage" strength="0.325" />
+      <StatusEffect target="Character" comparison="and">
+        <Conditional InWater="true" />
+        <Conditional ishuman="false" />
+        <Affliction identifier="creaturedamage" strength="0.325" />
       </StatusEffect>
     </Effect>
     <!-- Distance: Close. -->
@@ -1005,18 +989,14 @@
         <Sound file="%ModDir%/Sounds/female_drown4.ogg" loop="false" volume="1.0" />
         <Sound file="%ModDir%/Sounds/female_drown5.ogg" loop="false" volume="1.0" />
       </StatusEffect>
-      <StatusEffect target="Character" comparison="or">
-        <Conditional speciesname="crawler" />
-        <Conditional speciesname="mudraptor" />
-        <Conditional speciesname="spineling" />
-        <Conditional speciesname="mudraptor_unarmored" />
-        <Conditional speciesname="mudraptor_hatchling" />
-        <Conditional speciesname="tigerthresher" />
-        <Affliction identifier="aliendamage" strength="0.625" />
+      <StatusEffect target="Character" comparison="and">
+        <Conditional InWater="true" />
+        <Conditional ishuman="false" />
+        <Affliction identifier="creaturedamage" strength="0.625" />
       </StatusEffect>
     </Effect>
     <!-- Distance: Very close. -->
-    <Effect minstrength="75" maxstrength="100" strengthchange="-65">
+    <Effect minstrength="75" maxstrength="200" strengthchange="-65">
       <StatusEffect target="Character" targetlimb="Head" comparison="and">
         <Conditional InWater="true" />
         <Conditional ishuman="true" />
@@ -1041,14 +1021,10 @@
         <Sound file="%ModDir%/Sounds/sonarDistortion3.ogg" loop="false" volume="0.8" />
         <Sound file="%ModDir%/Sounds/sonarDistortion4.ogg" loop="false" volume="0.8" />
       </StatusEffect>
-      <StatusEffect target="Character" comparison="or">
-        <Conditional speciesname="crawler" />
-        <Conditional speciesname="mudraptor" />
-        <Conditional speciesname="spineling" />
-        <Conditional speciesname="mudraptor_unarmored" />
-        <Conditional speciesname="mudraptor_hatchling" />
-        <Conditional speciesname="tigerthresher" />
-        <Affliction identifier="aliendamage" strength="1" />
+      <StatusEffect target="Character" comparison="and">
+        <Conditional InWater="true" />
+        <Conditional ishuman="false" />
+        <Affliction identifier="creaturedamage" strength="1" />
       </StatusEffect>
     </Effect>
   </Affliction>
@@ -1280,7 +1256,7 @@
       </StatusEffect>
     </Effect>
     <Effect minstrength="5" maxstrength="33" multiplybymaxvitality="true" minvitalitydecrease="0.05" maxvitalitydecrease="0.3" minbodytint="110,0,0,0" maxbodytint="110,0,0,85" minspeedmultiplier="1.0" maxspeedmultiplier="0.93">
-      <StatusEffect target="Character" targetlimb="LeftLeg,RightLeg" disabledeltatime="true" interval="1" delay="60">
+      <StatusEffect target="Character" targetlimb="LeftLeg,RightLeg" disabledeltatime="true" interval="1" delay="80">
         <Affliction identifier="muscledamage" strength="0.15" />
       </StatusEffect>
       <StatusEffect target="Character" targetlimb="LeftArm,RightArm" disabledeltatime="true" interval="1">
@@ -1342,10 +1318,7 @@
     <Description textidentifier="afflictiondescription.muscledamage.high" target="OtherCharacter" minstrength="60" maxstrength="100" />
     <Description textidentifier="afflictiondescription.muscledamage.self" target="Self" minstrength="0" maxstrength="60" />
     <Description textidentifier="afflictiondescription.muscledamage.high.self" target="Self" minstrength="60" maxstrength="100" />
-    <Effect minstrength="5" maxstrength="20" multiplybymaxvitality="true" minvitalitydecrease="0.0" maxvitalitydecrease="0.1" minspeedmultiplier="0.85" maxspeedmultiplier="0.75">
-      <StatusEffect target="Character" disabledeltatime="true" interval="1">
-        <ReduceAffliction identifier="muscledamage" strength="0.02" />
-      </StatusEffect>
+    <Effect minstrength="5" maxstrength="20" strengthchange="-0.02" multiplybymaxvitality="true" minvitalitydecrease="0.0" maxvitalitydecrease="0.1" minspeedmultiplier="0.85" maxspeedmultiplier="0.75">
       <!-- Integration with Neurotrauma amputation. -->
       <StatusEffect target="Character" targetlimbs="RightLeg" interval="1" disabledeltatime="true" comparison="or">
         <Conditional trl_amputation="gt 0" />
@@ -1475,7 +1448,7 @@
         <Conditional th_amputation="gt 0" />
         <Conditional sh_amputation="gt 0" />
         <ReduceAffliction type="brainhemorrhage" strength="1000" />
-        <Affliction identifier="removecortizidefx" strength="1000" />
+        <Affliction identifier="removehemorrhagefx" strength="1000" />
       </StatusEffect>
     </Effect>
     <Effect minstrength="15" maxstrength="99" multiplybymaxvitality="true" dialogflag="BrainHemorrhageLow" minvitalitydecrease="0.15" maxvitalitydecrease="1.0" minscreendistort="0.15" maxscreendistort="1.7" minscreenblur="0.15" maxscreenblur="2.0" mingrainstrength="0.15" maxgrainstrength="2.0" minradialdistort="0.15" maxradialdistort="1.7" minspeedmultiplier="0.8" maxspeedmultiplier="0.25">
@@ -1485,7 +1458,7 @@
         <Conditional th_amputation="gt 0" />
         <Conditional sh_amputation="gt 0" />
         <ReduceAffliction type="brainhemorrhage" strength="1000" />
-        <Affliction identifier="removecortizidefx" strength="1000" />
+        <Affliction identifier="removehemorrhagefx" strength="1000" />
       </StatusEffect>
       <!-- After 15%, the hemorrhaging advances by itself, leaving the patient with ~5 minutes to live. -->
       <StatusEffect target="Character" targetlimb="Head" disabledeltatime="true" interval="1">
@@ -1554,7 +1527,7 @@
     </Effect>
     <!-- Kills the patient at 100% -->
     <Effect minstrength="99" maxstrength="100" multiplybymaxvitality="true" minvitalitydecrease="1.0" maxvitalitydecrease="2.0" minscreendistort="2" maxscreendistort="10" minscreenblur="2" maxscreenblur="10" minchromaticaberration="2" maxchromaticaberration="10" mingrainstrength="2" maxgrainstrength="10" minradialdistort="2" maxradialdistort="10">
-      <StatusEffect target="Character" targetlimb="Head" disabledeltatime="true" interval="1">
+      <StatusEffect target="Character" targetlimb="Head">
         <Affliction identifier="brainhemorrhage" strength="0.35" />
       </StatusEffect>
       <StatusEffect target="Character" comparison="and">
@@ -1562,22 +1535,6 @@
         <Conditional IsLocalPlayer="True" />
         <ReduceAffliction identifier="blindness" strength="1000" />
         <Sound file="%ModDir%/Sounds/brainDeath.ogg" loop="false" dontmuffle="true" volume="1.4" />
-      </StatusEffect>
-    </Effect>
-  </Affliction>
-  <!-- Manna Extract overdose -->
-  <Affliction name="Manna overdose" identifier="mannaoverdose" type="poison" maxstrength="200" limbspecific="false" indicatorlimb="Torso" healcostmultiplier="1.5" karmachangeonapplied="-10" showiconthreshold="3" showinhealthscannerthreshold="0" iconcolors="199,90,176,255;210,45,45,255">
-    <icon texture="%ModDir%/Icons/Afflictions.png" sourcerect="256,128,128,128" origin="0,0" />
-    <Description textidentifier="afflictiondescription.mannaoverdose" target="OtherCharacter" />
-    <Description textidentifier="afflictiondescription.mannaoverdose.self" target="Self" />
-    <Effect minstrength="0" maxstrength="100" multiplybymaxvitality="true" minchromaticaberration="0" maxchromaticaberration="1" minvitalitydecrease="0" maxvitalitydecrease="1" minspeedmultiplier="1" maxspeedmultiplier="1.3">
-      <StatusEffect target="Character" disabledeltatime="true" interval="1">
-        <ReduceAffliction identifier="mannaoverdose" strength="0.5" />
-      </StatusEffect>
-    </Effect>
-    <Effect minstrength="100" maxstrength="200" multiplybymaxvitality="true" minchromaticaberration="1" maxchromaticaberration="10" minvitalitydecrease="1" maxvitalitydecrease="2" minspeedmultiplier="1" maxspeedmultiplier="0">
-      <StatusEffect target="Character" disabledeltatime="true" interval="1">
-        <ReduceAffliction identifier="mannaoverdose" strength="0.2" />
       </StatusEffect>
     </Effect>
   </Affliction>
@@ -1591,7 +1548,7 @@
       </StatusEffect>
     </Effect>
   </Affliction>
-  <Affliction identifier="removecortizidefx" showiconthreshold="1000" showinhealthscannerthreshold="1000" maxstrength="1">
+  <Affliction identifier="removehemorrhagefx" showiconthreshold="1000" showinhealthscannerthreshold="1000" maxstrength="1">
     <Effect minstrength="0" maxstrength="1">
       <StatusEffect target="Character">
         <ReduceAffliction identifier="blindness" strength="100" />
@@ -1600,7 +1557,7 @@
         <ReduceAffliction identifier="hallucinating" amount="100" />
       </StatusEffect>
       <StatusEffect target="Character" disabledeltatime="true" interval="1">
-        <ReduceAffliction identifier="removecortizidefx" strength="0.5" />
+        <ReduceAffliction identifier="removehemorrhagefx" strength="0.5" />
       </StatusEffect>
     </Effect>
   </Affliction>
@@ -1626,7 +1583,7 @@
     <icon texture="%ModDir%/Icons/Afflictions.png" sourcerect="640,0,128,128" origin="0,0" />
     <Effect minstrength="0" maxstrength="100">
       <!-- Remove photopsia if brainhemorrhage is cured by outpost doctor. -->
-      <StatusEffect target="Character" interval="1" disabledeltatime="true">
+      <StatusEffect target="Character" interval="1" disabledeltatime="true" comparison="and">
         <Conditional brainhemorrhage="lteq 0" />
         <Affliction identifier="photopsia" strength="-10" />
       </StatusEffect>
@@ -1668,7 +1625,6 @@
     <Effect minstrength="0" maxstrength="100" dialogflag="BrainHemorrhageMedium">
       <!-- Remove aphasia if brainhemorrhage is cured by outpost doctor. -->
       <StatusEffect target="Character" interval="1" disabledeltatime="true">
-        <Conditional brainhemorrhage="lteq 0" />
         <Affliction identifier="aphasia" strength="-6" />
       </StatusEffect>
     </Effect>
@@ -1830,9 +1786,9 @@
     <icon texture="%ModDir%/Icons/Afflictions.png" sourcerect="0,512,128,128" origin="0,0" />
     <Description textidentifier="afflictiondescription.mannainjection" target="OtherCharacter" />
     <Description textidentifier="afflictiondescription.mannainjection.self" target="Self" />
-    <Effect minstrength="0" maxstrength="1" minchromaticaberration="0" maxchromaticaberration="1">
-      <StatusEffect target="Character" disabledeltatime="true" interval="1">
-        <ReduceAffliction identifier="mannainjection" strength="0.5" />
+    <Effect minstrength="0" maxstrength="1" minchromaticaberration="0" maxchromaticaberration="1" resistancefor="damage,vibrationdamage" minresistance="0" maxresistance="0.07">
+      <StatusEffect target="Character" delay="36" disabledeltatime="true" interval="0.1">
+        <ReduceAffliction identifier="mannainjection" strength="0.05" />
       </StatusEffect>
     </Effect>
     <AfflictionOverlay texture="%ModDir%/Icons/MannaOverlay.png" />
@@ -1840,58 +1796,97 @@
   <!-- Affliction that tracks the usage of Manna and begins an overdose if used too frequently. -->
   <Affliction identifier="mannausage" type="poison" limbspecific="false" showiconthreshold="1000" showinhealthscannerthreshold="1000" maxstrength="100">
     <Effect minstrength="0" maxstrength="30">
-      <StatusEffect target="Character" disabledeltatime="true" interval="1">
-        <ReduceAffliction identifier="mannausage" strength="0.8" />
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1">
+        <ReduceAffliction identifier="mannausage" strength="0.08" />
       </StatusEffect>
     </Effect>
     <Effect minstrength="30" maxstrength="40">
-      <StatusEffect target="Character" disabledeltatime="true" interval="1">
-        <Affliction identifier="mannaoverdose" amount="0.4" />
-        <ReduceAffliction identifier="mannausage" strength="0.8" />
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1">
+        <ReduceAffliction identifier="mannausage" strength="0.08" />
+      </StatusEffect>
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1">
+        <Conditional mannainjection="gt 0" />
+        <Affliction identifier="mannaoverdose" amount="0.04" />
       </StatusEffect>
     </Effect>
     <Effect minstrength="40" maxstrength="50">
-      <StatusEffect target="Character" disabledeltatime="true" interval="1">
-        <Affliction identifier="mannaoverdose" amount="0.7" />
-        <ReduceAffliction identifier="mannausage" strength="1" />
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1">
+        <ReduceAffliction identifier="mannausage" strength="0.1" />
+      </StatusEffect>
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1">
+        <Conditional mannainjection="gt 0" />
+        <Affliction identifier="mannaoverdose" amount="0.07" />
       </StatusEffect>
     </Effect>
     <Effect minstrength="50" maxstrength="60">
-      <StatusEffect target="Character" disabledeltatime="true" interval="1">
-        <Affliction identifier="mannaoverdose" amount="1.1" />
-        <ReduceAffliction identifier="mannausage" strength="1" />
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1">
+        <ReduceAffliction identifier="mannausage" strength="0.1" />
+      </StatusEffect>
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1">
+        <Conditional mannainjection="gt 0" />
+        <Affliction identifier="mannaoverdose" amount="0.11" />
       </StatusEffect>
     </Effect>
     <Effect minstrength="60" maxstrength="70">
-      <StatusEffect target="Character" disabledeltatime="true" interval="1">
-        <Affliction identifier="mannaoverdose" amount="1.6" />
-        <ReduceAffliction identifier="mannausage" strength="1.2" />
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1">
+        <ReduceAffliction identifier="mannausage" strength="0.12" />
+      </StatusEffect>
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1">
+        <Conditional mannainjection="gt 0" />
+        <Affliction identifier="mannaoverdose" amount="0.16" />
       </StatusEffect>
     </Effect>
     <Effect minstrength="70" maxstrength="80">
-      <StatusEffect target="Character" disabledeltatime="true" interval="1">
-        <Affliction identifier="mannaoverdose" amount="2.2" />
-        <ReduceAffliction identifier="mannausage" strength="1.2" />
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1">
+        <ReduceAffliction identifier="mannausage" strength="0.12" />
+      </StatusEffect>
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1">
+        <Conditional mannainjection="gt 0" />
+        <Affliction identifier="mannaoverdose" amount="0.22" />
       </StatusEffect>
     </Effect>
     <Effect minstrength="80" maxstrength="90">
-      <StatusEffect target="Character" disabledeltatime="true" interval="1">
-        <Affliction identifier="mannaoverdose" amount="2.9" />
-        <ReduceAffliction identifier="mannausage" strength="1.4" />
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1">
+        <ReduceAffliction identifier="mannausage" strength="0.14" />
+      </StatusEffect>
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1">
+        <Conditional mannainjection="gt 0" />
+        <Affliction identifier="mannaoverdose" amount="0.29" />
       </StatusEffect>
     </Effect>
     <Effect minstrength="90" maxstrength="100">
-      <StatusEffect target="Character" disabledeltatime="true" interval="1">
-        <Affliction identifier="mannaoverdose" amount="3.6" />
-        <ReduceAffliction identifier="mannausage" strength="1.5" />
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1">
+        <ReduceAffliction identifier="mannausage" strength="0.15" />
+      </StatusEffect>
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1">
+        <Conditional mannainjection="gt 0" />
+        <Affliction identifier="mannaoverdose" amount="0.36" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <!-- Manna Extract overdose -->
+  <Affliction name="Manna overdose" identifier="mannaoverdose" type="poison" maxstrength="200" limbspecific="false" indicatorlimb="Torso" healcostmultiplier="1.5" karmachangeonapplied="-10" showiconthreshold="3" showinhealthscannerthreshold="0" iconcolors="199,90,176,255;210,45,45,255">
+    <icon texture="%ModDir%/Icons/Afflictions.png" sourcerect="256,128,128,128" origin="0,0" />
+    <Description textidentifier="afflictiondescription.mannaoverdose" target="OtherCharacter" />
+    <Description textidentifier="afflictiondescription.mannaoverdose.self" target="Self" />
+    <Effect minstrength="0" maxstrength="100" multiplybymaxvitality="true" minchromaticaberration="0" maxchromaticaberration="1" minvitalitydecrease="0" maxvitalitydecrease="1" minspeedmultiplier="1" maxspeedmultiplier="1.3">
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1">
+        <Conditional mannainjection="lteq 0" />
+        <ReduceAffliction identifier="mannaoverdose" strength="0.05" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="100" maxstrength="200" multiplybymaxvitality="true" minchromaticaberration="1" maxchromaticaberration="10" minvitalitydecrease="1" maxvitalitydecrease="2" minspeedmultiplier="1" maxspeedmultiplier="0">
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1">
+        <Conditional mannainjection="lteq 0" />
+        <ReduceAffliction identifier="mannaoverdose" strength="0.02" />
       </StatusEffect>
     </Effect>
   </Affliction>
   <!-- Manna Extract active on head -->
   <Affliction name="Manna influence" identifier="mannainjectionhead" type="mannainjection" limbspecific="true" isbuff="true" showiconthreshold="1000" showinhealthscannerthreshold="1000" maxstrength="1">
     <Effect minstrength="0" maxstrength="1" minchromaticaberration="0" maxchromaticaberration="2">
-      <StatusEffect target="Character" disabledeltatime="true" interval="1">
-        <ReduceAffliction identifier="mannainjectionhead" strength="0.5" />
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1">
+        <ReduceAffliction identifier="mannainjectionhead" strength="0.05" />
       </StatusEffect>
     </Effect>
   </Affliction>
@@ -1917,12 +1912,8 @@
     </Effect>
     <AfflictionOverlay texture="%ModDir%/Icons/BrainHemorrhageOverlay.png" />
   </Affliction>
-  <!-- Alien damage -->
-  <Affliction identifier="aliendamage" showiconthreshold="1000" showinhealthscannerthreshold="1000" maxstrength="100">
-    <Effect minstrength="0" maxstrength="200" minvitalitydecrease="0" maxvitalitydecrease="300">
-      <StatusEffect target="Character" disabledeltatime="true" interval="1">
-        <ReduceAffliction identifier="aliendamage" strength="0.25" />
-      </StatusEffect>
-    </Effect>
+  <!-- Creature damage -->
+  <Affliction identifier="creaturedamage" showiconthreshold="10000" showinhealthscannerthreshold="10000" maxstrength="10000">
+    <Effect minstrength="0" maxstrength="10000" minvitalitydecrease="0" maxvitalitydecrease="17000"></Effect>
   </Affliction>
 </Afflictions>

@@ -33,6 +33,7 @@
         <!-- General pings -->
         <StatusEffect type="OnUse" target="This,Character" targetlimbs="Head">
           <Conditional UseDirectionalPing="false" />
+          <LuaHook name="sonarPingNav" />
           <Explosion range="12000.0" flashrange="0" stun="0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashake="0.0">
             <Affliction identifier="sonarsounds" strength="100" />
             <Affliction identifier="activesonar" strength="100" />
@@ -42,6 +43,7 @@
         <!-- Directional pings -->
         <StatusEffect type="OnUse" target="This,Character" targetlimbs="Head">
           <Conditional UseDirectionalPing="true" />
+          <LuaHook name="sonarPingNavDirectional" />
           <Explosion range="12000.0" flashrange="0" stun="0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashake="0.0">
             <Affliction identifier="sonarsoundsdirectional" strength="100" />
             <Affliction identifier="activesonar" strength="60" />
@@ -140,6 +142,7 @@
         <!-- General pings -->
         <StatusEffect type="OnUse" target="This,Character" targetlimbs="Head">
           <Conditional UseDirectionalPing="false" />
+          <LuaHook name="sonarPingMonitor" />
           <Explosion range="8000.0" flashrange="0" stun="0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashake="0.0">
             <Affliction identifier="sonarsounds" strength="100" />
             <Affliction identifier="activesonarbeacon" strength="100" />
@@ -149,6 +152,7 @@
         <!-- Directional pings -->
         <StatusEffect type="OnUse" target="This,Character" targetlimbs="Head">
           <Conditional UseDirectionalPing="true" />
+          <LuaHook name="sonarPingMonitorDirectional" />
           <Explosion range="8000.0" flashrange="0" stun="0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashake="0.0">
             <Affliction identifier="sonarsoundsdirectional" strength="100" />
             <Affliction identifier="activesonarbeacon" strength="60" />
@@ -232,7 +236,7 @@
     <Holdable slots="Any,RightHand,LeftHand" holdangle="30" handle1="-10,0" msg="ItemMsgPickUpSelect" />
     <RemoteController target="navterminal" onlyinownsub="false" msg="ItemMsgInteractSelect" AllowInGameEditing="false" drawhudwhenequipped="true" />
   </Item>
-  <Item name="Anechoic Diving Suit" HideInSonar="true" identifier="anechoicdivingsuit" category="Diving,Equipment" tags="diving,deepdiving,provocative" scale="0.5" fireproof="true" description="" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy">
+  <Item name="Anechoic Diving Suit" HideInSonar="true" identifier="anechoicdivingsuit" category="Diving,Equipment" tags="diving,deepdiving,provocative,anechoic" scale="0.5" fireproof="true" description="" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy">
     <Price baseprice="500">
       <Price storeidentifier="merchantoutpost" multiplier="0.9" minavailable="1" />
       <Price storeidentifier="merchantcity" multiplier="0.85" minavailable="2" />

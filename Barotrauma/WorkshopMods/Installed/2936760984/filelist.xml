@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Real Sonar" steamworkshopid="2936760984" corepackage="false" modversion="1.0.8" gameversion="1.0.7.0" installtime="1678730275" expectedhash="52BEBD022FBFB566760BACE28AB48A89">
+<contentpackage name="Real Sonar" steamworkshopid="2936760984" corepackage="false" modversion="1.1.0" gameversion="1.0.8.0" installtime="1680068146" expectedhash="D2EC3634FBC1C944FDB7440F3BF21212">
   <Item file="%ModDir%/sonar.xml" />
   <Item file="%ModDir%/treatments.xml" />
   <Afflictions file="%ModDir%/afflictions.xml" />
