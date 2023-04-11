@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Randomevents>
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--                        CREATURES OF THE DEPTH                             -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--                               Set 1                                       -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <EventSet identifier="Creatures Depth Campaign 1" minleveldifficulty="1" maxleveldifficulty="30" chooserandom="false" allowatstart="true" additive="true" campaign="true">
+    <Commonness commonness="1" />
+    <!-- Populate the caves -->
+    <EventSet identifier="caves" chooserandom="true" percave="true" triggereventcooldown="false" allowatstart="true">
+      <MonsterEvent characterfile="Bombshark" amount="2" spawntype="cave" />
+      <MonsterEvent characterfile="Seaurchin" amount="2" spawntype="cave" />
+      <MonsterEvent characterfile="Nightraptor" amount="2" spawntype="cave" />
+    </EventSet>
+    <!-- populate the ruins -->
+    <EventSet identifier="ruins" chooserandom="false" allowatstart="true" perruin="true" triggereventcooldown="false">
+      <MonsterEvent characterfile="Fractalsquid" minamount="2" maxamount="3" spawntype="ruin" probability="0.25" spawnpointtag="husk" />
+      <EventSet identifier="ruin_encounters" chooserandom="true" triggereventcooldown="false" allowatstart="true">
+        <EventSet identifier="chambers1" chooserandom="false" triggereventcooldown="false" allowatstart="true">
+          <MonsterEvent characterfile="Ancientmudraptor" amount="1" spawntype="ruin" spawnpointtag="encounter_chambers1" />
+        </EventSet>
+      </EventSet>
+    </EventSet>
+    <!-- Populate the wrecks -->
+    <EventSet identifier="wrecks" chooserandom="true" perwreck="true" allowatstart="true" triggereventcooldown="false">
+      <EventSet identifier="bombsharks" chooserandom="false" triggereventcooldown="false" allowatstart="true" commonness="20">
+        <MonsterEvent characterfile="Bombshark" amount="2" spawntype="wreck" spawnprobability="1" spawndistance="1000" />
+      </EventSet>
+      <EventSet identifier="nightraptors" chooserandom="false" triggereventcooldown="false" allowatstart="true" commonness="20">
+        <MonsterEvent characterfile="Nightraptor" amount="2" spawntype="wreck" spawnprobability="1" spawndistance="1000" />
+      </EventSet>
+    </EventSet>
+    <!-- Don't populate the abyss -->
+    <!--20% or 3 min-->
+    <EventSet chooserandom="true" mindistancetraveled="0.20" minmissiontime="180" minintensity="0.0" maxintensity="0.25">
+      <MonsterEvent characterfile="Guppy" minamount="2" maxamount="4" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Bombshark" minamount="1" maxamount="2" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Seaurchin" minamount="1" maxamount="2" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Nightraptor" minamount="1" maxamount="2" spawntype="mainpath,sidepath" />
+    </EventSet>
+    <!--40% or 10 min-->
+    <EventSet chooserandom="true" mindistancetraveled="0.40" minmissiontime="600" minintensity="0.0" maxintensity="0.25">
+      <MonsterEvent characterfile="Guppy" minamount="2" maxamount="4" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Bombshark" minamount="1" maxamount="2" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Seaurchin" minamount="1" maxamount="2" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Nightraptor" minamount="1" maxamount="2" spawntype="mainpath,sidepath" />
+    </EventSet>
+    <!--60% or 30 min-->
+    <EventSet chooserandom="true" mindistancetraveled="0.60" minmissiontime="1800" minintensity="0.0" maxintensity="0.25">
+      <MonsterEvent characterfile="Guppy" minamount="2" maxamount="4" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Bombshark" minamount="1" maxamount="2" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Seaurchin" minamount="1" maxamount="2" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Nightraptor" minamount="1" maxamount="2" spawntype="mainpath,sidepath" />
+    </EventSet>
+    <!--80%-->
+    <EventSet chooserandom="true" mindistancetraveled="0.80" minmissiontime="100000" minintensity="0.0" maxintensity="0.25">
+      <MonsterEvent characterfile="Guppy" minamount="2" maxamount="4" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Bombshark" minamount="1" maxamount="2" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Seaurchin" minamount="1" maxamount="2" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Nightraptor" minamount="1" maxamount="2" spawntype="mainpath,sidepath" />
+    </EventSet>
+  </EventSet>
+  <EventSet identifier="Creatures Depth Campaign 2" minleveldifficulty="31" maxleveldifficulty="65" chooserandom="false" allowatstart="true" additive="true" campaign="true">
+    <Commonness commonness="1" />
+    <!-- Populate the caves -->
+    <EventSet identifier="caves" chooserandom="true" percave="true" triggereventcooldown="false" allowatstart="true">
+      <MonsterEvent characterfile="Bombshark" amount="3" spawntype="cave" />
+      <MonsterEvent characterfile="Seaurchin" amount="3" spawntype="cave" />
+      <MonsterEvent characterfile="Nightraptor" amount="3" spawntype="cave" />
+    </EventSet>
+    <!-- populate the ruins -->
+    <EventSet identifier="ruins" chooserandom="false" allowatstart="true" perruin="true" triggereventcooldown="false">
+      <MonsterEvent characterfile="Fractalsquid" minamount="3" maxamount="4" spawntype="ruin" probability="0.25" spawnpointtag="husk" />
+      <EventSet identifier="ruin_encounters" chooserandom="true" triggereventcooldown="false" allowatstart="true">
+        <EventSet identifier="chambers1" chooserandom="false" triggereventcooldown="false" allowatstart="true">
+          <MonsterEvent characterfile="Ancientmudraptor" amount="1" spawntype="ruin" spawnpointtag="encounter_chambers1" />
+        </EventSet>
+      </EventSet>
+    </EventSet>
+    <!-- Populate the wrecks -->
+    <EventSet identifier="wrecks" chooserandom="true" perwreck="true" allowatstart="true" triggereventcooldown="false">
+      <EventSet identifier="bombsharks" chooserandom="false" triggereventcooldown="false" allowatstart="true" commonness="20">
+        <MonsterEvent characterfile="Bombshark" amount="3" spawntype="wreck" spawnprobability="1" spawndistance="1000" />
+      </EventSet>
+      <EventSet identifier="seaurchins" chooserandom="false" triggereventcooldown="false" allowatstart="true" commonness="20">
+        <MonsterEvent characterfile="Seaurchin" amount="3" spawntype="wreck" spawnprobability="1" spawndistance="1000" />
+      </EventSet>
+      <EventSet identifier="nightraptors" chooserandom="false" triggereventcooldown="false" allowatstart="true" commonness="20">
+        <MonsterEvent characterfile="Nightraptor" amount="3" spawntype="wreck" spawnprobability="1" spawndistance="1000" />
+      </EventSet>
+    </EventSet>
+    <!-- Don't populate the abyss -->
+    <!--20% or 3 min-->
+    <EventSet chooserandom="true" mindistancetraveled="0.20" minmissiontime="180" minintensity="0.0" maxintensity="0.25">
+      <MonsterEvent characterfile="Guppy" minamount="2" maxamount="3" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Bombshark" minamount="2" maxamount="3" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Seaurchin" minamount="2" maxamount="3" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Nightraptor" minamount="2" maxamount="3" spawntype="mainpath,sidepath" />
+    </EventSet>
+    <!--40% or 10 min-->
+    <EventSet chooserandom="true" mindistancetraveled="0.40" minmissiontime="600" minintensity="0.0" maxintensity="0.25">
+      <MonsterEvent characterfile="Guppy" minamount="2" maxamount="3" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Bombshark" minamount="2" maxamount="3" spawntype="mainpath,sidepath" />
+      <EventSet identifier="seaurchins">
+        <MonsterEvent characterfile="Seaurchin" minamount="1" maxamount="2" spawntype="mainpath,sidepath" />
+        <MonsterEvent characterfile="Seaurchinqueen" amount="1" spawntype="mainpath,sidepath" />
+      </EventSet>
+      <MonsterEvent characterfile="Nightraptor" minamount="2" maxamount="3" spawntype="mainpath,sidepath" />
+    </EventSet>
+    <!--60% or 30 min-->
+    <EventSet chooserandom="true" mindistancetraveled="0.60" minmissiontime="1800" minintensity="0.0" maxintensity="0.25">
+      <MonsterEvent characterfile="Guppy" minamount="2" maxamount="3" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Bombshark" minamount="2" maxamount="3" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Seaurchin" minamount="2" maxamount="3" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Nightraptor" minamount="2" maxamount="3" spawntype="mainpath,sidepath" />
+    </EventSet>
+    <!--80%-->
+    <EventSet chooserandom="true" mindistancetraveled="0.80" minmissiontime="100000" minintensity="0.0" maxintensity="0.25">
+      <MonsterEvent characterfile="Guppy" minamount="2" maxamount="3" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Bombshark" minamount="2" maxamount="3" spawntype="mainpath,sidepath" />
+      <EventSet identifier="seaurchins">
+        <MonsterEvent characterfile="Seaurchin" minamount="1" maxamount="2" spawntype="mainpath,sidepath" />
+        <MonsterEvent characterfile="Seaurchinqueen" amount="1" spawntype="mainpath,sidepath" />
+      </EventSet>
+      <MonsterEvent characterfile="Nightraptor" minamount="2" maxamount="3" spawntype="mainpath,sidepath" />
+    </EventSet>
+  </EventSet>
+  <EventSet identifier="Creatures Depth Campaign 3" minleveldifficulty="66" maxleveldifficulty="100" chooserandom="false" allowatstart="true" additive="true" campaign="true">
+    <Commonness commonness="1" />
+    <!-- Populate the caves -->
+    <EventSet identifier="caves" chooserandom="true" percave="true" triggereventcooldown="false" allowatstart="true">
+      <MonsterEvent characterfile="Bombshark" amount="4" spawntype="cave" />
+      <MonsterEvent characterfile="Seaurchin" amount="4" spawntype="cave" />
+      <MonsterEvent characterfile="Nightraptor" amount="4" spawntype="cave" />
+    </EventSet>
+    <!-- populate the ruins -->
+    <EventSet identifier="ruins" chooserandom="false" allowatstart="true" perruin="true" triggereventcooldown="false">
+      <MonsterEvent characterfile="Fractalsquid" minamount="4" maxamount="5" spawntype="ruin" probability="0.25" spawnpointtag="husk" />
+      <EventSet identifier="ruin_encounters" chooserandom="true" triggereventcooldown="false" allowatstart="true">
+        <EventSet identifier="chambers1" chooserandom="false" triggereventcooldown="false" allowatstart="true">
+          <MonsterEvent characterfile="Ancientmudraptor" amount="1" spawntype="ruin" spawnpointtag="encounter_chambers1" />
+        </EventSet>
+      </EventSet>
+    </EventSet>
+    <!-- Populate the wrecks -->
+    <EventSet identifier="wrecks" chooserandom="true" perwreck="true" allowatstart="true" triggereventcooldown="false">
+      <EventSet identifier="bombsharks" chooserandom="false" triggereventcooldown="false" allowatstart="true" commonness="20">
+        <MonsterEvent characterfile="Bombshark" amount="4" spawntype="wreck" spawnprobability="1" spawndistance="1000" />
+      </EventSet>
+      <EventSet identifier="seaurchins" chooserandom="false" triggereventcooldown="false" allowatstart="true" commonness="20">
+        <MonsterEvent characterfile="Seaurchin" amount="3" spawntype="wreck" spawnprobability="1" spawndistance="1000" />
+        <MonsterEvent characterfile="Seaurchinqueen" amount="1" spawntype="wreck" spawnprobability="0.5" spawndistance="1000" />
+      </EventSet>
+      <EventSet identifier="nightraptors" chooserandom="false" triggereventcooldown="false" allowatstart="true" commonness="20">
+        <MonsterEvent characterfile="Nightraptor" amount="4" spawntype="wreck" spawnprobability="1" spawndistance="1000" />
+      </EventSet>
+    </EventSet>
+    <!-- Don't populate the abyss -->
+    <!--20% or 3 min-->
+    <EventSet chooserandom="true" mindistancetraveled="0.20" minmissiontime="180" minintensity="0.0" maxintensity="0.25">
+      <MonsterEvent characterfile="Guppy" minamount="1" maxamount="2" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Bombshark" minamount="3" maxamount="4" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Seaurchin" minamount="3" maxamount="4" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Nightraptor" minamount="3" maxamount="4" spawntype="mainpath,sidepath" />
+    </EventSet>
+    <!--40% or 10 min-->
+    <EventSet chooserandom="true" mindistancetraveled="0.40" minmissiontime="600" minintensity="0.0" maxintensity="0.25">
+      <MonsterEvent characterfile="Guppy" minamount="1" maxamount="2" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Bombshark" minamount="3" maxamount="4" spawntype="mainpath,sidepath" />
+      <EventSet identifier="seaurchins">
+        <MonsterEvent characterfile="Seaurchin" minamount="2" maxamount="3" spawntype="mainpath,sidepath" />
+        <MonsterEvent characterfile="Seaurchinqueen" amount="1" spawntype="mainpath,sidepath" />
+      </EventSet>
+      <MonsterEvent characterfile="Nightraptor" minamount="3" maxamount="4" spawntype="mainpath,sidepath" />
+    </EventSet>
+    <!--60% or 30 min-->
+    <EventSet chooserandom="true" mindistancetraveled="0.60" minmissiontime="1800" minintensity="0.0" maxintensity="0.25">
+      <MonsterEvent characterfile="Guppy" minamount="1" maxamount="2" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Bombshark" minamount="3" maxamount="4" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Seaurchin" minamount="3" maxamount="4" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Nightraptor" minamount="3" maxamount="4" spawntype="mainpath,sidepath" />
+    </EventSet>
+    <!--80%-->
+    <EventSet chooserandom="true" mindistancetraveled="0.80" minmissiontime="100000" minintensity="0.0" maxintensity="0.25">
+      <MonsterEvent characterfile="Guppy" minamount="1" maxamount="2" spawntype="mainpath,sidepath" />
+      <MonsterEvent characterfile="Bombshark" minamount="3" maxamount="4" spawntype="mainpath,sidepath" />
+      <EventSet identifier="seaurchins">
+        <MonsterEvent characterfile="Seaurchin" minamount="2" maxamount="3" spawntype="mainpath,sidepath" />
+        <MonsterEvent characterfile="Seaurchinqueen" amount="1" spawntype="mainpath,sidepath" />
+      </EventSet>
+      <MonsterEvent characterfile="Nightraptor" minamount="3" maxamount="4" spawntype="mainpath,sidepath" />
+    </EventSet>
+  </EventSet>
+</Randomevents>
