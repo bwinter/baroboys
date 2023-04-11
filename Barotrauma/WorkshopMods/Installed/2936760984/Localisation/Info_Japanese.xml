@@ -102,4 +102,12 @@
   <entitydescription.anechoicdivingsuit>アクティブソナーの音波を対振動メッキで吸収するように設計された、ステルス性の高い軽量スーツ。ダメージから身を守り、6,000mまでの圧力に耐えることができる。</entitydescription.anechoicdivingsuit>
   <entityname.navremote>リモートナビ</entityname.navremote>
   <entitydescription.navremote>潜水艦のソナーやエンジンを遠隔操作するための携帯端末。</entitydescription.navremote>
+  <dialogturnoffsonar>ソナーを切れ！</dialogturnoffsonar>
+  <dialogturnoffsonar>あのソナーで耳から血が出そうだ！</dialogturnoffsonar>
+  <dialogturnoffsonar>ソナーを止めろ！</dialogturnoffsonar>
+  <dialogturnoffsonar>ソナーに引っかかった！？</dialogturnoffsonar>
+  <dialogturnoffsonar>なんだ、あのソナー音は！？</dialogturnoffsonar>
+  <dialogturnoffsonar>水中にいるんだ、ソナーをオフにしろ！</dialogturnoffsonar>
+  <dialogturnoffsonar>ソナーをオフに！</dialogturnoffsonar>
+  <dialogturnoffsonar>誰かソナーを止めて！</dialogturnoffsonar>
 </infotexts>

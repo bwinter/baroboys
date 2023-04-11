@@ -106,4 +106,29 @@
   <entitydescription.anechoicdivingsuit>一种灵巧轻便的潜水服，特制的消声镀层可以吸收潜艇主动声纳的声波。它可以提供轻微的保护，可以承受最高6000米的压力。</entitydescription.anechoicdivingsuit>
   <entityname.navremote>导航遥控器</entityname.navremote>
   <entitydescription.navremote>一种手持设备，可用于远程控制潜艇的声纳和引擎。</entitydescription.navremote>
+  <!-- Menu -->
+  <realsonarsettings>真实声纳设置</realsonarsettings>
+  <sonarpingvolume>声纳脉冲音量</sonarpingvolume>
+  <airpingvolume>声纳脉冲音量(空气)</airpingvolume>
+  <waterpingvolume>声纳脉冲音量(水下)</waterpingvolume>
+  <suitpingvolume>声纳脉冲音量(潜水服)</suitpingvolume>
+  <tinnitusvolume>耳鸣音量</tinnitusvolume>
+  <distortionvolume>失真音量</distortionvolume>
+  <!-- Dialogue -->
+  <dialoggetanechoicsuit>我需要吸音潜水服！</dialoggetanechoicsuit>
+  <dialoggetanechoicsuit>我需要一件吸音潜水服，才能在打开声纳时进行维修工作！</dialoggetanechoicsuit>
+  <dialoggetanechoicsuit>我需要找一套吸音潜水服！</dialoggetanechoicsuit>
+  <dialogcantfindanechoicsuit>我找不到吸音潜水服! 关掉声纳！</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>这里没有吸音潜水服! 我才不要进去呢！</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>在声纳关闭之前，我是不会进去的！</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>我没有任何保护措施！关掉声纳！</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>在声纳关闭之前，我无法进行维修工作！</dialogcantfindanechoicsuit>
+  <dialogturnoffsonar>关掉声纳!</dialogturnoffsonar>
+  <dialogturnoffsonar>我的耳朵都被那该死的声纳震出血了!</dialogturnoffsonar>
+  <dialogturnoffsonar>把声纳关掉!</dialogturnoffsonar>
+  <dialogturnoffsonar>关掉那该死的声呐!</dialogturnoffsonar>
+  <dialogturnoffsonar>天啊，声纳的声音太大了!</dialogturnoffsonar>
+  <dialogturnoffsonar>我在水里，关掉声纳!</dialogturnoffsonar>
+  <dialogturnoffsonar>天啊，关掉声纳!</dialogturnoffsonar>
+  <dialogturnoffsonar>谁能把声纳关了!</dialogturnoffsonar>
 </infotexts>

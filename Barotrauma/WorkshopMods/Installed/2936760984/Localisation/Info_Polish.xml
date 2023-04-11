@@ -106,4 +106,29 @@ Uwaga: wstrzyknięcie dawki leku w ten sposób przy zdrowym środowisku może sp
   <entitydescription.anechoicdivingsuit>Dyskretny, lekki strój zaprojektowany w celu absorbowania fal dźwiękowych sonaru. Oferuje niewielką ochronę przed uszkodzeniami mechanicznymi oprócz drgań, i wytrzymuje ciśnienie do poziomu 6000 metrów.</entitydescription.anechoicdivingsuit>
   <entityname.navremote>Pilot do nawigacji</entityname.navremote>
   <entitydescription.navremote>Podręczne urządzenie, którego można używać do zdalnego sterowania sonarem i silnikami łodzi podwodnej.</entitydescription.navremote>
+  <!-- Menu -->
+  <realsonarsettings>Ustawienia Real Sonar</realsonarsettings>
+  <sonarpingvolume>Głośność sygnałów sonaru</sonarpingvolume>
+  <airpingvolume>Głośność sygnałów w powietrzu</airpingvolume>
+  <waterpingvolume>Głośność sygnałów w wodzie</waterpingvolume>
+  <suitpingvolume>Głośność sygnałów w strojach</suitpingvolume>
+  <tinnitusvolume>Głośność szumienia w uszach</tinnitusvolume>
+  <distortionvolume>Głośność zniekształceń</distortionvolume>
+  <!-- Dialogue -->
+  <dialoggetanechoicsuit>Potrzebuję bezechowy sprzęt do nurkowania!</dialoggetanechoicsuit>
+  <dialoggetanechoicsuit>Potrzebuję bezechowego skafandra żeby naprawiać przy włączonym sonarze!</dialoggetanechoicsuit>
+  <dialoggetanechoicsuit>Muszę znaleźć bezechowy sprzęt do nurkowania!</dialoggetanechoicsuit>
+  <dialogcantfindanechoicsuit>Nie mogę znaleść bezechowego skafandra! Wyłączcie sonar!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Nie ma skafandrów bezechowych! Ja tam nie wchodzę!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Ja tam nie wchodzę tak długo, jak działa sonar!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Nie mam sprzętu ochronnego! Wyłączcie sonar!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Nie mogę wykonywać napraw dopóki sonar jest włączony!</dialogcantfindanechoicsuit>
+  <dialogturnoffsonar>Wyłączcie sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>Uszy mi krwiawią od tego obsranego sonaru!</dialogturnoffsonar>
+  <dialogturnoffsonar>Wyłączcie ten cholerny sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>Jestem w zasięgu sonaru!</dialogturnoffsonar>
+  <dialogturnoffsonar>Jezu, ten sonar jest tak głośny!</dialogturnoffsonar>
+  <dialogturnoffsonar>Jestem poza statkiem, wyłączcie sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>O boże, wyłączcie sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>Niech ktoś wyłączy sonar!</dialogturnoffsonar>
 </infotexts>

@@ -106,4 +106,29 @@ ATTENZIONE: la somministrazione in un ambiente cerebrale sano può causare un pe
   <entitydescription.anechoicdivingsuit>Una tuta furtiva e leggera progettata per assorbire le onde sonore del sonar attivo con la sua placcatura anecoica. Offre una protezione minore contro i danni e può resistere a pressioni fino a 6.000 metri.</entitydescription.anechoicdivingsuit>
   <entityname.navremote>Telecomando di navigazione</entityname.navremote>
   <entitydescription.navremote>Un dispositivo portatile che può essere utilizzato per controllare a distanza il sonar e i motori del sottomarino.</entitydescription.navremote>
+  <!-- Menu -->
+  <realsonarsettings>Impostazioni Real Sonar</realsonarsettings>
+  <sonarpingvolume>Volume del Segnale del Sonar</sonarpingvolume>
+  <airpingvolume>Volume del segnale dell'Aria</airpingvolume>
+  <waterpingvolume>Volume del segnale dell'acqua</waterpingvolume>
+  <suitpingvolume>Volume del segnale della Tuta</suitpingvolume>
+  <tinnitusvolume>Volume del Tintinnio</tinnitusvolume>
+  <distortionvolume>Volume della Distorsione</distortionvolume>
+  <!-- Dialogue -->
+  <dialoggetanechoicsuit>Ho bisogno di attrezzatura subacquea anecoica!</dialoggetanechoicsuit>
+  <dialoggetanechoicsuit>Mi serve una tuta anecoica per riparare con il sonar acceso!</dialoggetanechoicsuit>
+  <dialoggetanechoicsuit>Devo trovare una tuta anecoica!</dialoggetanechoicsuit>
+  <dialogcantfindanechoicsuit>Non riesco a trovare una tuta anecoica! Spegni il sonar!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Non ci sono tute anecoiche!Non andrò lì dentro!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Non andrò lì fino a quando il sonar non sarà spento!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Non ho nessuna protezione!Spegni il Sonar!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Non posso fare riparazioni se il sonar rimane attivo!</dialogcantfindanechoicsuit>
+  <dialogturnoffsonar>Spegni il sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>Le mie orecchie stanno sanguinando per quel maledetto sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>Isolate quel sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>Sono nell'area del sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>Gesù, quel sonar è forte!</dialogturnoffsonar>
+  <dialogturnoffsonar>Sono in acqua, disattiva il sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>Oh dio,disattivate quel sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>Qualcuno spenga il sonar!</dialogturnoffsonar>
 </infotexts>

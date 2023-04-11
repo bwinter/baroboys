@@ -58,6 +58,15 @@
   <afflictiondescription.rupturedlung.high.self>Vous pouvez à peine respirer, chaque inspiration est une agonie. Vous toussez du sang.</afflictiondescription.rupturedlung.high.self>
   <afflictioncauseofdeath.rupturedlung>Noyé dans son propre sang</afflictioncauseofdeath.rupturedlung>
   <afflictioncauseofdeathself.rupturedlung>Vous vous êtes noyé dans votre propre sang due à une lésion pulmonaire</afflictioncauseofdeathself.rupturedlung>
+  <!-- Brain Hemorrhage -->
+  <afflictionname.brainhemorrhage>Hémorragie cérébrale</afflictionname.brainhemorrhage>
+  <afflictiondescription.brainhemorrhage>Le cerveau du patient saigne à cause d'une exposition à un sonar actif. Heureusement cela ne semble pas s'aggraver</afflictiondescription.brainhemorrhage>
+  <afflictiondescription.brainhemorrhage.medium>Une grande parti de l'encéphale du patient a été réduit en bouillie. Son cerveau baigne dans son propre sang, et cela empire.</afflictiondescription.brainhemorrhage.medium>
+  <afflictiondescription.brainhemorrhage.high>Le cerveau du patient a fondu sous l'effet d'un sonar actif.</afflictiondescription.brainhemorrhage.high>
+  <afflictiondescription.brainhemorrhage.self>Votre vision se trouble et votre esprit est embrumé.</afflictiondescription.brainhemorrhage.self>
+  <afflictiondescription.brainhemorrhage.medium.self>Vous ne pouvez plus penser. Vous voyez des éclairs et vous sentez un gout de métal dans votre bouche. Vous ne pouvez plus crier. Vous perdez vos fonctions motrices et perdez lentement connaissance.</afflictiondescription.brainhemorrhage.medium.self>
+  <afflictioncauseofdeath.brainhemorrhage>Mort cérébrale</afflictioncauseofdeath.brainhemorrhage>
+  <afflictioncauseofdeathself.brainhemorrhage>Votre cerveau a été fondu par un sonar actif.</afflictioncauseofdeathself.brainhemorrhage>
   <!-- Influence de Manne -->
   <afflictionname.mannainjection>Influence de manne</afflictionname.mannainjection>
   <afflictiondescription.mannainjection>Ce membre est sous l'influence curative de l'Extrait de manne.</afflictiondescription.mannainjection>
@@ -97,4 +106,29 @@ Attention: Injecter ce produit dans un corps saint peut causer une augmentation 
   <entitydescription.anechoicdivingsuit>Une tenue de plongée conçue pour absorber les ondes sonores avec ses plaques anéchoïques. Elle offre une protection modérée contre les dommages et peut résister à une pression maximale de 6.000 mètres.</entitydescription.anechoicdivingsuit>
   <entityname.navremote>Télécommande de navigation</entityname.navremote>
   <entitydescription.navremote>Un appareil portable qui peut être utilisé pour contrôler à distance le sonar et les moteurs du sous-marin.</entitydescription.navremote>
+  <!-- Menu -->
+  <realsonarsettings>Paramètres de Real Sonar</realsonarsettings>
+  <sonarpingvolume>Volume des Impulsions de Sonar</sonarpingvolume>
+  <airpingvolume>Volume d'Impulsion dans l'Air</airpingvolume>
+  <waterpingvolume>Volume Impulsion dans l'Eau</waterpingvolume>
+  <suitpingvolume>Volume d'Impulsion dans Combinaison</suitpingvolume>
+  <tinnitusvolume>Volume sous Acouphène</tinnitusvolume>
+  <distortionvolume>Volume sous Distorsion</distortionvolume>
+  <!-- Dialogue -->
+  <dialoggetanechoicsuit>J'ai besoin d'une combinaison anéchoïque !</dialoggetanechoicsuit>
+  <dialoggetanechoicsuit>J'ai besoin d'une tenue anéchoïque pour pouvoir réparer comme le sonar est allumé !</dialoggetanechoicsuit>
+  <dialoggetanechoicsuit>Je dois trouver une combinaison anéchoïque !</dialoggetanechoicsuit>
+  <dialogcantfindanechoicsuit>Je ne trouve pas de combinaison anéchoïque ! Eteignez le sonar !</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Pas de tenue anéchoïque ! Je vais pas aller là-dedans !</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Je ne vais pas là-dedans tant que le sonar n'est pas éteint !</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Je n'ai pas de protection ! Arrêtez le sonar !</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>Je ne peux pas réparer ça si le sonar n'est pas éteint !</dialogcantfindanechoicsuit>
+  <dialogturnoffsonar>Eteignez le sonar !</dialogturnoffsonar>
+  <dialogturnoffsonar>Mes oreilles ! Elles saignent ! Satané sonar !</dialogturnoffsonar>
+  <dialogturnoffsonar>Coupez le sonar !</dialogturnoffsonar>
+  <dialogturnoffsonar>Je me prend le sonar là !</dialogturnoffsonar>
+  <dialogturnoffsonar>Dieu que le sonar est fort !</dialogturnoffsonar>
+  <dialogturnoffsonar>Je suis dans l'eau. etaignez le sonar !</dialogturnoffsonar>
+  <dialogturnoffsonar>Mon dieux, éteignez le sonar !</dialogturnoffsonar>
+  <dialogturnoffsonar>Que quelqu'un éteigne le sonar !</dialogturnoffsonar>
 </infotexts>
