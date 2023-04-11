@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="English" nowhitespace="false" translatedname="English">
+  <!--Characters-->
+  <character.chun>Chun</character.chun>
+  <character.bombshark>Bomb Shark</character.bombshark>
+  <character.ancientmudraptor>Ancient Mudraptor</character.ancientmudraptor>
+  <character.humanguppy>Human Guppy</character.humanguppy>
+  <character.guppy>Guppy</character.guppy>
+  <character.seaurchin>Seaurchin</character.seaurchin>
+  <character.seaurchinqueen>Seaurchin Queen</character.seaurchinqueen>
+  <character.seaurchindocile>Seaurchin Docile</character.seaurchindocile>
+  <character.wolfeel>Wolf Eel</character.wolfeel>
+  <character.nightraptor>Nightraptor</character.nightraptor>
+  <!--Missions-->
+  <missionname.killbombsharks1>Getting rid of Bomb Sharks</missionname.killbombsharks1>
+  <missiondescription.killbombsharks1>A pack of Bomb Sharks has been terrorizing vessels traveling between [location1] and [location2]. A reward of [reward] marks has been promised to any crew that can neutralize it.</missiondescription.killbombsharks1>
+  <missionsonarlabel.killbombsharks1>Bomb Sharks</missionsonarlabel.killbombsharks1>
+  <missionsuccess.killbombsharks1>The Bomb Sharks have been terminated.</missionsuccess.killbombsharks1>
+  <missionheader0.killbombsharks1>Targets terminated</missionheader0.killbombsharks1>
+  <missionmessage0.killbombsharks1>The Bomb Sharks have been killed. Navigate the submarine out of the cavern to claim the reward.</missionmessage0.killbombsharks1>
+  <missionname.killseaurchins1>Getting rid of Sea Urchins!</missionname.killseaurchins1>
+  <missiondescription.killseaurchins1>A pack of Sea Urchins led by a queen has been terrorizing vessels traveling between [location1] and [location2]. A reward of [reward] marks has been promised to any crew that can neutralize it.</missiondescription.killseaurchins1>
+  <missionsonarlabel.killseaurchins1>Sea Urchins</missionsonarlabel.killseaurchins1>
+  <missionsuccess.killseaurchins1>The Sea Urchins have been terminated.</missionsuccess.killseaurchins1>
+  <missionheader0.killseaurchins1>Targets terminated</missionheader0.killseaurchins1>
+  <missionmessage0.killseaurchins1>The Sea Urchins have been killed. Navigate the submarine out of the cavern to claim the reward.</missionmessage0.killseaurchins1>
+  <missionname.seaurchinnest>Destroy a Sea Urchin nest</missionname.seaurchinnest>
+  <missiondescription.seaurchinnest>A sea urchin nest was recently discovered in a cave near [location1]. A reward of [reward] marks has been promised to any crew that can get rid of the nest.</missiondescription.seaurchinnest>
+  <missionsonarlabel.seaurchinnest>Sea Urchin nest</missionsonarlabel.seaurchinnest>
+  <missionmessage0.seaurchinnest>The nest has been wiped out. Navigate the submarine out of the cavern to claim the reward.</missionmessage0.seaurchinnest>
+  <missionsuccess.seaurchinnest>The nest has been destroyed.</missionsuccess.seaurchinnest>
+  <!--Items-->
+  <entityname.seaurchinegg>Sea Urchin Egg</entityname.seaurchinegg>
+  <entityname.seaurchindocileegg>Sea Urchin Docile Egg</entityname.seaurchindocileegg>
+</infotexts>
