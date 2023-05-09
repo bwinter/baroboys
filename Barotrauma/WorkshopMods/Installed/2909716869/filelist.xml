@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Creatures of the Depth" steamworkshopid="2909716869" corepackage="false" modversion="1.12" gameversion="1.0.8.0" installtime="1680325713" expectedhash="0E129C2AE26C1416B054CFFA2F374C73">
+<contentpackage name="Creatures of the Depth" steamworkshopid="2909716869" corepackage="false" modversion="1.16" gameversion="1.0.9.0" installtime="1682448492" expectedhash="844720D8B55635730986068508450DF3">
   <Character file="%ModDir%/Characters/Ancientmudraptor/Ancientmudraptor.xml" />
   <Character file="%ModDir%/Characters/Chun/Chun.xml" />
   <Character file="%ModDir%/Characters/Guppy/Guppy.xml" />
   <Character file="%ModDir%/Characters/Seaurchin/Seaurchin.xml" />
-  <Character file="%ModDir%/Characters/Wolfeel/Wolfeel.xml" />
   <Character file="%ModDir%/Characters/Bombshark/Bombshark.xml" />
   <Character file="%ModDir%/Characters/Seaurchinqueen/Seaurchinqueen.xml" />
   <Character file="%ModDir%/Characters/Humanguppy/Humanguppy.xml" />
