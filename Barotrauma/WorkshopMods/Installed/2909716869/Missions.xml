@@ -38,7 +38,6 @@
     </Items>
     <Monster character="Seaurchin" min="2" max="3" />
     <Monster character="Seaurchinqueen" />
-    <Monster character="Seaurchin" min="2" max="3" multiplayeronly="true" />
     <Reputation identifier="location" amount="2" />
     <Icon texture="%ModDir%/UI/MissionIcons.png" sourcerect="0,512,256,256" color="214,50,48" />
     <LocationType from="City" to="Research" />
@@ -55,5 +54,34 @@
     <LocationType from="Research" to="Mine" />
     <LocationType from="Research" to="Lair" />
     <message text="missionmessage0.crawlernest" />
+  </NestMission>
+  <NestMission identifier="bombsharknest" tags="nest,bombsharknest" achievementidentifier="nestmission" type="Nest" spawntype="cave" reward="5000" itemspawnradius="200" approachitemsradius="800" monsterspawnradius="4000" nestobjectradius="1500" nestobjectamount="20" difficulty="4" commonness="20">
+    <Items>
+      <Item identifier="largebombsharkegg">
+        <StatusEffectOnApproach target="This" Scale="1.0" setvalue="true" />
+      </Item>
+      <Item identifier="largebombsharkegg">
+        <StatusEffectOnApproach target="This" Scale="1.0" setvalue="true" delay="9" />
+      </Item>
+      <Item identifier="largebombsharkegg" />
+      <Item identifier="largebombsharkegg" />
+    </Items>
+    <Monster character="Bombshark" min="2" max="3" />
+    <Reputation identifier="location" amount="2" />
+    <Icon texture="%ModDir%/UI/MissionIcons.png" sourcerect="512,512,256,256" color="214,50,48" />
+    <LocationType from="City" to="Research" />
+    <LocationType from="City" to="None" />
+    <LocationType from="City" to="Lair" />
+    <LocationType from="Outpost" to="Research" />
+    <LocationType from="Outpost" to="None" />
+    <LocationType from="Outpost" to="Lair" />
+    <LocationType from="Research" to="None" />
+    <LocationType from="Research" to="City" />
+    <LocationType from="Research" to="Outpost" />
+    <LocationType from="Research" to="Military" />
+    <LocationType from="Research" to="Research" />
+    <LocationType from="Research" to="Mine" />
+    <LocationType from="Research" to="Lair" />
+    <message text="missionmessage0.bombsharknest" />
   </NestMission>
 </Missions>
