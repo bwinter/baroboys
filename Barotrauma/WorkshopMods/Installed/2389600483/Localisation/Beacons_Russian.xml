@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <infotexts language="Russian" nowhitespace="false" translatedname="Русский">
+  <!-- Item interaction messages -->
+  <ItemMsgRotate>[[use]] Повернуть</ItemMsgRotate>
+  <ItemMsgDetachScrewdriver>[[use]] Отсоединить (Отвертка)</ItemMsgDetachScrewdriver>
+  <ItemMsgDetachKnife>[[use]] Отсоединить (Нож)</ItemMsgDetachKnife>
+  <ItemMsgUseKnife>[[shoot]] Резать (Нож)</ItemMsgUseKnife>
+  <ItemMsgForceOpenKnife>[[use]] Вскрыть (Нож)</ItemMsgForceOpenKnife>
+  <ItemMsgBreatheUse>[[use]] Дышать</ItemMsgBreatheUse>
+  <ItemMsgNoCrowbar>Этот объект нельзя вскрыть с помощью лома.</ItemMsgNoCrowbar>
   <!-- Beacon Labels -->
   <!-- SING Beacon Labels -->
   <label.beacon_exhaust>ВЫПУСК</label.beacon_exhaust>
@@ -33,5 +41,6 @@
   <terminalwelcomemsg.beacon_cro_01_shieldcontrol>УПРАВЛЕНИЕ ЭНЕРГОЩИТОМ\nДОСТУПНЫЕ КОМАНДЫ: on / off</terminalwelcomemsg.beacon_cro_01_shieldcontrol>
   <terminalwelcomemsg.beacon_cro_01_lore>ОБЪЕДИНЁННАЯ КОАЛИЦИЯ ЕВРОПЫ\nПОЛЬЗОВАТЕЛЬ: Ньель Стюарт\nИД#: 225138693\nВходящие:\nОт: Карин Провски\nПривет Ньель, Печально было узнать о том, что случилось с Дарнеллом, я знаю что Бекки порой может быть сплошная головной болью, но постарайся быть с ней помягче. Я понимаю твоё беспокойство и мне приятно что тебе не всё равно.\nИсходящие:\nКому: Карин Провски\nПривет Карин, Дарнеллу всё ещё не хорошо, а от Бекки у меня уже начинает болеть голова. В любом случае надеюсь что ответ застал тебя в добром здравии. Я беспокоюсь за тебя, из-за тех радикалов с которыми ты работаешь, будь осторожна.</terminalwelcomemsg.beacon_cro_01_lore>
   <terminalwelcomemsg.beacon_ryr_04_doorcontrol>[1] - ОТКРЫТЬ ДВЕРЬ\n[0] - ЗАКРЫТЬ ДВЕРЬ</terminalwelcomemsg.beacon_ryr_04_doorcontrol>
+  <terminalwelcomemsg.beacon_ryr_08_beacon>=======СТАЦИОНАРНЫЙ РЕЖИМ=======\nМОБИЛЬНАЯ СОНАРНАЯ СТАНЦИЯ 'ШМЕЛЬ' АКТИВИРОВАНА В СТАЦИОНАРНОМ РЕЖИМЕ\nФУНКЦИИ ДВИЖЕНИЯ НЕДОСТУПНЫ</terminalwelcomemsg.beacon_ryr_08_beacon>
   <terminalwelcomemsg.beacon_sing_11b_keylocation>Ключ-карта за тех. панелью в основании антенны.</terminalwelcomemsg.beacon_sing_11b_keylocation>
 </infotexts>

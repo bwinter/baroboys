@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <infotexts language="Simplified Chinese" nowhitespace="true" translatedname="中文(简体)">
+  <!-- Item interaction messages -->
+  <ItemMsgRotate>[[use]] Rotate</ItemMsgRotate>
+  <ItemMsgDetachScrewdriver>[[use]] Detach (Screwdriver)</ItemMsgDetachScrewdriver>
+  <ItemMsgDetachKnife>[[use]] Detach (Knife)</ItemMsgDetachKnife>
+  <ItemMsgUseKnife>[[use]] Cut (Knife)</ItemMsgUseKnife>
+  <ItemMsgForceOpenKnife>[[use]] Force open (Knife)</ItemMsgForceOpenKnife>
+  <ItemMsgBreatheUse>[[use]] Breathe</ItemMsgBreatheUse>
+  <ItemMsgNoCrowbar>This object cannot be pried with crowbar.</ItemMsgNoCrowbar>
   <!-- Beacon Labels -->
   <!-- SING Beacon Labels -->
   <label.beacon_exhaust>废气</label.beacon_exhaust>
@@ -34,5 +42,6 @@
   <terminalwelcomemsg.beacon_cro_01_shieldcontrol>能量屏障控制\n可用指令：on / off</terminalwelcomemsg.beacon_cro_01_shieldcontrol>
   <terminalwelcomemsg.beacon_cro_01_lore>联合欧罗巴联盟\n用户：Niel Stewart\nID#：225138693\n收件箱：\n寄件人：Karin Provsky\n嗨Niel，Darnell出了那样的事真令人难过，尽量对Becky温柔点，虽然有时候她是很难管教。我理解你的忧虑，知道你在乎我很是宽慰。\n发件箱：\n收件人：Karin Provsky\n嗨Karin，Darnell的情况还是不怎么好，Becky开始让我头疼了。不管怎样希望你一切安好，我很担心你和那群极端分子一起工作，保重。</terminalwelcomemsg.beacon_cro_01_lore>
   <terminalwelcomemsg.beacon_ryr_04_doorcontrol>[1] - 开门\n[0] - 关门</terminalwelcomemsg.beacon_ryr_04_doorcontrol>
+  <terminalwelcomemsg.beacon_ryr_08_beacon>=======STATIONARY MODE=======\nMOBILE BEACON STATION 'BUMBLEBEE' ACTIVATED IN STATIONARY MODE\nMOVEMENT FUNCTIONS ARE UNAVAILABLE</terminalwelcomemsg.beacon_ryr_08_beacon>
   <terminalwelcomemsg.beacon_sing_11b_keylocation>钥匙卡在天线底下的维护面板后面。</terminalwelcomemsg.beacon_sing_11b_keylocation>
 </infotexts>
