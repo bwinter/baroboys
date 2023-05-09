@@ -9,7 +9,6 @@
   <character.seaurchin>Seaurchin</character.seaurchin>
   <character.seaurchinqueen>Seaurchin Queen</character.seaurchinqueen>
   <character.seaurchindocile>Seaurchin Docile</character.seaurchindocile>
-  <character.wolfeel>Wolf Eel</character.wolfeel>
   <character.nightraptor>Nightraptor</character.nightraptor>
   <!--Missions-->
   <missionname.killbombsharks1>Getting rid of Bomb Sharks</missionname.killbombsharks1>
@@ -29,7 +28,15 @@
   <missionsonarlabel.seaurchinnest>Sea Urchin nest</missionsonarlabel.seaurchinnest>
   <missionmessage0.seaurchinnest>The nest has been wiped out. Navigate the submarine out of the cavern to claim the reward.</missionmessage0.seaurchinnest>
   <missionsuccess.seaurchinnest>The nest has been destroyed.</missionsuccess.seaurchinnest>
+  <missionname.bombsharknest>Destroy a Bombshark nest</missionname.bombsharknest>
+  <missiondescription.bombsharknest>A bombshark nest was recently discovered in a cave near [location1]. A reward of [reward] marks has been promised to any crew that can get rid of the nest.</missiondescription.bombsharknest>
+  <missionsonarlabel.bombsharknest>Bombshark nest</missionsonarlabel.bombsharknest>
+  <missionmessage0.bombsharknest>The nest has been wiped out. Navigate the submarine out of the cavern to claim the reward.</missionmessage0.bombsharknest>
+  <missionsuccess.bombsharknest>The nest has been destroyed.</missionsuccess.bombsharknest>
   <!--Items-->
   <entityname.seaurchinegg>Sea Urchin Egg</entityname.seaurchinegg>
   <entityname.seaurchindocileegg>Sea Urchin Docile Egg</entityname.seaurchindocileegg>
+  <entityname.bombsharkegg>Bombshark Egg</entityname.bombsharkegg>
+  <entitydescription.bombsharkegg>A hideous, grotesque Bombshark Egg. Littered with boils and seems to be slightly moving... as if breathing.</entitydescription.bombsharkegg>
+  <entityname.caveeellatch>Cave Eel latch</entityname.caveeellatch>
 </infotexts>
