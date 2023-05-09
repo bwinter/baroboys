@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Beacons Extended" steamworkshopid="2389600483" corepackage="false" modversion="1.0.46" gameversion="1.0.8.0" installtime="1680682939" expectedhash="3FCD537C62CCEDA0667C4F3E619DD6E1">
+<contentpackage name="Beacons Extended" steamworkshopid="2389600483" corepackage="false" modversion="1.0.58" gameversion="1.0.9.0" installtime="1683297443" expectedhash="FA2F29417AA23EEBF7A49D1EEAF25B83">
   <Submarine file="%ModDir%/BeaconStations/Modules/Beacon_PowerPod.sub" />
   <Submarine file="%ModDir%/BeaconStations/Modules/Beacon_Deco_Cargo18E.sub" />
   <Submarine file="%ModDir%/BeaconStations/Modules/Beacon_BoardingShuttle.sub" />
@@ -26,12 +26,14 @@
   <BeaconStation file="%ModDir%/BeaconStations/BeaconRD02.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconRD03.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconRYR01.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconRYR01_Bandit.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconRYR02.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconRYR03.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconRYR04.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconRYR05.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconRYR07.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconRYR06A.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconRYR07.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconRYR08.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconSB01.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconSB02.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconSB03.sub" />
