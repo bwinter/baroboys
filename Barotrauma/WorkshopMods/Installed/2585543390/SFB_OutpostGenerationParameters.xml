@@ -198,7 +198,7 @@
       <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
     </npcs>
   </OutpostConfig>
-  <OutpostConfig identifier="city" replaceinradiation="abandonedoutpost" totalmodulecount="8" minhallwaylength="0" allowedlocationtypes="City" spawncrewinsideoutpost="false">
+  <OutpostConfig identifier="city" replaceinradiation="abandonedoutpost" totalmodulecount="9" minhallwaylength="0" allowedlocationtypes="City" spawncrewinsideoutpost="false">
     <modulecount flag="Airlock" count="1" />
     <modulecount flag="EngineeringModule" count="1" />
     <modulecount flag="AdminModule" count="1" />
@@ -211,6 +211,7 @@
     <modulecount flag="HuskModule" count="1" order="1" requiredfaction="huskcult" />
     <npcs>
       <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+      <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
       <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
       <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
       <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
@@ -235,12 +236,11 @@
       <npc from="outpostnpcs1" identifier="commoner" />
       <npc from="outpostnpcs1" identifier="researcher" />
       <npc from="outpostnpcs1" identifier="researcher" />
-      <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+      <npc from="outpostnpcs1" identifier="researcher" />
       <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
       <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
       <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
       <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
-      <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
       <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
       <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
       <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />

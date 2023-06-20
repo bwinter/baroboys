@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Stations from beyond" steamworkshopid="2585543390" corepackage="false" modversion="1.0.234" gameversion="1.0.8.0" installtime="1680014423" expectedhash="6931D0601184AA127C929C4ADFE336F4">
+<contentpackage name="Stations from beyond" steamworkshopid="2585543390" corepackage="false" modversion="1.0.260" gameversion="1.0.13.2" installtime="1686409945" expectedhash="EF4F189A349662617D0B5D30571279C1">
   <OutpostModule file="%ModDir%/modules/Hall2wayModule_Vi3_Abandoned.sub" />
   <OutpostModule file="%ModDir%/modules/Hall2wayModule_Vi1_Abandoned.sub" />
   <Other file="%ModDir%/SFB.png" />
@@ -60,8 +60,6 @@
   <OutpostModule file="%ModDir%/modules/Hall4wayModule_AP3.sub" />
   <OutpostModule file="%ModDir%/modules/Hall4wayModule_AP3_Abandoned.sub" />
   <OutpostModule file="%ModDir%/modules/Hall4wayModule_LV1_Abandoned.sub" />
-  <OutpostModule file="%ModDir%/modules/Hall4wayModule_Vi1.sub" />
-  <OutpostModule file="%ModDir%/modules/Hall4wayModule_Vi1_Abandoned.sub" />
   <OutpostModule file="%ModDir%/modules/Hall4wayModule_Vi2.sub" />
   <OutpostModule file="%ModDir%/modules/HallwayHorizont_AP4_Abandoned.sub" />
   <OutpostModule file="%ModDir%/modules/HallwayModuleHorizontal_AP1.sub" />
@@ -111,7 +109,6 @@
   <OutpostModule file="%ModDir%/modules/DockingModule_AP3.sub" />
   <OutpostModule file="%ModDir%/modules/DockingModule_LV2.sub" />
   <OutpostModule file="%ModDir%/modules/DockingModule_Vi2.sub" />
-  <OutpostModule file="%ModDir%/modules/DockingModule_Vi3.sub" />
   <OutpostModule file="%ModDir%/modules/SecurityModule_Vi1.sub" />
   <OutpostModule file="%ModDir%/modules/SecurityModule_Vi2.sub" />
   <OutpostModule file="%ModDir%/modules/SecurityModule_Vi3.sub" />
@@ -129,4 +126,26 @@
   <OutpostModule file="%ModDir%/modules/AdminModule_LV_01R_Abandoned.sub" />
   <OutpostModule file="%ModDir%/modules/CrewModule_Vi1_Abandoned.sub" />
   <OutpostModule file="%ModDir%/modules/SecurityModule_Vi3_Abandoned.sub" />
+  <OutpostModule file="%ModDir%/modules/DockingModule_Vi3.sub" />
+  <OutpostModule file="%ModDir%/modules/ArmoryModule_AP1L_Colony.sub" />
+  <OutpostModule file="%ModDir%/modules/ArmoryModule_AP1R_Colony.sub" />
+  <OutpostModule file="%ModDir%/modules/ClownDistrict_AP1_Colony.sub" />
+  <OutpostModule file="%ModDir%/modules/HuskDistrict_AP1_Colony.sub" />
+  <OutpostModule file="%ModDir%/modules/MedicalModule_AP1_Colony.sub" />
+  <OutpostModule file="%ModDir%/modules/ResearchModule_AP1_Colony.sub" />
+  <OutpostModule file="%ModDir%/modules/HuskDistrict_AP1.sub" />
+  <OutpostModule file="%ModDir%/modules/ClownDistrict_AP1.sub" />
+  <OutpostModule file="%ModDir%/modules/EngineeringModule_AP1_Colony.sub" />
+  <OutpostModule file="%ModDir%/modules/AdminModule_AP1_Colony.sub" />
+  <OutpostModule file="%ModDir%/modules/DockingModule_AP1_Colony.sub" />
+  <OutpostModule file="%ModDir%/modules/DockingModule_AP2_Colony.sub" />
+  <OutpostModule file="%ModDir%/modules/DockingModule_AP4_Colony.sub" />
+  <OutpostModule file="%ModDir%/modules/DockingModule_AP5_Colony.sub" />
+  <OutpostModule file="%ModDir%/modules/DockingModule_AP6_Colony.sub" />
+  <OutpostModule file="%ModDir%/modules/Construction_AP1_Colony.sub" />
+  <OutpostModule file="%ModDir%/modules/DockingModule_AP3_Colony.sub" />
+  <OutpostModule file="%ModDir%/modules/Hall4wayModule_Vi1.sub" />
+  <OutpostModule file="%ModDir%/modules/Hall4wayModule_Vi1_Abandoned.sub" />
+  <OutpostModule file="%ModDir%/modules/SecurityModule_AP1_Colony.sub" />
+  <OutpostModule file="%ModDir%/modules/ResidentialModule_AP1_Colony.sub" />
 </contentpackage>
