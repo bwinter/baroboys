@@ -62,9 +62,6 @@
         <regularpackages>
             <!--DagonLing Blueprint-->
             <package
-                    path="LocalMods/DagonLing Blueprint/filelist.xml"/>
-            <!--DagonLing Blueprint-->
-            <package
                     path="LocalMods/Hagfish MkIII/filelist.xml"/>
             <!--Beacons Extended-->
             <package
