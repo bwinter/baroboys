@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item name="Alien Generator" identifier="aliengeneratorPA" category="Alien" Tags="alien,aliengenerator,artifactcontainer" scale="0.3">
+    <Sprite texture="Content/Items/Alien/Legacy/AlienRuin_Legacy.png" depth="0.8" sourcerect="512,0,512,573" />
+    <LightComponent AllowInGameEditing="false" lightcolor="112,146,190,50" canbeselected="false" range="800.0" IsOn="true">
+      <Sprite texture="Content/Items/Alien/Legacy/AlienRuin_Legacy.png" sourcerect="0,486,176,176" origin="0.47, 0.3" alpha="1.0" />
+    </LightComponent>
+    <ItemContainer capacity="1" maxstacksize="1" canbeselected="true" hideitems="true" itempos="264,-321" containedspritedepth="0.01" autointeractwithcontained="true">
+      <GuiFrame relativesize="0.2,0.25" anchor="Center" minsize="140,170" maxsize="280,280" style="ItemUI" />
+      <StatusEffect type="Always" target="This" Charge="-10.0" interval="0.1" />
+      <Containable items="faradayartifactPA">
+        <StatusEffect type="OnContaining" target="This" Charge="100.0" setvalue="true" duration="0.1" stackable="false" />
+      </Containable>
+    </ItemContainer>
+    <PowerContainer capacity="50.0" canbeselected="false" maxrechargespeed="1000.0" maxoutput="10000.0" />
+    <ConnectionPanel canbeselected="true" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <!-- break the item when a shutdown signal is received -->
+      <input name="shutdown" displayname="connection.shutdown">
+        <StatusEffect type="OnUse" target="This" condition="-100" setvalue="true" />
+      </input>
+      <output name="power_out" displayname="connection.powerout" />
+      <output name="power_value_out" displayname="connection.powervalueout" />
+      <output name="charge" displayname="connection.batterychargestatusout" />
+      <output name="charge_%" displayname="connection.batterychargepercentage" />
+    </ConnectionPanel>
+  </Item>
+  <Item name="" identifier="faradayartifactPA" nameidentifier="faradayartifact" category="Alien" Tags="alien,alienartifact" sonarsize="30" scale="0.5" impactsoundtag="impact_metal_heavy" allowsellingwhenbroken="true" hideinmenus="true" hideconditionbar="true">
+    <Upgrade gameversion="0.9.3.1" scale="0.5" />
+    <Price baseprice="1000" sold="false">
+      <Price storeidentifier="merchantoutpost" multiplier="0.85" />
+      <Price storeidentifier="merchantcity" multiplier="0.85" />
+      <Price storeidentifier="merchantresearch" multiplier="2" />
+      <Price storeidentifier="merchantmilitary" multiplier="1.25 " />
+      <Price storeidentifier="merchantmine" />
+    </Price>
+    <PreferredContainer primary="wrecksecarmcab" amount="1" spawnprobability="0.01" />
+    <PreferredContainer primary="ruintreasure" amount="1" spawnprobability="0.05" />
+    <Sprite texture="Content/Items/Alien/AlienRuins_Items.png" depth="0.6" sourcerect="645,108,93,103" origin="0.5,0.5" />
+    <Deconstruct time="30">
+      <Item identifier="steel" />
+      <Item identifier="fulgurium" />
+      <Item identifier="fulgurium" />
+      <Item identifier="fulgurium" />
+    </Deconstruct>
+    <Body radius="45" density="40" friction="0.95" />
+    <Holdable slots="RightHand+LeftHand" holdpos="30,-15" handle1="0,10" handle2="0,-10" msg="ItemMsgPickUpSelect">
+      <!-- EMP explosion every 15 seconds -->
+      <StatusEffect type="Always" target="This" Condition="0" delay="15" stackable="false" setvalue="true" checkconditionalalways="true">
+        <Conditional hastag="neq aliengenerator" targetcontainer="true" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This" Condition="100" delay="0.5" setvalue="true">
+        <Conditional hastag="neq artifactcontainer" targetcontainer="true" />
+        <Explosion range="200.0" empstrength="5" camerashake="0" stun="0" force="2.0" flames="false" smoke="false" shockwave="false" sparks="true" underwaterbubble="false">
+          <Affliction identifier="emp" strength="25" multiplybymaxvitality="true" />
+        </Explosion>
+        <ParticleEmitter particle="faradayfx" anglemax="360" distancemax="80" scalemultiplier="2.6,2.6" particleamount="40" />
+      </StatusEffect>
+      <StatusEffect type="OnSpawn" target="This" Condition="100" delay="0.1" setvalue="true" />
+      <StatusEffect type="Always" target="This">
+        <Conditional hastag="neq artifactcontainer" targetcontainer="true" />
+        <sound file="Content/Items/Alien/AlienArtifactLoop1.ogg" range="500.0" loop="true" />
+        <ParticleEmitter particle="faradayfx" anglemax="360" distancemax="10" particlespersecond="10" />
+      </StatusEffect>
+    </Holdable>
+  </Item>
+</Items>

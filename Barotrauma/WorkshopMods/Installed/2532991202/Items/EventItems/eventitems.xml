@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <!-- Job Board -->
+  <Item name="Job Board" identifier="de-jobboard" tags="potentialjobboard" scale="0.5" category="Decorative" noninteractable="false">
+    <sprite texture="Content/Map/Outposts/Art/HumanResourcesAssets.png" sourcerect="576,416,320,235" depth="0.78" premultiplyalpha="false" origin="0.5,0.5" />
+    <ItemComponent>
+      <StatusEffect target="This" type="OnSpawn" evententitytag="potentialjobboard">
+        <TriggerEvent identifier="jobboardde" />
+      </StatusEffect>
+    </ItemComponent>
+  </Item>
+  <Item name="" identifier="commsrelay" tags="commsrelay" width="50" height="50" texturescale="1.0,1.0" scale="0.5" category="Machine,Electrical" damagedbyexplosions="true" explosiondamagemultiplier="0.2">
+    <sprite texture="%ModDir%/Items/EventItems/CommsRelay.png" sourcerect="0,0,230,205" depth="0.800" premultiplyalpha="false" origin="0.5,0.5" />
+    <!--<Fabricate suitablefabricators="piratestore" requiredtime="3" requiredmoney="832" fabricationlimitmin="0" fabricationlimitmax="1" />-->
+    <!--
+	<Price baseprice="800" sold="false">
+	  <Price storeidentifier="merchantcity" sold="false" multiplier="1.25" />
+	</Price>
+	-->
+    <LightComponent range="0.0" lightcolor="255,255,255,111" powerconsumption="0" IsOn="false" castshadows="false" allowingameediting="false">
+      <sprite texture="%ModDir%/Items/EventItems/CommLinkScreenLight.png" sourcerect="0,0,230,205" depth="0.1" origin="0.5,0.5" alpha="1.0" />
+    </LightComponent>
+    <LightComponent range="0.0" lightcolor="255,255,255,0" powerconsumption="0" IsOn="false" castshadows="false" blinkfrequency="0" allowingameediting="false">
+      <sprite texture="%ModDir%/Items/EventItems/CommLinkScreenAnimation.png" depth="0.025" sourcerect="0,0,230,205" origin="0.5,0.5" alpha="1.0" />
+    </LightComponent>
+    <InventoryIcon texture="%ModDir%/Items/EventItems/CommsRelay.png" sourcerect="0,0,230,205" origin="0.5,0.5" />
+    <Body radius="70" width="100" density="30" />
+    <Holdable selectkey="Select" pickkey="Use" slots="RightHand+LeftHand" holdpos="0,-50" handle1="-10,-20" handle2="10,-20" holdangle="45" msg="ItemMsgDetachWrench" PickingTime="5.0" aimpos="65,-10" attachable="true" aimable="true">
+      <RequiredItem items="wrench" type="Equipped" />
+    </Holdable>
+  </Item>
+  <!-- Classified Documents -->
+  <Item name="Classified Documents" identifier="documents" category="Misc" hideinmenus="true" Tags="smallitem" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_soft">
+    <PreferredContainer primary="crewcab" secondary="locker" />
+    <InventoryIcon texture="Content/Map/Outposts/Art/FactionItems.png" sourcerect="409,51,62,61" origin="0.5,0.5" />
+    <sprite texture="Content/Map/Outposts/Art/FactionItems.png" sourcerect="401,120,49,68" depth="0.8" origin="0.5,0.5" />
+    <Body width="45" height="65" density="8" />
+    <Holdable slots="Any,RightHand,LeftHand" holdangle="30" handle1="-10,0" msg="ItemMsgPickUpSelect" />
+  </Item>
+  <Item name="SIGNAL SOURCE" identifier="broadcasterwreck" category="Misc" scale="1" hideinmenus="true">
+    <Sprite texture="Content/UI/MainIconsAtlas.png" depth="0.6" sourcerect="0,0,1,1" origin="0.5,0.5" />
+    <InventoryIcon texture="Content/UI/MainIconsAtlas.png" sourcerect="0,0,1,1" origin="0.5,0.6" />
+    <Body radius="100" density="10" friction="100" />
+    <AiTarget sonarlabel="SIGNAL SOURCE" soundrange="1000000" sight="0" staticsight="true" />
+    <MotionSensor range="1000" target="Human" minimumvelocity="1" ignoredead="true" detectownmotion="false" canbeselected="false">
+      <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true" conditionalcomparison="And">
+        <Conditional Speed="lt 0.1" />
+        <Conditional IsContained="false" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This">
+        <RemoveItem />
+      </StatusEffect>
+    </MotionSensor>
+    <LightComponent LightColor="0.0,0.0,0.0,0.0" range="0" powerconsumption="0" IsOn="true" canbeselected="false">
+      <StatusEffect type="OnActive" targettype="This" SoundRange="1000000" setvalue="true" />
+    </LightComponent>
+  </Item>
+  <!-- Signal Source for Wrecks & Ruins -->
+  <Item name="SIGNAL SOURCE" identifier="broadcasterruin" category="Misc" scale="1" hideinmenus="true">
+    <Sprite texture="Content/UI/MainIconsAtlas.png" depth="0.6" sourcerect="0,0,1,1" origin="0.5,0.5" />
+    <InventoryIcon texture="Content/UI/MainIconsAtlas.png" sourcerect="0,0,1,1" origin="0.5,0.6" />
+    <Body radius="100" density="10" friction="100" />
+    <AiTarget sonarlabel="SIGNAL SOURCE" soundrange="1000000" sight="0" staticsight="true" />
+    <MotionSensor range="1000" target="Human" minimumvelocity="1" ignoredead="true" detectownmotion="false" canbeselected="false">
+      <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true" conditionalcomparison="And">
+        <Conditional Speed="lt 0.1" />
+        <Conditional IsContained="false" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This">
+        <RemoveItem />
+      </StatusEffect>
+    </MotionSensor>
+    <LightComponent LightColor="0.0,0.0,0.0,0.0" range="0" powerconsumption="0" IsOn="true" canbeselected="false">
+      <StatusEffect type="OnActive" targettype="This" SoundRange="1000000" setvalue="true" />
+    </LightComponent>
+  </Item>
+  <!-- Bartender Chair -->
+  <Item name="Bartender Chair" identifier="bartenderchair" tags="chair" description="TRIGGERS THE BARTENDER EVENT. DO NOT USE THIS IN YOUR BUILD UNLESS YOU'RE BUILDING A BAR MODULE OR SIMILAR AND YOU WANT TO TRIGGER THE EVENT THERE. NEVER USE IT IN A PLAYER SUBMARINE!" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="false">
+    <sprite texture="Content/Map/Outposts/Art/MedicalColonyAssets.png" sourcerect="744,784,144,240" depth="0.55" premultiplyalpha="false" origin="0.5,0.5" />
+    <Controller UserPos="10,30" direction="Right" hidehud="false" canbeselected="true" issecondaryitem="true" drawuserbehind="true">
+      <limbposition limb="Head" position="40,15" />
+      <limbposition limb="Torso" position="55,-60" />
+      <limbposition limb="Waist" position="60,-130" />
+      <limbposition limb="RightFoot" position="100,-230" />
+      <limbposition limb="LeftFoot" position="100,-230" />
+      <limbposition limb="RightHand" position="100,-100" allowusinglimb="true" />
+      <limbposition limb="LeftHand" position="100,-100" allowusinglimb="true" />
+    </Controller>
+    <ItemComponent>
+      <StatusEffect type="OnSpawn" target="This" stackable="false" disabledeltatime="true">
+        <TriggerEvent identifier="de-triggerevents-bartender" />
+      </StatusEffect>
+    </ItemComponent>
+  </Item>
+  <!-- Submarine Charger Relay -->
+  <Item name="Event - Charger Relay" identifier="chargerrelay" category="Electrical" Tags="smallitem,signal,logic" maxstacksize="8" cargocontaineridentifier="metalcrate" description="TRIGGERS THE CHARGING DOCK EVENT. DO NOT USE THIS IN ANY MODULE OTHER THAN THE AIRLOCK THAT IS SUPPOSED TO NOT SUPPLY POWER UNLESS PAID FOR!" scale="0.5" impactsoundtag="impact_metal_light" isshootable="true">
+    <Price baseprice="100" minleveldifficulty="15">
+      <Price storeidentifier="merchantoutpost" />
+      <Price storeidentifier="merchantcity" sold="false" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" />
+      <Price storeidentifier="merchantmilitary" />
+      <Price storeidentifier="merchantmine" />
+      <Price storeidentifier="merchantengineering" multiplier="0.9" />
+    </Price>
+    <PreferredContainer primary="engcab" />
+    <PreferredContainer secondary="wreckengcab,abandonedengcab,outpostengcab,beaconengcab" amount="1" spawnprobability="0.05" />
+    <Deconstruct time="10">
+      <Item identifier="plastic" />
+      <Item identifier="copper" />
+      <Item identifier="tin" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="fabricator" requiredtime="10">
+      <RequiredSkill identifier="electrical" level="20" />
+      <RequiredItem identifier="fpgacircuit" />
+      <RequiredItem identifier="tin" />
+    </Fabricate>
+    <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="512,388,63,57" origin="0.5,0.5" />
+    <Sprite texture="signalcomp.png" depth="0.8" sourcerect="64,128,32,32" origin="0.5,0.5" canflipx="false" />
+    <RelayComponent canbeselected="true" vulnerabletoemp="false" canbeoverloaded="false">
+      <GuiFrame relativesize="0.2,0.14" minsize="450,160" anchor="Center" style="ItemUI" />
+    </RelayComponent>
+    <Body width="31" height="25" density="15" />
+    <Holdable selectkey="Select" pickkey="Use" slots="Any,RightHand,LeftHand" msg="ItemMsgDetachWrench" PickingTime="5.0" aimpos="65,-10" handle1="0,0" attachable="true" aimable="true">
+      <RequiredItem items="wrench" type="Equipped" />
+    </Holdable>
+    <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <input name="power_in" displayname="connection.powerin" />
+      <input name="signal_in1" displayname="connection.signalinx~[num]=1" />
+      <input name="signal_in2" displayname="connection.signalinx~[num]=2" />
+      <input name="toggle" displayname="connection.togglestate" />
+      <input name="set_state" displayname="connection.setstate" />
+      <output name="power_out" displayname="connection.powerout" />
+      <output name="signal_out1" displayname="connection.signaloutx~[num]=1" />
+      <output name="signal_out2" displayname="connection.signaloutx~[num]=2" />
+      <output name="state_out" displayname="connection.stateout" fallbackdisplayname="connection.signalout" />
+      <output name="load_value_out" displayname="connection.loadvalueout" />
+      <output name="power_value_out" displayname="connection.powervalueout" />
+    </ConnectionPanel>
+  </Item>
+  <!-- OUTPOST TAKEOVER -->
+  <Item name="Triggered Event - Get Coalition Outpost Takeover Mission" identifier="eventtrigger_coalitiontakeover" tags="eventtrigger" description="DO NOT PLACE/USE THIS! IT IS AUTOMATICALLY SPAWNED ON THE REQUIRED NPC!" scale="0.25" spritecolor="231,0,202,255" health="100" hiddeningame="true" hideinmenus="true" invulnerabletodamage="true" damagedbyrepairtools="false" damagedbyexplosions="false" allowrotatingineditor="false" allowedlinks="gap,door" linkable="true">
+    <Sprite texture="%ModDir%/Items/EventItems/EventTriggerIcon.png" sourcerect="0,0,234,234" depth="0.001" origin="0.5,0.5" />
+    <ItemComponent>
+      <StatusEffect type="OnSpawn" target="This" stackable="false" disabledeltatime="true">
+        <TriggerEvent identifier="getcoalitiontakeovermission" />
+        <Remove />
+      </StatusEffect>
+    </ItemComponent>
+    <Holdable canBeCombined="false" removeOnCombined="false" slots="Any" aimpos="0,0" holdpos="0,0" holdangle="0" aimangle="0" aimable="false" swingwhenaiming="false" msg="ItemMsgPickUpSelect" />
+  </Item>
+  <Item name="Triggered Event - Get Separatist Outpost Takeover Mission" identifier="eventtrigger_separatisttakeover" tags="eventtrigger" description="DO NOT PLACE/USE THIS! IT IS AUTOMATICALLY SPAWNED ON THE REQUIRED NPC!" scale="0.25" spritecolor="231,0,202,255" health="100" hiddeningame="true" hideinmenus="true" invulnerabletodamage="true" damagedbyrepairtools="false" damagedbyexplosions="false" allowrotatingineditor="false" allowedlinks="gap,door" linkable="true">
+    <Sprite texture="%ModDir%/Items/EventItems/EventTriggerIcon.png" sourcerect="0,0,234,234" depth="0.001" origin="0.5,0.5" />
+    <ItemComponent>
+      <StatusEffect type="OnSpawn" target="This" stackable="false" disabledeltatime="true">
+        <TriggerEvent identifier="getseparatisttakeovermission" />
+        <Remove />
+      </StatusEffect>
+    </ItemComponent>
+    <Holdable canBeCombined="false" removeOnCombined="false" slots="Any" aimpos="0,0" holdpos="0,0" holdangle="0" aimangle="0" aimable="false" swingwhenaiming="false" msg="ItemMsgPickUpSelect" />
+  </Item>
+  <!-- start kill progress tracking -->
+  <Item name="" identifier="idcardcoalitionsoldier" category="Equipment" Tags="smallitem,identitycard,coalitionsoldierid" hideinmenus="true" cargocontaineridentifier="metalcrate">
+    <PreferredContainer primary="crewcab" />
+    <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="192,64,64,64" origin="0.5,0.5" />
+    <Sprite texture="Content/Items/idcard.png" depth="0.5" sourcerect="0,0,16,16" />
+    <Body width="16" height="12" density="10.05" />
+    <IdCard slots="Card,Any" msg="ItemMsgPickUpSelect" />
+    <!--Give the bot that carries the item a talent that gives an affliction that triggers an event to track the kills-->
+    <ItemComponent>
+      <StatusEffect type="OnContained" target="Character" interval="1" multiplyafflictionsbymaxvitality="true">
+        <GiveTalentInfo giverandom="false" talentidentifiers="takeoverkilltracking" />
+      </StatusEffect>
+      <StatusEffect type="OnContained" target="This" delay="1">
+        <Remove />
+      </StatusEffect>
+    </ItemComponent>
+  </Item>
+  <Item name="" identifier="idcardseparatistsoldier" category="Equipment" Tags="smallitem,identitycard,separatistsoldierid" hideinmenus="true" cargocontaineridentifier="metalcrate">
+    <PreferredContainer primary="crewcab" />
+    <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="192,64,64,64" origin="0.5,0.5" />
+    <Sprite texture="Content/Items/idcard.png" depth="0.5" sourcerect="0,0,16,16" />
+    <Body width="16" height="12" density="10.05" />
+    <IdCard slots="Card,Any" msg="ItemMsgPickUpSelect" />
+    <!--Give the bot that carries the item a talent that gives an affliction that triggers an event to track the kills-->
+    <ItemComponent>
+      <StatusEffect type="OnContained" target="Character" interval="1" multiplyafflictionsbymaxvitality="true">
+        <GiveTalentInfo giverandom="false" talentidentifiers="takeoverkilltracking" />
+      </StatusEffect>
+      <StatusEffect type="OnContained" target="This" delay="1">
+        <Remove />
+      </StatusEffect>
+    </ItemComponent>
+  </Item>
+  <!-- increase kill count -->
+  <Item name="Triggered Event - Track Kills" identifier="eventtrigger_killtracker" tags="eventtrigger" description="DO NOT PLACE/USE THIS! IT IS AUTOMATICALLY SPAWNED ON THE REQUIRED NPC!" scale="0.25" spritecolor="231,0,202,255" health="100" hiddeningame="true" hideinmenus="true" invulnerabletodamage="true" damagedbyrepairtools="false" damagedbyexplosions="false" allowrotatingineditor="false" allowedlinks="gap,door" linkable="true">
+    <Sprite texture="%ModDir%/Items/EventItems/EventTriggerIcon.png" sourcerect="0,0,234,234" depth="0.001" origin="0.5,0.5" />
+    <Holdable slots="Any">
+      <StatusEffect type="Always" target="This" stackable="false" disabledeltatime="true">
+        <TriggerEvent identifier="sepoutposttakeoverprogressevent" />
+        <Remove />
+      </StatusEffect>
+    </Holdable>
+  </Item>
+  <!-- PLACEABLE EVENT TRIGGERS -->
+  <!-- generic events -->
+  <Item name="Triggered Event - Bartender" identifier="eventtrigger_bartender" tags="eventtrigger" description="DO NOT PLACE MULITPLE IN ONE MODULE AND SET THE MODULE TO ONLY SPAWN ONCE PER OUTPOST" scale="0.25" spritecolor="231,0,202,255" health="100" hiddeningame="true" invulnerabletodamage="true" damagedbyrepairtools="false" damagedbyexplosions="false" allowrotatingineditor="false" allowedlinks="gap,door" linkable="true">
+    <Sprite texture="%ModDir%/Items/EventItems/EventTriggerIcon.png" sourcerect="0,0,234,234" depth="0.001" origin="0.5,0.5" />
+    <ItemComponent>
+      <StatusEffect type="OnSpawn" target="This" stackable="false" disabledeltatime="true">
+        <TriggerEvent identifier="de-triggerevents-bartender" />
+      </StatusEffect>
+    </ItemComponent>
+  </Item>
+  <!-- monster events -->
+  <Item name="Triggered Event - Random" identifier="eventtrigger_random" tags="eventtrigger" description="TRIGGERS A RANDOM EVENT FROM OTHER EVENT TRIGGERS. DO NOT PLACE MULITPLE IN ONE MODULE AND SET THE MODULE TO ONLY SPAWN ONCE PER OUTPOST" scale="0.25" spritecolor="231,0,202,255" health="100" hiddeningame="true" invulnerabletodamage="true" damagedbyrepairtools="false" damagedbyexplosions="false" allowrotatingineditor="false" allowedlinks="gap,door" linkable="true">
+    <Sprite texture="%ModDir%/Items/EventItems/EventTriggerIcon.png" sourcerect="0,0,234,234" depth="0.001" origin="0.5,0.5" />
+    <ItemComponent>
+      <StatusEffect type="OnSpawn" target="This" stackable="false" disabledeltatime="true">
+        <TriggerEvent identifier="de-triggerevents-random" />
+      </StatusEffect>
+    </ItemComponent>
+  </Item>
+  <Item name="Triggered Event - Mudraptors" identifier="eventtrigger_mudraptors" tags="eventtrigger" description="DO NOT PLACE MULITPLE IN ONE MODULE AND SET THE MODULE TO ONLY SPAWN ONCE PER OUTPOST" scale="0.25" spritecolor="231,0,202,255" health="100" hiddeningame="true" invulnerabletodamage="true" damagedbyrepairtools="false" damagedbyexplosions="false" allowrotatingineditor="false" allowedlinks="gap,door" linkable="true">
+    <Sprite texture="%ModDir%/Items/EventItems/EventTriggerIcon.png" sourcerect="0,0,234,234" depth="0.001" origin="0.5,0.5" />
+    <ItemComponent>
+      <StatusEffect type="OnSpawn" target="This" stackable="false" disabledeltatime="true">
+        <TriggerEvent identifier="de-triggerevents-mudraptors" />
+      </StatusEffect>
+    </ItemComponent>
+  </Item>
+  <Item name="Triggered Event - Crawlers" identifier="eventtrigger_crawlers" tags="eventtrigger" description="DO NOT PLACE MULITPLE IN ONE MODULE AND SET THE MODULE TO ONLY SPAWN ONCE PER OUTPOST" scale="0.25" spritecolor="231,0,202,255" health="100" hiddeningame="true" invulnerabletodamage="true" damagedbyrepairtools="false" damagedbyexplosions="false" allowrotatingineditor="false" allowedlinks="gap,door" linkable="true">
+    <Sprite texture="%ModDir%/Items/EventItems/EventTriggerIcon.png" sourcerect="0,0,234,234" depth="0.001" origin="0.5,0.5" />
+    <ItemComponent>
+      <StatusEffect type="OnSpawn" target="This" stackable="false" disabledeltatime="true">
+        <TriggerEvent identifier="de-triggerevents-crawlers" />
+      </StatusEffect>
+    </ItemComponent>
+  </Item>
+  <Item name="Triggered Event - Husks" identifier="eventtrigger_husk" tags="eventtrigger" description="DO NOT PLACE MULITPLE IN ONE MODULE AND SET THE MODULE TO ONLY SPAWN ONCE PER OUTPOST" scale="0.25" spritecolor="231,0,202,255" health="100" hiddeningame="true" invulnerabletodamage="true" damagedbyrepairtools="false" damagedbyexplosions="false" allowrotatingineditor="false" allowedlinks="gap,door" linkable="true">
+    <Sprite texture="%ModDir%/Items/EventItems/EventTriggerIcon.png" sourcerect="0,0,234,234" depth="0.001" origin="0.5,0.5" />
+    <ItemComponent>
+      <StatusEffect type="OnSpawn" target="This" stackable="false" disabledeltatime="true">
+        <TriggerEvent identifier="de-triggerevents-husks" />
+      </StatusEffect>
+    </ItemComponent>
+  </Item>
+  <!-- special events -->
+  <Override>
+    <Item name="Triggered Event - Multi Wreck" identifier="eventtrigger_multiwreck" tags="eventtrigger" description="PLACE IN A WRECK THAT FEATURES SHUTTLES! DO NOT PLACE MULTIPLE IN ONE WRECK! DO NOT PUT INTO SHUTTLES THAT WILL BE ATTACHED TO A WRECK!" scale="0.25" spritecolor="231,101,0,255" health="100" hiddeningame="true" invulnerabletodamage="true" damagedbyrepairtools="false" damagedbyexplosions="false" allowrotatingineditor="false" allowedlinks="gap,door" linkable="true">
+      <Sprite texture="%ModDir%/Items/EventItems/EventTriggerIcon.png" sourcerect="0,0,234,234" depth="0.001" origin="0.5,0.5" />
+      <ItemComponent>
+        <!-- triggered by original wreck event instead
+      <StatusEffect type="OnSpawn" target="This" stackable="false" disabledeltatime="true">
+        <TriggerEvent identifier="multiwreckevent"/>
+      </StatusEffect>-->
+      </ItemComponent>
+    </Item>
+  </Override>
+</Items>

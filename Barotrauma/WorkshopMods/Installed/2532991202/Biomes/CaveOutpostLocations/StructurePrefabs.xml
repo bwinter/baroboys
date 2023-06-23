@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<prefabs>
+  <!-- ROCK CAVE WALLS -->
+  <Wall name="Rock Cave Wall (Vertical)" identifier="de-rockcavewallverticalstraight" descriptionidentifier="exteriorshell" subcategory="exteriorsubwalls" body="true" castshadow="true" health="999999999" bodywidth="40" bodyoffset="0,0" resizevertical="true" indestructible="true">
+    <sprite texture="%ModDir%/Biomes/CaveOutpostLocations/RockCaveWalls.png" sourcerect="880,1466,126,1024" depth="0.1" origin="0.5,0.5" />
+    <backgroundsprite texture="%ModDir%/Biomes/CaveOutpostLocations/RockCaveWalls.png" depth="0.85" />
+  </Wall>
+  <Wall name="Rock Cave Wall (5°)" identifier="de-rockcavewallwall5degrees" descriptionidentifier="exteriorshell" subcategory="exteriorsubwalls" body="true" castshadow="true" health="200" bodywidth="168" bodyheight="40" bodyoffset="0,0" bodyrotation="5" indestructible="true">
+    <sprite texture="%ModDir%/Biomes/CaveOutpostLocations/RockCaveWalls.png" sourcerect="0,654,168,125" depth="0.1" origin="0.5,0.5" />
+    <backgroundsprite texture="%ModDir%/Biomes/CaveOutpostLocations/RockCaveWalls.png" depth="0.85" />
+  </Wall>
+  <Wall name="Rock Cave Wall (15°)" identifier="de-rockcavewallwall15degrees" descriptionidentifier="exteriorshell" subcategory="exteriorsubwalls" body="true" castshadow="true" health="200" bodywidth="170" bodyheight="40" bodyoffset="0,0" bodyrotation="15" indestructible="true">
+    <sprite texture="%ModDir%/Biomes/CaveOutpostLocations/RockCaveWalls.png" sourcerect="161,648,170,203" depth="0.1" origin="0.5,0.5" />
+    <backgroundsprite texture="%ModDir%/Biomes/CaveOutpostLocations/RockCaveWalls.png" depth="0.85" />
+  </Wall>
+  <Wall name="Rock Cave Wall (25°)" identifier="de-rockcavewallwall25degrees" descriptionidentifier="exteriorshell" subcategory="exteriorsubwalls" body="true" castshadow="true" health="200" bodywidth="152" bodyheight="40" bodyoffset="0,0" bodyrotation="25" indestructible="true">
+    <sprite texture="%ModDir%/Biomes/CaveOutpostLocations/RockCaveWalls.png" sourcerect="331,683,152,230" depth="0.1" origin="0.5,0.5" />
+    <backgroundsprite texture="%ModDir%/Biomes/CaveOutpostLocations/RockCaveWalls.png" depth="0.85" />
+  </Wall>
+  <Wall name="Rock Cave Wall (35°)" identifier="de-rockcavewallwall35degrees" descriptionidentifier="exteriorshell" subcategory="exteriorsubwalls" body="true" castshadow="true" health="200" bodywidth="285" bodyheight="40" bodyoffset="0,0" bodyrotation="35" indestructible="true">
+    <sprite texture="%ModDir%/Biomes/CaveOutpostLocations/RockCaveWalls.png" sourcerect="483,764,285,364" depth="0.1" origin="0.5,0.5" />
+    <backgroundsprite texture="%ModDir%/Biomes/CaveOutpostLocations/RockCaveWalls.png" depth="0.85" />
+  </Wall>
+  <Wall name="Rock Cave Wall (55°)" identifier="de-rockcavewallwall55degrees" descriptionidentifier="exteriorshell" subcategory="exteriorsubwalls" body="true" castshadow="true" health="200" bodywidth="135" bodyheight="40" bodyoffset="0,0" bodyrotation="55" indestructible="true">
+    <sprite texture="%ModDir%/Biomes/CaveOutpostLocations/RockCaveWalls.png" sourcerect="768,981,135,202" depth="0.1" origin="0.5,0.5" />
+    <backgroundsprite texture="%ModDir%/Biomes/CaveOutpostLocations/RockCaveWalls.png" depth="0.85" />
+  </Wall>
+  <Wall name="Rock Cave Wall (70°)" identifier="de-rockcavewallwall70degrees" descriptionidentifier="exteriorshell" subcategory="exteriorsubwalls" body="true" castshadow="true" health="200" bodywidth="199" bodyheight="40" bodyoffset="0,0" bodyrotation="70" indestructible="true">
+    <sprite texture="%ModDir%/Biomes/CaveOutpostLocations/RockCaveWalls.png" sourcerect="794,1183,199,164" depth="0.1" origin="0.5,0.5" />
+    <backgroundsprite texture="%ModDir%/Biomes/CaveOutpostLocations/RockCaveWalls.png" depth="0.85" />
+  </Wall>
+  <Wall name="Rock Cave Wall (80°)" identifier="de-rockcavewallwall80degrees" descriptionidentifier="exteriorshell" subcategory="exteriorsubwalls" body="true" castshadow="true" health="200" bodywidth="120" bodyheight="40" bodyoffset="0,0" bodyrotation="80" indestructible="true">
+    <sprite texture="%ModDir%/Biomes/CaveOutpostLocations/RockCaveWalls.png" sourcerect="873,1348,120,119" depth="0.1" origin="0.5,0.5" />
+    <backgroundsprite texture="%ModDir%/Biomes/CaveOutpostLocations/RockCaveWalls.png" depth="0.85" />
+  </Wall>
+  <Wall name="Rock Cave Wall (Horizontal)" identifier="de-rockcavewallhorizontalstraight" descriptionidentifier="exteriorshell" subcategory="exteriorsubwalls" body="true" castshadow="true" health="999999999" bodyheight="40" bodyoffset="0,0" resizehorizontal="true" indestructible="true">
+    <sprite texture="%ModDir%/Biomes/CaveOutpostLocations/RockCaveWalls.png" sourcerect="0,0,1024,166" depth="0.1" origin="0.5,0.5" />
+    <backgroundsprite texture="%ModDir%/Biomes/CaveOutpostLocations/RockCaveWalls.png" depth="0.85" />
+  </Wall>
+  <!-- Background Walls -->
+  <Wall_B name="Rock Cave Background Wall" identifier="de-rockcavebackwall" descriptionidentifier="backgroundwall" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.5,0.5" category="Decorative" tags="backgroundwall" subcategory="backgroundwall">
+    <sprite texture="Content/Map/Biomes/RockCave/LevelWall.png" sourcerect="0,0,1024,1024" depth="0.98" premultiplyalpha="false" origin="0.5,0.5" />
+    <Upgrade gameversion="0.10.0.0" texturescale="0.5,0.5" />
+  </Wall_B>
+  <!---->
+  <!-- CRYSTAL CAVE WALLS -->
+  <!-- Background Walls -->
+  <Wall_B name="Crystal Cave Background Wall" identifier="de-crystalcavebackwall" descriptionidentifier="backgroundwall" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.5,0.5" category="Decorative" tags="backgroundwall" subcategory="backgroundwall">
+    <sprite texture="Content/Map/Biomes/CrystalCave/LevelWall.png" sourcerect="0,0,1024,1024" depth="0.98" premultiplyalpha="false" origin="0.5,0.5" />
+    <Upgrade gameversion="0.10.0.0" texturescale="0.5,0.5" />
+  </Wall_B>
+  <!---->
+  <!-- COLD CAVERNS WALLS -->
+  <Wall name="Cold Caverns Wall (Vertical)" identifier="de-coldcavernswallverticalstraight" descriptionidentifier="exteriorshell" subcategory="exteriorsubwalls" body="true" castshadow="true" health="999999999" bodywidth="40" bodyoffset="0,0" resizevertical="true" indestructible="true">
+    <sprite texture="%ModDir%/Biomes/CaveOutpostLocations/ColdCavernsWalls.png" sourcerect="859,1466,166,1024" depth="0.1" origin="0.5,0.5" />
+    <backgroundsprite texture="%ModDir%/Biomes/CaveOutpostLocations/ColdCavernsWalls.png" depth="0.85" />
+  </Wall>
+  <!--
+  <Wall name="" identifier="de-coldcavernswall90degrees" descriptionidentifier="exteriorshell" subcategory="exteriorsubwalls" body="true" castshadow="true" health="200" bodywidth="266" bodyheight="40" bodyoffset="0,-10" bodyrotation="-16" indestructible="true">
+    <sprite texture="%ModDir%/Biomes/CaveOutpostLocations/ColdCavernsWalls.png" sourcerect="129,0,256,160" depth="0.1" origin="0.5,0.5" />
+    <backgroundsprite texture="Content/Map/ExteriorWallsABack.png" depth="0.85" />
+  </Wall>
+  -->
+  <Wall name="Cold Caverns Wall (Horizontal)" identifier="de-coldcavernswallhorizontalstraight" descriptionidentifier="exteriorshell" subcategory="exteriorsubwalls" body="true" castshadow="true" health="999999999" bodyheight="40" bodyoffset="0,0" resizehorizontal="true" indestructible="true">
+    <sprite texture="%ModDir%/Biomes/CaveOutpostLocations/ColdCavernsWalls.png" sourcerect="0,0,1024,166" depth="0.1" origin="0.5,0.5" />
+    <backgroundsprite texture="%ModDir%/Biomes/CaveOutpostLocations/ColdCavernsWalls.png" depth="0.85" />
+  </Wall>
+  <!-- Background Walls -->
+  <Wall_B name="Cold Caverns Background Wall" identifier="de-coldcavernsbackwall" descriptionidentifier="backgroundwall" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.5,0.5" category="Decorative" tags="backgroundwall" subcategory="backgroundwall">
+    <sprite texture="Content/Map/Biomes/ColdCaverns/LevelWall.png" sourcerect="0,0,1024,1024" depth="0.98" premultiplyalpha="false" origin="0.5,0.5" />
+    <Upgrade gameversion="0.10.0.0" texturescale="0.5,0.5" />
+  </Wall_B>
+  <!---->
+  <!-- EUROPAN RIDGE WALLS -->
+  <!-- Background Walls -->
+  <Wall_B name="Europan Ridge Background Wall" identifier="de-europanridgebackwall" descriptionidentifier="backgroundwall" allowattachitems="true" width="16" height="16" resizehorizontal="true" resizevertical="true" texturescale="0.5,0.5" category="Decorative" tags="backgroundwall" subcategory="backgroundwall">
+    <sprite texture="Content/Map/Biomes/EuropanRidge/LevelWall.png" sourcerect="0,0,1024,1024" depth="0.98" premultiplyalpha="false" origin="0.5,0.5" />
+    <Upgrade gameversion="0.10.0.0" texturescale="0.5,0.5" />
+  </Wall_B>
+  <!---->
+</prefabs>

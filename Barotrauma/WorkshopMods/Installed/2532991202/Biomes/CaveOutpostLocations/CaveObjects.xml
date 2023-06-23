@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <!--ROCK CAVES-->
+  <Item name="Rock Cave Boulder" identifier="de-rockcaveboulder1" nameidentifier="de-rockcaveboulder1" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/RockCave/BackgroundChunks.png" sourcerect="4,4,333,504" depth="0.879" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Rock Cave Boulder" identifier="de-rockcaveboulder2" nameidentifier="de-rockcaveboulder2" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/RockCave/BackgroundChunks.png" sourcerect="345,4,333,504" depth="0.878" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Rock Cave Boulder" identifier="de-rockcaveboulder3" nameidentifier="de-rockcaveboulder3" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/RockCave/BackgroundChunks.png" sourcerect="687,4,333,504" depth="0.877" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Rock Cave Boulder" identifier="de-rockcaveboulder4" nameidentifier="de-rockcaveboulder4" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/RockCave/BackgroundChunks.png" sourcerect="4,516,504,504" depth="0.876" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Rock Cave Boulder" identifier="de-rockcaveboulder5" nameidentifier="de-rockcaveboulder5" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/RockCave/BackgroundChunks.png" sourcerect="516,516,504,504" depth="0.875" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Rock Cave Chunk" identifier="de-rockcavechunk1" nameidentifier="de-rockcavechunk1" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/RockCave/WallEdgeChunks.png" sourcerect="0,0,512,512" depth="0.874" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Rock Cave Chunk" identifier="de-rockcavechunk2" nameidentifier="de-rockcavechunk2" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/RockCave/WallEdgeChunks.png" sourcerect="512,0,512,512" depth="0.873" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Rock Cave Chunk" identifier="de-rockcavechunk3" nameidentifier="de-rockcavechunk3" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/RockCave/WallEdgeChunks.png" sourcerect="0,512,512,512" depth="0.872" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Rock Cave Chunk" identifier="de-rockcavechunk4" nameidentifier="de-rockcavechunk4" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/RockCave/WallEdgeChunks.png" sourcerect="512,512,512,512" depth="0.871" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Rock Cave Vent" identifier="de-rockcavevent1" nameidentifier="de-rockcavevent1" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" sourcerect="0,788,274,235" depth="0.869" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Rock Cave Vent" identifier="de-rockcavevent2" nameidentifier="de-rockcavevent2" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" sourcerect="0,513,274,267" depth="0.868" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Rock Cave Stalactite" identifier="de-rockcavestalactite1" nameidentifier="de-rockcavestalactite1" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" sourcerect="287,573,210,389" depth="0.861" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Rock Cave Stalactite" identifier="de-rockcavestalactite2" nameidentifier="de-rockcavestalactite2" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" sourcerect="497,572,293,450" depth="0.862" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Rock Cave Stalactite" identifier="de-rockcavestalactite3" nameidentifier="de-rockcavestalactite3" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/CaveHazards.png" sourcerect="790,572,229,445" depth="0.862" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <!--CRYSTAL CAVES-->
+  <Item name="Bioluminescent Cave Boulder" identifier="de-bioluminescentcaveboulder1" nameidentifier="de-bioluminescentcaveboulder1" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/BioluminescentCave/BackgroundChunks.png" sourcerect="4,4,335,321" depth="0.879" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Bioluminescent Cave Boulder" identifier="de-bioluminescentcaveboulder2" nameidentifier="de-bioluminescentcaveboulder2" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/BioluminescentCave/BackgroundChunks.png" sourcerect="345,4,328,333" depth="0.878" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Bioluminescent Cave Boulder" identifier="de-bioluminescentcaveboulder3" nameidentifier="de-bioluminescentcaveboulder3" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/BioluminescentCave/BackgroundChunks.png" sourcerect="687,4,339,332" depth="0.877" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Bioluminescent Cave Boulder" identifier="de-bioluminescentcaveboulder4" nameidentifier="de-bioluminescentcaveboulder4" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/BioluminescentCave/BackgroundChunks.png" sourcerect="14,335,450,341" depth="0.876" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Bioluminescent Cave Boulder" identifier="de-bioluminescentcaveboulder5" nameidentifier="de-bioluminescentcaveboulder5" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/BioluminescentCave/BackgroundChunks.png" sourcerect="493,343,500,334" depth="0.875" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Bioluminescent Cave Chunk" identifier="de-bioluminescentcavechunk1" nameidentifier="de-bioluminescentcavechunk1" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/BioluminescentCave/LevelObjects.png" sourcerect="8,412,498,326" depth="0.874" premultiplyalpha="false" origin="0.48817495,0.91070217" />
+  </Item>
+  <Item name="Bioluminescent Cave Chunk" identifier="de-bioluminescentcavechunk2" nameidentifier="de-bioluminescentcavechunk2" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/BioluminescentCave/LevelObjects.png" sourcerect="536,402,477,324" depth="0.873" premultiplyalpha="false" origin="0.50920105,0.91632384" />
+  </Item>
+  <Item name="Bioluminescent Cave Chunk" identifier="de-bioluminescentcavechunk3" nameidentifier="de-bioluminescentcavechunk3" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/BioluminescentCave/LevelObjects.png" sourcerect="15,736,481,287" depth="0.872" premultiplyalpha="false" origin="0.5051975,0.9442509" />
+  </Item>
+  <Item name="Bioluminescent Cave Chunk" identifier="de-bioluminescentcavechunk4" nameidentifier="de-bioluminescentcavechunk4" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/BioluminescentCave/LevelObjects.png" sourcerect="524,736,482,287" depth="0.871" premultiplyalpha="false" origin="0.53573084,0.93147516" />
+  </Item>
+  <Item name="Bioluminescent Plant" identifier="de-bioluminescentplant1" nameidentifier="de-bioluminescentplant1" tags="light" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/BioluminescentCave/LevelObjects.png" sourcerect="344,30,326,191" depth="0.879" premultiplyalpha="false" origin="0.5,0.5" />
+    <LightComponent range="400" color="25,25,80,250" pulseamount="0.3" pulsefrequency="0.1">
+      <LightTexture texture="Content/Lights/pointlight_rays.png" origin="0.5,0.5" />
+    </LightComponent>
+  </Item>
+  <Item name="Bioluminescent Plant" identifier="de-bioluminescentplant2" nameidentifier="de-bioluminescentplant2" tags="light" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/BioluminescentCave/LevelObjects.png" sourcerect="684,0,336,217" depth="0.878" premultiplyalpha="false" origin="0.5,0.5" />
+    <LightComponent range="400" color="25,25,80,250" pulseamount="0.3" pulsefrequency="0.1">
+      <LightTexture texture="Content/Lights/pointlight_rays.png" origin="0.5,0.5" />
+    </LightComponent>
+  </Item>
+  <Item name="Bioluminescent Plant" identifier="de-bioluminescentplant3" nameidentifier="de-bioluminescentplant3" tags="light" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/BioluminescentCave/LevelObjects.png" sourcerect="9,14,323,199" depth="0.877" premultiplyalpha="false" origin="0.5,0.5" />
+    <LightComponent range="400" color="25,25,80,250" pulseamount="0.3" pulsefrequency="0.1">
+      <LightTexture texture="Content/Lights/pointlight_rays.png" origin="0.5,0.5" />
+    </LightComponent>
+  </Item>
+  <Item name="Bioluminescent Plant" identifier="de-bioluminescentplant4" nameidentifier="de-bioluminescentplant4" tags="light" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/BioluminescentCave/LevelObjects.png" sourcerect="347,221,333,184" depth="0.876" premultiplyalpha="false" origin="0.5,0.5" />
+    <LightComponent range="400" color="25,25,80,250" pulseamount="0.3" pulsefrequency="0.1">
+      <LightTexture texture="Content/Lights/pointlight_rays.png" origin="0.5,0.5" />
+    </LightComponent>
+  </Item>
+  <Item name="Bioluminescent Plant" identifier="de-bioluminescentplant5" nameidentifier="de-bioluminescentplant5" tags="light" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/BioluminescentCave/LevelObjects.png" sourcerect="685,215,331,183" depth="0.875" premultiplyalpha="false" origin="0.5,0.5" />
+    <LightComponent range="400" color="25,25,80,250" pulseamount="0.3" pulsefrequency="0.1">
+      <LightTexture texture="Content/Lights/pointlight_rays.png" origin="0.5,0.5" />
+    </LightComponent>
+  </Item>
+  <!--
+  <Item name="Bioluminescent Plant" identifier="de-bioluminescentplant6" nameidentifier="de-bioluminescentplant6" tags="light" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/BioluminescentCave/LevelObjects.png" sourcerect="0,684,342,342" depth="0.874" premultiplyalpha="false" origin="0.5,0.5" />
+	<LightComponent range="400" color="25,25,80,250" pulseamount="0.3" pulsefrequency="0.1">
+	  <LightTexture texture="Content/Lights/pointlight_rays.png" origin="0.5,0.5" />
+	</LightComponent>
+  </Item>
+  <Item name="Bioluminescent Plant" identifier="de-bioluminescentplant7" nameidentifier="de-bioluminescentplant7" tags="light" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/BioluminescentCave/LevelObjects.png" sourcerect="342,684,342,342" depth="0.873" premultiplyalpha="false" origin="0.5,0.5" />
+	<LightComponent range="400" color="25,25,80,250" pulseamount="0.3" pulsefrequency="0.1">
+	  <LightTexture texture="Content/Lights/pointlight_rays.png" origin="0.5,0.5" />
+	</LightComponent>
+  </Item>
+  <Item name="Bioluminescent Plant" identifier="de-bioluminescentplant8" nameidentifier="de-bioluminescentplant8" tags="light" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/BioluminescentCave/LevelObjects.png" sourcerect="682,684,342,342" depth="0.872" premultiplyalpha="false" origin="0.5,0.5" />
+	<LightComponent range="400" color="25,25,80,250" pulseamount="0.3" pulsefrequency="0.1">
+	  <LightTexture texture="Content/Lights/pointlight_rays.png" origin="0.5,0.5" />
+	</LightComponent>
+  </Item>-->
+  <!--CRYSTAL CAVES-->
+  <Item name="Crystal Cave Boulder" identifier="de-crystalcaveboulder1" nameidentifier="de-crystalcaveboulder1" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/BackgroundChunks.png" sourcerect="4,4,333,504" depth="0.879" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Crystal Cave Boulder" identifier="de-crystalcaveboulder2" nameidentifier="de-crystalcaveboulder2" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/BackgroundChunks.png" sourcerect="345,4,333,504" depth="0.878" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Crystal Cave Boulder" identifier="de-crystalcaveboulder3" nameidentifier="de-crystalcaveboulder3" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/BackgroundChunks.png" sourcerect="687,4,333,504" depth="0.877" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Crystal Cave Boulder" identifier="de-crystalcaveboulder4" nameidentifier="de-crystalcaveboulder4" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/BackgroundChunks.png" sourcerect="4,516,504,504" depth="0.876" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Crystal Cave Boulder" identifier="de-crystalcaveboulder5" nameidentifier="de-crystalcaveboulder5" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/BackgroundChunks.png" sourcerect="516,516,504,504" depth="0.875" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Crystal Cave Chunk" identifier="de-crystalcavechunk1" nameidentifier="de-crystalcavechunk1" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/WallEdgeChunks.png" sourcerect="0,0,512,512" depth="0.874" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Crystal Cave Chunk" identifier="de-crystalcavechunk2" nameidentifier="de-crystalcavechunk2" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/WallEdgeChunks.png" sourcerect="512,0,512,512" depth="0.873" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Crystal Cave Chunk" identifier="de-crystalcavechunk3" nameidentifier="de-crystalcavechunk3" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/WallEdgeChunks.png" sourcerect="0,512,512,512" depth="0.872" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Crystal Cave Chunk" identifier="de-crystalcavechunk4" nameidentifier="de-crystalcavechunk4" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/WallEdgeChunks.png" sourcerect="512,512,512,512" depth="0.871" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Crystal" identifier="de-crystal1" nameidentifier="de-crystal1" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/LevelObjects.png" sourcerect="342,0,342,342" depth="0.879" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Crystal" identifier="de-crystal2" nameidentifier="de-crystal2" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/LevelObjects.png" sourcerect="684,0,342,342" depth="0.878" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Crystal" identifier="de-crystal3" nameidentifier="de-crystal3" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/LevelObjects.png" sourcerect="0,342,342,342" depth="0.877" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Crystal" identifier="de-crystal4" nameidentifier="de-crystal4" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/LevelObjects.png" sourcerect="342,342,342,342" depth="0.876" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Crystal" identifier="de-crystal5" nameidentifier="de-crystal5" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/LevelObjects.png" sourcerect="684,342,342,342" depth="0.875" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Crystal" identifier="de-crystal6" nameidentifier="de-crystal6" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/LevelObjects.png" sourcerect="0,684,342,342" depth="0.874" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Crystal" identifier="de-crystal7" nameidentifier="de-crystal7" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/LevelObjects.png" sourcerect="342,684,342,342" depth="0.873" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Crystal" identifier="de-crystal8" nameidentifier="de-crystal8" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/CrystalCave/LevelObjects.png" sourcerect="682,684,342,342" depth="0.872" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <!--EUROPAN RIDGE-->
+  <Item name="Europan Ridge Boulder" identifier="de-europanridgeboulder1" nameidentifier="de-europanridgeboulder1" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/BackgroundChunks.png" sourcerect="0,0,1366,2048" depth="0.879" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Europan Ridge Boulder" identifier="de-europanridgeboulder2" nameidentifier="de-europanridgeboulder2" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/BackgroundChunks.png" sourcerect="1366,0,1366,2048" depth="0.878" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Europan Ridge Boulder" identifier="de-europanridgeboulder3" nameidentifier="de-europanridgeboulder3" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/BackgroundChunks.png" sourcerect="2730,0,1366,2048" depth="0.877" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Europan Ridge Chunk" identifier="de-europanridgechunk1" nameidentifier="de-europanridgechunk1" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/LevelObjects.png" sourcerect="3,1499,762,486" depth="0.876" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Europan Ridge Chunk" identifier="de-europanridgechunk2" nameidentifier="de-europanridgechunk2" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/LevelObjects.png" sourcerect="770,1481,765,498" depth="0.875" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Europan Ridge Chunk" identifier="de-europanridgechunk3" nameidentifier="de-europanridgechunk3" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/LevelObjects.png" sourcerect="1536,1499,509,487" depth="0.874" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Europan Ridge Chunk" identifier="de-europanridgechunk4" nameidentifier="de-europanridgechunk4" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/LevelObjects.png" sourcerect="23,1099,757,398" depth="0.873" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Europan Ridge Chunk" identifier="de-europanridgechunk5" nameidentifier="de-europanridgechunk5" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/LevelObjects.png" sourcerect="780,1093,745,389" depth="0.872" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Europan Ridge Chunk" identifier="de-europanridgechunk6" nameidentifier="de-europanridgechunk6" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/LevelObjects.png" sourcerect="1542,1048,503,448" depth="0.871" premultiplyalpha="false" origin="0.5,0.5" />
+  </Item>
+  <Item name="Europan Ridge Reef" identifier="de-europanridgereef1" nameidentifier="de-europanridgereef1" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/LevelObjects.png" sourcerect="0,0,506,449" depth="0.863" premultiplyalpha="false" origin="0.49990937,0.96472895" />
+  </Item>
+  <Item name="Europan Ridge Reef" identifier="de-europanridgereef2" nameidentifier="de-europanridgereef2" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/LevelObjects.png" sourcerect="512,0,516,437" depth="0.864" premultiplyalpha="false" origin="0.49485236,0.9806272" />
+  </Item>
+  <Item name="Europan Ridge Reef" identifier="de-europanridgereef3" nameidentifier="de-europanridgereef3" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/LevelObjects.png" sourcerect="1024,0,514,422" depth="0.865" premultiplyalpha="false" origin="0.499504,0.9887322" />
+  </Item>
+  <Item name="Europan Ridge Reef" identifier="de-europanridgereef4" nameidentifier="de-europanridgereef4" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/LevelObjects.png" sourcerect="1536,0,515,428" depth="0.866" premultiplyalpha="false" origin="0.5019154,0.9887322" />
+  </Item>
+  <Item name="Europan Ridge Reef" identifier="de-europanridgereef5" nameidentifier="de-europanridgereef5" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/LevelObjects.png" sourcerect="-4,448,509,347" depth="0.867" premultiplyalpha="false" origin="0.50806963,0.9768542" />
+  </Item>
+  <Item name="Europan Ridge Reef" identifier="de-europanridgereef6" nameidentifier="de-europanridgereef6" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/LevelObjects.png" sourcerect="515,434,502,365" depth="0.868" premultiplyalpha="false" origin="0.50709254,0.9780403" />
+  </Item>
+  <Item name="Europan Ridge Reef" identifier="de-europanridgereef7" nameidentifier="de-europanridgereef7" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/LevelObjects.png" sourcerect="1025,420,499,366" depth="0.869" premultiplyalpha="false" origin="0.49875337,0.9743439" />
+  </Item>
+  <Item name="Europan Ridge Reef" identifier="de-europanridgereef8" nameidentifier="de-europanridgereef8" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/LevelObjects.png" sourcerect="1543,429,496,358" depth="0.870" premultiplyalpha="false" origin="0.4919258,0.97651124" />
+  </Item>
+  <Item name="Europan Ridge Imp's Claw" identifier="de-europanridgeimpsclaw1" nameidentifier="de-europanridgeimpsclaw1" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/LevelObjects.png" sourcerect="4,802,312,291" depth="0.860" premultiplyalpha="false" origin="0.5,1" />
+  </Item>
+  <Item name="Europan Ridge Imp's Claw" identifier="de-europanridgeimpsclaw2" nameidentifier="de-europanridgeimpsclaw2" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/LevelObjects.png" sourcerect="318,796,318,290" depth="0.859" premultiplyalpha="false" origin="0.5,1" />
+  </Item>
+  <Item name="Europan Ridge Tangle Bush" identifier="de-europanridgetanglebush1" nameidentifier="de-europanridgetanglebush1" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/LevelObjects.png" sourcerect="1369,785,346,264" depth="0.858" premultiplyalpha="false" origin="0.5,1" />
+  </Item>
+  <Item name="Europan Ridge Tangle Bush" identifier="de-europanridgetanglebush2" nameidentifier="de-europanridgetanglebush2" tags="" allowattachitems="true" texturescale="1.0,1.0" scale="0.5" category="Decorative" canflipy="true" noninteractable="true">
+    <Sprite texture="Content/Map/Biomes/EuropanRidge/LevelObjects.png" sourcerect="1716,788,328,258" depth="0.857" premultiplyalpha="false" origin="0.5,1" />
+  </Item>
+</Items>

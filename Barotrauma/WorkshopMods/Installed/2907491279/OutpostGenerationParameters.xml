@@ -1,0 +1,1716 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<OutpostGenerationParameters>
+  <!-- NORMAL OUTPOSTS -->
+  <Override>
+    <OutpostConfig identifier="Blockade" replaceinradiation="abandonedoutpost" totalmodulecount="6" minhallwaylength="400" allowedlocationtypes="Blockade" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="SFBDE_SecCrewModule" count="1" />
+      <modulecount flag="SFBDE_SecurityModule" count="1" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="DE_outpostnpcs" identifier="sergeantcoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="DE_outpostnpcs" identifier="sergeantseparatists" faction="separatists" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantmilitary" />
+        <npc from="outpostnpcs1" identifier="merchantarmory" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="colony" replaceinradiation="abandonedoutpost" totalmodulecount="4" minhallwaylength="400" allowedlocationtypes="Colony" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="DockingTiny" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="construction" replaceinradiation="abandonedoutpost" totalmodulecount="1" minhallwaylength="400" allowedlocationtypes="Construction" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="false">
+      <modulecount flag="DockingConstruction" count="1" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="settlement" replaceinradiation="abandonedoutpost" totalmodulecount="8" minhallwaylength="400" allowedlocationtypes="Settlement" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="DockingTiny" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="2" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="settlementbar" replaceinradiation="abandonedoutpost" totalmodulecount="8" minhallwaylength="400" allowedlocationtypes="Settlement" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="DockingTiny" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="2" />
+      <modulecount flag="SFBDE_BarModule" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="outpost" replaceinradiation="abandonedoutpost" totalmodulecount="11" minhallwaylength="400" allowedlocationtypes="outpost" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="CafeteriaSmall" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="2" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <!--<modulecount flag="GeneralStoreSmall" count="1" />-->
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="DE_outpostnpcs" identifier="sergeantcoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="DE_outpostnpcs" identifier="sergeantseparatists" faction="separatists" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantoutpost" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="outpostcrewbar" replaceinradiation="abandonedoutpost" totalmodulecount="11" minhallwaylength="400" allowedlocationtypes="outpost" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="CafeteriaSmall" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewBarModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <!--<modulecount flag="GeneralStoreSmall" count="1" />-->
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="DE_outpostnpcs" identifier="sergeantcoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="DE_outpostnpcs" identifier="sergeantseparatists" faction="separatists" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantoutpost" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="outpostbar" replaceinradiation="abandonedoutpost" totalmodulecount="11" minhallwaylength="400" allowedlocationtypes="outpost" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="CafeteriaSmall" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="2" />
+      <modulecount flag="SFBDE_BarModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <!--<modulecount flag="GeneralStoreSmall" count="1" />-->
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="DE_outpostnpcs" identifier="sergeantcoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="DE_outpostnpcs" identifier="sergeantseparatists" faction="separatists" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantoutpost" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="city" replaceinradiation="abandonedoutpost" totalmodulecount="9" minhallwaylength="400" spawncrewinsideoutpost="false" allowedlocationtypes="City" appendtoreachtotalmodulecount="false">
+      <modulecount flag="SFBDE_DockingLarge" count="1" />
+      <modulecount flag="SFBDE_EngineeringLarge" count="1" />
+      <modulecount flag="SFBDE_AdminLarge" count="1" />
+      <modulecount flag="SFBDE_MedicalLarge" count="1" />
+      <modulecount flag="SFBDE_ResearchLarge" count="1" />
+      <modulecount flag="SFBDE_CrewQuartersLarge" count="1" />
+      <modulecount flag="SFBDE_SecurityLarge" count="1" />
+      <modulecount flag="SFBDE_ArmoryLarge" count="1" />
+      <modulecount flag="SFBDE_ClownModuleLarge" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModuleLarge" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="DE_outpostnpcs" identifier="sergeantcoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="DE_outpostnpcs" identifier="sergeantseparatists" faction="separatists" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="subupgradenpc" />
+        <npc from="outpostnpcs1" identifier="subsalesnpc" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantcity" />
+        <npc from="outpostnpcs1" identifier="merchantarmory" />
+        <npc from="outpostnpcs1" identifier="merchantmedical" />
+        <npc from="outpostnpcs1" identifier="merchantengineering" />
+        <npc from="outpostnpcs1" identifier="outpostdoctor" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="clinic" replaceinradiation="abandonedoutpost" totalmodulecount="5" minhallwaylength="400" allowedlocationtypes="Clinic" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="DockingTiny" count="1" />
+      <modulecount flag="SFBDE_MedicalModule" count="1" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="outpostdoctor" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="hospital" replaceinradiation="abandonedoutpost" totalmodulecount="10" minhallwaylength="400" allowedlocationtypes="Hospital" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="SFBDE_MedicalModule" count="2" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantmedical" />
+        <npc from="outpostnpcs1" identifier="outpostdoctor" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="surgery" replaceinradiation="abandonedoutpost" totalmodulecount="14" minhallwaylength="400" allowedlocationtypes="Surgery" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="SFBDE_MedicalModule" count="3" />
+      <modulecount flag="SFBDE_ResearchModule" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantmedical" />
+        <npc from="outpostnpcs1" identifier="outpostdoctor" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="study" replaceinradiation="abandonedoutpost" totalmodulecount="6" minhallwaylength="400" allowedlocationtypes="Study" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="DockingTiny" count="1" />
+      <modulecount flag="SFBDE_ResearchModule" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="lab" replaceinradiation="abandonedoutpost" totalmodulecount="12" minhallwaylength="400" allowedlocationtypes="Lab" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="CafeteriaSmall" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="SFBDE_ResearchModule" count="2" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantresearch" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="researchoutpost" replaceinradiation="abandonedoutpost" totalmodulecount="15" minhallwaylength="400" allowedlocationtypes="Research" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="SFBDE_MedicalModule" count="1" />
+      <modulecount flag="SFBDE_ResearchModule" count="3" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantresearch" />
+        <npc from="outpostnpcs1" identifier="outpostdoctor" />
+        <npc from="outpostnpcs1" identifier="subupgradenpc" />
+        <npc from="outpostnpcs1" identifier="subsalesnpc" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="camp" replaceinradiation="abandonedoutpost" totalmodulecount="4" minhallwaylength="400" allowedlocationtypes="Camp" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <!--Replace DockingTiny with DockingMilitaryTiny when available-->
+      <modulecount flag="DockingTiny" count="1" />
+      <modulecount flag="SFBDE_SecCrewModule" count="1" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="DE_outpostnpcs" identifier="sergeantcoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="DE_outpostnpcs" identifier="sergeantseparatists" faction="separatists" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="base" replaceinradiation="abandonedoutpost" totalmodulecount="9" minhallwaylength="400" allowedlocationtypes="Base" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_SecCrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <!--<modulecount flag="SFBDE_ArmoryModule" count="1" />-->
+      <modulecount flag="SFBDE_SecurityModule" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="DE_outpostnpcs" identifier="sergeantcoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="DE_outpostnpcs" identifier="sergeantseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantmilitary" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="basebar" replaceinradiation="abandonedoutpost" totalmodulecount="9" minhallwaylength="400" allowedlocationtypes="Base" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_SecCrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="SFBDE_BarModule" count="1" />
+      <!--<modulecount flag="SFBDE_ArmoryModule" count="1" />-->
+      <modulecount flag="SFBDE_SecurityModule" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="DE_outpostnpcs" identifier="sergeantcoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="DE_outpostnpcs" identifier="sergeantseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantmilitary" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="militaryoutpost" replaceinradiation="abandonedoutpost" totalmodulecount="12" minhallwaylength="400" allowedlocationtypes="Military" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_SecCrewModule" count="2" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <!--<modulecount flag="SFBDE_ArmoryModule" count="1" />-->
+      <modulecount flag="SFBDE_SecurityModule" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="DE_outpostnpcs" identifier="sergeantcoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="DE_outpostnpcs" identifier="sergeantseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantmilitary" />
+        <npc from="outpostnpcs1" identifier="merchantarmory" />
+        <npc from="outpostnpcs1" identifier="subupgradenpc" />
+        <npc from="outpostnpcs1" identifier="subsalesnpc" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="militaryoutpostbar" replaceinradiation="abandonedoutpost" totalmodulecount="12" minhallwaylength="400" allowedlocationtypes="Military" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_SecCrewModule" count="2" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="SFBDE_BarModule" count="1" />
+      <!--<modulecount flag="SFBDE_ArmoryModule" count="1" />-->
+      <modulecount flag="SFBDE_SecurityModule" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="DE_outpostnpcs" identifier="sergeantcoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="DE_outpostnpcs" identifier="sergeantseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantmilitary" />
+        <npc from="outpostnpcs1" identifier="merchantarmory" />
+        <npc from="outpostnpcs1" identifier="subupgradenpc" />
+        <npc from="outpostnpcs1" identifier="subsalesnpc" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="survey" replaceinradiation="abandonedoutpost" totalmodulecount="7" minhallwaylength="400" allowedlocationtypes="Survey" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="DockingTiny" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="MineModule" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="extraction" replaceinradiation="abandonedoutpost" totalmodulecount="12" minhallwaylength="400" allowedlocationtypes="Extraction" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="DockingIndustrialSmall" count="1" />
+      <modulecount flag="CafeteriaSmall" count="1" />
+      <!--To be replaced-->
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="MineModule" count="2" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <!--
+    <modulecount flag="AdministrationIndustrialSmall" count="1" />
+    <modulecount flag="CrewQuartersIndustrialSmall" count="1" />
+    <modulecount flag="EngineeringSmall" count="1" />
+    <modulecount flag="MineralStoreSmall" count="1" />
+    <modulecount flag="MineShaftSmall" count="1" />-->
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantmine" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="extractionbar" replaceinradiation="abandonedoutpost" totalmodulecount="12" minhallwaylength="400" allowedlocationtypes="Extraction" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="DockingIndustrialSmall" count="1" />
+      <modulecount flag="CafeteriaSmall" count="1" />
+      <modulecount flag="SFBDE_BarModule" count="1" />
+      <!--To be replaced-->
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="MineModule" count="2" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <!--
+    <modulecount flag="AdministrationIndustrialSmall" count="1" />
+    <modulecount flag="CrewQuartersIndustrialSmall" count="1" />
+    <modulecount flag="EngineeringSmall" count="1" />
+    <modulecount flag="MineralStoreSmall" count="1" />
+    <modulecount flag="MineShaftSmall" count="1" />-->
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantmine" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="miningoutpost" replaceinradiation="abandonedoutpost" totalmodulecount="15" minhallwaylength="400" allowedlocationtypes="Mine" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="DockingIndustrialSmall" count="1" />
+      <!--to be replaced-->
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="MineModule" count="3" />
+      <!---->
+      <!--<modulecount flag="CrewQuartersIndustrialSmall" count="0" />
+      <modulecount flag="AdministrationIndustrialSmall" count="0" />
+      <modulecount flag="EngineeringSmall" count="0" />
+      <modulecount flag="IndustrialSmall" count="0" />
+      <modulecount flag="ReactorSmall" count="0" />
+      <modulecount flag="MineShaftMedium" count="0" />
+      <modulecount flag="MineralStoreLarge" count="0" />-->
+      <modulecount flag="MineShaftLarge" count="1" />
+      <modulecount flag="CafeteriaSmall" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantmine" />
+        <npc from="outpostnpcs1" identifier="subupgradenpc" />
+        <npc from="outpostnpcs1" identifier="subsalesnpc" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="miningoutpostcrewbar" replaceinradiation="abandonedoutpost" totalmodulecount="15" minhallwaylength="400" allowedlocationtypes="Mine" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="DockingIndustrialSmall" count="1" />
+      <modulecount flag="SFBDE_CrewBarModule" count="1" />
+      <!--to be replaced-->
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="MineModule" count="3" />
+      <!---->
+      <!--<modulecount flag="CrewQuartersIndustrialSmall" count="0" />
+      <modulecount flag="AdministrationIndustrialSmall" count="0" />
+      <modulecount flag="EngineeringSmall" count="0" />
+      <modulecount flag="IndustrialSmall" count="0" />
+      <modulecount flag="ReactorSmall" count="0" />
+      <modulecount flag="MineShaftMedium" count="0" />
+      <modulecount flag="MineralStoreLarge" count="0" />-->
+      <modulecount flag="MineShaftLarge" count="1" />
+      <modulecount flag="CafeteriaSmall" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantmine" />
+        <npc from="outpostnpcs1" identifier="subupgradenpc" />
+        <npc from="outpostnpcs1" identifier="subsalesnpc" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="miningoutpostbar" replaceinradiation="abandonedoutpost" totalmodulecount="15" minhallwaylength="400" allowedlocationtypes="Mine" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="DockingIndustrialSmall" count="1" />
+      <modulecount flag="SFBDE_BarModule" count="1" />
+      <!--to be replaced-->
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="MineModule" count="3" />
+      <!---->
+      <!--<modulecount flag="CrewQuartersIndustrialSmall" count="0" />
+      <modulecount flag="AdministrationIndustrialSmall" count="0" />
+      <modulecount flag="EngineeringSmall" count="0" />
+      <modulecount flag="IndustrialSmall" count="0" />
+      <modulecount flag="ReactorSmall" count="0" />
+      <modulecount flag="MineShaftMedium" count="0" />
+      <modulecount flag="MineralStoreLarge" count="0" />-->
+      <modulecount flag="MineShaftLarge" count="1" />
+      <modulecount flag="CafeteriaSmall" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantmine" />
+        <npc from="outpostnpcs1" identifier="subupgradenpc" />
+        <npc from="outpostnpcs1" identifier="subsalesnpc" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="shipyard" replaceinradiation="abandonedoutpost" totalmodulecount="9" minhallwaylength="400" allowedlocationtypes="Shipyard" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="subupgradenpc" />
+        <npc from="outpostnpcs1" identifier="subsalesnpc" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="shipyardcrewbar" replaceinradiation="abandonedoutpost" totalmodulecount="9" minhallwaylength="400" allowedlocationtypes="Shipyard" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_CrewBarModule" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="subupgradenpc" />
+        <npc from="outpostnpcs1" identifier="subsalesnpc" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="shipyardbar" replaceinradiation="abandonedoutpost" totalmodulecount="9" minhallwaylength="400" allowedlocationtypes="Shipyard" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_BarModule" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="subupgradenpc" />
+        <npc from="outpostnpcs1" identifier="subsalesnpc" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="factory" replaceinradiation="abandonedoutpost" totalmodulecount="10" minhallwaylength="400" allowedlocationtypes="Factory" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="GeneralStoreSmall" cound="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantoutpost" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="factorycrewbar" replaceinradiation="abandonedoutpost" totalmodulecount="10" minhallwaylength="400" allowedlocationtypes="Factory" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_CrewBarModule" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="GeneralStoreSmall" cound="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantoutpost" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="factorybar" replaceinradiation="abandonedoutpost" totalmodulecount="10" minhallwaylength="400" allowedlocationtypes="Factory" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_BarModule" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="GeneralStoreSmall" cound="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantoutpost" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="fusion" replaceinradiation="abandonedoutpost" totalmodulecount="9" minhallwaylength="400" allowedlocationtypes="Fusion" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="SFBDE_ResearchModule" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantengineering" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="hydroponics" replaceinradiation="abandonedoutpost" totalmodulecount="7" minhallwaylength="400" allowedlocationtypes="Hydroponics" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="DockingTiny" count="1" />
+      <modulecount flag="SFBDE_ResearchModule" count="1" />
+      <modulecount flag="CafeteriaSmall" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="hydroponicsbar" replaceinradiation="abandonedoutpost" totalmodulecount="7" minhallwaylength="400" allowedlocationtypes="Hydroponics" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="DockingTiny" count="1" />
+      <modulecount flag="SFBDE_BarModule" count="1" />
+      <modulecount flag="SFBDE_ResearchModule" count="1" />
+      <modulecount flag="CafeteriaSmall" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="biosphere" replaceinradiation="abandonedoutpost" totalmodulecount="12" minhallwaylength="400" allowedlocationtypes="Biosphere" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="SFBDE_ResearchModule" count="1" />
+      <modulecount flag="ButcherShopSmall" count="1" />
+      <modulecount flag="CafeteriaSmall" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="he-outpostnpcs" identifier="merchantbutcher" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantresearch" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="biospherebar" replaceinradiation="abandonedoutpost" totalmodulecount="12" minhallwaylength="400" allowedlocationtypes="Biosphere" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_BarModule" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="SFBDE_ResearchModule" count="1" />
+      <modulecount flag="ButcherShopSmall" count="1" />
+      <modulecount flag="CafeteriaSmall" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="he-outpostnpcs" identifier="merchantbutcher" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantresearch" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="nourishment" replaceinradiation="abandonedoutpost" totalmodulecount="13" minhallwaylength="400" allowedlocationtypes="Nourishment" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="SFBDE_ResearchModule" count="2" />
+      <modulecount flag="ButcherShopSmall" count="1" />
+      <modulecount flag="CafeteriaSmall" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="he-outpostnpcs" identifier="merchantbutcher" />
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantresearch" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+  <Override>
+    <OutpostConfig identifier="nourishmentbar" replaceinradiation="abandonedoutpost" totalmodulecount="13" minhallwaylength="400" allowedlocationtypes="Nourishment" spawncrewinsideoutpost="false" appendtoreachtotalmodulecount="true">
+      <modulecount flag="SFBDE_DockingSmall" count="1" />
+      <modulecount flag="SFBDE_BarModule" count="1" />
+      <modulecount flag="SFBDE_EngineeringModule" count="1" />
+      <modulecount flag="SFBDE_CrewModule" count="1" />
+      <modulecount flag="SFBDE_AdminModule" count="1" />
+      <modulecount flag="SFBDE_ResearchModule" count="2" />
+      <modulecount flag="ButcherShopSmall" count="1" />
+      <modulecount flag="CafeteriaSmall" count="1" />
+      <modulecount flag="SFBDE_ClownModule" count="1" order="1" requiredfaction="clowns" />
+      <modulecount flag="SFBDE_HuskModule" count="1" order="1" requiredfaction="huskcult" />
+      <npcs>
+        <!-- Coalition -->
+        <npc from="outpostnpcs1" identifier="outpostmanagercoalition" faction="coalition" />
+        <npc from="outpostnpcs1" identifier="securitynpccoalition" faction="coalition" />
+        <!-- Separatists -->
+        <npc from="outpostnpcs1" identifier="outpostmanagerseparatists" faction="separatists" />
+        <npc from="outpostnpcs1" identifier="securitynpcseparatists" faction="separatists" />
+        <!-- Clowns -->
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="clown" faction="clowns" />
+        <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns" />
+        <!-- HuskCult -->
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="huskcultist" faction="huskcult" />
+        <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult" />
+        <!-- Generic -->
+        <npc from="he-outpostnpcs" identifier="merchantbutcher" />
+        <npc from="outpostnpcs1" identifier="hrmanager" />
+        <npc from="outpostnpcs1" identifier="reactoroperator" />
+        <npc from="outpostnpcs1" identifier="merchantresearch" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="researcher" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="outpostnpcs1" identifier="commoner" />
+      </npcs>
+    </OutpostConfig>
+  </Override>
+</OutpostGenerationParameters>

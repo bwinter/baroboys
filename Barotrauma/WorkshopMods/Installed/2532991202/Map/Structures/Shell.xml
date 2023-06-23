@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<prefabs>
+  <Structure name="" identifier="molochshell_1" descriptionidentifier="exteriorshell" subcategory="exteriorsubwalls" body="true" castshadow="true" health="500" bodywidth="559" bodyheight="100" bodyoffset="0,-10" bodyrotation="-25" scale="1.1">
+    <sprite texture="%ModDir%/Map/Structures/Moloch_Shell_Wall.png" sourcerect="7,41,559,345" depth="0.1" origin="0.5,0.5" />
+    <backgroundsprite texture="%ModDir%/Map/Structures/Moloch_Shell_Background.png" depth="0.85" />
+  </Structure>
+  <Structure name="" identifier="molochshell_2" descriptionidentifier="exteriorshell" subcategory="exteriorsubwalls" body="true" castshadow="true" health="500" bodywidth="465" bodyheight="100" bodyoffset="0,0" scale="1.1">
+    <sprite texture="%ModDir%/Map/Structures/Moloch_Shell_Wall.png" sourcerect="556,5,465,210" depth="0.1" origin="0.5,0.5" />
+    <backgroundsprite texture="%ModDir%/Map/Structures/Moloch_Shell_Background.png" depth="0.85" />
+  </Structure>
+  <Structure name="" identifier="molochshell_3" descriptionidentifier="exteriorshell" subcategory="exteriorsubwalls" body="true" castshadow="true" health="500" bodyheight="315" bodywidth="100" bodyoffset="0,-18" bodyrotation="-34" scale="1.1">
+    <sprite texture="%ModDir%/Map/Structures/Moloch_Shell_Wall.png" sourcerect="1031,56,243,315" depth="0.1" origin="0.5,0.5" />
+    <backgroundsprite texture="%ModDir%/Map/Structures/Moloch_Shell_Background.png" depth="0.85" />
+  </Structure>
+</prefabs>
