@@ -60,7 +60,10 @@
         <corepackage
                 path="Content/ContentPackages/Vanilla.xml"/>
         <regularpackages>
-            <!--DagonLing Blueprint-->
+            <package
+                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2907491279/filelist.xml"/>
+            <package
+                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2532991202/filelist.xml"/>
             <package
                     path="LocalMods/Hagfish MkIII/filelist.xml"/>
             <!--Beacons Extended-->
@@ -75,9 +78,6 @@
             <!--Real Sonar-->
             <package
                     path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2936760984/filelist.xml" />
-            <!--Frith's Biomes-->
-            <package
-                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2020332046/filelist.xml" />
             <!--SIN Beacon Stations-->
             <package
                     path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2605405713/filelist.xml" />
