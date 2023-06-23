@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Charactervariant inherit="Crawlerhusk" speciesname="DE-Crawlerhusk" speciestranslationoverride="crawler" husk="false" humanoid="False" hasinfo="False" usehuskappendage="False" needsair="False" canspeak="False" blooddecal="blackblood" bleedparticlewater="blackwaterblood" bleedparticleair="blackblooddrop" group="husk" displayname="" noise="200" visibility="150" eatingspeed="10" hideinthermalgoggles="True" AISlowTurretPriority="0.5" usepathfinding="True" pathfinderpriority="1">
+  <ai combatstrength="150" sight="0.5" hearing="1" fleehealththreshold="0" aggressiveboarding="false" aggressiongreed="20" aggressionhurt="50" attackwhenprovoked="True" avoidgunfire="False" targetinnerwalls="False" targetouterwalls="False" randomattack="False" patrolflooded="True" patroldry="True">
+    <target tag="decoy" state="Attack" priority="100" ignoreifnotinsamesub="True" />
+    <target tag="provocative" state="Attack" priority="100" ignoreifnotinsamesub="True" />
+    <target tag="weapon" state="Attack" priority="100" ignoreifnotinsamesub="False" />
+    <target tag="nasonov" state="Attack" priority="100" ignoreinside="True" />
+    <target tag="crawler" state="Attack" priority="100" reactdistance="0" />
+    <target tag="human" state="Attack" priority="80" reactdistance="0" />
+    <target tag="room" state="Attack" priority="30" reactdistance="0" />
+    <target tag="door" state="Attack" priority="5" reactdistance="0" />
+    <target tag="sonar" state="Attack" priority="5" reactdistance="0" ignoreinside="true" />
+    <target tag="turret" state="Attack" priority="1" ignoreinside="true" />
+    <target tag="swarmfeeder" state="Idle" priority="0" ignoreinside="True" ignoreoutside="True" ignoreifnotinsamesub="True" ignoreincapacitated="True" />
+    <target tag="huskinfected" state="Idle" priority="0" ignoreinside="True" ignoreoutside="True" ignoreifnotinsamesub="True" ignoreincapacitated="True" threshold="1" />
+    <SwarmBehavior mindistfromclosest="200" maxdistfromcenter="3000" cohesion="0.1" />
+  </ai>
+</Charactervariant>

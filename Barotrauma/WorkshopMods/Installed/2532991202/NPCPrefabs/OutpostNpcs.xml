@@ -1,0 +1,677 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<npcsets>
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--                               Outpost NPCs                                -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <npcset identifier="DE_outpostnpcs">
+    <npc identifier="sergeantcoalition" job="captain" tags="cosergeant" spawnpointtags="admin" healthmultiplier="3" behavior="StayInHull">
+      <ItemSet>
+        <Item identifier="securityuniform2" equip="true" />
+        <Item identifier="bodyarmor" equip="true" />
+        <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+        <Item identifier="handcuffs" />
+        <Item identifier="smg">
+          <Item identifier="smgmagazine" />
+        </Item>
+        <Item identifier="smgmagazine" />
+        <Item identifier="smgmagazine" />
+        <Item identifier="divingknife" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="eventtrigger_coalitiontakeover" />
+      </ItemSet>
+      <ItemSet>
+        <Item identifier="securityuniform2" equip="true" />
+        <Item identifier="bodyarmor" equip="true" />
+        <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+        <Item identifier="divingknife" />
+        <Item identifier="handcuffs" />
+        <Item identifier="antibleeding1" />
+        <Item identifier="divingmask">
+          <Item identifier="shotgun">
+            <Item identifier="shotgunshell" amount="6" />
+          </Item>
+          <Item identifier="shotgunshell" amount="12" />
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="eventtrigger_coalitiontakeover" />
+      </ItemSet>
+      <ItemSet>
+        <Item identifier="securityuniform2" equip="true" />
+        <Item identifier="bodyarmor" equip="true" />
+        <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+        <Item identifier="handcuffs" />
+        <Item identifier="revolver" equip="false">
+          <Item identifier="revolverround" amount="6" />
+        </Item>
+        <Item identifier="revolverround" amount="12" />
+        <Item identifier="divingknife" />
+        <Item identifier="antibleeding1" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="eventtrigger_coalitiontakeover" />
+      </ItemSet>
+    </npc>
+    <npc identifier="sergeantseparatists" job="captain" tags="sepsergeant" spawnpointtags="admin" healthmultiplier="3" behavior="StayInHull">
+      <ItemSet>
+        <Item identifier="pirateclothes" equip="true" />
+        <Item identifier="piratebodyarmor" equip="true" />
+        <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+        <Item identifier="handcuffs" />
+        <Item identifier="smg">
+          <Item identifier="smgmagazine" />
+        </Item>
+        <Item identifier="smgmagazine" />
+        <Item identifier="smgmagazine" />
+        <Item identifier="divingknife" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="eventtrigger_separatisttakeover" />
+      </ItemSet>
+      <ItemSet>
+        <Item identifier="pirateclotheshard" equip="true" />
+        <Item identifier="piratebodyarmor" equip="true" />
+        <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+        <Item identifier="divingknife" />
+        <Item identifier="handcuffs" />
+        <Item identifier="antibleeding1" />
+        <Item identifier="divingmask">
+          <Item idengineer="assaultrifle">
+            <Item identifier="assaultriflemagazine" />
+          </Item>
+          <Item identifier="assaultriflemagazine" amount="5" />
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="eventtrigger_separatisttakeover" />
+      </ItemSet>
+      <ItemSet>
+        <Item identifier="pirateclotheshard" equip="true" />
+        <Item identifier="piratebodyarmor" equip="true" />
+        <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+        <Item identifier="handcuffs" />
+        <Item identifier="revolver" equip="false">
+          <Item identifier="revolverround" amount="6" />
+        </Item>
+        <Item identifier="divingknife" />
+        <Item identifier="antibleeding1" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="eventtrigger_separatisttakeover" />
+      </ItemSet>
+    </npc>
+    <npc identifier="tempsoldiercoalition" job="cosoldier" tags="tempcrew" healthmultiplier="1.25" behavior="patrol">
+      <ItemSet>
+        <Item identifier="securityuniform1" equip="true" />
+        <Item identifier="bodyarmor" equip="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <Item identifier="idcard" equip="true" tags="id_security,id_septempcrew" />
+        <Item identifier="smg">
+          <Item identifier="smgmagazine" />
+        </Item>
+        <Item identifier="smgmagazine" amount="5" />
+        <Item identifier="antibleeding1" amount="3" />
+        <Item identifier="divingknife" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet>
+        <Item identifier="securityuniform2" equip="true" />
+        <Item identifier="bodyarmor" equip="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <Item identifier="idcard" equip="true" tags="id_security,id_septempcrew" />
+        <Item identifier="divingknife" />
+        <Item identifier="antibleeding1" amount="3" />
+        <Item identifier="shotgun">
+          <Item identifier="shotgunshell" amoun="6" />
+        </Item>
+        <Item identifier="shotgunshell" amount="24" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet>
+        <Item identifier="securityuniform3" equip="true" />
+        <Item identifier="bodyarmor" equip="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <Item identifier="idcard" equip="true" tags="id_security,id_septempcrew" />
+        <Item identifier="revolver" equip="false">
+          <Item identifier="revolverround" amount="6" />
+        </Item>
+        <Item identifier="revolverround" amount="48" />
+        <Item identifier="divingknife" />
+        <Item identifier="antibleeding1" amount="3" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+    <npc identifier="tempsoldierseparatists" job="sepsoldier" tags="tempcrew" healthmultiplier="1.25" behavior="patrol">
+      <ItemSet>
+        <Item identifier="pirateclothes" equip="true" />
+        <Item identifier="piratebodyarmor" equip="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <Item identifier="idcard" equip="true" tags="id_security,id_septempcrew" />
+        <Item identifier="smg">
+          <Item identifier="smgmagazine" />
+        </Item>
+        <Item identifier="smgmagazine" amount="5" />
+        <Item identifier="antibleeding1" amount="3" />
+        <Item identifier="divingknife" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet>
+        <Item identifier="pirateclotheshard" equip="true" />
+        <Item identifier="piratebodyarmor" equip="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <Item identifier="idcard" equip="true" tags="id_security,id_septempcrew" />
+        <Item identifier="divingknife" />
+        <Item identifier="antibleeding1" amount="3" />
+        <Item identifier="assaultrifle">
+          <Item identifier="assaultriflemagazine" />
+        </Item>
+        <Item identifier="assaultriflemagazine" amount="5" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet>
+        <Item identifier="pirateclotheshard" equip="true" />
+        <Item identifier="piratebodyarmor" equip="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <Item identifier="idcard" equip="true" tags="id_security,id_septempcrew" />
+        <Item identifier="revolver" equip="false">
+          <Item identifier="revolverround" amount="6" />
+        </Item>
+        <Item identifier="revolverround" amount="48" />
+        <Item identifier="divingknife" />
+        <Item identifier="antibleeding1" amount="3" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+    <npc identifier="quartermaster" job="mechanic" spawnpointtags="shop" commonness="1" behavior="StayInHull">
+      <ItemSet commonness="1">
+        <Item identifier="headset" equip="true">
+          <Item identifier="batterycell" />
+        </Item>
+        <Item identifier="quartermasterclothes" equip="true" />
+        <Item identifier="baseballcap" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="wrench" equip="false" />
+        <Item identifier="screwdriver" equip="false" />
+        <Item identifier="divingknife" equip="true" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="toolbelt">
+          <Item identifier="weldingfueltank" />
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+        </Item>
+      </ItemSet>
+    </npc>
+    <npc identifier="bartender" job="assistant" spawnpointtags="bar" commonness="1" behavior="StayInHull">
+      <ItemSet commonness="1">
+        <Item identifier="researcherclothes" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="revolver" equip="false">
+          <Item identifier="revolverround" />
+          <Item identifier="revolverround" />
+          <Item identifier="revolverround" />
+          <Item identifier="revolverround" />
+          <Item identifier="revolverround" />
+          <Item identifier="revolverround" />
+        </Item>
+        <Item identifier="rum" equip="true" />
+        <Item identifier="divingmask" equip="false">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+    <npc identifier="tailor" job="assistant" spawnpointtags="shop" commonness="1" behavior="StayInHull">
+      <ItemSet commonness="1">
+        <Item identifier="headset" equip="true">
+          <Item identifier="batterycell" />
+        </Item>
+        <Item identifier="crewchiefclothes" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="stungun">
+          <Item identifier="stungundart" />
+          <Item identifier="stungundart" />
+        </Item>
+        <Item identifier="stungundart" />
+        <Item identifier="stungundart" />
+        <Item identifier="stungundart" />
+        <Item identifier="stungundart" />
+        <Item identifier="stungundart" />
+        <Item identifier="stungundart" />
+        <Item identifier="divingmask" equip="false">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+    <npc identifier="botanist" job="medicaldoctor" spawnpointtags="research" commonness="1" healthmultiplier="0.8" behavior="StayInHull">
+      <ItemSet commonness="1">
+        <Item identifier="headset" equip="true">
+          <Item identifier="batterycell" />
+        </Item>
+        <Item identifier="greenjumpsuit" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="wrench" equip="false" />
+        <Item identifier="screwdriver" equip="false" />
+        <Item identifier="fertilizer" equip="true" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="toolbelt">
+          <Item identifier="weldingfueltank" />
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+        </Item>
+      </ItemSet>
+    </npc>
+    <npc identifier="pharmacist" job="medicaldoctor" spawnpointtags="medical" commonness="1" healthmultiplier="0.8" behavior="StayInHull">
+      <ItemSet commonness="1">
+        <Item identifier="medicalofficerclothes" equip="true" />
+        <Item identifier="healthscanner" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="antibloodloss1" />
+        <Item identifier="antibloodloss1" />
+        <Item identifier="opium" />
+        <Item identifier="opium" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+    <npc identifier="gunsmith" job="mechanic" spawnpointtags="shop" commonness="1" behavior="StayInHull">
+      <ItemSet commonness="1">
+        <Item identifier="headset" equip="true">
+          <Item identifier="batterycell" />
+        </Item>
+        <Item identifier="quartermasterclothes" equip="true" />
+        <Item identifier="idcard" equip="true" tags="safecard1a" />
+        <Item identifier="divingmask" equip="true">
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="grenadelauncher" equip="true">
+          <Item identifier="40mmgrenade" />
+        </Item>
+        <Item identifier="revolver">
+          <Item identifier="revolverround" />
+          <Item identifier="revolverround" />
+          <Item identifier="revolverround" />
+          <Item identifier="revolverround" />
+          <Item identifier="revolverround" />
+          <Item identifier="revolverround" />
+        </Item>
+        <Item identifier="40mmgrenade" />
+        <Item identifier="40mmgrenade" />
+        <Item identifier="baseballcap" equip="true" />
+      </ItemSet>
+    </npc>
+  </npcset>
+  <!-- PIRATES -->
+  <npcset identifier="outpostnpcspirate">
+    <npc identifier="outpostmanagerpirate" job="captain" tags="managerpirate,outpostmanagerpirate,piratenpc" spawnpointtags="pirateadmin" healthmultiplier="0.5" behavior="Passive" preferredoutpostmoduletypes="admin,adminmodule">
+      <ItemSet commonness="1">
+        <Item identifier="idcard" equip="true" tags="id_pirateadmin" />
+        <Item identifier="piratecaptainhatPA" equip="true" />
+        <Item identifier="pirateclotheshardPA" equip="true" />
+        <Item identifier="revolver" equip="false">
+          <Item identifier="revolverround" amount="3" />
+        </Item>
+        <Item identifier="captainspipe" equip="false" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="idcard" equip="true" tags="id_pirateadmin" />
+        <Item identifier="piratecaptainhatPA" equip="true" />
+        <Item identifier="pirateclotheshardPA" equip="true" />
+        <Item identifier="revolver" equip="false">
+          <Item identifier="revolverround" />
+        </Item>
+        <Item identifier="steroids" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+    <npc identifier="hrmanagerpirate" job="watchman" spawnpointtags="hrpirate" tags="hrmanagerpirate,piratenpc" healthmultiplier="0.3" campaigninteractiontype="Crew" behavior="StayInHull">
+      <ItemSet commonness="1">
+        <Item identifier="pirateclothesPA" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="wrench" equip="true" />
+        <Item identifier="screwdriver" equip="true" />
+        <Item identifier="revolver" equip="false">
+          <Item identifier="revolverround" amount="6" />
+        </Item>
+        <Item identifier="weldingtool" equip="false">
+          <Item identifier="weldingfueltank" />
+        </Item>
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+    <npc identifier="repairnpcpirate" job="mechanic" commonness="1" spawnpointtags="pirateengineering" tags="repairnpcpirate,piratenpc" healthmultiplier="0.4" behavior="Passive">
+      <ItemSet commonness="1">
+        <Item identifier="baseballcap" equip="true" />
+        <Item identifier="pirateclothesnovicePA" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="wrench" equip="true" />
+        <Item identifier="screwdriver" equip="true" />
+        <Item identifier="revolver" equip="false">
+          <Item identifier="revolverround" amount="6" />
+        </Item>
+        <Item identifier="weldingtool" equip="false">
+          <Item identifier="weldingfueltank" />
+        </Item>
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="toolbelt" equip="true">
+          <Item identifier="weldingfueltank" />
+          <Item identifier="aluminium" />
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+        </Item>
+        <Item identifier="wrench" equip="true" />
+        <Item identifier="screwdriver" equip="true" />
+        <Item identifier="revolver" equip="false">
+          <Item identifier="revolverround" amount="6" />
+        </Item>
+        <Item identifier="baseballcap" equip="true" />
+        <Item identifier="bluejumpsuit2" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+    <npc identifier="reactoroperatorpirate" job="engineer" commonness="1" spawnpointtags="pirateengineering" tags="reactoroperatorpirate,piratenpc" healthmultiplier="0.4" behavior="Passive" preferredoutpostmoduletypes="engineeringmodule">
+      <ItemSet commonness="1">
+        <Item identifier="pirateclothesnovicePA" equip="true" />
+        <Item identifier="baseballcap" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="wrench" equip="true" />
+        <Item identifier="screwdriver" equip="true" />
+        <Item identifier="crowbar" equip="true" />
+        <Item identifier="revolver" equip="false">
+          <Item identifier="revolverround" amount="6" />
+        </Item>
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+    <npc identifier="subupgradenpcpirate" job="mechanic" commonness="1" spawnpointtags="pirateupgrades" tags="subupgradenpcpirate,piratenpc" healthmultiplier="0.45" campaigninteractiontype="Upgrade" behavior="StayInHull">
+      <ItemSet commonness="1">
+        <Item identifier="toolbelt" equip="true">
+          <Item identifier="weldingfueltank" />
+          <Item identifier="aluminium" />
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+        </Item>
+        <Item identifier="pirateclothesnovicePA" equip="true" />
+        <Item identifier="headset" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="wrench" equip="true" />
+        <Item identifier="screwdriver" equip="true" />
+        <Item identifier="revolver" equip="false">
+          <Item identifier="revolverround" amount="6" />
+        </Item>
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+    <npc identifier="subsalesnpcpirate" job="mechanic" commonness="1" spawnpointtags="piratesubsales" tags="subsalesnpcpirate,piratenpc" healthmultiplier="0.25" campaigninteractiontype="PurchaseSub" behavior="StayInHull">
+      <ItemSet commonness="1">
+        <Item identifier="toolbelt" equip="true">
+          <Item identifier="weldingfueltank" />
+          <Item identifier="aluminium" />
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+        </Item>
+        <Item identifier="divingknife" />
+        <Item identifier="pirateclotheshardPA" equip="true" />
+        <Item identifier="headset" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="revolver">
+          <Item identifier="revolverround" amount="6" />
+        </Item>
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+    <!--
+    <npc identifier="merchantpirate" job="watchman" spawnpointtags="pirateshop" healthmultiplier="3" campaigninteractiontype="Store" behavior="StayInHull">
+      <ItemSet commonness="1">
+        <Item identifier="piratebandanaPA" equip="true"/>
+        <Item identifier="pirateclothesPA" equip="true"/>
+        <Item identifier="idcard" equip="true"/>
+		<Item identifier="divingknife" />
+        <Item identifier="revolver">
+          <Item identifier="revolverround" amount="6"/>
+        </Item>
+		<Item identifier="smg">
+          <Item identifier="smgmagazine" />
+        </Item>
+        <Item identifier="smgmagazine" />
+        <Item identifier="smgmagazine" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+-->
+    <npc identifier="securitynpcpirate" job="securityofficer" tags="securitynpcpirate,piratenpc" spawnpointtags="piratesecurity" healthmultiplier="0.6" behavior="Patrol">
+      <ItemSet commonness="1">
+        <Item identifier="pirateclothesPA" equip="true" />
+        <Item identifier="piratebodyarmorPA" equip="true" />
+        <Item identifier="idcard" equip="true" tags="id_piratesecurity" />
+        <Item identifier="stunbaton">
+          <Item identifier="batterycell" />
+        </Item>
+        <Item identifier="batterycell" amount="8" />
+        <Item identifier="handcuffs" />
+        <Item identifier="smg">
+          <Item identifier="smgmagazine" />
+        </Item>
+        <Item identifier="smgmagazine" />
+        <Item identifier="smgmagazine" />
+        <Item identifier="divingknife" />
+        <Item identifier="piratehelmetPA" equip="true" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="0.1">
+        <Item identifier="pirateclotheshardPA" equip="true" />
+        <Item identifier="piratebodyarmorPA" equip="true" />
+        <Item identifier="idcard" equip="true" tags="id_piratesecurity" />
+        <Item identifier="stungun">
+          <Item identifier="stungundart" />
+        </Item>
+        <Item identifier="stunbaton">
+          <Item identifier="batterycell" />
+        </Item>
+        <Item identifier="hmg" equip="true">
+          <Item identifier="hmgmagazine" />
+        </Item>
+        <Item identifier="hmgmagazine" amount="2" />
+        <Item identifier="batterycell" amount="8" />
+        <Item identifier="stungundart" />
+        <Item identifier="stungundart" />
+        <Item identifier="divingknife" />
+        <Item identifier="handcuffs" />
+        <Item identifier="antibleeding1" />
+        <Item identifier="piratebandanaPA" equip="true" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="0.7">
+        <Item identifier="pirateclotheshardPA" equip="true" />
+        <Item identifier="piratebodyarmorPA" equip="true" />
+        <Item identifier="idcard" equip="true" tags="id_piratesecurity" />
+        <Item identifier="stunbaton">
+          <Item identifier="batterycell" />
+        </Item>
+        <Item identifier="batterycell" amount="8" />
+        <Item identifier="handcuffs" />
+        <Item identifier="revolver" equip="false">
+          <Item identifier="revolverround" amount="6" />
+        </Item>
+        <Item identifier="revolverround" amount="12" />
+        <Item identifier="divingknife" />
+        <Item identifier="antibleeding1" />
+        <Item identifier="piratehelmetPA" equip="true" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+    <npc identifier="outpostdoctorpirate" job="medicaldoctor" campaigninteractiontype="MedicalClinic" tags="outpostdoctorpirate,piratenpc" healthmultiplier="0.35" moduleflags="MedicalModule" behavior="Passive">
+      <ItemSet commonness="1">
+        <Item identifier="medicalofficerclothes" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="piratebandanaPA" equip="true" />
+        <Item identifier="antibloodloss1" />
+        <Item identifier="antibloodloss1" />
+        <Item identifier="antidama1" />
+        <Item identifier="antidama1" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+    <npc identifier="gateinformant" job="watchman" spawnpointtags="unlockpathpirate" healthmultiplier="3" behavior="StayInHull">
+      <ItemSet commonness="1">
+        <Item identifier="pirateclotheshardPA" equip="true" />
+        <Item identifier="piratecaptainhatPA" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="revolver" equip="false">
+          <Item identifier="revolverround" amount="6" />
+        </Item>
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+    <npc identifier="commonerpirate" commonness="0" moduleflags="none" job="assistant" behavior="Passive" tags="commonerpirate,piratenpc" healthmultiplier="0.45" preferredoutpostmoduletypes="crewmodule,seccrewmodule">
+      <ItemSet commonness="1">
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="pirateclothesnovicePA" equip="true" />
+        <Item identifier="piratebandanaPA" equip="true" />
+        <Item identifier="screwdriver" equip="true" />
+        <Item identifier="revolver">
+          <Item identifier="revolverround" amount="6" />
+        </Item>
+        <Item identifier="revolverround" amount="9" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="pirateclothesnovicePA" equip="true" />
+        <Item identifier="piratecaptainhatPA" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="wrench" equip="true" />
+        <Item identifier="smg">
+          <Item identifier="smgmagazine" />
+        </Item>
+        <Item identifier="revolverround" amount="4" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="pirateclothesPA" equip="true" />
+        <Item identifier="crowbar" equip="true" />
+        <Item identifier="machinepistol" equip="true">
+          <Item identifier="smgmagazine" />
+        </Item>
+        <Item identifier="machinepistol" equip="true">
+          <Item identifier="smgmagazine" />
+        </Item>
+        <Item identifier="smgmagazine" amount="4" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="pirateclothesPA" equip="true" />
+        <Item identifier="piratebandanaPA" equip="true" />
+        <Item identifier="divingknife" equip="false" />
+        <Item identifier="shotgun" equip="true">
+          <Item identifier="shotgunshell" amount="6" />
+        </Item>
+        <Item identifier="shotgunshell" amount="12" />
+        <Item identifier="wrench" equip="true" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="0.1">
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="pirateclotheshardPA" equip="true" />
+        <Item identifier="crowbar" equip="true" />
+        <Item identifier="shotgununique" equip="true">
+          <Item identifier="shotgunshell" amount="2" />
+        </Item>
+        <Item identifier="shotgunshell" amount="12" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="0.5">
+        <Item identifier="pirateclotheshardPA" equip="true" />
+        <Item identifier="piratecaptainhatPA" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="screwdriver" equip="true" />
+        <Item identifier="rifle">
+          <Item identifier="riflebullet" amount="6" />
+        </Item>
+        <Item identifier="riflebullet" amount="12" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="0.5">
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="pirateclotheshardPA" equip="true" />
+        <Item identifier="piratebandanaPA" equip="true" />
+        <Item identifier="divingknife" equip="false" />
+        <Item identifier="smgunique">
+          <Item identifier="smgmagazine" />
+        </Item>
+        <Item identifier="smgmagazine" amount="3" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+  </npcset>
+</npcsets>
