@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <OpDeco name="Capitan Fish" identifier="Capitan Fish" allowattachitems="true" width="630" height="630" scale="0.5" category="Decorative">
+    <Sprite texture="captnfish.png" sourcerect="0,0,630,630" />
+  </OpDeco>
+</Items>
