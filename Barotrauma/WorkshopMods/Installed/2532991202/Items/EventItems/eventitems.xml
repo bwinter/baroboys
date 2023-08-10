@@ -1,12 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
+  <!-- Self-destroying items to prevent errors in AbandonedOutpost missions that only have character targets -->
+  <Item name="Self-destruct Crawler Egg" identifier="selfdestructcrawleregg" hideinmenus="true" health="20" damagedbyexplosions="true" damagedbyprojectiles="true" damagedbymeleeweapons="true" damagedbyrepairtools="true" category="Misc" spritecolor="199,253,172,255" scale="0.5" impactsoundtag="impact_soft">
+    <Sprite texture="Content/Items/CreatureLoot/CreatureLoot.png" depth="0.18" sourcerect="8,280,118,145" origin="0.5,0.5" />
+    <Price baseprice="200" sold="false" />
+    <Deconstruct time="10">
+      <Item identifier="alienblood" />
+      <Item identifier="sulphuricacid" />
+    </Deconstruct>
+    <!-- rectangular body to prevent the egg from rolling -->
+    <Body width="110" height="120" friction="1.0" restitution="0.01" angulardamping="1.0" density="12" />
+    <ItemContainer capacity="1" maxstacksize="1" hideitems="true" showcontainedstateindicator="false" canbeselected="true">
+      <GuiFrame relativesize="0.15,0.2" anchor="Center" style="ItemUI" />
+      <StatusEffect type="OnSpawn" target="This" delay="1">
+        <particleemitter particle="whitegoosplash" particleamount="20" velocitymin="0" velocitymax="300" anglemin="0" anglemax="360" scalemin="0.5" scalemax="1.0" emitinterval="0" particlespersecond="0" highqualitycollisiondetection="False" copyentityangle="False" />
+        <particleemitter particle="mudrapeggbrownchunks" particleamount="100" velocitymin="100" velocitymax="2000" anglemin="0" anglemax="360" scalemin="0.4" scalemax="0.6" />
+        <Sound file="Content/Sounds/Damage/Gore5.ogg" range="500" />
+        <Remove />
+      </StatusEffect>
+      <StatusEffect type="OnDamaged" target="This">
+        <particleemitter particle="mudrapeggbrownchunks" particleamount="8" velocitymin="100" velocitymax="1000" anglemin="0" anglemax="360" scalemin="0.2" scalemax="0.5" />
+      </StatusEffect>
+      <StatusEffect type="OnFire" target="This" Condition="-5.0" />
+      <!-- spawn a crawler and remove the item if scale is above 0.75 -->
+      <StatusEffect type="Always" target="This" Condition="0" setvalue="true">
+        <Conditional Scale="gte 0.75" />
+        <SpawnCharacter speciesname="Crawler_hatchling" />
+        <Remove />
+      </StatusEffect>
+      <Containable items="antibloodloss1">
+        <!-- increase scale -->
+        <StatusEffect type="OnContaining" target="This" Scale="0.005" />
+        <StatusEffect type="OnContaining" target="Contained" Condition="-1" />
+      </Containable>
+    </ItemContainer>
+    <LightComponent range="5" lightcolor="255,0,0,61" powerconsumption="0" IsOn="true" castshadows="false" allowingameediting="false" pulsefrequency="1" pulseamount="0.30">
+      <sprite texture="Content/Items/CreatureLoot/CreatureLoot.png" depth="0.025" sourcerect="300,291,98,113" origin="0.5,0.6" alpha="1.0" />
+    </LightComponent>
+    <LightComponent range="40" lightcolor="255,199,0,58" powerconsumption="0" IsOn="true" castshadows="false" allowingameediting="false">
+      <sprite texture="Content/Items/CreatureLoot/CreatureLoot.png" depth="0.025" sourcerect="410,301,88,95" origin="0.5,0.6" alpha="1.0" />
+    </LightComponent>
+  </Item>
   <!-- Job Board -->
   <Item name="Job Board" identifier="de-jobboard" tags="potentialjobboard" scale="0.5" category="Decorative" noninteractable="false">
     <sprite texture="Content/Map/Outposts/Art/HumanResourcesAssets.png" sourcerect="576,416,320,235" depth="0.78" premultiplyalpha="false" origin="0.5,0.5" />
     <ItemComponent>
-      <StatusEffect target="This" type="OnSpawn" evententitytag="potentialjobboard">
-        <TriggerEvent identifier="jobboardde" />
-      </StatusEffect>
+      <!--<StatusEffect target="This" type="OnSpawn" evententitytag="potentialjobboard">
+        <TriggerEvent identifier="jobboardde"/>
+      </StatusEffect>-->
     </ItemComponent>
   </Item>
   <Item name="" identifier="commsrelay" tags="commsrelay" width="50" height="50" texturescale="1.0,1.0" scale="0.5" category="Machine,Electrical" damagedbyexplosions="true" explosiondamagemultiplier="0.2">
@@ -94,28 +135,8 @@
   </Item>
   <!-- Submarine Charger Relay -->
   <Item name="Event - Charger Relay" identifier="chargerrelay" category="Electrical" Tags="smallitem,signal,logic" maxstacksize="8" cargocontaineridentifier="metalcrate" description="TRIGGERS THE CHARGING DOCK EVENT. DO NOT USE THIS IN ANY MODULE OTHER THAN THE AIRLOCK THAT IS SUPPOSED TO NOT SUPPLY POWER UNLESS PAID FOR!" scale="0.5" impactsoundtag="impact_metal_light" isshootable="true">
-    <Price baseprice="100" minleveldifficulty="15">
-      <Price storeidentifier="merchantoutpost" />
-      <Price storeidentifier="merchantcity" sold="false" />
-      <Price storeidentifier="merchantresearch" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" />
-      <Price storeidentifier="merchantmine" />
-      <Price storeidentifier="merchantengineering" multiplier="0.9" />
-    </Price>
-    <PreferredContainer primary="engcab" />
-    <PreferredContainer secondary="wreckengcab,abandonedengcab,outpostengcab,beaconengcab" amount="1" spawnprobability="0.05" />
-    <Deconstruct time="10">
-      <Item identifier="plastic" />
-      <Item identifier="copper" />
-      <Item identifier="tin" />
-    </Deconstruct>
-    <Fabricate suitablefabricators="fabricator" requiredtime="10">
-      <RequiredSkill identifier="electrical" level="20" />
-      <RequiredItem identifier="fpgacircuit" />
-      <RequiredItem identifier="tin" />
-    </Fabricate>
     <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="512,388,63,57" origin="0.5,0.5" />
-    <Sprite texture="signalcomp.png" depth="0.8" sourcerect="64,128,32,32" origin="0.5,0.5" canflipx="false" />
+    <Sprite texture="Content/Items/Electricity/signalcomp.png" depth="0.8" sourcerect="64,128,32,32" origin="0.5,0.5" canflipx="false" />
     <RelayComponent canbeselected="true" vulnerabletoemp="false" canbeoverloaded="false">
       <GuiFrame relativesize="0.2,0.14" minsize="450,160" anchor="Center" style="ItemUI" />
     </RelayComponent>

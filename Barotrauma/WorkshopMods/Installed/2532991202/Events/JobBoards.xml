@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Randomevents>
+  <EventSprites></EventSprites>
+  <EventPrefabs>
+    <!-- Job Board: Just a big ass switch that offers missions, your pick.-->
+    <ScriptedEvent identifier="jobboardde" commonness="100">
+      <WaitAction time="1" />
+      <CheckMissionAction MissionTag="outposttakeovermission" Type="Current">
+        <Success>
+          <!-- End -->
+        </Success>
+        <Failure>
+          <TagAction criteria="player" tag="player" />
+          <TagAction criteria="itemidentifier:de-jobboard" tag="potentialjobboard" submarinetype="outpost" />
+          <SetDataAction identifier="jobboardempty" operation="set" value="0" />
+          <Label name="waitforinput" />
+          <!-- The condition of CheckDataAction defines the amount of missions you can get from the job board -->
+          <CheckDataAction identifier="jobboardempty" condition="lt 1">
+            <Success>
+              <TriggerAction target1tag="potentialjobboard" target2tag="player" applytotarget2="jb_trig_player" waitforinteraction="true" />
+              <ConversationAction targettag="jb_trig_player" text="eventtext.jobboardde.interact" eventsprite="noticeboard" dialogtype="Regular">
+                <Option text="eventtext.jobboardde.option.piratemission">
+                  <ConversationAction targettag="jb_trig_player" dialogtype="Small" text="eventtext.jobboardde.option.piratemission.info" eventsprite="noticeboard">
+                    <Option text="eventtext.option.accept">
+                      <ConversationAction text="eventtext.jobboardde.option.piratemission.accept" dialogtype="Small" targettag="jb_trig_player" eventsprite="noticeboard" />
+                      <RNGAction chance="0.65">
+                        <Success>
+                          <RNGAction chance="0.65">
+                            <Success>
+                              <MissionAction missionidentifier="pirate_heavy" />
+                            </Success>
+                            <Failure>
+                              <MissionAction missionidentifier="pirate_piezo" />
+                            </Failure>
+                          </RNGAction>
+                        </Success>
+                        <Failure>
+                          <MissionAction missionidentifier="pirate_party" />
+                        </Failure>
+                      </RNGAction>
+                      <ClearTagAction tag="jb_trig_player" />
+                      <SetDataAction identifier="jobboardempty" operation="add" value="1" />
+                      <GoTo name="waitforinput" />
+                    </Option>
+                    <Option text="eventtext.option.decline">
+                      <ConversationAction text="eventtext.general.decline" dialogtype="Small" targettag="jb_trig_player" />
+                      <ClearTagAction tag="jb_trig_player" />
+                      <GoTo name="waitforinput" />
+                    </Option>
+                  </ConversationAction>
+                </Option>
+                <Option text="eventtext.jobboardde.option.monstermission">
+                  <ConversationAction targettag="jb_trig_player" dialogtype="Small" text="eventtext.jobboardde.option.monstermission.info" eventsprite="noticeboard">
+                    <Option text="eventtext.option.accept">
+                      <ConversationAction text="eventtext.jobboardde.option.monstermission.accept" dialogtype="Small" targettag="jb_trig_player" eventsprite="noticeboard" />
+                      <MissionAction missiontag="killmonster" />
+                      <ClearTagAction tag="jb_trig_player" />
+                      <SetDataAction identifier="jobboardempty" operation="add" value="1" />
+                      <GoTo name="waitforinput" />
+                    </Option>
+                    <Option text="eventtext.option.decline">
+                      <ConversationAction text="eventtext.general.decline" dialogtype="Small" targettag="jb_trig_player" />
+                      <ClearTagAction tag="jb_trig_player" />
+                      <GoTo name="waitforinput" />
+                    </Option>
+                  </ConversationAction>
+                </Option>
+                <Option text="eventtext.jobboardde.option.miningmission">
+                  <ConversationAction targettag="jb_trig_player" dialogtype="Small" text="eventtext.jobboardde.option.miningmission.info" eventsprite="noticeboard">
+                    <Option text="eventtext.option.accept">
+                      <ConversationAction text="eventtext.jobboardde.option.miningmission.accept" dialogtype="Small" targettag="jb_trig_player" eventsprite="noticeboard" />
+                      <MissionAction missiontag="collectminerals" />
+                      <ClearTagAction tag="jb_trig_player" />
+                      <SetDataAction identifier="jobboardempty" operation="add" value="1" />
+                      <GoTo name="waitforinput" />
+                    </Option>
+                    <Option text="eventtext.option.decline">
+                      <ConversationAction text="eventtext.general.decline" dialogtype="Small" targettag="jb_trig_player" />
+                      <ClearTagAction tag="jb_trig_player" />
+                      <GoTo name="waitforinput" />
+                    </Option>
+                  </ConversationAction>
+                </Option>
+                <Option text="eventtext.jobboardde.option.cargomission">
+                  <ConversationAction targettag="jb_trig_player" dialogtype="Small" text="eventtext.jobboardde.option.cargomission.info" eventsprite="noticeboard">
+                    <Option text="eventtext.option.accept">
+                      <ConversationAction text="eventtext.jobboardde.option.cargomission.accept" dialogtype="Small" targettag="jb_trig_player" eventsprite="noticeboard" />
+                      <MissionAction missiontag="cargo" />
+                      <ClearTagAction tag="jb_trig_player" />
+                      <SetDataAction identifier="jobboardempty" operation="add" value="1" />
+                      <GoTo name="waitforinput" />
+                    </Option>
+                    <Option text="eventtext.option.decline">
+                      <ConversationAction text="eventtext.general.decline" dialogtype="Small" targettag="jb_trig_player" />
+                      <ClearTagAction tag="jb_trig_player" />
+                      <GoTo name="waitforinput" />
+                    </Option>
+                  </ConversationAction>
+                </Option>
+                <Option text="eventtext.jobboardde.option.salvagemission">
+                  <ConversationAction targettag="jb_trig_player" dialogtype="Small" text="eventtext.jobboardde.option.salvagemission.info" eventsprite="noticeboard">
+                    <Option text="eventtext.option.accept">
+                      <ConversationAction text="eventtext.jobboardde.option.salvagemission.accept" dialogtype="Small" targettag="jb_trig_player" eventsprite="noticeboard" />
+                      <RNGAction chance="0.6">
+                        <Success>
+                          <MissionAction missiontag="salvagewreck" />
+                          <ClearTagAction tag="jb_trig_player" />
+                          <SetDataAction identifier="jobboardempty" operation="add" value="1" />
+                          <GoTo name="waitforinput" />
+                        </Success>
+                        <Failure>
+                          <MissionAction missiontag="salvageartifact" />
+                          <ClearTagAction tag="jb_trig_player" />
+                          <SetDataAction identifier="jobboardempty" operation="add" value="1" />
+                          <GoTo name="waitforinput" />
+                        </Failure>
+                      </RNGAction>
+                    </Option>
+                    <Option text="eventtext.option.decline">
+                      <ConversationAction text="eventtext.general.decline" dialogtype="Small" targettag="jb_trig_player" eventsprite="noticeboard" />
+                      <ClearTagAction tag="jb_trig_player" />
+                      <GoTo name="waitforinput" />
+                    </Option>
+                  </ConversationAction>
+                </Option>
+                <Option text="eventtext.option.decline">
+                  <ConversationAction text="eventtext.general.decline" dialogtype="Small" targettag="jb_trig_player" />
+                  <ClearTagAction tag="jb_trig_player" />
+                  <GoTo name="waitforinput" />
+                </Option>
+              </ConversationAction>
+            </Success>
+            <Failure></Failure>
+          </CheckDataAction>
+        </Failure>
+      </CheckMissionAction>
+    </ScriptedEvent>
+    <!-- JOB BOARD - INDUSTRIAL -->
+    <ScriptedEvent identifier="jobboardindustrial" commonness="100">
+      <WaitAction time="1" />
+      <CheckMissionAction MissionTag="outposttakeovermission" Type="Current">
+        <Success>
+          <!-- End -->
+        </Success>
+        <Failure>
+          <TagAction criteria="player" tag="player" />
+          <TagAction criteria="itemidentifier:de-jobboardindustrial" tag="potentialjobboard" submarinetype="outpost" />
+          <SetDataAction identifier="jobboardempty" operation="set" value="0" />
+          <Label name="waitforinput" />
+          <!-- The condition of CheckDataAction defines the amount of missions you can get from the job board -->
+          <CheckDataAction identifier="jobboardempty" condition="lt 1">
+            <Success>
+              <TriggerAction target1tag="potentialjobboard" target2tag="player" applytotarget2="jb_trig_player" waitforinteraction="true" />
+              <ConversationAction targettag="jb_trig_player" text="eventtext.jobboardde.interact" eventsprite="noticeboard" dialogtype="Regular">
+                <Option text="eventtext.jobboardde.option.miningmission">
+                  <ConversationAction targettag="jb_trig_player" dialogtype="Small" text="eventtext.jobboardde.option.miningmission.info" eventsprite="noticeboard">
+                    <Option text="eventtext.option.accept">
+                      <ConversationAction text="eventtext.jobboardde.option.miningmission.accept" dialogtype="Small" targettag="jb_trig_player" eventsprite="noticeboard" />
+                      <RNGAction chance="0.5">
+                        <Success>
+                          <RNGAction chance="0.5">
+                            <Success>
+                              <RNGAction chance="0.5">
+                                <Success>
+                                  <RNGAction chance="0.5">
+                                    <Success>
+                                      <MissionAction missionidentifier="quartzcollection" />
+                                    </Success>
+                                    <Failure>
+                                      <MissionAction missionidentifier="pyromorphitecollection" />
+                                    </Failure>
+                                  </RNGAction>
+                                </Success>
+                                <Failure>
+                                  <RNGAction chance="0.5">
+                                    <Success>
+                                      <MissionAction missionidentifier="diamondcollection" />
+                                    </Success>
+                                    <Failure>
+                                      <MissionAction missionidentifier="galenacollection" />
+                                    </Failure>
+                                  </RNGAction>
+                                </Failure>
+                              </RNGAction>
+                            </Success>
+                            <Failure>
+                              <RNGAction chance="0.5">
+                                <Success>
+                                  <RNGAction chance="0.5">
+                                    <Success>
+                                      <MissionAction missionidentifier="uraniumcollection_small" />
+                                    </Success>
+                                    <Failure>
+                                      <MissionAction missionidentifier="uraniumcollection" />
+                                    </Failure>
+                                  </RNGAction>
+                                </Success>
+                                <Failure>
+                                  <RNGAction chance="0.5">
+                                    <Success>
+                                      <MissionAction missionidentifier="triphylitecollection" />
+                                    </Success>
+                                    <Failure></Failure>
+                                    <MissionAction missionidentifier="langbeinitecollection" />
+                                  </RNGAction>
+                                </Failure>
+                              </RNGAction>
+                            </Failure>
+                          </RNGAction>
+                        </Success>
+                        <Failure>
+                          <RNGAction chance="0.5">
+                            <Success>
+                              <RNGAction chance="0.5">
+                                <Success>
+                                  <MissionAction missionidentifier="ilmenitechamositecollection" />
+                                </Success>
+                                <Failure>
+                                  <MissionAction missionidentifier="thorianitecollection" />
+                                </Failure>
+                              </RNGAction>
+                            </Success>
+                            <Failure>
+                              <MissionAction missionidentifier="titanitecollection" />
+                            </Failure>
+                          </RNGAction>
+                        </Failure>
+                      </RNGAction>
+                      <ClearTagAction tag="jb_trig_player" />
+                      <SetDataAction identifier="jobboardempty" operation="add" value="1" />
+                      <GoTo name="waitforinput" />
+                    </Option>
+                    <Option text="eventtext.option.decline">
+                      <ConversationAction text="eventtext.general.decline" dialogtype="Small" targettag="jb_trig_player" />
+                      <ClearTagAction tag="jb_trig_player" />
+                      <GoTo name="waitforinput" />
+                    </Option>
+                  </ConversationAction>
+                </Option>
+                <Option text="eventtext.jobboardde.option.cargomission">
+                  <ConversationAction targettag="jb_trig_player" dialogtype="Small" text="eventtext.jobboardde.option.cargomission.info" eventsprite="noticeboard">
+                    <Option text="eventtext.option.accept">
+                      <ConversationAction text="eventtext.jobboardde.option.cargomission.accept" dialogtype="Small" targettag="jb_trig_player" eventsprite="noticeboard" />
+                      <RNGAction chance="0.5">
+                        <Success>
+                          <RNGAction chance="0.5">
+                            <Success>
+                              <RNGAction chance="0.5">
+                                <Success>
+                                  <RNGAction chance="0.5">
+                                    <Success>
+                                      <MissionAction missionidentifier="cargocompoundn" />
+                                    </Success>
+                                    <Failure>
+                                      <MissionAction missionidentifier="cargochemicals" />
+                                    </Failure>
+                                  </RNGAction>
+                                </Success>
+                                <Failure>
+                                  <MissionAction missionidentifier="cargosecurityminerals" />
+                                </Failure>
+                              </RNGAction>
+                            </Success>
+                            <Failure>
+                              <MissionAction missionidentifier="cargonitroglycerin" />
+                            </Failure>
+                          </RNGAction>
+                        </Success>
+                        <Failure>
+                          <MissionAction missionidentifier="cargoconstructionminerals" />
+                        </Failure>
+                      </RNGAction>
+                      <ClearTagAction tag="jb_trig_player" />
+                      <SetDataAction identifier="jobboardempty" operation="add" value="1" />
+                      <GoTo name="waitforinput" />
+                    </Option>
+                    <Option text="eventtext.option.decline">
+                      <ConversationAction text="eventtext.general.decline" dialogtype="Small" targettag="jb_trig_player" />
+                      <ClearTagAction tag="jb_trig_player" />
+                      <GoTo name="waitforinput" />
+                    </Option>
+                  </ConversationAction>
+                </Option>
+                <Option text="eventtext.option.decline">
+                  <ConversationAction text="eventtext.general.decline" dialogtype="Small" targettag="jb_trig_player" />
+                  <ClearTagAction tag="jb_trig_player" />
+                  <GoTo name="waitforinput" />
+                </Option>
+              </ConversationAction>
+            </Success>
+            <Failure></Failure>
+          </CheckDataAction>
+        </Failure>
+      </CheckMissionAction>
+    </ScriptedEvent>
+  </EventPrefabs>
+</Randomevents>

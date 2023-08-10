@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Beacons Extended" steamworkshopid="2389600483" corepackage="false" modversion="1.0.58" gameversion="1.0.9.0" installtime="1683297443" expectedhash="FA2F29417AA23EEBF7A49D1EEAF25B83">
+<contentpackage name="Beacons Extended" steamworkshopid="2389600483" corepackage="false" modversion="1.0.61" gameversion="1.0.21.0" installtime="1689857950" expectedhash="95FC544DABF34D369D36B43C8A5BA5B0">
   <Submarine file="%ModDir%/BeaconStations/Modules/Beacon_PowerPod.sub" />
   <Submarine file="%ModDir%/BeaconStations/Modules/Beacon_Deco_Cargo18E.sub" />
   <Submarine file="%ModDir%/BeaconStations/Modules/Beacon_BoardingShuttle.sub" />
@@ -61,7 +61,6 @@
   <BeaconStation file="%ModDir%/BeaconStations/BeaconSING11B.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconSING11B_Bandit.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconUBER01.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconUBER02.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconUBER03.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconUBER03_bandit.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconUBER04.sub" />
@@ -79,4 +78,5 @@
   <Text file="%ModDir%/Localisation/Beacons_French.xml" />
   <Text file="%ModDir%/Localisation/Beacons_Finnish.xml" />
   <Text file="%ModDir%/Localisation/Beacons_Polish.xml" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconT01.sub" />
 </contentpackage>

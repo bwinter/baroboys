@@ -482,4 +482,78 @@
     <Body width="164" radius="55" density="18" />
     <Holdable canBeCombined="false" removeOnCombined="false" slots="RightHand+LeftHand,Any" holdangle="0" holdpos="36,-20" msg="ItemMsgPickUpSelect" />
   </Item>
+  <Item name="Makeshift Pirate Diving Suit" identifier="piratedivingsuitmakeshift" category="Diving,Equipment" tags="diving,deepdiving,divinggear_wearableindoors,provocative" scale="0.5" fireproof="true" description="" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy" botpriority="3">
+    <Deconstruct time="1" />
+    <InventoryIcon texture="%ModDir%/Items/Pirates/PirateSuitIcon.png" sourcerect="0,0,127,120" origin="0.5,0.5" />
+    <Sprite name="Pirate Diving Suit Item" texture="%ModDir%/Items/Pirates/PirateSuit_Items.png" sourcerect="0,0,157,121" depth="0.55" origin="0.5,0.5" />
+    <ContainedSprite name="Respawn Diving Suit In Vertical Locker" allowedcontainertags="divingsuitcontainervertical" texture="%ModDir%/Items/Pirates/PirateSuit_Items.png" sourcerect="181,0,70,192" depth="0.55" origin="0.5,0.5" />
+    <ContainedSprite name="Respawn Diving Suit Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="Content/Items/Containers/containers.png" sourcerect="118,379,77,214" depth="0.55" origin="-0.12,-0.13" />
+    <ContainedSprite name="Respawn Diving Suit In Horizontal Locker" allowedcontainertags="divingsuitcontainerhorizontal" texture="%ModDir%/Items/Pirates/PirateSuit_Items.png" sourcerect="0,193,230,63" depth="0.55" origin="0.6,0.5" />
+    <Body radius="45" width="34" density="20" />
+    <Wearable slots="OuterClothes" msg="ItemMsgEquipSelect" displaycontainedstatus="true" canbeselected="false" canbepicked="true" pickkey="Select">
+      <sprite name="Pirate Diving Suit Helmet Wearable" texture="%ModDir%/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="false" alphaclipotherwearables="true" sourcerect="100,409,103,103" origin="0.5,0.5">
+        <LightComponent range="200.0" lightcolor="250,224,165,255" powerconsumption="10" IsOn="true">
+          <StatusEffect type="OnWearing" target="This,Character" Voltage="1.0" setvalue="true">
+            <Conditional IsDead="false" />
+          </StatusEffect>
+          <LightTexture texture="Content/Lights/divinghelmetlight.png" origin="0.05, 0.5" size="1.0,1.0" />
+          <IsActive condition="gt 10.0" />
+        </LightComponent>
+        <LightComponent range="200.0" lightcolor="250,224,165,255" powerconsumption="10" IsOn="true" flicker="0.8" flickerspeed="1.0" pulsefrequency="0.1" pulseamount="0.5">
+          <StatusEffect type="OnWearing" target="This,Character" Voltage="1.0" setvalue="true">
+            <Conditional IsDead="false" />
+          </StatusEffect>
+          <LightTexture texture="Content/Lights/divinghelmetlight.png" origin="0.05, 0.5" size="1.0,1.0" />
+          <IsActive condition="lte 10.0" />
+        </LightComponent>
+      </sprite>
+      <sprite name="Respawn Diving Suit Torso" texture="%ModDir%/Items/Pirates/PirateSuit.png" limb="Torso" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+      <sprite name="Respawn Diving Suit Right Hand" texture="%ModDir%/Items/Pirates/PirateSuit.png" limb="RightHand" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+      <sprite name="Respawn Diving Suit Left Hand" texture="%ModDir%/Items/Pirates/PirateSuit.png" limb="LeftHand" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+      <sprite name="Respawn Diving Suit Right Lower Arm" texture="%ModDir%/Items/Pirates/PirateSuit.png" limb="RightArm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+      <sprite name="Respawn Diving Suit Left Lower Arm" texture="%ModDir%/Items/Pirates/PirateSuit.png" limb="LeftArm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+      <sprite name="Respawn Diving Suit Right Upper Arm" texture="%ModDir%/Items/Pirates/PirateSuit.png" limb="RightForearm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+      <sprite name="Respawn Diving Suit Left Upper Arm" texture="%ModDir%/Items/Pirates/PirateSuit.png" limb="LeftForearm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+      <sprite name="Respawn Diving Suit Waist" texture="%ModDir%/Items/Pirates/PirateSuit.png" limb="Waist" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+      <sprite name="Respawn Diving Suit Right Thigh" texture="%ModDir%/Items/Pirates/PirateSuit.png" limb="RightThigh" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+      <sprite name="Respawn Diving Suit Left Thigh" texture="%ModDir%/Items/Pirates/PirateSuit.png" limb="LeftThigh" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+      <sprite name="Respawn Diving Suit Right Leg" texture="%ModDir%/Items/Pirates/PirateSuit.png" limb="RightLeg" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+      <sprite name="Respawn Diving Suit Left Leg" texture="%ModDir%/Items/Pirates/PirateSuit.png" limb="LeftLeg" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+      <sprite name="Respawn Diving Suit Left Shoe" texture="%ModDir%/Items/Pirates/PirateSuit.png" limb="LeftFoot" sound="footstep_armor_heavy" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+      <sprite name="Respawn Diving Suit Right Shoe" texture="%ModDir%/Items/Pirates/PirateSuit.png" limb="RightFoot" sound="footstep_armor_heavy" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+      <StatusEffect type="OnWearing" target="Character" UseHullOxygen="true" />
+      <StatusEffect type="OnWearing" target="Character" ObstructVision="true" SpeedMultiplier="0.7" PropulsionSpeedMultiplier="0.5" setvalue="true" disabledeltatime="true" />
+      <StatusEffect type="OnWearing" target="this,Character" PressureProtection="10000.0" setvalue="true" disabledeltatime="true">
+        <Conditional condition="gt 0.0" />
+      </StatusEffect>
+      <StatusEffect type="OnWearing" target="this,Character" OxygenAvailable="1000.0" Condition="-0.2" comparison="and">
+        <Conditional IsDead="false" />
+        <Conditional InWater="true" />
+        <Conditional condition="gt 0.0" />
+      </StatusEffect>
+      <StatusEffect type="OnWearing" target="this" comparison="and">
+        <Conditional condition="lt 5.0" />
+        <Conditional condition="gt 0.0" />
+        <Sound file="Content/Items/WarningBeepSlow.ogg" range="250" loop="true" />
+      </StatusEffect>
+      <StatusEffect type="OnWearing" target="this">
+        <Conditional condition="lte 0.0" />
+        <Sound file="Content/Items/WarningBeep.ogg" range="250" loop="true" />
+      </StatusEffect>
+      <StatusEffect type="OnWearing" target="Character" LowPassMultiplier="0.2" setvalue="true">
+        <Sound file="Content/Items/Diving/DivingSuitLoop1.ogg" range="250" loop="true" />
+        <Sound file="Content/Items/Diving/DivingSuitLoop2.ogg" range="250" loop="true" />
+      </StatusEffect>
+      <StatusEffect type="OnWearing" target="this,Character">
+        <Conditional condition="lte 0.0" />
+        <Sound file="Content/Items/Diving/ITEMS_divingSuitOxygenLeakLoop.ogg" range="200" loop="true" dontmuffle="true" />
+      </StatusEffect>
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="blunttrauma,gunshotwound,bitewounds,lacerations,bleeding" damagemultiplier="0.75" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier armorsector="0.0,360.0" afflictiontypes="burn" damagemultiplier="0.75" damagesound="" deflectprojectiles="true" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness" damagemultiplier="0.5" damagesound="LimbArmor" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="huskinfection" probabilitymultiplier="0.5" damagesound="LimbArmor" />
+    </Wearable>
+    <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="0,-50" handle1="-10,-20" handle2="10,-20" holdangle="45" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" />
+    <aitarget maxsightrange="1500" />
+  </Item>
 </Items>

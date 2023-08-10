@@ -142,8 +142,12 @@
     <LocationType identifier="HuskgroundsDE" />
     <LocationTypeChange from="HuskgroundsDE" to="Blockade" requiredduration="1" cooldownafterchange="1" />
     <Characters>
-      <Character identifier="DE-Crawlerhusk" min="25" max="50" spawnpointtags="nest" requirekill="true" />
+      <Character identifier="DE-Crawlerhusk" min="15" max="30" spawnpointtags="nest" requirekill="true" />
+      <Character identifier="DE-Crawlerhusk" min="25" max="30" spawnpointtags="nest" requirekill="true" multiplayeronly="true" />
     </Characters>
+    <Items>
+      <Item identifier="selfdestructcrawleregg" spawnpointtags="nest" />
+    </Items>
     <message header="missionheader0.abandonedoutpostmonsters" text="missionmessage0.abandonedoutpostmonsters" />
   </HuskCrawlerLairMission>
   <WasteyardMission identifier="wasteyard" tags="wastelair" type="OutpostDestroy" reward="5500" difficulty="4" commonness="100" allowretry="true" sonarlabel="Waste Infected" unhideentitysubcategories="abandonedmonster" requireCorrectLocationType="true">
@@ -230,7 +234,7 @@
 		<message header="missionheader1.pirate_lord" text="missionmessage1.pirate_lord"/>
 	</PirateMission>
 	-->
-  <PirateMission type="Pirate" identifier="pirate_heavy" tags="piratemission" difficulty="4" commonness="20" reward="8000" achievementidentifier="piratemission" addedmissiondifficultyperplayer="8">
+  <PirateMission type="Pirate" identifier="pirate_heavy" tags="piratemission,heavypirate" difficulty="4" commonness="20" reward="8000" achievementidentifier="piratemission" addedmissiondifficultyperplayer="8">
     <Reputation identifier="coalition" amount="7" />
     <Reputation identifier="separatists" amount="7" />
     <SubmarineTypes>
@@ -275,7 +279,7 @@
     <message header="missionheader0.pirate_heavy" text="missionmessage0.pirate_heavy" />
     <message header="missionheader1.pirate_heavy" text="missionmessage1.pirate_heavy" />
   </PirateMission>
-  <PirateMission type="Pirate" identifier="pirate_party" tags="piratemission" difficulty="4" commonness="20" reward="12000" achievementidentifier="piratemission" addedmissiondifficultyperplayer="8">
+  <PirateMission type="Pirate" identifier="pirate_party" tags="piratemission,partypirate" difficulty="4" commonness="20" reward="12000" achievementidentifier="piratemission" addedmissiondifficultyperplayer="8">
     <Reputation identifier="coalition" amount="3" />
     <Reputation identifier="separatists" amount="3" />
     <Reputation identifier="huskcult" amount="10" />
@@ -330,7 +334,7 @@
     <message header="missionheader1.pirate_party" text="missionmessage1.pirate_party" />
   </PirateMission>
   <!--STRANGE VESSEL MISSIONS-->
-  <PirateMission type="Pirate" identifier="pirate_piezo" tags="piratemission" difficulty="4" commonness="20" reward="12000" achievementidentifier="piratemission" addedmissiondifficultyperplayer="8">
+  <PirateMission type="Pirate" identifier="pirate_piezo" tags="piratemission,strangepirate" difficulty="4" commonness="20" reward="12000" achievementidentifier="piratemission" addedmissiondifficultyperplayer="8">
     <Reputation identifier="coalition" amount="10" />
     <Reputation identifier="separatists" amount="10" />
     <SubmarineTypes>
@@ -472,6 +476,7 @@
     <Reputation identifier="coalition" amount="-15" />
     <SubmarineTypes>
       <Submarine path="%ModDir%/EnemySubmarines/U-43TCoalition.sub" preferreddifficulty="20" alternatereward="0" />
+      <Submarine path="%ModDir%/EnemySubmarines/Starwalker [COALITION].sub" preferreddifficulty="20" alternatereward="0" />
     </SubmarineTypes>
     <Characters>
       <Character typeidentifier="coalition_captain" minamount="1" maxamount="1" />

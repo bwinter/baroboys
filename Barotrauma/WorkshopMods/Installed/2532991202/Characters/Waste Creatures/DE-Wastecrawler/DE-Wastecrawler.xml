@@ -46,10 +46,15 @@
     </chooserandom>
     <SwarmBehavior mindistfromclosest="100" maxdistfromcenter="10000" cohesion="0.1" />
   </ai>
-  <StatusEffect type="Always" target="This" disabledeltatime="true" onlyinside="true" stackable="false" delay="30">
+  <StatusEffect type="Always" target="This,NearbyCharacters" range="1000" tags="active" duration="0.1">
+    <Conditional isPlayer="true" />
+  </StatusEffect>
+  <StatusEffect type="Always" target="This" disabledeltatime="true" stackable="false" interval="10" comparison="And">
+    <Conditional HasStatusTag="active" />
+    <Conditional isDead="false" />
     <SpawnItem identifier="wastesporeemitter" />
   </StatusEffect>
-  <StatusEffect type="OnDeath" target="This" disabledeltatime="true" stackable="false" delay="600">
+  <StatusEffect type="OnDeath" target="This" disabledeltatime="true" stackable="false" delay="180">
     <RemoveCharacter />
   </StatusEffect>
 </Character>

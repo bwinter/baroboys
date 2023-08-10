@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CaveGenerationParameters>
   <Override>
-    <Cave identifier="crystalcave" minwidth="8000" maxwidth="10000" minheight="8000" maxheight="10000" commonness="0" minbranchcount="2" maxbranchcount="4" levelobjectamount="10000" destructiblewallratio="0.1">
+    <Cave identifier="crystalcave" minwidth="8000" maxwidth="10000" minheight="8000" maxheight="10000" commonness="0" minbranchcount="2" maxbranchcount="4" levelobjectamount="2500" destructiblewallratio="0.1">
       <Wall texture="%ModDir%/Caves/Crystal Cave/Objects/LevelWall.png" premultiplyalpha="false" />
       <WallEdge texture="%ModDir%/Caves/Crystal Cave/Objects/LevelWallEdge.png" />
       <WallDestroyed texture="%ModDir%/Common/DestructibleWall.png" premultiplyalpha="false" />
