@@ -27,6 +27,7 @@
       <StatusEffect type="OnUse" target="This" disabledeltatime="true">
         <Affliction identifier="bitewounds" amount="2" />
       </StatusEffect>
+      <Affliction identifier="wasteinfection" strength="1" probability="0.6" />
       <Conditional healthpercentage="lte 50" targetself="true" />
     </attack>
   </limb>

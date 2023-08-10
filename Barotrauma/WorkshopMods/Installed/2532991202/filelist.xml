@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="DynamicEuropa" steamworkshopid="2532991202" corepackage="false" modversion="1.1.102" gameversion="1.0.20.1" installtime="1686982915" expectedhash="265C3E6D8E0630232454048DE89070C4">
+<contentpackage name="DynamicEuropa" steamworkshopid="2532991202" corepackage="false" modversion="1.1.105" gameversion="1.0.21.0" installtime="1690748477" expectedhash="AD572DAD3574FEE8B9756A4EBC25DA53">
   <Afflictions file="%ModDir%/Integrations/Hungry Europans/Content/Afflictions.xml" />
   <Jobs file="%ModDir%/Events/Jobs.xml" />
   <Item file="%ModDir%/Integrations/Hungry Europans/Content/Items/Fabricators/fabricators.xml" />
@@ -28,6 +28,7 @@
   <Missions file="%ModDir%/Events/Missions.xml" />
   <Missions file="%ModDir%/Events/RandomEncounterMissions.xml" />
   <RandomEvents file="%ModDir%/Events/OutpostEvents.xml" />
+  <RandomEvents file="%ModDir%/Events/TransitEvents.xml" />
   <RandomEvents file="%ModDir%/Events/EventSets.xml" />
   <RandomEvents file="%ModDir%/Events/MissionEvents.xml" />
   <RandomEvents file="%ModDir%/Events/TriggerEvents.xml" />
@@ -105,8 +106,8 @@
   <EnemySubmarine file="%ModDir%/EnemySubmarines/Warden Raving Vessel 5.sub" />
   <EnemySubmarine file="%ModDir%/EnemySubmarines/Warden Raving Vessel 6.sub" />
   <EnemySubmarine file="%ModDir%/EnemySubmarines/Warden Raving Vessel 7.sub" />
-  <Submarine file="%ModDir%/EnemySubmarines/Warden Raving Vessel 8.sub" />
   <EnemySubmarine file="%ModDir%/EnemySubmarines/Warden Raving Vessel 8.sub" />
+  <EnemySubmarine file="%ModDir%/EnemySubmarines/Starwalker [COALITION].sub" />
   <OutpostModule file="%ModDir%/Modules/Custom/Station_Pirate/PirateAdminClubBlackOut-L.sub" />
   <OutpostModule file="%ModDir%/Modules/Custom/Station_Pirate/PirateAdminClubRebelPath-L.sub" />
   <OutpostModule file="%ModDir%/Modules/Custom/Station_Pirate/PirateAdminClubRebelPath-R.sub" />
@@ -144,22 +145,17 @@
   <OutpostModule file="%ModDir%/Modules/Custom/Station_Pirate/PirateMedicalModule1.sub" />
   <OutpostModule file="%ModDir%/Modules/Custom/Station_Pirate/PirateCrewModule1.sub" />
   <OutpostModule file="%ModDir%/Modules/Custom/Station/DE_Docking_Common_Lift_01.sub" />
-  <OutpostModule file="%ModDir%/Modules/Custom/Station_Pirate/PirateDockingModule_01.sub" />
   <OutpostModule file="%ModDir%/Modules/Custom/Station/DE_GeneralStoreSmall01.sub" />
   <OutpostModule file="%ModDir%/Modules/Custom/Station/DE_Hallway_Horizontal_Indust_3.sub" />
   <OutpostModule file="%ModDir%/Modules/Default/DE_ClownDistrict_Module_01.sub" />
   <OutpostModule file="%ModDir%/Modules/Default/DE_HuskDistrict_Module_01.sub" />
-  <OutpostModule file="%ModDir%/Modules/Custom/Station/DE_Docking_Construction_01.sub" />
   <Submarine file="%ModDir%/Modules/Custom/Lifts/StationLift_Industrial.sub" />
   <OutpostModule file="%ModDir%/Modules/Custom/Station/DE_Cafeteria_Small_01.sub" />
   <OutpostModule file="%ModDir%/Modules/Custom/Station_Pirate/PirateArmory1EE.sub" />
   <OutpostModule file="%ModDir%/Modules/Custom/Caves/DE_RockCaveBossModule1.sub" />
-  <OutpostModule file="%ModDir%/Modules/Custom/Caves/DE_RockCaveDocking1.sub" />
   <OutpostModule file="%ModDir%/Modules/Custom/Station/DE_MineShaft_L_01.sub" />
   <BeaconStation file="%ModDir%/Beacons/DE_Beacon_Small_Top_01_LD.sub" />
   <BeaconStation file="%ModDir%/Beacons/DE_Beacon_Small_Top_01_HD.sub" />
-  <OutpostModule file="%ModDir%/Modules/Custom/Station/DE_Docking_Tiny_01.sub" />
-  <OutpostModule file="%ModDir%/Modules/Custom/Station/DE_Crew_Indust_01_Large.sub" />
   <OutpostModule file="%ModDir%/Modules/Default/DE_AdminModule_01R.sub" />
   <OutpostModule file="%ModDir%/Modules/Default/DE_AdminModule_02L.sub" />
   <OutpostModule file="%ModDir%/Modules/Default/DE_AdminModule_02R.sub" />
@@ -182,8 +178,13 @@
   <OutpostModule file="%ModDir%/Modules/Custom/Wasteyard/DE_Wasteyard_Wreck_03.sub" />
   <OutpostModule file="%ModDir%/Modules/Custom/Wasteyard/DE_Wasteyard_Wreck_04.sub" />
   <OutpostModule file="%ModDir%/Modules/Custom/Wasteyard/DE_Wasteyard_Wreck_05.sub" />
-  <OutpostModule file="%ModDir%/Modules/Custom/Wasteyard/DE_Wasteyard_Docking.sub" />
   <Wreck file="%ModDir%/Wrecks/Moloch_Thalimus.sub" />
   <OutpostModule file="%ModDir%/Modules/Custom/Station/DE_Docking_Industrial_Lift_01.sub" />
   <EnemySubmarine file="%ModDir%/EnemySubmarines/U-42PiezoPirate.sub" />
+  <OutpostModule file="%ModDir%/Modules/Custom/Station/DE_Docking_Construction_01.sub" />
+  <OutpostModule file="%ModDir%/Modules/Custom/Station/DE_Docking_Tiny_01.sub" />
+  <OutpostModule file="%ModDir%/Modules/Custom/Caves/DE_RockCaveDocking1.sub" />
+  <OutpostModule file="%ModDir%/Modules/Custom/Wasteyard/DE_Wasteyard_Docking.sub" />
+  <OutpostModule file="%ModDir%/Modules/Custom/Station_Pirate/PirateDockingModule_01.sub" />
+  <OutpostModule file="%ModDir%/Modules/Custom/Station/DE_Crew_Indust_01_Large.sub" />
 </contentpackage>

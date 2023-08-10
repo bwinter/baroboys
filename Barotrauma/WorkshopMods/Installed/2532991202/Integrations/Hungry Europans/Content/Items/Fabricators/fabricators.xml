@@ -21,7 +21,7 @@
       </Fabricator>
       <ItemContainer capacity="0" canbeselected="false" hideitems="true" slotsperrow="1" uilabel="" allowuioverlap="true" />
       <ItemContainer capacity="1" canbeselected="true" hideitems="true" slotsperrow="1" uilabel="" allowuioverlap="true" />
-      <LightComponent range="0.0" lightcolor="255,255,255,111" IsOn="true" castshadows="false" allowingameediting="false">
+      <LightComponent range="0.0" lightcolor="255,255,255,111" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
         <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="241,497,238,396" depth="0.1" origin="0.5,0.5" alpha="1.0" />
       </LightComponent>
     </Item>
@@ -35,7 +35,7 @@
       </Fabricator>
       <ItemContainer capacity="0" canbeselected="false" hideitems="true" slotsperrow="1" uilabel="" allowuioverlap="true" />
       <ItemContainer capacity="1" canbeselected="true" hideitems="true" slotsperrow="1" uilabel="" allowuioverlap="true" />
-      <LightComponent range="0.0" lightcolor="255,255,255,111" IsOn="true" castshadows="false" allowingameediting="false">
+      <LightComponent range="0.0" lightcolor="255,255,255,111" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
         <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="721,497,238,396" depth="0.1" origin="0.5,0.5" alpha="1.0" />
       </LightComponent>
     </Item>

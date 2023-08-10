@@ -4,347 +4,6 @@
     <Sprite identifier="de_oldman" texture="Content/Map/Outposts/Art/Event_pic2.png" sourcerect="34,512,188,255" origin="0.5,0.5" />
   </EventSprites>
   <EventPrefabs>
-    <!--commsrelay EVENTS-->
-    <!--TODO: NEEDS EVENT SPRITE FOR TERMINAL-->
-    <ScriptedEvent identifier="commsrelay_randomencounter" commonness="100">
-      <TagAction criteria="player" tag="player" />
-      <TagAction criteria="itemidentifier:navterminal" tag="commsrelay" submarinetype="player" />
-      <TriggerAction target1tag="commsrelay" target2tag="player" applytotarget2="cre_trig_player" radius="100" waitforinteraction="true" />
-      <ConversationAction text="eventtext.commsrelay.monster" dialogtype="Small" targettag="cre_trig_player">
-        <Option text="eventtext.option.listen" endconversation="true">
-          <StatusEffectAction targettag="cre_trig_player">
-            <StatusEffect target="NearbyItems" tags="commsrelay" duration="10.5">
-              <Sound file="%ModDir%/Sounds/Events/MonsterBroadcast.ogg" volume="1" loop="true" />
-            </StatusEffect>
-          </StatusEffectAction>
-          <ConversationAction text="eventtext.commsrelay.monster.answer" dialogtype="Small" targettag="cre_trig_player" />
-          <MissionAction missiontag="randomencounter" locationtype="Waypoint,None" minlocationdistance="1" />
-          <ClearTagAction tag="cre_trig_player" />
-        </Option>
-        <Option text="eventtext.option.ignore" endconversation="true">
-          <ClearTagAction tag="cre_trig_player" />
-        </Option>
-      </ConversationAction>
-    </ScriptedEvent>
-    <!--TRIGGERED AT A WRECK TO ALERT YOU-->
-    <ScriptedEvent identifier="commsrelay_wreck">
-      <TagAction criteria="hullname:Airlock" tag="wreck" submarinetype="wreck" />
-      <TagAction criteria="hullname:Command room" tag="wreck" submarinetype="wreck" />
-      <TagAction criteria="hullname:Amidships" tag="wreck" submarinetype="wreck" />
-      <TagAction criteria="hullname:Mid aft side" tag="wreck" submarinetype="wreck" />
-      <TagAction criteria="hullname:Mid fore side" tag="wreck" submarinetype="wreck" />
-      <TagAction criteria="hullname:Reactor room" tag="wreck" submarinetype="wreck" />
-      <TagAction criteria="player" tag="player" />
-      <WaitAction time="30" />
-      <TriggerAction target1tag="wreck" target2tag="player" radius="500000" waitforinteraction="false" />
-      <Label name="checkeventstate" />
-      <CheckDataAction identifier="commsrelay_ruin_triggered" condition="neq 1">
-        <Success>
-          <SetDataAction identifier="commsrelay_multiwreck_triggered" operation="Set" value="1" />
-          <TagAction criteria="itemidentifier:navterminal" tag="commsrelay" submarinetype="player" />
-          <TriggerAction target1tag="commsrelay" target2tag="player" applytotarget2="crw_trig_player" radius="100" waitforinteraction="true" />
-          <ConversationAction text="eventtext.commsrelay.wreck" dialogtype="Small" targettag="crw_trig_player">
-            <Option text="eventtext.option.investigate">
-              <StatusEffectAction targettag="crw_trig_player">
-                <StatusEffect target="NearbyItems" tags="commsrelay" duration="10.5">
-                  <Sound file="%ModDir%/Sounds/Events/SOSBroadcast.ogg" volume="1" loop="true" />
-                </StatusEffect>
-              </StatusEffectAction>
-              <ConversationAction text="eventtext.commsrelay.wreck.answer" dialogtype="Small" targettag="crw_trig_player" />
-              <SpawnAction itemidentifier="broadcasterwreck" spawnlocation="wreck" />
-              <ClearTagAction tag="crw_trig_player" />
-              <SetDataAction identifier="commsrelay_multiwreck_triggered" operation="Set" value="0" />
-            </Option>
-            <Option text="eventtext.option.ignore">
-              <ConversationAction text="eventtext.general.decline" dialogtype="Small" targettag="crw_trig_player" />
-              <ClearTagAction tag="crw_trig_player" />
-              <SetDataAction identifier="commsrelay_multiwreck_triggered" operation="Set" value="0" />
-            </Option>
-          </ConversationAction>
-        </Success>
-        <Failure>
-          <WaitAction time="5" />
-          <GoTo name="checkeventstate" />
-        </Failure>
-      </CheckDataAction>
-    </ScriptedEvent>
-    <!--TRIGGERED BY PREVIOUS WRECK EVENT IF CUSTOM WRECK WITH SHUTTLES ARE LOADED
-			CURRENTLY DOESN'T WORK
-		<ScriptedEvent identifier="multiwreckevent" commonness="100">
-			<Label name="checkeventstate" />
-			<CheckDataAction identifier="commsrelay_ruin_triggered" condition="neq 1">
-				<Success>
-					<SetDataAction identifier="commsrelay_multiwreck_triggered" operation="Set" value="1" />
-					<TagAction criteria="player" tag="player"/>
-					<TagAction criteria="itemidentifier:navterminal" tag="commsrelay" submarinetype="player"/>
-					<TagAction criteria="itemidentifier:eventtrigger_multiwreck" tag="multiwreck" />
-					<TriggerAction target1tag="multiwreck" target2tag="player" applytotarget1="multiwrecktrigger" radius="1000000" waitforinteraction="false" allowmultipletargets="false"/>
-					<TriggerAction target1tag="multiwrecktrigger" target2tag="player" radius="1000000" waitforinteraction="false" allowmultipletargets="false"/>
-					<TriggerAction target1tag="commsrelay" target2tag="player" applytotarget2="crw_trig_player" radius="100" waitforinteraction="true"/>
-					<ConversationAction text="eventtext.commsrelay.wreck" dialogtype="Small" targettag="crw_trig_player">
-						<Option text="eventtext.option.investigate">
-							<StatusEffectAction targettag="crw_trig_player">
-								<StatusEffect target="NearbyItems" tags="commsrelay" duration="10.5">
-									<Sound file="%ModDir%/Sounds/Events/SOSBroadcast.ogg" volume="1" loop="true" />
-								</StatusEffect>
-							</StatusEffectAction>
-							<ConversationAction text="eventtext.commsrelay.wreck.answer" dialogtype="Small" targettag="crw_trig_player"/>
-							<SpawnAction itemidentifier="broadcasterwreck" spawnlocation="wreck" />
-							<ClearTagAction tag="crw_trig_player"/>
-						</Option>
-						<Option text="eventtext.option.ignore">
-							<ConversationAction text="eventtext.general.decline" dialogtype="Small" targettag="crw_trig_player"/>
-							<ClearTagAction tag="crw_trig_player"/>
-						</Option>
-					</ConversationAction>
-				</Success>
-				<Failure>
-					<WaitAction time="5" />
-					<GoTo name="checkeventstate" />
-				</Failure>
-			</CheckDataAction>
-		</ScriptedEvent>-->
-    <!--TRIGGERED AT A RUIN TO ALERT YOU-->
-    <ScriptedEvent identifier="commsrelay_ruin" commonness="100">
-      <WaitAction time="60" />
-      <CheckDataAction identifier="commsrelay_ruin_triggered" condition="neq 1">
-        <Success>
-          <Label name="checkeventstate" />
-          <CheckDataAction identifier="commsrelay_wreck_triggered" condition="neq 1">
-            <Success>
-              <SetDataAction identifier="commsrelay_ruin_triggered" operation="Set" value="1" />
-              <TagAction criteria="player" tag="player" />
-              <TagAction criteria="itemidentifier:navterminal" tag="commsrelay" submarinetype="player" />
-              <TriggerAction target1tag="commsrelay" target2tag="player" applytotarget2="crr_trig_player" radius="100" waitforinteraction="true" />
-              <ConversationAction text="eventtext.commsrelay.ruin" dialogtype="Small" targettag="crr_trig_player">
-                <Option text="eventtext.option.investigate">
-                  <StatusEffectAction targettag="crr_trig_player">
-                    <StatusEffect target="NearbyItems" tags="commsrelay" duration="10.5">
-                      <!--<Affliction identifier="broadcastruin" amount="10"/>-->
-                      <Sound file="%ModDir%/Sounds/Events/AlienBroadcast.ogg" volume="1" loop="true" />
-                    </StatusEffect>
-                  </StatusEffectAction>
-                  <ConversationAction text="eventtext.commsrelay.ruin.answer" dialogtype="Small" targettag="crr_trig_player" />
-                  <SpawnAction itemidentifier="broadcasterruin" spawnlocation="ruin" />
-                  <ClearTagAction tag="crr_trig_player" />
-                  <SetDataAction identifier="commsrelay_ruin_triggered" operation="Set" value="0" />
-                </Option>
-                <Option text="eventtext.option.ignore">
-                  <ConversationAction text="eventtext.general.decline" dialogtype="Small" targettag="crr_trig_player" />
-                  <ClearTagAction tag="crr_trig_player" />
-                  <SetDataAction identifier="commsrelay_ruin_triggered" operation="Set" value="0" />
-                </Option>
-              </ConversationAction>
-            </Success>
-            <Failure>
-              <WaitAction time="5" />
-              <GoTo name="checkeventstate" />
-            </Failure>
-          </CheckDataAction>
-        </Success>
-        <Failure>
-          <!--End-->
-        </Failure>
-      </CheckDataAction>
-    </ScriptedEvent>
-    <ScriptedEvent identifier="factionstowaway" commonness="50">
-      <TagAction criteria="player" tag="player" />
-      <SpawnAction itemidentifier="metalcrate" targettag="factionstowaway" spawnlocation="MainSub" spawnpointtype="cargo" ignorebyai="true" />
-      <Label name="stowawayreturn" />
-      <TriggerAction target1tag="factionstowaway" target2tag="player" applytotarget2="fsa_trig_player" radius="150" waitforinteraction="true" />
-      <ConversationAction text="eventtext.stowaway1.c1" dialogtype="Regular" eventsprite="Stowaway1A" targettag="fsa_trig_player">
-        <Option text="EventText.stowaway1.o1">
-          <ConversationAction text="eventtext.stowaway1.o1.c1" dialogtype="Regular" targettag="fsa_trig_player" eventsprite="Stowaway1A">
-            <Option text="EventText.stowaway1.o1.o1">
-              <ConversationAction text="EventText.stowaway1.o1.o1.c1" dialogtype="Regular" targettag="fsa_trig_player">
-                <Option text="EventText.stowaway1.o1.o1.o1">
-                  <ConversationAction text="EventText.stowaway1.o1.o1.o1.c1" dialogtype="Regular" targettag="fsa_trig_player">
-                    <Option text="EventText.stowaway1.o1.o1.o1.o1">
-                      <CheckReputationAction targettype="faction" identifier="separatists" condition="lte -20">
-                        <Success>
-                          <SpawnAction npcsetidentifier="abandonedoutpostnpcs" npcidentifier="banditleader" targettag="seperatistbomber" spawnpointtag="factionstowaway" team="2" />
-                          <ConversationAction text="eventtext.factionstowaway.separatist" dialogtype="Regular" targettag="fsa_trig_player" eventsprite="Stowaway1B" />
-                          <SpawnAction itemidentifier="volatilecompoundn" targetinventory="seperatistbomber" />
-                          <SpawnAction itemidentifier="volatilecompoundn" targetinventory="factionstowaway" />
-                          <ClearTagAction tag="fsa_trig_player" />
-                        </Success>
-                        <Failure>
-                          <CheckReputationAction targettype="faction" identifier="huskcult" condition="lte -20">
-                            <Success>
-                              <SpawnAction speciesname="Husk" targettag="cannedhusk" spawnpointtag="factionstowaway" />
-                              <SpawnAction itemidentifier="huskeggs" targetinventory="factionstowaway" />
-                              <AfflictionAction targettag="cannedhusk" affliction="stun" strength="30" />
-                              <ConversationAction text="eventtext.factionstowaway.cultist" dialogtype="Regular" targettag="fsa_trig_player" eventsprite="Stowaway1B" />
-                              <ClearTagAction tag="fsa_trig_player" />
-                            </Success>
-                            <Failure>
-                              <CheckReputationAction targettype="faction" identifier="clowns" condition="lte -20">
-                                <Success>
-                                  <SpawnAction npcsetidentifier="abandonedoutpostnpcs" npcidentifier="psychoclown" targettag="psychoclown" spawnpointtag="factionstowaway" team="2" />
-                                  <StatusEffectAction targettag="psychoclown">
-                                    <StatusEffect>
-                                      <GiveTalentInfo giverandom="false" talentidentifiers="chonkyhonks,psychoclown,waterprankster,enrollintoclowncollege" />
-                                    </StatusEffect>
-                                  </StatusEffectAction>
-                                  <AfflictionAction targettag="psychoclown" affliction="psychoclown" strength="100" />
-                                  <SpawnAction itemidentifier="toyhammer" targetinventory="factionstowaway" />
-                                  <SpawnAction itemidentifier="bikehorn" targetinventory="factionstowaway" />
-                                  <ConversationAction text="eventtext.factionstowaway.clown" dialogtype="Regular" targettag="fsa_trig_player" eventsprite="Stowaway1B" />
-                                  <ClearTagAction tag="fsa_trig_player" />
-                                </Success>
-                                <Failure>
-                                  <CheckReputationAction targettype="faction" identifier="coalition" condition="lte -20">
-                                    <Success>
-                                      <ConversationAction text="eventtext.factionstowaway.coalition.bad" dialogtype="Regular" targettag="fsa_trig_player" eventsprite="Stowaway1B" />
-                                      <MoneyAction amount="100" />
-                                      <ClearTagAction tag="fsa_trig_player" />
-                                    </Success>
-                                    <Failure>
-                                      <ConversationAction text="eventtext.factionstowaway.coalition.good" dialogtype="Regular" targettag="fsa_trig_player" eventsprite="Stowaway1B" />
-                                      <SpawnAction itemidentifier="coalitionmedal" targetinventory="factionstowaway" />
-                                      <SpawnAction itemidentifier="cigar" targetinventory="factionstowaway" />
-                                      <SpawnAction itemidentifier="rum" targetinventory="factionstowaway" />
-                                      <ClearTagAction tag="fsa_trig_player" />
-                                    </Failure>
-                                  </CheckReputationAction>
-                                </Failure>
-                              </CheckReputationAction>
-                            </Failure>
-                          </CheckReputationAction>
-                        </Failure>
-                      </CheckReputationAction>
-                    </Option>
-                    <Option text="EventText.generic.walkaway" endconversation="true">
-                      <!--Return-->
-                      <ClearTagAction tag="fsa_trig_player" />
-                      <GoTo name="stowawayreturn" />
-                    </Option>
-                  </ConversationAction>
-                </Option>
-                <Option text="EventText.generic.walkaway" endconversation="true">
-                  <!--Return-->
-                  <ClearTagAction tag="fsa_trig_player" />
-                  <GoTo name="stowawayreturn" />
-                </Option>
-              </ConversationAction>
-            </Option>
-          </ConversationAction>
-        </Option>
-        <Option text="EventText.generic.walkaway" endconversation="true">
-          <!--Return-->
-          <ClearTagAction tag="fsa_trig_player" />
-          <GoTo name="stowawayreturn" />
-        </Option>
-      </ConversationAction>
-    </ScriptedEvent>
-    <!--Seperatist Events-->
-    <ScriptedEvent identifier="factionseparatist" commonness="100">
-      <TagAction criteria="player" tag="player" />
-      <CheckReputationAction targettype="faction" identifier="separatists" condition="lte -60">
-        <Success>
-          <RNGAction chance="0.25">
-            <Success>
-              <TagAction criteria="itemtag:reactor" tag="potentialmeltdown" />
-              <StatusEffectAction targettag="potentialmeltdown">
-                <StatusEffect condition="35" setvalue="true" />
-              </StatusEffectAction>
-              <Label name="meltdownreturn" />
-              <TriggerAction target1tag="potentialmeltdown" target2tag="player" applytotarget1="meltdown" applytotarget2="fs_trig_player" radius="100" waitforinteraction="true" />
-              <ConversationAction text="eventtext.factionseparatist.meltdown" dialogtype="Regular" targettag="fs_trig_player">
-                <Option text="eventtext.factionseparatist.meltdown.option.pressure" endconversation="true">
-                  <SkillCheckAction targettag="fs_trig_player" requiredskill="electrical" requiredlevel="50">
-                    <Success>
-                      <StatusEffectAction targettag="meltdown">
-                        <StatusEffect condition="50" setvalue="false" />
-                      </StatusEffectAction>
-                      <ConversationAction text="eventtext.factionseparatist.meltdown.option.pressure.success" dialogtype="Regular" targettag="fs_trig_player" />
-                      <SpawnAction itemidentifier="detonator" targetinventory="fs_trig_player" />
-                      <ClearTagAction tag="fs_trig_player" />
-                    </Success>
-                    <Failure>
-                      <StatusEffectAction targettag="meltdown">
-                        <StatusEffect condition="1" setvalue="true" />
-                        <StatusEffect target="This">
-                          <sound file="Content/Items/Weapons/IncendiumGrenade.ogg" range="3000" />
-                          <Explosion range="500" ballastfloradamage="100" itemdamage="0" force="5" smoke="false">
-                            <Affliction identifier="burn" strength="20" />
-                            <Affliction identifier="burn" strength="25" probability="0.2" dividebylimbcount="false" />
-                            <Affliction identifier="stun" strength="3" />
-                          </Explosion>
-                          <Fire size="100.0" />
-                        </StatusEffect>
-                      </StatusEffectAction>
-                      <ConversationAction text="eventtext.factionseparatist.meltdown.option.pressure.failure" dialogtype="Regular" targettag="fs_trig_player" />
-                      <ClearTagAction tag="fs_trig_player" />
-                    </Failure>
-                  </SkillCheckAction>
-                </Option>
-                <Option text="EventText.generic.walkaway" endconversation="true">
-                  <!--Return-->
-                  <ClearTagAction tag="fs_trig_player" />
-                  <GoTo name="meltdownreturn" />
-                </Option>
-              </ConversationAction>
-            </Success>
-            <Failure>
-              <TagAction criteria="itemtag:hidden" tag="potentialIED" />
-              <TriggerAction target1tag="potentialIED" target2tag="player" applytotarget1="IED" applytotarget2="fs_trig_player" radius="100" waitforinteraction="false" />
-              <ConversationAction text="eventtext.factionseparatist.smellofsulfur" dialogtype="Small" targettag="fs_trig_player" />
-              <SpawnAction itemidentifier="volatilecompoundn" targetinventory="IED" />
-              <ClearTagAction tag="fs_trig_player" />
-            </Failure>
-          </RNGAction>
-        </Success>
-        <Failure>
-          <CheckReputationAction targettype="faction" identifier="separatists" condition="lte 20">
-            <Success>
-              <RNGAction chance="0.5">
-                <Success>
-                  <TagAction criteria="itemtag:deepdiving" tag="breathtaking" />
-                  <RemoveItemAction targettag="breathtaking" itemidentifiers="oxygentank" />
-                  <SpawnAction itemidentifier="weldingfueltank" targetinventory="breathtaking" />
-                  <ClearTagAction tag="fs_trig_player" />
-                </Success>
-                <Failure>
-                  <TagAction criteria="itemtag:weldingequipment" tag="welderbomb" />
-                  <RemoveItemAction targettag="welderbomb" itemidentifiers="weldingfueltank" />
-                  <SpawnAction itemidentifier="oxygentank" targetinventory="welderbomb" />
-                  <ClearTagAction tag="fs_trig_player" />
-                </Failure>
-              </RNGAction>
-            </Success>
-            <Failure>
-              <TagAction criteria="itemtag:hidden" tag="deaddrop" />
-              <Label name="deaddropreturn" />
-              <TriggerAction target1tag="deaddrop" target2tag="player" applytotarget1="selecteddeaddrop" applytotarget2="fs_trig_player" radius="50" waitforinteraction="true" />
-              <ConversationAction text="eventtext.factionseparatist.hiddenstash" dialogtype="Small" targettag="fs_trig_player" eventsprite="vent">
-                <Option text="eventtext.option.investigate">
-                  <ConversationAction text="eventtext.factionseparatist.hiddenstash.take" targettag="fs_trig_player" />
-                  <SpawnAction itemidentifier="detonator" targetinventory="fs_trig_player" />
-                  <RNGAction chance="0.5">
-                    <Success>
-                      <MissionAction missionidentifier="stealingintel" locationtype="City,Outpost,Military,Base" requiredfaction="coalition" minlocationdistance="2" />
-                      <ClearTagAction tag="fs_trig_player" />
-                    </Success>
-                    <Failure>
-                      <!--TODO: MAKE SEPERATIST MISSIONS-->
-                      <!--<MissionAction missiontag="separatistmission"/>-->
-                      <!--Temporary give stealingintel while there is no separatist missions available-->
-                      <MissionAction missionidentifier="stealingintel" locationtype="City,Outpost,Military,Base" requiredfaction="coalition" minlocationdistance="2" />
-                      <ClearTagAction tag="fs_trig_player" />
-                    </Failure>
-                  </RNGAction>
-                </Option>
-                <Option text="eventtext.option.ignore" endconversation="true">
-                  <ClearTagAction tag="fs_trig_player" />
-                  <GoTo name="deaddropreturn" />
-                </Option>
-              </ConversationAction>
-            </Failure>
-          </CheckReputationAction>
-        </Failure>
-      </CheckReputationAction>
-    </ScriptedEvent>
     <!-- Job Board: Just a big ass switch that offers missions, your pick.-->
     <ScriptedEvent identifier="jobboardde" commonness="100">
       <WaitAction time="1" />
@@ -945,6 +604,7 @@
                 </Success>
                 <Failure>
                   <ConversationAction targettag="pso_trig_player" text="eventtext.shop.piratesecurityofficer.option.hyperzine.buy.failure" />
+                  <ClearTagAction tag="pso_trig_player" />
                   <GoTo name="patrol" />
                 </Failure>
               </CheckMoneyAction>
@@ -964,6 +624,7 @@
                 </Success>
                 <Failure>
                   <ConversationAction targettag="pso_trig_player" text="eventtext.shop.piratesecurityofficer.option.handcannonammo.buy.failure" />
+                  <ClearTagAction tag="pso_trig_player" />
                   <GoTo name="patrol" />
                 </Failure>
               </CheckMoneyAction>
@@ -979,12 +640,14 @@
                 </Success>
                 <Failure>
                   <ConversationAction targettag="pso_trig_player" text="eventtext.shop.piratesecurityofficer.option.assaultriflemagazine.buy.failure" />
+                  <ClearTagAction tag="pso_trig_player" />
                   <GoTo name="patrol" />
                 </Failure>
               </CheckMoneyAction>
             </Option>
             <Option text="eventtext.option.leave">
               <ConversationAction text="eventtext.general.decline" targettag="pso_trig_player" />
+              <ClearTagAction tag="pso_trig_player" />
               <GoTo name="patrol" />
             </Option>
           </ConversationAction>
@@ -1193,6 +856,7 @@
                       <ConversationAction text="eventtext.piratesecurityofficer.attack" targettag="pso_trig_player" />
                       <CombatAction combatmode="Offensive" npctag="securitynpcpirate" enemytag="pso_trig_player" isinstigator="false" guardreaction="none" witnessreaction="none" />
                       <WaitAction time="60" />
+                      <ClearTagAction tag="pso_trig_player" />
                       <GoTo name="Patrol" />
                     </Option>
                   </ConversationAction>
@@ -1596,6 +1260,31 @@
           </CheckDataAction>
         </Success>
       </CheckReputationAction>
+    </ScriptedEvent>
+    <!-- Mission Events -->
+    <ScriptedEvent identifier="missionevent_pirateany" commonness="100">
+      <NPCWaitAction npctag="outpostmanager" wait="true" />
+      <ConversationAction text="eventtext.missionevent_piratemission1.c1" speakertag="outpostmanager" endeventifinterrupted="false" dialogtype="Small" />
+      <MissionAction missiontag="piratemission" />
+      <NPCWaitAction npctag="outpostmanager" wait="false" />
+    </ScriptedEvent>
+    <ScriptedEvent identifier="missionevent_pirateheavy" commonness="100">
+      <NPCWaitAction npctag="outpostmanager" wait="true" />
+      <ConversationAction text="eventtext.missionevent_piratemission1.c1" speakertag="outpostmanager" endeventifinterrupted="false" dialogtype="Small" />
+      <MissionAction missiontag="heavypirate" />
+      <NPCWaitAction npctag="outpostmanager" wait="false" />
+    </ScriptedEvent>
+    <ScriptedEvent identifier="missionevent_pirateparty" commonness="100">
+      <NPCWaitAction npctag="outpostmanager" wait="true" />
+      <ConversationAction text="eventtext.missionevent_piratemission2.c1" speakertag="outpostmanager" endeventifinterrupted="false" dialogtype="Small" />
+      <MissionAction missiontag="partypirate" />
+      <NPCWaitAction npctag="outpostmanager" wait="false" />
+    </ScriptedEvent>
+    <ScriptedEvent identifier="missionevent_piratestrange" commonness="100">
+      <NPCWaitAction npctag="outpostmanager" wait="true" />
+      <ConversationAction text="eventtext.missionevent_piratemission3.c1" speakertag="outpostmanager" endeventifinterrupted="false" dialogtype="Small" />
+      <MissionAction missiontag="strangepirate" />
+      <NPCWaitAction npctag="outpostmanager" wait="false" />
     </ScriptedEvent>
   </EventPrefabs>
 </Randomevents>

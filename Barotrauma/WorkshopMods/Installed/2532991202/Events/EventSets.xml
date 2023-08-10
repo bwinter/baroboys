@@ -102,6 +102,25 @@
         <ScriptedEvent identifier="bigbrother" commonness="150" probability="0.5" faction="coalition" />
         <ScriptedEvent identifier="explosivemishap" commonness="50" probability="0.5" />
       </EventSet>
+      <EventSet identifier="outpostevent.military.missionevents.europanridge" minleveldifficulty="15" maxleveldifficulty="35" locationtype="military,base,camp" allowatstart="true" chooserandom="true" eventcount="1" exhaustible="true">
+        <ScriptedEvent identifier="missionevent_pirateheavy" commonness="100" probability="0.5" />
+        <ScriptedEvent identifier="missionevent_pirateparty" commonness="100" probability="0.5" />
+      </EventSet>
+      <EventSet identifier="outpostevent.military.missionevents.aphoticplateau" minleveldifficulty="35" maxleveldifficulty="50" locationtype="military,base,camp" allowatstart="true" chooserandom="true" eventcount="1" exhaustible="true">
+        <ScriptedEvent identifier="missionevent_pirateheavy" commonness="100" probability="0.5" />
+        <ScriptedEvent identifier="missionevent_pirateparty" commonness="100" probability="0.5" />
+        <ScriptedEvent identifier="missionevent_piratestrange" commonness="50" probability="0.5" />
+      </EventSet>
+      <EventSet identifier="outpostevent.military.missionevents.thegreatsea" minleveldifficulty="50" maxleveldifficulty="65" locationtype="military,base,camp" allowatstart="true" chooserandom="true" eventcount="1" exhaustible="true">
+        <ScriptedEvent identifier="missionevent_pirateheavy" commonness="100" probability="0.5" />
+        <ScriptedEvent identifier="missionevent_pirateparty" commonness="50" probability="0.5" />
+        <ScriptedEvent identifier="missionevent_piratestrange" commonness="100" probability="0.5" />
+      </EventSet>
+      <EventSet identifier="outpostevent.military.missionevents.hydrothermalwastes" minleveldifficulty="65" maxleveldifficulty="90" locationtype="military,base,camp" allowatstart="true" chooserandom="true" eventcount="1" exhaustible="true">
+        <ScriptedEvent identifier="missionevent_pirateheavy" commonness="100" probability="0.5" />
+        <ScriptedEvent identifier="missionevent_pirateparty" commonness="100" probability="0.5" />
+        <ScriptedEvent identifier="missionevent_piratestrange" commonness="100" probability="0.5" />
+      </EventSet>
       <!-- Events specific to research outposts -->
       <EventSet identifier="outpostevent.research.randomevents" minleveldifficulty="0" maxleveldifficulty="80" locationtype="research,lab,study" allowatstart="true" chooserandom="true" onceperoutpost="true">
         <!-- 50% chance of getting a research-specific event (TODO: increase if/when we have more of these available?) -->
@@ -351,7 +370,7 @@
         <ScriptedEvent identifier="missionevent_escort1clowns" commonness="50" faction="clowns" />
       </EventSet>
       <!--  Faction-specific events that can only occur once. 
-				In a separate set to make these very common (when they are valid for the situation) -->
+        In a separate set to make these very common (when they are valid for the situation) -->
       <EventSet identifier="outpostevents.clowns" allowatstart="true" chooserandom="true" eventcount="3" faction="clowns">
         <ScriptedEvent identifier="clownspecialhire1" commonness="100" />
         <ScriptedEvent identifier="pathofthebikehorn1" commonness="100" />
@@ -385,63 +404,85 @@
     </EventSet>
   </Override>
   <!--PIRATE OUTPOSTS-->
-  <EventSet identifier="de_pirateoutpostevents" leveltype="outpost" locationtype="pirateoutpost" allowatstart="true" minleveldifficulty="0" maxleveldifficulty="100" chooserandom="false" ignorecooldown="true" additive="true">
+  <EventSet identifier="de_pirateoutpostevents" leveltype="outpost" locationtype="pirateoutpost" allowatstart="true" minleveldifficulty="0" maxleveldifficulty="100" chooserandom="false" ignorecooldown="true">
     <!-- ConstantEvents specific to pirate outposts -->
     <EventSet identifier="de_outpostevents.pirate.always" minleveldifficulty="0" maxleveldifficulty="100" locationtype="pirateoutpost" allowatstart="true" chooserandom="false" onceperoutpost="false">
       <ScriptedEvent identifier="piratesecurityofficer" commonness="100" />
     </EventSet>
     <EventSet identifier="de_outpostevents.pirate.random" minleveldifficulty="0" maxleveldifficulty="100" locationtype="pirateoutpost" allowatstart="true" chooserandom="true" onceperoutpost="false" eventcount="1" exhaustible="true">
-      <ScriptedEvent identifier="piratemissioninformant" commonness="100" />
+      <ScriptedEvent identifier="piratemissioninformant" commonness="100" probability="0.5" />
     </EventSet>
-    <!-- MissionEvents specific to pirate outposts -->
-    <EventSet identifier="outpostevents.basic.pirate.missionevents" minleveldifficulty="0" maxleveldifficulty="35" allowatstart="true" chooserandom="true" eventcount="3" exhaustible="true" additive="true">
-      <ScriptedEvent identifier="missionevent_killswarm_set1" commonness="10" />
-      <ScriptedEvent identifier="missionevent_killswarm_set2" commonness="75" />
-      <ScriptedEvent identifier="missionevent_killswarm_set3" commonness="25" />
-      <ScriptedEvent identifier="missionevent_killmonster_set1" commonness="10" />
-      <ScriptedEvent identifier="missionevent_killmonster_set2" commonness="75" />
-      <ScriptedEvent identifier="missionevent_killmonster_set3" commonness="25" />
-      <ScriptedEvent identifier="missionevent_salvageartifact" commonness="25" />
-      <ScriptedEvent identifier="missionevent_salvagewreck" commonness="60" />
-      <ScriptedEvent identifier="missionevent_crawlernest" commonness="120" />
-      <ScriptedEvent identifier="missionevent_mudraptornest" commonness="100" />
-      <ScriptedEvent identifier="missionevent_tigerthreshernest" commonness="50" />
-      <ScriptedEvent identifier="missionevent_clearruin" commonness="10" />
+    <!-- MissionEvents specific to pirate outposts 
+    <EventSet identifier="outpostevents.basic.pirate.missionevents" minleveldifficulty="0" maxleveldifficulty="35" allowatstart="true" chooserandom="true" eventcount="3" exhaustible="true">
+      <ScriptedEvent identifier="missionevent_killswarm_set1" commonness="10"/>
+      <ScriptedEvent identifier="missionevent_killswarm_set2" commonness="75"/>
+      <ScriptedEvent identifier="missionevent_killswarm_set3" commonness="25"/>
+      <ScriptedEvent identifier="missionevent_killmonster_set1" commonness="10"/>
+      <ScriptedEvent identifier="missionevent_killmonster_set2" commonness="75"/>
+      <ScriptedEvent identifier="missionevent_killmonster_set3" commonness="25"/>
+      <ScriptedEvent identifier="missionevent_salvageartifact" commonness="25"/>
+      <ScriptedEvent identifier="missionevent_salvagewreck" commonness="60"/>
+      <ScriptedEvent identifier="missionevent_crawlernest" commonness="120"/>
+      <ScriptedEvent identifier="missionevent_mudraptornest" commonness="100"/>
+      <ScriptedEvent identifier="missionevent_tigerthreshernest" commonness="50"/>
+      <ScriptedEvent identifier="missionevent_clearruin" commonness="10"/>
     </EventSet>
-    <EventSet identifier="outpostevents.advanced.pirate.missionevents" minleveldifficulty="35" maxleveldifficulty="50" allowatstart="true" chooserandom="true" eventcount="3" exhaustible="true" additive="true">
-      <ScriptedEvent identifier="missionevent_killswarm_set2" commonness="75" />
-      <ScriptedEvent identifier="missionevent_killswarm_set3" commonness="50" />
-      <ScriptedEvent identifier="missionevent_killswarm_set4" commonness="25" />
-      <ScriptedEvent identifier="missionevent_killmonster_set2" commonness="50" />
-      <ScriptedEvent identifier="missionevent_killmonster_set3" commonness="30" />
-      <ScriptedEvent identifier="missionevent_killmonster_set4" commonness="25" />
-      <ScriptedEvent identifier="missionevent_salvageartifact" commonness="70" />
-      <ScriptedEvent identifier="missionevent_salvagewreck" commonness="100" />
-      <ScriptedEvent identifier="missionevent_mudraptornest" commonness="70" />
-      <ScriptedEvent identifier="missionevent_tigerthreshernest" commonness="80" />
-      <ScriptedEvent identifier="missionevent_clearruin" commonness="60" />
+    <EventSet identifier="outpostevents.advanced.pirate.missionevents" minleveldifficulty="35" maxleveldifficulty="50" allowatstart="true" chooserandom="true" eventcount="3" exhaustible="true">
+      <ScriptedEvent identifier="missionevent_killswarm_set2" commonness="75"/>
+      <ScriptedEvent identifier="missionevent_killswarm_set3" commonness="50"/>
+      <ScriptedEvent identifier="missionevent_killswarm_set4" commonness="25"/>
+      <ScriptedEvent identifier="missionevent_killmonster_set2" commonness="50"/>
+      <ScriptedEvent identifier="missionevent_killmonster_set3" commonness="30"/>
+      <ScriptedEvent identifier="missionevent_killmonster_set4" commonness="25"/>
+      <ScriptedEvent identifier="missionevent_salvageartifact" commonness="70"/>
+      <ScriptedEvent identifier="missionevent_salvagewreck" commonness="100"/>
+      <ScriptedEvent identifier="missionevent_mudraptornest" commonness="70"/>
+      <ScriptedEvent identifier="missionevent_tigerthreshernest" commonness="80"/>
+      <ScriptedEvent identifier="missionevent_clearruin" commonness="60"/>
     </EventSet>
-    <EventSet identifier="outpostevents.veteran.pirate.missionevents" minleveldifficulty="50" maxleveldifficulty="100" allowatstart="true" chooserandom="true" eventcount="5" exhaustible="true" additive="true">
-      <ScriptedEvent identifier="missionevent_killswarm_set2" commonness="25" />
-      <ScriptedEvent identifier="missionevent_killswarm_set3" commonness="75" />
-      <ScriptedEvent identifier="missionevent_killswarm_set4" commonness="50" />
-      <ScriptedEvent identifier="missionevent_killmonster_set2" commonness="25" />
-      <ScriptedEvent identifier="missionevent_killmonster_set3" commonness="75" />
-      <ScriptedEvent identifier="missionevent_killmonster_set4" commonness="50" />
-      <ScriptedEvent identifier="missionevent_salvageartifact" commonness="140" />
-      <ScriptedEvent identifier="missionevent_salvagewreck" commonness="120" />
-      <ScriptedEvent identifier="missionevent_mudraptornest" commonness="70" />
-      <ScriptedEvent identifier="missionevent_tigerthreshernest" commonness="80" />
-      <ScriptedEvent identifier="missionevent_clearruin" commonness="90" />
-    </EventSet>
+    <EventSet identifier="outpostevents.veteran.pirate.missionevents" minleveldifficulty="50" maxleveldifficulty="100" allowatstart="true" chooserandom="true" eventcount="5" exhaustible="true">
+      <ScriptedEvent identifier="missionevent_killswarm_set2" commonness="25"/>
+      <ScriptedEvent identifier="missionevent_killswarm_set3" commonness="75"/>
+      <ScriptedEvent identifier="missionevent_killswarm_set4" commonness="50"/>
+      <ScriptedEvent identifier="missionevent_killmonster_set2" commonness="25"/>
+      <ScriptedEvent identifier="missionevent_killmonster_set3" commonness="75"/>
+      <ScriptedEvent identifier="missionevent_killmonster_set4" commonness="50"/>
+      <ScriptedEvent identifier="missionevent_salvageartifact" commonness="140"/>
+      <ScriptedEvent identifier="missionevent_salvagewreck" commonness="120"/>
+      <ScriptedEvent identifier="missionevent_mudraptornest" commonness="70"/>
+      <ScriptedEvent identifier="missionevent_tigerthreshernest" commonness="80"/>
+      <ScriptedEvent identifier="missionevent_clearruin" commonness="90"/>
+    </EventSet>-->
   </EventSet>
   <!--TRANSIT EVENTS-->
   <Override>
     <EventSet identifier="transitevents" leveltype="LocationConnection" allowatstart="true" chooserandom="false" campaign="true" ignoreintensity="true" additive="true">
-      <EventSet identifier="DEtransitevents.reputation.randomevents" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" ignorecooldown="true" chooserandom="true">
+      <EventSet identifier="DEtransitevents.reputation.randomevents" minleveldifficulty="0" maxleveldifficulty="90" allowatstart="true" ignorecooldown="true" chooserandom="true">
         <ScriptedEvent identifier="stowaway1" commonness="100" probability="0.1" triggercooldown="false" />
-        <ScriptedEvent identifier="factionstowaway" commonness="100" probability="0.1" />
-        <ScriptedEvent identifier="factionseparatist" commonness="100" probability="0.1" />
+        <ScriptedEvent identifier="factionstowaway" commonness="100" probability="0.1" triggercooldown="false" />
+        <ScriptedEvent identifier="factionseparatist" commonness="100" probability="0.1" triggercooldown="false" />
+      </EventSet>
+      <EventSet identifier="DEtransitevents.randomevents.beginner" minleveldifficulty="0" maxleveldifficulty="25" allowatstart="true" ignorecooldown="true" chooserandom="true">
+        <ScriptedEvent identifier="troubledengine" commonness="100" probability="0.1" triggercooldown="false" />
+        <ScriptedEvent identifier="reactormalfunction" commonness="100" probability="0.1" triggercooldown="false" />
+      </EventSet>
+      <EventSet identifier="DEtransitevents.randomevents.easy" minleveldifficulty="25" maxleveldifficulty="50" allowatstart="true" ignorecooldown="true" chooserandom="true">
+        <ScriptedEvent identifier="troubledengine" commonness="100" probability="0.1" triggercooldown="false" />
+        <ScriptedEvent identifier="reactormalfunction" commonness="100" probability="0.1" triggercooldown="false" />
+        <ScriptedEvent identifier="piratedivers25" commonness="100" probability="0.1" triggercooldown="false" />
+        <ScriptedEvent identifier="huskencounter25" commonness="100" probability="0.1" triggercooldown="false" />
+      </EventSet>
+      <EventSet identifier="DEtransitevents.randomevents.medium" minleveldifficulty="50" maxleveldifficulty="75" allowatstart="true" ignorecooldown="true" chooserandom="true">
+        <ScriptedEvent identifier="troubledengine" commonness="100" probability="0.1" triggercooldown="false" />
+        <ScriptedEvent identifier="reactormalfunction" commonness="100" probability="0.1" triggercooldown="false" />
+        <ScriptedEvent identifier="piratedivers50" commonness="100" probability="0.1" triggercooldown="false" />
+        <ScriptedEvent identifier="huskencounter50" commonness="100" probability="0.1" triggercooldown="false" />
+      </EventSet>
+      <EventSet identifier="DEtransitevents.randomevents.hard" minleveldifficulty="75" maxleveldifficulty="90" allowatstart="true" ignorecooldown="true" chooserandom="true">
+        <ScriptedEvent identifier="troubledengine" commonness="100" probability="0.1" triggercooldown="false" />
+        <ScriptedEvent identifier="reactormalfunction" commonness="100" probability="0.1" triggercooldown="false" />
+        <ScriptedEvent identifier="piratedivers75" commonness="100" probability="0.1" triggercooldown="false" />
+        <ScriptedEvent identifier="huskencounter75" commonness="100" probability="0.1" triggercooldown="false" />
       </EventSet>
       <EventSet identifier="DEtransitevents.commsrelay.wrecks" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" ignorecooldown="true" chooserandom="false">
         <ScriptedEvent identifier="commsrelay_wreck" commonness="1000" probability="1.0" triggercooldown="false" />

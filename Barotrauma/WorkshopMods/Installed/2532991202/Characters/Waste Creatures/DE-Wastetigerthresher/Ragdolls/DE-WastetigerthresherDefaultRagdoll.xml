@@ -28,7 +28,7 @@
       <affliction identifier="bitewounds" strength="5" probability="1" />
       <affliction identifier="bleeding" strength="25" probability="1" />
       <affliction identifier="stun" strength="0.1" probability="1" />
-      <affliction identifier="wasteinfection" strength="0.1" probability="0.2" />
+      <affliction identifier="wasteinfection" strength="2" probability="0.3" />
     </attack>
   </limb>
   <limb id="3" width="110" height="80" name="Torso" type="Torso" spriteorientation="NaN" flip="True" mirrorvertically="False" mirrorhorizontally="False" hide="False" attackpriority="1" steerforce="0" stepoffset="0,0" radius="0" mass="0" density="10" pullpos="0,0" refjoint="1" ignorecollisions="False" notes="" healthindex="0" friction="0.3" restitution="0.05" angulardamping="7" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" inheritlimbdepth="None" severedfadeouttime="10" applytailangle="False" sinefrequencymultiplier="1" sineamplitudemultiplier="1" blinkfrequency="0" blinkdurationin="0.2" blinkdurationout="0.5" blinkholdtime="0" blinkrotationin="0" blinkrotationout="45" blinkforce="50" onlyblinkinwater="False" blinktransitionin="Linear" blinktransitionout="Linear">

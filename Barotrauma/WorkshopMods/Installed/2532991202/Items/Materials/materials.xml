@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
-  <Item name="Giant Rubber Duck" identifier="giantrubberduck" category="Material" maxstacksize="8" Tags="toy" canbepicked="true" scale="0.5" impactsoundtag="impact_rubberduck">
+  <Item name="Giant Rubber Duck" identifier="giantrubberduck" category="Material" maxstacksize="8" Tags="toy,largeitem" canbepicked="true" scale="0.5" impactsoundtag="impact_rubberduck">
     <InventoryIcon texture="%ModDir%/Items/Materials/RubberDuck.png" sourcerect="1,0,36,35" />
     <Sprite texture="GiantRubberDuck.png" sourcerect="2,2,303,289" depth="0.55" origin="0.5,0.5" />
     <Body width="50" radius="138" density="0.3" />
@@ -21,7 +21,7 @@
       </StatusEffect>
     </Throwable>
   </Item>
-  <Item name="Big Rubber Duck" identifier="bigrubberduck" category="Material" maxstacksize="8" Tags="toy" canbepicked="true" scale="0.5" impactsoundtag="impact_rubberduck">
+  <Item name="Big Rubber Duck" identifier="bigrubberduck" category="Material" maxstacksize="8" Tags="toy,mediumitem" canbepicked="true" scale="0.5" impactsoundtag="impact_rubberduck">
     <InventoryIcon texture="%ModDir%/Items/Materials/RubberDuck.png" sourcerect="1,0,36,35" />
     <Sprite texture="BigRubberDuck.png" sourcerect="0,0,107,102" depth="0.55" origin="0.5,0.5" />
     <Body width="20" radius="45" density="0.6" />
@@ -42,7 +42,7 @@
       </StatusEffect>
     </Throwable>
   </Item>
-  <Item name="Rubber Duck" identifier="rubberduck" category="Material" maxstacksize="8" Tags="toy" canbepicked="true" scale="0.5" impactsoundtag="impact_rubberduck">
+  <Item name="Rubber Duck" identifier="rubberduck" category="Material" maxstacksize="8" Tags="toy" canbepicked="true,smallitem" scale="0.5" impactsoundtag="impact_rubberduck">
     <InventoryIcon texture="%ModDir%/Items/Materials/RubberDuck.png" sourcerect="1,0,36,35" />
     <Sprite texture="RubberDuck.png" sourcerect="0,0,37,35" depth="0.55" origin="0.5,0.5" />
     <Body width="5" radius="15" density="0.75" />
@@ -63,7 +63,7 @@
       </StatusEffect>
     </Throwable>
   </Item>
-  <Item name="Giant Rubber Duck" identifier="giantpiraterubberduck" category="Material" maxstacksize="8" Tags="toy" canbepicked="true" scale="0.5" impactsoundtag="impact_rubberduck">
+  <Item name="Giant Rubber Duck" identifier="giantpiraterubberduck" category="Material" maxstacksize="8" Tags="toy,largeitem" canbepicked="true" scale="0.5" impactsoundtag="impact_rubberduck">
     <InventoryIcon texture="%ModDir%/Items/Materials/PirateDuck.png" sourcerect="1,0,36,40" />
     <Sprite texture="GiantPirateDuck.png" sourcerect="0,0,303,329" depth="0.55" origin="0.5,0.5" />
     <Body width="50" radius="138" density="0.3" />
@@ -84,7 +84,7 @@
       </StatusEffect>
     </Throwable>
   </Item>
-  <Item name="Big Rubber Duck" identifier="bigpiraterubberduck" category="Material" maxstacksize="8" Tags="toy" canbepicked="true" scale="0.5" impactsoundtag="impact_rubberduck">
+  <Item name="Big Rubber Duck" identifier="bigpiraterubberduck" category="Material" maxstacksize="8" Tags="toy,mediumitem" canbepicked="true" scale="0.5" impactsoundtag="impact_rubberduck">
     <InventoryIcon texture="%ModDir%/Items/Materials/PirateDuck.png" sourcerect="1,0,36,40" />
     <Sprite texture="BigPirateDuck.png" sourcerect="0,0,107,116" depth="0.55" origin="0.5,0.5" />
     <Body width="20" radius="45" density="0.6" />
@@ -105,7 +105,7 @@
       </StatusEffect>
     </Throwable>
   </Item>
-  <Item name="Rubber Duck" identifier="piraterubberduck" category="Material" maxstacksize="8" Tags="toy" canbepicked="true" scale="0.5" impactsoundtag="impact_rubberduck">
+  <Item name="Rubber Duck" identifier="piraterubberduck" category="Material" maxstacksize="8" Tags="toy,smallitem" canbepicked="true" scale="0.5" impactsoundtag="impact_rubberduck">
     <InventoryIcon texture="%ModDir%/Items/Materials/PirateDuck.png" sourcerect="1,0,36,40" />
     <Sprite texture="PirateDuck.png" sourcerect="0,0,37,40" depth="0.55" origin="0.5,0.5" />
     <Body width="5" radius="15" density="0.75" />

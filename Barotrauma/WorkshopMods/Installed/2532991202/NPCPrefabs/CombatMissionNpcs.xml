@@ -394,6 +394,76 @@
         </Item>
       </ItemSet>
     </npc>
+    <npc identifier="piratediver" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="0.75" aimspeed="0.8" aimaccuracy="0.6">
+      <ItemSet commonness="0.4">
+        <Item identifier="pirateclothes" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <Item identifier="piratedivingsuitmakeshift" equip="true" />
+        <Item identifier="revolver">
+          <Item identifier="revolverround" />
+          <Item identifier="revolverround" />
+          <Item identifier="revolverround" />
+          <Item identifier="revolverround" />
+          <Item identifier="revolverround" />
+          <Item identifier="revolverround" />
+        </Item>
+        <Item identifier="divingknife" />
+        <Item identifier="ballistichelmet2" equip="true" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="0.4">
+        <Item identifier="pirateclothes" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <Item identifier="piratedivingsuitmakeshift" equip="true" />
+        <Item identifier="machinepistol">
+          <Item identifier="smgmagazine" />
+        </Item>
+        <Item identifier="smgmagazine" />
+        <Item identifier="divingknife" />
+        <Item identifier="ballistichelmet2" equip="true" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="0.3">
+        <Item identifier="pirateclothes" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <Item identifier="piratedivingsuitmakeshift" equip="true" />
+        <Item identifier="smg">
+          <Item identifier="smgmagazine" />
+        </Item>
+        <Item identifier="smgmagazine" />
+        <Item identifier="divingknife" />
+        <Item identifier="ballistichelmet2" equip="true" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="0.3">
+        <Item identifier="pirateclothes" equip="true" />
+        <Item identifier="idcard" equip="true" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <Item identifier="piratedivingsuitmakeshift" equip="true" />
+        <Item identifier="shotgun">
+          <Item identifier="shotgunshell" />
+          <Item identifier="shotgunshell" />
+          <Item identifier="shotgunshell" />
+          <Item identifier="shotgunshell" />
+          <Item identifier="shotgunshell" />
+          <Item identifier="shotgunshell" />
+        </Item>
+        <Item identifier="divingknife" />
+        <Item identifier="ballistichelmet2" equip="true" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
   </npcset>
   <!-- Raving Pirates -->
   <npcset identifier="partypirates">

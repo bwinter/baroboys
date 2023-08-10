@@ -33,13 +33,15 @@
     <item identifier="wasteblood" />
     <item identifier="antibloodloss1" />
   </inventory>
-  <StatusEffect type="Always" target="This" disabledeltatime="true" stackable="false" delay="10">
+  <StatusEffect type="Always" target="This,NearbyCharacters" range="1000" tags="active" duration="0.1">
+    <Conditional isPlayer="true" />
+  </StatusEffect>
+  <StatusEffect type="Always" target="This" disabledeltatime="true" stackable="false" interval="10" comparison="And">
+    <Conditional HasStatusTag="active" />
+    <Conditional isDead="false" />
     <SpawnItem identifier="wastesporeemitter" />
   </StatusEffect>
-  <StatusEffect type="OnUse" target="This" disabledeltatime="true" stackable="false">
-    <SpawnItem identifier="wastesporeemitter" />
-  </StatusEffect>
-  <StatusEffect type="OnDeath" target="This" disabledeltatime="true" stackable="false" delay="600">
+  <StatusEffect type="OnDeath" target="This" disabledeltatime="true" stackable="false" delay="180">
     <RemoveCharacter />
   </StatusEffect>
 </Character>

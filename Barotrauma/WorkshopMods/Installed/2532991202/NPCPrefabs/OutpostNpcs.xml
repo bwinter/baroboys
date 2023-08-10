@@ -79,7 +79,7 @@
         <Item identifier="handcuffs" />
         <Item identifier="antibleeding1" />
         <Item identifier="divingmask">
-          <Item idengineer="assaultrifle">
+          <Item identifier="assaultrifle">
             <Item identifier="assaultriflemagazine" />
           </Item>
           <Item identifier="assaultriflemagazine" amount="5" />
