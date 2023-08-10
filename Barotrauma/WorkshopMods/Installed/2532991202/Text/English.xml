@@ -2,10 +2,26 @@
 <infotext language="English" nowhitespace="false" translatedname="English">
   <!--NEW TRANSLATION NEEDED | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE-->
   <!--Move into Structures category when translating | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE-->
-  <entityname.molochshell_1>Moloch Shell Left</entityname.molochshell_1>
-  <entityname.molochshell_2>Moloch Shell Middle</entityname.molochshell_2>
-  <entityname.molochshell_3>Moloch Shell Right</entityname.molochshell_3>
   <!--Move into Dialog category when translating | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE-->
+  <eventtext.missionevent_piratemission1.c1>“We received multiple reports about a pirate vessel causing trouble. We need you to get rid of them by any means.”</eventtext.missionevent_piratemission1.c1>
+  <eventtext.missionevent_piratemission2.c1>“We received multiple reports about a pirate vessel blasting music into the depths and luring more monsters close to our stations. We need you to get rid of them by any means.”</eventtext.missionevent_piratemission2.c1>
+  <eventtext.missionevent_piratemission3.c1>“We recently lost contact to some of our vessels. We believe they got attacked by a strange vessel that was reported lurking around these parts. We need you to get rid of it to hopefully prevent other vessels getting lost in the future.”</eventtext.missionevent_piratemission3.c1>
+  <eventtext.piratedivers.monitor>The status monitor suddenly displays something inside the airlock...</eventtext.piratedivers.monitor>
+  <eventtext.huskencounter.monitor>The status monitor suddenly displays something inside the airlock...</eventtext.huskencounter.monitor>
+  <eventtext.troubledengine.monitor>The status monitor is displaying a warning about the engine malfunctioning. Better order a mechanic to take a look.</eventtext.troubledengine.monitor>
+  <eventtext.troubledengine.engine>The engine stopped working. Best to quickly get it back up and running.</eventtext.troubledengine.engine>
+  <eventtext.troubledengine.engine.success>You got the engine back up and running!</eventtext.troubledengine.engine.success>
+  <eventtext.troubledengine.engine.failure>The engine didn't start up. Try again?</eventtext.troubledengine.engine.failure>
+  <eventtext.troubledengine.engine.smack.failure>A part fell off. Surely nothing important... Just give it a bit of time and it'll probably start back up.</eventtext.troubledengine.engine.smack.failure>
+  <eventtext.option.useitem.wrench>Use Wrench</eventtext.option.useitem.wrench>
+  <eventtext.option.smack>Smack it!</eventtext.option.smack>
+  <eventtext.option.releasepressure>Release Pressure</eventtext.option.releasepressure>
+  <eventtext.option.dontbother>Let someone else deal with this...</eventtext.option.dontbother>
+  <eventtext.reactormalfunction.monitor>The status monitor is displaying a warning about a reactor malfunction. An engineer should probably take a look.</eventtext.reactormalfunction.monitor>
+  <eventtext.reactormalfunction.reactor>The reactor is malfunctioning and building up pressure. This is a serious issue and should be dealt with immediatly!</eventtext.reactormalfunction.reactor>
+  <eventtext.reactormalfunction.reactor.success>You resolved the issue and the reactor is returning to normal values!</eventtext.reactormalfunction.reactor.success>
+  <eventtext.reactormalfunction.reactor.failure>You failed to release the pressure. Try again?</eventtext.reactormalfunction.reactor.failure>
+  <eventtext.reactormalfunction.reactor.smack.failure>A part fell off. Let's hope it's nothing important...</eventtext.reactormalfunction.reactor.smack.failure>
   <!--Move into Missions category when translating | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE-->
   <!--Move into Characters category when translating | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE-->
   <!--Move into Talents category when translating | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE-->
@@ -261,6 +277,9 @@
   <entityname.pirateclotheshardPA>Pirate Clothes (Combat)</entityname.pirateclotheshardPA>
   <entitydescription.pirateclotheshardPA>A rugged outfit hand-crafted by the pirates, designed to endure the harsh conditions of seabound life on Europa. This specific outfit is worn by more experienced crew members and higher-ups to protect them during combat.</entitydescription.pirateclotheshardPA>
   <!-- Structures -->
+  <entityname.molochshell_1>Moloch Shell Left</entityname.molochshell_1>
+  <entityname.molochshell_2>Moloch Shell Middle</entityname.molochshell_2>
+  <entityname.molochshell_3>Moloch Shell Right</entityname.molochshell_3>
   <entityname.labelslogocoalition>Coalition Logo</entityname.labelslogocoalition>
   <entityname.labelslogocoalitioncolor>Coalition Logo Colored</entityname.labelslogocoalitioncolor>
   <entityname.labelslogocoalitiondamaged>Coalition Logo Damaged</entityname.labelslogocoalitiondamaged>

@@ -53,6 +53,7 @@
       <Affliction identifier="bleeding" strength="5" probability="0.5" />
       <Affliction identifier="stun" strength="0.1" probability="0.5" />
       <Affliction identifier="bitewounds" strength="2" probability="1" />
+      <Affliction identifier="wasteinfection" strength="1" probability="0.6" />
       <StatusEffect type="OnUse" target="This" disabledeltatime="true">
         <ReduceAffliction identifier="damage" strength="2" />
       </StatusEffect>

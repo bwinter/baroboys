@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CaveGenerationParameters>
   <Override>
-    <Cave identifier="icecave" minwidth="5000" maxwidth="7000" minheight="5000" maxheight="7000" commonness="0" minbranchcount="2" maxbranchcount="4" levelobjectamount="10000" destructiblewallratio="0.1">
+    <Cave identifier="icecave" minwidth="5000" maxwidth="7000" minheight="5000" maxheight="7000" commonness="0" minbranchcount="2" maxbranchcount="4" levelobjectamount="2500" destructiblewallratio="0.1">
       <Wall texture="%ModDir%/Caves/Ice Cave/Objects/LevelWall.png" premultiplyalpha="false" />
       <WallEdge texture="%ModDir%/Caves/Ice Cave/Objects/LevelWallEdge.png" />
       <WallDestroyed texture="%ModDir%/Common/DestructibleWall.png" premultiplyalpha="false" />

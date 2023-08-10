@@ -47,12 +47,13 @@
     <ParticleEmitter particle="heavygib" particleamount="2" scalemin="15" scalemax="15" velocitymin="0" velocitymax="0" anglemin="0" anglemax="360" />
     <ParticleEmitter particle="gib" particleamount="200" scalemin="1" scalemax="2" velocitymin="100" velocitymax="300" anglemin="0" anglemax="360" />
   </StatusEffect>
-  <StatusEffect type="OnUse" target="This" checkconditionalways="true" comparison="and" delay="1" stackable="false">
-    <Conditional isdead="false" />
-    <SpawnItem identifier="wastesporeemitter" spawnposition="This" count="2" />
+  <StatusEffect type="Always" target="This,NearbyCharacters" range="1000" tags="active" duration="0.1">
+    <Conditional isPlayer="true" />
   </StatusEffect>
-  <StatusEffect type="OnActive" target="This" checkconditionalways="true" comparison="and" delay="1" stackable="false">
-    <SpawnItem identifier="wastesporeemitter" spawnposition="This" />
+  <StatusEffect type="Always" target="This" disabledeltatime="true" stackable="false" interval="10" comparison="And">
+    <Conditional HasStatusTag="active" />
+    <Conditional isDead="false" />
+    <SpawnItem identifier="wastesporeemitter" spawnposition="This" count="2" />
   </StatusEffect>
   <inventory slots="Any, Any,Any,Any,Any" accessiblewhenalive="False" commonness="1">
     <item identifier="sulphuricacid" />
@@ -61,7 +62,7 @@
     <item identifier="swimbladder" />
     <item identifier="sulphuricacid" />
   </inventory>
-  <StatusEffect type="OnDeath" target="This" onlyoutside="true" disabledeltatime="true" stackable="false" delay="600">
+  <StatusEffect type="OnDeath" target="This" onlyoutside="true" disabledeltatime="true" stackable="false" delay="180">
     <RemoveCharacter />
   </StatusEffect>
 </Character>
