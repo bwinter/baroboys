@@ -1,42 +1,88 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <infotext language="Simplified Chinese" nowhitespace="true" translatedname="中文(简体)">
   <!-- Dialog -->
+  <eventtext.missionevent_piratemission1.c1>“我们屡次收到报道有艘捣乱的海盗船。我们需要你不择手段消灭他们。”</eventtext.missionevent_piratemission1.c1>
+  <eventtext.missionevent_piratemission2.c1>“我们屡次收到报道，有艘潜入深海的海盗船把音乐吹的震天响，吸引更多的怪物靠近我们的站点。我们需要你不择手段消灭他们。”</eventtext.missionevent_piratemission2.c1>
+  <eventtext.missionevent_piratemission3.c1>“我们最近与部分舰船失去了联系。我们相信他们遭到了报道中潜伏在该区域的一艘奇特舰船的袭击。我们需要你将其消灭期望在未来不要有其它舰船失联了。”</eventtext.missionevent_piratemission3.c1>
+  <eventtext.piratedivers.monitor>状态监控器突然显示在气闸有什么东西……</eventtext.piratedivers.monitor>
+  <eventtext.huskencounter.monitor>状态监控器突然显示在气闸有什么东西……</eventtext.huskencounter.monitor>
+  <eventtext.troubledengine.monitor>状态监控器的警报显示引擎出现了故障。最好派名机修工过去看一看。</eventtext.troubledengine.monitor>
+  <eventtext.troubledengine.engine>引擎停止运作了。最好赶紧将其恢复运转。</eventtext.troubledengine.engine>
+  <eventtext.troubledengine.engine.success>你恢复了引擎的运转！</eventtext.troubledengine.engine.success>
+  <eventtext.troubledengine.engine.failure>引擎并没有启动。再试试？</eventtext.troubledengine.engine.failure>
+  <eventtext.troubledengine.engine.smack.failure>有个零件脱落了下来。当然不是什么重要的……再给它点时间或许就能恢复了。</eventtext.troubledengine.engine.smack.failure>
+  <eventtext.option.useitem.wrench>使用扳手</eventtext.option.useitem.wrench>
+  <eventtext.option.smack>敲一下！</eventtext.option.smack>
+  <eventtext.option.releasepressure>释放压力</eventtext.option.releasepressure>
+  <eventtext.option.dontbother>让别人来处理……</eventtext.option.dontbother>
+  <eventtext.reactormalfunction.monitor>状态监控器的警报显示反应堆出现了故障。或许一名工程师应当前去检查。</eventtext.reactormalfunction.monitor>
+  <eventtext.reactormalfunction.reactor>反应堆出现了故障，压力正在不断增加。这是个严重的问题需要立即处理！</eventtext.reactormalfunction.reactor>
+  <eventtext.reactormalfunction.reactor.success>你解决了问题，反应堆的数值正在回归正常！</eventtext.reactormalfunction.reactor.success>
+  <eventtext.reactormalfunction.reactor.failure>你没能释放压力。再试试？</eventtext.reactormalfunction.reactor.failure>
+  <eventtext.reactormalfunction.reactor.smack.failure>有个零件脱落了下来。但愿不是什么要紧的……</eventtext.reactormalfunction.reactor.smack.failure>
+  <eventtext.bartender.buy.coalitionbeer>啤酒 - 联盟优质（10 马克）</eventtext.bartender.buy.coalitionbeer>
+  <eventtext.bartender.buy.separatistbeer>啤酒 - 木星军（10 马克）</eventtext.bartender.buy.separatistbeer>
+  <eventtext.bartender.buy.huskbeer>啤酒 - 液态飞升（59 马克）</eventtext.bartender.buy.huskbeer>
+  <eventtext.bartender.buy.clownbeer>啤酒 - 小丑果汁（38 马克）</eventtext.bartender.buy.clownbeer>
+  <eventtext.bartender.buy.whiskey>威士忌（125 马克）</eventtext.bartender.buy.whiskey>
+  <eventtext.bartender.buy.coalitionbeer.success.nodrunk>“相当热门的选择。”</eventtext.bartender.buy.coalitionbeer.success.nodrunk>
+  <eventtext.bartender.buy.separatistbeer.success.nodrunk>“啊对，劣势方。”</eventtext.bartender.buy.separatistbeer.success.nodrunk>
+  <eventtext.bartender.buy.huskbeer.success.nodrunk>“知道了。有趣的选择。但这东西你可要小心对待……我听说里面可能有寄生虫。”</eventtext.bartender.buy.huskbeer.success.nodrunk>
+  <eventtext.bartender.buy.clownbeer.success.nodrunk>“那个吗？拿好了。”</eventtext.bartender.buy.clownbeer.success.nodrunk>
+  <eventtext.bartender.buy.whiskey.success.nodrunk>“全欧罗巴的医生都推荐这个。”</eventtext.bartender.buy.whiskey.success.nodrunk>
+  <eventtext.bartender.outofstock>“抱歉，没货了。”</eventtext.bartender.outofstock>
+  <eventtext.shop.engineer.co.attack>“你会付出代价的，革命万岁！”</eventtext.shop.engineer.co.attack>
+  <eventtext.takeover.success>你听到有人调到了你们的频道：“够了！我们投降！站点是你们的了……不要再出现人员伤亡了！”</eventtext.takeover.success>
+  <eventtext.takeover.success.info>离开该站点并领取你的奖励。</eventtext.takeover.success.info>
+  <eventtext.takeover.complete>“干得漂亮！这个站点现在是我们的了。我们会派批自己人过来。过不了多久这里就归我们管了！至于现在，你应当离开这个站点。我们会把奖励给你……”</eventtext.takeover.complete>
+  <eventtext.takeover.attack>“我们到了！确保你的武器都装上了弹药关了保险！我们上吧！”</eventtext.takeover.attack>
+  <eventtext.gettakeovermission.general.isactive>“只有占领了上一个派你们船队去的站点，我们才能计划下一次袭击。”</eventtext.gettakeovermission.general.isactive>
+  <eventtext.gettakeovermission.coalition.highrep.askingforhelp>“啊，见到您真是太好了！您的船队表现真是出色！我们计划了新的一次袭击。您的船员愿意施以援手，再一次帮助占领周围的分离主义站点吗？”</eventtext.gettakeovermission.coalition.highrep.askingforhelp>
+  <eventtext.gettakeovermission.coalition.medrep.askingforhelp>“你们的船队做得还不错，因此我们想问问你是否能够在我们对附近联盟站点的新一轮袭击中协助我们？”</eventtext.gettakeovermission.coalition.medrep.askingforhelp>
+  <eventtext.gettakeovermission.coalition.lowrep.askingforhelp>“我们注意到了你们为了维持与我们的良好声望而付出的努力，因此我们愿意给你的船队一次机会证明你们的态度。在此次我们对附近分离主义站点的袭击中协助我们，很快你就能和我们的顶层人员打交道了！”</eventtext.gettakeovermission.coalition.lowrep.askingforhelp>
+  <eventtext.gettakeovermission.separatists.highrep.askingforhelp>“啊，见到您真是太好了！您的船队表现真是出色！我们计划了新的一次袭击。您的船员愿意施以援手，再一次帮助占领周围的联盟站点吗？”</eventtext.gettakeovermission.separatists.highrep.askingforhelp>
+  <eventtext.gettakeovermission.separatists.medrep.askingforhelp>“你们的船队做得还不错，因此我们想问问你是否能够在我们对附近联盟站点的新一轮袭击中协助我们？”</eventtext.gettakeovermission.separatists.medrep.askingforhelp>
+  <eventtext.gettakeovermission.separatists.lowrep.askingforhelp>“我们注意到了你们为了维持与我们的良好声望而付出的努力，因此我们愿意给你的船队一次机会证明你们的态度。在此次我们对附近联盟站点的袭击中协助我们，很快你就能和我们的顶层人员打交道了！”</eventtext.gettakeovermission.separatists.lowrep.askingforhelp>
+  <eventtext.gettakeovermission.option.accept>“是的，我们很乐意帮忙。哪个站点是我们的目标？”</eventtext.gettakeovermission.option.accept>
+  <eventtext.gettakeovermission.option.accept.answer>“来，我在您的地图上做个标记……我们也已经命令了一部分士兵在此次袭击中协助你和你的船员。他们一会就会加入你们。”</eventtext.gettakeovermission.option.accept.answer>
+  <eventtext.gettakeovermission.option.decline>”抱歉，但我们现在还有其它事情要优先处理。”</eventtext.gettakeovermission.option.decline>
+  <eventtext.gettakeovermission.option.decline.answer>“好吧。要是处理完了或是您改变了主意请通知我们。”</eventtext.gettakeovermission.option.decline.answer>
   <eventtext.piratemissionbroadcast.receive>“呀哈哈，看看谁来了？我瞧见好些可以抢的东西咯！但愿你们有备而来……”</eventtext.piratemissionbroadcast.receive>
   <eventtext.cocargobroadcast.receive>你正在接收另一艘舰艇发送的播送。该怎么做？</eventtext.cocargobroadcast.receive>
   <eventtext.cocargobroadcast.receive.accept.answer>“这里是CO-CT-43。快说你来这里是做什么！”</eventtext.cocargobroadcast.receive.accept.answer>
-  <eventtext.cocargobroadcast.receive.accept.answer.truth>（实话实说） “当然是来劫你们的货的……准备好被跳帮吧！”</eventtext.cocargobroadcast.receive.accept.answer.truth>
+  <eventtext.cocargobroadcast.receive.accept.answer.truth>（实话实说）“当然是来劫你们的货的……准备好被跳帮吧！”</eventtext.cocargobroadcast.receive.accept.answer.truth>
   <eventtext.cocargobroadcast.receive.accept.answer.truth.answer>“至少还讲诚信…… *各就各位！准备接敌*”</eventtext.cocargobroadcast.receive.accept.answer.truth.answer>
-  <eventtext.cocargobroadcast.receive.accept.answer.lie>（撒谎） “这是爱德华海军上将的官方命令，要求检查你们的货物中是否有可能的偷渡者。请配合我们把潜艇停下。”</eventtext.cocargobroadcast.receive.accept.answer.lie>
-  <eventtext.cocargobroadcast.receive.accept.answer.lie.success>“噢爱德华海军上将？是，我们立马停船！欢迎登船！”</eventtext.cocargobroadcast.receive.accept.answer.lie.success>
+  <eventtext.cocargobroadcast.receive.accept.answer.lie>（撒谎）“这是爱德华海军上将的官方命令，要求检查你们的货物中是否有可能的偷渡者。请配合我们把潜艇停下。”</eventtext.cocargobroadcast.receive.accept.answer.lie>
+  <eventtext.cocargobroadcast.receive.accept.answer.lie.success>“噢，爱德华海军上将？是，我们立马停船！欢迎登船！”</eventtext.cocargobroadcast.receive.accept.answer.lie.success>
   <eventtext.cocargobroadcast.receive.accept.answer.lie.failure>“你是把我们当傻子？没有爱德华海军上将这个人！管你们是谁，我们建议掉头别挡我们的路，不然没好果子。”</eventtext.cocargobroadcast.receive.accept.answer.lie.failure>
   <eventtext.factionseparatist.meltdown>在高压的作用下反应堆开始变形并嘎吱作响，该做什么？</eventtext.factionseparatist.meltdown>
   <eventtext.factionseparatist.meltdown.option.pressure>释放压力</eventtext.factionseparatist.meltdown.option.pressure>
   <eventtext.factionseparatist.meltdown.option.pressure.success>反应堆颤抖了几下，但你听到蒸汽从内核中呼啸而出。似乎有人用导线接了什么上去……</eventtext.factionseparatist.meltdown.option.pressure.success>
-  <eventtext.factionseparatist.meltdown.option.pressure.failure>伴随着反应堆的汩汩声，蒸汽使从内核中延申而出的保护管膨胀，看来得靠有资历的工程师才能搞定。</eventtext.factionseparatist.meltdown.option.pressure.failure>
+  <eventtext.factionseparatist.meltdown.option.pressure.failure>伴随着反应堆的汩汩声，从内核中延申而出的保护管因蒸汽而膨胀，看来得靠有资历的工程师才能搞定。</eventtext.factionseparatist.meltdown.option.pressure.failure>
   <eventtext.factionseparatist.smellofsulfur>硫磺的气味让你的鼻腔火辣辣的疼……</eventtext.factionseparatist.smellofsulfur>
   <eventtext.factionseparatist.hiddenstash>隐藏在墙中，你注意到有个小金属盒子正微微闪光。</eventtext.factionseparatist.hiddenstash>
   <eventtext.factionseparatist.hiddenstash.take>在一个雷管上你发现了一张纸条，上面详细记载了为了民主所需做的事。</eventtext.factionseparatist.hiddenstash.take>
-  <eventtext.bartender.offerdrink.nodrunk>看上去你很想来上一杯？</eventtext.bartender.offerdrink.nodrunk>
-  <eventtext.bartender.offerdrink.slightdrunk>看上去你很想再来一杯。</eventtext.bartender.offerdrink.slightdrunk>
-  <eventtext.bartender.offerdrink.drunk>再喝一杯？</eventtext.bartender.offerdrink.drunk>
-  <eventtext.bartender.buy.rum>朗姆酒 （150 马克）</eventtext.bartender.buy.rum>
-  <eventtext.bartender.buy.rum.success.nodrunk>只含人造甜味剂，抱歉。</eventtext.bartender.buy.rum.success.nodrunk>
-  <eventtext.bartender.buy.rum.success.slightdrunk>还有的是呢。</eventtext.bartender.buy.rum.success.slightdrunk>
-  <eventtext.bartender.buy.rum.success.drunk>再干了这一杯！</eventtext.bartender.buy.rum.success.drunk>
-  <eventtext.bartender.buy.rum.failure>我们只给当地人赊账，先拿点钱过来吧。</eventtext.bartender.buy.rum.failure>
-  <eventtext.bartender.tip>付小费并离开 （50 马克）</eventtext.bartender.tip>
-  <eventtext.bartender.tip.success>你的小费换来的是我的提示；离港后检查这个信号，也许能找到什么有价值的东西。</eventtext.bartender.tip.success>
-  <eventtext.bartender.tip.failure>要是赞扬也能当钱花就好了哥们，还是谢啦。</eventtext.bartender.tip.failure>
+  <eventtext.bartender.offerdrink.nodrunk>“看上去你很想来上一杯？”</eventtext.bartender.offerdrink.nodrunk>
+  <eventtext.bartender.offerdrink.slightdrunk>“看上去你很想再来一杯。”</eventtext.bartender.offerdrink.slightdrunk>
+  <eventtext.bartender.offerdrink.drunk>“再喝一杯？”</eventtext.bartender.offerdrink.drunk>
+  <eventtext.bartender.buy.rum>朗姆酒（150 马克）</eventtext.bartender.buy.rum>
+  <eventtext.bartender.buy.rum.success.nodrunk>“只含人造甜味剂，抱歉。”</eventtext.bartender.buy.rum.success.nodrunk>
+  <eventtext.bartender.buy.rum.success.slightdrunk>“还有的是呢。”</eventtext.bartender.buy.rum.success.slightdrunk>
+  <eventtext.bartender.buy.rum.success.drunk>“再干了这一杯！”</eventtext.bartender.buy.rum.success.drunk>
+  <eventtext.bartender.buy.rum.failure>“我们只给当地人赊账，先拿点钱过来吧。”</eventtext.bartender.buy.rum.failure>
+  <eventtext.bartender.tip>付小费并离开（50 马克）</eventtext.bartender.tip>
+  <eventtext.bartender.tip.success>“你的小费换来的是我的提示；离港后检查这个信号，也许能找到什么有价值的东西。”</eventtext.bartender.tip.success>
+  <eventtext.bartender.tip.failure>“要是赞扬也能当钱花就好了哥们，还是谢啦。”</eventtext.bartender.tip.failure>
   <eventtext.pirateoutpostevent>一名海盗在此止步并看着你，好像在等你做些什么。该怎么办？</eventtext.pirateoutpostevent>
   <eventtext.pirateoutpostevent.option.ignore>走开</eventtext.pirateoutpostevent.option.ignore>
   <eventtext.pirateoutpostevent.option.ignore.answer>你可不在乎，还有事要做呢。</eventtext.pirateoutpostevent.option.ignore.answer>
   <eventtext.pirateoutpostevent.option.ignore.answer.response>“嘿，等一等！”</eventtext.pirateoutpostevent.option.ignore.answer.response>
-  <eventtext.pirateoutpostevent.option.attack>攻击 （摧毁该海盗前哨站）</eventtext.pirateoutpostevent.option.attack>
+  <eventtext.pirateoutpostevent.option.attack>攻击（摧毁该海盗前哨站）</eventtext.pirateoutpostevent.option.attack>
   <eventtext.pirateoutpostevent.option.attack.answer>“我真的不喜欢你们这些肮脏的海盗渣滓的样子……除虫时间到！”</eventtext.pirateoutpostevent.option.attack.answer>
-  <eventtext.pirateoutpostevent.option.attack2>狂乱撕扯 （摧毁该海盗前哨站）</eventtext.pirateoutpostevent.option.attack2>
+  <eventtext.pirateoutpostevent.option.attack2>狂乱撕扯（摧毁该海盗前哨站）</eventtext.pirateoutpostevent.option.attack2>
   <eventtext.pirateoutpostevent.option.attack2.answer>“该送你们下地狱了！”</eventtext.pirateoutpostevent.option.attack2.answer>
   <eventtext.commsrelay.piratehaven>这个站点正尝试与你建立连接……</eventtext.commsrelay.piratehaven>
-  <eventtext.commsrelay.piratehaven.answer>嘿！你是不是傻？以为我们不检查对接的是谁？你再想想吧蠢货！你们都是和联盟混的！想都别想踏上我们的前哨站，不然就后悔吧，傻屌！滚！</eventtext.commsrelay.piratehaven.answer>
+  <eventtext.commsrelay.piratehaven.answer>嘿！你是不是傻？以为我们不检查对接的是谁？再想想吧蠢货！你们都是和联盟混的！想都别想踏上我们的前哨站，不然就后悔吧，傻屌！滚！</eventtext.commsrelay.piratehaven.answer>
   <eventtext.option.accept>接受</eventtext.option.accept>
   <eventtext.option.listen>聆听</eventtext.option.listen>
   <eventtext.option.investigate>调查</eventtext.option.investigate>
@@ -48,7 +94,7 @@
   <eventtext.commsrelay.monster.answer>萦绕的嚎叫在船壳间回响，肯定是什么在发出这些奇怪的信号。</eventtext.commsrelay.monster.answer>
   <eventtext.commsrelay.monster.answer>刺耳的尖叫让你不寒而栗，肯定是什么在发出这些奇怪的信号。</eventtext.commsrelay.monster.answer>
   <eventtext.commsrelay.wreck>你接收到了一种自动求救信号，或许值得调查……</eventtext.commsrelay.wreck>
-  <eventtext.commsrelay.wreck.answer>附近什么地方在发送SOS广播。</eventtext.commsrelay.wreck.answer>
+  <eventtext.commsrelay.wreck.answer>你接收到了当前地区附近某地发送的SOS广播。</eventtext.commsrelay.wreck.answer>
   <eventtext.commsrelay.ruin>你接收到了一种异星信号，或许值得调查……</eventtext.commsrelay.ruin>
   <eventtext.commsrelay.ruin.answer>诡异的呼啸声呼呼作响，唤醒了你深处的恐惧，肯定是什么在发出这些奇怪的信号。</eventtext.commsrelay.ruin.answer>
   <eventtext.commsrelay.closetosignal>奇怪的无线电信号越来越强了，肯定就在附近……</eventtext.commsrelay.closetosignal>
@@ -61,8 +107,8 @@
   <eventtext.cocivtransport.interact>你靠近了一名似乎受到了惊吓的平民。该怎么做呢？</eventtext.cocivtransport.interact>
   <eventtext.cocivtransport.option.rob>“赶紧把钱都交出来，不然别想活着走出去！”</eventtext.cocivtransport.option.rob>
   <eventtext.cocivtransport.option.rob.answer>“可以可以……我全部的钱都在这了！”</eventtext.cocivtransport.option.rob.answer>
-  <eventtext.cocivtransport.option.execute>“还有遗言吗？” （处决）</eventtext.cocivtransport.option.execute>
-  <eventtext.cocivtransport.option.execute.answer>“不不不不拜托等……”</eventtext.cocivtransport.option.execute.answer>
+  <eventtext.cocivtransport.option.execute>“还有遗言吗？”（处决）</eventtext.cocivtransport.option.execute>
+  <eventtext.cocivtransport.option.execute.answer>“不不不不，拜托等一……”</eventtext.cocivtransport.option.execute.answer>
   <eventtext.cocivtransport.option.hire>“不加入我们就和其他人一样去死吧！”</eventtext.cocivtransport.option.hire>
   <eventtext.cocivtransport.option.hire.success>“行行！要我干什么都可以，但拜托别伤害我！”</eventtext.cocivtransport.option.hire.success>
   <eventtext.cocivtransport.option.hire.failure>“要我和肮脏的海盗合伙还不如去死！”</eventtext.cocivtransport.option.hire.failure>
@@ -83,32 +129,32 @@
   <eventtext.jobboardde.option.salvagemission.info>-当地的洞穴中出现了信号 - 任何前去调查并将发现的东西带回的人都有报酬-</eventtext.jobboardde.option.salvagemission.info>
   <eventtext.jobboardde.option.salvagemission.accept>你想了想：“那里能捡的破烂一定不少！”</eventtext.jobboardde.option.salvagemission.accept>
   <eventtext.shop.engineer.interact>“我这有一些多余的材料，想买吗？但只能选1样！”</eventtext.shop.engineer.interact>
-  <eventtext.shop.engineer.option.fuelrod>4x 燃料棒 （900 马克）</eventtext.shop.engineer.option.fuelrod>
+  <eventtext.shop.engineer.option.fuelrod>4x 燃料棒（900 马克）</eventtext.shop.engineer.option.fuelrod>
   <eventtext.shop.engineer.option.fuelrod.buy.success>“来，额外的燃料棒。”</eventtext.shop.engineer.option.fuelrod.buy.success>
   <eventtext.shop.engineer.option.fuelrod.buy.failure>“抱歉，我这可不是做慈善的。”</eventtext.shop.engineer.option.fuelrod.buy.failure>
-  <eventtext.shop.engineer.option.fpga>2x FPGA电路 （250 马克）</eventtext.shop.engineer.option.fpga>
+  <eventtext.shop.engineer.option.fpga>2x FPGA电路（250 马克）</eventtext.shop.engineer.option.fpga>
   <eventtext.shop.engineer.option.fpga.buy.success>“上面还有加工台的味道呢。”</eventtext.shop.engineer.option.fpga.buy.success>
   <eventtext.shop.engineer.option.fpga.buy.failure>“你应该知道要钱吧？”</eventtext.shop.engineer.option.fpga.buy.failure>
-  <eventtext.shop.engineer.option.extinguisher>1x 灭火器 （100 马克）</eventtext.shop.engineer.option.extinguisher>
+  <eventtext.shop.engineer.option.extinguisher>1x 灭火器（100 马克）</eventtext.shop.engineer.option.extinguisher>
   <eventtext.shop.engineer.option.extinguisher.buy.success>“小心驶得万年船。”</eventtext.shop.engineer.option.extinguisher.buy.success>
   <eventtext.shop.engineer.option.extinguisher.buy.failure>“要是着火了你可要心痛咯。”</eventtext.shop.engineer.option.extinguisher.buy.failure>
   <eventtext.shop.engineer.unfriedly>“我们才不会帮像你这样的家伙。”</eventtext.shop.engineer.unfriedly>
   <eventtext.shop.engineer.attack>“你会付出代价的，革命万岁！”</eventtext.shop.engineer.attack>
   <eventtext.shop.quartermaster.interact>“想补焊接油罐的话，我有多的。”</eventtext.shop.quartermaster.interact>
-  <eventtext.shop.quartermaster.option.weldingfuel>8x 焊接油罐 （1000 马克）</eventtext.shop.quartermaster.option.weldingfuel>
+  <eventtext.shop.quartermaster.option.weldingfuel>8x 焊接油罐（1000 马克）</eventtext.shop.quartermaster.option.weldingfuel>
   <eventtext.shop.quartermaster.option.weldingfuel.buy.success>“记住，高度易燃！”</eventtext.shop.quartermaster.option.weldingfuel.buy.success>
   <eventtext.shop.quartermaster.option.weldingfuel.buy.failure>“抱歉，我这可不是做慈善的。”</eventtext.shop.quartermaster.option.weldingfuel.buy.failure>
-  <eventtext.shop.quartermaster.option.scrap>1x 废料 + 情报 （1000 马克）</eventtext.shop.quartermaster.option.scrap>
+  <eventtext.shop.quartermaster.option.scrap>1x 废料 + 情报（1000 马克）</eventtext.shop.quartermaster.option.scrap>
   <eventtext.shop.quartermaster.option.scrap.buy.success>“从不远处的沉船那拿的，让我在你的地图上标记……”</eventtext.shop.quartermaster.option.scrap.buy.success>
   <eventtext.shop.quartermaster.option.scrap.buy.failure>“孩子，这对我来说可不是垃圾，付钱。”</eventtext.shop.quartermaster.option.scrap.buy.failure>
   <eventtext.shop.securityofficer.interact>“想补弹药的话，我有多的，但只能卖你一盒！”</eventtext.shop.securityofficer.interact>
-  <eventtext.shop.securityofficer.option.coilgunammo>电磁枪弹药箱 （150 马克）</eventtext.shop.securityofficer.option.coilgunammo>
+  <eventtext.shop.securityofficer.option.coilgunammo>电磁枪弹药箱（150 马克）</eventtext.shop.securityofficer.option.coilgunammo>
   <eventtext.shop.securityofficer.option.coilgunammo.buy.success>“需要装填弹药。”</eventtext.shop.securityofficer.option.coilgunammo.buy.success>
   <eventtext.shop.securityofficer.option.coilgunammo.buy.failure>“我这弹药可不是白送的。”</eventtext.shop.securityofficer.option.coilgunammo.buy.failure>
-  <eventtext.shop.securityofficer.option.revolverammo>12x .38 左轮子弹 （600 马克）</eventtext.shop.securityofficer.option.revolverammo>
+  <eventtext.shop.securityofficer.option.revolverammo>12x .38 左轮子弹（600 马克）</eventtext.shop.securityofficer.option.revolverammo>
   <eventtext.shop.securityofficer.option.revolverammo.buy.success>“传统可靠的.38口径。”</eventtext.shop.securityofficer.option.revolverammo.buy.success>
   <eventtext.shop.securityofficer.option.revolverammo.buy.failure>“你应该知道子弹不是免费的，对吧？”</eventtext.shop.securityofficer.option.revolverammo.buy.failure>
-  <eventtext.shop.securityofficer.option.smgmagazine>2x 冲锋枪弹夹 （400 马克）</eventtext.shop.securityofficer.option.smgmagazine>
+  <eventtext.shop.securityofficer.option.smgmagazine>2x 冲锋枪弹夹（400 马克）</eventtext.shop.securityofficer.option.smgmagazine>
   <eventtext.shop.securityofficer.option.smgmagazine.buy.success>“.45口径，直击灵魂。”</eventtext.shop.securityofficer.option.smgmagazine.buy.success>
   <eventtext.shop.securityofficer.option.smgmagazine.buy.failure>“你应该知道子弹不是免费的，对吧？”</eventtext.shop.securityofficer.option.smgmagazine.buy.failure>
   <eventtext.securityofficer.interact>“有没有偷东西啊？”</eventtext.securityofficer.interact>
@@ -122,73 +168,73 @@
   <eventtext.securityofficer.bribe.option.rude>“安全官都是狗。”</eventtext.securityofficer.bribe.option.rude>
   <eventtext.securityofficer.bribe.option.rude.answer>“那你是想来硬的，是吧？”</eventtext.securityofficer.bribe.option.rude.answer>
   <eventtext.securityofficer.bribe.option.leave.answer>“发现可疑人员，全体待命。”</eventtext.securityofficer.bribe.option.leave.answer>
-  <eventtext.securityofficer.bribe.option.bribe.high>贿赂 （500 马克）</eventtext.securityofficer.bribe.option.bribe.high>
-  <eventtext.securityofficer.bribe.option.bribe.medium>贿赂 （250 马克）</eventtext.securityofficer.bribe.option.bribe.medium>
-  <eventtext.securityofficer.bribe.option.bribe.low>贿赂 （75 马克）</eventtext.securityofficer.bribe.option.bribe.low>
+  <eventtext.securityofficer.bribe.option.bribe.high>贿赂（500 马克）</eventtext.securityofficer.bribe.option.bribe.high>
+  <eventtext.securityofficer.bribe.option.bribe.medium>贿赂（250 马克）</eventtext.securityofficer.bribe.option.bribe.medium>
+  <eventtext.securityofficer.bribe.option.bribe.low>贿赂（75 马克）</eventtext.securityofficer.bribe.option.bribe.low>
   <eventtext.securityofficer.bribe.option.bribe.success>“转念一想，你不是我要找的家伙。”</eventtext.securityofficer.bribe.option.bribe.success>
   <eventtext.securityofficer.bribe.option.bribe.failure>“这么点钱就想贿赂我？”</eventtext.securityofficer.bribe.option.bribe.failure>
   <eventtext.securityofficer.bribe.option.bribe.rejected>“你是想贿赂我？”</eventtext.securityofficer.bribe.option.bribe.rejected>
   <eventtext.securityofficer.option.insult>侮辱</eventtext.securityofficer.option.insult>
   <eventtext.securityofficer.option.insult.answer>“你刚刚说什么！？再敢试试我可就上报了！”</eventtext.securityofficer.option.insult.answer>
   <eventtext.securityofficer.option.insult.answer.insult.answer>“够了！你被捕了！”</eventtext.securityofficer.option.insult.answer.insult.answer>
-  <eventtext.securityofficer.option.insult.leave.answer>“对，你最好还是滚远点！”</eventtext.securityofficer.option.insult.leave.answer>
+  <eventtext.securityofficer.option.insult.leave.answer>“对，你最好还是走远点！”</eventtext.securityofficer.option.insult.leave.answer>
   <eventtext.shop.piratesecurityofficer.interact>“要是想补给的话我他妈可有些军火。只卖一盒可要选好了。”</eventtext.shop.piratesecurityofficer.interact>
-  <eventtext.shop.piratesecurityofficer.option.hyperzine>加速粉剂 （500 马克）</eventtext.shop.piratesecurityofficer.option.hyperzine>
+  <eventtext.shop.piratesecurityofficer.option.hyperzine>加速粉剂（500 马克）</eventtext.shop.piratesecurityofficer.option.hyperzine>
   <eventtext.shop.piratesecurityofficer.option.hyperzine.buy.success>“噢，这可是好东西。”</eventtext.shop.piratesecurityofficer.option.hyperzine.buy.success>
   <eventtext.shop.piratesecurityofficer.option.hyperzine.buy.failure>“不付钱可嗨不了。”</eventtext.shop.piratesecurityofficer.option.hyperzine.buy.failure>
-  <eventtext.shop.piratesecurityofficer.option.handcannonammo>6x 手炮子弹 （1000 马克）</eventtext.shop.piratesecurityofficer.option.handcannonammo>
+  <eventtext.shop.piratesecurityofficer.option.handcannonammo>6x 手炮子弹（1000 马克）</eventtext.shop.piratesecurityofficer.option.handcannonammo>
   <eventtext.shop.piratesecurityofficer.option.handcannonammo.buy.success>“我敢发誓它能切穿任何联盟军的防弹衣、虾脊螳螂甚至摩洛克的护甲。”</eventtext.shop.piratesecurityofficer.option.handcannonammo.buy.success>
   <eventtext.shop.piratesecurityofficer.option.handcannonammo.buy.failure>“这看上去像是慈善吗？”</eventtext.shop.piratesecurityofficer.option.handcannonammo.buy.failure>
-  <eventtext.shop.piratesecurityofficer.option.assaultriflemagazine>2x 突击步枪弹夹 （1000 马克）</eventtext.shop.piratesecurityofficer.option.assaultriflemagazine>
+  <eventtext.shop.piratesecurityofficer.option.assaultriflemagazine>2x 突击步枪弹夹（1000 马克）</eventtext.shop.piratesecurityofficer.option.assaultriflemagazine>
   <eventtext.shop.piratesecurityofficer.option.assaultriflemagazine.buy.success>“由憎恨铸成，装满了恶意，可靠地突击。”</eventtext.shop.piratesecurityofficer.option.assaultriflemagazine.buy.success>
   <eventtext.shop.piratesecurityofficer.option.assaultriflemagazine.buy.failure>“你也是刚从废弃前哨站来的？我这要点钱。”</eventtext.shop.piratesecurityofficer.option.assaultriflemagazine.buy.failure>
   <eventtext.piratesecurityofficer.toll.low.interact>“不是谁想进就能进的。有他妈的通行费！一句忠告：最好付钱！”</eventtext.piratesecurityofficer.toll.low.interact>
-  <eventtext.piratesecurityofficer.toll.low.option.pay.high>交纳通行费 （1000 马克）</eventtext.piratesecurityofficer.toll.low.option.pay.high>
+  <eventtext.piratesecurityofficer.toll.low.option.pay.high>交纳通行费（1000 马克）</eventtext.piratesecurityofficer.toll.low.option.pay.high>
   <eventtext.piratesecurityofficer.toll.low.option.pay.high.success>“哈！我就喜欢这样。不缠着你们了！”</eventtext.piratesecurityofficer.toll.low.option.pay.high.success>
   <eventtext.piratesecurityofficer.toll.low.option.pay.high.success.extra.reputation>“不如这样……要是你出两份钱，我就在其他海盗那里给你们说几句好话！”</eventtext.piratesecurityofficer.toll.low.option.pay.high.success.extra.reputation>
-  <eventtext.piratesecurityofficer.toll.low.option.pay.high.success.extra.reputation.buy>付1000马克 （联盟声望 -20）</eventtext.piratesecurityofficer.toll.low.option.pay.high.success.extra.reputation.buy>
+  <eventtext.piratesecurityofficer.toll.low.option.pay.high.success.extra.reputation.buy>付1000马克（联盟声望 -20）</eventtext.piratesecurityofficer.toll.low.option.pay.high.success.extra.reputation.buy>
   <eventtext.piratesecurityofficer.toll.low.option.pay.high.success.extra.reputation.buy.success>“哈！就喜欢你这样的！”</eventtext.piratesecurityofficer.toll.low.option.pay.high.success.extra.reputation.buy.success>
   <eventtext.piratesecurityofficer.toll.low.option.pay.high.success.extra.reputation.buy.failure>“哥们你钱都不够……想糊弄我？滚！”</eventtext.piratesecurityofficer.toll.low.option.pay.high.success.extra.reputation.buy.failure>
   <eventtext.piratesecurityofficer.toll.low.option.pay.high.success.extra.reputation.declined>“啧！行……继续拍联盟的马屁吧！”</eventtext.piratesecurityofficer.toll.low.option.pay.high.success.extra.reputation.declined>
   <eventtext.piratesecurityofficer.toll.low.option.pay.high.failure>“连这点钱都没有？那你身上的东西可就值得我花时间了。”</eventtext.piratesecurityofficer.toll.low.option.pay.high.failure>
-  <eventtext.piratesecurityofficer.toll.low.option.pay.medium>讨价还价 （750 马克）</eventtext.piratesecurityofficer.toll.low.option.pay.medium>
+  <eventtext.piratesecurityofficer.toll.low.option.pay.medium>讨价还价（750 马克）</eventtext.piratesecurityofficer.toll.low.option.pay.medium>
   <eventtext.piratesecurityofficer.toll.low.option.pay.medium.success>“认真的？给我搞这套，是吧？行吧！进去……”</eventtext.piratesecurityofficer.toll.low.option.pay.medium.success>
   <eventtext.piratesecurityofficer.toll.low.option.pay.medium.failure>“你可想得美。”</eventtext.piratesecurityofficer.toll.low.option.pay.medium.failure>
-  <eventtext.piratesecurityofficer.toll.low.pay.medium.rejected>“噢我有个更好的提议……”</eventtext.piratesecurityofficer.toll.low.pay.medium.rejected>
-  <eventtext.piratesecurityofficer.toll.low.option.pay.low>恳请 （100 马克）</eventtext.piratesecurityofficer.toll.low.option.pay.low>
-  <eventtext.piratesecurityofficer.toll.low.option.pay.low.success>“你这哭的，乐死我了……别再说了滚出我的视线。”</eventtext.piratesecurityofficer.toll.low.option.pay.low.success>
+  <eventtext.piratesecurityofficer.toll.low.pay.medium.rejected>“噢，我有个更好的提议……”</eventtext.piratesecurityofficer.toll.low.pay.medium.rejected>
+  <eventtext.piratesecurityofficer.toll.low.option.pay.low>恳请（100 马克）</eventtext.piratesecurityofficer.toll.low.option.pay.low>
+  <eventtext.piratesecurityofficer.toll.low.option.pay.low.success>“你这哭的，乐死我了……别再说了，滚出我的视线。”</eventtext.piratesecurityofficer.toll.low.option.pay.low.success>
   <eventtext.piratesecurityofficer.toll.low.option.pay.low.failure>“你这是侮辱我，操你妈！”</eventtext.piratesecurityofficer.toll.low.option.pay.low.failure>
   <eventtext.piratesecurityofficer.toll.low.option.pay.low.rejected>“你可悲的辩解救不了你！”</eventtext.piratesecurityofficer.toll.low.option.pay.low.rejected>
   <eventtext.piratesecurityofficer.toll.option.leave.answer>“我知道一种你能听懂的语言。”</eventtext.piratesecurityofficer.toll.option.leave.answer>
   <eventtext.piratesecurityofficer.toll.option.insult>侮辱</eventtext.piratesecurityofficer.toll.option.insult>
-  <eventtext.piratesecurityofficer.toll.option.insult.answer>“噢你他妈的死定了！”</eventtext.piratesecurityofficer.toll.option.insult.answer>
+  <eventtext.piratesecurityofficer.toll.option.insult.answer>“噢，你他妈的死定了！”</eventtext.piratesecurityofficer.toll.option.insult.answer>
   <eventtext.piratesecurityofficer.attack>“抓住他们！”</eventtext.piratesecurityofficer.attack>
   <eventtext.piratesecurityofficer.attack.coalition>抓住联盟的走狗！</eventtext.piratesecurityofficer.attack.coalition>
-  <eventtext.piratesecurityofficer.toll.high.interact>“噢看看谁来了？联盟军的渣滓！？他妈的有通行费不知道啊！付钱傻逼！”</eventtext.piratesecurityofficer.toll.high.interact>
-  <eventtext.piratesecurityofficer.toll.high.option.pay.high>交纳通行费 （5000 马克）</eventtext.piratesecurityofficer.toll.high.option.pay.high>
+  <eventtext.piratesecurityofficer.toll.high.interact>“噢，看看谁来了？联盟军的渣滓！？他妈的有通行费不知道啊！付钱傻逼！”</eventtext.piratesecurityofficer.toll.high.interact>
+  <eventtext.piratesecurityofficer.toll.high.option.pay.high>交纳通行费（5000 马克）</eventtext.piratesecurityofficer.toll.high.option.pay.high>
   <eventtext.piratesecurityofficer.toll.high.option.pay.high.success>“感谢造访我们啊，傻狗！”</eventtext.piratesecurityofficer.toll.high.option.pay.high.success>
   <eventtext.piratesecurityofficer.toll.high.option.pay.high.success.extra.reputation>“这机会可是我施舍给你的。付两份钱我就在附近其他海盗那里给你们说些好得一塌糊涂的话。”</eventtext.piratesecurityofficer.toll.high.option.pay.high.success.extra.reputation>
-  <eventtext.piratesecurityofficer.toll.high.option.pay.high.success.extra.reputation.buy>付5000马克 （联盟声望 -40）</eventtext.piratesecurityofficer.toll.high.option.pay.high.success.extra.reputation.buy>
+  <eventtext.piratesecurityofficer.toll.high.option.pay.high.success.extra.reputation.buy>付5000马克（联盟声望 -40）</eventtext.piratesecurityofficer.toll.high.option.pay.high.success.extra.reputation.buy>
   <eventtext.piratesecurityofficer.toll.high.option.pay.high.success.extra.reputation.buy.success>“没想到你还真付钱了。那我就四处吹吹你们。但联盟听到了可不会喜欢，哈哈。”</eventtext.piratesecurityofficer.toll.high.option.pay.high.success.extra.reputation.buy.success>
   <eventtext.piratesecurityofficer.toll.high.option.pay.high.success.extra.reputation.buy.failure>“你们联盟的人蠢的跟什么一样。连他妈的自己多少钱都数不清了。给我滚！”</eventtext.piratesecurityofficer.toll.high.option.pay.high.success.extra.reputation.buy.failure>
   <eventtext.piratesecurityofficer.toll.high.option.pay.high.success.extra.reputation.declined>“拿脚趾头都能猜到。就你妈是条联盟的狗。赶紧滚出我的视线！”</eventtext.piratesecurityofficer.toll.high.option.pay.high.success.extra.reputation.declined>
   <eventtext.piratesecurityofficer.toll.high.option.pay.high.failure>“连这点钱都没有？那你们联盟的人身上的东西可就值得我花时间了。”</eventtext.piratesecurityofficer.toll.high.option.pay.high.failure>
-  <eventtext.piratesecurityofficer.toll.high.option.pay.medium>讨价还价 （3000 马克）</eventtext.piratesecurityofficer.toll.high.option.pay.medium>
+  <eventtext.piratesecurityofficer.toll.high.option.pay.medium>讨价还价（3000 马克）</eventtext.piratesecurityofficer.toll.high.option.pay.medium>
   <eventtext.piratesecurityofficer.toll.high.option.pay.medium.success>“搞快点傻卵，不然就让我帮你。”</eventtext.piratesecurityofficer.toll.high.option.pay.medium.success>
   <eventtext.piratesecurityofficer.toll.high.option.pay.medium.failure>“还以为像你这样的人都有点东西呢……给我过来！”</eventtext.piratesecurityofficer.toll.high.option.pay.medium.failure>
   <eventtext.piratesecurityofficer.toll.high.pay.medium.rejected>“你猜猜怎么着？想得美！见鬼去吧！”</eventtext.piratesecurityofficer.toll.high.pay.medium.rejected>
-  <eventtext.piratesecurityofficer.toll.high.option.pay.low>恳请 （1000 马克）</eventtext.piratesecurityofficer.toll.high.option.pay.low>
-  <eventtext.piratesecurityofficer.toll.high.option.pay.low.success>“哈哈嘿伙计们！看看这个爱哭鬼！……行了把我逗笑了进去吧，在我改变主意之前！”</eventtext.piratesecurityofficer.toll.high.option.pay.low.success>
+  <eventtext.piratesecurityofficer.toll.high.option.pay.low>恳请（1000 马克）</eventtext.piratesecurityofficer.toll.high.option.pay.low>
+  <eventtext.piratesecurityofficer.toll.high.option.pay.low.success>“哈哈，嘿伙计们！看看这个爱哭鬼！……行了把我逗笑了进去吧，趁我还没改变主意！”</eventtext.piratesecurityofficer.toll.high.option.pay.low.success>
   <eventtext.piratesecurityofficer.toll.high.option.pay.low.failure>“你他妈的开什么玩笑！？我要把你他妈的尸体扒个精光！”</eventtext.piratesecurityofficer.toll.high.option.pay.low.failure>
   <eventtext.piratesecurityofficer.toll.high.option.pay.low.rejected>“你可悲的辩解救不了你，你的联盟同伙也帮不了你！说遗言吧！”</eventtext.piratesecurityofficer.toll.high.option.pay.low.rejected>
   <eventtext.piratemissioninformant.interact>“嗯？你说你想找份活干？我告诉你吧！这里可没管理服务！不过……我有线索，这附近有联盟的船只经过，不清楚我的船员能不能搞定。你有钱的话这情报就卖给你！”</eventtext.piratemissioninformant.interact>
-  <eventtext.piratemissioninformant.option.buy>购买 （1000马克）</eventtext.piratemissioninformant.option.buy>
-  <eventtext.piratemissioninformant.option.buy.success>“哈好极了！我告诉你他们要经过哪里！”</eventtext.piratemissioninformant.option.buy.success>
+  <eventtext.piratemissioninformant.option.buy>购买（1000马克）</eventtext.piratemissioninformant.option.buy>
+  <eventtext.piratemissioninformant.option.buy.success>“哈，好极了！我告诉你他们要经过哪里！”</eventtext.piratemissioninformant.option.buy.success>
   <eventtext.piratemissioninformant.option.buy.failure>“我才不会免费给你呢蠢货！等你有钱了再回来！”</eventtext.piratemissioninformant.option.buy.failure>
   <EventText.DEgotoblockade.c1>“联盟发布公告”，变色和破损的海报列举了遭受破坏和侵扰的地点，似乎联盟已经陷入困境。你只能看清一组坐标。</EventText.DEgotoblockade.c1>
   <EventText.DEgotoblockade.o1>一笔免税的收入也不会有什么影响……</EventText.DEgotoblockade.o1>
   <eventtext.missionevent_lair.c1>“附近有一个巨大的巢穴，每分钟都有越来越多的生物在涌出，如果你能把它连根拔除，就有奖励给你！”</eventtext.missionevent_lair.c1>
-  <EventText.missionevent_lair.o1>明白了。</EventText.missionevent_lair.o1>
+  <EventText.missionevent_lair.o1>明白了</EventText.missionevent_lair.o1>
   <!-- Items -->
   <entityname.de-jobboard>求职板</entityname.de-jobboard>
   <entityname.commsrelay>通讯中继器</entityname.commsrelay>
@@ -224,6 +270,9 @@
   <entityname.pirateclotheshardPA>海盗服装（战斗）</entityname.pirateclotheshardPA>
   <entitydescription.pirateclotheshardPA>为了抵抗木卫二冰洋的艰苦环境，海盗们拼凑出这样结构牢固的防护服。这套防护服供更有经验的船员和高层人员穿戴，在战斗中可以保护他们。</entitydescription.pirateclotheshardPA>
   <!-- Structures -->
+  <entityname.molochshell_1>摩螺克甲壳（左）</entityname.molochshell_1>
+  <entityname.molochshell_2>摩螺克甲壳（中）</entityname.molochshell_2>
+  <entityname.molochshell_3>摩螺克甲壳（右）</entityname.molochshell_3>
   <entityname.labelslogocoalition>联盟Logo</entityname.labelslogocoalition>
   <entityname.labelslogocoalitioncolor>联盟Logo（彩色）</entityname.labelslogocoalitioncolor>
   <entityname.labelslogocoalitiondamaged>联盟Logo（破损）</entityname.labelslogocoalitiondamaged>
@@ -233,6 +282,21 @@
   <entityname.labelslogoseparatistsdamaged>木星分离主义Logo（破损）</entityname.labelslogoseparatistsdamaged>
   <entityname.labelslogoseparatistsbroken>木星分离主义Logo（损毁）</entityname.labelslogoseparatistsbroken>
   <!-- Missions -->
+  <missionname.cotakeover_separatistoutpost>联盟站点争夺</missionname.cotakeover_separatistoutpost>
+  <missionname.septakeover_coalitionoutpost>分离主义站点争夺</missionname.septakeover_coalitionoutpost>
+  <missionheader0.coalitiontakeover>前哨站已被解放</missionheader0.coalitiontakeover>
+  <missionmessage0.coalitiontakeover>似乎分离主义者已不堪重负。</missionmessage0.coalitiontakeover>
+  <missionheader0.separatisttakeover>前哨站已被夺取</missionheader0.separatisttakeover>
+  <missionmessage0.separatisttakeover>似乎联盟将要放弃该站点。</missionmessage0.separatisttakeover>
+  <missionname.destroypirateoutpost>海盗避风港</missionname.destroypirateoutpost>
+  <missionname.coalition_cargotrap>劫掠联盟货运船</missionname.coalition_cargotrap>
+  <missiondescription.coalition_cargotrap>一艘联盟货运船正穿过此地。消灭他们的船员并掠夺他们的船只！</missiondescription.coalition_cargotrap>
+  <missionsuccess.coalition_cargotrap>你成功地消灭了所有联盟军！</missionsuccess.coalition_cargotrap>
+  <missionfailure.coalition_cargotrap>你并没有杀死所有联盟军！</missionfailure.coalition_cargotrap>
+  <missionheader0.coalition_cargotrap>已发现联盟船只</missionheader0.coalition_cargotrap>
+  <missionmessage0.coalition_cargotrap>噢，不！似乎是个陷阱……这是艘攻击型潜艇！</missionmessage0.coalition_cargotrap>
+  <missionheader1.coalition_cargotrap>已经消灭了所有联盟军</missionheader1.coalition_cargotrap>
+  <missionmessage1.coalition_cargotrap>先掠夺他们的船只或继续前往[location2]。</missionmessage1.coalition_cargotrap>
   <missionname.stealingintel>窃取情报</missionname.stealingintel>
   <missiondescription.stealingintel>为了获取更多的行动情报，木星分离主义委派你窃取联盟的机密文件。</missiondescription.stealingintel>
   <missionsuccess.stealingintel>已成功取回文件。</missionsuccess.stealingintel>
@@ -502,31 +566,31 @@
   <missionheader1.pirate_lord>已消灭海盗</missionheader1.pirate_lord>
   <missionmessage1.pirate_lord>开着潜艇去[location2]领取赏金。</missionmessage1.pirate_lord>
   <!-- Locations -->
-  <locationdescription.colony>这片区域唯一的建筑，却是新生活的起点。\n提供：\n-任务</locationdescription.colony>
-  <locationdescription.settlement>提供：\n-任务\n-可雇佣的船员</locationdescription.settlement>
-  <locationdescription.outpost>提供：\n-任务\n-可雇佣的船员\n-工程舱\n-商店：常规货品</locationdescription.outpost>
-  <locationdescription.city>提供：\n-任务\n-可雇佣的船员\n-医生\n-工程舱\n-研究实验室\n-商店：潜艇、潜艇升级、常规货品、药店、工程物资、军械库</locationdescription.city>
-  <locationdescription.camp>提供：\n-任务\n-可雇佣的船员</locationdescription.camp>
-  <locationdescription.base>提供：\n-任务\n-可雇佣的船员\n-工程舱\n-商店：军用品</locationdescription.base>
-  <locationdescription.military>提供：\n-任务\n-可雇佣的船员\n-工程舱\n-商店：潜艇、潜艇升级、军用品、军械库</locationdescription.military>
-  <locationdescription.clinic>提供：\n-任务\n-医生</locationdescription.clinic>
-  <locationdescription.hospital>提供：\n-任务\n-可雇佣的船员\n-医生\n-工程舱\n-商店：药店</locationdescription.hospital>
-  <locationdescription.surgery>提供：\n-任务\n-可雇佣的船员\n-医生\n-工程舱\n-研究实验室\n-商店：药店</locationdescription.surgery>
-  <locationdescription.hydroponics>提供：\n-任务\n-可雇佣的船员\n-研究实验室</locationdescription.hydroponics>
-  <locationdescription.biosphere>提供：\n-任务\n-可雇佣的船员\n-工程舱\n-研究实验室\n-商店：研究物资</locationdescription.biosphere>
-  <locationdescription.nourishment>提供：\n-任务\n-可雇佣的船员\n-工程舱\n-研究实验室\n-商店：研究物资</locationdescription.nourishment>
-  <locationdescription.construction>正着手于新型站点建设的施工现场。\n提供：\n-任务</locationdescription.construction>
-  <locationdescription.shipyard>提供：\n-任务\n-可雇佣的船员\n-工程舱\n-商店：潜艇、潜艇升级</locationdescription.shipyard>
-  <locationdescription.factory>提供：\n-任务\n-可雇佣的船员\n-工程舱\n-商店：常规货品</locationdescription.factory>
-  <locationdescription.fusion>提供：\n-任务\n-可雇佣的船员\n-工程舱\n-商店：工程物资</locationdescription.fusion>
+  <locationdescription.colony>这片区域唯一的建筑，却是新生活的起点。\n提供：\n-工作</locationdescription.colony>
+  <locationdescription.settlement>提供：\n-工作\n-可雇佣的船员</locationdescription.settlement>
+  <locationdescription.outpost>提供：\n-工作\n-可雇佣的船员\n-工程舱\n-商店：常规货品</locationdescription.outpost>
+  <locationdescription.city>提供：\n-工作\n-可雇佣的船员\n-医生\n-工程舱\n-研究实验室\n-商店：潜艇、潜艇升级、常规货品、药店、工程物资、军械库</locationdescription.city>
+  <locationdescription.camp>提供：\n-工作\n-可雇佣的船员</locationdescription.camp>
+  <locationdescription.base>提供：\n-工作\n-可雇佣的船员\n-工程舱\n-商店：军用品</locationdescription.base>
+  <locationdescription.military>提供：\n-工作\n-可雇佣的船员\n-工程舱\n-商店：潜艇、潜艇升级、军用品、军械库</locationdescription.military>
+  <locationdescription.clinic>提供：\n-工作\n-医生</locationdescription.clinic>
+  <locationdescription.hospital>提供：\n-工作\n-可雇佣的船员\n-医生\n-工程舱\n-商店：药店</locationdescription.hospital>
+  <locationdescription.surgery>提供：\n-工作\n-可雇佣的船员\n-医生\n-工程舱\n-研究实验室\n-商店：药店</locationdescription.surgery>
+  <locationdescription.hydroponics>提供：\n-工作\n-可雇佣的船员\n-研究实验室</locationdescription.hydroponics>
+  <locationdescription.biosphere>提供：\n-工作\n-可雇佣的船员\n-工程舱\n-研究实验室\n-商店：研究物资</locationdescription.biosphere>
+  <locationdescription.nourishment>提供：\n-工作\n-可雇佣的船员\n-工程舱\n-研究实验室\n-商店：研究物资</locationdescription.nourishment>
+  <locationdescription.construction>正着手于新型站点建设的施工现场。\n提供：\n-工作</locationdescription.construction>
+  <locationdescription.shipyard>提供：\n-工作\n-可雇佣的船员\n-工程舱\n-商店：潜艇、潜艇升级</locationdescription.shipyard>
+  <locationdescription.factory>提供：\n-工作\n-可雇佣的船员\n-工程舱\n-商店：常规货品</locationdescription.factory>
+  <locationdescription.fusion>提供：\n-工作\n-可雇佣的船员\n-工程舱\n-商店：工程物资</locationdescription.fusion>
   <locationdescription.survey>致力于调查周边区域的小型站点。\n提供：\n-任务\n-可雇佣的船员\n-矿井</locationdescription.survey>
-  <locationdescription.extraction>提供：\n-任务\n-可雇佣的船员\n-工程舱\n-矿井\n-商店：矿物</locationdescription.extraction>
-  <locationdescription.mine>提供：\n-任务\n-可雇佣的船员\n-工程舱\n-矿井\n-商店：潜艇、潜艇升级、矿物</locationdescription.mine>
-  <locationdescription.study>提供：\n-任务\n-可雇佣的船员\n-研究实验室</locationdescription.study>
-  <locationdescription.lab>提供：\n-任务\n-可雇佣的船员\n-工程舱\n-研究实验室\n-商店：研究物资</locationdescription.lab>
-  <locationdescription.research>提供：\n-任务\n-可雇佣的船员\n-医生\n-工程舱\n-研究实验室\n-商店：潜艇、潜艇升级、研究物资</locationdescription.research>
-  <locationdescription.blockade>封锁周边洞穴从而防止敌对生物向殖民区扩张的军队防御工事。\n提供：\n-任务\n-可雇佣的船员\n-商店：军用品、军械库</locationdescription.blockade>
-  <locationdescription.pirateoutpost>海盗们得以会面交谈而不彼此攻击的安全避风港。\n提供：\n-任务\n-可雇佣的船员\n-工程舱\n-医生\n-研究实验室\n-商店：潜艇、潜艇升级、常规货品、药店的、工程物资、军械库、海盗装备</locationdescription.pirateoutpost>
+  <locationdescription.extraction>提供：\n-工作\n-可雇佣的船员\n-工程舱\n-矿井\n-商店：矿物</locationdescription.extraction>
+  <locationdescription.mine>提供：\n-工作\n-可雇佣的船员\n-工程舱\n-矿井\n-商店：潜艇、潜艇升级、矿物</locationdescription.mine>
+  <locationdescription.study>提供：\n-工作\n-可雇佣的船员\n-研究实验室</locationdescription.study>
+  <locationdescription.lab>提供：\n-工作\n-可雇佣的船员\n-工程舱\n-研究实验室\n-商店：研究物资</locationdescription.lab>
+  <locationdescription.research>提供：\n-工作\n-可雇佣的船员\n-医生\n-工程舱\n-研究实验室\n-商店：潜艇、潜艇升级、研究物资</locationdescription.research>
+  <locationdescription.blockade>封锁周边洞穴从而防止敌对生物向殖民区扩张的军队防御工事。\n提供：\n-工作\n-可雇佣的船员\n-商店：军用品、军械库</locationdescription.blockade>
+  <locationdescription.pirateoutpost>海盗们得以会面交谈而不彼此攻击的安全避风港。\n提供：\n-工作\n-可雇佣的船员\n-工程舱\n-医生\n-研究实验室\n-商店：潜艇、潜艇升级、常规货品、药店的、工程物资、军械库、海盗装备</locationdescription.pirateoutpost>
   <locationdescription.Lair>当地的动物会向附近的地区快速扩张。</locationdescription.Lair>
   <locationdescription.HuskgroundsDE>被画皮寄生虫感染的生物的热点区域，会快速扩张。</locationdescription.HuskgroundsDE>
   <locationdescription.WasteyardDE>被荒芜感染的生物的热点区域，会迅速扩张。</locationdescription.WasteyardDE>
@@ -537,7 +601,7 @@
   <locationchange.construction.changeto.settlement>previousname]处新居住地的建设已经竣工。更多的居民正搬往他们的新家。</locationchange.construction.changeto.settlement>
   <locationchange.survey.changeto.extraction>对[previousname]的调查发现了一处矿藏，工人们开始了挖掘。</locationchange.survey.changeto.extraction>
   <locationchange.hydroponics.changeto.biosphere>[previousname]的水培区将他们的设施升级为了生物圈以便为当地的站点提供足够的肉。</locationchange.hydroponics.changeto.biosphere>
-  <locationchange.abandoned.changeto.piratenone>海盗们正在拆除废弃前哨站并利用它的一砖一瓦建设新的避风港。A</locationchange.abandoned.changeto.piratenone>
+  <locationchange.abandoned.changeto.piratenone>海盗们正在拆除废弃前哨站并利用它的一砖一瓦建设新的避风港。</locationchange.abandoned.changeto.piratenone>
   <locationchange.biosphere.changeto.nourishment>[previousname]的生物圈成功升级成了补给设施。</locationchange.biosphere.changeto.nourishment>
   <locationchange.study.changeto.lab>[previousname]的研究取得了成果，该设施升级成了研究实验室。</locationchange.study.changeto.lab>
   <locationchange.settlement.changeto.outpost>[previousname]的殖民者已经扩张了殖民地以便容纳更多的人。</locationchange.settlement.changeto.outpost>
@@ -757,6 +821,15 @@
   <npctitle.partypiratemechanicrecruit>喧闹海盗机修工</npctitle.partypiratemechanicrecruit>
   <npctitle.partypirateengineerrecruit>喧闹海盗工程师</npctitle.partypirateengineerrecruit>
   <locationname.PirateOutpost>海盗避风港</locationname.PirateOutpost>
+  <!-- CHARACTERS -->
+  <charactername.sadashikira>Sadashi Kira</charactername.sadashikira>
+  <!-- TALENTS -->
+  <talentname.stayingtipsy>微醉</talentname.stayingtipsy>
+  <talentdescription.stayingtipsy>你为她提供了酒，这个后果会陪伴一生。</talentdescription.stayingtipsy>
+  <!-- Afflictions -->
+  <afflictionname.temporarycrew>临时船员</afflictionname.temporarycrew>
+  <afflictiondescription.temporarycrew.other>会在他们加入6小时后离队。</afflictiondescription.temporarycrew.other>
+  <afflictiondescription.temporarycrew.self>我在抵达后帮助该船队6小时。不多，也不少。</afflictiondescription.temporarycrew.self>
   <!-- UNUSED STUFF -->
   <EventText.missionevent.piratevscoalition.c1>我们听说有一艘联盟的船从这里附近经过。也许他们有一些你的货物，你懂我的意思吗？</EventText.missionevent.piratevscoalition.c1>
   <EventText.missionevent.piratevsseparatists.c1>一些分离主义分子似乎在这些水域周围航行。也许他们有一些你的货物，你懂我的意思吗？</EventText.missionevent.piratevsseparatists.c1>

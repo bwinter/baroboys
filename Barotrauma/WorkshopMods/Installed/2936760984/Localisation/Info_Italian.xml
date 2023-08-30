@@ -68,9 +68,9 @@
   <afflictioncauseofdeath.brainhemorrhage>Brain death</afflictioncauseofdeath.brainhemorrhage>
   <afflictioncauseofdeathself.brainhemorrhage>Il tuo cervello è stato sciolto dal sonar attivo.</afflictioncauseofdeathself.brainhemorrhage>
   <!-- Manna Influence -->
-  <afflictionname.mannainjection>Influenza della manna</afflictionname.mannainjection>
-  <afflictiondescription.mannainjection>Questo arto è sotto l'influenza curativa dell'estratto di manna.</afflictiondescription.mannainjection>
-  <afflictiondescription.mannainjection.self>Senti una leggera pressione e un calore confortante sotto la pelle.</afflictiondescription.mannainjection.self>
+  <afflictionname.mannainfluence>Influenza della manna</afflictionname.mannainfluence>
+  <afflictiondescription.mannainfluence>Questo arto è sotto l'influenza curativa dell'estratto di manna.</afflictiondescription.mannainfluence>
+  <afflictiondescription.mannainfluence.self>Senti una leggera pressione e un calore confortante sotto la pelle.</afflictiondescription.mannainfluence.self>
   <!-- Manna Overdose -->
   <afflictionname.mannaoverdose>Overdose di manna</afflictionname.mannaoverdose>
   <afflictiondescription.mannaoverdose>Il paziente ha una quantità pericolosa di Manna nel sangue.</afflictiondescription.mannaoverdose>
@@ -108,12 +108,40 @@ ATTENZIONE: la somministrazione in un ambiente cerebrale sano può causare un pe
   <entitydescription.navremote>Un dispositivo portatile che può essere utilizzato per controllare a distanza il sonar e i motori del sottomarino.</entitydescription.navremote>
   <!-- Menu -->
   <realsonarsettings>Impostazioni Real Sonar</realsonarsettings>
-  <sonarpingvolume>Volume del Segnale del Sonar</sonarpingvolume>
+  <volumesettings>Volume Impostazioni</volumesettings>
   <airpingvolume>Volume del segnale dell'Aria</airpingvolume>
   <waterpingvolume>Volume del segnale dell'acqua</waterpingvolume>
   <suitpingvolume>Volume del segnale della Tuta</suitpingvolume>
   <tinnitusvolume>Volume del Tintinnio</tinnitusvolume>
   <distortionvolume>Volume della Distorsione</distortionvolume>
+  <networksettings>Impostazioni di Connessione - Client Only (Requires "cl_reloadlua" in console)</networksettings>
+  <lowlatencymode>Modalità a bassa latenza (Esperimentale)</lowlatencymode>
+  <lowlatencymodetooltip>Elimina il ritardo causato da un ping elevato  server. Può causare desync se il server ha opzioni di configurazione contrastanti.</lowlatencymodetooltip>
+  <gameplaysettingsserver>Impostazioni di gioco - Host Only</gameplaysettingsserver>
+  <gameplaysettingsclient>Impostazioni di gioco</gameplaysettingsclient>
+  <sonarrange>Distanza del Sonar (Solamente Giocatore Singolo)</sonarrange>
+  <sonardamage>Danno del Sonar (Non lineare)</sonardamage>
+  <submarinesonar>Sonar del sottomarino</submarinesonar>
+  <submarinesonartooltip>Attiva danno dalle stazioni di navigazione.</submarinesonartooltip>
+  <beaconsonar>Segnale del Sonar</beaconsonar>
+  <beaconsonartooltip>Abilita danno dai Monitor del Sonar.</beaconsonartooltip>
+  <shuttlesonar>Sonar della Navetta</shuttlesonar>
+  <shuttlesonartooltip>Abilita danno dal terminale di navigazione della navetta.</shuttlesonartooltip>
+  <targetcreatures>Segnala le Creature</targetcreatures>
+  <targetcreaturestooltip>Abilita il danno contro tutte le creature non umane.</targetcreaturestooltip>
+  <targetplayers>Segnala le Giocatori</targetplayers>
+  <targetplayerstooltip>Abilita danno ai Giocatori.</targetplayerstooltip>
+  <targetbots>Segnala le Bots</targetbots>
+  <targetbotstooltip>Abilita danno ai Bot .</targetbotstooltip>
+  <creaturehulldetection>Rivelamento delle Creature sullo Scafo</creaturehulldetection>
+  <creaturehulldetectiontooltip>Rivelamento Accurato della Posizione per Creature.Disabilitando questo potrebbe portare ad una riduzione della Performance.</creaturehulldetectiontooltip>
+  <humanhulldetection>Rivelamento degli Umani sullo Scafo</humanhulldetection>
+  <humanhulldetectiontooltip>Rivelamento Accurato della Posizione per Umani, e.g. Vuoi che gli umani siano protetti nel serbatoio di Zavorra??</humanhulldetectiontooltip>
+  <impactvisuals>Intensità dell'Impatto Visuale del Sonar</impactvisuals>
+  <sonarslow>Penalità sulla velocità di movimento del Sonar</sonarslow>
+  <defaultfx>Altre Immagini (Emorragia celebrale, cortizide, etc.):\nNormale</defaultfx>
+  <lowfx>Altre Immagini  (Emorragia celebrale, cortizide, etc.):\Ridotta</lowfx>
+  <nofx>Altre Immagini  (Emorragia celebrale, cortizide, etc.):\nDisabilitata</nofx>
   <!-- Dialogue -->
   <dialoggetanechoicsuit>Ho bisogno di attrezzatura subacquea anecoica!</dialoggetanechoicsuit>
   <dialoggetanechoicsuit>Mi serve una tuta anecoica per riparare con il sonar acceso!</dialoggetanechoicsuit>

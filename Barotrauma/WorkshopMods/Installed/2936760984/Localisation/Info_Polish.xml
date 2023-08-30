@@ -68,9 +68,9 @@
   <afflictioncauseofdeath.brainhemorrhage>Śmierć mózgu</afflictioncauseofdeath.brainhemorrhage>
   <afflictioncauseofdeathself.brainhemorrhage>Twój mózg został roztopiony przez sonar.</afflictioncauseofdeathself.brainhemorrhage>
   <!-- Manna Influence -->
-  <afflictionname.mannainjection>Wpływ Kaloku C</afflictionname.mannainjection>
-  <afflictiondescription.mannainjection>Ta kończyna jest pod leczącym wpływem Kaloku C.</afflictiondescription.mannainjection>
-  <afflictiondescription.mannainjection.self>Czujesz lekki nacisk i komfortujące ciepło pod skórą.</afflictiondescription.mannainjection.self>
+  <afflictionname.mannainfluence>Wpływ Kaloku C</afflictionname.mannainfluence>
+  <afflictiondescription.mannainfluence>Ta kończyna jest pod leczącym wpływem Kaloku C.</afflictiondescription.mannainfluence>
+  <afflictiondescription.mannainfluence.self>Czujesz lekki nacisk i komfortujące ciepło pod skórą.</afflictiondescription.mannainfluence.self>
   <!-- Manna Overdose -->
   <afflictionname.mannaoverdose>Przedawkowanie Kaloku C</afflictionname.mannaoverdose>
   <afflictiondescription.mannaoverdose>Pacjent ma niebezpieczną ilość Kaloku C w krwiobiegu.</afflictiondescription.mannaoverdose>
@@ -108,12 +108,40 @@ Uwaga: wstrzyknięcie dawki leku w ten sposób przy zdrowym środowisku może sp
   <entitydescription.navremote>Podręczne urządzenie, którego można używać do zdalnego sterowania sonarem i silnikami łodzi podwodnej.</entitydescription.navremote>
   <!-- Menu -->
   <realsonarsettings>Ustawienia Real Sonar</realsonarsettings>
-  <sonarpingvolume>Głośność sygnałów sonaru</sonarpingvolume>
+  <volumesettings>Ustawienia Głośności</volumesettings>
   <airpingvolume>Głośność sygnałów w powietrzu</airpingvolume>
   <waterpingvolume>Głośność sygnałów w wodzie</waterpingvolume>
   <suitpingvolume>Głośność sygnałów w strojach</suitpingvolume>
   <tinnitusvolume>Głośność szumienia w uszach</tinnitusvolume>
   <distortionvolume>Głośność zniekształceń</distortionvolume>
+  <networksettings>Ustawienia sieci - Klient (Wymaga wpisania "cl_reloadlua" w konsolę)</networksettings>
+  <lowlatencymode>Tryb niskiego opóźnienia (Eksperymentalne)</lowlatencymode>
+  <lowlatencymodetooltip>Eliminuje opóźnienie wytwarzane przez opóźnienie serwera. Może powodować Desync jeżeli serwer ma kontrastujące ustawienia konfiguracyjne.</lowlatencymodetooltip>
+  <gameplaysettingsserver>Ustawienia gry - ustawienia hosta</gameplaysettingsserver>
+  <gameplaysettingsclient>Ustawienia gry</gameplaysettingsclient>
+  <sonarrange>Zasięg sonaru (Tylko na tryb jednego gracza)</sonarrange>
+  <sonardamage>Obrażenia sonaru (nieliniowe)</sonardamage>
+  <submarinesonar>Okręt podwodny</submarinesonar>
+  <submarinesonartooltip>Włącz obrażenia od terminali nawigacyjnych.</submarinesonartooltip>
+  <beaconsonar>Stacja nadajnika</beaconsonar>
+  <beaconsonartooltip>Włącz obrażenia od ekranów sonaru.</beaconsonartooltip>
+  <shuttlesonar>Sonar statków transportowych</shuttlesonar>
+  <shuttlesonartooltip>Włącz obrażenia od terminali nawigacyjnych transportowca.</shuttlesonartooltip>
+  <targetcreatures>Stworzenia</targetcreatures>
+  <targetcreaturestooltip>Włacz obrażenia dla kreatur nie będących człowiekiem.</targetcreaturestooltip>
+  <targetplayers>Gracze</targetplayers>
+  <targetplayerstooltip>Włącz obrażenia dla graczy.</targetplayerstooltip>
+  <targetbots>Boty</targetbots>
+  <targetbotstooltip>Włącz obrażenia dla botów.</targetbotstooltip>
+  <creaturehulldetection>Sprawdzanie obecności kadłuba dla kreatur</creaturehulldetection>
+  <creaturehulldetectiontooltip>Dokładne sprawdzanie uderzeń dla kreatur. Wyłączenie może poprawić wydajność.</creaturehulldetectiontooltip>
+  <humanhulldetection>Sprawdzanie obecności kadłuba dla ludzi</humanhulldetection>
+  <humanhulldetectiontooltip>Dokładne sprawdzanie uderzeń dla np. ludzi. Czy chcesz aby ludzie doznawali obrażeń w zbiornikach balastowych?</humanhulldetectiontooltip>
+  <impactvisuals>Intensywność wizualna uderzenia sonaru</impactvisuals>
+  <sonarslow>Obniżenie prędkości od sonaru</sonarslow>
+  <defaultfx>Inne efekty wizualne (Krwotok mózgu, Kortyzyd, itp.):\nStandardowe</defaultfx>
+  <lowfx>Inne efekty wizualne (Krwotok mózgu, Kortyzyd, itp.):\nZredukowane</lowfx>
+  <nofx>Inne efekty wizualne (Krwotok mózgu, Kortyzyd, itp.):\nWyłączone</nofx>
   <!-- Dialogue -->
   <dialoggetanechoicsuit>Potrzebuję bezechowy sprzęt do nurkowania!</dialoggetanechoicsuit>
   <dialoggetanechoicsuit>Potrzebuję bezechowego skafandra żeby naprawiać przy włączonym sonarze!</dialoggetanechoicsuit>

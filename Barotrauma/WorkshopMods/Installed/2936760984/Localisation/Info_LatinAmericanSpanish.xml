@@ -108,12 +108,39 @@ Cuidado: Administrarla a un cerebro sano puede causar acumulaciones de presión 
   <entitydescription.navremote>Un dispositivo de mano que se puede utilizar para controlar de forma remota el sonar y los motores del submarino.</entitydescription.navremote>
   <!-- Menu -->
   <realsonarsettings>Opciones Real Sonar</realsonarsettings>
-  <sonarpingvolume>Volumen del Ping Sonar</sonarpingvolume>
+  <volumesettings>Opciones de volumen</volumesettings>
   <airpingvolume>Volumen del Ping por Aire</airpingvolume>
   <waterpingvolume>Volumen del Ping por Agua</waterpingvolume>
   <suitpingvolume>Volumen del Ping en Traje</suitpingvolume>
   <tinnitusvolume>Volumen de Tinnitus</tinnitusvolume>
   <distortionvolume>Volumen de Distorsión</distortionvolume>
+  <networksettings>Opciones de Red - Solo Cliente (Requiere "cl_reloadlua" en la consola)</networksettings>
+  <lowlatencymode>Modo de baja latencia (Experimental)</lowlatencymode>
+  <lowlatencymodetooltip>Elimina el retraso al servidor causado por alto ping. Podría causar Desync si el servidor tiene opciones contrastantes activadas en la configuracion.</lowlatencymodetooltip>
+  <gameplaysettingsserver>Configuración de jugabilidad: solo para el anfitrión</gameplaysettingsserver>
+  <gameplaysettingsclient>Configuración de jugabilidad</gameplaysettingsclient>
+  <sonardamage>Daño del sonar (no lineal)</sonardamage>
+  <submarinesonar>Sonar de submarino</submarinesonar>
+  <submarinesonartooltip>Habilitar daño desde las Terminales de Navegación.</submarinesonartooltip>
+  <beaconsonar>Sonar de estación de baliza</beaconsonar>
+  <beaconsonartooltip>Habilitar daño desde los Monitores de Sonar.</beaconsonartooltip>
+  <shuttlesonar>Sonar de lanzadera</shuttlesonar>
+  <shuttlesonartooltip>Habilitar daño desde las Terminales de Lanzadera.</shuttlesonartooltip>
+  <targetcreatures>Apuntar a criaturas</targetcreatures>
+  <targetcreaturestooltip>Habilitar daño a todas las criaturas no humanas.</targetcreaturestooltip>
+  <targetplayers>Apuntar a jugadores</targetplayers>
+  <targetplayerstooltip>Habilitar daño a jugadores.</targetplayerstooltip>
+  <targetbots>Apuntar a bots</targetbots>
+  <targetbotstooltip>Habilitar daño a bots.</targetbotstooltip>
+  <creaturehulldetection>Detección del casco para criaturas</creaturehulldetection>
+  <creaturehulldetectiontooltip>Detección precisa de impacto del sonar para criaturas. Desactivarlo puede mejorar el rendimiento.</creaturehulldetectiontooltip>
+  <humanhulldetection>Detección del casco para humanos</humanhulldetection>
+  <humanhulldetectiontooltip>Detección precisa de impacto del sonar para humanos, por ejemplo, ¿deseas que los humanos estén protegidos en los tanques de lastre?</humanhulldetectiontooltip>
+  <impactvisuals>Intensidad Visual de impactos del Sonar</impactvisuals>
+  <sonarslow>Penalizacion de velocidad de movimiento por Sonar</sonarslow>
+  <defaultfx>Otros efectos visuales (Hemorragia Cerebral, cortizida, etc.):\nEstándar</defaultfx>
+  <lowfx>Otros efectos visuales (Hemorragia Cerebral, cortizida, etc.):\nReducidos</lowfx>
+  <nofx>Otros efectos visuales (Hemorragia Cerebral, cortizida, etc.):\nDesactivados</nofx>
   <!-- Dialogue -->
   <dialoggetanechoicsuit>¡Necesito equipo de buceo anecoico!</dialoggetanechoicsuit>
   <dialoggetanechoicsuit>¡Necesito un traje de buceo anecoico para hacer reparaciones con el sonar encendido!</dialoggetanechoicsuit>
@@ -125,6 +152,7 @@ Cuidado: Administrarla a un cerebro sano puede causar acumulaciones de presión 
   <dialogcantfindanechoicsuit>¡No puedo hacer reparaciones hasta que el sonar este apagado!</dialogcantfindanechoicsuit>
   <dialogturnoffsonar>¡Apaguen el sonar!</dialogturnoffsonar>
   <dialogturnoffsonar>¡Mis oídos sangran gracias a ese maldito sonar!</dialogturnoffsonar>
+  <dialogturnoffsonar>¡Callen el sonar!</dialogturnoffsonar>
   <dialogturnoffsonar>¡Me atrapó el sonar!</dialogturnoffsonar>
   <dialogturnoffsonar>¡Dios, ese sonar es ruidoso!</dialogturnoffsonar>
   <dialogturnoffsonar>¡Estoy en el agua, apaguen el sonar!</dialogturnoffsonar>

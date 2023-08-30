@@ -189,12 +189,11 @@
     <message header="missionsuccess.stealingintel" text="missionmessage0.stealingintel" />
   </SalvageMission>
   <!-- PIRATE MISSIONS -->
-  <!-- DISABLED UNTIL SUBMARINES AND BALANCING IS DONE PROPERLY
-	<PirateMission
+  <!--PirateMission
 		type="Pirate"
 		identifier="pirate_lord"
-		tags="piratehumpback,pirate1"
-		difficulty="4"
+		tags="piratemission,piratelord"
+		difficulty="5"
 		commonness="5"
 		reward="20000"
 		achievementidentifier="piratemission"
@@ -208,7 +207,7 @@
 		<Characters>
 			<Character typeidentifier="piratecaptain" minamount="1" maxamount="1"/>
 			<Character typeidentifier="piratesecurity" minamount="6" maxamount="10" />
-			<Character typeidentifier="pirateannihilator" minamount="0" maxamount="3" />
+			<Character typeidentifier="pirateannihilator" minamount="3" maxamount="5" />
 			<Character typeidentifier="piratemechanic" minamount="3" maxamount="4" />
 			<Character typeidentifier="pirateengineer" minamount="1" maxamount="1" />
 		</Characters>
@@ -232,8 +231,7 @@
 		<Icon texture="%ModDir%/UI/MissionIcons.png" sourcerect="0,768,256,256" color="69,225,174"/>
 		<message header="missionheader0.pirate_lord" text="missionmessage0.pirate_lord"/>
 		<message header="missionheader1.pirate_lord" text="missionmessage1.pirate_lord"/>
-	</PirateMission>
-	-->
+	</PirateMission-->
   <PirateMission type="Pirate" identifier="pirate_heavy" tags="piratemission,heavypirate" difficulty="4" commonness="20" reward="8000" achievementidentifier="piratemission" addedmissiondifficultyperplayer="8">
     <Reputation identifier="coalition" amount="7" />
     <Reputation identifier="separatists" amount="7" />

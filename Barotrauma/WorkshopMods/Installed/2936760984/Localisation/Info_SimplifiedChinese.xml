@@ -68,9 +68,9 @@
   <afflictioncauseofdeath.brainhemorrhage>脑死亡</afflictioncauseofdeath.brainhemorrhage>
   <afflictioncauseofdeathself.brainhemorrhage>你的大脑被主动声纳融化了。</afflictioncauseofdeathself.brainhemorrhage>
   <!-- Manna Influence -->
-  <afflictionname.mannainjection>吗哪提取物治疗</afflictionname.mannainjection>
-  <afflictiondescription.mannainjection>这个肢体受到吗哪提取物的治疗影响。</afflictiondescription.mannainjection>
-  <afflictiondescription.mannainjection.self>你感到皮肤下有一种温和的压力和舒适的温暖。</afflictiondescription.mannainjection.self>
+  <afflictionname.mannainfluence>吗哪提取物治疗</afflictionname.mannainfluence>
+  <afflictiondescription.mannainfluence>这个肢体受到吗哪提取物的治疗影响。</afflictiondescription.mannainfluence>
+  <afflictiondescription.mannainfluence.self>你感到皮肤下有一种温和的压力和舒适的温暖。</afflictiondescription.mannainfluence.self>
   <!-- Manna Overdose -->
   <afflictionname.mannaoverdose>吗哪过量</afflictionname.mannaoverdose>
   <afflictiondescription.mannaoverdose>病人血液中含有危险含量的吗哪。</afflictiondescription.mannaoverdose>
@@ -108,7 +108,7 @@
   <entitydescription.navremote>一种手持设备，可用于远程控制潜艇的声纳和引擎。</entitydescription.navremote>
   <!-- Menu -->
   <realsonarsettings>真实声纳设置</realsonarsettings>
-  <sonarpingvolume>声纳脉冲音量</sonarpingvolume>
+  <volumesettings>音量设置</volumesettings>
   <airpingvolume>声纳脉冲音量(空气)</airpingvolume>
   <waterpingvolume>声纳脉冲音量(水下)</waterpingvolume>
   <suitpingvolume>声纳脉冲音量(潜水服)</suitpingvolume>
