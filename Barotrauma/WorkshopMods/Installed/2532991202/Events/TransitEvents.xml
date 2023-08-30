@@ -582,8 +582,8 @@
       <TagAction criteria="itemidentifier:statusmonitor" tag="monitor" submarinetype="player" />
       <TagAction criteria="player" tag="player" />
       <SetDataAction identifier="EnginesOffline" value="1" />
-      <TriggerEventAction identifier="troubledenginestatusevent" />
       <TriggerAction target1tag="monitor" target2tag="player" applytotarget1="activemonitor" applytotarget2="te_player1" radius="500" waitforinteraction="false" />
+      <TriggerEventAction identifier="troubledenginestatusevent" />
       <StatusEffectAction targettag="activemonitor">
         <StatusEffect>
           <Sound file="Content/Items/WarningBeepSlow.ogg" range="500" />
@@ -784,8 +784,8 @@
       <TagAction criteria="itemidentifier:statusmonitor" tag="monitor" submarinetype="player" />
       <TagAction criteria="player" tag="player" />
       <SetDataAction identifier="ReactorMalfunction" value="1" />
-      <TriggerEventAction identifier="reactormalfunctionstatusevent" />
       <TriggerAction target1tag="monitor" target2tag="player" applytotarget1="activemonitor" applytotarget2="rm_player1" radius="500" waitforinteraction="false" />
+      <TriggerEventAction identifier="reactormalfunctionstatusevent" />
       <StatusEffectAction targettag="activemonitor">
         <StatusEffect>
           <Sound file="Content/Items/WarningBeepSlow.ogg" range="500" />
@@ -969,9 +969,11 @@
           <StatusEffectAction targettag="reactor">
             <StatusEffect fissionrate="100.0" setvalue="true" duration="1">
               <Conditional noninteractable="eq false" />
+              <RequiredItem items="fuel" type="contained" />
             </StatusEffect>
             <StatusEffect condition="-2" disabledeltatime="true">
               <Conditional noninteractable="eq false" />
+              <RequiredItem items="fuel" type="contained" />
             </StatusEffect>
           </StatusEffectAction>
           <WaitAction time="1" />

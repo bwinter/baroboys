@@ -64,7 +64,7 @@
     <Deconstruct time="40">
       <Item identifier="organicfiber" />
     </Deconstruct>
-    <Sprite texture="%ModDir%/Items/Jobgear/headgears.png" depth="0.6" sourcerect="336,455,60,42" origin="0.5,0.5" scale="0.5" />
+    <Sprite texture="Content/Items/Jobgear/headgears.png" depth="0.6" sourcerect="336,455,60,42" origin="0.5,0.5" scale="0.5" />
     <Body width="20" radius="15" density="15" />
     <Wearable limbtype="Head" slots="Any,Head" msg="ItemMsgPickUpSelect">
       <sprite texture="%ModDir%/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.8" sourcerect="313,407,100,95" origin="0.55,0.6" />
@@ -105,7 +105,7 @@
     <Deconstruct time="10">
       <Item identifier="ballisticfiber" />
     </Deconstruct>
-    <Sprite name="" texture="%ModDir%/Items/Jobgear/headgears.png" sourcerect="424,206,88,95" depth="0.6" origin="0.5,0.5" />
+    <Sprite name="" texture="Content/Items/Jobgear/headgears.png" sourcerect="424,206,88,95" depth="0.6" origin="0.5,0.5" />
     <Body radius="30" density="50" />
     <Wearable slots="Any,Head" armorvalue="20.0" msg="ItemMsgPickUpSelect">
       <damagemodifier afflictionidentifiers="lacerations,gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.2" damagesound="LimbArmor" deflectprojectiles="true" />
@@ -113,7 +113,7 @@
       <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="LimbArmor" deflectprojectiles="true" />
       <damagemodifier afflictionidentifiers="concussion" armorsector="0.0,360.0" damagemultiplier="0.0" damagesound="" deflectprojectiles="true" />
       <SkillModifier skillidentifier="weapons" skillvalue="5" />
-      <sprite name="Pirate Helmet 1 Wearable" texture="%ModDir%/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.7" hidewearablesoftype="Hair" sourcerect="322,207,93,99" origin="0.6,0.5" />
+      <sprite name="Pirate Helmet 1 Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.7" hidewearablesoftype="Hair" sourcerect="322,207,93,99" origin="0.6,0.5" />
     </Wearable>
   </Item>
   <Item name="" description="" identifier="pirateclothesnovicePA" category="Equipment" cargocontaineridentifier="metalcrate" tags="smallitem,clothing" scale="0.5" impactsoundtag="impact_soft">
@@ -217,7 +217,7 @@
       </StatusEffect>
     </Throwable>
   </Item>
-  <Item name="" description="" identifier="exosuitPA" category="Diving,Equipment" tags="diving,divinggear_wearableindoors,provocative,deepdiving,deepdivinglarge" scale="0.605" fireproof="true" isshootable="true" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy" nonplayerteaminteractable="True">
+  <Item name="" description="" identifier="exosuitPA" category="Diving,Equipment" tags="diving,divinggear_wearableindoors,provocative,deepdiving,deepdivinglarge" scale="0.605" fireproof="true" isshootable="true" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy" nonplayerteaminteractable="True" hideinmenus="True">
     <Price baseprice="2473" canbespecial="false" sold="false" />
     <Deconstruct time="30">
       <Item identifier="titaniumaluminiumalloy" />

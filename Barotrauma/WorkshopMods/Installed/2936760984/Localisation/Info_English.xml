@@ -68,9 +68,9 @@
   <afflictioncauseofdeath.brainhemorrhage>Brain death</afflictioncauseofdeath.brainhemorrhage>
   <afflictioncauseofdeathself.brainhemorrhage>Your brain was melted by active sonar.</afflictioncauseofdeathself.brainhemorrhage>
   <!-- Manna Influence -->
-  <afflictionname.mannainjection>Manna influence</afflictionname.mannainjection>
-  <afflictiondescription.mannainjection>This limb in under the healing influence of Manna Extract.</afflictiondescription.mannainjection>
-  <afflictiondescription.mannainjection.self>You feel a gentle pressure and comforting warmth beneath the skin.</afflictiondescription.mannainjection.self>
+  <afflictionname.mannainfluence>Manna influence</afflictionname.mannainfluence>
+  <afflictiondescription.mannainfluence>This limb in under the healing influence of Manna Extract.</afflictiondescription.mannainfluence>
+  <afflictiondescription.mannainfluence.self>You feel a gentle pressure and comforting warmth beneath the skin.</afflictiondescription.mannainfluence.self>
   <!-- Manna Overdose -->
   <afflictionname.mannaoverdose>Manna overdose</afflictionname.mannaoverdose>
   <afflictiondescription.mannaoverdose>The patient has a dangerous amount of Manna in their blood.</afflictiondescription.mannaoverdose>
@@ -108,12 +108,40 @@ Warning: Administering into a healthy brain environment can cause a dangerous pr
   <entitydescription.navremote>A handheld device that can be used to remotely control the submarine's sonar and engines.</entitydescription.navremote>
   <!-- Menu -->
   <realsonarsettings>Real Sonar Settings</realsonarsettings>
-  <sonarpingvolume>Sonar Ping Volume</sonarpingvolume>
+  <volumesettings>Volume Settings</volumesettings>
   <airpingvolume>Air Ping Volume</airpingvolume>
   <waterpingvolume>Water Ping Volume</waterpingvolume>
   <suitpingvolume>Suit Ping Volume</suitpingvolume>
   <tinnitusvolume>Tinnitus Volume</tinnitusvolume>
   <distortionvolume>Distortion Volume</distortionvolume>
+  <networksettings>Network Settings - Client Only (Requires "cl_reloadlua" in console)</networksettings>
+  <lowlatencymode>Low Latency Mode (Experimental)</lowlatencymode>
+  <lowlatencymodetooltip>Eliminates delay caused by high ping to server. May cause visual bugs or desync if server has contrasting config options.</lowlatencymodetooltip>
+  <gameplaysettingsserver>Gameplay Settings - Host Only</gameplaysettingsserver>
+  <gameplaysettingsclient>Gameplay Settings</gameplaysettingsclient>
+  <sonarrange>Sonar Range (Single-player only)</sonarrange>
+  <sonardamage>Sonar Damage (Non-linear)</sonardamage>
+  <submarinesonar>Submarine Sonar</submarinesonar>
+  <submarinesonartooltip>Enable functionality of Navigation Terminals.</submarinesonartooltip>
+  <beaconsonar>Beacon Sonar</beaconsonar>
+  <beaconsonartooltip>Enable functionality of Sonar Monitors.</beaconsonartooltip>
+  <shuttlesonar>Shuttle Sonar</shuttlesonar>
+  <shuttlesonartooltip>Enable functionality of Shuttle Terminals.</shuttlesonartooltip>
+  <targetcreatures>Target Creatures</targetcreatures>
+  <targetcreaturestooltip>Enable damage to all non-human creatures.</targetcreaturestooltip>
+  <targetplayers>Target Players</targetplayers>
+  <targetplayerstooltip>Enable damage to players.</targetplayerstooltip>
+  <targetbots>Target Bots</targetbots>
+  <targetbotstooltip>Enable damage to bots.</targetbotstooltip>
+  <creaturehulldetection>Creature Hull Detection</creaturehulldetection>
+  <creaturehulldetectiontooltip>Accurate sonar hit detection for creatures. Disabling may improve performance.</creaturehulldetectiontooltip>
+  <humanhulldetection>Human Hull Detection</humanhulldetection>
+  <humanhulldetectiontooltip>Accurate sonar hit detection for humans, e.g. Do you want humans to be protected in ballast tanks?</humanhulldetectiontooltip>
+  <impactvisuals>Sonar Impact Visual Intensity</impactvisuals>
+  <sonarslow>Sonar Movement Speed Penalty</sonarslow>
+  <defaultfx>Other Visuals (Brain hemorrhage, cortizide, etc.):\nStandard</defaultfx>
+  <lowfx>Other Visuals (Brain hemorrhage, cortizide, etc.):\nReduced</lowfx>
+  <nofx>Other Visuals (Brain hemorrhage, cortizide, etc.):\nDisabled</nofx>
   <!-- Dialogue -->
   <dialoggetanechoicsuit>I need anechoic diving gear!</dialoggetanechoicsuit>
   <dialoggetanechoicsuit>I need an anechoic suit to do repairs with the sonar on!</dialoggetanechoicsuit>

@@ -68,9 +68,9 @@
   <afflictioncauseofdeath.brainhemorrhage>Mort cérébrale</afflictioncauseofdeath.brainhemorrhage>
   <afflictioncauseofdeathself.brainhemorrhage>Votre cerveau a été fondu par un sonar actif.</afflictioncauseofdeathself.brainhemorrhage>
   <!-- Influence de Manne -->
-  <afflictionname.mannainjection>Influence de manne</afflictionname.mannainjection>
-  <afflictiondescription.mannainjection>Ce membre est sous l'influence curative de l'Extrait de manne.</afflictiondescription.mannainjection>
-  <afflictiondescription.mannainjection.self>Vous ressentez une légère pression et chaleur sous votre peau.</afflictiondescription.mannainjection.self>
+  <afflictionname.mannainfluence>Influence de manne</afflictionname.mannainfluence>
+  <afflictiondescription.mannainfluence>Ce membre est sous l'influence curative de l'Extrait de manne.</afflictiondescription.mannainfluence>
+  <afflictiondescription.mannainfluence.self>Vous ressentez une légère pression et chaleur sous votre peau.</afflictiondescription.mannainfluence.self>
   <!-- Overdose de Manne -->
   <afflictionname.mannaoverdose>Overdose de manne</afflictionname.mannaoverdose>
   <afflictiondescription.mannaoverdose>Le patient présente dans son sang des taux dangereux d'Extrait de manne.</afflictiondescription.mannaoverdose>
@@ -108,12 +108,40 @@ Attention: Injecter ce produit dans un corps saint peut causer une augmentation 
   <entitydescription.navremote>Un appareil portable qui peut être utilisé pour contrôler à distance le sonar et les moteurs du sous-marin.</entitydescription.navremote>
   <!-- Menu -->
   <realsonarsettings>Paramètres de Real Sonar</realsonarsettings>
-  <sonarpingvolume>Volume des Impulsions de Sonar</sonarpingvolume>
+  <volumesettings>Paramètres de Volume</volumesettings>
   <airpingvolume>Volume d'Impulsion dans l'Air</airpingvolume>
   <waterpingvolume>Volume Impulsion dans l'Eau</waterpingvolume>
   <suitpingvolume>Volume d'Impulsion dans Combinaison</suitpingvolume>
   <tinnitusvolume>Volume sous Acouphène</tinnitusvolume>
   <distortionvolume>Volume sous Distorsion</distortionvolume>
+  <networksettings>Paramètres Réseau - Client Seul (Requiert "cl_reloadlua" dans la console)</networksettings>
+  <lowlatencymode>Mode à Basse Latence (Experimental)</lowlatencymode>
+  <lowlatencymodetooltip>Elimine le délai causé par une latence élevée sur le serveur. Peut provoquer des désyncronisations a des oprions de configuration contradictoires.</lowlatencymodetooltip>
+  <gameplaysettingsserver>Paramètres de Gameplay - Hôte Seul</gameplaysettingsserver>
+  <gameplaysettingsclient>Paramètres de Gameplay</gameplaysettingsclient>
+  <sonarrange>Portée du Sonar (Jeux Solo seulement)</sonarrange>
+  <sonardamage>Dégats du Sonar (Non linéaire)</sonardamage>
+  <submarinesonar>Sonar du Submersible</submarinesonar>
+  <submarinesonartooltip>Active les dégâts du Terminal de Navigation.</submarinesonartooltip>
+  <beaconsonar>Sonar de Balises</beaconsonar>
+  <beaconsonartooltip>Active les dégâts du Sonar Portatif.</beaconsonartooltip>
+  <shuttlesonar>Sonar de Navette</shuttlesonar>
+  <shuttlesonartooltip>Activer les dégâts du Terminal de la Navette.</shuttlesonartooltip>
+  <targetcreatures>Effet sur les Créatures</targetcreatures>
+  <targetcreaturestooltip>Active les dégats sur les Créatures non humaines.</targetcreaturestooltip>
+  <targetplayers>Effet sur le Joueur</targetplayers>
+  <targetbots>Effet sur les Bots</targetbots>
+  <targetplayerstooltip>Active les dégâts sur les Joueurs.</targetplayerstooltip>
+  <targetbotstooltip>Active les dégâts sur les bots.</targetbotstooltip>
+  <creaturehulldetection>Creature Hull Detection</creaturehulldetection>
+  <creaturehulldetectiontooltip>Détection précise des dégâts du sonar pour les créatures. Le désactiver peut améliorer les performances du jeu.</creaturehulldetectiontooltip>
+  <humanhulldetection>Détection de la coque pour les humains</humanhulldetection>
+  <humanhulldetectiontooltip>Détection précise des dégats du sonar pour les humain, e.g. Voulez-vous que les humains soient protégés dans les ballast ?</humanhulldetectiontooltip>
+  <impactvisuals>Intensité de l'Impact Visuel du Sonar</impactvisuals>
+  <sonarslow>Pénalité de Mouvement due au Sonar</sonarslow>
+  <defaultfx>Autre Affichage (Brain hemorrhage, Corticoïdes, etc.):\nStandard</defaultfx>
+  <lowfx>Autre Affichage (Lésion nerveuse, Corticoïdes, etc.):\nRéduits</lowfx>
+  <nofx>Autre Affichage (Lésion nerveuse, Corticoïdes, etc.):\nDésactivés</nofx>
   <!-- Dialogue -->
   <dialoggetanechoicsuit>J'ai besoin d'une combinaison anéchoïque !</dialoggetanechoicsuit>
   <dialoggetanechoicsuit>J'ai besoin d'une tenue anéchoïque pour pouvoir réparer comme le sonar est allumé !</dialoggetanechoicsuit>

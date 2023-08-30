@@ -69,9 +69,9 @@
   <afflictioncauseofdeath.brainhemorrhage>Погибает от смерти мозга</afflictioncauseofdeath.brainhemorrhage>
   <afflictioncauseofdeathself.brainhemorrhage>Ваш мозг расплавил активный сонар.</afflictioncauseofdeathself.brainhemorrhage>
   <!-- Manna Influence -->
-  <afflictionname.mannainjection>Действие Моны</afflictionname.mannainjection>
-  <afflictiondescription.mannainjection>На эту конечность действуют целебные свойства экстракта Моны.</afflictiondescription.mannainjection>
-  <afflictiondescription.mannainjection.self>Вы чувствуете слабый напор и успокаивающую теплоту в глубине.</afflictiondescription.mannainjection.self>
+  <afflictionname.mannainfluence>Действие Моны</afflictionname.mannainfluence>
+  <afflictiondescription.mannainfluence>На эту конечность действуют целебные свойства экстракта Моны.</afflictiondescription.mannainfluence>
+  <afflictiondescription.mannainfluence.self>Вы чувствуете слабый напор и успокаивающую теплоту в глубине.</afflictiondescription.mannainfluence.self>
   <!-- Manna Overdose -->
   <afflictionname.mannaoverdose>Передоз Моны</afflictionname.mannaoverdose>
   <afflictiondescription.mannaoverdose>У пациента опасное количество Моны в крови.</afflictiondescription.mannaoverdose>
@@ -109,12 +109,40 @@
   <entitydescription.navremote>Портативное устройство, позволяющее дистанционно контролировать сонар и двигатели подлодки.</entitydescription.navremote>
   <!-- Menu -->
   <realsonarsettings>Настройки Real Sonar</realsonarsettings>
-  <sonarpingvolume>Громкость сонара</sonarpingvolume>
+  <volumesettings>Настройки громкости</volumesettings>
   <airpingvolume>Громкость импульса в воздухе</airpingvolume>
   <waterpingvolume>Громкость импульса под водой</waterpingvolume>
   <suitpingvolume>Громкость импульса</suitpingvolume>
   <tinnitusvolume>Громкость эффекта тиннита</tinnitusvolume>
   <distortionvolume>Громкость оглушения</distortionvolume>
+  <networksettings>Сетевые настройки - Клиент (требуют "cl_reloadlua")</networksettings>
+  <lowlatencymode>Режим пониженной задержки (экспериментальный)</lowlatencymode>
+  <lowlatencymodetooltip>Исправляет задержки, созданные высоким пингом к серверу. Может вызвать рассинхрон при несовпадающих конфигурациях.</lowlatencymodetooltip>
+  <gameplaysettingsserver>Настройки геймплея - Сервер</gameplaysettingsserver>
+  <gameplaysettingsclient>Настройки геймплея</gameplaysettingsclient>
+  <sonarrange>Радиус сонара (только для singleplayer)</sonarrange>
+  <sonardamage>Урон сонара (нелинейный)</sonardamage>
+  <submarinesonar>Сонар подлодок</submarinesonar>
+  <submarinesonartooltip>Урон от активного сонара навигационных терминалов.</submarinesonartooltip>
+  <beaconsonar>Сонар радиомаяков</beaconsonar>
+  <beaconsonartooltip>Урон от активного сонара радиомаяков (через монитор сонара).</beaconsonartooltip>
+  <shuttlesonar>Сонар челноков</shuttlesonar>
+  <shuttlesonartooltip>Урон от активного сонара навигационных терминалов шаттла.</shuttlesonartooltip>
+  <targetcreatures>Урон существам</targetcreatures>
+  <targetcreaturestooltip>Включить урон нечеловеческим сущностям.</targetcreaturestooltip>
+  <targetplayers>Урон игрокам</targetplayers>
+  <targetplayerstooltip>Включить урон игрокам.</targetplayerstooltip>
+  <targetbots>Урон NPC-подводникам</targetbots>
+  <targetbotstooltip>Включить урон ботам.</targetbotstooltip>
+  <creaturehulldetection>Урон существам внутри подлодок</creaturehulldetection>
+  <creaturehulldetectiontooltip>Включает точные расчёты ударов активного сонара для существ. Выключение может улучшить производительность.</creaturehulldetectiontooltip>
+  <humanhulldetection>Урон людям внутри подлодок</humanhulldetection>
+  <humanhulldetectiontooltip>Включает точные расчёты ударов активного сонара для людей. Защищает людей от сонара в балластах.</humanhulldetectiontooltip>
+  <impactvisuals>Визуальная мощность эффектов сонара</impactvisuals>
+  <sonarslow>Замедление после удара сонаром</sonarslow>
+  <defaultfx>Другие эффекты (кровоизлияний в мозг, кортизида, и т.д.):\nСтандартные</defaultfx>
+  <lowfx>Другие эффекты (кровоизлияний в мозг, кортизида, и т.д.):\nСнижены</lowfx>
+  <nofx>Другие эффекты (кровоизлияний в мозг, кортизида, и т.д.):\nВыключены</nofx>
   <!-- Dialogue -->
   <dialoggetanechoicsuit>Надо найти звукоизолирующий скафандр!</dialoggetanechoicsuit>
   <dialoggetanechoicsuit>Мне нужен безэховый скафандр, чтобы чинить со включенным сонаром!</dialoggetanechoicsuit>

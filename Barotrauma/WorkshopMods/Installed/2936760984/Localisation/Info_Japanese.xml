@@ -66,9 +66,9 @@
   <afflictioncauseofdeath.brainhemorrhage>脳死</afflictioncauseofdeath.brainhemorrhage>
   <afflictioncauseofdeathself.brainhemorrhage>ソナーで脳が溶けた</afflictioncauseofdeathself.brainhemorrhage>
   <!-- Manna Influence -->
-  <afflictionname.mannainjection>マナの影響</afflictionname.mannainjection>
-  <afflictiondescription.mannainjection>この手足は、マナエキスの癒しの影響下にあります。</afflictiondescription.mannainjection>
-  <afflictiondescription.mannainjection.self>肌の下に優しい圧力と心地よい温もりを感じることができます。</afflictiondescription.mannainjection.self>
+  <afflictionname.mannainfluence>マナの影響</afflictionname.mannainfluence>
+  <afflictiondescription.mannainfluence>この手足は、マナエキスの癒しの影響下にあります。</afflictiondescription.mannainfluence>
+  <afflictiondescription.mannainfluence.self>肌の下に優しい圧力と心地よい温もりを感じることができます。</afflictiondescription.mannainfluence.self>
   <!-- Manna Overdose -->
   <afflictionname.mannaoverdose>マナ過剰摂取</afflictionname.mannaoverdose>
   <afflictiondescription.mannaoverdose>患者の血中には危険な量のマナが含まれている。</afflictiondescription.mannaoverdose>

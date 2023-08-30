@@ -68,9 +68,9 @@
   <afflictioncauseofdeath.brainhemorrhage>Gehirntod</afflictioncauseofdeath.brainhemorrhage>
   <afflictioncauseofdeathself.brainhemorrhage>Dein Gehirn wurde vom Sonar Vermatscht.</afflictioncauseofdeathself.brainhemorrhage>
   <!-- Manna Influence -->
-  <afflictionname.mannainjection>Mannaeinfluss</afflictionname.mannainjection>
-  <afflictiondescription.mannainjection>Dieses Glied wird von Mannaextract geheilt.</afflictiondescription.mannainjection>
-  <afflictiondescription.mannainjection.self>Du fühlst einen leichten Druck, sowie angenehme Wärme unter der Haut.</afflictiondescription.mannainjection.self>
+  <afflictionname.mannainfluence>Mannaeinfluss</afflictionname.mannainfluence>
+  <afflictiondescription.mannainfluence>Dieses Glied wird von Mannaextract geheilt.</afflictiondescription.mannainfluence>
+  <afflictiondescription.mannainfluence.self>Du fühlst einen leichten Druck, sowie angenehme Wärme unter der Haut.</afflictiondescription.mannainfluence.self>
   <afflictioncauseofdeath.mannaoverdose>In Ekstase gestorben</afflictioncauseofdeath.mannaoverdose>
   <afflictioncauseofdeathself.mannaoverdose>Du hast es geschafft, willkommen im Himmel.</afflictioncauseofdeathself.mannaoverdose>
   <!-- Manna Overdose -->
@@ -108,12 +108,40 @@ WARNUNG: Injitzierung in ein Gesundes Gehirn kann einen Druckaufbau im Schädel 
   <entitydescription.navremote>Ein tragbares Gerät, mit dem das Sonar und die Motoren des U-Bootes ferngesteuert werden können.</entitydescription.navremote>
   <!-- Menu -->
   <realsonarsettings>Real-Sonar Einstellungen</realsonarsettings>
-  <sonarpingvolume>Sonarecho-Lautstärke</sonarpingvolume>
+  <volumesettings>Lautstärke-Einstellungen</volumesettings>
   <airpingvolume>Sonarecho-Lautstärke (Luft)</airpingvolume>
   <waterpingvolume>Sonarecho-Lautstärke (Wasser)</waterpingvolume>
   <suitpingvolume>Sonarecho-Lautstärke (Anzug)</suitpingvolume>
   <tinnitusvolume>Tinitus-Lautstärke</tinnitusvolume>
   <distortionvolume>Verzerrungs-Lautstärke</distortionvolume>
+  <networksettings>Netzwerkeinstellungen ("cl_reloadlua" in der Konsole nötig!)</networksettings>
+  <lowlatencymode> Verminderte-Latenz-Modus (Experimentell)</lowlatencymode>
+  <lowlatencymodetooltip>Eliminiert Verzögerungen wegen hohem Ping. Kann Desynchronysierung herbeirufen, wenn der Server Gegenteilige Konfigurierungen besitzt.</lowlatencymodetooltip>
+  <gameplaysettingsserver>Spieloptionen - (Host)</gameplaysettingsserver>
+  <gameplaysettingsclient>Gameplay-optionen</gameplaysettingsclient>
+  <sonarrange>Sonar-distanz (Einzelspieler)</sonarrange>
+  <sonardamage>Sonarschaden (Nicht-linear)</sonardamage>
+  <submarinesonar>U-Boots-sonar</submarinesonar>
+  <submarinesonartooltip>Schaden von Navigationskonsolen aktivieren.</submarinesonartooltip>
+  <beaconsonar>Sonar von Sonarbojen</beaconsonar>
+  <beaconsonartooltip>Schaden von Sonarmonitoren aktivieren.</beaconsonartooltip>
+  <shuttlesonar>Shuttle-sonar</shuttlesonar>
+  <shuttlesonartooltip>Schaden von Shuttle-Terminals aktivieren.</shuttlesonartooltip>
+  <targetcreatures>Kreaturen anviesieren</targetcreatures>
+  <targetcreaturestooltip>Schaden für nichtmenschliche Kreaturen aktivieren.</targetcreaturestooltip>
+  <targetplayers>Spieler anvisieren</targetplayers>
+  <targetbots>Bots anvisieren</targetbots>
+  <targetplayerstooltip>Schaden für Spieler aktivieren.</targetplayerstooltip>
+  <targetbotstooltip>Schaden für Bots aktivieren.</targetbotstooltip>
+  <creaturehulldetection>Kreaturen-Rumpf-erkennung</creaturehulldetection>
+  <creaturehulldetectiontooltip>Akkurate Sonartreffer für Kreaturen. Dies auszuschalten kann die Spielleistung verbessern.</creaturehulldetectiontooltip>
+  <humanhulldetection>Menschen-Rumpf-Erkennung</humanhulldetection>
+  <humanhulldetectiontooltip>Akkurate Sonartreffer für Menschen, D.h, willst du das Menschen z.b im Ballast-Tank sicher sind?</humanhulldetectiontooltip>
+  <impactvisuals>Sonar-Treffer-Effekt Intensivität</impactvisuals>
+  <sonarslow>Geschwindigeits-verminderung bei Treffer</sonarslow>
+  <defaultfx>Diverse Effekte (Gehirnblutung, Kortizid etc.):\nÜblich</defaultfx>
+  <lowfx>Diverse Effekte (Gehirnblutung, Kortizid etc.):\nReduziert</lowfx>
+  <nofx>Diverse Effekte (Gehirnblutung, Kortizid etc.):\nDeaktiviert</nofx>
   <!-- Dialogue -->
   <dialoggetanechoicsuit>Ich brauche anechoische Taucherausrüstung!</dialoggetanechoicsuit>
   <dialoggetanechoicsuit>Ich brauche einen anechoischen Taucheranzug, um trotz dem Sonar das Schiff zu reparieren!</dialoggetanechoicsuit>
