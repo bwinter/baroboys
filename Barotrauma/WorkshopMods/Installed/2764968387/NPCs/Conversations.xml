@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Conversations identifier="ehaconversations" Language="English" nowhitespace="False">
+  <Conversation line="Why does the Coalition not have any special forces unlike the Separatists?" speaker="0">
+    <Conversation line="No idea, probably because they don't need them." speaker="1">
+      <Conversation line="You'd think a PMC would have formed by now and filled that niche?" speaker="0"></Conversation>
+    </Conversation>
+    <Conversation line="Given how hellish the political situation is I can sort of see that being a market that's going to skyrocket soon, trained contractors for better security when shit hits the fan." speaker="0">
+      <Conversation line="I suppose time will tell, if we have that much time left until this all sparks into hell on Europa." speaker="1" />
+    </Conversation>
+  </Conversation>
+  <Conversation line="You lot heard of the Vanguards? Those weird dudes that work for the Separatists?" speaker="0">
+    <Conversation line="I have, they're the go-to for the Separatist's outpost raids, laying waste to basically everyone who dares stand in their way" speaker="1">
+      <Conversation line="I really hope to Jove we don't end up finding any, last thing I want is to end up as one of their war trophies and as another statistic to the Separatists." speaker="0">
+        <Conversation line="Well you've just jinxed us now so well done." speaker="1" />
+        <Conversation line="Crap..." speaker="0" />
+      </Conversation>
+    </Conversation>
+  </Conversation>
+  <Conversation line="Preso Latex is a horrible fucking thing, who thought it was a good idea?" speaker="0">
+    <Conversation line="The Coalition's banned it's use, that's all I need to know about it aside from keeping CBRN gear on the sub." speaker="1">
+      <Conversation line="I'll have you know it's pretty useful for refining into ammunition, which you jarheads seem to go through a lot." speaker="2" allowedjobs="medicaldoctor">
+        <Conversation line="No need to be a dick about it." speaker="3" allowedjobs="securityofficer" />
+      </Conversation>
+    </Conversation>
+  </Conversation>
+  <Conversation line="You guys heard of this really weird urban legend of a weird looking mask driving people crazy and killing them?" speaker="0">
+    <Conversation line="I'd like to say I haven't, I really hope that shit's just some methhead clown story" speaker="1">
+      <Conversation line="As mad as clowns seem to be especially with all the crap going on as of recent I dunno, for some reason this legend just... hits different." speaker="0"></Conversation>
+    </Conversation>
+  </Conversation>
+  <Conversation line="Ah, tick tick tock. Is that a geiger counter or my life-span ticking down? It's Both!" speaker="0" flags="InRadiation" />
+  <Conversation line="Jesus I'm feeling really sick... I'm sterile for sure..." speaker="0" flags="InRadiation" />
+  <Conversation line="I feel like I'm about to have a seizure, my entire head feels like it's going to explode." speaker="0" flags="InRadiation" />
+  <Conversation line="Jove almighty these gamma radiation levels are insane. Cap' you better get our asses moving now." speaker="0" flags="InRadiation" allowedjobs="engineer" />
+  <Conversation line="I really hope I have enough Anti-Rad after this, lord knows you'll all need it." speaker="0" flags="InRadiation" allowedjobs="medicaldoctor" />
+  <Conversation line="Got myself a new AK today, kinda cost a pretty penny though." speaker="0" flags="OutpostNPCSeparatists">
+    <Conversation line="To think that ancient ass design is still liberating places, humanity never changes." speaker="1" flags="OutpostNPCSeparatists" />
+  </Conversation>
+  <Conversation line="I hope that ASh-12 we managed to grab still works, those things are a bitch to get ahold of." speaker="0" flags="OutpostNPCSeparatists">
+    <Conversation line="Yeah our Malyuks are kind of a shitty alternative, the fire rate makes it so hard to control." speaker="1" flags="OutpostNPCSeparatists" />
+  </Conversation>
+  <Conversation line="How did things get this fucked anyways?" speaker="0" flags="OutpostNPCSeparatists">
+    <Conversation line="Come on! It's hardly like it's a surprise! Europa's been in the shitter ever since Earth stopped talking, now we're on our own and now the Coalition is going mad for power." speaker="1" flags="OutpostNPCSeparatists" />
+  </Conversation>
+  <Conversation line="Infiltrators scare me." speaker="0" flags="OutpostNPCSeparatists">
+    <Conversation line="I'd keep your voice down, I doubt you'd want to start throwing that name around." speaker="1" flags="OutpostNPCSeparatists" />
+  </Conversation>
+  <Conversation line="By Jove I'm bored, it's all this being stuck inside a metal tube all day and night, really fucks with me." speaker="0" flags="OutpostNPC" />
+  <Conversation line="What i'd do for that Battle Rifle I got my eyes on not too long ago..." speaker="0" flags="OutpostNPC" />
+  <Conversation line="Jeez I've got a weird headache, Doc can you come over here?" speaker="0" flags="psimin" />
+  <Conversation line="Eugh, I really don't feel right, my head is spinning..." speaker="0" flags="psimin" />
+  <Conversation line="Fucking hell where has this migraine come from? I feel awful." speaker="0" flags="psimin" />
+  <Conversation line="Fucks sake I can't concentrate on anything, Doc the hell is going on with me?" speaker="0" flags="psimin" />
+  <Conversation line="This is... the worst headache I've ever experienced..." speaker="0" flags="psimid" />
+  <Conversation line="AAAGH WHAT THE FUCK WAS THAT?!" speaker="0" flags="psimid" />
+  <Conversation line="M-my fucking-fingers wont sit still." speaker="0" flags="psimid" />
+  <Conversation line="Someone help me I feel really fucking sick and I can't see shit..." speaker="0" flags="psimid" />
+  <Conversation line="idi kamne..." speaker="0" flags="psimax" />
+  <Conversation line="help... me..." speaker="0" flags="psimax" />
+  <Conversation line="Why have you left us? Oh Monolith..." speaker="0" flags="psimax" />
+  <Conversation line="someone... i-i can't stop shaking..." speaker="0" flags="psimax" />
+  <Conversation line="AAAAAAAAAAAAAAGH!" speaker="0" flags="psimax" />
+  <Conversation line="someone... shoot me..." speaker="0" flags="psimax" />
+  <Conversation line="wuh..." speaker="0" flags="psimax" />
+  <Conversation line="i can't... feel my arms, or legs..." speaker="0" flags="psimax" />
+  <Conversation line="i... cant see..." speaker="0" flags="psimax" />
+  <Conversation line="I nezabarom nastane den, zasyaye Monolit.." speaker="0" flags="psimax" />
+</Conversations>

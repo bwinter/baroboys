@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Missions>
+  <OutpostDestroyMission name="Vanguard Assassination" identifier="abandonedoutpostassassinateliv" tags="abandonedoutpost" textidentifier="abandonedoutpostassassinateliv" type="OutpostDestroy" reward="12000" difficulty="5" commonness="30" allowretry="true" sonarlabel="target" unhideentitysubcategories="abandonedhuman" achievementidentifier="abandonedoutpostassassinate">
+    <Icon texture="Content/UI/MissionIcons.png" sourcerect="0,512,256,256" color="214,50,48" />
+    <LocationType identifier="Abandoned" />
+    <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+    <Reputation identifier="separatists" amount="-50" />
+    <Reputation identifier="coalition" amount="15" />
+    <Characters>
+      <Character identifier="seplivfollower" from="abandonedlivnpcs" moduleflags="crewmodule" />
+      <Character identifier="seplivfollower" from="abandonedlivnpcs" moduleflags="crewmodule" />
+      <Character identifier="seplivfollower" from="abandonedlivnpcs" moduleflags="researchmodule" />
+      <Character identifier="seplivfollower" from="abandonedlivnpcs" moduleflags="researchmodule" />
+      <Character identifier="seplivfollower" from="abandonedlivnpcs" moduleflags="researchmodule" multiplayeronly="true" />
+      <Character identifier="seplivfollower" from="abandonedlivnpcs" moduleflags="engineeringmodule" />
+      <Character identifier="seplivfollower" from="abandonedlivnpcs" moduleflags="engineeringmodule" />
+      <Character identifier="seplivfollower" from="abandonedlivnpcs" moduleflags="engineeringmodule" multiplayeronly="true" />
+      <Character identifier="seplivfollowerwanderer" from="abandonedlivnpcs" moduleflags="engineeringmodule" multiplayeronly="true" />
+      <Character identifier="seplivfollower" from="abandonedlivnpcs" moduleflags="securitymodule" />
+      <Character identifier="seplivfollower" from="abandonedlivnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="seplivfollowerwanderer" from="abandonedlivnpcs" moduleflags="securitymodule" />
+      <Character identifier="seplivfollowerwanderer" from="abandonedlivnpcs" moduleflags="securitymodule" />
+      <Character identifier="seplivfollowerwanderer" from="abandonedlivnpcs" moduleflags="securitymodule" />
+      <Character identifier="seplivfollowerwanderer" from="abandonedlivnpcs" moduleflags="securitymodule" />
+      <Character identifier="seplivfollowerwanderer" from="abandonedlivnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="seplivfollowerwanderer" from="abandonedlivnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="seplivfollowerwanderer" from="abandonedlivnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="liv" from="abandonedlivnpcs" spawnpointtags="banditleader" requirekill="true" asfaraspossible="true" multiplayeronly="true" />
+      <Character identifier="liv" from="abandonedlivnpcs" spawnpointtags="banditleader" requirekill="true" asfaraspossible="true" />
+    </Characters>
+    <message header="missionheader0.abandonedoutpostassassinateliv" text="missionmessage0.abandonedoutpostassassinateliv" />
+  </OutpostDestroyMission>
+  <OutpostDestroyMission name="Infiltrator Assassination" identifier="abandonedoutpostassassinateyui" tags="abandonedoutpost" textidentifier="abandonedoutpostassassinateyui" type="OutpostDestroy" reward="12000" difficulty="5" commonness="35" allowretry="true" sonarlabel="target" unhideentitysubcategories="abandonedhuman" achievementidentifier="abandonedoutpostassassinate">
+    <Icon texture="Content/UI/MissionIcons.png" sourcerect="0,512,256,256" color="214,50,48" />
+    <LocationType identifier="Abandoned" />
+    <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+    <Reputation identifier="separatists" amount="-30" />
+    <Reputation identifier="coalition" amount="10" />
+    <Characters>
+      <Character identifier="sepyuifollower" from="abandonedyuinpcs" moduleflags="crewmodule" />
+      <Character identifier="sepyuifollower" from="abandonedyuinpcs" moduleflags="crewmodule" multiplayeronly="true" />
+      <Character identifier="sepyuifollower" from="abandonedyuinpcs" moduleflags="researchmodule" />
+      <Character identifier="sepyuifollower" from="abandonedyuinpcs" moduleflags="researchmodule" />
+      <Character identifier="sepyuifollower" from="abandonedyuinpcs" moduleflags="engineeringmodule" />
+      <Character identifier="sepyuifollower" from="abandonedyuinpcs" moduleflags="engineeringmodule" />
+      <Character identifier="sepyuifollower" from="abandonedyuinpcs" moduleflags="engineeringmodule" multiplayeronly="true" />
+      <Character identifier="sepyuifollower" from="abandonedyuinpcs" moduleflags="engineeringmodule" multiplayeronly="true" />
+      <Character identifier="sepyuifollower" from="abandonedyuinpcs" moduleflags="securitymodule" />
+      <Character identifier="sepyuifollowerwanderer" from="abandonedyuinpcs" moduleflags="securitymodule" />
+      <Character identifier="sepyuifollowerwanderer" from="abandonedyuinpcs" moduleflags="securitymodule" />
+      <Character identifier="sepyuifollowerwanderer" from="abandonedyuinpcs" moduleflags="securitymodule" />
+      <Character identifier="sepyuifollowerwanderer" from="abandonedyuinpcs" moduleflags="securitymodule" />
+      <Character identifier="sepyuifollowerwanderer" from="abandonedyuinpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="sepyuifollowerwanderer" from="abandonedyuinpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="yui" from="abandonedyuinpcs" spawnpointtags="banditleader" requirekill="true" asfaraspossible="true" />
+      <Character identifier="yui" from="abandonedyuinpcs" spawnpointtags="banditleader" requirekill="true" asfaraspossible="true" multiplayeronly="true" />
+    </Characters>
+    <message header="missionheader0.abandonedoutpostassassinateyui" text="missionmessage0.abandonedoutpostassassinateyui" />
+  </OutpostDestroyMission>
+  <OutpostDestroyMission name="Rogue Coalition Cleansing" identifier="abandonedoutpostassassinaterogues" tags="abandonedoutpost" textidentifier="abandonedoutpostassassinaterogues" type="OutpostDestroy" reward="6000" difficulty="4" commonness="40" allowretry="true" sonarlabel="target" unhideentitysubcategories="abandonedhuman" achievementidentifier="abandonedoutpostassassinate">
+    <Icon texture="Content/UI/MissionIcons.png" sourcerect="0,512,256,256" color="214,50,48" />
+    <LocationType identifier="Abandoned" />
+    <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+    <Characters>
+      <Character identifier="roguecoalitionsoldier" from="roguecoalitionmembers" moduleflags="crewmodule" multiplayeronly="true" />
+      <Character identifier="roguecoalitionsoldier" from="roguecoalitionmembers" moduleflags="researchmodule" />
+      <Character identifier="roguecoalitionsoldier" from="roguecoalitionmembers" moduleflags="researchmodule" />
+      <Character identifier="roguecoalitionsoldier" from="roguecoalitionmembers" moduleflags="researchmodule" multiplayeronly="true" />
+      <Character identifier="roguecoalitionsoldier" from="roguecoalitionmembers" moduleflags="researchmodule" multiplayeronly="true" />
+      <Character identifier="roguecoalitionsoldier" from="roguecoalitionmembers" moduleflags="engineeringmodule" />
+      <Character identifier="roguecoalitionsoldier" from="roguecoalitionmembers" moduleflags="engineeringmodule" />
+      <Character identifier="roguecoalitionsoldier" from="roguecoalitionmembers" moduleflags="engineeringmodule" />
+      <Character identifier="roguecoalitionsoldier" from="roguecoalitionmembers" moduleflags="engineeringmodule" multiplayeronly="true" />
+      <Character identifier="roguecoalitionsoldier" from="roguecoalitionmembers" moduleflags="securitymodule" />
+      <Character identifier="roguecoalitionsoldier" from="roguecoalitionmembers" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="roguecoalitionsoldierwanderer" from="roguecoalitionmembers" moduleflags="securitymodule" />
+      <Character identifier="roguecoalitionsoldierwanderer" from="roguecoalitionmembers" moduleflags="securitymodule" />
+      <Character identifier="roguecoalitionsoldierwanderer" from="roguecoalitionmembers" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="roguecoalitionsoldierwanderer" from="roguecoalitionmembers" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="rogueleader" from="roguecoalitionmembers" spawnpointtags="banditleader" requirekill="true" asfaraspossible="true" />
+    </Characters>
+    <message header="missionheader0.abandonedoutpostassassinaterogues" text="missionmessage0.abandonedoutpostassassinaterogues" />
+  </OutpostDestroyMission>
+  <OutpostDestroyMission name="" identifier="abandonedoutpostassassinatescavs" tags="abandonedoutpost" textidentifier="abandonedoutpostassassinatescavs" type="OutpostDestroy" reward="6000" difficulty="4" commonness="45" allowretry="true" sonarlabel="target" unhideentitysubcategories="abandonedhuman" achievementidentifier="abandonedoutpostassassinate">
+    <Icon texture="Content/UI/MissionIcons.png" sourcerect="0,512,256,256" color="214,50,48" />
+    <LocationType identifier="Abandoned" />
+    <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+    <Characters>
+      <Character identifier="piratescav" from="piratescavnpcs" moduleflags="crewmodule" />
+      <Character identifier="piratescav" from="piratescavnpcs" moduleflags="crewmodule" />
+      <Character identifier="piratescav" from="piratescavnpcs" moduleflags="adminmodule" />
+      <Character identifier="piratescav" from="piratescavnpcs" moduleflags="adminmodule" multiplayeronly="true" />
+      <Character identifier="piratescav" from="piratescavnpcs" moduleflags="researchmodule" />
+      <Character identifier="piratescav" from="piratescavnpcs" moduleflags="researchmodule" />
+      <Character identifier="piratescav" from="piratescavnpcs" moduleflags="researchmodule" />
+      <Character identifier="piratescav" from="piratescavnpcs" moduleflags="researchmodule" />
+      <Character identifier="piratescav" from="piratescavnpcs" moduleflags="researchmodule" multiplayeronly="true" />
+      <Character identifier="piratescav" from="piratescavnpcs" moduleflags="engineeringmodule" />
+      <Character identifier="piratescav" from="piratescavnpcs" moduleflags="engineeringmodule" />
+      <Character identifier="piratescav" from="piratescavnpcs" moduleflags="engineeringmodule" multiplayeronly="true" />
+      <Character identifier="piratescav" from="piratescavnpcs" moduleflags="securitymodule" />
+      <Character identifier="piratescavwanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+      <Character identifier="piratescavwanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+      <Character identifier="piratescavwanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+      <Character identifier="piratescavwanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+      <Character identifier="piratescavwanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+      <Character identifier="piratescavwanderer" from="piratescavnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="piratescavwanderer" from="piratescavnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="piratescavleader" from="piratescavnpcs" spawnpointtags="banditleader" requirekill="true" asfaraspossible="true" />
+    </Characters>
+    <message header="missionheader0.abandonedoutpostassassinatescavs" text="missionmessage0.abandonedoutpostassassinatescavs" />
+  </OutpostDestroyMission>
+  <OutpostDestroyMission name="" identifier="abandonedoutpostassassinatetemppirates" tags="abandonedoutpost" textidentifier="abandonedoutpostassassinatetemppirates" type="OutpostDestroy" reward="6000" difficulty="4" commonness="45" allowretry="true" sonarlabel="target" unhideentitysubcategories="abandonedhuman" achievementidentifier="abandonedoutpostassassinate">
+    <Icon texture="Content/UI/MissionIcons.png" sourcerect="0,512,256,256" color="214,50,48" />
+    <LocationType identifier="Abandoned" />
+    <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+    <Characters>
+      <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="crewmodule" />
+      <Character identifier="pirateoperator" from="piratescavnpcs" moduleflags="crewmodule" />
+      <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="crewmodule" multiplayeronly="true" />
+      <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="researchmodule" />
+      <Character identifier="pirateoperator" from="piratescavnpcs" moduleflags="researchmodule" />
+      <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="researchmodule" multiplayeronly="true" />
+      <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="researchmodule" multiplayeronly="true" />
+      <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="engineeringmodule" />
+      <Character identifier="pirateoperator" from="piratescavnpcs" moduleflags="engineeringmodule" />
+      <Character identifier="pirateoperatorwanderer" from="piratescavnpcs" moduleflags="engineeringmodule" multiplayeronly="true" />
+      <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="engineeringmodule" multiplayeronly="true" />
+      <Character identifier="pirateprivatewanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+      <Character identifier="pirateprivatewanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+      <Character identifier="pirateoperatorwanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+      <Character identifier="pirateoperatorwanderer" from="piratescavnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="pirateoperator" from="piratescavnpcs" moduleflags="securitymodule" />
+      <Character identifier="pirateoperatorleader" from="piratescavnpcs" spawnpointtags="banditleader" requirekill="true" asfaraspossible="true" />
+    </Characters>
+    <message header="missionheader0.abandonedoutpostassassinatetemppirates" text="missionmessage0.abandonedoutpostassassinatetemppirates" />
+  </OutpostDestroyMission>
+  <OutpostDestroyMission name="Separatist Outpost Operations" identifier="abandonedoutpostassassinateseparatists" tags="abandonedoutpost" textidentifier="abandonedoutpostassassinateseparatists" type="OutpostDestroy" reward="4000" difficulty="4" commonness="45" allowretry="true" sonarlabel="target" unhideentitysubcategories="abandonedhuman" achievementidentifier="abandonedoutpostassassinate">
+    <Icon texture="Content/UI/MissionIcons.png" sourcerect="0,512,256,256" color="214,50,48" />
+    <LocationType identifier="Abandoned" />
+    <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+    <Reputation identifier="separatists" amount="-15" />
+    <Reputation identifier="coalition" amount="5" />
+    <Characters>
+      <Character identifier="separatistsoldier" from="separatistoutpostmembers" moduleflags="crewmodule" />
+      <Character identifier="separatistsoldier" from="separatistoutpostmembers" moduleflags="crewmodule" multiplayeronly="true" />
+      <Character identifier="separatistsoldier" from="separatistoutpostmembers" moduleflags="researchmodule" />
+      <Character identifier="separatistsoldier" from="separatistoutpostmembers" moduleflags="researchmodule" />
+      <Character identifier="separatistsoldier" from="separatistoutpostmembers" moduleflags="researchmodule" />
+      <Character identifier="separatistsoldier" from="separatistoutpostmembers" moduleflags="researchmodule" />
+      <Character identifier="separatistsoldier" from="separatistoutpostmembers" moduleflags="researchmodule" multiplayeronly="true" />
+      <Character identifier="separatistsoldier" from="separatistoutpostmembers" moduleflags="engineeringmodule" />
+      <Character identifier="separatistsoldier" from="separatistoutpostmembers" moduleflags="engineeringmodule" />
+      <Character identifier="separatistsoldier" from="separatistoutpostmembers" moduleflags="engineeringmodule" multiplayeronly="true" />
+      <Character identifier="separatistsoldier" from="separatistoutpostmembers" moduleflags="engineeringmodule" multiplayeronly="true" />
+      <Character identifier="separatistsoldier" from="separatistoutpostmembers" moduleflags="securitymodule" />
+      <Character identifier="separatistsoldier" from="separatistoutpostmembers" moduleflags="securitymodule" />
+      <Character identifier="separatistsoldierwanderer" from="separatistoutpostmembers" moduleflags="securitymodule" />
+      <Character identifier="separatistsoldierwanderer" from="separatistoutpostmembers" moduleflags="securitymodule" />
+      <Character identifier="separatistsoldierwanderer" from="separatistoutpostmembers" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="separatistsoldierwanderer" from="separatistoutpostmembers" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="separatistoutpostleader" from="separatistoutpostmembers" moduleflags="securitymodule" />
+      <Character identifier="separatistoutpostleader" from="separatistoutpostmembers" spawnpointtags="banditleader" requirekill="true" asfaraspossible="true" />
+    </Characters>
+    <message header="missionheader0.abandonedoutpostassassinateseparatists" text="missionmessage0.abandonedoutpostassassinateseparatists" />
+  </OutpostDestroyMission>
+  <OutpostDestroyMission name="Protectorate Assassination" identifier="abandonedoutpostassassinateveron" tags="abandonedoutpost" textidentifier="abandonedoutpostassassinateveron" type="OutpostDestroy" reward="15000" difficulty="5" commonness="25" allowretry="true" sonarlabel="target" unhideentitysubcategories="abandonedhuman" achievementidentifier="abandonedoutpostassassinate">
+    <Icon texture="Content/UI/MissionIcons.png" sourcerect="0,512,256,256" color="214,50,48" />
+    <LocationType identifier="Abandoned" />
+    <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+    <Reputation identifier="coalition" amount="-50" />
+    <Reputation identifier="separatists" amount="15" />
+    <Characters>
+      <Character identifier="coalveronfollower" from="abandonedveronnpcs" moduleflags="crewmodule" />
+      <Character identifier="coalveronfollower" from="abandonedveronnpcs" moduleflags="crewmodule" multiplayeronly="true" />
+      <Character identifier="coalveronfollowerwanderer" from="abandonedveronnpcs" moduleflags="crewmodule" multiplayeronly="true" />
+      <Character identifier="coalveronfollower" from="abandonedveronnpcs" moduleflags="researchmodule" />
+      <Character identifier="coalveronfollower" from="abandonedveronnpcs" moduleflags="researchmodule" />
+      <Character identifier="coalveronfollower" from="abandonedveronnpcs" moduleflags="researchmodule" />
+      <Character identifier="coalveronfollower" from="abandonedveronnpcs" moduleflags="researchmodule" multiplayeronly="true" />
+      <Character identifier="coalveronfollower" from="abandonedveronnpcs" moduleflags="researchmodule" multiplayeronly="true" />
+      <Character identifier="coalveronfollower" from="abandonedveronnpcs" moduleflags="engineeringmodule" />
+      <Character identifier="coalveronfollower" from="abandonedveronnpcs" moduleflags="engineeringmodule" />
+      <Character identifier="coalveronfollowerwanderer" from="abandonedveronnpcs" moduleflags="securitymodule" />
+      <Character identifier="coalveronfollowerwanderer" from="abandonedveronnpcs" moduleflags="securitymodule" />
+      <Character identifier="coalveronfollowerwanderer" from="abandonedveronnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="coalveronfollower" from="abandonedveronnpcs" moduleflags="securitymodule" />
+      <Character identifier="coalveronfollower" from="abandonedveronnpcs" moduleflags="securitymodule" />
+      <Character identifier="coalveronfollower" from="abandonedveronnpcs" moduleflags="securitymodule" />
+      <Character identifier="coalveronfollower" from="abandonedveronnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="coalveronfollower" from="abandonedveronnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="veron" from="abandonedveronnpcs" spawnpointtags="banditleader" requirekill="true" asfaraspossible="true" />
+      <Character identifier="veron" from="abandonedveronnpcs" moduleflags="securitymodule" requirekill="true" multiplayeronly="true" />
+    </Characters>
+    <message header="missionheader0.abandonedoutpostassassinateveron" text="missionmessage0.abandonedoutpostassassinateveron" />
+  </OutpostDestroyMission>
+  <OutpostDestroyMission name="Marauder Assassination" identifier="abandonedoutpostassassinatemar" tags="abandonedoutpost" textidentifier="abandonedoutpostassassinatemar" type="OutpostDestroy" reward="10000" difficulty="5" commonness="25" allowretry="true" sonarlabel="target" unhideentitysubcategories="abandonedhuman" achievementidentifier="abandonedoutpostassassinate">
+    <Icon texture="Content/UI/MissionIcons.png" sourcerect="0,512,256,256" color="214,50,48" />
+    <LocationType identifier="Abandoned" />
+    <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+    <Reputation identifier="coalition" amount="-30" />
+    <Reputation identifier="separatists" amount="10" />
+    <Characters>
+      <Character identifier="coalmarfollower" from="abandonedmarnpcs" moduleflags="crewmodule" />
+      <Character identifier="coalmarfollower" from="abandonedmarnpcs" moduleflags="crewmodule" multiplayeronly="true" />
+      <Character identifier="coalmarfollowerwanderer" from="abandonedmarnpcs" moduleflags="crewmodule" multiplayeronly="true" />
+      <Character identifier="coalmarfollowerwanderer" from="abandonedmarnpcs" moduleflags="researchmodule" />
+      <Character identifier="coalmarfollowerwanderer" from="abandonedmarnpcs" moduleflags="researchmodule" />
+      <Character identifier="coalmarfollowerwanderer" from="abandonedmarnpcs" moduleflags="researchmodule" />
+      <Character identifier="coalmarfollowerwanderer" from="abandonedmarnpcs" moduleflags="researchmodule" multiplayeronly="true" />
+      <Character identifier="coalmarfollowerwanderer" from="abandonedmarnpcs" moduleflags="engineeringmodule" />
+      <Character identifier="coalmarfollower" from="abandonedmarnpcs" moduleflags="engineeringmodule" />
+      <Character identifier="coalmarfollower" from="abandonedmarnpcs" moduleflags="engineeringmodule" />
+      <Character identifier="coalmarfollower" from="abandonedmarnpcs" moduleflags="engineeringmodule" multiplayeronly="true" />
+      <Character identifier="coalmarfollowerwanderer" from="abandonedmarnpcs" moduleflags="securitymodule" />
+      <Character identifier="coalmarfollowerwanderer" from="abandonedmarnpcs" moduleflags="securitymodule" />
+      <Character identifier="coalmarfollowerwanderer" from="abandonedmarnpcs" moduleflags="securitymodule" />
+      <Character identifier="coalmarfollowerwanderer" from="abandonedmarnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="coalmarfollowerwanderer" from="abandonedmarnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="coalmarfollowerwanderer" from="abandonedmarnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="coalmarfollower" from="abandonedmarnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="marauder" from="abandonedmarnpcs" moduleflags="securitymodule" requirekill="true" multiplayeronly="true" />
+      <Character identifier="marauder" from="abandonedmarnpcs" spawnpointtags="banditleader" requirekill="true" asfaraspossible="true" />
+    </Characters>
+    <message header="missionheader0.abandonedoutpostassassinatemar" text="missionmessage0.abandonedoutpostassassinatemar" />
+  </OutpostDestroyMission>
+  <SalvageMission identifier="scp_anomalousartifactruin" textidentifier="scp_anomalousartifactruin" tags="salvage,salvageartifact" type="Salvage" difficulty="3" commonness="25" reward="6000" achievementidentifier="artifactmission" sonaricon="artifact" spawntype="ruin" itemtag="psiartifact" existingitemtag="alienartifact" containertag="artifactholder" requireruin="true">
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins2.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins3.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins4.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Reputation identifier="location" amount="6" />
+    <Icon texture="Content/UI/MissionIcons2.png" sourcerect="512,0,256,256" color="49,93,233" />
+    <LocationType from="City" to="Research" />
+    <LocationType from="City" to="None" />
+    <LocationType from="City" to="Lair" />
+    <LocationType from="Outpost" to="Research" />
+    <LocationType from="Outpost" to="None" />
+    <LocationType from="Outpost" to="Lair" />
+    <LocationType from="Research" to="None" />
+    <LocationType from="Research" to="City" />
+    <LocationType from="Research" to="Outpost" />
+    <LocationType from="Research" to="Military" />
+    <LocationType from="Research" to="Research" />
+    <LocationType from="Research" to="Mine" />
+    <LocationType from="Research" to="Lair" />
+    <message header="missionheader0.scp_anomalousartifactruin" text="missionmessage0.scp_anomalousartifactruin" />
+  </SalvageMission>
+  <SalvageMission identifier="scp_anomalousartifactruinranomalousitem" textidentifier="scp_anomalousartifactruin" tags="salvage,salvageartifact" type="Salvage" difficulty="3" commonness="80" reward="6000" achievementidentifier="artifactmission" sonaricon="artifact" spawntype="ruin" itemtag="anomalous" containertag="ruinstoragelarge" requireruin="true">
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins2.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins3.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins4.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Reputation identifier="location" amount="6" />
+    <Icon texture="Content/UI/MissionIcons2.png" sourcerect="512,0,256,256" color="49,93,233" />
+    <LocationType from="City" to="Research" />
+    <LocationType from="City" to="None" />
+    <LocationType from="City" to="Lair" />
+    <LocationType from="Outpost" to="Research" />
+    <LocationType from="Outpost" to="None" />
+    <LocationType from="Outpost" to="Lair" />
+    <LocationType from="Research" to="None" />
+    <LocationType from="Research" to="City" />
+    <LocationType from="Research" to="Outpost" />
+    <LocationType from="Research" to="Military" />
+    <LocationType from="Research" to="Research" />
+    <LocationType from="Research" to="Mine" />
+    <LocationType from="Research" to="Lair" />
+    <message header="missionheader0.scp_anomalousartifactruin" text="missionmessage0.scp_anomalousartifactruin" />
+  </SalvageMission>
+  <SalvageMission identifier="scp_anomalousartifactcave" textidentifier="scp_anomalousartifactruin" tags="salvage,salvageartifact" type="Salvage" difficulty="3" commonness="25" reward="6000" achievementidentifier="artifactmission" sonaricon="artifact" spawntype="cave" itemtag="psiartifact" existingitemtag="alienartifact" containertag="artifactholder" requireruin="true">
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins2.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins3.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins4.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Reputation identifier="location" amount="2" />
+    <Icon texture="Content/UI/MissionIcons2.png" sourcerect="768,0,256,256" color="49,93,233" />
+    <LocationType from="City" to="Research" />
+    <LocationType from="City" to="None" />
+    <LocationType from="City" to="Lair" />
+    <LocationType from="City" to="Military" />
+    <LocationType from="Outpost" to="Research" />
+    <LocationType from="Outpost" to="None" />
+    <LocationType from="Outpost" to="Lair" />
+    <LocationType from="Outpost" to="Military" />
+    <LocationType from="Research" to="None" />
+    <LocationType from="Research" to="City" />
+    <LocationType from="Research" to="Outpost" />
+    <LocationType from="Research" to="Military" />
+    <LocationType from="Research" to="Research" />
+    <LocationType from="Research" to="Mine" />
+    <LocationType from="Research" to="Lair" />
+    <message header="missionheader0.scp_anomalousartifactruin" text="missionmessage0.scp_anomalousartifactruin" />
+  </SalvageMission>
+  <SalvageMission identifier="scp_salvagewrecktsar" tags="salvage,salvagewreck" type="Salvage" difficulty="3" commonness="25" reward="5000" achievementidentifier="salvagewreckmission" spawntype="wreck" showmessagewhenpickedup="true" itemidentifier="scp_tsarshell" containertag="wreckrailgunammocontainer" requirewreck="true">
+    <Portrait texture="Content/Map/LocationPortraits/Wreck1.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/Wreck2.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/Wreck3.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/Wreck4.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/Wreck5.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Reputation identifier="location" amount="8" />
+    <Icon texture="Content/UI/MissionIcons2.png" sourcerect="0,512,256,256" color="49,93,233" />
+    <LocationType from="City" to="None" />
+    <LocationType from="City" to="City" />
+    <LocationType from="City" to="Outpost" />
+    <LocationType from="City" to="Military" />
+    <LocationType from="City" to="Research" />
+    <LocationType from="Outpost" to="None" />
+    <LocationType from="Outpost" to="City" />
+    <LocationType from="Outpost" to="Outpost" />
+    <LocationType from="Outpost" to="Military" />
+    <LocationType from="Outpost" to="Research" />
+    <LocationType from="Military" to="None" />
+    <LocationType from="Military" to="City" />
+    <LocationType from="Military" to="Outpost" />
+    <LocationType from="Military" to="Military" />
+    <LocationType from="Military" to="Research" />
+    <message header="missionheader0.scp_salvagewrecktsar" text="missionmessage0.scp_salvagewrecktsar" />
+  </SalvageMission>
+  <SalvageMission identifier="scp_radartifactcave" textidentifier="scp_radartifactruin" tags="salvage,salvageartifact" type="Salvage" difficulty="3" commonness="75" reward="4250" achievementidentifier="artifactmission" sonaricon="artifact" spawntype="cave" itemtag="radartifact" existingitemtag="alienartifact" containertag="artifactholder" requireruin="true">
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins2.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins3.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins4.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Reputation identifier="location" amount="2" />
+    <Icon texture="Content/UI/MissionIcons2.png" sourcerect="768,0,256,256" color="49,93,233" />
+    <LocationType from="City" to="Research" />
+    <LocationType from="City" to="None" />
+    <LocationType from="City" to="Lair" />
+    <LocationType from="City" to="Military" />
+    <LocationType from="Outpost" to="Research" />
+    <LocationType from="Outpost" to="None" />
+    <LocationType from="Outpost" to="Lair" />
+    <LocationType from="Outpost" to="Military" />
+    <LocationType from="Research" to="None" />
+    <LocationType from="Research" to="City" />
+    <LocationType from="Research" to="Outpost" />
+    <LocationType from="Research" to="Military" />
+    <LocationType from="Research" to="Research" />
+    <LocationType from="Research" to="Mine" />
+    <LocationType from="Research" to="Lair" />
+    <message header="missionheader0.scp_radartifactruin" text="missionmessage0.scp_radartifactruin" />
+  </SalvageMission>
+  <SalvageMission identifier="scp_radartifactruin" textidentifier="scp_radartifactruin" tags="salvage,salvageartifact" type="Salvage" difficulty="3" commonness="25" reward="6000" achievementidentifier="artifactmission" sonaricon="artifact" spawntype="ruin" itemtag="radartifact" existingitemtag="alienartifact" containertag="artifactholder" requireruin="true">
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins2.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins3.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins4.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Reputation identifier="location" amount="6" />
+    <Icon texture="Content/UI/MissionIcons2.png" sourcerect="512,0,256,256" color="49,93,233" />
+    <LocationType from="City" to="Research" />
+    <LocationType from="City" to="None" />
+    <LocationType from="City" to="Lair" />
+    <LocationType from="Outpost" to="Research" />
+    <LocationType from="Outpost" to="None" />
+    <LocationType from="Outpost" to="Lair" />
+    <LocationType from="Research" to="None" />
+    <LocationType from="Research" to="City" />
+    <LocationType from="Research" to="Outpost" />
+    <LocationType from="Research" to="Military" />
+    <LocationType from="Research" to="Research" />
+    <LocationType from="Research" to="Mine" />
+    <LocationType from="Research" to="Lair" />
+    <message header="missionheader0.scp_radartifactruin" text="missionmessage0.scp_radartifactruin" />
+  </SalvageMission>
+</Missions>
