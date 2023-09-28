@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Missions>
+    <AbandonedOutpostMission identifier="abandonedoutposthumans" tags="abandonedoutpost" achievementidentifier="abandonedoutpostdestroyhumans" type="OutpostDestroy" reward="3000" difficulty="4" commonness="0" allowretry="true" targetitem="reactor" unhideentitysubcategories="abandonedhuman">
+      <Icon texture="Content/UI/MissionIcons.png" sourcerect="512,256,256,256" color="214,50,48" />
+      <LocationType identifier="Abandoned" />
+      <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+      <Characters>
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="crewmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" multiplayeronly="true" />
+        <Character identifier="pirateoperatorwanderer" from="piratescavnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="pirateoperatorwanderer" from="piratescavnpcs" moduleflags="engineeringmodule" multiplayeronly="true" />
+        <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="pirateprivatewanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="securitymodule" />
+        <Character identifier="pirateprivatewanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+        <Character identifier="pirateprivatewanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+        <Character identifier="pirateprivatewanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+        <Character identifier="pirateprivatewanderer" from="piratescavnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" />
+        <Character identifier="banditleader" from="abandonedoutpostnpcs" spawnpointtags="banditleader" />
+        <Character identifier="pirateoperatorleader" from="piratescavnpcs" spawnpointtags="banditleader" />
+      </Characters>
+      <TriggerEvent state="0" delay="5" eventidentifier="heartofgold" campaignonly="true" />
+      <message header="missionheader0.abandonedoutposthumans" text="missionmessage0.abandonedoutposthumans" />
+    </AbandonedOutpostMission>
+    <AbandonedOutpostMission identifier="abandonedoutpostrescue" tags="abandonedoutpost" type="AbandonedOutpost" achievementidentifier="abandonedoutpostrescue" reward="3000" difficulty="4" commonness="0" allowretry="true" hostageskilledmessage="hostageskilled" unhideentitysubcategories="abandonedhuman">
+      <Icon texture="Content/UI/MissionIcons.png" sourcerect="512,256,256,256" color="214,50,48" />
+      <LocationType identifier="Abandoned" />
+      <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+      <Characters>
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="crewmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" multiplayeronly="true" />
+        <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="securitymodule" />
+        <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+        <Character identifier="pirateoperatorwanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+        <Character identifier="pirateoperatorwanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+        <Character identifier="banditleader" from="abandonedoutpostnpcs" spawnpointtags="banditleader" />
+        <Character identifier="hostage" from="abandonedoutpostnpcs" asfaraspossible="true" requirerescue="true" />
+        <Character identifier="hostage" from="abandonedoutpostnpcs" asfaraspossible="true" requirerescue="true" />
+        <Character identifier="hostage" from="abandonedoutpostnpcs" asfaraspossible="true" requirerescue="true" multiplayeronly="true" />
+      </Characters>
+      <message header="missionheader0.abandonedoutpostrescue" text="missionmessage0.abandonedoutpostrescue" />
+    </AbandonedOutpostMission>
+    <AbandonedOutpostMission identifier="abandonedoutpostmudraptor" textidentifier="abandonedoutpostmonsters" tags="abandonedoutpost" achievementidentifier="abandonedoutpostdestroymonsters" type="OutpostDestroy" reward="3000" difficulty="4" commonness="0" allowretry="true" sonarlabel="nest" unhideentitysubcategories="abandonedmonster">
+      <Icon texture="Content/UI/MissionIcons.png" sourcerect="256,256,256,256" color="214,50,48" />
+      <LocationType identifier="Abandoned" />
+      <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+      <Characters>
+        <Character identifier="husk" min="-4" max="6" />
+        <Character identifier="mudraptor" min="6" max="12" />
+        <Character identifier="mudraptorveteran" min="1" max="2" />
+        <Character identifier="mudraptor" min="4" max="6" multiplayeronly="true" />
+      </Characters>
+      <Items>
+        <Item identifier="largemudraptoregg" spawnpointtags="nest">
+          <StatusEffectOnApproach target="This" Scale="1.0" setvalue="true" />
+        </Item>
+        <Item identifier="largemudraptoregg" spawnpointtags="nest">
+          <StatusEffectOnApproach target="This" Scale="1.0" setvalue="true" delay="9" />
+        </Item>
+        <Item identifier="largemudraptoregg" spawnpointtags="nest" />
+        <Item identifier="largemudraptoregg" spawnpointtags="nest" />
+        <Item identifier="largemudraptoregg" spawnpointtags="nest" />
+        <Item identifier="largemudraptoregg" spawnpointtags="nest" />
+      </Items>
+      <TriggerEvent state="0" delay="5" eventidentifier="assassinationofjacovsubra1" campaignonly="true" />
+      <message header="missionheader0.abandonedoutpostmonsters" text="missionmessage0.abandonedoutpostmonsters" />
+    </AbandonedOutpostMission>
+  </Missions>
+  <AbandonedOutpostMission identifier="abandonedoutpostassassinate" tags="abandonedoutpost" achievementidentifier="abandonedoutpostassassinate" type="OutpostDestroy" reward="3000" difficulty="4" commonness="0" allowretry="true" sonarlabel="target" unhideentitysubcategories="abandonedhuman">
+    <Icon texture="Content/UI/MissionIcons.png" sourcerect="0,512,256,256" color="214,50,48" />
+    <LocationType identifier="Abandoned" />
+    <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+    <Characters>
+      <Character identifier="pirateprivate" from="abandonedoutpostnpcs" moduleflags="crewmodule" />
+      <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="researchmodule" />
+      <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="engineeringmodule" />
+      <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="engineeringmodule" />
+      <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="engineeringmodule" />
+      <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="engineeringmodule" />
+      <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="engineeringmodule" />
+      <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="engineeringmodule" multiplayeronly="true" />
+      <Character identifier="pirateoperatorwanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+      <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="securitymodule" />
+      <Character identifier="pirateprivate" from="piratescavnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="pirateprivatewanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+      <Character identifier="pirateprivatewanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+      <Character identifier="pirateprivatewanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+      <Character identifier="pirateprivatewanderer" from="piratescavnpcs" moduleflags="securitymodule" />
+      <Character identifier="pirateprivatewanderer" from="piratescavnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="pirateprivatewanderer" from="piratescavnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="pirateoperatorwanderer" from="piratescavnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+      <Character identifier="pirateoperatorleader" from="piratescavnpcs" asfaraspossible="true" requirekill="true" />
+    </Characters>
+    <TriggerEvent state="0" delay="5" eventidentifier="heartofgold" campaignonly="true" />
+    <message header="missionheader0.abandonedoutpostassassinate" text="missionmessage0.abandonedoutpostassassinate" />
+  </AbandonedOutpostMission>
+</Override>
