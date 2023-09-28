@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="DynamicEuropa - COL Compatibility Patch" steamworkshopid="2984452754" corepackage="false" modversion="1.0.5" gameversion="1.0.21.0" installtime="1694293064" expectedhash="249C1CBC2B4075E71A0DA317B6B6EFC6">
+  <NPCSets file="%ModDir%/NPCPrefabs/CombatMissionNpcs.xml" />
+  <NPCSets file="%ModDir%/NPCPrefabs/OutpostNpcs.xml" />
+  <NPCSets file="%ModDir%/NPCPrefabs/SpecialNpcs.xml" />
+</contentpackage>

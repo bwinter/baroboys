@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Missions>
+    <CargoMission identifier="cargoweaponscoalition" tags="cargocoalition,cargoweaponscoalition" type="Cargo" difficulty="1" commonness="45" achievementidentifier="cargomission">
+      <Items>
+        <Item identifier="securemetalcrate" reward="600" maxcount="4">
+          <Item identifier="9mm_smg_water" amount="2" />
+          <Item identifier="revolver_44" amount="2" />
+          <Item identifier="556_lever" amount="2" />
+          <Item identifier="shotgun_water" amount="2" />
+        </Item>
+      </Items>
+      <Reputation identifier="coalition" amount="5" />
+      <Reputation identifier="separatists" amount="-3" />
+      <Icon texture="Content/UI/MissionIcons2.png" sourcerect="0,256,256,256" color="243,146,55" />
+      <LocationType from="AnyOutpost" to="AnyOutpost" />
+    </CargoMission>
+    <OutpostDestroyMission name="Outpost Recovery" identifier="abandonedoutpostrescue_7" tags="abandonedoutpost" type="OutpostRescue" reward="3160" difficulty="5" commonness="14" allowretry="true" hostageskilledmessage="hostageskilled" unhideentitysubcategories="abandonedhuman">
+      <Icon texture="Content/UI/MissionIcons.png" sourcerect="512,256,256,256" color="214,50,48" />
+      <LocationType identifier="Abandoned" />
+      <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+      <Characters>
+        <Character identifier="bandit2" from="abandonedoutpostnpcs" moduleflags="crewmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="bandit_breacher" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" multiplayeronly="true" />
+        <Character identifier="banditleader_heavy" from="abandonedoutpostnpcs" spawnpointtags="banditleader" />
+        <Character identifier="hostage" from="abandonedoutpostnpcs" asfaraspossible="true" requirerescue="true" />
+        <Character identifier="hostage" from="abandonedoutpostnpcs" asfaraspossible="true" requirerescue="true" />
+        <Character identifier="hostage" from="abandonedoutpostnpcs" asfaraspossible="true" requirerescue="true" multiplayeronly="true" />
+      </Characters>
+    </OutpostDestroyMission>
+    <OutpostDestroyMission name="Outpost assassination" identifier="abandonedoutpostassassinate6" tags="abandonedoutpost" type="OutpostDestroy" reward="2130" difficulty="4" commonness="20" allowretry="true" sonarlabel="target" unhideentitysubcategories="abandonedhuman">
+      <Icon texture="Content/UI/MissionIcons.png" sourcerect="0,512,256,256" color="214,50,48" />
+      <LocationType identifier="Abandoned" />
+      <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+      <Characters>
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="crewmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="securitymodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" multiplayeronly="true" />
+        <Character identifier="banditleader_heavy" from="abandonedoutpostnpcs" asfaraspossible="true" requirekill="true" />
+      </Characters>
+      <TriggerEvent state="0" delay="5" eventidentifier="heartofgold" campaignonly="true" />
+    </OutpostDestroyMission>
+    <OutpostDestroyMission name="Rebel outpost" description="An outpost was confirmed rebellious after contact with it was lost. Wipe the insurgents out and destroy outpost's reactor to make sure they'll never return." identifier="abandonedoutposthumans_rebel" tags="abandonedoutpost" type="OutpostDestroy" reward="2100" difficulty="5" commonness="15" allowretry="true" targetitem="reactor" unhideentitysubcategories="abandonedhuman">
+      <Reputation identifier="location" amount="10" />
+      <Icon texture="Content/UI/MissionIcons.png" sourcerect="512,256,256,256" color="214,50,48" />
+      <LocationType identifier="Abandoned" />
+      <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+      <Characters>
+        <Character identifier="rebel" from="abandonedoutpostnpcs" moduleflags="crewmodule" />
+        <Character identifier="rebel" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="rebel_heavy" from="abandonedoutpostnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="rebel" from="abandonedoutpostnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="rebel" from="abandonedoutpostnpcs" moduleflags="securitymodule" />
+        <Character identifier="rebel_heavy" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" />
+        <Character identifier="rebel" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" />
+        <Character identifier="banditleader_heavy" from="abandonedoutpostnpcs" spawnpointtags="banditleader" />
+      </Characters>
+    </OutpostDestroyMission>
+    <OutpostDestroyMission name="Outpost Recovery" identifier="abandonedoutpostrescue_2" tags="abandonedoutpost" type="OutpostRescue" reward="3100" difficulty="5" commonness="14" allowretry="true" hostageskilledmessage="hostageskilled" unhideentitysubcategories="abandonedhuman">
+      <Reputation identifier="location" amount="10" />
+      <Icon texture="Content/UI/MissionIcons.png" sourcerect="512,256,256,256" color="214,50,48" />
+      <LocationType identifier="Abandoned" />
+      <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+      <Characters>
+        <Character identifier="bandit_breacher" from="abandonedoutpostnpcs" moduleflags="crewmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="bandit_breacher" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" />
+        <Character identifier="bandit2" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" multiplayeronly="true" />
+        <Character identifier="banditleader_heavy" from="abandonedoutpostnpcs" spawnpointtags="banditleader" />
+        <Character identifier="hostage" from="abandonedoutpostnpcs" asfaraspossible="true" requirerescue="true" />
+        <Character identifier="hostage" from="abandonedoutpostnpcs" asfaraspossible="true" requirerescue="true" />
+        <Character identifier="hostage" from="abandonedoutpostnpcs" asfaraspossible="true" requirerescue="true" multiplayeronly="true" />
+      </Characters>
+    </OutpostDestroyMission>
+    <OutpostDestroyMission name="Outlaw mercenaries" description="A  group of outlaw mercenaries has been spotted on this abandoned outpost. Destroy the outpost's reactor to make sure they are wiped out!" identifier="abandonedoutposthumans-merc" tags="abandonedoutpost" type="OutpostDestroy" reward="3100" difficulty="5" commonness="9" allowretry="true" targetitem="reactor" unhideentitysubcategories="abandonedhuman">
+      <Reputation identifier="location" amount="20" />
+      <Icon texture="Content/UI/MissionIcons.png" sourcerect="512,256,256,256" color="214,50,48" />
+      <LocationType identifier="Abandoned" />
+      <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+      <Characters>
+        <Character identifier="merc" from="abandonedoutpostnpcs" moduleflags="crewmodule" />
+        <Character identifier="merc" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="merc" from="abandonedoutpostnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="merc" from="abandonedoutpostnpcs" moduleflags="securitymodule" />
+        <Character identifier="merc" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" multiplayeronly="true" />
+        <Character identifier="Commander_merc" from="abandonedoutpostnpcs" spawnpointtags="banditleader" />
+      </Characters>
+    </OutpostDestroyMission>
+    <OutpostDestroyMission name="Outpost Recovery" identifier="abandonedoutposthumans3" description="Contact with this outpost was recently lost, and it's suspected to have been taken over by someone. Destroy the outpost's reactor to drive away any squatters and ensure they don't return." tags="abandonedoutpost" type="OutpostDestroy" reward="2450" difficulty="5" commonness="14" allowretry="true" targetitem="reactor" unhideentitysubcategories="abandonedhuman">
+      <Reputation identifier="location" amount="10" />
+      <Icon texture="Content/UI/MissionIcons.png" sourcerect="512,256,256,256" color="214,50,48" />
+      <LocationType identifier="Abandoned" />
+      <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+      <Characters>
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="crewmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="bandit_breacher" from="abandonedoutpostnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="securitymodule" />
+        <Character identifier="bandit_assault" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" />
+        <Character identifier="banditleader_heavy" from="abandonedoutpostnpcs" spawnpointtags="banditleader" />
+      </Characters>
+      <TriggerEvent state="0" delay="5" eventidentifier="heartofgold" campaignonly="true" />
+    </OutpostDestroyMission>
+    <OutpostDestroyMission name="Outpost Recovery" identifier="abandonedoutposthumans2" description="Contact with this outpost was recently lost, and it's suspected to have been taken over by someone. Destroy the outpost's reactor to drive away any squatters and ensure they don't return." tags="abandonedoutpost" type="OutpostDestroy" reward="2100" difficulty="5" commonness="16" allowretry="true" targetitem="reactor" unhideentitysubcategories="abandonedhuman">
+      <Reputation identifier="location" amount="10" />
+      <Icon texture="Content/UI/MissionIcons.png" sourcerect="512,256,256,256" color="214,50,48" />
+      <LocationType identifier="Abandoned" />
+      <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+      <Characters>
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="crewmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="bandit2" from="abandonedoutpostnpcs" moduleflags="securitymodule" />
+        <Character identifier="bandit2" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" />
+        <Character identifier="banditleader_heavy" from="abandonedoutpostnpcs" spawnpointtags="banditleader" />
+      </Characters>
+      <TriggerEvent state="0" delay="5" eventidentifier="heartofgold" campaignonly="true" />
+    </OutpostDestroyMission>
+    <OutpostDestroyMission name="Pirate Crew" description="A group of pirates recently disembarked at this abandoned outpost. A fair reward is promised to enyone, capable of clearing this piracy nest." identifier="abandonedoutpostassassinatepirate2" tags="abandonedoutpost" type="OutpostDestroy" reward="3100" difficulty="5" commonness="7" allowretry="true" sonarlabel="target" unhideentitysubcategories="abandonedhuman">
+      <Reputation identifier="location" amount="10" />
+      <Icon texture="Content/UI/MissionIcons.png" sourcerect="0,512,256,256" color="214,50,48" />
+      <LocationType identifier="Abandoned" />
+      <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+      <Characters>
+        <Character identifier="piratebanditbrute" from="abandonedoutpostnpcs" moduleflags="crewmodule" />
+        <Character identifier="piratebanditgunner" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="piratebanditgunner" from="abandonedoutpostnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="piratebanditrecruit" from="abandonedoutpostnpcs" moduleflags="securitymodule" />
+        <Character identifier="piratebanditrecruit" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" />
+        <Character identifier="piratebanditrecruit" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" multiplayeronly="true" />
+        <Character identifier="piratebanditcaptain" from="abandonedoutpostnpcs" asfaraspossible="true" requirekill="true" />
+      </Characters>
+      <TriggerEvent state="0" delay="5" eventidentifier="heartofgold" campaignonly="true" />
+    </OutpostDestroyMission>
+    <OutpostDestroyMission name="Pirate Crew" description="A group of pirates recently disembarked at this abandoned outpost. A fair reward is promised to enyone, capable of clearing this piracy nest." identifier="abandonedoutpostassassinatepirate" tags="abandonedoutpost" type="OutpostDestroy" reward="3200" difficulty="5" commonness="15" allowretry="true" sonarlabel="target" unhideentitysubcategories="abandonedhuman">
+      <Reputation identifier="location" amount="10" />
+      <Icon texture="Content/UI/MissionIcons.png" sourcerect="0,512,256,256" color="214,50,48" />
+      <LocationType identifier="Abandoned" />
+      <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+      <Characters>
+        <Character identifier="piratebanditrecruit" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="piratebanditgunner" from="abandonedoutpostnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="piratebanditrecruit" from="abandonedoutpostnpcs" moduleflags="securitymodule" />
+        <Character identifier="piratebanditrecruit" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" />
+        <Character identifier="piratebanditcaptain" from="abandonedoutpostnpcs" asfaraspossible="true" requirekill="true" />
+      </Characters>
+      <TriggerEvent state="0" delay="5" eventidentifier="heartofgold" campaignonly="true" />
+    </OutpostDestroyMission>
+    <OutpostDestroyMission name="Renegade Marines" description="A group of Renegade Marines has captured an outpost. Kill all the traitors and destrot outpost's reactor!" identifier="abandonedoutposthumans-mil" tags="abandonedoutpost" type="OutpostDestroy" reward="3500" difficulty="5" commonness="8" allowretry="true" targetitem="reactor" unhideentitysubcategories="abandonedhuman">
+      <Reputation identifier="location" amount="20" />
+      <Icon texture="Content/UI/MissionIcons.png" sourcerect="512,256,256,256" color="214,50,48" />
+      <LocationType identifier="Abandoned" />
+      <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+      <Characters>
+        <Character identifier="Trooper" from="abandonedoutpostnpcs" moduleflags="crewmodule" />
+        <Character identifier="Trooper" from="abandonedoutpostnpcs" moduleflags="crewmodule" multiplayeronly="true" />
+        <Character identifier="Trooper" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="Trooper" from="abandonedoutpostnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="Trooper" from="abandonedoutpostnpcs" moduleflags="securitymodule" />
+        <Character identifier="Trooper" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" />
+        <Character identifier="Commander" from="abandonedoutpostnpcs" spawnpointtags="banditleader" />
+      </Characters>
+      <TriggerEvent state="0" delay="5" eventidentifier="heartofgold" campaignonly="true" />
+    </OutpostDestroyMission>
+    <OutpostDestroyMission name="Outpost Recovery" identifier="abandonedoutposthumans" tags="abandonedoutpost" type="OutpostDestroy" reward="2100" difficulty="5" commonness="20" allowretry="true" targetitem="reactor" unhideentitysubcategories="abandonedhuman">
+      <Reputation identifier="location" amount="10" />
+      <Icon texture="Content/UI/MissionIcons.png" sourcerect="512,256,256,256" color="214,50,48" />
+      <LocationType identifier="Abandoned" />
+      <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+      <Characters>
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="crewmodule" />
+        <Character identifier="bandit_breacher" from="abandonedoutpostnpcs" moduleflags="crewmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="securitymodule" />
+        <Character identifier="banditleader" from="abandonedoutpostnpcs" spawnpointtags="banditleader" />
+      </Characters>
+      <TriggerEvent state="0" delay="5" eventidentifier="heartofgold" campaignonly="true" />
+    </OutpostDestroyMission>
+    <OutpostDestroyMission name="Outpost Recovery" identifier="abandonedoutpostrescue" tags="abandonedoutpost" type="OutpostRescue" reward="3100" difficulty="5" commonness="20" allowretry="true" hostageskilledmessage="hostageskilled" unhideentitysubcategories="abandonedhuman">
+      <Icon texture="Content/UI/MissionIcons.png" sourcerect="512,256,256,256" color="214,50,48" />
+      <LocationType identifier="Abandoned" />
+      <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+      <Characters>
+        <Character identifier="bandit_breacher" from="abandonedoutpostnpcs" moduleflags="crewmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="securitymodule" />
+        <Character identifier="bandit2" from="abandonedoutpostnpcs" moduleflags="securitymodule" multiplayeronly="true" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" multiplayeronly="true" />
+        <Character identifier="banditleader" from="abandonedoutpostnpcs" spawnpointtags="banditleader" />
+        <Character identifier="hostage" from="abandonedoutpostnpcs" asfaraspossible="true" requirerescue="true" />
+        <Character identifier="hostage" from="abandonedoutpostnpcs" asfaraspossible="true" requirerescue="true" />
+        <Character identifier="hostage" from="abandonedoutpostnpcs" asfaraspossible="true" requirerescue="true" multiplayeronly="true" />
+      </Characters>
+    </OutpostDestroyMission>
+    <OutpostDestroyMission name="Outpost assassination" identifier="abandonedoutpostassassinate" tags="abandonedoutpost" type="OutpostDestroy" reward="2200" difficulty="4" commonness="20" allowretry="true" sonarlabel="target" unhideentitysubcategories="abandonedhuman">
+      <Icon texture="Content/UI/MissionIcons.png" sourcerect="0,512,256,256" color="214,50,48" />
+      <LocationType identifier="Abandoned" />
+      <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+      <Characters>
+        <Character identifier="bandit2" from="abandonedoutpostnpcs" moduleflags="crewmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="engineeringmodule" />
+        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="securitymodule" />
+        <Character identifier="bandit_assault" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" />
+        <Character identifier="banditleader_heavy" from="abandonedoutpostnpcs" asfaraspossible="true" requirekill="true" />
+      </Characters>
+      <TriggerEvent state="0" delay="5" eventidentifier="heartofgold" campaignonly="true" />
+    </OutpostDestroyMission>
+  </Missions>
+</Override>

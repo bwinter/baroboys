@@ -1,0 +1,888 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="Russian" nowhitespace="false" translatedname="Russian">
+  <!--
+
+
+<entityname.></entityname.>
+<entitydescription.></entitydescription.>
+
+
+
+ -->
+  <entityname.panofaman>Человеческая Сковорода</entityname.panofaman>
+  <entitydescription.panofaman>Сковорода Человека. Человек Сковороды. Сковрода-Человек. Человек-Сковорода.</entitydescription.panofaman>
+  <entityname.honk_eternal>Вечный Клаксон Великого Бедствия</entityname.honk_eternal>
+  <entitydescription.honk_eternal>Древний запретный артефакт, вобравший в себя силу идиотизма, случайности и разрушения.</entitydescription.honk_eternal>
+  <entityname.corporalcoin>Капрал-Коин</entityname.corporalcoin>
+  <entitydescription.corporalcoin>Стабильнейшая валюта.</entitydescription.corporalcoin>
+  <entityname.easterwrench>Ключ Оптимизатора</entityname.easterwrench>
+  <entitydescription.easterwrench>Ключ, владеть которым достоин лишь сильнейший и отважнейший инженер. Может вызывать лаги :)</entitydescription.easterwrench>
+  <entityname.spear_hook>Крюк-Кошка</entityname.spear_hook>
+  <entitydescription.spear_hook>Если этот предмет тут, значит следующий выстрел запустит крюк, лишь затем вы сможете выстрелить дробовыми патронами.</entitydescription.spear_hook>
+  <entityname.weaponry_arsenal>Терминал с оружием</entityname.weaponry_arsenal>
+  <entitydescription.weaponry_arsenal>Терминалы позволяют вам моментально получить сколько угодно какого угодно предмета из данной категории. Используются для тестировки и на Стрельбище.</entitydescription.weaponry_arsenal>
+  <entityname.ammo_arsenal>Терминал с боеприпасами</entityname.ammo_arsenal>
+  <entitydescription.ammo_arsenal>Терминалы позволяют вам моментально получить сколько угодно какого угодно предмета из данной категории. Используются для тестировки и на Стрельбище.</entitydescription.ammo_arsenal>
+  <entityname.mod_arsenal>Терминал с модулями</entityname.mod_arsenal>
+  <entitydescription.mod_arsenal>Терминалы позволяют вам моментально получить сколько угодно какого угодно предмета из данной категории. Используются для тестировки и на Стрельбище.</entitydescription.mod_arsenal>
+  <!-- gear_upgrades -->
+  <entityname.co_aps_upgrade_inventory>Система активной защиты 'Рикошет'(Подсумки)</entityname.co_aps_upgrade_inventory>
+  <entitydescription.co_aps_upgrade_inventory>Использование пустого пространства внутри этого рюкзака в качестве контейнеров позволит вам носить дополнительные вещи.</entitydescription.co_aps_upgrade_inventory>
+  <entityname.divingsuit_improvisedarmor_upgrade_hearing>Самодельный бронескафандр(Улучшенный Шлемофон)</entityname.divingsuit_improvisedarmor_upgrade_hearing>
+  <entitydescription.divingsuit_improvisedarmor_upgrade_hearing>Улучшает видимость, не затрудняет слышимость и защищает от Тугоухости.</entitydescription.divingsuit_improvisedarmor_upgrade_hearing>
+  <entityname.tacticalhelmet_upgrade_turrets>Тактический Шлем(Интерфейс Связи с Турелями)</entityname.tacticalhelmet_upgrade_turrets>
+  <entitydescription.tacticalhelmet_upgrade_turrets>Эта система позволяет вам напрямую подключаться к турелям, улучшая отзывчивость управления ими и даже повышая их скорострельность. Однако, за это придется платиться значительно ослабленной защитой и сниженной Устойчивостью брони.</entitydescription.tacticalhelmet_upgrade_turrets>
+  <entityname.tacticalhelmet_upgrade_headgear>Тактический Шлем(Улучшенная Оптика)</entityname.tacticalhelmet_upgrade_headgear>
+  <entitydescription.tacticalhelmet_upgrade_headgear>Добавление на шлем тепловизионной оптики и яркого фонаря, требующих аккумуляторы чтобы работать.</entitydescription.tacticalhelmet_upgrade_headgear>
+  <entityname.pucs_upgrade_propeller>УЗК(Кислородный Ускоритель)</entityname.pucs_upgrade_propeller>
+  <entitydescription.pucs_upgrade_propeller>Сопла-ускорители позволяют использовать кислород из баллона чтобы разогнать вас под водой, подобно скутеру. Работают в любых направлениях, прицельтесь и зижмите кнопку атаки, чтобы активировать ускорители.</entitydescription.pucs_upgrade_propeller>
+  <entityname.propulsion_proxy>Не обращай внимания!</entityname.propulsion_proxy>
+  <entitydescription.propulsion_proxy>Пока разраб не пофиксит баг с контейнерами(target="contained" не работает с несколькими контейнерами, цепляя лишь первый), вам придется лицезреть эту прелесть. Не трогайте этот предмет, он позволяет вам использовать ваш апгрейд. Переключатель просто спавнит или деспавнит его.</entitydescription.propulsion_proxy>
+  <entityname.pucs_upgrade_shield>УЗК(Генератор Щита)</entityname.pucs_upgrade_shield>
+  <entitydescription.pucs_upgrade_shield>Щит поглощает до 20% любого входящего урона, однако требует электропитания. Система рассчитана на грозовиевые батареи, истощая запас обычных за считанные секунды.</entitydescription.pucs_upgrade_shield>
+  <talentname.co_dashing>Рывок</talentname.co_dashing>
+  <talentdescription.co_dashing>Нажмите клавишу Тряпичной Куклы(пробел) в воде, чтобы запустить себя по направлению вашего движения.</talentdescription.co_dashing>
+  <afflictionname.co_dashing_afl>Готов к Рывку</afflictionname.co_dashing_afl>
+  <afflictiondescription.co_dashing_afl>Ускорители перезарядились, зажимайте пробел под водой чтобы совершить рывок.</afflictiondescription.co_dashing_afl>
+  <entityname.slipsuit_upgrade_dash>Гидрокостюм(Рывковый Ускоритель)</entityname.slipsuit_upgrade_dash>
+  <entitydescription.slipsuit_upgrade_dash>Комплект сопел-ускорителей резко запустит вас по направлению вашего движения, если вы под водой. Для активации нажмите Пробел. Требуется недолгая перезарядка.</entitydescription.slipsuit_upgrade_dash>
+  <entityname.slipsuit_upgrade_stealth>Гидрокостюм(Покрытие-Хамелеон)</entityname.slipsuit_upgrade_stealth>
+  <entitydescription.slipsuit_upgrade_stealth>Экспериментальное Покрытие-Хамелеон позволит вам стать совершенно невидимым, если вы стоите неподвижно. Помимо этого, этот костюм пассивно снижает вашу заметность для враждебных существ. Для работы невидимости нужны батарейки. Если у вас Кровотечение, стать невидимым не получится.</entitydescription.slipsuit_upgrade_stealth>
+  <afflictionname.co_stealth>Невидимость</afflictionname.co_stealth>
+  <afflictiondescription.co_stealth>Он испарился!</afflictiondescription.co_stealth>
+  <talentname.slipstealth>Модуль Невидимости</talentname.slipstealth>
+  <talentdescription.slipstealth>Пока вы носите Гидрокостюм, стойте смирно 1 секунду, чтобы стать полностью невидимым.</talentdescription.slipstealth>
+  <entityname.abyssdivingsuit_upgrade_armor>Водолазный Скафандр Бездны(Физикориевое Покрытие)</entityname.abyssdivingsuit_upgrade_armor>
+  <entitydescription.abyssdivingsuit_upgrade_armor>Замена стандартного титанового каркаса на аналогичный из физикория увеличит Устойчивость и степень защиты брони без каких либо ощутимых недостатков.</entitydescription.abyssdivingsuit_upgrade_armor>
+  <entityname.abyssdivingsuit_upgrade_sonar>Водолазный Скафандр Бездны(Акустические Сенсоры)</entityname.abyssdivingsuit_upgrade_sonar>
+  <entitydescription.abyssdivingsuit_upgrade_sonar>Комплект акустических сенсоров и встроенная навигационная система позволят вам сканировать окружение и даже составлять удобную карту руин, лодок и обломков. Система так же способна обнаружать полезные минералы, для ее работы нужны батарейки.</entitydescription.abyssdivingsuit_upgrade_sonar>
+  <entityname.abyssdivingsuit_upgrade_movement>Водолазный Скафандр Бездны(Улучшение Мобильности)</entityname.abyssdivingsuit_upgrade_movement>
+  <entitydescription.abyssdivingsuit_upgrade_movement>Добавление небольших плавников, замена стандартных сочленений на новые, более гибкие, а так же снижение веса скафандра путем удаления пары лишних бронепластин, позволит вам значительно улучшить подвижность костюма ценой защитных свойств.</entitydescription.abyssdivingsuit_upgrade_movement>
+  <entityname.abyssdivingsuit_upgrade_rebreather>Водолазный Скафандр Бездны(Электрический Ребризер)</entityname.abyssdivingsuit_upgrade_rebreather>
+  <entitydescription.abyssdivingsuit_upgrade_rebreather>Электрический ребризер питается от аккумуляторов и работает как миниатюрный генератор кислорода, снабжая им владельца. Каждая батарейка работает в два раза дольше чем кислородный баллон в стандартном скафандре бездны.</entitydescription.abyssdivingsuit_upgrade_rebreather>
+  <entityname.bodyarmor_upgrade_inventory>Бронежилет(Разгрузка)</entityname.bodyarmor_upgrade_inventory>
+  <entitydescription.bodyarmor_upgrade_inventory>Это улучшение добавляет тактическую разгрузку, в которой можно носить медикаменты, патроны а также любой малый предмет.</entitydescription.bodyarmor_upgrade_inventory>
+  <entityname.bodyarmor_upgrade_toughness>Бронежилет(Керамические Пластины)</entityname.bodyarmor_upgrade_toughness>
+  <entitydescription.bodyarmor_upgrade_toughness>Замена стандартных металлических пластин на их керамические аналоги не только улучшит защиту, но и повысит Устойчивость брони.</entitydescription.bodyarmor_upgrade_toughness>
+  <entityname.combatdivingsuit_upgrade_mecdical>Боевой Водолазный Скафандр(Система Медицинской Помощи)</entityname.combatdivingsuit_upgrade_mecdical>
+  <entitydescription.combatdivingsuit_upgrade_mecdical>Эта система постоянно мониторит состояние носящего скафандр, оказывая тому медицинскую помощь в экстренных ситуациях. Постоянно борется с Кровотечением а так же снижает риск подхватить паразитов. Увеличивает скорость потребления кислорода.</entitydescription.combatdivingsuit_upgrade_mecdical>
+  <entityname.combatdivingsuit_upgrade_depth>Боевой Водолазный Скафандр(Усиленный Каркас)</entityname.combatdivingsuit_upgrade_depth>
+  <entitydescription.combatdivingsuit_upgrade_depth>Замена стандартного металлического покрытия на его аналог из инопланетных материалов позволяет значительно увеличить Устойчивость брони, поднять порог глубины до 9000 метров а так же улучшить защитные свойства. Слегка снижает подвижность.</entitydescription.combatdivingsuit_upgrade_depth>
+  <entityname.combatdivingsuit_upgrade_tacnab>Боевой Водолазный Скафандр(Интерфейс тактического Наблюдения)</entityname.combatdivingsuit_upgrade_tacnab>
+  <entitydescription.combatdivingsuit_upgrade_tacnab>Добавление интерфейса СПП значительно увеличивает эффективность владельца в дальнем бою.</entitydescription.combatdivingsuit_upgrade_tacnab>
+  <entityname.combatdivingsuit_upgrade_hearing>Боевой Водолазный Скафандр(Улучшенный Шлемофон)</entityname.combatdivingsuit_upgrade_hearing>
+  <entitydescription.combatdivingsuit_upgrade_hearing>Улучшает видимость, не затрудняет слышимость и защищает от Тугоухости.</entitydescription.combatdivingsuit_upgrade_hearing>
+  <entityname.combatdivingsuit_upgrade_rebreather>Боевой Водолазный Скафандр(Электрический Ребризер)</entityname.combatdivingsuit_upgrade_rebreather>
+  <entitydescription.combatdivingsuit_upgrade_rebreather>Электрический ребризер питается от аккумуляторов и работает как миниатюрный генератор кислорода, снабжая им владельца. Каждая батарейка работает в два раза дольше чем кислородный баллон в стандартном скафандре.</entitydescription.combatdivingsuit_upgrade_rebreather>
+  <entityname.divingsuit_upgrade_flak>Водолазный Скафандр(Противоосколочная броня)</entityname.divingsuit_upgrade_flak>
+  <entitydescription.divingsuit_upgrade_flak>Добавление дополнительных бронелистов на конечности, а так же особого противоосколочного подбоя позволяет значительно улучшить защиту от взрывов и Рваных Ран. Чтобы сохранить подвижность, пришлось пожертвовать защитой от радиации и паразитов.</entitydescription.divingsuit_upgrade_flak>
+  <entityname.divingsuit_upgrade_inventory>Водолазный Скафандр(Разгрузочный Пояс)</entityname.divingsuit_upgrade_inventory>
+  <entitydescription.divingsuit_upgrade_inventory>Добавление разгрузочного пояса с карманами на 3 ячейки позволит вам таскать больше хлама.</entitydescription.divingsuit_upgrade_inventory>
+  <entityname.divingsuit_upgrade_insulation>Водолазный Скафандр(Комплект РХБЗ)</entityname.divingsuit_upgrade_insulation>
+  <entitydescription.divingsuit_upgrade_insulation>Замена титановых пластин на свинцовые, а так же добавление нового слоя плотной резины по всему телу значительно улучшат защиту от радиации и паразитов, слегка ослабив бронирование.</entitydescription.divingsuit_upgrade_insulation>
+  <entityname.divingsuit_upgrade_hearing>Водолазный Скафандр(Улучшенный Шлемофон)</entityname.divingsuit_upgrade_hearing>
+  <entitydescription.divingsuit_upgrade_hearing>Улучшает видимость, не затрудняет слышимость и защищает от Тугоухости.</entitydescription.divingsuit_upgrade_hearing>
+  <entityname.divingsuit_upgrade_movement>Водолазный Скафандр(Улучшение Мобильности)</entityname.divingsuit_upgrade_movement>
+  <entitydescription.divingsuit_upgrade_movement>Это улучшение позволит вам быстрей передвигатсья в скафандре на суше и под водой. Так же добавит до 10% к скорости плавания без и с скутером.</entitydescription.divingsuit_upgrade_movement>
+  <!-- 12g.xml -->
+  <entityname.shotgun_db_hook>Абордажный Дробовик МК-15</entityname.shotgun_db_hook>
+  <entitydescription.shotgun_db_hook>Это Судьбоносное двуствольное ружье оснащено крюком-кошкой, позволяющей зацепиться за врага и притянуть того к себе, добив парой зарядов дроби в упор.</entitydescription.shotgun_db_hook>
+  <entityname.shotgun_com>М600 Коммандо</entityname.shotgun_com>
+  <entitydescription.shotgun_com>Стандартный полицейский дробовик, подвергнутый многочисленным модификациям. Это оружие было переделано для использования в основном от бедра, а так же обзавелось возможностью стрелять под водой, за счет нового дементонитового ресивера. Приклад был спилен, а на ствол наварили уникальный чок. Помповый механизм был модифицирован, позволяя вести огонь слемфаером.</entitydescription.shotgun_com>
+  <entityname.shotgun_db>Двустволка М3</entityname.shotgun_db>
+  <entitydescription.shotgun_db>Простое двуствольное ружьё, создаваемое китайскими колониями. Будучи самым дешёвым огнестрелом 12-ого калибра, не способно стрелять под водой.</entitydescription.shotgun_db>
+  <entityname.shotgun_assalt>Штурмовой дробовик M12</entityname.shotgun_assalt>
+  <entitydescription.shotgun_assalt>Короткий боевой дробовик, способный стрелять слемфаером. Идеальное оружие для рейдов в закрытых помещениях,однако проигрывающее почти любому другому дробовику по точности.</entitydescription.shotgun_assalt>
+  <entityname.pipegun12>Ружьё из трубы</entityname.pipegun12>
+  <entitydescription.pipegun12>Простое оружие, сделанное из труб и сломанных частей инструментов. Как и все самодельное оружие, оно порой заклинивает и не способно стрелять под водой.</entitydescription.pipegun12>
+  <entityname.shotgun_water_unique>Франчи SFS-12</entityname.shotgun_water_unique>
+  <entitydescription.shotgun_water_unique>Не дробовик, а легенда. Выдающаяся скорострельность и точность, а также способность стрелять под водой делают его идеальным для узких проходах и пещерах, однако он никогда не производился серийно, и лишь немногие экземпляры попали на Европу.</entitydescription.shotgun_water_unique>
+  <entityname.shotgun_water>ТОЗ-208 Молот</entityname.shotgun_water>
+  <entitydescription.shotgun_water>Надежное ружье, используемое охотниками и грабителями более 225 лет. Эта модификация имеет складной приклад и способна вести стрельбу под водой.</entitydescription.shotgun_water>
+  <entityname.shotgun_water2>M-820 штурмовой</entityname.shotgun_water2>
+  <entitydescription.shotgun_water2>Легкий дробовик, разработанный для узких коридоров и закрытых помещений. Широко используемый полицией Коалиции и спецназом, заслужил свое имя как идеальное оружие для неожиданных рейдов. Стреляет под водой</entitydescription.shotgun_water2>
+  <entityname.shotgun_water_unique2>Сайга A18</entityname.shotgun_water_unique2>
+  <entitydescription.shotgun_water_unique2>Тяжелый автоматический дробовик на базе АК-подобной винтовки. В отличие от большинства дробовиков Saiga, этот использует не отъемные магазины, а собственную трубку под стволом. Для изготовления требуются некоторые детали другого ружья - ТОЗ-208.</entitydescription.shotgun_water_unique2>
+  <entityname.shotgun_talent>ТБД-88</entityname.shotgun_talent>
+  <entitydescription.shotgun_talent>Полуавтоматический боевой дробовик, способный стрелять с невероятной скоростью. Был обычной частью экипировки специальных отрядо на Земле, но до Европы их добралось совсем немного.</entitydescription.shotgun_talent>
+  <entityname.shotgun_toz>ТОЗ Шайтан</entityname.shotgun_toz>
+  <entitydescription.shotgun_toz>Неопознанное двуствольное ружье, нелегально доставленное на Европу русскими колонистами, никогда не предназначалось для использования под водой, но по каким-то причинам способно на это. На прикладе есть надпись: Жахнем?</entitydescription.shotgun_toz>
+  <entityname.shotgun_air>Полицейский дробовик М600</entityname.shotgun_air>
+  <entitydescription.shotgun_air>Самое известное оружие Mossberg на Европе. Чаще всего используется полицейскими аванпостов. Не самое подходящее для охоты оружие, поскольку для использования под водой оно не предназначалось.</entitydescription.shotgun_air>
+  <!-- 9x39.xml -->
+  <entityname.939_ar_un>СР-22 Кайман</entityname.939_ar_un>
+  <entitydescription.939_ar_un>Точная полуавтоматическая винтовка 9x39 с относительно небольшой отдачей. Разрабатывалась как надежное стрелковое оружие с дозвуковым патроном для групп специального назначения Коалиции.</entitydescription.939_ar_un>
+  <entityname.939_ar>А219-Е</entityname.939_ar>
+  <entitydescription.939_ar>Эта экспериментальная российская винтовка используется в основном спецназовцами, можно считать лучшей штурмовой винтовкой по останавливающей силе, точности и скорострельности. Используются стандартные магазины 9x39.</entitydescription.939_ar>
+  <entityname.groza9>ОЦ-ГК(9x39)</entityname.groza9>
+  <entitydescription.groza9>Необычная штурмовая винтовка, сменить калибр которой можно на военном фабрикаторе при помощи запчастей. Отлично работает как под водой, так и на суше. Подствольный гранатомет позволяет стрелять осколочными гранатами калибра 40 мм.</entitydescription.groza9>
+  <entityname.939_ar_tallent>СР-14</entityname.939_ar_tallent>
+  <entitydescription.939_ar_tallent>Очень необычное оружие под патрон 9х39. Несколько чертежей СР-14 были привезены в Европу русскими колонистами, однако с тех пор эта винтовка так и не была изготовлена.</entitydescription.939_ar_tallent>
+  <!-- 9x19.xml -->
+  <entityname.revolver_919>Кольт Байден М9</entityname.revolver_919>
+  <entitydescription.revolver_919>Распространенный револьвер, названный в честь стрелка старой Земли, победившего в чемпионате по стрельбе 2020 года не смотря на деменцию в терминальной стадии. Этот револьвер может быть оснащен Ускорительной Катушкой.</entitydescription.revolver_919>
+  <entityname.smg9mm_com>МП-22 Коммандо</entityname.smg9mm_com>
+  <entitydescription.smg9mm_com>Глубоко модернизированный МП-22 с комплектом малошумной стрельбы SD, заменяющим часть ствола на интегрированный глушитель. Внутрянка ствольной коробки была усилена инопланетными сплавами, повзволяя оружию вести огонь под водой. Для повышения огневой мощи был добавлен трехзарядный помповый подствольный дробовик 12 калибра.</entitydescription.smg9mm_com>
+  <entityname.9mm_pistol_smg>СЗ-293</entityname.9mm_pistol_smg>
+  <entitydescription.9mm_pistol_smg>Так же известен как самозарядный пистолет адмирала Мартеля, он разрабатывался как дешевое и точное оружие для подводных операций, которым можно было бы снабдить экипажи гражданских конвоев. Однако проект показал себя крайне ненадежным на испытаниях и в итоге пистолет так и не пошел в серийное производство.</entitydescription.9mm_pistol_smg>
+  <entityname.9mm_pistol_un>Ярость Конжурина</entityname.9mm_pistol_un>
+  <entitydescription.9mm_pistol_un>Оружие, существующее для единственной цели - разрушения. Оно заключает в себе силу самого Пламени. Сосуд столь мощный, что способен сопротивляться Пламени. Осколок Пламени, заключённый в тюрьму из металла.</entitydescription.9mm_pistol_un>
+  <entityname.bikehorn_919>Хонк-9</entityname.bikehorn_919>
+  <entitydescription.bikehorn_919>Делека ли комедия от трагедии? Сомневаюсь, что дальше, чем в 9 миллиметрах.</entitydescription.bikehorn_919>
+  <entityname.smg9mm>МП-22К</entityname.smg9mm>
+  <entitydescription.smg9mm>Разработанный для земных полицейских, этот пистолет-пулемет под 9x19 широко используется на Европе по прямому назначению, несмотря на то, хоть для работы под водой он никогда и не предназначался.</entitydescription.smg9mm>
+  <entityname.9mm_carbine>МК-51 тактический карабин</entityname.9mm_carbine>
+  <entitydescription.9mm_carbine>Карабин под 9x19 для стрельбы очередями, смертоносен на дальних дистанциях, но проигрывает вблизи из-за меньшей скорострельности.</entitydescription.9mm_carbine>
+  <entityname.9mm_smg_blueprint>ЦЗЕ-900 Терзатель</entityname.9mm_smg_blueprint>
+  <entitydescription.9mm_smg_blueprint>Скорострельный и точный пистолет-пулемет 9x19, разработанный для использования под водой. Вскоре после запуска производства был запрещен Коалицией как негуманное оружие. Единственные недостатки - его размер и вес.</entitydescription.9mm_smg_blueprint>
+  <entityname.9_smg_un>ХКЕ МП-19СД</entityname.9_smg_un>
+  <entitydescription.9_smg_un>Скорострельный бесшумный пистолет-пулемет, широко используемый наемниками по всей Европе, под патрон 9х19. Малые габариты и возможность подводной стрельбы сделали его одним из лучших вариантов для действий на средних и малых дистанциях.</entitydescription.9_smg_un>
+  <entityname.9mm_smg_alt>Беретта М36</entityname.9mm_smg_alt>
+  <entitydescription.9mm_smg_alt>Скорострельный компактный пистолет-пулемет, компенсирующий недостаток точности скорострельностью. Быстро расходует патроны, но имеет неплохое останавливающее действие, использует стандартные магазины ПП под 9x19.</entitydescription.9mm_smg_alt>
+  <entityname.9mm_smg_water>Беретта М87</entityname.9mm_smg_water>
+  <entitydescription.9mm_smg_water>Простой пистолет-пулемет под 9x19, предназначенный для использования под водой. Несмотря на относительно невысокую скорострельность, преимущество подводной стрельбы делает M87 востребованным оружием.</entitydescription.9mm_smg_water>
+  <entityname.9mm_pistol_water2>Пистолет М71</entityname.9mm_pistol_water2>
+  <entitydescription.9mm_pistol_water2>Легкий пистолет для стрельбы очередями, способный быстро наносить большой урон с близкого расстояния. Обладает высокой отдачей и относительно низкой точностью.</entitydescription.9mm_pistol_water2>
+  <entityname.9mm_pistol_water>МР-681 Дрозд</entityname.9mm_pistol_water>
+  <entitydescription.9mm_pistol_water>Легкий пистолет под 9x19, сделанный для сил специального назначения и отправленный в Европу бывшими оперативниками. Стал популярным благодаря своей способности работать под водой и точности.</entitydescription.9mm_pistol_water>
+  <entityname.9pipegun>Самодельный ПП (9x19)</entityname.9pipegun>
+  <entitydescription.9pipegun>Самодельный пистолет-пулемет с открытым затвором, сделанный из ржавых труб и металлолома. Как и все самодельное оружие, порой заклинивает при выстреле и не способен стрелять под водой.</entitydescription.9pipegun>
+  <entityname.9mm_pistol>П-8 Пилот</entityname.9mm_pistol>
+  <entitydescription.9mm_pistol>Самое распространенное оружие на всей Европе. Дешевый и эффективный, этот пистолет калибра 9x19 стал неотъемлемой частью арсенала каждого экипажа подводной лодки. Не может стрелять под водой.</entitydescription.9mm_pistol>
+  <!-- 7.62x55.xml -->
+  <entityname.762_rifle_obrez>Ремингтон  модель 9-17 (обрез)</entityname.762_rifle_obrez>
+  <entitydescription.762_rifle_obrez>Традиция создания «Обрезов» пережила сотни лет и добралась даже до Европы. Это компактная винтовка с обрезанным стволом и прикладом, что позволяет носить ее в качестве личного оружия.</entitydescription.762_rifle_obrez>
+  <entityname.rifle_co>Докайра Тип-62</entityname.rifle_co>
+  <entitydescription.rifle_co>Старомодная японская винтовка с надульным устройством, позволяющим стрелять 40-мм гранатами. Эффективна на дальних дистанциях.</entitydescription.rifle_co>
+  <entityname.762pipegun>Винтовка из труб (7.62x55)</entityname.762pipegun>
+  <entitydescription.762pipegun>Простое оружие, сделанное из труб и частей сломанных инструментов. Как и все самодельное оружие, порой заклинивает при выстреле и не стреляет под водой.</entitydescription.762pipegun>
+  <entityname.762_rifle_unique>СВД-55МЕ</entityname.762_rifle_unique>
+  <entitydescription.762_rifle_unique>Тяжелая полуавтоматическая винтовка под патрон 7,62х55 производства концерна Драгунова. Десяток таких были доставлены на Европу, где использовались в качестве дальнобойных снайперских винтовок. Использует собственные магазины 7,62x55.</entitydescription.762_rifle_unique>
+  <entityname.revolver_762>Тяжёлый револьвер Р-100</entityname.revolver_762>
+  <entitydescription.revolver_762>Громоздкий револьвер 7,62х55, предназначенный для подводной охоты. Барабан вмещает до 3 патронов. Прославился как один из самых здоровенных пистолетов на Европе.</entitydescription.revolver_762>
+  <entityname.762_rifle>Ремингтон модель 9-17</entityname.762_rifle>
+  <entitydescription.762_rifle>Винтовка со скользящим затвором под 7.62x55. Обычно используется как охотничье оружие, но пробивная способность патрона делает его идеальным против тяжело бронированных людей.</entitydescription.762_rifle>
+  <entityname.762_rifle_s>ДВЛ-16E Вымпел</entityname.762_rifle_s>
+  <entitydescription.762_rifle_s>Бесшумная и точная винтовка под 7,62x55, разработанная для российских диверсионных отрядов на Земле. На Европу было доставлено несколько чертежей Вымпела, однако с тех пор винтовка ни разу не использовалась. Идеальное оружие для бесшумного уничтожения любой цели.</entitydescription.762_rifle_s>
+  <entityname.762_rifle_sonar>А7 Раптор</entityname.762_rifle_sonar>
+  <entitydescription.762_rifle_sonar>Полуавтоматическая винтовка под патрон 7,62х55 со встроенным магазином. Уникальной особенностью этого оружия является, очевидно, гидроакустический прицел, жестко закрепленный наверху, позволяющий пользователю поражать цели вне прямой видимости.</entitydescription.762_rifle_sonar>
+  <entityname.762_rifle_2>СВУ-39М</entityname.762_rifle_2>
+  <entitydescription.762_rifle_2>Тяжелая винтовка под 7,62х55, разработанная как замена СВД-55МЕ. Компоновка булл-пап делает это оружие относительно маневренным и удобным в обращении в закрытых помещениях, но также увеличивает эффект отдачи и снижает устойчивость. Использует магазины 7,62x55.</entitydescription.762_rifle_2>
+  <!-- 7.62 Kurz.xml -->
+  <entityname.machinegun>МГ3МЕ</entityname.machinegun>
+  <entitydescription.machinegun>Крупнокалиберный пулемет, привезенный в Европу итальянскими колонистами. Из-за его размера было невозможно воспроизвести его на стандартных фабрикаторах, а это означает, что МГ3МЕ существует в единственном экземпляре. Невозможно модифицировать.</entitydescription.machinegun>
+  <entityname.machinegun_air>М21 облегчённый</entityname.machinegun_air>
+  <entitydescription.machinegun_air>Легкий пулемет калибра 7,62 Курц, используемый полицией и группами спецназначения при работе на аванпостах и подводных лодках. Простая конструкция и надежность сделали М21 популярным выбором для ближнего боя. К сожалению, не может стрелять под водой.</entitydescription.machinegun_air>
+  <entityname.machinegun_alt>М54 Цепная пила</entityname.machinegun_alt>
+  <entitydescription.machinegun_alt>Громоздкий пулемет калибра 7,62 Курц, разработанный Коалицией как мощное оружие подавления и огневой поддержки штурмовых групп. Должно быть, это самое тяжелое оружие, которым вы когда-либо пользовались.</entitydescription.machinegun_alt>
+  <entityname.machinegun_unique>Лёгкий пулемёт А102</entityname.machinegun_unique>
+  <entitydescription.machinegun_unique>Компактный ручной пулемет под патрон 7,62 Курц, разработанный в рамках совместной оружейной программы России и НАТО. Обеспечивает большую огневую мощь в закрытых помещениях, не боится воды и давления европейских глубин и надежно служит любому, кто способен справиться с его отдачей.</entitydescription.machinegun_unique>
+  <!-- 5.56x45.xml -->
+  <entityname.556_lever>МГ-61 казнозарядный</entityname.556_lever>
+  <entitydescription.556_lever>Винтовка одинарного действия 5,56x45 с рычагом для отвода затвора назад, что позволяет заряжать патрон прямо в ствол. В какой-то момент эти винтовки получили настолько широкое распространение, что даже их чертежи были включены в стандартный набор рецептов военного фабрикатора.</entitydescription.556_lever>
+  <entityname.556_carbine>Штурмовой карабин М53</entityname.556_carbine>
+  <entitydescription.556_carbine>AR-подобный карабин с высокой скорострельностью и приличной точностью. Использует стандартные магазины 5,56x45. Не может стрелять под водой.</entitydescription.556_carbine>
+  <entityname.556_ar_com>М4-29 Коммандо</entityname.556_ar_com>
+  <entitydescription.556_ar_com>Версия М4-29. Модифицирована подствольным гранатометом, улучшенным дульным тормозом и тактическим фонариком. Основные внутренние детали заменены на идентичные, но изготовленные из инопланетных материалов.</entitydescription.556_ar_com>
+  <entityname.556_smg>ХКЕ-90</entityname.556_smg>
+  <entitydescription.556_smg>Простая, но эффективная штурмовая винтовка под 5,56х45. Была стандартной частью арсенала солдата НАТО на Земле. В настоящее время на Европе она служит тяжелым полицейским оружием против бунтовщиков и террористов. Заклинивает под водой.</entitydescription.556_smg>
+  <entityname.556_ar>Штурмовая винтовка М4-29</entityname.556_ar>
+  <entitydescription.556_ar>Распространённая военная винтовка под патрон 5,56х45, известная своей надежностью и точностью. Хороший выбор для состоятельного стрелка.</entitydescription.556_ar>
+  <entityname.556_ar_b>ТАРЕ-56</entityname.556_ar_b>
+  <entitydescription.556_ar_b>Экспериментальная штурмовая винтовка 5,56х45. Высокая точность и возможность подводной стрельбы сделали её идеальной для ведения боя на средней дистанции в любых условиях, что только может предложить Европа..</entitydescription.556_ar_b>
+  <entityname.556_dmr>ФНЕ-456 ВДВ</entityname.556_dmr>
+  <entitydescription.556_dmr>Полуавтоматическая винтовка под 5,56х45. Известна своей невероятной точностью и большими размерами. Используется в качестве дальнобойного за пределами аванпостов и подводных лодок силами специального назначения Коалиции..</entitydescription.556_dmr>
+  <entityname.556_ar_spec>ХКЕ Х-56</entityname.556_ar_spec>
+  <entitydescription.556_ar_spec>Смертоносный и точный автомат под 5,56x45, известный среди наемников своей надежностью и точностью. В сочетании с заводским фонариком эта винтовка обеспечивает пользователю большую огневую мощь на суше и на воде.</entitydescription.556_ar_spec>
+  <entityname.556_ar_burst>Штурмовой карабин Г-14К</entityname.556_ar_burst>
+  <entitydescription.556_ar_burst>Скорострельный карабин, способный стрелять патронами 5,56x45 быстрыми очередями по 3 патрона. Надежное оружие для ближнего боя.</entitydescription.556_ar_burst>
+  <entityname.carbine_medic>Медицинский М7А5</entityname.carbine_medic>
+  <entitydescription.carbine_medic>Точный карабин 5,56x45, разработанный для боевых медиков. Обладает встроенным сканером здоровья и подствольным шприцемётом. Идеально подходит для поддержания жизни экипажа, сохраняя при этом возможность дать отпор любой угрозе, независимо от обстоятельств. Не может быть модифицирован.</entitydescription.carbine_medic>
+  <!-- 5.45x39.xml -->
+  <entityname.545_carbine>Карабин СКВ-25</entityname.545_carbine>
+  <entitydescription.545_carbine>Самозарядный карабин Волкова, или СКВ, представляет собой точную винтовку калибра 5,45х39 с собственным несъемным магазином на 8 пуль. Возможно, это не самое скорострельное оружие, но определённо одно из самых точных. Имеет конструктивную оплошность с дульным тормозом, из-за чего не может быть снаряжен надульным гранатомётом.</entitydescription.545_carbine>
+  <entityname.545_ar>Полицейская винтовка АК-27МСУ</entityname.545_ar>
+  <entitydescription.545_ar>Укороченная версия АК-27 со складным прикладом. В основном предназначался для экипажей танков, но нашел применение в качестве полицейского оружия на Европе в первые годы колонизации. Не может стрелять под водой. Использует магазины 5,45x39.</entitydescription.545_ar>
+  <entityname.545_ar_uw>АЕК-22 специализированный</entityname.545_ar_uw>
+  <entitydescription.545_ar_uw>Современная штурмовая винтовка, созданная как ответ на M4-29. Высокая скорострельность и точность сделали ее идеальным выбором для ближнего боя, а в сочетании со складным прикладом эта винтовка считается одним из лучших видов оружия калибра 5,45 на Европе.</entitydescription.545_ar_uw>
+  <entityname.545_ar_uw_un>АЕК-22 коммандо</entityname.545_ar_uw_un>
+  <entitydescription.545_ar_uw_un>Модифицированный АЕК-22 с коллиматорным прицелом, новым полимерным прикладом, тактическим фонариком и штыком. Некоторые внутренние детали также были заменены их копиями из инопланетных материалов, что сделало оружие более легким и прочным. Заряжается магазинами 5,45х39.</entitydescription.545_ar_uw_un>
+  <entityname.545_aru>АК-27МЕ Велес</entityname.545_aru>
+  <entitydescription.545_aru>Полуавтоматическая винтовка, известная как одно из самых точных видов оружия с магазинным питанием и самый смертоносный дальнобойный вариант среди автоматов АК. Использует стандартные магазины 5,45x39..</entitydescription.545_aru>
+  <entityname.groza45>ОЦ-ГК(5.45x39)</entityname.groza45>
+  <entitydescription.groza45>Необычная штурмовая винтовка, сменить калибр которой можно на военном фабрикаторе при помощи запчастей. Отлично работает как под водой, так и на суше. Подствольный гранатомет позволяет стрелять осколочными гранатами калибра 40 мм..</entitydescription.groza45>
+  <entityname.545_pipe_ar>Самодельная штурмовая винтовка (5.45x39)</entityname.545_pipe_ar>
+  <entitydescription.545_pipe_ar>Штурмовая винтовка, сделанная из металлолома, труб и деталей инструментов. Как и все самодельное оружие, порой заклинивает при выстреле и не стреляет под водой.</entitydescription.545_pipe_ar>
+  <entityname.545_ar_burst>АК-32МСУ Перун</entityname.545_ar_burst>
+  <entitydescription.545_ar_burst>Новое поколение автоматов АК, АК-32, был сконструирован для суровых европейских условий, чтобы служить бесшумной точной винтовкой для сил специального назначения Коалиции. Стреляет смертоносными очередями по 2 пули. Использует стандартные магазины 5,45x39.</entitydescription.545_ar_burst>
+  <entityname.545_ar_alt>АСЕ-72 Валькирия</entityname.545_ar_alt>
+  <entitydescription.545_ar_alt>Точная винтовка, представляющая собой промежуточный вариант среди оружия калибра 5,45x39. Не такая скорострельная, как АЕК-22, не такая точная, как АК-27 Велес, но безотказно надёжная.</entitydescription.545_ar_alt>
+  <entityname.545_ar_bandit>А-905 Шквал</entityname.545_ar_bandit>
+  <entitydescription.545_ar_bandit>Скорострельная штурмовая винтовка 5,45x39, разработанная для ближнего боя. Быстро теряет эффективность с увеличением дальности из-за высокой отдачи и в целом плохой точности.</entitydescription.545_ar_bandit>
+  <!-- 5.7x28.xml -->
+  <entityname.57_pistol>ФНЕ компакт</entityname.57_pistol>
+  <entitydescription.57_pistol>Легкий пистолет под стандартный патрон 5,7х28. Невероятная пробивная сила этого патрона и возможность стрельбы под водой делают этот пистолет надежным выбором для самообороны.</entitydescription.57_pistol>
+  <entityname.57_pistol_tallent>Экспериментальный пистолет М50</entityname.57_pistol_tallent>
+  <entitydescription.57_pistol_tallent>Экспериментальный автоматический пистолет под патрон 5.7. Все основные детали сделаны полностью из инопланетных материалов.</entitydescription.57_pistol_tallent>
+  <entityname.57_smg>МП-57КТ</entityname.57_smg>
+  <entitydescription.57_smg>Скорострельный микро-ПП под патрон 5,7х28. Смертельное почти для любого в упор, это оружие страдает низкой точностью и летальностью снаряда. Заклинивает под водой.</entitydescription.57_smg>
+  <entityname.57_pistol_tact>ФНЕ-СО Х8</entityname.57_pistol_tact>
+  <entitydescription.57_pistol_tact>Усовершенствованный пистолет 5,7x28, предназначенный для разведывательных отрядов на Земле. Попал на Европу вместе со своими бывшими владельцами, прославился надежностью и удобством стрельбы.</entitydescription.57_pistol_tact>
+  <!-- .45.xml -->
+  <entityname.45_rifle>Боевой Карабин М-11</entityname.45_rifle>
+  <entitydescription.45_rifle>Этот карабин калибра .45 питается от специальных обойм, а не магазинов. Имеет неплохую для полуавтомата скорострельность, хорошую точность и удобный магазин подачи боеприпасов, выплевывающий пустые обоймы, издавая при этом довольно приятный звук.</entitydescription.45_rifle>
+  <entityname.45_smg_micro>МС-45 специализированный</entityname.45_smg_micro>
+  <entitydescription.45_smg_micro>Компактный пистолет-пулемет калибра .45, разработанный для подразделений специального назначения. Является одним из самых легких оружий этого калибра. Им легко управлять одной рукой, но при этом возрастает отдача и понижается точность.</entitydescription.45_smg_micro>
+  <entityname.45_pistol_uw>М24 Кольт палаш</entityname.45_pistol_uw>
+  <entitydescription.45_pistol_uw>Современный пистолет калибра .45 использовался в качестве личного оружия многими подразделениями специального назначения на Европе. Компактный, надежный и смертоносный Кольт палаш представляет большую угрозу для любого, кто захочет напасть на вас как в воде, так и на суше. К сожалению, производство этого пистолета было остановлено, и теперь лишь несколько таких пистолетов можно найти на затонувших кораблях.</entitydescription.45_pistol_uw>
+  <entityname.45_pistol_uw2>М19 армейский</entityname.45_pistol_uw2>
+  <entitydescription.45_pistol_uw2>Современный пистолет калибра .45, разработанный для военных целей. Надежное оружие с высокой скорострельностью и мощным патроном.</entitydescription.45_pistol_uw2>
+  <entityname.45pipegun>Самодельный ПП (.45)</entityname.45pipegun>
+  <entitydescription.45pipegun>Самодельный пистолет-пулемет с открытым затвором, сделанный из ржавых труб и металлолома. Как и все самодельное оружие, порой заклинивает при выстреле и не способен стрелять под водой.</entitydescription.45pipegun>
+  <entityname.45_carbine>Карабин К-7</entityname.45_carbine>
+  <entitydescription.45_carbine>Карабин калибра .45, предназначенный для подводного использования. Заряжется пистолетными магазинами калибра .45. Из-за своей полуимпровизационной природы это оружие реализует менее 90% потенциального урона пули.</entitydescription.45_carbine>
+  <entityname.45_smg_uw2>Тактический ПП Мк-117</entityname.45_smg_uw2>
+  <entitydescription.45_smg_uw2>Пистолет-пулемет калибра .45 для стрельбы очередями, разработанный для штурмовых отрядов коалиции. Быстро расходует боеприпасы, стреляет с разрушительной скоростью и, несмотря на это, имеет относительно высокую точность благодаря уникальной компановке ресивера.</entitydescription.45_smg_uw2>
+  <entityname.45_smg_uw>ОСЗ-323Е</entityname.45_smg_uw>
+  <entitydescription.45_smg_uw>Пистолет-пулемет .45, предназначенный для использования под водой. Точность и малая отдача компенсируют относительно невысокую скорострельность.</entitydescription.45_smg_uw>
+  <entityname.45_pistol>М18 Кольт европеец</entityname.45_pistol>
+  <entitydescription.45_pistol>Распространенный пистолет калибра .45. Известен своей убойной силой и точностью, но клинит под водой.</entitydescription.45_pistol>
+  <entityname.45_smg>ХКЕ-95 полицейский</entityname.45_smg>
+  <entitydescription.45_smg>Тяжелый пистолет-пулемет калибра .45 на базе штурмовой винтовки HK-90. Надежное оружие для ближнего боя на подводных лодках и аванпостах, но не способно стрелять под водой.</entitydescription.45_smg>
+  <!-- .44.xml -->
+  <entityname.revolver_44_com>РКК-5 Коммандо</entityname.revolver_44_com>
+  <entitydescription.revolver_44_com>Модифицированная версия стандартного револьвера РКК-5. Оснащена глушителем, коллиматорным прицелом и лазерным целеуказателем. Внутренние детали заменены на их аналоги из инопланетных материалов.</entitydescription.revolver_44_com>
+  <entityname.revolver_44>Револьвер РКК-5</entityname.revolver_44>
+  <entitydescription.revolver_44>Револьвер для космического экспорта, 5-я модель. Не самое известное русское оружие, но точно одно из лучших. Этот револьвер под патрон .44 является идеальным выбором для ценителей высокой огневой мощи и надежности.</entitydescription.revolver_44>
+  <entityname.44pipegun>Револьвер из труб(.44)</entityname.44pipegun>
+  <entitydescription.44pipegun>Самодельный револьвер из труб. Как и все импровизированное оружие, порой заклинивает при выстреле и не стреляет под водой.</entitydescription.44pipegun>
+  <entityname.revolver_44_auto>Автоматический револьвер Чиаппа модель 44</entityname.revolver_44_auto>
+  <entitydescription.revolver_44_auto>Мощный револьвер под стандартный патрон .44. Имеет относительно высокую скорость стрельбы, что делает его самым смертоносным револьвером в ближнем бою, однако этой модели не хватает точности.</entitydescription.revolver_44_auto>
+  <entityname.44_rifle_lever>М-144 рычажного действия</entityname.44_rifle_lever>
+  <entitydescription.44_rifle_lever>Простая, но эффективная винтовка под .44 рычажного действия, предназначенная для подводной охоты, но может использоваться как скорострельная боевая винтовка с большой точностью и относительно дешевыми патронами.</entitydescription.44_rifle_lever>
+  <!-- .38.xml -->
+  <entityname.38pipegun>Револьвер из труб(.38)</entityname.38pipegun>
+  <entitydescription.38pipegun>Самодельный револьвер из труб. Как и все импровизированное оружие, порой заклинивает при выстреле и не стреляет под водой.</entitydescription.38pipegun>
+  <entityname.revolver_38_talent>Револьвер РКК-16</entityname.revolver_38_talent>
+  <entitydescription.revolver_38_talent>Простой по конструкции револьвер .38 с барабаном на 4 патрона. Плохая балансировка и самопальный характер делают его весьма неудобным в сравнении с фабричными аналогами.</entitydescription.revolver_38_talent>
+  <entityname.revolver_38>Револьвер Р-23</entityname.revolver_38>
+  <entitydescription.revolver_38>Дешевое и распространенное оружие самообороны. Не стреляет под водой.</entitydescription.revolver_38>
+  <entityname.38_carbine>Карабин ТБК-38</entityname.38_carbine>
+  <entitydescription.38_carbine>Зародившееся в качестве эксперимента, это оружие получило широкое распространение среди шахтёров благодаря небольшим размерам и точности. Идеальное оружие для защиты от небронированных существ Европы в пещерах и даже в океанских пустошах. Использует специальные магазины .38.</entitydescription.38_carbine>
+  <entityname.silencer_38>Тип-72 специализированный</entityname.silencer_38>
+  <entitydescription.silencer_38>Простой пистолет со встроенным глушителем, способный стрелять одним патроном калибра .38 с невероятной точностью. Был разработан давно для китайского спецназа на Земле, поэтому хорошо работает в любых условиях. Получил широкое распространение среди преступников из-за своей дешевизны и малоизвестности.</entitydescription.silencer_38>
+  <entityname.revolver_38_uw>Автоматический револьвер Р-43</entityname.revolver_38_uw>
+  <entitydescription.revolver_38_uw>Скорострельный револьвер под .38, способный стрелять под водой. Вмещает 7 патронов.</entitydescription.revolver_38_uw>
+  <entityname.38_carbine_2>К-12 близнецы</entityname.38_carbine_2>
+  <entitydescription.38_carbine_2>Уникальная двухствольная винтовка калибра .38 со встроенным магазином на 10 патронов. Оба ствола стреляют одновременно, образуя точную очередь из двух пуль.</entitydescription.38_carbine_2>
+  <!-- Ammunition.xml -->
+  <entityname.clip45>Обойма .45</entityname.clip45>
+  <entitydescription.clip45>Специальная металлическая обойма, сделанная для карабина М11.</entitydescription.clip45>
+  <entityname.shotgunslugfixfoam>Ремонтный патрон для дробовика</entityname.shotgunslugfixfoam>
+  <entitydescription.shotgunslugfixfoam>Этот патрон крайне неэффективен в бою, но позволяет проводить быстрый точечный ремонт пробитых сегментов корпуса и поврежденных люков.</entitydescription.shotgunslugfixfoam>
+  <entityname.5.7mm_round_noff>Умный патрон 5.7x28</entityname.5.7mm_round_noff>
+  <entitydescription.5.7mm_round_noff>Умные пули огибают союзников, снижая риск огня по своим до нуля.</entitydescription.5.7mm_round_noff>
+  <entityname.5.56mm_round_noff>Умный патрон 5.56x45</entityname.5.56mm_round_noff>
+  <entitydescription.5.56mm_round_noff>Умные пули огибают союзников, снижая риск огня по своим до нуля.</entitydescription.5.56mm_round_noff>
+  <entityname.5.45mm_round_noff>Умный патрон 5.45x39</entityname.5.45mm_round_noff>
+  <entitydescription.5.45mm_round_noff>Умные пули огибают союзников, снижая риск огня по своим до нуля.</entitydescription.5.45mm_round_noff>
+  <entityname.9x39mm_round_noff>Умный патрон 9x39</entityname.9x39mm_round_noff>
+  <entitydescription.9x39mm_round_noff>Умные пули огибают союзников, снижая риск огня по своим до нуля.</entitydescription.9x39mm_round_noff>
+  <entityname.mg_round_noff>Умный патрон 7.62 Курц</entityname.mg_round_noff>
+  <entitydescription.mg_round_noff>Умные пули огибают союзников, снижая риск огня по своим до нуля.</entitydescription.mg_round_noff>
+  <entityname.7.62mm_round_noff>Умный патрон 7.62x55</entityname.7.62mm_round_noff>
+  <entitydescription.7.62mm_round_noff>Умные пули огибают союзников, снижая риск огня по своим до нуля.</entitydescription.7.62mm_round_noff>
+  <entityname.44_round_noff>Умный патрон .44</entityname.44_round_noff>
+  <entitydescription.44_round_noff>Умные пули огибают союзников, снижая риск огня по своим до нуля.</entitydescription.44_round_noff>
+  <entityname.38_round_noff>Умный патрон .38</entityname.38_round_noff>
+  <entitydescription.38_round_noff>Умные пули огибают союзников, снижая риск огня по своим до нуля.</entitydescription.38_round_noff>
+  <entityname.45_round_noff>Умный патрон .45</entityname.45_round_noff>
+  <entitydescription.45_round_noff>Умные пули огибают союзников, снижая риск огня по своим до нуля.</entitydescription.45_round_noff>
+  <entityname.9mm_round_noff>Умный патрон 9x19</entityname.9mm_round_noff>
+  <entitydescription.9mm_round_noff>Умные пули огибают союзников, снижая риск огня по своим до нуля.</entitydescription.9mm_round_noff>
+  <entityname.44_round_hs>Дозвуковой патрон .44</entityname.44_round_hs>
+  <entitydescription.44_round_hs>Эти патроны калибра .44 были модифицированы более тяжелыми пулями. Не оставляет трассеров и лучше работает против слабобронированных целей, но имеет значительно меньшую бронебойность.</entitydescription.44_round_hs>
+  <entityname.45_round_rifle>Патрон .45 с увеличенным пороховым зарядом</entityname.45_round_rifle>
+  <entitydescription.45_round_rifle>С такой мощностью его можно считать винтовочным патроном. Получает дополнительный урон от таланта Стрелок, как если бы это был патрон для снайперской винтовки.</entitydescription.45_round_rifle>
+  <entityname.9mm_round_hs>Дозвуковой патрон 9x19</entityname.9mm_round_hs>
+  <entitydescription.9mm_round_hs>Наносит немного больше урона и не оставляет трассеров. Идеально подходит для скрытных операций.</entitydescription.9mm_round_hs>
+  <entityname.5.45mm_round_incendiary>Зажигательный патрон 5.45x39</entityname.5.45mm_round_incendiary>
+  <entitydescription.5.45mm_round_incendiary>Патрон 5,45 с зажигательной пулей. Наносит дополнительный урон ожогами.</entitydescription.5.45mm_round_incendiary>
+  <entityname.5.7mm_round_lb>Облегчённый патрон 5.7x28</entityname.5.7mm_round_lb>
+  <entitydescription.5.7mm_round_lb>Дешевая альтернатива стандартному патрону 5,7х28. Значительно хуже как по урону, так и по пробитию.</entitydescription.5.7mm_round_lb>
+  <entityname.mg_round_ripper>Патрон 7.62 Курц 'Потрошитель'</entityname.mg_round_ripper>
+  <entitydescription.mg_round_ripper>Патрон 7,62 Курц, модифицированный для нанесения ужасных повреждений тканям и внутренним органам. Работает значительно хуже против всех видов брони.</entitydescription.mg_round_ripper>
+  <entityname.44_round_homing>Самонаводящийся патрон .44</entityname.44_round_homing>
+  <entitydescription.44_round_homing>Патрон с совсем небольшим пороховым зарядом, вместо которого у него маленький торпедный двигатель и оперение. При использовании под водой действует как маленькая ракета с тепловым наведением, нацеливаясь на ближайшего не-человека.</entitydescription.44_round_homing>
+  <entityname.9x39mm_round_homing>Самонаводящийся патрон 9x39</entityname.9x39mm_round_homing>
+  <entitydescription.9x39mm_round_homing>Патрон с совсем небольшим пороховым зарядом, вместо которого у него маленький торпедный двигатель и оперение. При использовании под водой действует как маленькая ракета с тепловым наведением, нацеливаясь на ближайшего не-человека.</entitydescription.9x39mm_round_homing>
+  <entityname.5.56mm_round_homing>Самонаводящийся патрон 5.56x45</entityname.5.56mm_round_homing>
+  <entitydescription.5.56mm_round_homing>Патрон с совсем небольшим пороховым зарядом, вместо которого у него маленький торпедный двигатель и оперение. При использовании под водой действует как маленькая ракета с тепловым наведением, нацеливаясь на ближайшего не-человека.</entitydescription.5.56mm_round_homing>
+  <entityname.5.7mm_round_hp>Патрон 5.7x28 с полым наконечником</entityname.5.7mm_round_hp>
+  <entitydescription.5.7mm_round_hp>Патрон 5,7x28, модифицированный для улучшения останавливающей способности в обмен на пробивную. Может, стоит просто использовать другие пистолетные калибры?</entitydescription.5.7mm_round_hp>
+  <entityname.9x39mm_round_df>Патрон 9x39 из обеднённого топлива</entityname.9x39mm_round_df>
+  <entitydescription.9x39mm_round_df>Патрон 9х39, по действию аналогичный подкалиберному, пробивает несколько поверхностей.</entitydescription.9x39mm_round_df>
+  <entityname.7.62mm_round_light>Облегчённый патрон 7.62x55</entityname.7.62mm_round_light>
+  <entitydescription.7.62mm_round_light>Патрон 7,62х55, но вместо физикориевой сердцевины - монолитная титановая пуля. Немного слабее против брони и наносит чуть меньше урона.</entitydescription.7.62mm_round_light>
+  <entityname.7.62mm_round>Патрон 7.62x55</entityname.7.62mm_round>
+  <entitydescription.7.62mm_round>Мощный патрон, несущий в свинцовой оболочке бронебойную физикориевую сердцевину. Идеальный выбор против тяжелобронированных целей.</entitydescription.7.62mm_round>
+  <entityname.co_shotgunslug>Гильза из обеднённого топлива</entityname.co_shotgunslug>
+  <entitydescription.co_shotgunslug>Серьёзный патрон 12-го калибра. Полезен на средних и дальних дистанциях, имеет невероятную пробивную силу.</entitydescription.co_shotgunslug>
+  <entityname.44_round_df>Патрон .44 из обеднённого топлива</entityname.44_round_df>
+  <entitydescription.44_round_df>.44 патрон, модифицированный заостренной головкой из обеднённого топлива. Пробивает до 2 целей.</entitydescription.44_round_df>
+  <entityname.38_round_explosive>Разрывной патрон .38</entityname.38_round_explosive>
+  <entitydescription.38_round_explosive>.38 модифицированный фугасной боевой частью. Действует как миниатюрная осколочная граната.</entitydescription.38_round_explosive>
+  <entityname.9mm_round_ripper>Патрон 9x19 'Потрошитель'</entityname.9mm_round_ripper>
+  <entitydescription.9mm_round_ripper>Патрон 9x19, модифицированный таким образом, чтобы нанести как можно больше повреждений незащищенным тканям. Значительно хуже действует против брони, не получает особых бонусов от Модулей.</entitydescription.9mm_round_ripper>
+  <entityname.45_round_explosive>Разрывной патрон .45</entityname.45_round_explosive>
+  <entitydescription.45_round_explosive>11,5-мм патрон с фугасной головкой.</entitydescription.45_round_explosive>
+  <entityname.mg_round_ap>Бронебойный патрон 7.62 Курц</entityname.mg_round_ap>
+  <entitydescription.mg_round_ap>Бронебойный патрон 7,62х32 с круглой головкой. Работает значительно лучше против бронированных врагов.</entitydescription.mg_round_ap>
+  <entityname.5.7mm_round_piercing>Патрон 5.7x28 из обеднённого топлива</entityname.5.7mm_round_piercing>
+  <entitydescription.5.7mm_round_piercing>Максимум, что получилось выжать из патрона 5,7x28. Стреляет с огромной скоростью, действует как подкалиберный.</entitydescription.5.7mm_round_piercing>
+  <entityname.44_round_explosive>Разрывной патрон .44</entityname.44_round_explosive>
+  <entitydescription.44_round_explosive>.44 патрон, модифицированный взрывной головкой. Действует как маленькая осколочная граната, нанося огромный урон в большом радиусе.</entitydescription.44_round_explosive>
+  <entityname.38_magazine_extended>Магазин .38 (расширенный)</entityname.38_magazine_extended>
+  <entitydescription.38_magazine_extended>Специализированный расширенный магазин для ТБК-38. Вмещает 15 патронов.</entitydescription.38_magazine_extended>
+  <entityname.57_magazine_extended>Магазин 5.7x28 (расширенный)</entityname.57_magazine_extended>
+  <entitydescription.57_magazine_extended>Магазин 5.7x28 (расширенный). Вмещает 20 патронов.</entitydescription.57_magazine_extended>
+  <entityname.7.62_magazine_extended>Магазин 7.62x55 (расширенный)</entityname.7.62_magazine_extended>
+  <entitydescription.7.62_magazine_extended>Магазин 7.62x55 magazine. Вмещает 15 патронов..</entitydescription.7.62_magazine_extended>
+  <entityname.smg45_magazine_extended>Магазин .45 для ПП (расширенный)</entityname.smg45_magazine_extended>
+  <entitydescription.smg45_magazine_extended>Магазин .45 для ПП. Вмещает 25 патронов.</entitydescription.smg45_magazine_extended>
+  <entityname.smg9mm_magazine_extended>Магазин 9x19 для ПП (расширенный)</entityname.smg9mm_magazine_extended>
+  <entitydescription.smg9mm_magazine_extended>Расширенный магазин 9x19 для ПП. Вмещает 30 патронов.</entitydescription.smg9mm_magazine_extended>
+  <entityname.pistol45_magazine_extended>Магазин .45 для пистолета (расширенный)</entityname.pistol45_magazine_extended>
+  <entitydescription.pistol45_magazine_extended>Расширенный магазин .45 для пистолета. Вмещает 12 патронов.</entitydescription.pistol45_magazine_extended>
+  <entityname.pistol9mm_magazine_extended>Магазин 9x19 для пистолета (расширенный)</entityname.pistol9mm_magazine_extended>
+  <entitydescription.pistol9mm_magazine_extended>Расширенный магазин 9x19 для пистолета. Вмещает 15 патронов..</entitydescription.pistol9mm_magazine_extended>
+  <entityname.9x39_magazine_extended>Магазин 9x39 (расширенный)</entityname.9x39_magazine_extended>
+  <entitydescription.9x39_magazine_extended>Расширенныый магазин для лучших штурмовых винтовок Европы. Вмещает 30 патронов.</entitydescription.9x39_magazine_extended>
+  <entityname.5.45mm_magazine_extended>Магазин 5.45x39 (расширенный)</entityname.5.45mm_magazine_extended>
+  <entitydescription.5.45mm_magazine_extended>Расширенный магазин для большинства АК-подобного оружия. Вмещает 30 патронов.</entitydescription.5.45mm_magazine_extended>
+  <entityname.5.56_magazine_extended>Магазин 5.56x45 (расширенный)</entityname.5.56_magazine_extended>
+  <entitydescription.5.56_magazine_extended>Расширенный магазин для АР-подобных винтовок. Вмещает 30 патронов.</entitydescription.5.56_magazine_extended>
+  <entityname.gunpowder>Порох</entityname.gunpowder>
+  <entitydescription.gunpowder>Взрывоопасная смесь, обычно используемая для изготовления боеприпасов.</entitydescription.gunpowder>
+  <entityname.7.62mm_round_df>Патрон 7.62x55 из обеднённого топлива</entityname.7.62mm_round_df>
+  <entitydescription.7.62mm_round_df>Мощный патрон с отличными пробивными способностями. Идеально подходит для охоты на мелких и даже средних существ Европы. Пробивает несколько препятствий.</entitydescription.7.62mm_round_df>
+  <entityname.5.56mm_round_hp>Экспансивный патрон 5.56x45</entityname.5.56mm_round_hp>
+  <entitydescription.5.56mm_round_hp>Патрон калибра 5,56, модифицированный экспансивной пулей. Эффективен против открытых слабых мест и небронированных конечностей.</entitydescription.5.56mm_round_hp>
+  <entityname.mg_round_hp>Экспансивный патрон 7.62 Курц</entityname.mg_round_hp>
+  <entitydescription.mg_round_hp>Модифицированный патрон 7,62х32 с экспансивной пулей. Хорош против небронированных целей, вызывает сильное кровотечение.</entitydescription.mg_round_hp>
+  <entityname.5.45mm_round_hp>Экспансивный патрон 5.45x39</entityname.5.45mm_round_hp>
+  <entitydescription.5.45mm_round_hp>Патрон 5,45x39, модифицированный, чтобы вызывать сильное кровотечение и наносить больше урона небронированным целям. Однако он потерял большую часть своей проникающей способности.</entitydescription.5.45mm_round_hp>
+  <entityname.assaultriflemagazine_window>Остеклённый магазин 9x39</entityname.assaultriflemagazine_window>
+  <entitydescription.assaultriflemagazine_window>Остеклённый магазин для лучших штурмовых винтовок Европы. Вмещает 20 патронов, отображает тип и примерное количество боеприпасов.</entitydescription.assaultriflemagazine_window>
+  <entityname.7.62_magazine_window>Остеклённый магазин 7.62x55</entityname.7.62_magazine_window>
+  <entitydescription.7.62_magazine_window>Остеклённый магазин, разработан специально для винтовок серии СВД. Вмещает 10 патронов, отображает тип и примерное количество боеприпасов.</entitydescription.7.62_magazine_window>
+  <entityname.38_magazine_window>Остеклённый магазин .38</entityname.38_magazine_window>
+  <entitydescription.38_magazine_window>Остеклённый special magazine для ТБК-38. Вмещает 10 патронов, отображает тип и примерное количество боеприпасов.</entitydescription.38_magazine_window>
+  <entityname.smg9mm_magazine_window>Остеклённый магазин 9x19 для ПП</entityname.smg9mm_magazine_window>
+  <entitydescription.smg9mm_magazine_window>Остеклённый стандартный магазин 9x19 для ПП. Вмещает 25 патронов, отображает тип и примерное количество боеприпасов.</entitydescription.smg9mm_magazine_window>
+  <entityname.smg45_magazine_window>Остеклённый магазин .45 для ПП</entityname.smg45_magazine_window>
+  <entitydescription.smg45_magazine_window>Остеклённый стандартный магазин .45 для ПП. Вмещает 20 патронов, отображает тип и примерное количество боеприпасов.</entitydescription.smg45_magazine_window>
+  <entityname.5.45mm_magazine_window>Остеклённый магазин 5.45x39</entityname.5.45mm_magazine_window>
+  <entitydescription.5.45mm_magazine_window>Остеклённый стандартный магазина для АК-подобных винтовок. Вмещает 25 патронов, отображает тип и примерное количество боеприпасов.</entitydescription.5.45mm_magazine_window>
+  <entityname.5.56_magazine_glass>Остеклённый магазин 5.56x45</entityname.5.56_magazine_glass>
+  <entitydescription.5.56_magazine_glass>Остеклённый стандартный магазина для АР-подобных винтовок. Вмещает 25 патронов, отображает тип и примерное количество боеприпасов.</entitydescription.5.56_magazine_glass>
+  <entityname.mg_round>Патрон 7.62 Курц</entityname.mg_round>
+  <entitydescription.mg_round>Стандартный патрон 7,62х32 с круглой головкой. Используется в большинстве пулеметов на Европе. Эффективен на близких дистанциях против небронированных или слабобронированных целей.</entitydescription.mg_round>
+  <entityname.mg_magazine>Лента патронов 7.62 Курц</entityname.mg_magazine>
+  <entitydescription.mg_magazine>Лента на 80 патронов, предназначенная для ручных пулеметов типа А102 и М21.</entitydescription.mg_magazine>
+  <entityname.5.56mm_round>Патрон 5.56x45</entityname.5.56mm_round>
+  <entitydescription.5.56mm_round>Смертоносный военный патрон с пробивным титановым сердечником. Эффективен как против брони, так и против того, что под ней.</entitydescription.5.56mm_round>
+  <entityname.5.56_magazine>Магазин 5.56x45</entityname.5.56_magazine>
+  <entitydescription.5.56_magazine>Стандартный магазин для винтовок АР платформы. Вмещает 25 патронов.</entitydescription.5.56_magazine>
+  <entityname.5.45mm_round>Патрон 5.45x39</entityname.5.45mm_round>
+  <entitydescription.5.45mm_round>Скоростной патрон с титановой сердцевиной. Используется в большинстве видов оружия АК платформы, эффективен против брони.</entitydescription.5.45mm_round>
+  <entityname.5.45mm_magazine>Магазин 5.45x39</entityname.5.45mm_magazine>
+  <entitydescription.5.45mm_magazine>Стандартный магазин для большинства оружия АК платформы. Вмещает 25 патронов.</entitydescription.5.45mm_magazine>
+  <entityname.5.45mm_round_sb>Облегчённый патрон 5.45x39 </entityname.5.45mm_round_sb>
+  <entitydescription.5.45mm_round_sb>Довольно слабая альтернатива стандартному патрону 5,45х39. Стальная пуля имеет меньшую останавливающую силу и значительно хуже работает против брони.</entitydescription.5.45mm_round_sb>
+  <entityname.5.7mm_round>Патрон 5.7x28</entityname.5.7mm_round>
+  <entitydescription.5.7mm_round>Патрон, летящий с такой высокой скоростью, что он буквально игнорирует большинство стандартных бронежилетов и панцирей существ. Но останавливающая способность оставляет желать лучшего.</entitydescription.5.7mm_round>
+  <entityname.57_magazine>Магазин 5.7x28</entityname.57_magazine>
+  <entitydescription.57_magazine>Стандартный магазин 5.7x28. Вмещает 15 патронов.</entitydescription.57_magazine>
+  <entityname.7.62mm_round_incendiary>Зажигательный патрон 7.62x55</entityname.7.62mm_round_incendiary>
+  <entitydescription.7.62mm_round_incendiary>Мощный патрон с зажигательной пулей. Наносит больший урон, но уменьшилась бронебойность.</entitydescription.7.62mm_round_incendiary>
+  <entityname.7.62_magazine>Магазин 7.62x55</entityname.7.62_magazine>
+  <entitydescription.7.62_magazine>Магазин, разработанный специально для винтовок серии СВД. Вмещает 10 патронов.</entitydescription.7.62_magazine>
+  <entityname.44_round>Патрон .44</entityname.44_round>
+  <entitydescription.44_round>Мощный патрон с бронебойным колпачком. Хорош против всех видов угроз.</entitydescription.44_round>
+  <entityname.38_magazine>Магазин .38</entityname.38_magazine>
+  <entitydescription.38_magazine>Специализированный магазин для ТБК-38. Вмещает 10 патронов.</entitydescription.38_magazine>
+  <entityname.38_round_ap>Бронебойный патрон .38</entityname.38_round_ap>
+  <entitydescription.38_round_ap>Бронебойный патрон .38 с усиленным колпачком и пробивным сердцевиной, улучшает бронебойность.</entitydescription.38_round_ap>
+  <entityname.9mm_round_ap>Бронебойный патрон 9x19</entityname.9mm_round_ap>
+  <entitydescription.9mm_round_ap>Патрон 9х19 с улучшенными бронебойными свойствами.</entitydescription.9mm_round_ap>
+  <entityname.9mm_round>Патрон 9x19</entityname.9mm_round>
+  <entitydescription.9mm_round>Стандартный патрон 9х19. Самый распространенный калибр для пистолетов и другого оружия самообороны.</entitydescription.9mm_round>
+  <entityname.pistol9mm_magazine>Магазин9x19 для пистолета</entityname.pistol9mm_magazine>
+  <entitydescription.pistol9mm_magazine>Стандартный магазин 9x19 для пистолетов. Вмещает 10 патронов.</entitydescription.pistol9mm_magazine>
+  <entityname.smg9mm_magazine>Магазин 9x19 для ПП</entityname.smg9mm_magazine>
+  <entitydescription.smg9mm_magazine>Стандартный магазин 9x19 для ПП. Вмещает 25 патронов.</entitydescription.smg9mm_magazine>
+  <entityname.45_round_ap>Бронебойный патрон .45</entityname.45_round_ap>
+  <entitydescription.45_round_ap>Патрон калибра 11,5 мм с бронебойным сердечником.</entitydescription.45_round_ap>
+  <entityname.45_round>Патрон .45</entityname.45_round>
+  <entitydescription.45_round>Стандартный патрон калибра 11,5 мм. Обычный калибр для самообороны с одним из самых высоких останавливающих свойств среди гражданских боеприпасов.</entitydescription.45_round>
+  <entityname.pistol45_magazine>Магазин .45 для пистолета</entityname.pistol45_magazine>
+  <entitydescription.pistol45_magazine>Стандартный магазин .45 для пистолета. Вмещает 8 патронов.</entitydescription.pistol45_magazine>
+  <entityname.smg45_magazine>Магазин .45 для ПП</entityname.smg45_magazine>
+  <entitydescription.smg45_magazine>Стандартный магазин .45 для ПП. Вмещает 20 патронов.</entitydescription.smg45_magazine>
+  <entityname.9x39_magazine>Магазин 9x39</entityname.9x39_magazine>
+  <entitydescription.9x39_magazine>Стандартный магазин для лучших штурмовых винтовок Европы. Вмещает 20 патронов.</entitydescription.9x39_magazine>
+  <entityname.38_round>Патрон .38</entityname.38_round>
+  <entitydescription.38_round>Стандартный патрон калибра .38 с низкой пробивной способностью и средним останавливающим действием. Хорош для самообороны.</entitydescription.38_round>
+  <entityname.38_round_df>Патрон .38 из обеднённого топлива</entityname.38_round_df>
+  <entitydescription.38_round_df>.38 патрон с обеднённым ядерным топливом. Эффективен против брони, и способен пробить несколько препятствий.</entitydescription.38_round_df>
+  <entityname.9x39mm_round>Патрон 9x39</entityname.9x39mm_round>
+  <entitydescription.9x39mm_round>Большой патрон, полагающийся на вес, нежели чем на скорость в деле нанесения урона. Оснащенная бронебойным колпачком, пуля несет колоссальную энергию.</entitydescription.9x39mm_round>
+  <entityname.9x39mm_round_hs>Дозвуковой патрон 9x39</entityname.9x39mm_round_hs>
+  <entitydescription.9x39mm_round_hs>Тяжелый дозвуковой патрон, предназначенный для нанесения страшных повреждений небронированным целям. Не оставляет трассеров.</entitydescription.9x39mm_round_hs>
+  <entityname.shotgundart>Дротик для дробовика</entityname.shotgundart>
+  <entitydescription.shotgundart>Патрон для дробовика, несущий смертоносные дротики, способные пробивать броню и разрывать то, что под ней. Эффективен против любых целей, единственным недостатком является количество дробинок - 6 вместо 16 у обычного.</entitydescription.shotgundart>
+  <!-- Secret items -->
+  <entityname.ballistichelmet_scst>Штурмовой шлем ВКШП</entityname.ballistichelmet_scst>
+  <entitydescription.ballistichelmet_scst>Цельный стальной шлем, предназначеный для штурмовых операций и ближнего боя. Назначение рогов и странной белой расцветки остается неизвестным.</entitydescription.ballistichelmet_scst>
+  <entityname.sword_murza>МУРЗА-М</entityname.sword_murza>
+  <entitydescription.sword_murza>Мазня</entitydescription.sword_murza>
+  <entityname.combatdivingsuit_god>Бронекостюм Шумихи-Шамана</entityname.combatdivingsuit_god>
+  <entitydescription.combatdivingsuit_god>Хорошо утепленный водолазный скафандр, вызывающий странное чувство тревожности, когда вы его надеваете. Внтури стоит какая то странная сернистая вонь..</entitydescription.combatdivingsuit_god>
+  <!-- Blueprints.xml -->
+  <entityname.blueprint_omni>ОМНИ Чертёж</entityname.blueprint_omni>
+  <entitydescription.blueprint_omni>Разблокирует все крафты COR</entitydescription.blueprint_omni>
+  <entityname.blueprint_cps>Чертёж (Стабилизатор затворного давления)</entityname.blueprint_cps>
+  <entitydescription.blueprint_cps>Чертёж для военного фабрикатора. Cодержит рецепт производства оружейного модуля.</entitydescription.blueprint_cps>
+  <entityname.blueprint_939>Чертёж (Патроны калибра 9x39)</entityname.blueprint_939>
+  <entitydescription.blueprint_939>Чертёж для военного фабрикатора. Cодержит рецепт производства боеприпасов.</entitydescription.blueprint_939>
+  <entityname.blueprint_57>Чертёж (Патроны калибра 5.7x28)</entityname.blueprint_57>
+  <entitydescription.blueprint_57>Чертёж для военного фабрикатора. Cодержит рецепт производства боеприпасов.</entitydescription.blueprint_57>
+  <entityname.blueprint_12>Чертёж (Патрон для дробовика)</entityname.blueprint_12>
+  <entitydescription.blueprint_12>Чертёж для военного фабрикатора. Cодержит рецепт производства боеприпасов.</entitydescription.blueprint_12>
+  <entityname.blueprint_44>Чертёж (Патроны калибра .44)</entityname.blueprint_44>
+  <entitydescription.blueprint_44>Чертёж для военного фабрикатора. Cодержит рецепт производства боеприпасов.</entitydescription.blueprint_44>
+  <entityname.blueprint_45>Чертёж (Патроны калибра .45)</entityname.blueprint_45>
+  <entitydescription.blueprint_45>Чертёж для военного фабрикатора. Cодержит рецепт производства боеприпасов.</entitydescription.blueprint_45>
+  <entityname.blueprint_38>Чертёж (Патроны калибра .38)</entityname.blueprint_38>
+  <entitydescription.blueprint_38>Чертёж для военного фабрикатора. Cодержит рецепт производства боеприпасов.</entitydescription.blueprint_38>
+  <entityname.blueprint_melee>Чертёж (Продвинутое оружие ближнего боя)</entityname.blueprint_melee>
+  <entitydescription.blueprint_melee>Чертёж для военного фабрикатора. Cодержит рецепт производства оружия.</entitydescription.blueprint_melee>
+  <entityname.blueprint_g14>Чертёж (Штурмовой карабин Г-14К)</entityname.blueprint_g14>
+  <entitydescription.blueprint_g14>Чертёж для военного фабрикатора. Cодержит рецепт производства оружия.</entitydescription.blueprint_g14>
+  <entityname.blueprint_ak>Чертёж (АК-32МСУ «Перун»)</entityname.blueprint_ak>
+  <entitydescription.blueprint_ak>Чертёж для военного фабрикатора. Cодержит рецепт производства оружия.</entitydescription.blueprint_ak>
+  <entityname.blueprint_laser>Чертёж (ЛБМ-301 «Сверчок»)</entityname.blueprint_laser>
+  <entitydescription.blueprint_laser>Чертёж для военного фабрикатора. Cодержит рецепт производства оружия.</entitydescription.blueprint_laser>
+  <entityname.blueprint_mg>Чертёж (Пулемет М54)</entityname.blueprint_mg>
+  <entitydescription.blueprint_mg>Чертёж для военного фабрикатора. Cодержит рецепт производства оружия.</entitydescription.blueprint_mg>
+  <entityname.blueprint_exo>Чертёж (Военный экзоскелет ДЭС-8)</entityname.blueprint_exo>
+  <entitydescription.blueprint_exo>Чертёж для военного фабрикатора. Cодержит рецепт производства уникального боевого снаряжения.</entitydescription.blueprint_exo>
+  <entityname.blueprint_pistol>Чертёж (М19 «Армейский»)</entityname.blueprint_pistol>
+  <entitydescription.blueprint_pistol>Чертёж для военного фабрикатора. Cодержит рецепт производства оружия.</entitydescription.blueprint_pistol>
+  <entityname.blueprint_shotgun>Чертёж (Сайга А18)</entityname.blueprint_shotgun>
+  <entitydescription.blueprint_shotgun>Чертёж для военного фабрикатора. Cодержит рецепт производства оружия.</entitydescription.blueprint_shotgun>
+  <entityname.blueprint_rifle>Чертёж (ДВЛ-16 «Вымпел»)</entityname.blueprint_rifle>
+  <entitydescription.blueprint_rifle>Чертёж для военного фабрикатора. Cодержит рецепт производства оружия.</entitydescription.blueprint_rifle>
+  <entityname.blueprint_pdw_9>Чертёж (ЦЗЕ-900 «Терзатель»)</entityname.blueprint_pdw_9>
+  <entitydescription.blueprint_pdw_9>Чертёж для военного фабрикатора. Cодержит рецепт производства оружия.</entitydescription.blueprint_pdw_9>
+  <entityname.blueprint762>Чертёж (Патроны калибра 7.62x55)</entityname.blueprint762>
+  <entitydescription.blueprint762>Чертёж для военного фабрикатора. Cодержит рецепт производства боеприпасов.</entitydescription.blueprint762>
+  <entityname.blueprint_pdw>Чертёж (ОСЗ-323Е)</entityname.blueprint_pdw>
+  <entitydescription.blueprint_pdw>Чертёж для военного фабрикатора. Cодержит рецепт производства оружия.</entitydescription.blueprint_pdw>
+  <entityname.blueprint556>Чертёж (Патроны калибра 5.56x45)</entityname.blueprint556>
+  <entitydescription.blueprint556>Чертёж для военного фабрикатора. Cодержит рецепт производства боеприпасов.</entitydescription.blueprint556>
+  <entityname.blueprint_kurz>Чертёж (Патроны калибра 7.62 Курц)</entityname.blueprint_kurz>
+  <entitydescription.blueprint_kurz>Чертёж для военного фабрикатора. Cодержит рецепт производства боеприпасов.</entitydescription.blueprint_kurz>
+  <entityname.blueprint919p>Blueprint (Патроны калибра 9x19)</entityname.blueprint919p>
+  <entitydescription.blueprint919p>Чертёж для военного фабрикатора. Cодержит рецепт производства боеприпасов.</entitydescription.blueprint919p>
+  <entityname.blueprint_545>Blueprint (Патроны калибра 5.45x39)</entityname.blueprint_545>
+  <entitydescription.blueprint_545>Чертёж для военного фабрикатора. Cодержит рецепт производства боеприпасов.</entitydescription.blueprint_545>
+  <!-- Ammunition_turrets.xml -->
+  <entityname.flakcannonammoboxstun>Ящик шоковых снарядов для шрапнельной пушки</entityname.flakcannonammoboxstun>
+  <entitydescription.flakcannonammoboxstun>Снаряды несут боеголовки из грозовия, создавая оглушающее поле при взрыве.</entitydescription.flakcannonammoboxstun>
+  <entityname.flakcannonammoboxchemical>Ящик химическмих снарядов для шрапнельной пушки</entityname.flakcannonammoboxchemical>
+  <entitydescription.flakcannonammoboxchemical>Снаряды создают завесу едкого сернистого газа при взрыве.</entitydescription.flakcannonammoboxchemical>
+  <entityname.flakcannonammoboxsolid>Ящик цельных снарядов для шрапнельного орудия</entityname.flakcannonammoboxsolid>
+  <entitydescription.flakcannonammoboxsolid>Снаряды не несут ни взрывчатки, ни детонатора, имея вместо них бронебойный колпачок, нанося урон прямыми попаданиями. Ящик содержит 33 выстрела вместо 25.</entitydescription.flakcannonammoboxsolid>
+  <entityname.chaingunammoboxstabilised>Оперенные боеприпасы для цепной пушки</entityname.chaingunammoboxstabilised>
+  <entitydescription.chaingunammoboxstabilised>На эти снаряды установлено распускаемое оперение, что значительно увеличивает их точность и эффективную дальность.</entitydescription.chaingunammoboxstabilised>
+  <entityname.dmindammobox>Ящик дементонитовых снарядов</entityname.dmindammobox>
+  <entitydescription.dmindammobox>Ящик снарядов с боеголовкой из твердого нейротоксина, отравляющего цель и замедляющего ее движение.</entitydescription.dmindammobox>
+  <entityname.chemicalammobox>Ящик химических снарядов</entityname.chemicalammobox>
+  <entitydescription.chemicalammobox>Снаряды распыляют облака корозионного газа при попадании, проедая корпуса и нанося тяжелые химические ожоги.</entitydescription.chemicalammobox>
+  <entityname.piercinglaserbox>Бронебойная капсула для импульсного лазера</entityname.piercinglaserbox>
+  <entitydescription.piercinglaserbox>Улучшенная линза в сочетании с более активной смесью пораждают хорошо сфокусированный луч, способный пробивать препятствия и даже бороться с бронированными целями без надобности разрушать их броню.</entitydescription.piercinglaserbox>
+  <entityname.chaingunammobox_depletedfuel>Боеприпасы к цепной пушке с обедненным топливом</entityname.chaingunammobox_depletedfuel>
+  <entitydescription.chaingunammobox_depletedfuel>Ящик 20мм подкалиберных боеприпасов с сердчником из обедненного топлива. Наиболее эффективны против бронированных целей.</entitydescription.chaingunammobox_depletedfuel>
+  <entityname.incendiaryammobox>Ящик зажигательных патронов</entityname.incendiaryammobox>
+  <entitydescription.incendiaryammobox>Тяжелые патроны, вызывающие серьезные ожоги при взрыве. Могут спровоцировать пожары, если применены в воздушной среде.</entitydescription.incendiaryammobox>
+  <entityname.sulprailgunshell>Химический заряд</entityname.sulprailgunshell>
+  <entitydescription.sulprailgunshell>При взрыве распространяет едкое облако сернистого газа, разьедающего плоть и броню любых существ вблизи. Смесь активно реагирует при контакте с броней или льдом.</entitydescription.sulprailgunshell>
+  <entityname.scatterammobox_coilgun>Ящик шрапнельных снарядов</entityname.scatterammobox_coilgun>
+  <entitydescription.scatterammobox_coilgun>Снаряды разделяются на 3 отдельных поражающих эллемента. Смертоносны на ближней дистанции.</entitydescription.scatterammobox_coilgun>
+  <entityname.pulselaserminingammobox>Бурильная капсула для импульсного лазера</entityname.pulselaserminingammobox>
+  <entitydescription.pulselaserminingammobox>Выпускает пучок лучей, что создают сейсмический резонанс в месте попадания. Этот эффект буквально выкрашивает полезные ископаемые из породы и неплохо разрушает корпуса лодок, однако почти неощутим организмами.</entitydescription.pulselaserminingammobox>
+  <entityname.unstablelaserbox>Нестабильная капсула для импульсного лазера</entityname.unstablelaserbox>
+  <entitydescription.unstablelaserbox>Поведение компонентов в этой капсуле сложно предугадать. В нормальных условиях они создают сравнительно слабый импульс, но если реакция протечет успешно, можно получить выстрел на приблизительно 20% мощнее. Ученые утверждают, что есть маловероятный шанс особенно бурной реакции, высвобождающей в 3 раза больше энергии.</entitydescription.unstablelaserbox>
+  <entityname.chaingunammoboxdementonite>Дементонитовые боеприпасы для цепной пушки</entityname.chaingunammoboxdementonite>
+  <entitydescription.chaingunammoboxdementonite>Ящик 20мм патронов к пулемету с наконечниками из твердого нейротоксина, дезориентирующего врагов при попадании. Однако, этим патронам явно не хватает бронепробития.</entitydescription.chaingunammoboxdementonite>
+  <entityname.railgun_cartridge_shell>Гильзовый заряд</entityname.railgun_cartridge_shell>
+  <entitydescription.railgun_cartridge_shell>Этот снаряд испозует взрывчатку в гильзе для дополнительного ускорения. Хорошо пробивает броню.</entitydescription.railgun_cartridge_shell>
+  <entityname.apherailgunshell>Каморный заряд</entityname.apherailgunshell>
+  <entitydescription.apherailgunshell>Снаряд для рельсатрона с бронебойным наконечником и разрывным содержимым.</entitydescription.apherailgunshell>
+  <entityname.railgunshell_chitin>Хитиновый заряд</entityname.railgunshell_chitin>
+  <entitydescription.railgunshell_chitin>Снаряд для рельсотрона с хитиновым наконечником, разделяющимся при попадании. Создает веер острых осколков в месте подрыва.</entitydescription.railgunshell_chitin>
+  <entityname.emprailgunshell>ЭМИ заряд</entityname.emprailgunshell>
+  <entitydescription.emprailgunshell>Снаряд для рельсотрона, создающий мощный ЭМИ импульс при детонации.</entitydescription.emprailgunshell>
+  <entityname.pulselaserdischargeammobox>Волновая капсула для импульсного лазера</entityname.pulselaserdischargeammobox>
+  <entitydescription.pulselaserdischargeammobox>Уникальная смесь для импульсного лазера, совмещенная с волновым преобразователем вместо линзы. При выстреле генерируется волновой импульс, оглушающий противника в радиусе.</entitydescription.pulselaserdischargeammobox>
+  <entityname.pulselaserweldingammobox>Ремонтная капсула для импульсного лазера</entityname.pulselaserweldingammobox>
+  <entitydescription.pulselaserweldingammobox>Ящик с раствором специальных химикатов и ингредиентов, подходящий для починки корпуса.</entitydescription.pulselaserweldingammobox>
+  <entityname.jetammobox>Ящик реактивных снарядов</entityname.jetammobox>
+  <entitydescription.jetammobox>Каждый снаряд несет реактивный двигатель и бронебойный сердечник. Идеальное средство против крупных и хорошо защищенных целей. Для магнитной пушки</entitydescription.jetammobox>
+  <entityname.fulguriumammobox>Ящик грозовиевых снарядов</entityname.fulguriumammobox>
+  <entitydescription.fulguriumammobox>Снаряды несут боеголовку из грозовия, создавая оглушающий энергитический импульс при попадании. Для магнитной пушки.</entitydescription.fulguriumammobox>
+  <entityname.coilgunammoboxpiercing_capped>Ящик пробивных снарядов с баллистическим колпачком</entityname.coilgunammoboxpiercing_capped>
+  <entitydescription.coilgunammoboxpiercing_capped>Бронебойные снаряды, несущие свинцовый колпачок, разделяющийся внутри цели, нанося серьезные повреждения.</entitydescription.coilgunammoboxpiercing_capped>
+  <entityname.coilgunammoboxflak>Ящик боеприпасов с радиоподрывом</entityname.coilgunammoboxflak>
+  <entitydescription.coilgunammoboxflak>Ящик тяжелых разрывных снарядов, несущих сонарный детонатор. Взорвутся не только при прямом попадании, но и при прохождении недалеко от цели</entitydescription.coilgunammoboxflak>
+  <entityname.chaingunammoboxexplosive>Разрывные боеприпасы для цепной пушки</entityname.chaingunammoboxexplosive>
+  <entitydescription.chaingunammoboxexplosive>Ящик с боеприпасами под штатный пулемет, несущими боеголовку из пластичной взрывчатки</entitydescription.chaingunammoboxexplosive>
+  <entityname.chaingunammoboxscatter>Шрапнельные боеприпасы для цепной пушки</entityname.chaingunammoboxscatter>
+  <entitydescription.chaingunammoboxscatter>Снаряды разделяются, создавая непроходимую волну свинца и огня. Бронебойность отдельных боеприпасов невелика.</entitydescription.chaingunammoboxscatter>
+  <afflictionname.dmind>Отравление дементонитом </afflictionname.dmind>
+  <afflictiondescription.dmind>Пациенту сложнее фокусироваться на объектах и ориентироваться в пространстве, его зрение затуманено, он едва может передвигать конечностями.</afflictiondescription.dmind>
+  <causeofdeathdescription.dmind>Умирает от отравления дементонитом</causeofdeathdescription.dmind>
+  <self_causeofdeathdescription.dmind>Вы умираете из за отравления дементонитом.</self_causeofdeathdescription.dmind>
+  <afflictionname.vampheal>Прямое вливание</afflictionname.vampheal>
+  <afflictiondescription.vampheal>Вампиризм</afflictiondescription.vampheal>
+  <afflictionname.vampdmg>Прямое вливание</afflictionname.vampdmg>
+  <afflictiondescription.vampdmg>Неудачное вливание</afflictiondescription.vampdmg>
+  <!-- Weapons_mod.xml -->
+  <entityname.vampireattachment>Ствольный Модуль(Прямое вливание)</entityname.vampireattachment>
+  <entitydescription.vampireattachment>Модуль, который можно присоеденить к началу ствола оружия. Удачные попадания по существам восстанавливают здоровье, а промахи его отнимают. Можно установить на оружие калибром 7.62х55.</entitydescription.vampireattachment>
+  <entityname.resistattachment>Ствольный Модуль(Пассивная защита)</entityname.resistattachment>
+  <entitydescription.resistattachment>Модуль, который можно присоеденить к началу ствола оружия. Снижает получаемый физический урон на 20%, когда вы целитесь. Можно установить на оружие калибром 7.62х55.</entitydescription.resistattachment>
+  <entityname.laser_t>Тактический лазерный целеуказатель</entityname.laser_t>
+  <entitydescription.laser_t>Красный лазерный целеуказатель, который можно установить на оружие, вместо фонарика. Когда активен, убирает эффект замедления при прицеливании.</entitydescription.laser_t>
+  <entityname.accuraccyattachment>Ствольный Модуль(Стабилизатор)</entityname.accuraccyattachment>
+  <entitydescription.accuraccyattachment>Модуль, который можно присоеденить к началу ствола оружия. Снижает изначальный разброс и отдачу, если вы не двигаетесь. Можно установить на оружие калибром .45 и 7.62 курц.</entitydescription.accuraccyattachment>
+  <entityname.critattachment>Ствольный Модуль(Критический урон)</entityname.critattachment>
+  <entitydescription.critattachment>Модуль, который можно присоеденить к началу ствола оружия. Пули имеют шанс нанести дополнительный урон. Можно установить на оружие калибром 9x19, 7.62 Курц, .38 and 5.7x28. Работает с любыми боеприпасами.</entitydescription.critattachment>
+  <entityname.sulpationattachment>Ствольный Модуль(Сера)</entityname.sulpationattachment>
+  <entitydescription.sulpationattachment>Модуль, который можно присоеденить к началу ствола оружия. Пули создают небольшие облачка корозионного газа в местах попадания. Можно установить на оружие калибром 5.45х39, 5.56х45 и 9x39. Не работает с самонаводящимися боеприпасами и патронами с обедненным топливом.</entitydescription.sulpationattachment>
+  <entityname.fireattachment>Ствольный Модуль(Пламя)</entityname.fireattachment>
+  <entitydescription.fireattachment>Модуль, который можно присоеденить к началу ствола оружия. Дробинки поджигают цель, заставляя ту получать урон по времени, длящийся до 15 секунд. Можно установить на дробовики, работает только со стандартными и нелетальными патронами.</entitydescription.fireattachment>
+  <entityname.shockattachment>Ствольный Модуль(EMP)</entityname.shockattachment>
+  <entitydescription.shockattachment>Модуль, который можно присоеденить к началу ствола оружия. Добавляет ошеломление и эффект ЭМИ к вашим выстрелам, Можно установить на оружие калибром 9x19, .45, 7.62 Kurz и 5.7x28. Особые патроны, вроде разрывных, боеприпасов с обедненным топливом и патронов "Потрошитель" не получают бонусов от этого модуля.</entitydescription.shockattachment>
+  <entityname.co_riflecoil>Катушка-ускоритель</entityname.co_riflecoil>
+  <entitydescription.co_riflecoil>Можно установить на оружие калибром .38, .44 и 7.62x55. Ускоряет пулю на пути через ствол, увеличивая урон на 30%, но требуется некоторое время для зарядки перед выстрелом.</entitydescription.co_riflecoil>
+  <entityname.co_bolt>Улучшенный затворный механизм</entityname.co_bolt>
+  <entitydescription.co_bolt>Можно установить на оружие с помповым, рычажным и продольно-скользящим затвором. Увеличивает скорострельность.</entitydescription.co_bolt>
+  <entityname.co_trigger>Курок двойного действия</entityname.co_trigger>
+  <entitydescription.co_trigger>Можно установить на не-автоматические револьверы чтобы значительно повысить их скорострельность.</entitydescription.co_trigger>
+  <entityname.kurz_extender>Удлиненный ствол(7,62 Курц)</entityname.kurz_extender>
+  <entitydescription.kurz_extender>Увеличивает изначальную точность.</entitydescription.kurz_extender>
+  <entityname.57_extender>Удлиненный ствол(5.7)</entityname.57_extender>
+  <entitydescription.57_extender>Увеличивает изначальную точность.</entitydescription.57_extender>
+  <entityname.38_extender>Удлиненный ствол(.38)</entityname.38_extender>
+  <entitydescription.38_extender>Увеличивает изначальную точность.</entitydescription.38_extender>
+  <entityname.939_extender>Удлиненный ствол(9x39)</entityname.939_extender>
+  <entitydescription.939_extender>Увеличивает изначальную точность.</entitydescription.939_extender>
+  <entityname.radiationattachment>Ствольный Модуль(Гамма-излучатель)</entityname.radiationattachment>
+  <entitydescription.radiationattachment>Модуль, который можно присоеденить к началу ствола оружия. Пули создают небольшие всплески жесткого излучения, замедляя и облучая цель. Можно установить на любое оружие, работает только со стандартными, зажигательными, экспансивными, умными, дозвуковыми, бронебойными и облегченными боеприпасами, а так же с патронами с увеличенным пороховым зарядом.</entitydescription.radiationattachment>
+  <entityname.44_extender>Удлиненный ствол(.44)</entityname.44_extender>
+  <entitydescription.44_extender>Увеличивает изначальную точность.</entitydescription.44_extender>
+  <entityname.45_extender>Удлиненный ствол(.45)</entityname.45_extender>
+  <entitydescription.45_extender>Увеличивает изначальную точность.</entitydescription.45_extender>
+  <entityname.919_extender>Удлиненный ствол(9x19)</entityname.919_extender>
+  <entitydescription.919_extender>Увеличивает изначальную точность.</entitydescription.919_extender>
+  <entityname.545_extender>Удлиненный ствол(5.45)</entityname.545_extender>
+  <entitydescription.545_extender>Увеличивает изначальную точность.</entitydescription.545_extender>
+  <entityname.556_extender>Удлиненный ствол(5.56)</entityname.556_extender>
+  <entitydescription.556_extender>Увеличивает изначальную точность.</entitydescription.556_extender>
+  <entityname.co_boostercoil>Ствольный ускоритель для гранатометов</entityname.co_boostercoil>
+  <entitydescription.co_boostercoil>Можно установить на 40мм гранатометы. Увеличивает скорость полета гранаты и ее прямой урон.</entitydescription.co_boostercoil>
+  <entityname.co_choke>Дробовой чок</entityname.co_choke>
+  <entitydescription.co_choke>Можно установить на дробовики. Улучшает выравнивание и кучность дробинок. Не оказывает влияния на пулевые боеприпасы.</entitydescription.co_choke>
+  <entityname.co_shootunderwater>Стабилизатор затворного давления</entityname.co_shootunderwater>
+  <entitydescription.co_shootunderwater>Сложное устройство, нейтрализующее перепад давления между внутренностями оружия и внешней средой во время выстрела. Позволяет оружию вести огонь под водой оружию, не способному на это без модификаций. Чтобы правильно использовать СЗД, вам необходимо сначала расклинить оружие в сухом помещении с атмосферным давлением и только затем присоеденить систему, в противном случае она не окажет никакого воздействия на него.</entitydescription.co_shootunderwater>
+  <entityname.medscanner_t>Тактический медицинский сканер</entityname.medscanner_t>
+  <entitydescription.medscanner_t>Медицинский сканер, который можно установить на оружие вместо фонарика.</entitydescription.medscanner_t>
+  <entityname.939_compensator>Компенсатор(9x39)</entityname.939_compensator>
+  <entitydescription.939_compensator>Снижает отдачу.</entitydescription.939_compensator>
+  <entityname.939_suppressor>Глушитель(9x39)</entityname.939_suppressor>
+  <entitydescription.939_suppressor>Простой, но эффективный глушитель. Снижает заметность выстрела для враждебных существ.</entitydescription.939_suppressor>
+  <entityname.co_riflegrenade>Винтовочный гранатомет</entityname.co_riflegrenade>
+  <entitydescription.co_riflegrenade>40мм пусковое устройство, устанавливаемое на ствол штурмовых винтовок калибром 5.45x39, 5.56x45 и 9x39. Имеет примитивную систему синхронизации спуска, если внутри есть граната, то вместо винтовки выстрелит этот гранатомет.</entitydescription.co_riflegrenade>
+  <entityname.thermalsight>Тепловизионный прицел</entityname.thermalsight>
+  <entitydescription.thermalsight>Дает эффект тепловизора, когда оружие в руках. Можно установить на винтовки калибром 7.62х55.</entitydescription.thermalsight>
+  <entityname.kurz_compensator>Компенсатор(7.62 Курц)</entityname.kurz_compensator>
+  <entitydescription.kurz_compensator>Снижает отдачу.</entitydescription.kurz_compensator>
+  <entityname.57_compensator>Компенсатор(5.7)</entityname.57_compensator>
+  <entitydescription.57_compensator>Снижает отдачу.</entitydescription.57_compensator>
+  <entityname.38_compensator>Компенсатор(.38)</entityname.38_compensator>
+  <entitydescription.38_compensator>Снижает отдачу.</entitydescription.38_compensator>
+  <entityname.44_compensator>Компенсатор(.44)</entityname.44_compensator>
+  <entitydescription.44_compensator>Снижает отдачу.</entitydescription.44_compensator>
+  <entityname.45_compensator>Компенсатор(.45)</entityname.45_compensator>
+  <entitydescription.45_compensator>Снижает отдачу.</entitydescription.45_compensator>
+  <entityname.9x19_compensator>Компенсатор(9x19)</entityname.9x19_compensator>
+  <entitydescription.9x19_compensator>Снижает отдачу.</entitydescription.9x19_compensator>
+  <entityname.545_compensator>Компенсатор(5.45)</entityname.545_compensator>
+  <entitydescription.545_compensator>Снижает отдачу.</entitydescription.545_compensator>
+  <entityname.556_compensator>Компенсатор(5.56)</entityname.556_compensator>
+  <entitydescription.556_compensator>Снижает отдачу.</entitydescription.556_compensator>
+  <entityname.12_suppressor>Глушитель(Дробовики)</entityname.12_suppressor>
+  <entitydescription.12_suppressor>Простой, но эффективный глушитель. Снижает заметность выстрела для враждебных существ.</entitydescription.12_suppressor>
+  <entityname.57_suppressor>Глушитель(5.7)</entityname.57_suppressor>
+  <entitydescription.57_suppressor>Простой, но эффективный глушитель. Снижает заметность выстрела для враждебных существ.</entitydescription.57_suppressor>
+  <entityname.45_suppressor>Глушитель(.45)</entityname.45_suppressor>
+  <entitydescription.45_suppressor>Простой, но эффективный глушитель. Снижает заметность выстрела для враждебных существ.</entitydescription.45_suppressor>
+  <entityname.38_suppressor>Глушитель(.38)</entityname.38_suppressor>
+  <entitydescription.38_suppressor>Простой, но эффективный глушитель. Снижает заметность выстрела для враждебных существ.</entitydescription.38_suppressor>
+  <entityname.44_suppressor>Глушитель(.44)</entityname.44_suppressor>
+  <entitydescription.44_suppressor>Простой, но эффективный глушитель. Снижает заметность выстрела для враждебных существ.</entitydescription.44_suppressor>
+  <entityname.556_suppressor>Глушитель(5.56)</entityname.556_suppressor>
+  <entitydescription.556_suppressor>Простой, но эффективный глушитель. Снижает заметность выстрела для враждебных существ.</entitydescription.556_suppressor>
+  <entityname.9x19_suppressor>Глушитель(9x19)</entityname.9x19_suppressor>
+  <entitydescription.9x19_suppressor>Простой, но эффективный глушитель. Снижает заметность выстрела для враждебных существ.</entitydescription.9x19_suppressor>
+  <entityname.545_suppressor>Глушитель(5.45)</entityname.545_suppressor>
+  <entitydescription.545_suppressor>Простой, но эффективный глушитель. Снижает заметность выстрела для враждебных существ.</entitydescription.545_suppressor>
+  <entityname.flashlight_t>Tактический фонарик</entityname.flashlight_t>
+  <entitydescription.flashlight_t>Фонарик с усиленным корпусом и креплением, позволяющим установить его на оружие.</entitydescription.flashlight_t>
+  <!-- Weapons.xml -->
+  <entityname.co_disposablerocketlaucnher>Одноразовый гранатомет РМГ-45 Мавка</entityname.co_disposablerocketlaucnher>
+  <entitydescription.co_disposablerocketlaucnher>Этот гранатомет снабжен одиночной осколочно-фугасной гранатой, способной нанести тяжелые повреждения любому типу цели. Поток пороховых газов может ранить стоящего за стрелком.</entitydescription.co_disposablerocketlaucnher>
+  <entityname.guidebook1>Руководство Офицера СБ</entityname.guidebook1>
+  <entitydescription.guidebook1>Написанная от руки книжонка, призванная проинструктировать вас о особенностях подводных боевых действий и даже, возможно, увеличить ваши шансы выживания.</entitydescription.guidebook1>
+  <entityname.co_upgrader>Станция Улучшения Снаряжения</entityname.co_upgrader>
+  <entitydescription.co_upgrader>Особый станок, позволяющий вам улучшать экипировку, такую как скафандры и бронежилеты. Можно отсоеденить при помощи лома.</entitydescription.co_upgrader>
+  <entityname.co_headset_protective>Тактические наушники</entityname.co_headset_protective>
+  <entitydescription.co_headset_protective>Тактические наушники предохраняют уши стрелка от взрывной волны, создаваемой выстрелами оружия, предотвращая Тугоухость.</entitydescription.co_headset_protective>
+  <entityname.militaryclothes_separatist>Форма ренегата</entityname.militaryclothes_separatist>
+  <entitydescription.militaryclothes_separatist>Прочный костюм, используемый в основном офицерами и полевыми командирами сепаратистов. Обеспечивает некоторую защиту от физического урона, но несравним с более тяжелой бронированной одеждой. Имеет тактические карманы для медикаментов и боеприпасов.</entitydescription.militaryclothes_separatist>
+  <entityname.co_fraggrenade>Улучшенная осколочная граната</entityname.co_fraggrenade>
+  <entitydescription.co_fraggrenade>Усовершенствованная версия стандартной осколочной гранаты с укороченной задержкой взрывателя. Боевая часть осталась прежней, но добавлена полимерная ручка, увеличивающая силу броска и придающая гранате нейтральную плавучесть.</entitydescription.co_fraggrenade>
+  <entityname.exoskeleton_unarmored>Каркас экзоскелета ДЭС-5</entityname.exoskeleton_unarmored>
+  <entitydescription.exoskeleton_unarmored>Легкий каркас экзоскелета с батарейным питанием, разработанный для гражданского использования. Значительно повышает физическую силу оператора и сопротивление потоку.</entitydescription.exoskeleton_unarmored>
+  <entityname.militaryclothes_clown>Боевой костюм клоуна (БКК)</entityname.militaryclothes_clown>
+  <entitydescription.militaryclothes_clown>Пусть ничто не останавливает вас от учинения веселья, разрушений, разрушительного веселья и весёлого разрушения.</entitydescription.militaryclothes_clown>
+  <entityname.ballistichelmet_bandit_balaklava>Боевой шлем (балаклава)</entityname.ballistichelmet_bandit_balaklava>
+  <entitydescription.ballistichelmet_bandit_balaklava>Тяжелый пуленепробиваемый шлем, усиленный стальными пластинами. Эффективен против мелкокалиберного огнестрельного оружия, укусов и рубящих ударов.</entitydescription.ballistichelmet_bandit_balaklava>
+  <entityname.militaryclothes_weak>Форма морпеха</entityname.militaryclothes_weak>
+  <entitydescription.militaryclothes_weak>Комплект прочной одежды, предназначенной для боевых действий под водой. Предоставляет достойную защиту, а также несколько свободных карманов для боеприпасов и лекарств.</entitydescription.militaryclothes_weak>
+  <entityname.co_riotarmor>Тяжёлый полицейский бронежилет</entityname.co_riotarmor>
+  <entitydescription.co_riotarmor>Набор тяжелой пластинчатой брони для полной защиты туловища. В основном используется отрядами по борьбе с беспорядками Коалиции, этот жилет обеспечивает огромную защиту от ожогов, взрывов, порезов и других угроз, с которыми вы можете столкнуться при подавлении очередного мятежа.</entitydescription.co_riotarmor>
+  <entityname.light_tachelm>Шлем тактического наблюдения</entityname.light_tachelm>
+  <entitydescription.light_tachelm>Баллистический шлем с полным набором тактических датчиков СПП и визором. При использовании огнестрельного оружия улучшает боеспособность владельца в дальнем бою, подобно интерфейсу СПП.</entitydescription.light_tachelm>
+  <entityname.co_aps>Система активной защиты 'Рикошет'</entityname.co_aps>
+  <entitydescription.co_aps>Комплекс активной защиты, не имеющий слепых зон. Оснащен высокочастотным инфракрасным лазером для уничтожения приближающихся угроз и пассивным радиолокационным комплексом для их идентификации. Может с легкостью перехватывать гарпуны, болты магнитной пушки, шипы шипостаев, 40-миллиметровые и метательные гранаты, но бесполезен против более крупных и быстро движущихся целей (такими как снаряды рельсотрона, самонаводящиеся снаряды, улучшенные осколочные гранаты, пули цепного пулемета или пробивные болты магнитной пушки). По понятным причинам не может работать в упор, но не ограничивает владельца от использования отражаемых боеприпасов.</entitydescription.co_aps>
+  <entityname.40mmgrenadeguided>Самонаводящаяся граната 40мм</entityname.40mmgrenadeguided>
+  <entitydescription.40mmgrenadeguided>40-мм граната с головкой инфракрасного наведения и небольшим торпедным двигателем. Под водой наводится на ближайшего не-человека.</entitydescription.40mmgrenadeguided>
+  <entityname.co_remotedet>Дистанционный детонатор</entityname.co_remotedet>
+  <entitydescription.co_remotedet>Дистанционный детонатор для боевых взрывных зарядов. Имеет дальность 8000 единиц. Взрывает все взведённые заряды одновременно.</entitydescription.co_remotedet>
+  <entityname.co_c4charge>Боевой взрывной заряд С-4</entityname.co_c4charge>
+  <entitydescription.co_c4charge>Многоцелевой боевой взрывной заряд, предназначенный для диверсионных операций. Можно прикрепить к стене или просто поставить в любом месте. При подключении может быть подключен как стандартный детонатор и срабатывает при получении любого сигнала. Если безопасный или временной режим отключены (по умолчанию), их можно подорвать удаленно с помощью дистанционного детонатора. Нажмите кнопку СБРОС, чтобы отключить как предохранитель, так и взрыв с задержкой. Не может быть активирован, если находится в инвентаре или любом другом контейнере. Если ПРЕДОХРАНИТЕЛЬ активен, дистанционный детонатор не повлияет на заряд, но сигнал, полученный от прямого проводного соединения, все равно вызовет детонацию.</entitydescription.co_c4charge>
+  <entityname.militaryclothes_eng>Форма ремонтика</entityname.militaryclothes_eng>
+  <entitydescription.militaryclothes_eng>Защитная экипировка, разработанная для полевых инженерных бригад. Может быть это и не самая удобная одежда, но у брони в ней достаточно, чтобы остановить пулю пистолетного калибра или защитить от укуса мелкого существа.</entitydescription.militaryclothes_eng>
+  <entityname.militaryclothes_medic>Форма боевого медика</entityname.militaryclothes_medic>
+  <entitydescription.militaryclothes_medic>Комплект прочной прочной одежды, предназначенной для защиты медицинского персонала в боевых условиях. В отличие от обычного медицинского обмундирования имеет дополнительные подсумки для боеприпасов.</entitydescription.militaryclothes_medic>
+  <entityname.co_bodyarmor_improvised>Самодельный бронежилет</entityname.co_bodyarmor_improvised>
+  <entitydescription.co_bodyarmor_improvised>Самодельный бронежилет, предназначенный для защиты только самых важных частей туловища владельца. Состоит из металлических листов и ремней, обеспечивает достойную для своей стоимости защиту.</entitydescription.co_bodyarmor_improvised>
+  <entityname.aimaasist>Тактический визор СПП</entityname.aimaasist>
+  <entitydescription.aimaasist>Сложная система тактического визора, разработанная для помощи оператору в перестрелках путем расчета траектории пули и выделения важных целей. Значительно повышает боевые характеристики владельца.</entitydescription.aimaasist>
+  <entityname.guidedgrenade>Самонаводящаяся граната РРГ-85</entityname.guidedgrenade>
+  <entitydescription.guidedgrenade>Скорее торпеда, чем граната. Ищет врагов по их тепловому следу в воде. Полсекунды уходит на активацию, затем движется к ближайшему не-человеку, взрываясь при приближении. На суше может использоваться как ударная граната.</entitydescription.guidedgrenade>
+  <entityname.divingsuit_improvisedarmor>Самодельный бронескафандр</entityname.divingsuit_improvisedarmor>
+  <entitydescription.divingsuit_improvisedarmor>Скафандр, усиленный элементами Импровизированной Брони. Дает значительно лучшую защиту от физического урона, но сильно снижает подвижность владельца.</entitydescription.divingsuit_improvisedarmor>
+  <entityname.proximitymine_50_monster>50мм Бесконтактная мина (против монстров)</entityname.proximitymine_50_monster>
+  <entitydescription.proximitymine_50_monster>При выстреле прилипает к любой поверхности или даже к существу, после небольшой задержки активируется и работает как бесконтактная мина, взрываясь, если что-то проходит близко. Самоуничтожается через минуту после прикрепления. Срабатывает на любых враждебных существах, не являющихся людьми.</entitydescription.proximitymine_50_monster>
+  <entityname.proximitymine_50>50мм Бесконтактная мина (универсальная)</entityname.proximitymine_50>
+  <entitydescription.proximitymine_50>При выстреле прилипает к любой поверхности или даже к существу, после небольшой задержки активируется и работает как бесконтактная мина, взрываясь, если что-то проходит близко. Самоуничтожается через минуту после прикрепления. Срабатывает на любых существ..</entitydescription.proximitymine_50>
+  <entityname.infiniterifle>Осколочный карабин ЦКЛ-Х</entityname.infiniterifle>
+  <entitydescription.infiniterifle>Плазменный карабин, который, по всей видимости, приводится в действие таинственным энергетическим кристаллом. Табличка на прикладе утверждает, что он был произведен на заводе Hellgrat Arms, хотя вы сомневаетесь, что это вообще на Европе..</entitydescription.infiniterifle>
+  <entityname.40mmgrenadeincendiary_co>40мм зажигательная граната</entityname.40mmgrenadeincendiary_co>
+  <entitydescription.40mmgrenadeincendiary_co>Мощная 40-мм граната, начиненная нестабильным взрывчатым веществом. Создает мощный взрыв, а также поджигает все вокруг при детонации.</entitydescription.40mmgrenadeincendiary_co>
+  <entityname.co_ammobox_disp>Одноразовый контейнер для боеприпасов</entityname.co_ammobox_disp>
+  <entitydescription.co_ammobox_disp>Специальный контейнер для доставки боеприпасов. Сделан из хрупких полимеров и может быть легко разобран.</entitydescription.co_ammobox_disp>
+  <entityname.powersword>Силовой меч Е832</entityname.powersword>
+  <entitydescription.powersword>Прототип энергетического оружия. При попадании в любую биологическую цель выпускает мощный разряд. После успешного разряда уходит на перезарядку длиной от 8 до 6.5 секунд.</entitydescription.powersword>
+  <entityname.crossbowboltpoison>Ядовитый болт</entityname.crossbowboltpoison>
+  <entitydescription.crossbowboltpoison>Болт, действующий подобно химическому болту, но вместо того, чтобы испускать едкий газ, этот болт создает облако соединения, которое значительно увеличивает уязвимость цели к урону.</entitydescription.crossbowboltpoison>
+  <entityname.concussion_round>Контузящий патрон</entityname.concussion_round>
+  <entitydescription.concussion_round>Специальный патрон 11,5х24 с малым пороховым зарядом и нелетальной пулей. Разработан для быстрого усмирения тех, кому не хватает электрошокеров и шоковых дубинок.</entitydescription.concussion_round>
+  <entityname.concussion_carbine>Контузящий карабин ХА-20</entityname.concussion_carbine>
+  <entitydescription.concussion_carbine>Нелетальная револьверная винтовка под 11,5x24 с несъемным барабаном, доступ к которому можно получить, переломив оружие. Обычно используется полицией Коалиции в качестве оружия усмирения беспорядков, дезориентирующее цель и наносящее легкие травмы.</entitydescription.concussion_carbine>
+  <entityname.nvg>Прибор ночного видения</entityname.nvg>
+  <entitydescription.nvg>Простой самодельный прибор ночного видения. Не ждите от него ничего особенного, но он несколько улучшит ваше зрение в темноте.</entitydescription.nvg>
+  <entityname.accuraccystim>Стимулятор 'Орлиный глаз'</entityname.accuraccystim>
+  <entitydescription.accuraccystim> Боевой стимулятор, обостряющий рефлексы, замедляющий сердцебиение и увеличивающее точность стрельбы, устраняя любую тряску рук, значительно повышает точность дальних атак.</entitydescription.accuraccystim>
+  <entityname.crossbowboltshock>Шоковый болт</entityname.crossbowboltshock>
+  <entitydescription.crossbowboltshock>Болт с боеголовкой ЭМИ. При ударе создает оглушающее поле, замедляющее более крупных существ и полностью обездвиживающее мелких.</entitydescription.crossbowboltshock>
+  <entityname.crossbowboltchem>Химический болт</entityname.crossbowboltchem>
+  <entitydescription.crossbowboltchem>Особый арбалетный болт, несущий ёмкость с кислотой, которая разбивается при контакте, выпуская облако смертоносного тумана, прожигающего броню и то, что находится под ней.</entitydescription.crossbowboltchem>
+  <entityname.crossbowboltlight>Осветительный болт</entityname.crossbowboltlight>
+  <entitydescription.crossbowboltlight>Особый боеприпас для арбалета, при приземлении создающий яркий источник света. Пригодится в пещерах и затонувших кораблях, легко освещая огромные площади. В отличие от обычных сигнальных огней, не может использоваться для приманивания враждебных существ..</entitydescription.crossbowboltlight>
+  <entityname.crossbowboltexplosive>Пробивной болт</entityname.crossbowboltexplosive>
+  <entitydescription.crossbowboltexplosive>Стреловидный снаряд для арбалета с фугасной боевой частью в форме перевернутого конуса. Идеально подходит для взлома дверей и проникновения в корпуса подводных лодок, но неэффективен против более плотных целей.</entitydescription.crossbowboltexplosive>
+  <entityname.co_crossbow>Утилитарный арбалет Нишанка X-14</entityname.co_crossbow>
+  <entitydescription.co_crossbow>Метательное устройство для гарпунов и болтов. Может быть не самым эффективным оружием, но у него есть несколько полезных вариантов боеприпасов, которые могут помочь в бою или во время исследования.</entitydescription.co_crossbow>
+  <entityname.pocketflamer>Карманная паровая пушка Оса-Л</entityname.pocketflamer>
+  <entitydescription.pocketflamer>Легкая паровая пушка, которая поместится практически в любом контейнере, даже в кармане. Она может выглядеть безобидно, но не позволяйте её игрушечному виду обмануть вас — это по-прежнему смертоносное оружие, которое может спасти вам жизнь в критический момент. Работает только в воде.</entitydescription.pocketflamer>
+  <entityname.nucleargun_alt>ШВГ-21</entityname.nucleargun_alt>
+  <entitydescription.nucleargun_alt>Прототип оружия, использующий силу магнитных полей для ускорения стальных и грозовиевых игл 8x45 мм. Использует собственные магазины, отлично функционирует в воде и на суше.</entitydescription.nucleargun_alt>
+  <entityname.proximityminelauncher>Миноукладчик</entityname.proximityminelauncher>
+  <entitydescription.proximityminelauncher>Пусковое устройство для липких неконтактных мин 50-мм. Имеет кнопку дистанционного подрыва всех взведённых мин в большом радиусе. Полезен для засад и оборонительных операций.</entitydescription.proximityminelauncher>
+  <entityname.pyrogenrifle>Пирогенная винтовка Х-129</entityname.pyrogenrifle>
+  <entitydescription.pyrogenrifle>Технически даже не винтовка, а магнитная направляющая, толкающий вперед перегретую плазму. Использует взрывоопасные баллоны с пирогеном, ионизируя газ внутри и запуская его на высокой скорости. Быстро перегревается при непрерывной стрельбе, что может привести к серьезным ожогам или даже к взрыву самого оружия.</entitydescription.pyrogenrifle>
+  <entityname.pyrogentank>Баллон пирогена</entityname.pyrogentank>
+  <entitydescription.pyrogentank>Взрывоопасная смесь, используемая в качестве боеприпаса для пирогенной винтовки Х-129. При таком использовании создается короткий пучок перегретой плазмы, который взрывается с силой, сравнимой с боевой гранатой..</entitydescription.pyrogentank>
+  <entityname.flamer_co>Огнепушка РОК-105</entityname.flamer_co>
+  <entitydescription.flamer_co>Самодельная пусковая труба для настоящих огненных шаров из жидкого воспламенита. Что может пойти не так?</entitydescription.flamer_co>
+  <entityname.co_bulletpouch_large>Расширенный подсумок для боеприпасов</entityname.co_bulletpouch_large>
+  <entitydescription.co_bulletpouch_large>Позволяет более удобно хранить и доставать патроны</entitydescription.co_bulletpouch_large>
+  <entityname.co_magazinepouch_large>Расширенный подсумок для магазинов</entityname.co_magazinepouch_large>
+  <entitydescription.co_magazinepouch_large>Позволяет более удобно хранить и доставать магазины.</entitydescription.co_magazinepouch_large>
+  <entityname.sturmfaust>СП-12 Штурмфауст</entityname.sturmfaust>
+  <entitydescription.sturmfaust>Пусковое устройство для разнообразных 90-мм реактивных боеприпасов. Поток пороховых газов может ранить стоящих за стрелком.</entitydescription.sturmfaust>
+  <entityname.sturmfaustrocket_cluster>90мм Кассетный Боеприпас</entityname.sturmfaustrocket_cluster>
+  <entitydescription.sturmfaustrocket_cluster>Эта ракета несет 12 небольших взрывных зарядов, выпуская их веером вокруг себя при детонации.</entitydescription.sturmfaustrocket_cluster>
+  <entityname.sturmfaustrocket>90мм Осколочный Боеприпас</entityname.sturmfaustrocket>
+  <entitydescription.sturmfaustrocket>Стандартная аммуниция для гранатометов СП-12. Наносит существенный урон сущетсвам и корпусам лодок, взрывается при контакте.</entitydescription.sturmfaustrocket>
+  <entityname.sturmfaustrocket_heat>90мм Кумулятивный Боеприпас</entityname.sturmfaustrocket_heat>
+  <entitydescription.sturmfaustrocket_heat>Кумулятивные боеприпасы прожигают броню потоком расплавленного металла. Малый радиус поражения, но сумасшедший урон и бронепробитие.</entitydescription.sturmfaustrocket_heat>
+  <entityname.sturmfaustrocket_grapeshot>90мм Картечный Боеприпас</entityname.sturmfaustrocket_grapeshot>
+  <entitydescription.sturmfaustrocket_grapeshot>Этот боеприпас выстреливает веером металлических шариков, наносящих высокий урон слабобронированным целям. Эффективен на ближних дистанциях.</entitydescription.sturmfaustrocket_grapeshot>
+  <entityname.co_bulletpouch>Подсумок для боеприпасов</entityname.co_bulletpouch>
+  <entitydescription.co_bulletpouch>Позволяет более удобно хранить и доставать патроны, болты и 40-мм гранаты.</entitydescription.co_bulletpouch>
+  <entityname.co_magazinepouch>Подсумок для магазинов</entityname.co_magazinepouch>
+  <entitydescription.co_magazinepouch>Позволяет более удобно хранить и доставать магазины.</entitydescription.co_magazinepouch>
+  <entityname.co_militaryfabricator>Милфабрикатор</entityname.co_militaryfabricator>
+  <entitydescription.co_militaryfabricator>Утяжеленная версия стандартного фабрикатора, предназначенная для производства военной экипировки, оружия и боеприпасов. Потребляет значительно больше энергии. Можно отсоединить ломом. Прицельтесь и нажмите клавишу E, находясь внутри подводной лодки или аванпоста, чтобы установить.</entitydescription.co_militaryfabricator>
+  <entityname.co_ammobox>Контейнер для боеприпасов</entityname.co_ammobox>
+  <entitydescription.co_ammobox>Громоздкий металлический ящик, используемый специально для хранения боеприпасов.</entitydescription.co_ammobox>
+  <entityname.exoskeleton4>Разведывательный экзоскелет ДЭС-10</entityname.exoskeleton4>
+  <entitydescription.exoskeleton4>Облегчённая версия водолазных экзоскелетов больше ориентирована на исследование и разведку, предоставляя пользователю большую мобильность. Имеет бортовой гидролокатор и сканирующий комплекс.</entitydescription.exoskeleton4>
+  <entityname.flaksuit>Противоосколочный жилет</entityname.flaksuit>
+  <entitydescription.flaksuit>Прочный костюм из баллистического волокна и пластин из легкого металла, предназначенный для защиты пользователя от шрапнели, ожогов и взрывов. Может быть легко пробит большинством калибров или прокушен враждебными существами.</entitydescription.flaksuit>
+  <entityname.ballistichelmet_bandit_alt3>Лёгкий баллистический шлем (альтернативный)</entityname.ballistichelmet_bandit_alt3>
+  <entitydescription.ballistichelmet_bandit_alt3>Пуленепробиваемый шлем. Эффективен против мелкокалиберного огнестрельного оружия, укусов и рубящих ударов.</entitydescription.ballistichelmet_bandit_alt3>
+  <entityname.ballistichelmet_bandit_alt2>Боевой шлем (с очками)</entityname.ballistichelmet_bandit_alt2>
+  <entitydescription.ballistichelmet_bandit_alt2>Тяжелый пуленепробиваемый шлем, усиленный стальными пластинами. Эффективен против мелкокалиберного огнестрельного оружия, укусов и рубящих ударов.</entitydescription.ballistichelmet_bandit_alt2>
+  <entityname.ballistichelmet_bandit_alt>Боевой шлем</entityname.ballistichelmet_bandit_alt>
+  <entitydescription.ballistichelmet_bandit_alt>Тяжелый пуленепробиваемый шлем, усиленный стальными пластинами. Эффективен против мелкокалиберного огнестрельного оружия, укусов и рубящих ударов.</entitydescription.ballistichelmet_bandit_alt>
+  <entityname.tachelm_alt>Пуленепробиваемый тактический шлем</entityname.tachelm_alt>
+  <entitydescription.tachelm_alt>Прочный шлем с лицевой маской из прочного пластика и баллистического волокна. Обеспечивает хорошую защиту от укусов и шрапнели, может даже остановить пару пуль.</entitydescription.tachelm_alt>
+  <entityname.divingknife_thermal>Термальный нож Е-750</entityname.divingknife_thermal>
+  <entitydescription.divingknife_thermal>Тяжелый нож, использующий высокие температуры для нанесения повышенного урона. Должен питаться от батареи для полной эффективности, при этом грозовиевые батареи обеспечивают более высокую температуру на краю лезвия.</entitydescription.divingknife_thermal>
+  <entityname.co_iceax>Ледоруб М10</entityname.co_iceax>
+  <entitydescription.co_iceax>Тяжелый инструмент, предназначенный для разрезания льда и камня или, порой, корпуса подводной лодки. Может использоваться вместо плазменного резака для сбора ресурсов и вскрытия дверей.</entitydescription.co_iceax>
+  <entityname.co_mace>Булава М16Т</entityname.co_mace>
+  <entitydescription.co_mace>Тяжелая головоломка.</entitydescription.co_mace>
+  <entityname.divingknife_m>Боевой нож М5</entityname.divingknife_m>
+  <entitydescription.divingknife_m>Легкий нож, предназначенный для борьбы с враждебной фауной Европы. Удобный инструмент выживания, который может спасти вам жизнь, когда все остальное терпит неудачу.</entitydescription.divingknife_m>
+  <entityname.grozacase>Запчасти для ОЦ-ГК</entityname.grozacase>
+  <entitydescription.grozacase>Комплект инструментов, деталей оружия и схем для фабрикаторов. Используется для смены калибра винтовок ОЦ с 5,45x39 на 9x39 и обратно.</entitydescription.grozacase>
+  <entityname.exoskeleton3>Стрелковый экзоскелет ДЭС-15</entityname.exoskeleton3>
+  <entitydescription.exoskeleton3>Глубокая модификация штатного экзоскелета ДЭС-12, адаптированная для работы с огнестрельным оружием, при этом сохранившая высокую боевую мобильность. Хотя общая защита от физического урона снизилась, этот костюм дает огромные преимущества, когда дело доходит до перестрелок как в воде, так и на суше. Имеет слот для любого оружия внутри.</entitydescription.exoskeleton3>
+  <entityname.maidoutfit>Костюм горничной</entityname.maidoutfit>
+  <entitydescription.maidoutfit>Зачистке время, уборке - час</entitydescription.maidoutfit>
+  <entityname.militaryclothes>Военная форма</entityname.militaryclothes>
+  <entitydescription.militaryclothes>Прочное пальто, усиленное пластинами из кевлара и легкого металла, снабжено тактическими карманами для мелких предметов. Обеспечивает хорошую защиту от выстрелов.</entitydescription.militaryclothes>
+  <entityname.militaryclothes2>Форма роеборца</entityname.militaryclothes2>
+  <entitydescription.militaryclothes2>Тяжелое, прочная форма, предназначенная для защиты от укусов и разрывов. Усилена легкими титановыми пластинами и кевларовыми обмотками.</entitydescription.militaryclothes2>
+  <entityname.laser_magazine_co>Массив батарей лазера</entityname.laser_magazine_co>
+  <entitydescription.laser_magazine_co>Мощный конденсатор, предназначенный для лазерного карабина ЛБМ-301. Может использоваться и перезаряжаться как обычный аккумулятор с эффективностью, схожей с грозовиевой вариацией.</entitydescription.laser_magazine_co>
+  <entityname.lasergun_co>Лазерная винтовка ЛБМ-301 'Сверчок'</entityname.lasergun_co>
+  <entitydescription.lasergun_co>Уникальное оружие, использующее силу коротких и мощных вспышек сфокусированного света. В отличие от своего более крупного собрата, этому лазеру не нужна никакая химическая смесь, а только надежный источник питания, такой как собственные батареи. Получил свое название за своеобразный звук выстрела.</entitydescription.lasergun_co>
+  <entityname.banditclothes3>Укреплённый бандитский костюм</entityname.banditclothes3>
+  <entitydescription.banditclothes3>Самодельный защитный костюм, усиленный гнутыми листами металла и слоями прочных волокон.</entitydescription.banditclothes3>
+  <entityname.balaklava>Балаклава</entityname.balaklava>
+  <entitydescription.balaklava>Маска из прочного органического волокна. В основном ассоциируется с нелегалами, но может пригодиться, если вы предпочитаете оставаться инкогнито или просто замерзли.</entitydescription.balaklava>
+  <entityname.exoskeleton2>Военный подводный экзокостюм ДЭС-12</entityname.exoskeleton2>
+  <entitydescription.exoskeleton2>Тяжелый и прочный костюм, в котором используется дублирущий экзоскелет, позволяющий оператору передвигаться в такой броне. Использует батареи для питания каркаса. Обеспечивает колоссальную защиту от огнестрельного оружия, укусов, осколков, ударов тупым предметом и взрывов. Значительно увеличивает физическую силу, но затрудняет обращение с огнестрельным оружием. Эта версия обеспечивает защиту от давления.</entitydescription.exoskeleton2>
+  <entityname.ballistichelmet_bandit>Лёгкий баллистический шлем</entityname.ballistichelmet_bandit>
+  <entitydescription.ballistichelmet_bandit>Легкий шлем, предназначенный для защиты подводников от осколков и шрапнели. Предоставляет очень низкую защиту от огнестрельного оружия.</entitydescription.ballistichelmet_bandit>
+  <entityname.exoskeleton>Военный экзоскелет ДЭС-8</entityname.exoskeleton>
+  <entitydescription.exoskeleton>Тяжелый и прочный костюм, в котором используется дублированный экзоскелет, позволяющий оператору передвигаться в такой броне. Использует батареи для питания каркаса. Обеспечивает колоссальную защиту от огнестрельного оружия, укусов, осколков, ударов тупым предметом и взрывов. Значительно увеличивает физическую силу, но затрудняет правильное обращение с огнестрельным оружием.</entitydescription.exoskeleton>
+  <entityname.nucleargun_magazine>Магазин для ШВГ</entityname.nucleargun_magazine>
+  <entitydescription.nucleargun_magazine>Магазинно-аккумуляторный комплекс, разработанный для винтовки ШВГ-21. Ядерные батареи при разряде работают нестабильно, вызывая незначительные выбросы радиации, поэтому рекомендуется использовать ШВГ-21 в одежде, защищающей от радиации. Вмещает 10 игл 8x45 мм.</entitydescription.nucleargun_magazine>
+  <entityname.tacticalhelmet>Тактический шлем</entityname.tacticalhelmet>
+  <entitydescription.tacticalhelmet>Тяжелый пуленепробиваемый шлем, предназначенный для спецназовцев. Пластины из физикория обеспечивают отличную защиту от огнестрельного оружия, укусов и взрывов..</entitydescription.tacticalhelmet>
+  <entityname.bodyarmor_m>Военный бронежилет</entityname.bodyarmor_m>
+  <entitydescription.bodyarmor_m>Утяжелённый вариант бронежилета, предназначенный для военных целей. Имеет несколько тактических карманов и композитный нагрудник.</entitydescription.bodyarmor_m>
+  <entityname.grenadelauncher_m99>Противопехотный гранатомёт М-99</entityname.grenadelauncher_m99>
+  <entitydescription.grenadelauncher_m99>Убойное оружие, способное стрелять шестью 40-мм гранатами без перезарядки. Используется с несмертельными боеприпасами полицией против мятежников, но может быть заряжен гранатами военного назначения.</entitydescription.grenadelauncher_m99>
+  <entityname.grenadelauncher-gp>РГМ-64 Амур</entityname.grenadelauncher-gp>
+  <entitydescription.grenadelauncher-gp>Компактный помповый гранатомет, рассчитанный на 3 40-мм гранаты. Был основным элементом снаряжения Росгвардии, нашел свое применение на Европе в качестве оружия для подавления беспорядков с возможностью стрельбы под водой.</entitydescription.grenadelauncher-gp>
+  <entityname.grenadelauncher_m500>Гранатомёт М500</entityname.grenadelauncher_m500>
+  <entitydescription.grenadelauncher_m500>40-мм гранатомет, используемый земными военными. Нашел свое предназначение на Европе в качестве тяжелого оружия против крупных монстров и людей в тяжелой броне.</entitydescription.grenadelauncher_m500>
+  <!-- Ammunition_talents.xml -->
+  <talentname.kurz_craft>Теперь вы можете изготавливать патроны 7.62 Курц!</talentname.kurz_craft>
+  <talentname.57_craft>Теперь вы можете изготавливать патроны 5.7x28!</talentname.57_craft>
+  <talentname.939_craft>Теперь вы можете изготавливать патроны 9x39!</talentname.939_craft>
+  <talentname.12_craft>Теперь вы можете изготавливать боеприпасы для дробовиков!</talentname.12_craft>
+  <talentname.44_craft>Теперь вы можете изготавливать патроны .44!</talentname.44_craft>
+  <talentname.38_craft>Теперь вы можете изготавливать патроны .38!</talentname.38_craft>
+  <talentname.5.45_craft>Теперь вы можете изготавливать патроны 5.45x39!</talentname.5.45_craft>
+  <talentname.9x19_craft>Теперь вы можете изготавливать патроны 9x19!</talentname.9x19_craft>
+  <talentname.45_craft>Теперь вы можете изготавливать патроны .45!</talentname.45_craft>
+  <talentname.556_craft>Теперь вы можете изготавливать патроны 5.56x45!</talentname.556_craft>
+  <talentname.pdw_craft>Теперь вы можете изготавливать ПП ОСЗ-323Е!</talentname.pdw_craft>
+  <talentname.pdw9_craft>Теперь вы можете изготавливать ПП ЦЗЕ-900 Терзатель!</talentname.pdw9_craft>
+  <talentname.762_craft>Теперь вы можете изготавливать патроны 7.62x55!</talentname.762_craft>
+  <talentname.rifle_craft>Теперь вы можете изготавливать винтовку ДВЛ-16 Вымпел!</talentname.rifle_craft>
+  <talentname.shotgun_craft>Радиста съел червяг.</talentname.shotgun_craft>
+  <talentname.pistol_craft>Теперь вы можете изготавливать армейский пистолет М19</talentname.pistol_craft>
+  <talentname.exo_craft>Теперь вы можете изготавливать военный экзоскелет ДЭС-8!</talentname.exo_craft>
+  <talentname.mg_craft>Теперь вы можете изготавливать пулемёт М54!</talentname.mg_craft>
+  <talentname.laser_craft>Теперь вы можете изготавливать лазерную винтовку LCM-301 Сверчок!</talentname.laser_craft>
+  <talentname.ak_craft>Теперь вы можете изготавливать винтовку АК-32 МСУ Перун!</talentname.ak_craft>
+  <talentname.ar556_craft>Теперь вы можете изготавливать штурмовой карабин Г-14К!</talentname.ar556_craft>
+  <talentname.melee_craft>Теперь вы можете изготавливать продвинутое оружие ближнего боя!</talentname.melee_craft>
+  <talentname.cps_craft>Теперь вы можете изготавливать стабилизатор затворного давления!</talentname.cps_craft>
+  <talentname.omni_craft>Теперь вы можете изготавливать все предметы из COR!</talentname.omni_craft>
+  <!-- Afflictions-->
+  <afflictionname.gunshotconcussion>Тугоухость</afflictionname.gunshotconcussion>
+  <afflictiondescription.gunshotconcussion>Стрельба из оружия без глушителя или защиты для ушей приводит к тугоухости.</afflictiondescription.gunshotconcussion>
+  <afflictionname.govno>Говно</afflictionname.govno>
+  <afflictiondescription.govno>Превратился в говно.</afflictiondescription.govno>
+  <afflictionname.aimresist>Под защитой</afflictionname.aimresist>
+  <afflictiondescription.aimresist>Получаемый урон снижен</afflictiondescription.aimresist>
+  <afflictionname.stab>Стабилизация</afflictionname.stab>
+  <afflictiondescription.stab>Улучшена точность</afflictiondescription.stab>
+  <afflictionname.crit>Готов критовать</afflictionname.crit>
+  <afflictiondescription.crit>Есть шанс нанести критический урон</afflictiondescription.crit>
+  <afflictionname.radslow>Рад-замедление</afflictionname.radslow>
+  <afflictiondescription.radslow>Замедлен сильным излучением</afflictiondescription.radslow>
+  <afflictionname.co_burning>Горение</afflictionname.co_burning>
+  <afflictiondescription.co_burning>Горит</afflictiondescription.co_burning>
+  <causeofdeathdescription.co_burning>Сгорел к хуям</causeofdeathdescription.co_burning>
+  <self_causeofdeathdescription.co_burning>Вы сгорели к хуям</self_causeofdeathdescription.co_burning>
+  <afflictionname.co_burning_hhfc>Горение</afflictionname.co_burning_hhfc>
+  <afflictiondescription.co_burning_hhfc>Горит</afflictiondescription.co_burning_hhfc>
+  <causeofdeathdescription.co_burning_hhfc>Мокнул хуй в серу</causeofdeathdescription.co_burning_hhfc>
+  <self_causeofdeathdescription.co_burning_hhfc>Вы сгорели</self_causeofdeathdescription.co_burning_hhfc>
+  <afflictionname.exocarry>Носит экзоскелет</afflictionname.exocarry>
+  <afflictiondescription.exocarry>На пациенте экзоскелет</afflictiondescription.exocarry>
+  <afflictionname.marksmansuit>Носит стрелковый эксзоскелет</afflictionname.marksmansuit>
+  <afflictiondescription.marksmansuit>На пациенте стрелковый экзоскелет</afflictiondescription.marksmansuit>
+  <afflictionname.aasoverlay>Оверлей СПП</afflictionname.aasoverlay>
+  <afflictiondescription.aasoverlay>Вы видите надоедливый красный интерфейс</afflictiondescription.aasoverlay>
+  <afflictionname.nvgoverlay>Ночное зрение</afflictionname.nvgoverlay>
+  <afflictiondescription.nvgoverlay>Мир позеленел</afflictiondescription.nvgoverlay>
+  <afflictionname.co_danger>Угроза</afflictionname.co_danger>
+  <afflictiondescription.co_danger>Чувство силы</afflictiondescription.co_danger>
+  <afflictionname.co_nearbydanger>Угрожающее присутствие</afflictionname.co_nearbydanger>
+  <afflictiondescription.co_nearbydanger>Воодушевляющая слабость</afflictiondescription.co_nearbydanger>
+  <afflictionname.co_dangerdead>Опустошение</afflictionname.co_dangerdead>
+  <afflictiondescription.co_dangerdead>Найди новое тело</afflictiondescription.co_dangerdead>
+  <afflictionname.co_weakness>Уязвимость</afflictionname.co_weakness>
+  <afflictiondescription.co_weakness>Болевой порок пациента значительно снижен.</afflictiondescription.co_weakness>
+  <afflictionname.co_accuraccybuff>Орлиный глаз</afflictionname.co_accuraccybuff>
+  <afflictiondescription.co_accuraccybuff>Пациент демонстрирует чудеса образения с огнестрельным оружием.</afflictiondescription.co_accuraccybuff>
+  <afflictionname.co_adrenalinerush>Адреналин</afflictionname.co_adrenalinerush>
+  <afflictiondescription.co_adrenalinerush>Незначительное улучшение боевых характеристик.</afflictiondescription.co_adrenalinerush>
+</infotexts>

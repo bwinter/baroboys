@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sounds>
+  <Override>
+    <music file="%ModDir%/Sounds/Main Menu Music.ogg" type="menu" continuefromprevioustime="true" volume="2" />
+    <exoimpact file="%ModDir%/Sounds/exoimpact1.ogg" range="500" volume="1" />
+    <exoimpact file="%ModDir%/Sounds/exoimpact2.ogg" range="500" volume="1" />
+    <exostep file="%ModDir%/Sounds/exostep1.ogg" range="500" volume="0.55" />
+    <exostep file="%ModDir%/Sounds/exostep2.ogg" range="500" volume="0.55" />
+    <exostep file="%ModDir%/Sounds/exostep3.ogg" range="500" volume="0.55" />
+    <exostep file="%ModDir%/Sounds/exostep4.ogg" range="500" volume="0.55" />
+  </Override>
+  <magimpact file="%ModDir%/Sounds/magimpact1.ogg" range="500" volume="1" />
+  <magimpact file="%ModDir%/Sounds/magimpact2.ogg" range="500" volume="1" />
+  <magimpact file="%ModDir%/Sounds/magimpact3.ogg" range="500" volume="1" />
+  <magimpact file="%ModDir%/Sounds/magimpact4.ogg" range="500" volume="1" />
+  <smallwepimpact file="%ModDir%/Sounds/smallwepimpact1.ogg" range="500" volume="1" />
+  <smallwepimpact file="%ModDir%/Sounds/smallwepimpact2.ogg" range="500" volume="1" />
+  <smallwepimpact file="%ModDir%/Sounds/smallwepimpact3.ogg" range="500" volume="1" />
+  <mediumwepimpact file="%ModDir%/Sounds/mediumwepimpact1.ogg" range="500" volume="1" />
+  <mediumwepimpact file="%ModDir%/Sounds/mediumwepimpact2.ogg" range="500" volume="1" />
+  <mediumwepimpact file="%ModDir%/Sounds/mediumwepimpact3.ogg" range="500" volume="1" />
+  <bigwepimpact file="%ModDir%/Sounds/bigwepimpact1.ogg" range="500" volume="1" />
+  <bigwepimpact file="%ModDir%/Sounds/bigwepimpact2.ogg" range="500" volume="1" />
+  <bigwepimpact file="%ModDir%/Sounds/bigwepimpact3.ogg" range="500" volume="1" />
+  <bigwepimpact file="%ModDir%/Sounds/bigwepimpact4.ogg" range="500" volume="1" />
+</sounds>
