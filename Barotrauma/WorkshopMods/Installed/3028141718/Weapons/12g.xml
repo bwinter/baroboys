@@ -1,0 +1,1373 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item name="" description="" identifier="shotgun_db_hook" category="weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,mountableweapon,gun,hookgun" Scale="0.45" impactsoundtag="mediumwepimpact" allowasextracargo="true">
+    <PreferredContainer primary="secarmcab" />
+    <Price baseprice="530" buyingpricemultiplier="1.4">
+      <Price storeidentifier="merchantoutpost" multiplier="0.9" sold="false" />
+      <Price storeidentifier="merchantcity" multiplier="1.2" sold="false" />
+      <Price storeidentifier="merchantresearch" sold="false" />
+      <Price storeidentifier="merchantarmory" multiplier="0.9" sold="false" />
+      <Price storeidentifier="merchantmine" multiplier="0.9" sold="false" />
+      <Price storeidentifier="merchantmilitary" multiplier="0.85" sold="false" />
+    </Price>
+    <Fabricate suitablefabricators="milfabricator" requiredtime="10" requiresrecipe="true">
+      <RequiredSkill identifier="weapons" level="85" />
+      <RequiredItem identifier="dementonite" />
+      <RequiredItem identifier="physicorium" />
+      <RequiredItem identifier="steel" />
+      <RequiredItem identifier="titaniumaluminiumalloy" />
+      <RequiredItem identifier="ballisticfiber" />
+    </Fabricate>
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+      <Item identifier="dementonite" />
+      <Item identifier="titanium" amount="2" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="weaponry_arsenal" requiredtime="0" />
+    <InventoryIcon texture="%ModDir%/CO_spritelist_anims.png" sourcerect="616,764,192,55" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/CO_spritelist_anims.png" sourcerect="616,764,192,55" depth="0.55" origin="0.5,0.25" />
+    <BrokenSprite texture="%ModDir%/CO_spritelist_anims.png" name="ej" sourcerect="626,975,190,59" depth="0.55" origin="0.49515522,0.27914363" maxcondition="98" />
+    <Body width="180" height="30" density="50" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="60,-10" aimpos="65,5" handle1="-35,-15" handle2="-20,-5" holdangle="-40" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
+        <Conditional hasstatustag="neq medical" />
+        <Conditional hasstatustag="worn" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="this" showtexts="true" disabledeltatime="true" setvalue="true" comparison="AND">
+        <Conditional hasstatustag="medical" />
+        <RequiredItems items="medscanner_t" type="Contained" />
+        <Conditional hasstatustag="neq worn" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
+      <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
+      <StatusEffect type="OnSecondaryUse" target="Character,This" SpeedMultiplier="1.3" setvalue="true" disabledeltatime="true">
+        <Conditional HasStatusTag="laser" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="this" tags="hook" duration="0.05" disabledeltatime="true" setvalue="true" stackable="false">
+        <RequiredItems items="spear_hook" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="this" reload="1.2" disabledeltatime="true" setvalue="true" stackable="false">
+        <Conditional hasstatustag="hook" />
+      </StatusEffect>
+    </Holdable>
+    <SkillRequirementHint identifier="weapons" level="65" />
+    <StatusHUD drawhudwhenequipped="true" range="2700" thermalgoggles="false" showdeadcharacters="false" showtexts="false" overlaycolor="0,0,0,0" />
+    <RangedWeapon barrelpos="85,10" spread="3" weapondamagemodifier="1.0" unskilledspread="8" combatPriority="65" reload="0.05" drawhudwhenequipped="true" crosshairscale="0.2">
+      <Crosshair texture="Content/Items/weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+      <CrosshairPointer texture="Content/Items/weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+      <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
+      <StatusEffect type="OnUse" target="This" stackable="false" disabledeltatime="true" forceplaysounds="true">
+        <Sound file="%ModDir%/Sounds/shotgun_db_shot.ogg" type="OnUse" range="3000" volume="1.0" />
+        <Conditional hasstatustag="neq hook" />
+      </StatusEffect>
+      <StatusEffect type="OnUse">
+        <Explosion range="150.0" force="1.8" shockwave="false" smoke="false" flash="true" sparks="false" flames="false" underwaterbubble="false" camerashake="30.0" />
+      </StatusEffect>
+      <RequiredItems items="spear_hook,shotgunammo" type="Contained" msg="ItemMsgAmmoRequired" />
+      <RequiredSkill identifier="weapons" level="65" />
+      <StatusEffect type="OnUse" target="this" Condition="100" stackable="false" delay="1.21" SetValue="true">
+        <Sound file="%ModDir%/Sounds/ssg_close.ogg" type="OnUse" range="800" volume="2.2" />
+        <Conditional hasstatustag="neq hook" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="this" delay="0.72">
+        <ParticleEmitter particle="co_shellcasing_shotgun" emitinterval="2.1" particleamount="1" particlespersecond="50" anglemin="90" anglemax="270" velocitymin="280" velocitymax="320" copyentityangle="true" scalemin="0.4" scalemax="0.4" />
+        <Conditional hasstatustag="neq hook" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="this" Condition="95" stackable="false" SetValue="true" delay="0.47">
+        <Sound file="%ModDir%/Sounds/ssg_open.ogg" type="OnUse" range="800" volume="2.2" />
+        <Conditional hasstatustag="neq hook" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" reload="1.65" setvalue="true" delay="0.05">
+        <Conditional hasstatustag="neq hook" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" reload="0.05" setvalue="true" delay="1.65">
+        <Conditional hasstatustag="neq hook" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" reload="0.05" setvalue="true" delay="1.2">
+        <Conditional hasstatustag="hook" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" tags="hookreload" duration="6" setvalue="true" stackable="false">
+        <Conditional hasstatustag="hook" />
+        <Sound file="%ModDir%/Sounds/hook_shot.ogg" type="OnUse" range="800" volume="1.3" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This">
+        <Explosion range="620" structuredamage="0" itemdamage="0" smoke="false" flames="false" force="0" sparks="false" shockwave="false" underwaterbubble="false" camerashake="0" flash="false" playtinnitus="false">
+          <Affliction identifier="gunshotconcussion" strength="40" />
+        </Explosion>
+        <Conditional hasstatustag="neq hook" />
+      </StatusEffect>
+    </RangedWeapon>
+    <ItemContainer capacity="0" maxstacksize="0" itempos="0,0" hideitems="false" showcontainedstateindicator="false" slotsperrow="1">
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="spear_hook" hide="false" itempos="45,-2" />
+      </SubContainer>
+      <SubContainer capacity="2" maxstacksize="1">
+        <Containable items="shotgunammo" hide="true" />
+      </SubContainer>
+      <SlotIcon texture="%ModDir%/magazineicons.png" sourcerect="620,51,240,240" origin="0.45,0.5" />
+      <SlotIcon slotindex="3" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
+      <SlotIcon slotindex="0" texture="Content/UI/ContainerIndicators.png" sourcerect="1,123,120,29" origin="0.45,0.5" />
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="attachment_light" setactive="true" itempos="11,2" hide="true"></Containable>
+      </SubContainer>
+    </ItemContainer>
+    <CustomInterface canbeselected="true" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.12,0.12" anchor="BottomLeft" absoluteoffset="20,128" style="ItemUI" />
+      <TickBox text="Tactical Light(If attached)">
+        <StatusEffect type="OnUse" target="Contained" tags="on" duration="0.05" disabledeltatime="true" />
+        <StatusEffect type="OnSecondaryUse" target="Contained" tags="off" duration="0.05" disabledeltatime="true" />
+      </TickBox>
+      <TickBox text="Hook">
+        <StatusEffect type="OnUse" target="This" disabledeltatime="true" setvalue="true" comparison="and">
+          <SpawnItem identifiers="spear_hook" spawnposition="ThisInventory" />
+          <Sound file="%ModDir%/Sounds/hook_ready.ogg" type="OnUse" range="800" volume="2.2" loop="false" />
+          <Conditional hasstatustag="neq hookreload" />
+          <Conditional hasstatustag="neq hook" />
+        </StatusEffect>
+        <StatusEffect type="OnUse" target="This" disabledeltatime="true" tags="hookloaded" duration="0.05" setvalue="true" stackable="false" />
+        <StatusEffect type="OnSecondaryUse" target="Contained" disabledeltatime="true" setvalue="true" targetidentifiers="spear_hook">
+          <Remove />
+        </StatusEffect>
+      </TickBox>
+    </CustomInterface>
+    <aitarget sightrange="3000" soundrange="5000" fadeouttime="5" />
+  </Item>
+  <Item name="spearhook" identifier="spear_hook" category="Weapon" subcategory="Ammunition" maxstacksize="1" interactthroughwalls="true" cargocontaineridentifier="metalcrate" NonInteractable="True" tags="mediumitem,spear_hook" Scale="0.45" impactsoundtag="impact_metal_light" hideinmenus="true" allowasextracargo="true">
+    <Sprite texture="%ModDir%/CO_spritelist_anims.png" sourcerect="859,773,75,19" depth="0.55" origin="0.5,0.5" />
+    <Body width="160" height="10" density="20" />
+    <Rope sourcepullforce="100" targetpullforce="850" projectilepullforce="20" maxlength="1450" snaponcollision="false" spritewidth="5" tile="true" origin="0.05,0.5" targetminmass="30" lerpforces="true" snapanimduration="0.1">
+      <Sprite texture="Content/Map/Thalamus/thalamus.png" sourcerect="617,352,174,32" depth="0.57" origin="0.5,0.5" />
+    </Rope>
+    <Projectile characterusable="false" launchimpulse="25.0" sticktocharacters="true" sticktoitems="false" sticktostructures="false" sticktodeflective="true">
+      <Attack structuredamage="0" itemdamage="5" targetforce="0" severlimbsprobability="0.2" penetration="0.75">
+        <Affliction identifier="stun" strength="2" />
+      </Attack>
+      <StatusEffect type="OnActive" target="UseTarget,This" checkconditionalalways="true" comparison="And">
+        <Conditional mass="lt 30" />
+        <Affliction identifier="drag" strength="1" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" delay="3.5" setvalue="true" condition="0" />
+      <StatusEffect type="OnBroken" target="This" checkconditionalalways="true" delay="0.01">
+        <Remove />
+      </StatusEffect>
+    </Projectile>
+  </Item>
+  <Item name="" description="" identifier="shotgun_com" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,mountableweapon,gun,gunsmith,12_gun" Scale="0.45" impactsoundtag="mediumwepimpact">
+    <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.02" />
+    <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.02" />
+    <PreferredContainer primary="abandonedarmcab" minamount="0" maxamount="1" spawnprobability="0.03" />
+    <PreferredContainer primary="armcab" />
+    <PreferredContainer secondary="secarmcab" />
+    <Price baseprice="550" soldeverywhere="false" buyingpricemultiplier="4">
+      <Price locationtype="outpost" multiplier="1.2" sold="false" />
+      <Price locationtype="city" multiplier="1.25" sold="false" />
+      <Price locationtype="research" multiplier="1.25" sold="false" />
+      <Price locationtype="military" multiplier="0.9" sold="false" />
+      <Price locationtype="mine" multiplier="1.25" sold="false" />
+    </Price>
+    <Deconstruct time="10">
+      <Item identifier="dementonite" />
+      <Item identifier="titaniumaluminiumalloy" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="weaponry_arsenal" requiredtime="0" />
+    <Sprite texture="%ModDir%/CO_spritelist_mod3.png" sourcerect="560,726,197,36" depth="0.55" origin="0.5,0.25" />
+    <BrokenSprite texture="%ModDir%/CO_spritelist_mod3.png" sourcerect="560,674,197,37" depth="0.55" origin="0.5,0.25" maxcondition="98" />
+    <Body width="180" height="30" density="50" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="52,-25" aimpos="38,-28" handle1="-75,-9" handle2="16,-10" holdangle="-27" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
+      <StatusEffect type="OnSecondaryUse" target="Character,This" SpeedMultiplier="1.3" setvalue="true" disabledeltatime="true">
+        <Conditional IsOn="true" />
+      </StatusEffect>
+    </Holdable>
+    <SkillRequirementHint identifier="weapons" level="60" />
+    <StatusHUD drawhudwhenequipped="true" range="2700" thermalgoggles="false" showdeadcharacters="false" showtexts="false" overlaycolor="0,0,0,0" />
+    <RangedWeapon barrelpos="80,5" spread="0.4" unskilledspread="1" weapondamagemodifier="1.15" combatPriority="100" reload="1.2" drawhudwhenequipped="true" crosshairscale="0.2">
+      <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+      <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+      <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
+      <StatusEffect type="OnUse" target="This" stackable="false" disabledeltatime="true" forceplaysounds="true">
+        <Sound file="%ModDir%/Sounds/shotgun_2.ogg" type="OnUse" range="3000" />
+      </StatusEffect>
+      <StatusEffect type="OnUse">
+        <Explosion range="150.0" force="3.5" shockwave="false" smoke="false" flash="true" sparks="false" flames="false" underwaterbubble="false" camerashake="30.0" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="this" Condition="100" stackable="false" delay="0.93" SetValue="true" />
+      <StatusEffect type="OnUse" target="this" Condition="95" stackable="false" SetValue="true" delay="0.85" />
+      <StatusEffect type="OnUse" delay="0.85">
+        <Explosion range="150.0" force="0.5" shockwave="false" smoke="false" flash="false" sparks="false" flames="false" underwaterbubble="false" camerashake="35.0" />
+        <ParticleEmitter particle="co_shellcasing_shotgun" emitinterval="2.1" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="100" velocitymax="200" copyentityangle="true" scalemin="0.5" scalemax="0.5" />
+        <Sound file="%ModDir%/Sounds/shotgun_cock2.ogg" type="OnUse" range="3000" />
+      </StatusEffect>
+      <RequiredItems items="shotgunammo" type="Contained" msg="ItemMsgAmmoRequired" />
+      <RequiredSkill identifier="weapons" level="60" />
+      <StatusEffect type="OnUse" target="This">
+        <Explosion range="620" structuredamage="0" itemdamage="0" smoke="false" flames="false" force="0" sparks="false" shockwave="false" underwaterbubble="false" camerashake="0" flash="false" playtinnitus="false">
+          <Affliction identifier="gunshotconcussion" strength="30" />
+        </Explosion>
+      </StatusEffect>
+    </RangedWeapon>
+    <ItemContainer capacity="5" maxstacksize="1" itempos="27,10" iteminterval="0,-4" hideitems="false" showcontainedstateindicator="false">
+      <Containable items="shotgunammo" hide="true" />
+      <SlotIcon texture="%ModDir%/magazineicons.png" sourcerect="620,51,240,240" origin="0.45,0.5" />
+    </ItemContainer>
+    <LightComponent IsOn="false" range="1200" LightColor="200,10,10,255" Flicker="0.03" powerconsumption="0" ignorecontinuoustoggle="true">
+      <LightTexture texture="%ModDir%/laser.png" origin="0, 0.5" size="1.0,0.25" alpha="1.0" />
+    </LightComponent>
+    <CustomInterface canbeselected="true" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.12,0.08" anchor="BottomLeft" absoluteoffset="20,128" style="ItemUI" />
+      <TickBox text="Laser Pointer">
+        <StatusEffect type="OnUse" target="This" IsOn="true" />
+        <StatusEffect type="OnSecondaryUse" target="This" IsOn="false" />
+      </TickBox>
+    </CustomInterface>
+    <aitarget sightrange="3000" soundrange="4000" fadeouttime="2" />
+    <Upgrade gameversion="0.10.0.0" scale="0.5" />
+  </Item>
+  <Item name="" description="" identifier="shotgun_db" category="weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,mountableweapon,gun" Scale="0.45" impactsoundtag="mediumwepimpact" allowasextracargo="true">
+    <PreferredContainer primary="secarmcab" />
+    <PreferredContainer secondary="wreckstoragecab" minamount="0" maxamount="1" spawnprobability="0.09" />
+    <PreferredContainer secondary="abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.1" />
+    <PreferredContainer secondary="wreckarmcab" minamount="0" maxamount="1" spawnprobability="0.07" />
+    <PreferredContainer secondary="abandonedarmcab" minamount="0" maxamount="1" spawnprobability="0.09" />
+    <PreferredContainer primary="weaponholder" minamount="0" maxamount="1" spawnprobability="0.06" />
+    <PreferredContainer primary="armcab" secondary="locker" />
+    <Price baseprice="530" buyingpricemultiplier="1.4">
+      <Price storeidentifier="merchantoutpost" multiplier="0.9" minavailable="3" />
+      <Price storeidentifier="merchantcity" sold="false" minavailable="2" />
+      <Price storeidentifier="merchantresearch" sold="false" minavailable="1" />
+      <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="2" />
+      <Price storeidentifier="merchantmine" multiplier="0.9" minavailable="4" />
+      <Price storeidentifier="merchantmilitary" multiplier="0.85" minavailable="5" />
+    </Price>
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+      <Item identifier="carbon" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="weaponry_arsenal" requiredtime="0" />
+    <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="15,98,259,71" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="21,108,242,51" depth="0.55" origin="0.5,0.25" />
+    <BrokenSprite texture="%ModDir%/CO_spritelist_pistols.png" sourcerect="25,292,233,59" depth="0.55" origin="0.49376008,0.25995755" maxcondition="98" />
+    <Body width="180" height="30" density="50" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="60,-10" aimpos="65,5" handle1="-35,-15" handle2="-20,-5" holdangle="-40" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
+        <Conditional hasstatustag="neq medical" />
+        <Conditional hasstatustag="worn" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="this" showtexts="true" disabledeltatime="true" setvalue="true" comparison="AND">
+        <Conditional hasstatustag="medical" />
+        <RequiredItems items="medscanner_t" type="Contained" />
+        <Conditional hasstatustag="neq worn" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
+      <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
+      <StatusEffect type="OnSecondaryUse" target="Character,This" SpeedMultiplier="1.3" setvalue="true" disabledeltatime="true">
+        <Conditional HasStatusTag="laser" />
+      </StatusEffect>
+    </Holdable>
+    <SkillRequirementHint identifier="weapons" level="35" />
+    <StatusHUD drawhudwhenequipped="true" range="2700" thermalgoggles="false" showdeadcharacters="false" showtexts="false" overlaycolor="0,0,0,0" />
+    <RangedWeapon barrelpos="85,10" spread="2" weapondamagemodifier="0.82" unskilledspread="8" combatPriority="80" reload="0" drawhudwhenequipped="true" crosshairscale="0.2">
+      <Crosshair texture="Content/Items/weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+      <CrosshairPointer texture="Content/Items/weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+      <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
+      <Sound file="%ModDir%/Sounds/doublebarrel.ogg" type="OnUse" range="3000" />
+      <StatusEffect type="OnUse">
+        <Explosion range="150.0" force="1.8" shockwave="false" smoke="false" flash="true" sparks="false" flames="false" underwaterbubble="false" camerashake="30.0" />
+      </StatusEffect>
+      <RequiredItems items="shotgunammo" type="Contained" msg="ItemMsgAmmoRequired" />
+      <RequiredSkill identifier="weapons" level="35" />
+      <StatusEffect type="Always" targettype="This" Condition="0" SetValue="true" comparison="AND">
+        <!-- jam  in water -->
+        <Conditional InWater="true" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="This" Condition="1000" disabledeltatime="true" delay="6" stackable="false" checkconditionalalways="true" comparison="And">
+        <Sound file="%ModDir%/Sounds/revolver_unjam.ogg" type="OnUse" range="300" />
+        <Conditional InWater="false" />
+        <Conditional Condition="0" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="this" Condition="100" stackable="false" delay="1.65" SetValue="true">
+        <Sound file="%ModDir%/Sounds/close.ogg" type="OnUse" range="800" volume="1.2" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="this" delay="0.82">
+        <ParticleEmitter particle="co_shellcasing_shotgun" emitinterval="2.1" particleamount="1" particlespersecond="50" anglemin="90" anglemax="270" velocitymin="180" velocitymax="270" copyentityangle="true" scalemin="0.4" scalemax="0.4" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="this" Condition="95" stackable="false" SetValue="true" delay="0.55">
+        <Sound file="%ModDir%/Sounds/open.ogg" type="OnUse" range="800" volume="1.2" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" reload="2" setvalue="true" />
+      <StatusEffect type="OnUse" target="This" reload="0" setvalue="true" delay="2" />
+      <StatusEffect type="OnUse" target="This">
+        <Explosion range="620" structuredamage="0" itemdamage="0" smoke="false" flames="false" force="0" sparks="false" shockwave="false" underwaterbubble="false" camerashake="0" flash="false" playtinnitus="false">
+          <Affliction identifier="gunshotconcussion" strength="40" />
+        </Explosion>
+        <Conditional HasStatusTag="neq suppressed" />
+      </StatusEffect>
+    </RangedWeapon>
+    <ItemContainer capacity="2" maxstacksize="1" itempos="27,10" iteminterval="0,-4" hideitems="true" showcontainedstateindicator="false">
+      <Containable items="shotgunammo" />
+      <SlotIcon texture="%ModDir%/magazineicons.png" sourcerect="620,51,240,240" origin="0.45,0.5" />
+      <SlotIcon slotindex="2" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="attachment_light" setactive="true" itempos="11,2" hide="false"></Containable>
+      </SubContainer>
+    </ItemContainer>
+    <CustomInterface canbeselected="true" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.12,0.08" anchor="BottomLeft" absoluteoffset="20,128" style="ItemUI" />
+      <TickBox text="Tactical Light(If attached)">
+        <StatusEffect type="OnUse" target="Contained" tags="on" duration="0.05" disabledeltatime="true" />
+        <StatusEffect type="OnSecondaryUse" target="Contained" tags="off" duration="0.05" disabledeltatime="true" />
+      </TickBox>
+    </CustomInterface>
+    <aitarget sightrange="3000" soundrange="5000" fadeouttime="5" />
+  </Item>
+  <Item name="" description="" identifier="shotgun_assalt" category="weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,mountableweapon,gun,gunsmith,12_gun" Scale="0.45" impactsoundtag="mediumwepimpact">
+    <PreferredContainer primary="armcab" />
+    <PreferredContainer secondary="secarmcab" />
+    <Price baseprice="305" soldeverywhere="false" buyingpricemultiplier="2">
+      <Price storeidentifier="merchantoutpost" multiplier="1.2" sold="false" />
+      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" sold="false" />
+      <Price storeidentifier="merchantarmory" multiplier="0.9" sold="false" />
+      <Price storeidentifier="merchantmine" multiplier="1.25" sold="false" />
+    </Price>
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+      <Item identifier="titanium" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="weaponry_arsenal" requiredtime="0" />
+    <Fabricate suitablefabricators="milfabricator" requiredtime="15" requiresrecipe="true">
+      <RequiredSkill identifier="weapons" level="70" />
+      <RequiredItem identifier="steel" amount="3" />
+      <RequiredItem identifier="titaniumaluminiumalloy" />
+      <RequiredItem identifier="plastic" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/CO_spritelist_mod.png" sourcerect="296,853,211,56" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/CO_spritelist_mod.png" sourcerect="296,853,212,56" depth="0.55" origin="0.5,0.25" />
+    <BrokenSprite texture="%ModDir%/CO_spritelist_mod.png" sourcerect="519,853,211,56" depth="0.55" origin="0.5,0.25" maxcondition="98" />
+    <Body width="180" height="30" density="50" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="50,-8" aimpos="50,-10" handle1="-50,-22" handle2="26,7" holdangle="-40" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnActive" target="This" barrelpos="160,5" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="suppressed" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="This" barrelpos="80,5" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="neq suppressed" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
+        <RequiredItem items="12_suppressor" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
+        <Conditional hasstatustag="neq medical" />
+        <Conditional hasstatustag="worn" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="this" showtexts="true" disabledeltatime="true" setvalue="true" comparison="AND">
+        <Conditional hasstatustag="medical" />
+        <RequiredItems items="medscanner_t" type="Contained" />
+        <Conditional hasstatustag="neq worn" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
+      <StatusEffect type="OnActive" target="NearbyItems,This" targettags="shotgunammo" range="35" tags="choke" duration="1" interval="1" stackable="false">
+        <RequiredItems items="co_choke" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="This" tags="bolt" duration="0.05" setvalue="true">
+        <RequiredItem items="co_bolt" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="This" reload="1.3" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="bolt" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="This" reload="1.45" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="neq bolt" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="Contained,This" tags="fire" duration="1" interval="1.1" setvalue="true">
+        <RequiredItems items="fireattachment" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
+      <StatusEffect type="OnSecondaryUse" target="Character,This" SpeedMultiplier="1.3" setvalue="true" disabledeltatime="true">
+        <Conditional HasStatusTag="laser" />
+      </StatusEffect>
+    </Holdable>
+    <SkillRequirementHint identifier="weapons" level="45" />
+    <StatusHUD drawhudwhenequipped="true" range="2700" thermalgoggles="false" showdeadcharacters="false" showtexts="false" overlaycolor="0,0,0,0" />
+    <RangedWeapon barrelpos="80,5" spread="10" reload="1.45" weapondamagemodifier="0.95" unskilledspread="20" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
+      <Crosshair texture="Content/Items/weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+      <CrosshairPointer texture="Content/Items/weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+      <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
+      <StatusEffect type="OnUse" target="This" stackable="false" disabledeltatime="true" forceplaysounds="true">
+        <Sound file="%ModDir%/Sounds/asg_shot.ogg" type="OnUse" range="3000" />
+        <Conditional HasStatusTag="neq suppressed" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" stackable="false" disabledeltatime="true" forceplaysounds="true">
+        <Sound file="%ModDir%/Sounds/asg_sup.ogg" range="300" />
+        <Conditional HasStatusTag="suppressed" />
+      </StatusEffect>
+      <StatusEffect type="OnUse">
+        <Explosion range="150.0" force="3.5" shockwave="false" smoke="false" flash="true" sparks="false" flames="false" underwaterbubble="false" camerashake="30.0" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="this" Condition="100" stackable="false" delay="1.1" SetValue="true" />
+      <StatusEffect type="OnUse" target="this" Condition="95" stackable="false" SetValue="true" delay="0.7" />
+      <StatusEffect type="OnUse" delay="0.7">
+        <Explosion range="150.0" force="0.5" shockwave="false" smoke="false" flash="false" sparks="false" flames="false" underwaterbubble="false" camerashake="35.0" />
+        <ParticleEmitter particle="co_shellcasing_shotgun" emitinterval="2.1" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="100" velocitymax="200" copyentityangle="true" scalemin="0.5" scalemax="0.5" />
+        <Sound file="%ModDir%/Sounds/shotgun_cock3.ogg" type="OnUse" range="3000" />
+      </StatusEffect>
+      <RequiredItems items="shotgunammo" type="Contained" msg="ItemMsgAmmoRequired" />
+      <RequiredSkill identifier="weapons" level="45" />
+      <StatusEffect type="OnUse" target="This">
+        <Explosion range="620" structuredamage="0" itemdamage="0" smoke="false" flames="false" force="0" sparks="false" shockwave="false" underwaterbubble="false" camerashake="0" flash="false" playtinnitus="false">
+          <Affliction identifier="gunshotconcussion" strength="42" />
+        </Explosion>
+        <Conditional HasStatusTag="neq suppressed" />
+      </StatusEffect>
+    </RangedWeapon>
+    <ItemContainer capacity="4" maxstacksize="1" itempos="27,10" iteminterval="0,-4" hideitems="false" showcontainedstateindicator="false">
+      <Containable items="shotgunammo" hide="true" />
+      <SlotIcon texture="%ModDir%/magazineicons.png" sourcerect="620,51,240,240" origin="0.45,0.5" />
+      <SlotIcon slotindex="4" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
+      <SlotIcon slotindex="5" texture="%ModDir%/magazineicons.png" sourcerect="872,55,240,240" origin="0.45,0.5" />
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="attachment_light" setactive="true" itempos="11,2" hide="true"></Containable>
+      </SubContainer>
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="attachment_suppressor_12,chokeattachment,boltattachment" itempos="63,-3"></Containable>
+      </SubContainer>
+    </ItemContainer>
+    <CustomInterface canbeselected="true" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.12,0.08" anchor="BottomLeft" absoluteoffset="20,128" style="ItemUI" />
+      <TickBox text="Tactical Light(If attached)">
+        <StatusEffect type="OnUse" target="Contained" tags="on" duration="0.05" disabledeltatime="true" />
+        <StatusEffect type="OnSecondaryUse" target="Contained" tags="off" duration="0.05" disabledeltatime="true" />
+      </TickBox>
+    </CustomInterface>
+    <aitarget sightrange="3000" soundrange="4000" fadeouttime="2">
+      <StatusEffect type="Always" target="This" sightrange="30" soundrange="40" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="suppressed" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="This" sightrange="3000" soundrange="4000" stackable="false" setvalue="true">
+        <Conditional HasStatusTag=" neq suppressed" />
+      </StatusEffect>
+    </aitarget>
+    <Upgrade gameversion="0.10.0.0" Scale="0.45" />
+  </Item>
+  <Item name="" description="" identifier="pipegun12" category="weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,mountableweapon,gun,gunsmith,12_gun" Scale="0.45" impactsoundtag="mediumwepimpact">
+    <PreferredContainer primary="armcab" />
+    <PreferredContainer secondary="secarmcab" />
+    <Price baseprice="250" soldeverywhere="false">
+      <Price storeidentifier="merchantoutpost" multiplier="1.2" sold="false" />
+      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" sold="false" />
+      <Price storeidentifier="merchantarmory" multiplier="0.9" sold="false" />
+      <Price storeidentifier="merchantmine" multiplier="1.25" sold="false" />
+    </Price>
+    <Deconstruct time="5">
+      <Item identifier="titanium" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="weaponry_arsenal" requiredtime="0" />
+    <Fabricate suitablefabricators="fabricator" requiredtime="10">
+      <RequiredSkill identifier="weapons" level="50" />
+      <RequiredItem identifier="titanium" />
+      <RequiredItem identifier="tin" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="283,364,161,83" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/CO_spritelist_mod2.png" depth="0.54" sourcerect="57,332,159,54" origin="0.5,0.5" />
+    <Body width="140" height="60" density="50" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="60,-15" aimpos="55,-12" handle1="-55,-15" handle2="15,1" holdangle="-35" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
+    </Holdable>
+    <!-- Component to cycle change of jamming -->
+    <GreaterComponent TimeFrame="0" />
+    <!--AllowInGameEditing="false"/>-->
+    <RangedWeapon reload="3.5" holdtrigger="true" barrelpos="90,9" weapondamagemodifier="0.9" spread="4" unskilledspread="16" combatPriority="70" drawhudwhenequipped="true" crosshairscale="0.2">
+      <Crosshair texture="Content/Items/weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+      <CrosshairPointer texture="Content/Items/weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+      <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
+      <Sound file="%ModDir%/Sounds/pipe12.ogg" type="OnUse" range="3000" />
+      <!-- ############ Jam logic ############ -->
+      <!-- Cycle TimeFrame for randomisation. Increase should be big but not big enough that it skips values inbetween frames -->
+      <StatusEffect type="Always" targettype="This" TimeFrame="-30" />
+      <StatusEffect type="Always" targettype="This" TimeFrame="100" disabledeltatime="true">
+        <Conditional TimeFrame="0" />
+      </StatusEffect>
+      <!-- Jame with some chance -->
+      <StatusEffect type="OnUse" targettype="This" Condition="0" SetValue="true" comparison="AND">
+        <!-- The timeframe here is basically a chance percentage now -->
+        <Conditional TimeFrame="lt 10" />
+        <Conditional InWater="false" />
+      </StatusEffect>
+      <!-- Unjam after delay -->
+      <StatusEffect type="Always" target="This" Condition="1000" disabledeltatime="true" delay="6" stackable="false" checkconditionalalways="true" comparison="And">
+        <Sound file="%ModDir%/Sounds/smg_unjam.ogg" type="OnUse" range="300" />
+        <Conditional InWater="false" />
+        <Conditional Condition="0" />
+      </StatusEffect>
+      <StatusEffect type="Always" targettype="This" Condition="0" SetValue="true" comparison="AND">
+        <!-- larger jam chance in water -->
+        <Conditional InWater="true" />
+        <Conditional TimeFrame="lt 100" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" targettype="This" Condition="100" SetValue="true" delay="8" comparison="AND">
+        <Conditional TimeFrame="lt 80" />
+        <Conditional InWater="true" />
+      </StatusEffect>
+      <!--"Use" contained magazine to spawn projectiles.-->
+      <StatusEffect type="OnUse" target="Contained">
+        <!-- The timeframe here is basically a chance percentage now -->
+        <Explosion range="150.0" force="3.2" shockwave="false" smoke="false" flames="false" sparks="false" underwaterbubble="false" camerashake="32.0" />
+        <Use />
+      </StatusEffect>
+      <!-- ############ End of Jam logic changes ############ -->
+      <RequiredItems items="shotgunammo" type="Contained" />
+      <RequiredSkill identifier="weapons" level="20" />
+      <StatusEffect type="OnUse" target="This">
+        <Explosion range="620" structuredamage="0" itemdamage="0" smoke="false" flames="false" force="0" sparks="false" shockwave="false" underwaterbubble="false" camerashake="0" flash="false" playtinnitus="false">
+          <Affliction identifier="gunshotconcussion" strength="54" />
+        </Explosion>
+        <Conditional HasStatusTag="neq suppressed" />
+      </StatusEffect>
+    </RangedWeapon>
+    <ItemContainer capacity="1" maxstacksize="1" hideitems="true" containedstateindicatorstyle="bullet">
+      <SlotIcon texture="%ModDir%/magazineicons.png" sourcerect="620,51,240,240" origin="0.45,0.5" />
+      <Containable items="shotgunammo" />
+    </ItemContainer>
+    <SkillRequirementHint identifier="weapons" level="20" />
+    <aitarget sightrange="4000" soundrange="4000" fadeouttime="5" />
+    <Upgrade gameversion="0.10.0.0" Scale="0.45" />
+  </Item>
+  <Item name="" description="" identifier="shotgun_water_unique" category="weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,mountableweapon,gun,gunsmith,12_gun" Scale="0.45" impactsoundtag="mediumwepimpact">
+    <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.05" />
+    <PreferredContainer primary="wreckarmcab" minamount="0" maxamount="1" spawnprobability="0.02" />
+    <PreferredContainer primary="wreckreactorcab" minamount="0" maxamount="1" spawnprobability="0.02" />
+    <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.02" />
+    <PreferredContainer primary="abandonedarmcab" minamount="0" maxamount="1" spawnprobability="0.02" />
+    <PreferredContainer primary="abandonedengcab" minamount="0" maxamount="1" spawnprobability="0.03" />
+    <PreferredContainer primary="armcab" />
+    <PreferredContainer secondary="secarmcab" />
+    <Price baseprice="4950" soldeverywhere="false">
+      <Price storeidentifier="merchantoutpost" multiplier="1.2" sold="false" />
+      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" sold="false" />
+      <Price storeidentifier="merchantarmory" multiplier="0.9" sold="false" />
+      <Price storeidentifier="merchantmine" multiplier="1.25" sold="false" />
+    </Price>
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+      <Item identifier="titaniumaluminiumalloy" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="weaponry_arsenal" requiredtime="0" />
+    <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="30,572,245,56" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="30,572,222,56" depth="0.55" origin="0.5,0.25" />
+    <BrokenSprite texture="%ModDir%/CO_spritelist_anims.png" sourcerect="30,572,222,56" depth="0.55" origin="0.5,0.25" maxcondition="98" />
+    <Body width="180" height="30" density="50" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="60,-5" aimpos="72,5" handle1="-65,-32" handle2="-45,-15" holdangle="-40" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnActive" target="This" barrelpos="160,2" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="suppressed" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="This" barrelpos="80,2" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="neq suppressed" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
+        <RequiredItem items="12_suppressor" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
+        <Conditional hasstatustag="neq medical" />
+        <Conditional hasstatustag="worn" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="this" showtexts="true" disabledeltatime="true" setvalue="true" comparison="AND">
+        <Conditional hasstatustag="medical" />
+        <RequiredItems items="medscanner_t" type="Contained" />
+        <Conditional hasstatustag="neq worn" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
+      <StatusEffect type="OnActive" target="NearbyItems,This" targettags="shotgunammo" range="35" tags="choke" duration="1" interval="1" stackable="false">
+        <RequiredItems items="co_choke" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="Contained,This" tags="fire" duration="1" interval="1.1" setvalue="true">
+        <RequiredItems items="fireattachment" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
+      <StatusEffect type="OnSecondaryUse" target="Character,This" SpeedMultiplier="1.3" setvalue="true" disabledeltatime="true">
+        <Conditional HasStatusTag="laser" />
+      </StatusEffect>
+    </Holdable>
+    <StatusHUD drawhudwhenequipped="true" range="2700" thermalgoggles="false" showdeadcharacters="false" showtexts="false" overlaycolor="0,0,0,0" />
+    <RangedWeapon barrelpos="100,5" spread="2" reload="0.32" weapondamagemodifier="0.95" unskilledspread="16" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
+      <Crosshair texture="Content/Items/weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+      <CrosshairPointer texture="Content/Items/weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+      <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
+      <StatusEffect type="OnUse" target="This" stackable="false" disabledeltatime="true" forceplaysounds="true">
+        <Sound file="%ModDir%/Sounds/shotgun1.ogg" type="OnUse" range="3000" />
+        <Conditional HasStatusTag="neq suppressed" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" stackable="false" disabledeltatime="true" forceplaysounds="true">
+        <Sound file="%ModDir%/Sounds/sfs_sup.ogg" range="300" />
+        <Conditional HasStatusTag="suppressed" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="this" Condition="100" stackable="false" delay="0.3" SetValue="true" />
+      <StatusEffect type="OnUse" target="this" Condition="95" stackable="false" SetValue="true" />
+      <StatusEffect type="OnUse">
+        <Explosion range="170.0" force="2.6" shockwave="false" smoke="false" flash="true" sparks="false" flames="false" underwaterbubble="false" camerashake="31.0" />
+        <ParticleEmitter particle="co_shellcasing_shotgun" emitinterval="2.1" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="100" velocitymax="200" copyentityangle="true" scalemin="0.5" scalemax="0.5" />
+      </StatusEffect>
+      <RequiredItems items="shotgunammo" type="Contained" msg="ItemMsgAmmoRequired" />
+      <RequiredSkill identifier="weapons" level="85" />
+      <StatusEffect type="OnUse" target="this" spread="12" unskilledspread="15" stackable="true" setvalue="false" disabledeltatime="true">
+        <Conditional Spread="lt 30" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="this" spread="-0.28" stackable="true" disabledeltatime="true" setvalue="false" conditional="or">
+        <Conditional Spread="gt 2" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="this" unskilledspread="-0.215" stackable="true" disabledeltatime="true" setvalue="false" conditional="or">
+        <Conditional unskilledspread="gt 12" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This">
+        <Explosion range="620" structuredamage="0" itemdamage="0" smoke="false" flames="false" force="0" sparks="false" shockwave="false" underwaterbubble="false" camerashake="0" flash="false" playtinnitus="false">
+          <Affliction identifier="gunshotconcussion" strength="40" />
+        </Explosion>
+        <Conditional HasStatusTag="neq suppressed" />
+      </StatusEffect>
+    </RangedWeapon>
+    <SkillRequirementHint identifier="weapons" level="85" />
+    <ItemContainer capacity="8" maxstacksize="1" slotsperrow="2" itempos="27,10" iteminterval="0,-4" hideitems="false" showcontainedstateindicator="false">
+      <Containable items="shotgunammo" hide="true" />
+      <SlotIcon texture="%ModDir%/magazineicons.png" sourcerect="620,51,240,240" origin="0.45,0.5" />
+      <SlotIcon slotindex="8" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
+      <SlotIcon slotindex="9" texture="%ModDir%/magazineicons.png" sourcerect="872,55,240,240" origin="0.45,0.5" />
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="attachment_light" setactive="true" itempos="11,2" hide="true"></Containable>
+      </SubContainer>
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="attachment_suppressor_12,chokeattachment" itempos="67,-1" hide="false"></Containable>
+      </SubContainer>
+    </ItemContainer>
+    <CustomInterface canbeselected="true" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.12,0.08" anchor="BottomLeft" absoluteoffset="20,128" style="ItemUI" />
+      <TickBox text="Tactical Light(If attached)">
+        <StatusEffect type="OnUse" target="Contained" tags="on" duration="0.05" disabledeltatime="true" />
+        <StatusEffect type="OnSecondaryUse" target="Contained" tags="off" duration="0.05" disabledeltatime="true" />
+      </TickBox>
+    </CustomInterface>
+    <aitarget sightrange="3000" soundrange="4000" fadeouttime="2">
+      <StatusEffect type="Always" target="This" sightrange="30" soundrange="40" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="suppressed" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="This" sightrange="3000" soundrange="4000" stackable="false" setvalue="true">
+        <Conditional HasStatusTag=" neq suppressed" />
+      </StatusEffect>
+    </aitarget>
+    <Upgrade gameversion="0.10.0.0" Scale="0.45" />
+  </Item>
+  <Item name="" description="" identifier="shotgun_water" category="weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,mountableweapon,gun,gunsmith,12_gun" Scale="0.45" impactsoundtag="mediumwepimpact">
+    <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.1" />
+    <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.09" />
+    <PreferredContainer primary="abandonedarmcab" minamount="0" maxamount="1" spawnprobability="0.08" />
+    <PreferredContainer primary="weaponholder" minamount="0" maxamount="1" spawnprobability="0.04" />
+    <PreferredContainer primary="secarmcab" amount="2" spawnprobability="1" notcampaign="true" />
+    <PreferredContainer primary="armcab" />
+    <PreferredContainer secondary="secarmcab" />
+    <Price baseprice="1075" soldeverywhere="false" buyingpricemultiplier="2">
+      <Price storeidentifier="merchantoutpost" multiplier="1.2" minavailable="1" />
+      <Price storeidentifier="merchantcity" multiplier="1.15" minavailable="1" />
+      <Price storeidentifier="merchantresearch" multiplier="1.15" sold="false" />
+      <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="1" />
+      <Price storeidentifier="merchantmine" multiplier="1.15" sold="false" />
+      <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="4" />
+    </Price>
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+      <Item identifier="titaniumaluminiumalloy" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="weaponry_arsenal" requiredtime="0" />
+    <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="30,660,247,43" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="30,660,247,43" depth="0.55" origin="0.5,0.25" />
+    <BrokenSprite texture="%ModDir%/CO_spritelist_pistols.png" sourcerect="14,92,254,53" depth="0.55" origin="0.5,0.25" maxcondition="98" />
+    <Body width="180" height="30" density="50" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="60,-5" aimpos="60,5" handle1="-60,-25" handle2="26,5" holdangle="-40" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnActive" target="This" barrelpos="160,5" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="suppressed" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="This" barrelpos="80,5" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="neq suppressed" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
+        <RequiredItem items="12_suppressor" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
+        <Conditional hasstatustag="neq medical" />
+        <Conditional hasstatustag="worn" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="this" showtexts="true" disabledeltatime="true" setvalue="true" comparison="AND">
+        <Conditional hasstatustag="medical" />
+        <RequiredItems items="medscanner_t" type="Contained" />
+        <Conditional hasstatustag="neq worn" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
+      <StatusEffect type="OnActive" target="NearbyItems,This" targettags="shotgunammo" range="35" tags="choke" duration="1" interval="1" stackable="false">
+        <RequiredItems items="co_choke" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="This" tags="bolt" duration="0.05" setvalue="true">
+        <RequiredItem items="co_bolt" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="This" reload="1.8" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="bolt" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="This" reload="2.0" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="neq bolt" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="Contained,This" tags="fire" duration="1" interval="1.1" setvalue="true">
+        <RequiredItems items="fireattachment" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
+      <StatusEffect type="OnSecondaryUse" target="Character,This" SpeedMultiplier="1.3" setvalue="true" disabledeltatime="true">
+        <Conditional HasStatusTag="laser" />
+      </StatusEffect>
+    </Holdable>
+    <SkillRequirementHint identifier="weapons" level="40" />
+    <StatusHUD drawhudwhenequipped="true" range="2700" thermalgoggles="false" showdeadcharacters="false" showtexts="false" overlaycolor="0,0,0,0" />
+    <RangedWeapon barrelpos="80,5" spread="1" reload="2.0" unskilledspread="10" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
+      <Crosshair texture="Content/Items/weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+      <CrosshairPointer texture="Content/Items/weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+      <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
+      <StatusEffect type="OnUse" target="This" stackable="false" disabledeltatime="true" forceplaysounds="true">
+        <Sound file="%ModDir%/Sounds/shotgun1.ogg" type="OnUse" range="3000" />
+        <Conditional HasStatusTag="neq suppressed" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" stackable="false" disabledeltatime="true" forceplaysounds="true">
+        <Sound file="%ModDir%/Sounds/toz_sup.ogg" range="300" />
+        <Conditional HasStatusTag="suppressed" />
+      </StatusEffect>
+      <StatusEffect type="OnUse">
+        <Explosion range="150.0" force="3.5" shockwave="false" smoke="false" flash="true" sparks="false" flames="false" underwaterbubble="false" camerashake="30.0" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="this" Condition="100" stackable="false" delay="1.6" SetValue="true" />
+      <StatusEffect type="OnUse" target="this" Condition="95" stackable="false" SetValue="true" delay="1.2" />
+      <StatusEffect type="OnUse" delay="1.3">
+        <Explosion range="150.0" force="0.5" shockwave="false" smoke="false" flash="false" sparks="false" flames="false" underwaterbubble="false" camerashake="35.0" />
+        <ParticleEmitter particle="co_shellcasing_shotgun" emitinterval="2.1" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="100" velocitymax="200" copyentityangle="true" scalemin="0.5" scalemax="0.5" />
+        <Sound file="%ModDir%/Sounds/shotgun_cock.ogg" type="OnUse" range="3000" />
+      </StatusEffect>
+      <RequiredItems items="shotgunammo" type="Contained" msg="ItemMsgAmmoRequired" />
+      <RequiredSkill identifier="weapons" level="40" />
+      <StatusEffect type="OnUse" target="This">
+        <Explosion range="620" structuredamage="0" itemdamage="0" smoke="false" flames="false" force="0" sparks="false" shockwave="false" underwaterbubble="false" camerashake="0" flash="false" playtinnitus="false">
+          <Affliction identifier="gunshotconcussion" strength="44" />
+        </Explosion>
+        <Conditional HasStatusTag="neq suppressed" />
+      </StatusEffect>
+    </RangedWeapon>
+    <ItemContainer capacity="6" maxstacksize="1" itempos="27,10" iteminterval="0,-4" hideitems="false" showcontainedstateindicator="false">
+      <Containable items="shotgunammo" hide="true" />
+      <SlotIcon texture="%ModDir%/magazineicons.png" sourcerect="620,51,240,240" origin="0.45,0.5" />
+      <SlotIcon slotindex="6" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
+      <SlotIcon slotindex="7" texture="%ModDir%/magazineicons.png" sourcerect="872,55,240,240" origin="0.45,0.5" />
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="attachment_light" setactive="true" itempos="11,2" hide="true"></Containable>
+      </SubContainer>
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="attachment_suppressor_12,chokeattachment,boltattachment" itempos="73,-1" hide="false"></Containable>
+      </SubContainer>
+    </ItemContainer>
+    <CustomInterface canbeselected="true" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.12,0.08" anchor="BottomLeft" absoluteoffset="20,128" style="ItemUI" />
+      <TickBox text="Tactical Light(If attached)">
+        <StatusEffect type="OnUse" target="Contained" tags="on" duration="0.05" disabledeltatime="true" />
+        <StatusEffect type="OnSecondaryUse" target="Contained" tags="off" duration="0.05" disabledeltatime="true" />
+      </TickBox>
+    </CustomInterface>
+    <aitarget sightrange="3000" soundrange="4000" fadeouttime="2">
+      <StatusEffect type="Always" target="This" sightrange="30" soundrange="40" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="suppressed" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="This" sightrange="3000" soundrange="4000" stackable="false" setvalue="true">
+        <Conditional HasStatusTag=" neq suppressed" />
+      </StatusEffect>
+    </aitarget>
+    <Upgrade gameversion="0.10.0.0" Scale="0.45" />
+  </Item>
+  <Item name="" description="" identifier="shotgun_water2" category="weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,mountableweapon,gun,gunsmith,12_gun,crowbar" Scale="0.45" impactsoundtag="mediumwepimpact">
+    <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.06" />
+    <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.04" />
+    <PreferredContainer primary="abandonedarmcab" minamount="0" maxamount="1" spawnprobability="0.05" />
+    <PreferredContainer primary="armcab" />
+    <PreferredContainer secondary="secarmcab" />
+    <Price baseprice="1975" soldeverywhere="false" buyingpricemultiplier="2" minleveldifficulty="30">
+      <Price storeidentifier="merchantoutpost" multiplier="1.1" minavailable="1">
+        <Reputation faction="coalition" min="50" />
+      </Price>
+      <Price storeidentifier="merchantcity" multiplier="1.05" minavailable="1">
+        <Reputation faction="coalition" min="50" />
+      </Price>
+      <Price storeidentifier="merchantresearch" multiplier="1.25" sold="false" />
+      <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="1">
+        <Reputation faction="coalition" min="50" />
+      </Price>
+      <Price storeidentifier="merchantmine" multiplier="1.1" minavailable="1">
+        <Reputation faction="coalition" min="50" />
+      </Price>
+      <Price storeidentifier="merchantmilitary" multiplier="0.85" minavailable="1">
+        <Reputation faction="coalition" min="50" />
+      </Price>
+    </Price>
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+      <Item identifier="steel" />
+      <Item identifier="plastic" />
+      <Item identifier="titaniumaluminiumalloy" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="weaponry_arsenal" requiredtime="0" />
+    <InventoryIcon texture="%ModDir%/CO_spritelist_mod2.png" sourcerect="626,266,243,66" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/CO_spritelist_mod2.png" sourcerect="626,266,243,66" depth="0.55" origin="0.5,0.25" />
+    <BrokenSprite texture="%ModDir%/CO_spritelist_pistols.png" sourcerect="304,265,245,64" depth="0.55" origin="0.5,0.25" maxcondition="98" />
+    <Body width="180" height="30" density="50" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="60,-5" aimpos="73,5" handle1="-56,-22" handle2="-50,-15" holdangle="-40" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnActive" target="This" barrelpos="170,2" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="suppressed" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="This" barrelpos="90,2" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="neq suppressed" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
+        <RequiredItem items="12_suppressor" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
+        <Conditional hasstatustag="neq medical" />
+        <Conditional hasstatustag="worn" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="this" showtexts="true" disabledeltatime="true" setvalue="true" comparison="AND">
+        <Conditional hasstatustag="medical" />
+        <RequiredItems items="medscanner_t" type="Contained" />
+        <Conditional hasstatustag="neq worn" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
+      <StatusEffect type="OnActive" target="NearbyItems,This" targettags="shotgunammo" range="35" tags="choke" duration="1" interval="1" stackable="false">
+        <RequiredItems items="co_choke" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="This" tags="bolt" duration="0.05" setvalue="true">
+        <RequiredItem items="co_bolt" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="This" reload="1.15" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="bolt" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="This" reload="1.3" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="neq bolt" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="Contained,This" tags="fire" duration="1" interval="1.1" setvalue="true">
+        <RequiredItems items="fireattachment" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
+      <StatusEffect type="OnSecondaryUse" target="Character,This" SpeedMultiplier="1.3" setvalue="true" disabledeltatime="true">
+        <Conditional HasStatusTag="laser" />
+      </StatusEffect>
+    </Holdable>
+    <SkillRequirementHint identifier="weapons" level="65" />
+    <StatusHUD drawhudwhenequipped="true" range="2700" thermalgoggles="false" showdeadcharacters="false" showtexts="false" overlaycolor="0,0,0,0" />
+    <RangedWeapon barrelpos="90,2" spread="1" reload="1.3" weapondamagemodifier="1.2" unskilledspread="8" combatPriority="82" drawhudwhenequipped="true" crosshairscale="0.2">
+      <Crosshair texture="Content/Items/weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+      <CrosshairPointer texture="Content/Items/weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+      <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
+      <StatusEffect type="OnUse" target="This" stackable="false" disabledeltatime="true" forceplaysounds="true">
+        <Sound file="%ModDir%/Sounds/shotgun_alt.ogg" type="OnUse" range="3000" />
+        <Conditional HasStatusTag="neq suppressed" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" stackable="false" disabledeltatime="true" forceplaysounds="true">
+        <Sound file="%ModDir%/Sounds/breacher_sup.ogg" range="300" />
+        <Conditional HasStatusTag="suppressed" />
+      </StatusEffect>
+      <StatusEffect type="OnUse">
+        <Explosion range="150.0" force="3.5" shockwave="false" smoke="false" flash="true" sparks="false" flames="false" underwaterbubble="false" camerashake="30.0" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="this" Condition="100" stackable="false" delay="0.97" SetValue="true" />
+      <StatusEffect type="OnUse" target="this" Condition="95" stackable="false" SetValue="true" delay="0.75" />
+      <StatusEffect type="OnUse" delay="0.85">
+        <Explosion range="150.0" force="0.5" shockwave="false" smoke="false" flash="false" sparks="false" flames="false" underwaterbubble="false" camerashake="35.0" />
+        <ParticleEmitter particle="co_shellcasing_shotgun" emitinterval="2.1" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="100" velocitymax="200" copyentityangle="true" scalemin="0.5" scalemax="0.5" />
+        <Sound file="%ModDir%/Sounds/shotgun_cock2.ogg" type="OnUse" range="3000" />
+      </StatusEffect>
+      <RequiredItems items="shotgunammo" type="Contained" msg="ItemMsgAmmoRequired" />
+      <RequiredSkill identifier="weapons" level="65" />
+      <StatusEffect type="OnUse" target="This">
+        <Explosion range="620" structuredamage="0" itemdamage="0" smoke="false" flames="false" force="0" sparks="false" shockwave="false" underwaterbubble="false" camerashake="0" flash="false" playtinnitus="false">
+          <Affliction identifier="gunshotconcussion" strength="47" />
+        </Explosion>
+        <Conditional HasStatusTag="neq suppressed" />
+      </StatusEffect>
+    </RangedWeapon>
+    <ItemContainer capacity="5" maxstacksize="1" itempos="27,10" iteminterval="0,-4" hideitems="false" showcontainedstateindicator="false">
+      <Containable items="shotgunammo" hide="true" />
+      <SlotIcon texture="%ModDir%/magazineicons.png" sourcerect="620,51,240,240" origin="0.45,0.5" />
+      <SlotIcon slotindex="5" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
+      <SlotIcon slotindex="6" texture="%ModDir%/magazineicons.png" sourcerect="872,55,240,240" origin="0.45,0.5" />
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="attachment_light" setactive="true" itempos="11,2" hide="true"></Containable>
+      </SubContainer>
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="attachment_suppressor_12,chokeattachment,boltattachment" itempos="70,-1" hide="false"></Containable>
+      </SubContainer>
+    </ItemContainer>
+    <CustomInterface canbeselected="true" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.12,0.08" anchor="BottomLeft" absoluteoffset="20,128" style="ItemUI" />
+      <TickBox text="Tactical Light(If attached)">
+        <StatusEffect type="OnUse" target="Contained" tags="on" duration="0.05" disabledeltatime="true" />
+        <StatusEffect type="OnSecondaryUse" target="Contained" tags="off" duration="0.05" disabledeltatime="true" />
+      </TickBox>
+    </CustomInterface>
+    <aitarget sightrange="3000" soundrange="4000" fadeouttime="2">
+      <StatusEffect type="Always" target="This" sightrange="30" soundrange="40" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="suppressed" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="This" sightrange="3000" soundrange="4000" stackable="false" setvalue="true">
+        <Conditional HasStatusTag=" neq suppressed" />
+      </StatusEffect>
+    </aitarget>
+    <Upgrade gameversion="0.10.0.0" Scale="0.45" />
+  </Item>
+  <Item name="" description="" identifier="shotgun_water_unique2" category="weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,mountableweapon,gun,gunsmith,12_gun" Scale="0.45" impactsoundtag="mediumwepimpact">
+    <Price baseprice="1750" soldeverywhere="false">
+      <Price storeidentifier="merchantoutpost" multiplier="1.2" sold="false" />
+      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" sold="false" />
+      <Price storeidentifier="merchantarmory" multiplier="0.9" sold="false" />
+      <Price storeidentifier="merchantmine" multiplier="1.25" sold="false" />
+    </Price>
+    <PreferredContainer primary="armcab" />
+    <PreferredContainer secondary="secarmcab" />
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+      <Item identifier="steel" />
+      <Item identifier="steel" />
+      <Item identifier="steel" />
+      <Item identifier="titanium" />
+      <Item identifier="titanium" />
+      <Item identifier="physicorium" />
+      <Item identifier="ballisticfiber" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="weaponry_arsenal" requiredtime="0" />
+    <Fabricate suitablefabricators="milfabricator" requiredtime="40" requiresrecipe="true">
+      <RequiredSkill identifier="weapons" level="85" />
+      <RequiredSkill identifier="mechanical" level="40" />
+      <RequiredItem identifier="steel" />
+      <RequiredItem identifier="steel" />
+      <RequiredItem identifier="steel" />
+      <RequiredItem identifier="steel" />
+      <RequiredItem identifier="steel" />
+      <RequiredItem identifier="titanium" />
+      <RequiredItem identifier="titanium" />
+      <RequiredItem identifier="shotgun_water" />
+      <RequiredItem identifier="physicorium" />
+      <RequiredItem identifier="ballisticfiber" />
+      <RequiredItem identifier="ballisticfiber" />
+    </Fabricate>
+    <InventoryIcon texture="%ModDir%/CO_spritelist_mod.png" sourcerect="583,758,263,67" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/CO_spritelist_mod.png" sourcerect="583,759,263,65" depth="0.55" origin="0.5,0.25" />
+    <BrokenSprite texture="%ModDir%/CO_spritelist_anims2.png" sourcerect="583,759,263,65" depth="0.55" origin="0.5,0.25" maxcondition="98" />
+    <Body width="180" height="30" density="50" />
+    <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="60,-5" aimpos="72,5" handle1="-60,-32" handle2="-45,-15" holdangle="-40" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
+        <Conditional hasstatustag="neq medical" />
+        <Conditional hasstatustag="worn" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="this" showtexts="true" disabledeltatime="true" setvalue="true" comparison="AND">
+        <Conditional hasstatustag="medical" />
+        <RequiredItems items="medscanner_t" type="Contained" />
+        <Conditional hasstatustag="neq worn" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
+      <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
+      <StatusEffect type="OnSecondaryUse" target="Character,This" SpeedMultiplier="1.3" setvalue="true" disabledeltatime="true">
+        <Conditional HasStatusTag="laser" />
+      </StatusEffect>
+    </Holdable>
+    <StatusHUD drawhudwhenequipped="true" range="2700" thermalgoggles="false" showdeadcharacters="false" showtexts="false" overlaycolor="0,0,0,0" />
+    <RangedWeapon barrelpos="120,8" spread="1" reload="0.3" weapondamagemodifier="1.05" unskilledspread="12" combatPriority="120" drawhudwhenequipped="true" crosshairscale="0.2">
+      <Crosshair texture="Content/Items/weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+      <CrosshairPointer texture="Content/Items/weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+      <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
+      <Sound file="%ModDir%/Sounds/autoshotgun.ogg" type="OnUse" range="3000" />
+      <StatusEffect type="OnUse">
+        <Explosion range="170.0" force="2.5" shockwave="false" smoke="false" flash="true" sparks="false" flames="false" underwaterbubble="false" camerashake="30.0" />
+        <ParticleEmitter particle="co_shellcasing_shotgun" emitinterval="2.1" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="100" velocitymax="200" copyentityangle="true" scalemin="0.5" scalemax="0.5" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="this" Condition="100" stackable="false" delay="0.28" SetValue="true" />
+      <StatusEffect type="OnUse" target="this" Condition="95" stackable="false" SetValue="true" />
+      <RequiredItems items="shotgunammo" type="Contained" msg="ItemMsgAmmoRequired" />
+      <RequiredSkill identifier="weapons" level="90" />
+      <StatusEffect type="OnUse" target="this" spread="7" unskilledspread="9" stackable="true" setvalue="false" disabledeltatime="true">
+        <Conditional Spread="lt 30" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="this" spread="-0.2" stackable="true" disabledeltatime="true" setvalue="false" conditional="or">
+        <Conditional Spread="gt 1" />
+      </StatusEffect>
+      <StatusEffect type="Always" target="this" unskilledspread="-0.175" stackable="true" disabledeltatime="true" setvalue="false" conditional="or">
+        <Conditional unskilledspread="gt 16" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This">
+        <Explosion range="620" structuredamage="0" itemdamage="0" smoke="false" flames="false" force="0" sparks="false" shockwave="false" underwaterbubble="false" camerashake="0" flash="false" playtinnitus="false">
+          <Affliction identifier="gunshotconcussion" strength="42" />
+        </Explosion>
+        <Conditional HasStatusTag="neq suppressed" />
+      </StatusEffect>
+    </RangedWeapon>
+    <SkillRequirementHint identifier="weapons" level="90" />
+    <ItemContainer capacity="5" maxstacksize="2" itempos="27,10" iteminterval="0,-4" hideitems="true" showcontainedstateindicator="false">
+      <Containable items="shotgunammo" />
+      <SlotIcon texture="%ModDir%/magazineicons.png" sourcerect="620,51,240,240" origin="0.45,0.5" />
+      <SlotIcon slotindex="5" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="attachment_light" setactive="true" itempos="11,2" hide="false"></Containable>
+      </SubContainer>
+    </ItemContainer>
+    <CustomInterface canbeselected="true" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.12,0.08" anchor="BottomLeft" absoluteoffset="20,128" style="ItemUI" />
+      <TickBox text="Tactical Light(If attached)">
+        <StatusEffect type="OnUse" target="Contained" tags="on" duration="0.05" disabledeltatime="true" />
+        <StatusEffect type="OnSecondaryUse" target="Contained" tags="off" duration="0.05" disabledeltatime="true" />
+      </TickBox>
+    </CustomInterface>
+    <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
+      <StatusEffect type="OnWearing" targettype="This" tags="worn" duration="0.05" setvalue="true" thermalgoggles="false" showtexts="false" overlaycolor="176,0,0,0" />
+      <StatusEffect type="Always" target="Character" SpeedMultiplier="0.8" setvalue="true" />
+      <sprite name="Saiga Worn" texture="%ModDir%/CO_spritelist_mod.png" canbehiddenbyotherwearables="false" rotation="90" inheritlimbdepth="false" depth="0.6" sourcerect="583,758,262,67" limb="Torso" ignorelimbscale="true" scale="0.45" origin="0.5,0.9" />
+    </Wearable>
+    <aitarget sightrange="3000" soundrange="5000" fadeouttime="5" />
+    <Upgrade gameversion="0.10.0.0" Scale="0.45" />
+  </Item>
+  <override>
+    <Item name="" description="" identifier="shotgun_talent" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,mountableweapon,gun,gunsmith,12_gun" Scale="0.45" impactsoundtag="mediumwepimpact">
+      <Price baseprice="1150" soldeverywhere="false">
+        <Price storeidentifier="merchantoutpost" multiplier="1.2" sold="false" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
+        <Price storeidentifier="merchantresearch" multiplier="1.25" sold="false" />
+        <Price storeidentifier="merchantarmory" multiplier="0.9" sold="false" />
+        <Price storeidentifier="merchantmine" multiplier="1.25" sold="false" />
+      </Price>
+      <PreferredContainer primary="armcab" />
+      <PreferredContainer secondary="secarmcab" />
+      <Deconstruct time="10">
+        <Item identifier="steel" />
+        <Item identifier="plastic" />
+        <Item identifier="titanium" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="weaponry_arsenal" requiredtime="0" />
+      <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="328,572,211,64" origin="0.5,0.5" scale="0.35" />
+      <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="328,572,210,64" depth="0.55" origin="0.5,0.5" scale="0.45" />
+      <Body width="72" height="40" density="50" />
+      <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="60,-5" aimpos="57,2" handle1="-15,-10" handle2="46,5" holdangle="-35" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnActive" target="This" barrelpos="172,15" stackable="false" setvalue="true">
+          <Conditional HasStatusTag="suppressed" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="This" barrelpos="92,15" stackable="false" setvalue="true">
+          <Conditional HasStatusTag="neq suppressed" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
+          <RequiredItem items="12_suppressor" type="Contained" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
+          <Conditional hasstatustag="neq medical" />
+          <Conditional hasstatustag="worn" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="this" showtexts="true" disabledeltatime="true" setvalue="true" comparison="AND">
+          <Conditional hasstatustag="medical" />
+          <RequiredItems items="medscanner_t" type="Contained" />
+          <Conditional hasstatustag="neq worn" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
+        <StatusEffect type="OnActive" target="NearbyItems,This" targettags="shotgunammo" range="35" tags="choke" duration="1" interval="1" stackable="false">
+          <RequiredItems items="co_choke" type="Contained" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="Contained,This" tags="fire" duration="1" interval="1.1" setvalue="true">
+          <RequiredItems items="fireattachment" type="Contained" />
+        </StatusEffect>
+        <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
+        <StatusEffect type="OnSecondaryUse" target="Character,This" SpeedMultiplier="1.3" setvalue="true" disabledeltatime="true">
+          <Conditional HasStatusTag="laser" />
+        </StatusEffect>
+      </Holdable>
+      <StatusHUD drawhudwhenequipped="true" range="2700" thermalgoggles="false" showdeadcharacters="false" showtexts="false" overlaycolor="0,0,0,0" />
+      <RangedWeapon reload="0.355" barrelpos="92,19" spread="1" unskilledspread="5" combatPriority="80" weapondamagemodifier="1.1" drawhudwhenequipped="true" crosshairscale="0.2">
+        <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+        <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+        <StatusEffect type="OnUse" target="This" stackable="false" disabledeltatime="true" forceplaysounds="true">
+          <Sound file="%ModDir%/Sounds/un_sg1.ogg" type="OnUse" range="3000" selectionmode="Random" />
+          <Sound file="%ModDir%/Sounds/un_sg2.ogg" type="OnUse" range="3000" />
+          <Conditional HasStatusTag="neq suppressed" />
+        </StatusEffect>
+        <StatusEffect type="OnUse" target="This" stackable="false" disabledeltatime="true" forceplaysounds="true">
+          <Sound file="%ModDir%/Sounds/tsg_sup.ogg" range="300" />
+          <Conditional HasStatusTag="suppressed" />
+        </StatusEffect>
+        <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
+        <StatusEffect type="OnUse">
+          <Explosion range="100.0" force="1.55" shockwave="false" smoke="false" flames="false" sparks="false" underwaterbubble="false" camerashake="24.0" />
+          <ParticleEmitter particle="co_shellcasing_shotgun" emitinterval="2.1" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="100" velocitymax="200" copyentityangle="true" scalemin="0.5" scalemax="0.5" />
+        </StatusEffect>
+        <RequiredItems items="shotgunammo" type="Contained" msg="ItemMsgAmmoRequired" />
+        <RequiredSkill identifier="weapons" level="70" />
+        <StatusEffect type="OnUse" target="this" spread="8" unskilledspread="12" stackable="true" setvalue="false" disabledeltatime="true">
+          <Conditional Spread="lt 50" />
+        </StatusEffect>
+        <StatusEffect type="Always" target="this" spread="-0.23" stackable="true" disabledeltatime="true" setvalue="false" conditional="or">
+          <Conditional Spread="gt 1" />
+        </StatusEffect>
+        <StatusEffect type="Always" target="this" unskilledspread="-0.2" stackable="true" disabledeltatime="true" setvalue="false" conditional="or">
+          <Conditional unskilledspread="gt 5" />
+        </StatusEffect>
+        <StatusEffect type="OnUse" target="This">
+          <Explosion range="620" structuredamage="0" itemdamage="0" smoke="false" flames="false" force="0" sparks="false" shockwave="false" underwaterbubble="false" camerashake="0" flash="false" playtinnitus="false">
+            <Affliction identifier="gunshotconcussion" strength="47" />
+          </Explosion>
+          <Conditional HasStatusTag="neq suppressed" />
+        </StatusEffect>
+      </RangedWeapon>
+      <SkillRequirementHint identifier="weapons" level="70" />
+      <ItemContainer capacity="7" maxstacksize="1" hideitems="false" itempos="-42,10" containedspritedepths="0.551" showcontainedstateindicator="false" slotsperrow="2">
+        <Containable items="shotgunammo" hide="true" />
+        <SlotIcon texture="%ModDir%/magazineicons.png" sourcerect="620,51,240,240" origin="0.45,0.5" />
+        <SlotIcon slotindex="7" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
+        <SlotIcon slotindex="8" texture="%ModDir%/magazineicons.png" sourcerect="872,55,240,240" origin="0.45,0.5" />
+        <SubContainer capacity="1" maxstacksize="1">
+          <Containable items="attachment_light" setactive="true" itempos="20,0" hide="false"></Containable>
+        </SubContainer>
+        <SubContainer capacity="1" maxstacksize="1">
+          <Containable items="attachment_suppressor_12,chokeattachment" itempos="62,5" hide="false"></Containable>
+        </SubContainer>
+      </ItemContainer>
+      <CustomInterface canbeselected="true" drawhudwhenequipped="true">
+        <GuiFrame relativesize="0.12,0.08" anchor="BottomLeft" absoluteoffset="20,128" style="ItemUI" />
+        <TickBox text="Tactical Light(If attached)">
+          <StatusEffect type="OnUse" target="Contained" tags="on" duration="0.05" disabledeltatime="true" />
+          <StatusEffect type="OnSecondaryUse" target="Contained" tags="off" duration="0.05" disabledeltatime="true" />
+        </TickBox>
+      </CustomInterface>
+      <aitarget sightrange="3000" soundrange="4000" fadeouttime="2">
+        <StatusEffect type="Always" target="This" sightrange="30" soundrange="40" stackable="false" setvalue="true">
+          <Conditional HasStatusTag="suppressed" />
+        </StatusEffect>
+        <StatusEffect type="Always" target="This" sightrange="3000" soundrange="4000" stackable="false" setvalue="true">
+          <Conditional HasStatusTag=" neq suppressed" />
+        </StatusEffect>
+      </aitarget>
+      <Upgrade gameversion="0.10.0.0" scale="0.5" />
+    </Item>
+    <Item name="" description="" identifier="shotgun_toz" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,mountableweapon,gun" Scale="0.45" impactsoundtag="mediumwepimpact" allowasextracargo="true">
+      <PreferredContainer primary="secarmcab" />
+      <PreferredContainer secondary="wreckstoragecab" minamount="0" maxamount="1" spawnprobability="0.02" />
+      <PreferredContainer secondary="wreckarmcab" minamount="0" maxamount="1" spawnprobability="0.04" />
+      <PreferredContainer secondary="abandonedarmcab" minamount="0" maxamount="1" spawnprobability="0.02" />
+      <PreferredContainer primary="armcab" secondary="locker" />
+      <Price baseprice="800" buyingpricemultiplier="2">
+        <Price storeidentifier="merchantoutpost" sold="false" />
+        <Price storeidentifier="merchantcity" sold="false" />
+        <Price storeidentifier="merchantresearch" sold="false" />
+        <Price storeidentifier="merchantarmory" multiplier="0.9" sold="false" />
+        <Price storeidentifier="merchantmine" multiplier="0.9" sold="false" />
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="steel" />
+        <Item identifier="titanium" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="weaponry_arsenal" requiredtime="0" />
+      <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="14,803,213,68" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="19,806,204,62" depth="0.55" origin="0.5,0.25" />
+      <BrokenSprite texture="%ModDir%/CO_spritelist_pistols.png" ssourcerect="19,806,204,62" depth="0.55" origin="0.5,0.35" maxcondition="98" sourcerect="18,801,206,69" />
+      <Body width="180" height="30" density="50" />
+      <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="60,-10" aimpos="63,3" handle1="-35,-15" handle2="-20,-5" holdangle="-40" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
+          <Conditional hasstatustag="neq medical" />
+          <Conditional hasstatustag="worn" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="this" showtexts="true" disabledeltatime="true" setvalue="true" comparison="AND">
+          <Conditional hasstatustag="medical" />
+          <RequiredItems items="medscanner_t" type="Contained" />
+          <Conditional hasstatustag="neq worn" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
+        <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
+        <StatusEffect type="OnSecondaryUse" target="Character,This" SpeedMultiplier="1.3" setvalue="true" disabledeltatime="true">
+          <Conditional HasStatusTag="laser" />
+        </StatusEffect>
+      </Holdable>
+      <StatusHUD drawhudwhenequipped="true" range="2700" thermalgoggles="false" showdeadcharacters="false" showtexts="false" overlaycolor="0,0,0,0" />
+      <RangedWeapon barrelpos="85,10" spread="1" unskilledspread="4" weapondamagemodifier="1" combatPriority="120" reload="0" drawhudwhenequipped="true" crosshairscale="0.2">
+        <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+        <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+        <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
+        <Sound file="%ModDir%/Sounds/shotgun_2.ogg" type="OnUse" range="3000" />
+        <StatusEffect type="OnUse">
+          <Explosion range="150.0" force="1.1" shockwave="false" smoke="false" flash="true" sparks="false" flames="false" underwaterbubble="false" camerashake="14.0" />
+        </StatusEffect>
+        <RequiredItems items="shotgunammo" type="Contained" msg="ItemMsgAmmoRequired" />
+        <RequiredSkill identifier="weapons" level="55" />
+        <StatusEffect type="OnUse" target="this" Condition="100" stackable="false" delay="1.50" SetValue="true">
+          <Sound file="%ModDir%/Sounds/close.ogg" type="OnUse" range="800" volume="1.2" />
+        </StatusEffect>
+        <StatusEffect type="OnUse" target="this" delay="0.82">
+          <ParticleEmitter particle="co_shellcasing_shotgun" emitinterval="2.1" particleamount="1" particlespersecond="50" anglemin="90" anglemax="270" velocitymin="180" velocitymax="270" copyentityangle="true" scalemin="0.4" scalemax="0.4" />
+        </StatusEffect>
+        <StatusEffect type="OnUse" target="this" Condition="95" stackable="false" SetValue="true" delay="0.55">
+          <Sound file="%ModDir%/Sounds/open.ogg" type="OnUse" range="800" volume="1.2" />
+        </StatusEffect>
+        <StatusEffect type="OnUse" target="This" reload="1.8" setvalue="true" />
+        <StatusEffect type="OnUse" target="This" reload="0" setvalue="true" delay="1.8" />
+        <StatusEffect type="OnUse" target="This">
+          <Explosion range="620" structuredamage="0" itemdamage="0" smoke="false" flames="false" force="0" sparks="false" shockwave="false" underwaterbubble="false" camerashake="0" flash="false" playtinnitus="false">
+            <Affliction identifier="gunshotconcussion" strength="48" />
+          </Explosion>
+          <Conditional HasStatusTag="neq suppressed" />
+        </StatusEffect>
+      </RangedWeapon>
+      <ItemContainer capacity="2" maxstacksize="1" itempos="27,10" iteminterval="0,-4" hideitems="true" showcontainedstateindicator="false">
+        <Containable items="shotgunammo" />
+        <SlotIcon texture="%ModDir%/magazineicons.png" sourcerect="620,51,240,240" origin="0.45,0.5" />
+        <SlotIcon slotindex="2" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
+        <SubContainer capacity="1" maxstacksize="1">
+          <Containable items="attachment_light" setactive="true" itempos="11,2" hide="false"></Containable>
+        </SubContainer>
+      </ItemContainer>
+      <SkillRequirementHint identifier="weapons" level="55" />
+      <CustomInterface canbeselected="true" drawhudwhenequipped="true">
+        <GuiFrame relativesize="0.12,0.08" anchor="BottomLeft" absoluteoffset="20,128" style="ItemUI" />
+        <TickBox text="Tactical Light(If attached)">
+          <StatusEffect type="OnUse" target="Contained" tags="on" duration="0.05" disabledeltatime="true" />
+          <StatusEffect type="OnSecondaryUse" target="Contained" tags="off" duration="0.05" disabledeltatime="true" />
+        </TickBox>
+      </CustomInterface>
+      <aitarget sightrange="3000" soundrange="5000" fadeouttime="5" />
+    </Item>
+    <Item name="" description="" identifier="shotgun_air" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,mountableweapon,gun,gunsmith,12_gun" Scale="0.45" impactsoundtag="mediumwepimpact">
+      <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.08" />
+      <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.05" />
+      <PreferredContainer primary="abandonedarmcab" minamount="0" maxamount="1" spawnprobability="0.07" />
+      <PreferredContainer primary="armcab" />
+      <PreferredContainer secondary="secarmcab" />
+      <Price baseprice="1050" soldeverywhere="false" buyingpricemultiplier="2">
+        <Price locationtype="outpost" multiplier="1.2" sold="false" />
+        <Price locationtype="city" multiplier="1.25" minavailable="1" />
+        <Price locationtype="research" multiplier="1.25" sold="false" />
+        <Price locationtype="military" multiplier="0.9" minavailable="2" />
+        <Price locationtype="mine" multiplier="1.25" minavailable="1" />
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="steel" />
+        <Item identifier="titaniumaluminiumalloy" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="weaponry_arsenal" requiredtime="0" />
+      <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
+        <StatusEffect type="OnWearing" targettype="This" tags="worn" duration="0.05" setvalue="true" thermalgoggles="false" showtexts="false" overlaycolor="176,0,0,0" />
+        <sprite name="SG600 Worn" texture="%ModDir%/CO_spritelist.png" canbehiddenbyotherwearables="false" rotation="90" inheritlimbdepth="false" depth="0.6" sourcerect="7,733,243,54" limb="Torso" ignorelimbscale="true" scale="0.45" origin="0.5,0.9" />
+      </Wearable>
+      <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="3,713,253,92" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="7,733,243,54" depth="0.55" origin="0.5,0.25" />
+      <BrokenSprite texture="%ModDir%/CO_spritelist_pistols.png" sourcerect="9,32,243,54" depth="0.55" origin="0.5,0.25" maxcondition="98" />
+      <Body width="180" height="30" density="50" />
+      <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="40,-10" aimpos="60,4" handle1="-35,-16" handle2="26,0" holdangle="-40" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnActive" target="This" barrelpos="160,5" stackable="false" setvalue="true">
+          <Conditional HasStatusTag="suppressed" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="This" barrelpos="80,5" stackable="false" setvalue="true" comparison="AND">
+          <Conditional HasStatusTag="neq suppressed" />
+          <Conditional HasStatusTag="neq underwater" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
+          <RequiredItem items="12_suppressor" type="Contained" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
+          <Conditional hasstatustag="neq medical" />
+          <Conditional hasstatustag="worn" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="this" showtexts="true" disabledeltatime="true" setvalue="true" comparison="AND">
+          <Conditional hasstatustag="medical" />
+          <RequiredItems items="medscanner_t" type="Contained" />
+          <Conditional hasstatustag="neq worn" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
+        <StatusEffect type="Always" targettype="This" tags="underwater" duration="0.05" setvalue="true">
+          <RequiredItem items="co_shootunderwater" type="Contained" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="This" reload="1.5" stackable="false" setvalue="true">
+          <Conditional HasStatusTag="neq underwater" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="This" reload="1.8" barrelpos="115,5" stackable="false" setvalue="true">
+          <Conditional HasStatusTag="underwater" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="NearbyItems,This" targettags="shotgunammo" range="35" tags="choke" duration="1" interval="1" stackable="false">
+          <RequiredItems items="co_choke" type="Contained" />
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="Contained,This" tags="fire" duration="1" interval="1.1" setvalue="true">
+          <RequiredItems items="fireattachment" type="Contained" />
+        </StatusEffect>
+        <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
+        <StatusEffect type="OnSecondaryUse" target="Character,This" SpeedMultiplier="1.3" setvalue="true" disabledeltatime="true">
+          <Conditional HasStatusTag="laser" />
+        </StatusEffect>
+      </Holdable>
+      <SkillRequirementHint identifier="weapons" level="45" />
+      <StatusHUD drawhudwhenequipped="true" range="2700" thermalgoggles="false" showdeadcharacters="false" showtexts="false" overlaycolor="0,0,0,0" />
+      <RangedWeapon barrelpos="80,5" spread="1" unskilledspread="5" weapondamagemodifier="1.2" combatPriority="80" reload="1.5" drawhudwhenequipped="true" crosshairscale="0.2">
+        <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+        <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+        <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
+        <StatusEffect type="OnUse" target="This" stackable="false" disabledeltatime="true" forceplaysounds="true">
+          <Sound file="%ModDir%/Sounds/shotgun_2.ogg" type="OnUse" range="3000" />
+          <Conditional HasStatusTag="neq suppressed" />
+        </StatusEffect>
+        <StatusEffect type="OnUse" target="This" stackable="false" disabledeltatime="true" forceplaysounds="true">
+          <Sound file="%ModDir%/Sounds/asg_sup.ogg" range="300" volume="1.25" />
+          <Conditional HasStatusTag="suppressed" />
+        </StatusEffect>
+        <StatusEffect type="OnUse">
+          <Explosion range="150.0" force="3.5" shockwave="false" smoke="false" flash="true" sparks="false" flames="false" underwaterbubble="false" camerashake="30.0" />
+        </StatusEffect>
+        <StatusEffect type="OnUse" target="this" Condition="100" stackable="false" delay="1.4" SetValue="true" />
+        <StatusEffect type="OnUse" target="this" Condition="95" stackable="false" SetValue="true" delay="1.1" />
+        <StatusEffect type="OnUse" delay="1.2">
+          <Explosion range="150.0" force="0.5" shockwave="false" smoke="false" flash="false" sparks="false" flames="false" underwaterbubble="false" camerashake="35.0" />
+          <ParticleEmitter particle="co_shellcasing_shotgun" emitinterval="2.1" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="100" velocitymax="200" copyentityangle="true" scalemin="0.5" scalemax="0.5" />
+          <Sound file="%ModDir%/Sounds/shotgun_cock2.ogg" type="OnUse" range="3000" />
+        </StatusEffect>
+        <RequiredItems items="shotgunammo" type="Contained" msg="ItemMsgAmmoRequired" />
+        <RequiredSkill identifier="weapons" level="45" />
+        <StatusEffect type="Always" targettype="This" Condition="0" SetValue="true" comparison="AND" delay="0.02" checkconditionalalways="true">
+          <!-- jam  in water -->
+          <Conditional InWater="true" />
+          <Conditional HasStatusTag="neq underwater" />
+        </StatusEffect>
+        <StatusEffect type="Always" target="This" Condition="1000" disabledeltatime="true" delay="6" stackable="false" checkconditionalalways="true" comparison="And">
+          <Sound file="%ModDir%/Sounds/shotgun_cock2.ogg" type="OnUse" range="3000" />
+          <Conditional InWater="false" />
+          <Conditional Condition="0" />
+        </StatusEffect>
+        <StatusEffect type="OnUse" target="This">
+          <Explosion range="620" structuredamage="0" itemdamage="0" smoke="false" flames="false" force="0" sparks="false" shockwave="false" underwaterbubble="false" camerashake="0" flash="false" playtinnitus="false">
+            <Affliction identifier="gunshotconcussion" strength="43" />
+          </Explosion>
+          <Conditional HasStatusTag="neq suppressed" />
+        </StatusEffect>
+      </RangedWeapon>
+      <ItemContainer capacity="5" maxstacksize="1" itempos="27,10" iteminterval="0,-4" hideitems="false" showcontainedstateindicator="false">
+        <Containable items="shotgunammo" hide="true" />
+        <SlotIcon texture="%ModDir%/magazineicons.png" sourcerect="620,51,240,240" origin="0.45,0.5" />
+        <SlotIcon slotindex="5" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
+        <SlotIcon slotindex="6" texture="%ModDir%/magazineicons.png" sourcerect="872,55,240,240" origin="0.45,0.5" />
+        <SubContainer capacity="1" maxstacksize="1">
+          <Containable items="attachment_light" setactive="true" itempos="11,2" hide="false"></Containable>
+        </SubContainer>
+        <SubContainer capacity="1" maxstacksize="1">
+          <Containable items="attachment_suppressor_12,attachment_uw,chokeattachment" itempos="71,-1" hide="false"></Containable>
+        </SubContainer>
+      </ItemContainer>
+      <CustomInterface canbeselected="true" drawhudwhenequipped="true">
+        <GuiFrame relativesize="0.12,0.08" anchor="BottomLeft" absoluteoffset="20,128" style="ItemUI" />
+        <TickBox text="Tactical Light(If attached)">
+          <StatusEffect type="OnUse" target="Contained" tags="on" duration="0.05" disabledeltatime="true" />
+          <StatusEffect type="OnSecondaryUse" target="Contained" tags="off" duration="0.05" disabledeltatime="true" />
+        </TickBox>
+      </CustomInterface>
+      <aitarget sightrange="3000" soundrange="4000" fadeouttime="2">
+        <StatusEffect type="Always" target="This" sightrange="30" soundrange="40" stackable="false" setvalue="true">
+          <Conditional HasStatusTag="suppressed" />
+        </StatusEffect>
+        <StatusEffect type="Always" target="This" sightrange="3000" soundrange="4000" stackable="false" setvalue="true">
+          <Conditional HasStatusTag=" neq suppressed" />
+        </StatusEffect>
+      </aitarget>
+      <Upgrade gameversion="0.10.0.0" scale="0.5" />
+    </Item>
+  </override>
+</Items>

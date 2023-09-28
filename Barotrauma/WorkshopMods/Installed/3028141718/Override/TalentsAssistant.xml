@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Talents>
+    <Talent identifier="graduationceremony">
+      <Icon texture="Content/UI/TalentsIcons2.png" sheetindex="2,5" sheetelementsize="128,128" />
+      <Description tag="talentdescription.unlockapprenticeshiptalents" />
+      <Description tag="talentdescription.unlockrecipe">
+        <Replace tag="[itemname]" value="E 832 Power Sword" color="gui.orange" />
+      </Description>
+      <AddedRecipe itemidentifier="powersword" />
+      <AbilityGroupEffect abilityeffecttype="None">
+        <Conditions>
+          <AbilityConditionHasPermanentStat statidentifier="graduationceremony" min="1" invert="true" />
+        </Conditions>
+        <Abilities>
+          <CharacterAbilityUnlockApprenticeshipTalentTree />
+          <CharacterAbilityGivePermanentStat statidentifier="graduationceremony" value="1" />
+        </Abilities>
+      </AbilityGroupEffect>
+    </Talent>
+    <Talent identifier="waterprankster">
+      <Icon texture="Content/UI/TalentsIcons2.png" sheetindex="5,5" sheetelementsize="128,128" />
+      <Description tag="talentdescription.unlockrecipe">
+        <Replace tag="[itemname]" value="entityname.clowndivingmask" color="gui.orange" />
+      </Description>
+      <Description tag="talentdescription.clownpowerbenefits" />
+      <Description tag="talentdescription.additionalstattype">
+        <Replace tag="[amount]" value="15" color="gui.green" />
+        <Replace tag="[stattype]" value="stattypenames.swimmingspeed" color="gui.orange" />
+      </Description>
+      <AbilityGroupInterval>
+        <Conditions>
+          <AbilityConditionHasAffliction afflictionidentifier="clownpower" />
+        </Conditions>
+        <Abilities>
+          <CharacterAbilityModifyStat stattype="SwimmingSpeed" value="0.15" />
+        </Abilities>
+      </AbilityGroupInterval>
+      <AddedRecipe itemidentifier="clowndivingmask" />
+    </Talent>
+    <Talent identifier="psychoclown">
+      <Icon texture="Content/UI/TalentsIcons2.png" sheetindex="7,5" sheetelementsize="128,128" />
+      <Description tag="talentdescription.psychoclown">
+        <Replace tag="[afflictionname]" value="afflictionname.clownpower" color="gui.orange" />
+        <Replace tag="[maxattackspeed]" value="150" color="gui.green" />
+      </Description>
+      <Description tag="talentdescription.unlockrecipe">
+        <Replace tag="[itemname]" value="Honk-9" color="gui.orange" />
+      </Description>
+      <AddedRecipe itemidentifier="bikehorn_919" />
+      <AbilityGroupInterval>
+        <Conditions>
+          <AbilityConditionHasAffliction afflictionidentifier="clownpower" />
+        </Conditions>
+        <Abilities>
+          <CharacterAbilityPsychoClown stattype="MeleeAttackSpeed" maxvalue="1.5" afflictionidentifier="psychosis" />
+        </Abilities>
+      </AbilityGroupInterval>
+    </Talent>
+    <Talent identifier="truepotential">
+      <Icon texture="Content/UI/TalentsIcons2.png" sheetindex="1,6" sheetelementsize="128,128" />
+      <Description tag="talentdescription.truepotentialtemporary">
+        <Replace tag="[affliction]" value="afflictionname.combatstimulant" color="gui.orange" />
+        <Replace tag="[duration]" value="5" color="gui.green" />
+      </Description>
+      <Description tag="talentdescription.unlockrecipe">
+        <Replace tag="[itemname]" value="entityname.clownexosuit" color="gui.orange" />
+      </Description>
+      <AbilityGroupEffect abilityeffecttype="OnAttack">
+        <Conditions>
+          <AbilityConditionCharacterUnconcious />
+          <AbilityConditionAttackData itemidentifier="toyhammer" />
+        </Conditions>
+        <Abilities>
+          <CharacterAbilityGiveAffliction affliction="combatstimulant" strength="5" setvalue="true" />
+          <CharacterAbilityReduceAffliction affliction="oxygenlow" amount="200" />
+        </Abilities>
+      </AbilityGroupEffect>
+      <AddedRecipe itemidentifier="clownexosuit" />
+    </Talent>
+  </Talents>
+</Override>

@@ -1,0 +1,1551 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <npcsets>
+    <!-- Coalition -->
+    <npcset identifier="de_coalitioncombat">
+      <npc identifier="soldiercoalition" job="securityofficer" tags="coalitionsoldier" behavior="Patrol" healthmultiplier="0.5" healthmultiplierinmultiplayer="1.5" aimspeed="0.8" aimaccuracy="0.75" reportrange="1500">
+        <ItemSet commonness="1">
+          <Item identifier="securityuniform1" equip="true" />
+          <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+          <Item identifier="idcardcoalitionsoldier" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="divingknife" />
+          <Item identifier="9mm_smg_water">
+            <Item identifier="smg9mm_magazine">
+              <Item identifier="9mm_round" showpreview="false" amount="25" />
+            </Item>
+          </Item>
+          <Item identifier="bodyarmor" equip="true" />
+          <Item identifier="ballistichelmet3" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="0.5">
+          <Item identifier="securityuniform2" equip="true" />
+          <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+          <Item identifier="idcardcoalitionsoldier" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="45_pistol_uw">
+            <Item identifier="pistol45_magazine">
+              <Item identifier="45_round" showpreview="false" amount="8" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="bodyarmor" equip="true" />
+          <Item identifier="ballistichelmet1" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="0.5">
+          <Item identifier="securityuniform3" equip="true" />
+          <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+          <Item identifier="idcardcoalitionsoldier" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="shotgun_air">
+            <Item identifier="shotgunshell" amount="6" />
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="bodyarmor" equip="true" />
+          <Item identifier="ballistichelmet1" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+    </npcset>
+    <!-- Separatists-->
+    <npcset identifier="de_separatistscombat">
+      <npc identifier="soldierseparatists" job="securityofficer" tags="separatistssoldier" behavior="Patrol" healthmultiplier="0.5" healthmultiplierinmultiplayer="1.5" aimspeed="0.8" aimaccuracy="0.75" reportrange="1500">
+        <ItemSet>
+          <Item identifier="pirateclothes" equip="true" />
+          <Item identifier="piratebodyarmor" equip="true" />
+          <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+          <Item identifier="idcardseparatistsoldier" />
+          <Item identifier="9_smg_un">
+            <Item identifier="smg9mm_magazine">
+              <Item identifier="9mm_round" showpreview="false" amount="13" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="pirateclotheshard" equip="true" />
+          <Item identifier="piratebodyarmor" equip="true" />
+          <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+          <Item identifier="idcardseparatistsoldier" />
+          <Item identifier="divingknife" />
+          <Item identifier="antibleeding1" />
+          <Item identifier="45_rifle">
+            <Item identifier="clip45">
+              <Item identifier="45_round" showpreview="false" amount="10" />
+            </Item>
+          </Item>
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="pirateclotheshard" equip="true" />
+          <Item identifier="piratebodyarmor" equip="true" />
+          <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+          <Item identifier="idcardseparatistsoldier" />
+          <Item identifier="revolver_44" equip="false">
+            <Item identifier="44_round" />
+            <Item identifier="44_round" />
+            <Item identifier="44_round" />
+            <Item identifier="44_round" />
+            <Item identifier="44_round" />
+            <Item identifier="44_round" />
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="antibleeding1" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+    </npcset>
+    <!-- NORMAL PIRATES -->
+    <npcset identifier="pirate_npcs">
+      <npc identifier="piratecaptain" moduleflags="none" job="captain" behavior="Patrol" healthmultiplier="1" aimspeed="1.3" aimaccuracy="0.3">
+        <ItemSet commonness="1">
+          <Item identifier="idcard" equip="true" showpreview="false" />
+          <Item identifier="piratecaptainhat" equip="true" />
+          <Item identifier="pirateclothes" equip="true" outfit="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="44_round" />
+          <Item identifier="revolver_44" equip="false">
+            <Item identifier="44_round" />
+            <Item identifier="44_round" />
+            <Item identifier="44_round" />
+            <Item identifier="44_round" />
+            <Item identifier="44_round" />
+            <Item identifier="44_round" />
+          </Item>
+          <Item identifier="captainspipe" equip="false" />
+        </ItemSet>
+        <ItemSet commonness="1">
+          <Item identifier="idcard" equip="true" showpreview="false" />
+          <Item identifier="piratecaptainhat" equip="true" />
+          <Item identifier="pirateclothes" equip="true" outfit="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="45_pistol_uw">
+            <Item identifier="pistol45_magazine">
+              <Item identifier="45_round" showpreview="false" amount="8" />
+            </Item>
+          </Item>
+          <Item identifier="pistol45_magazine">
+            <Item identifier="45_round" showpreview="false" amount="4" />
+          </Item>
+          <Item identifier="captainspipe" equip="false" />
+        </ItemSet>
+      </npc>
+      <npc identifier="piratecaptainlord" moduleflags="none" job="captain" behavior="Patrol" healthmultiplier="1.1" aimspeed="1.2" aimaccuracy="0.7">
+        <ItemSet commonness="1">
+          <Item identifier="idcard" equip="true" showpreview="false" />
+          <Item identifier="piratecaptainhat" equip="true" />
+          <Item identifier="pirateclotheshard" equip="true" outfit="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="groza45">
+            <Item identifier="5.45mm_magazine">
+              <Item identifier="5.45mm_round" showpreview="false" amount="25" />
+            </Item>
+          </Item>
+          <Item identifier="captainspipe" equip="false" />
+        </ItemSet>
+      </npc>
+      <npc identifier="piratesecurityrecruit" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="1" aimspeed="1" aimaccuracy="0.3">
+        <ItemSet commonness="1">
+          <Item identifier="pirateclothesnovice" equip="true" outfit="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="divingknife" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="45_carbine">
+            <Item identifier="pistol45_magazine">
+              <Item identifier="45_round" showpreview="false" amount="8" />
+            </Item>
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="0.5">
+          <Item identifier="pirateclothesnovice" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="harpoongun">
+            <Item identifier="spear" />
+            <Item identifier="spear" />
+            <Item identifier="spear" />
+            <Item identifier="spear" />
+            <Item identifier="spear" />
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="piratesecuritygunner" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="0.95" aimspeed="1.2" aimaccuracy="0.6">
+        <ItemSet commonness="1">
+          <Item identifier="pirateclothes" equip="true" outfit="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="9mm_pistol_water">
+            <Item identifier="pistol9mm_magazine">
+              <Item identifier="9mm_round_ap" showpreview="false" amount="10" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="ballistichelmet2" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="1">
+          <Item identifier="pirateclothes" equip="true" outfit="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="38_carbine">
+            <Item identifier="38_magazine">
+              <Item identifier="38_round_ap" showpreview="false" amount="8" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="ballistichelmet2" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="piratesecuritybrute" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="1.2" aimspeed="1" aimaccuracy="0.3">
+        <ItemSet commonness="1">
+          <Item identifier="pirateclothes" equip="true" outfit="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="shotgun_water">
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="piratebodyarmor" equip="true" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="0.5">
+          <Item identifier="pirateclothes" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="9mm_smg_water">
+            <Item identifier="smg9mm_magazine">
+              <Item identifier="9mm_round" showpreview="false" amount="25" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="piratebodyarmor" equip="true" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="piratesecurityelite" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="1.1" aimspeed="1.8" aimaccuracy="0.8">
+        <ItemSet commonness="1">
+          <Item identifier="pirateclotheshard" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="545_ar_bandit">
+            <Item identifier="5.45mm_magazine">
+              <Item identifier="5.45mm_round" showpreview="false" amount="25" />
+            </Item>
+          </Item>
+          <Item identifier="5.45mm_magazine">
+            <Item identifier="5.45mm_round_sb" showpreview="false" amount="15" />
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="piratebodyarmor" equip="true" />
+          <Item identifier="piratehelmet" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="0.3">
+          <Item identifier="pirateclotheshard" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="grenadelauncher">
+            <Item identifier="40mmgrenade" />
+          </Item>
+          <Item identifier="40mmgrenade" />
+          <Item identifier="40mmgrenade" />
+          <Item identifier="9mm_pistol">
+            <Item identifier="pistol9mm_magazine">
+              <Item identifier="9mm_round" showpreview="false" amount="10" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="piratebodyarmor" equip="true" />
+          <Item identifier="piratehelmet" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="pirateengineerveteran" job="engineer" behavior="Patrol" healthmultiplier="1" aimspeed="0.8" aimaccuracy="0.3">
+        <ItemSet commonness="1">
+          <Item identifier="militaryclothes_eng" equip="true" />
+          <Item identifier="balaklava" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="crowbar" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+          <Item identifier="7.62mm_round" />
+          <Item identifier="7.62mm_round" />
+          <Item identifier="7.62mm_round" />
+          <Item identifier="762pipegun">
+            <Item identifier="7.62mm_round" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="piratemechanicveteran" job="mechanic" healthmultiplier="1" aimspeed="0.8" aimaccuracy="0.3">
+        <ItemSet commonness="1">
+          <Item identifier="militaryclothes_eng" equip="true" />
+          <Item identifier="balaklava" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+          <Item identifier="44pipegun">
+            <Item identifier="44_round" />
+            <Item identifier="44_round" />
+            <Item identifier="44_round" />
+            <Item identifier="44_round" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="piratemechanicrecruit" job="mechanic" healthmultiplier="0.9" aimspeed="0.6" aimaccuracy="0.3">
+        <ItemSet>
+          <Item identifier="pirateclothesnovice" equip="true" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="pirateengineerrecruit" job="engineer" commonness="1" behavior="Patrol" healthmultiplier="0.9" aimspeed="0.8" aimaccuracy="0.3">
+        <ItemSet>
+          <Item identifier="pirateclothesnovice" equip="true" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="crowbar" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="pirateannihilator" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="1.2" aimspeed="1.8" aimaccuracy="0.8">
+        <ItemSet commonness="0.4">
+          <Item identifier="pirateclotheshard" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="piratehelmet" equip="true" />
+          <Item identifier="smg9mm_com" equip="true">
+            <Item identifier="smg9mm_magazine">
+              <Item identifier="9mm_round_hs" showpreview="false" amount="25" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="exosuitPA" equip="true">
+            <Item identifier="oxygentank" />
+            <Item identifier="fulguriumbatterycell" />
+          </Item>
+          <Item identifier="fulguriumbatterycell" />
+          <Item identifier="fulguriumbatterycell" />
+          <Item identifier="exosuitpartsPA" />
+        </ItemSet>
+        <ItemSet commonness="0.3">
+          <Item identifier="pirateclotheshard" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="piratehelmet" equip="true" />
+          <Item identifier="machinegun_alt">
+            <Item identifier="mg_magazine">
+              <Item identifier="mg_round" showpreview="false" amount="80" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="exosuitPA" equip="true">
+            <Item identifier="oxygentank" />
+            <Item identifier="fulguriumbatterycell" />
+          </Item>
+          <Item identifier="fulguriumbatterycell" />
+          <Item identifier="fulguriumbatterycell" />
+          <Item identifier="exosuitpartsPA" />
+        </ItemSet>
+        <ItemSet commonness="0.3">
+          <Item identifier="orangejumpsuit1" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="piratehelmet" equip="true" />
+          <Item identifier="nucleargun_alt">
+            <Item identifier="nucleargun_magazine" />
+          </Item>
+          <Item identifier="nucleargun_magazine" />
+          <Item identifier="divingknife" />
+          <Item identifier="exosuitPA" equip="true">
+            <Item identifier="oxygentank" />
+            <Item identifier="fulguriumbatterycell" />
+          </Item>
+          <Item identifier="fulguriumbatterycell" />
+          <Item identifier="exosuitpartsPA" />
+        </ItemSet>
+        <ItemSet commonness="0.5">
+          <Item identifier="orangejumpsuit1" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="piratehelmet" equip="true" />
+          <Item identifier="pyrogenrifle">
+            <Item identifier="pyrogentank" />
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="exosuitPA" equip="true">
+            <Item identifier="oxygentank" />
+            <Item identifier="fulguriumbatterycell" />
+          </Item>
+          <Item identifier="fulguriumbatterycell" />
+          <Item identifier="exosuitpartsPA" />
+        </ItemSet>
+      </npc>
+      <npc identifier="piratediver" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="0.95" aimspeed="0.8" aimaccuracy="0.6">
+        <ItemSet commonness="0.4">
+          <Item identifier="pirateclothes" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="piratedivingsuitmakeshift" equip="true" />
+          <Item identifier="9mm_round" />
+          <Item identifier="revolver_919" equip="false">
+            <Item identifier="9mm_round" />
+            <Item identifier="9mm_round" />
+            <Item identifier="9mm_round" />
+            <Item identifier="9mm_round" />
+            <Item identifier="9mm_round" />
+            <Item identifier="9mm_round" />
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="ballistichelmet2" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="0.4">
+          <Item identifier="pirateclothes" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="piratedivingsuitmakeshift" equip="true" />
+          <Item identifier="9mm_pistol_water2">
+            <Item identifier="pistol9mm_magazine">
+              <Item identifier="9mm_round" showpreview="false" amount="10" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="ballistichelmet2" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="0.3">
+          <Item identifier="pirateclothes" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="piratedivingsuitmakeshift" equip="true" />
+          <Item identifier="9mm_smg_water">
+            <Item identifier="smg9mm_magazine">
+              <Item identifier="9mm_round" showpreview="false" amount="25" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="ballistichelmet2" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="0.3">
+          <Item identifier="pirateclothes" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="piratedivingsuitmakeshift" equip="true" />
+          <Item identifier="pipegun12">
+            <Item identifier="shotgunshell" />
+          </Item>
+          <Item identifier="shotgunshell" />
+          <Item identifier="shotgunshell" />
+          <Item identifier="shotgunshell" />
+          <Item identifier="shotgunshell" />
+          <Item identifier="divingknife" />
+          <Item identifier="ballistichelmet2" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+    </npcset>
+    <!-- Raving Pirates -->
+    <npcset identifier="partypirates">
+      <npc identifier="partypiratecaptain" job="captain" moduleflags="none" behavior="Patrol" healthmultiplier="1" aimspeed="1.3" aimaccuracy="0.3">
+        <ItemSet commonness="1">
+          <Item identifier="idcard" equip="true" showpreview="false" />
+          <Item identifier="piratecaptainhat" equip="true" />
+          <Item identifier="pirateclothes" equip="true" outfit="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="9mm_round" />
+          <Item identifier="revolver_919" equip="false">
+            <Item identifier="9mm_round" />
+            <Item identifier="9mm_round" />
+            <Item identifier="9mm_round" />
+            <Item identifier="9mm_round" />
+            <Item identifier="9mm_round" />
+            <Item identifier="9mm_round" />
+          </Item>
+          <Item identifier="captainspipe" equip="false" />
+          <Item identifier="ethanol" />
+          <Item identifier="rum" />
+          <Item identifier="rum" />
+          <Item identifier="rum" />
+        </ItemSet>
+        <ItemSet commonness="0.5">
+          <Item identifier="idcard" equip="true" showpreview="false" />
+          <Item identifier="clownmaskunique" equip="true" />
+          <Item identifier="clownsuitunique" equip="true" outfit="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="bikehorn_919" equip="false">
+            <Item identifier="9mm_round_ap" />
+          </Item>
+          <Item identifier="9mm_round_ap" amount="5" />
+          <Item identifier="captainspipe" equip="false" />
+          <Item identifier="ethanol" />
+          <Item identifier="ethanol" />
+          <Item identifier="rum" />
+          <Item identifier="rum" />
+        </ItemSet>
+      </npc>
+      <npc identifier="partypiratecaptainlord" job="captain" moduleflags="none" behavior="Patrol" healthmultiplier="1.1" aimspeed="1.2" aimaccuracy="0.7">
+        <ItemSet commonness="1">
+          <Item identifier="idcard" equip="true" showpreview="false" />
+          <Item identifier="piratecaptainhat" equip="true" />
+          <Item identifier="pirateclotheshard" equip="true" outfit="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="shotgun_toz">
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+          </Item>
+          <Item identifier="shotgunshell" />
+          <Item identifier="shotgunshell" />
+          <Item identifier="shotgunshell" />
+          <Item identifier="shotgunshell" />
+          <Item identifier="captainspipe" equip="false" />
+          <Item identifier="rum" />
+          <Item identifier="rum" />
+          <Item identifier="rum" />
+          <Item identifier="rum" />
+        </ItemSet>
+        <ItemSet commonness="0.5">
+          <Item identifier="idcard" equip="true" showpreview="false" />
+          <Item identifier="clownmaskunique" equip="true" />
+          <Item identifier="clownsuitunique" equip="true" outfit="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="shotgun_toz">
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+          </Item>
+          <Item identifier="shotgunshell" />
+          <Item identifier="shotgunshell" />
+          <Item identifier="shotgunshell" />
+          <Item identifier="shotgunshell" />
+          <Item identifier="captainspipe" equip="false" />
+          <Item identifier="ethanol" />
+          <Item identifier="rum" />
+          <Item identifier="rum" />
+          <Item identifier="rum" />
+        </ItemSet>
+      </npc>
+      <npc identifier="partypiratesecurityrecruit" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="0.55" aimspeed="0.8" aimaccuracy="0.3">
+        <ItemSet commonness="1">
+          <Item identifier="pirateclothesnovice" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="divingknife" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="ethanol" />
+          <Item identifier="rum" />
+          <Item identifier="rum" />
+        </ItemSet>
+        <ItemSet commonness="0.5">
+          <Item identifier="militaryclothes_clown" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="co_crossbow">
+            <Item identifier="crossbowboltpoison" />
+          </Item>
+          <Item identifier="crossbowboltpoison" />
+          <Item identifier="crossbowboltpoison" />
+          <Item identifier="divingknife" />
+          <Item identifier="clownmask" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="rum" />
+        </ItemSet>
+      </npc>
+      <npc identifier="partypiratesecuritygunner" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="0.95" aimspeed="1.2" aimaccuracy="0.6">
+        <ItemSet commonness="1">
+          <Item identifier="pirateclothes" equip="true" outfit="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="38_carbine">
+            <Item identifier="38_magazine">
+              <Item identifier="38_round_ap" showpreview="false" amount="8" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="ballistichelmet2" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="1">
+          <Item identifier="militaryclothes_clown" equip="true" outfit="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="9mm_pistol_water">
+            <Item identifier="pistol9mm_magazine">
+              <Item identifier="9mm_round_ap" showpreview="false" amount="10" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="clownmask" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="ethanol" />
+          <Item identifier="rum" />
+          <Item identifier="rum" />
+        </ItemSet>
+      </npc>
+      <npc identifier="partypiratesecuritybrute" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="1.2" aimspeed="1" aimaccuracy="0.3">
+        <ItemSet commonness="1">
+          <Item identifier="pirateclothes" equip="true" outfit="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="shotgun_water">
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="piratebodyarmor" equip="true" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="ethanol" />
+          <Item identifier="rum" />
+        </ItemSet>
+        <ItemSet commonness="0.5">
+          <Item identifier="militaryclothes_clown" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="9mm_smg_water">
+            <Item identifier="smg9mm_magazine">
+              <Item identifier="9mm_round" showpreview="false" amount="25" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="piratebodyarmor" equip="true" />
+          <Item identifier="clownmask" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="ethanol" />
+          <Item identifier="rum" />
+        </ItemSet>
+      </npc>
+      <npc identifier="partypiratesecurityelite" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="1.1" aimspeed="1.8" aimaccuracy="0.8">
+        <ItemSet commonness="1">
+          <Item identifier="pirateclotheshard" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="545_ar_bandit">
+            <Item identifier="5.45mm_magazine">
+              <Item identifier="5.45mm_round" showpreview="false" amount="25" />
+            </Item>
+          </Item>
+          <Item identifier="5.45mm_magazine">
+            <Item identifier="5.45mm_round_sb" showpreview="false" amount="15" />
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="piratebodyarmor" equip="true" />
+          <Item identifier="piratehelmet" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="ethanol" />
+          <Item identifier="rum" />
+        </ItemSet>
+        <ItemSet commonness="0.3">
+          <Item identifier="militaryclothes_clown" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="grenadelauncher">
+            <Item identifier="40mmgrenade" />
+          </Item>
+          <Item identifier="40mmgrenade" />
+          <Item identifier="40mmgrenade" />
+          <Item identifier="9mm_pistol">
+            <Item identifier="pistol9mm_magazine">
+              <Item identifier="9mm_round" showpreview="false" amount="10" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="piratebodyarmor" equip="true" />
+          <Item identifier="clownmask" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="ethanol" />
+          <Item identifier="rum" />
+        </ItemSet>
+      </npc>
+      <npc identifier="partypirateengineerrecruit" job="engineer" commonness="1" behavior="Patrol" healthmultiplier="0.9" aimspeed="0.6" aimaccuracy="0.3">
+        <ItemSet>
+          <Item identifier="pirateclothesnovice" equip="true" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="crowbar" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="1">
+          <Item identifier="pirateclothesnovice" equip="true" />
+          <Item identifier="clownmask" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+          <Item identifier="bikehorn_919" equip="false">
+            <Item identifier="9mm_round_ap" />
+          </Item>
+          <Item identifier="9mm_round_ap" amount="5" />
+          <Item identifier="ethanol" />
+          <Item identifier="rum" />
+        </ItemSet>
+      </npc>
+      <npc identifier="partypirateengineerveteran" job="engineer" behavior="Patrol" healthmultiplier="1" aimspeed="0.8" aimaccuracy="0.3">
+        <ItemSet commonness="1">
+          <Item identifier="militaryclothes_eng" equip="true" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="crowbar" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+          <Item identifier="7.62mm_round" />
+          <Item identifier="7.62mm_round" />
+          <Item identifier="7.62mm_round" />
+          <Item identifier="762pipegun">
+            <Item identifier="7.62mm_round" />
+          </Item>
+          <Item identifier="ethanol" />
+          <Item identifier="rum" />
+        </ItemSet>
+        <ItemSet commonness="1">
+          <Item identifier="militaryclothes_clown" equip="true" />
+          <Item identifier="clownmask" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="crowbar" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+          <Item identifier="incendiumfueltank" />
+          <Item identifier="flamer_co">
+            <Item identifier="incendiumfueltank" />
+          </Item>
+          <Item identifier="ethanol" />
+          <Item identifier="rum" />
+        </ItemSet>
+      </npc>
+      <npc identifier="partypiratemechanicrecruit" job="mechanic" healthmultiplier="0.4" aimspeed="0.6" aimaccuracy="0.3">
+        <ItemSet commonness="1">
+          <Item identifier="pirateclothesnovice" equip="true" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+          <Item identifier="ethanol" />
+          <Item identifier="rum" />
+        </ItemSet>
+        <ItemSet commonness="1">
+          <Item identifier="pirateclothesnovice" equip="true" />
+          <Item identifier="clownmask" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+          <Item identifier="bikehorn_919" equip="false">
+            <Item identifier="9mm_round_ap" />
+          </Item>
+          <Item identifier="9mm_round_ap" amount="5" />
+          <Item identifier="ethanol" />
+          <Item identifier="rum" />
+        </ItemSet>
+      </npc>
+      <npc identifier="partypiratemechanicveteran" job="mechanic" healthmultiplier="0.7" aimspeed="0.6" aimaccuracy="0.3">
+        <ItemSet commonness="1">
+          <Item identifier="militaryclothes_eng" equip="true" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+          <Item identifier="44pipegun">
+            <Item identifier="44_round" />
+            <Item identifier="44_round" />
+            <Item identifier="44_round" />
+            <Item identifier="44_round" />
+          </Item>
+          <Item identifier="ethanol" />
+          <Item identifier="rum" />
+        </ItemSet>
+        <ItemSet commonness="1">
+          <Item identifier="militaryclothes_clown" equip="true" />
+          <Item identifier="clownmask" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="crowbar" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+          <Item identifier="incendiumfueltank" />
+          <Item identifier="flamer_co">
+            <Item identifier="incendiumfueltank" />
+          </Item>
+          <Item identifier="ethanol" />
+          <Item identifier="rum" />
+        </ItemSet>
+      </npc>
+    </npcset>
+    <!-- Coalition -->
+    <npcset identifier="coalition_npcs">
+      <npc identifier="coalition_captain" job="captain" moduleflags="none" tags="coalitionnpc" behavior="Patrol" healthmultiplier="0.62" aimspeed="1.2" aimaccuracy="0.7">
+        <ItemSet commonness="1">
+          <Item identifier="idcard" equip="true" showpreview="false" />
+          <Item identifier="captainscap1" equip="true" />
+          <Item identifier="captainsuniform1" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="revolver_38_talent" equip="false">
+            <Item identifier="38_round" />
+            <Item identifier="38_round" />
+            <Item identifier="38_round" />
+            <Item identifier="38_round" />
+          </Item>
+          <Item identifier="38_round" />
+          <Item identifier="38_round" />
+          <Item identifier="captainspipe" equip="false" />
+        </ItemSet>
+      </npc>
+      <npc identifier="coalition_captainveteran" job="captain" moduleflags="none" tags="coalitionnpc" behavior="Patrol" healthmultiplier="1.1" aimspeed="1.6" aimaccuracy="0.7">
+        <ItemSet commonness="1">
+          <Item identifier="idcard" equip="true" showpreview="false" />
+          <Item identifier="captainscap3" equip="true" />
+          <Item identifier="captainsuniform3" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="9mm_carbine">
+            <Item identifier="smg9mm_magazine">
+              <Item identifier="9mm_round" showpreview="false" amount="25" />
+            </Item>
+          </Item>
+          <Item identifier="coalitionmedal" equip="false" />
+          <Item identifier="cigar" equip="false" />
+        </ItemSet>
+      </npc>
+      <npc identifier="coalition_securityrecruit" job="securityofficer" spawnpointtags="security" tags="coalitionnpc" behavior="Patrol" healthmultiplier="0.85" aimspeed="1.2" aimaccuracy="0.7">
+        <ItemSet commonness="1">
+          <Item identifier="securitypatrolclothes" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="divingknife" />
+          <Item identifier="ballistichelmet1" equip="true" />
+          <Item identifier="harpoongun">
+            <Item identifier="spear" />
+            <Item identifier="spear" />
+            <Item identifier="spear" />
+            <Item identifier="spear" />
+          </Item>
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="0.5">
+          <Item identifier="securitypatrolclothes" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="pocketflamer">
+            <Item identifier="weldingfueltank" />
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="coalition_securitygunner" job="securityofficer" spawnpointtags="security" tags="coalitionnpc" behavior="Patrol" healthmultiplier="1" aimspeed="1.3" aimaccuracy="0.7">
+        <ItemSet>
+          <Item identifier="securityuniform3" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="45_carbine">
+            <Item identifier="pistol45_magazine">
+              <Item identifier="45_round" showpreview="false" amount="8" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="ballistichelmet2" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="coalition_securityenforcer" job="securityofficer" spawnpointtags="security" tags="coalitionnpc" behavior="Patrol" healthmultiplier="0.9" aimspeed="1" aimaccuracy="0.1">
+        <ItemSet commonness="0.5">
+          <Item identifier="securityuniform1" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="divingknife" />
+          <Item identifier="bodyarmor" equip="true" />
+          <Item identifier="38_carbine" equip="false">
+            <Item identifier="38_magazine">
+              <Item identifier="38_round" />
+              <Item identifier="38_round" />
+              <Item identifier="38_round" />
+              <Item identifier="38_round" />
+              <Item identifier="38_round" />
+              <Item identifier="38_round" />
+              <Item identifier="38_round" />
+              <Item identifier="38_round" />
+            </Item>
+          </Item>
+          <Item identifier="ballistichelmet3" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="1">
+          <Item identifier="securityuniform3" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="shotgun_water">
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="bodyarmor" equip="true" />
+          <Item identifier="ballistichelmet1" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="coalition_securityelite" job="securityofficer" spawnpointtags="security" tags="coalitionnpc" behavior="Patrol" healthmultiplier="1.1" aimspeed="2.0" aimaccuracy="0.9">
+        <ItemSet commonness="1">
+          <Item identifier="securityuniform1" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="57_pistol">
+            <Item identifier="57_magazine">
+              <Item identifier="5.7mm_round_lb" amount="10" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="bodyarmor" equip="true" />
+          <Item identifier="ballistichelmet1" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="0.3">
+          <Item identifier="securityuniform1" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="556_ar" equip="true">
+            <Item identifier="5.56_magazine">
+              <Item identifier="5.56mm_round" showpreview="false" amount="25" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="bodyarmor" equip="true" />
+          <Item identifier="ballistichelmet3" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="coalition_engineerrecruit" job="engineer" commonness="1" tags="coalitionnpc" behavior="Patrol" healthmultiplier="0.4" aimspeed="0.8" aimaccuracy="0.3">
+        <ItemSet>
+          <Item identifier="orangejumpsuit1" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="crowbar" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="coalition_engineerveteran" job="engineer" tags="coalitionnpc" behavior="Patrol" healthmultiplier="0.7" aimspeed="0.8" aimaccuracy="0.3">
+        <ItemSet>
+          <Item identifier="orangejumpsuit2" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="crowbar" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="coalition_mechanicrecruit" job="mechanic" tags="coalitionnpc" healthmultiplier="0.4" aimspeed="0.6" aimaccuracy="0.3">
+        <ItemSet>
+          <Item identifier="bluejumpsuit2" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="baseballcap" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="coalition_mechanicveteran" job="mechanic" tags="coalitionnpc" healthmultiplier="0.7" aimspeed="0.6" aimaccuracy="0.3">
+        <ItemSet>
+          <Item identifier="bluejumpsuit1" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="baseballcap" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <!-- Civilians -->
+      <npc identifier="coalition_civilian_medic" job="medicaldoctor">
+        <ItemSet>
+          <Item identifier="commonerclothes1" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_medic,idmedic,id_medical,idmedical,medic" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="commonerclothes2" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_assistant,idassistant,assistant" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="commonerclothes3" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_assistant,idassistant,assistant" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="commonerclothes4" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_assistant,idassistant,assistant" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="commonerclothes5" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_assistant,idassistant,assistant" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="coalition_civilian_assist" job="assistant">
+        <ItemSet>
+          <Item identifier="commonerclothes1" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_assistant,idassistant,assistant" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="commonerclothes2" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_assistant,idassistant,assistant" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="commonerclothes3" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_assistant,idassistant,assistant" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="commonerclothes4" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_assistant,idassistant,assistant" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="commonerclothes5" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_assistant,idassistant,assistant" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="coalition_civilian_eng" job="engineer">
+        <ItemSet>
+          <Item identifier="orangejumpsuit1" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_engineer,idengineer,engineer" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="orangejumpsuit2" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_engineer,idengineer,engineer" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="commonerclothes1" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_engineer,idengineer,engineer" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="commonerclothes2" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_engineer,idengineer,engineer" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="commonerclothes3" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_engineer,idengineer,engineer" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="commonerclothes4" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_engineer,idengineer,engineer" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="commonerclothes5" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_engineer,idengineer,engineer" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="coalition_civilian_mech" job="mechanic">
+        <ItemSet>
+          <Item identifier="bluejumpsuit1" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_mechanic,idmechanic,mechanic" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="bluejumpsuit2" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_mechanic,idmechanic,mechanic" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="commonerclothes1" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_mechanic,idmechanic,mechanic" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="commonerclothes2" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_mechanic,idmechanic,mechanic" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="commonerclothes3" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_mechanic,idmechanic,mechanic" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="commonerclothes4" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_mechanic,idmechanic,mechanic" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet>
+          <Item identifier="commonerclothes5" equip="true" />
+          <Item identifier="idcard" tags="idcard,id_mechanic,idmechanic,mechanic" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+    </npcset>
+    <!-- Separatists -->
+    <npcset identifier="separatist_npcs">
+      <npc identifier="separatist_captain" job="captain" moduleflags="none" behavior="Patrol" healthmultiplier="0.9" aimspeed="1.4" aimaccuracy="0.7">
+        <ItemSet commonness="1">
+          <Item identifier="idcard" equip="true" showpreview="false" />
+          <Item identifier="piratecaptainhat" equip="true" />
+          <Item identifier="pirateclothes" equip="true" outfit="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="45_smg_micro">
+            <Item identifier="smg45_magazine">
+              <Item identifier="45_round" showpreview="false" amount="20" />
+            </Item>
+          </Item>
+          <Item identifier="captainspipe" equip="false" />
+        </ItemSet>
+      </npc>
+      <npc identifier="separatist_captainveteran" job="captain" moduleflags="none" behavior="Patrol" healthmultiplier="1.1" aimspeed="1.8" aimaccuracy="0.9">
+        <ItemSet commonness="1">
+          <Item identifier="idcard" equip="true" showpreview="false" />
+          <Item identifier="piratecaptainhat" equip="true" />
+          <Item identifier="pirateclotheshard" equip="true" outfit="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="shotgun_toz">
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+          </Item>
+          <Item identifier="shotgunshell" />
+          <Item identifier="shotgunshell" />
+          <Item identifier="shotgunshell" />
+          <Item identifier="shotgunshell" />
+          <Item identifier="captainspipe" equip="false" />
+        </ItemSet>
+      </npc>
+      <npc identifier="separatist_securityrecruit" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="0.85" aimspeed="1.2" aimaccuracy="0.8">
+        <ItemSet commonness="1">
+          <Item identifier="pirateclothesnovice" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="pocketflamer">
+            <Item identifier="weldingfueltank" />
+          </Item>
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="0.5">
+          <Item identifier="pirateclothesnovice" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="harpoongun">
+            <Item identifier="spear" />
+            <Item identifier="spear" />
+            <Item identifier="spear" />
+            <Item identifier="spear" />
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="separatist_securitygunner" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="0.75" aimspeed="1.2" aimaccuracy="0.6">
+        <ItemSet>
+          <Item identifier="pirateclothes" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="9mm_pistol_water">
+            <Item identifier="pistol9mm_magazine">
+              <Item identifier="9mm_round" showpreview="false" amount="10" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="ballistichelmet2" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="separatist_securitybrute" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="1.15" aimspeed="1.2" aimaccuracy="0.3">
+        <ItemSet commonness="1">
+          <Item identifier="pirateclothes" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="9mm_pistol_water">
+            <Item identifier="pistol9mm_magazine">
+              <Item identifier="9mm_round" showpreview="false" amount="10" />
+            </Item>
+          </Item>
+          <Item identifier="pistol9mm_magazine">
+            <Item identifier="9mm_round" showpreview="false" amount="4" />
+          </Item>
+          <Item identifier="piratebodyarmor" equip="true" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="0.5">
+          <Item identifier="pirateclothes" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="shotgun_water">
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+            <Item identifier="shotgunshell" />
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="piratebodyarmor" equip="true" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="separatist_securityelite" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="1.1" aimspeed="2.0" aimaccuracy="0.8">
+        <ItemSet commonness="1">
+          <Item identifier="pirateclotheshard" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="9mm_smg_water">
+            <Item identifier="smg9mm_magazine">
+              <Item identifier="9mm_round" showpreview="false" amount="25" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="piratebodyarmor" equip="true" />
+          <Item identifier="piratehelmet" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="0.3">
+          <Item identifier="pirateclotheshard" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="545_ar_bandit" equip="false">
+            <Item identifier="5.45mm_magazine">
+              <Item identifier="5.45mm_round_sb" showpreview="false" amount="20" />
+            </Item>
+          </Item>
+          <Item identifier="divingknife" />
+          <Item identifier="piratebodyarmor" equip="true" />
+          <Item identifier="piratehelmet" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="separatist_engineerrecruit" job="engineer" commonness="1" behavior="Patrol" healthmultiplier="0.4" aimspeed="0.8" aimaccuracy="0.3">
+        <ItemSet>
+          <Item identifier="orangejumpsuit1" equip="true" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="crowbar" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="separatist_engineerveteran" job="engineer" behavior="Patrol" healthmultiplier="0.7" aimspeed="0.8" aimaccuracy="0.3">
+        <ItemSet>
+          <Item identifier="orangejumpsuit2" equip="true" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="crowbar" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="separatist_mechanicrecruit" job="mechanic" healthmultiplier="0.4" aimspeed="0.6" aimaccuracy="0.3">
+        <ItemSet>
+          <Item identifier="bluejumpsuit1" equip="true" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+        </ItemSet>
+      </npc>
+      <npc identifier="separatist_mechanicveteran" job="mechanic" healthmultiplier="0.7" aimspeed="0.6" aimaccuracy="0.3">
+        <ItemSet>
+          <Item identifier="bluejumpsuit2" equip="true" />
+          <Item identifier="piratebandana" equip="true" />
+          <Item identifier="headset" equip="true" showpreview="false" />
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="wrench" equip="true" />
+          <Item identifier="screwdriver" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+          <Item identifier="weldingtool">
+            <Item identifier="weldingfueltank" />
+          </Item>
+        </ItemSet>
+      </npc>
+    </npcset>
+  </npcsets>
+</Override>

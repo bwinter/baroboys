@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Corpses>
+  <Override>
+    <Corpse identifier="captaincorpse1" spawnposition="wreck" job="captain" commonness="0.5" minmoney="50" maxmoney="100">
+      <ItemSet commonness="1">
+        <Item identifier="idcardwreck" equip="true" tags="wreck_captain" />
+        <Item identifier="captainsuniform1" equip="true" />
+        <Item identifier="headset" equip="true" />
+        <Item identifier="revolver_38" equip="false">
+          <Item identifier="38_round" amount="3" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="idcardwreck" equip="true" tags="wreck_captain" />
+        <Item identifier="captainsuniform1" equip="true" />
+        <Item identifier="headset" equip="true" />
+        <Item identifier="captainspipe" equip="false" />
+        <Item identifier="divingmask" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="idcardwreck" equip="true" tags="wreck_captain" />
+        <Item identifier="captainsuniform2" equip="true" />
+        <Item identifier="headset" equip="true" />
+        <Item identifier="9mm_pistol">
+          <Item identifier="pistol9mm_magazine" showpreview="false" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="idcardwreck" equip="true" tags="wreck_captain" />
+        <Item identifier="captainsuniform2" equip="true" />
+        <Item identifier="headset" equip="true" />
+        <Item identifier="steroids" />
+      </ItemSet>
+      <ItemSet commonness="0.4">
+        <Item identifier="idcardwreck" equip="true" tags="wreck_captain" />
+        <Item identifier="captainsuniform2" equip="true" />
+        <Item identifier="headset" equip="true" />
+        <Item identifier="revolver_44_auto" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="0.1">
+        <Item identifier="idcardwreck" equip="true" tags="wreck_captain" />
+        <Item identifier="militaryclothes" equip="true">
+          <Item identifier="9x39mm_round_hs" amount="4" />
+        </Item>
+        <Item identifier="balaklava" equip="true" />
+        <Item identifier="headset" equip="true" />
+        <Item identifier="939_ar_un" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="idcardwreck" equip="true" tags="wreck_captain" />
+        <Item identifier="captainsuniform3" equip="true" />
+        <Item identifier="headset" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="idcardwreck" equip="true" tags="wreck_captain" />
+        <Item identifier="captainsuniform3" equip="true" />
+        <Item identifier="headset" equip="true" />
+        <Item identifier="revolver_38" equip="true" />
+      </ItemSet>
+    </Corpse>
+    <Corpse identifier="officercorpse1" spawnposition="wreck" job="securityofficer" commonness="0.5" minmoney="10" maxmoney="50">
+      <ItemSet commonness="0.5">
+        <Item identifier="securityuniform1" equip="true" />
+        <Item identifier="idcardwreck" equip="true" tags="wreck_security" />
+        <Item identifier="9mm_smg_water" equip="true" />
+        <Item identifier="divingknife" equip="false" />
+        <Item identifier="headset" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="0.5">
+        <Item identifier="securityuniform2" equip="true" />
+        <Item identifier="ballistichelmet_bandit" equip="true" />
+        <Item identifier="idcardwreck" equip="true" tags="wreck_security" />
+        <Item identifier="shotgun_water" equip="true" />
+        <Item identifier="divingknife" equip="false" />
+        <Item identifier="headset" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="0.8">
+        <Item identifier="banditclothes3" equip="true" />
+        <Item identifier="tachelm_alt" equip="true" />
+        <Item identifier="idcardwreck" equip="true" tags="wreck_security" />
+        <Item identifier="9mm_pistol">
+          <Item identifier="pistol9mm_magazine" showpreview="false" />
+        </Item>
+        <Item identifier="divingknife" equip="false" />
+        <Item identifier="headset" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="0.4">
+        <Item identifier="idcardwreck" equip="true" tags="wreck_security" />
+        <Item identifier="militaryclothes" equip="true" />
+        <Item identifier="ballistichelmet_bandit_alt" equip="true" />
+        <Item identifier="545_carbine" equip="true">
+          <Item identifier="5.45mm_round" amount="4" />
+        </Item>
+        <Item identifier="divingknife" equip="false" />
+        <Item identifier="headset" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="0.1">
+        <Item identifier="securityuniform1" equip="true" />
+        <Item identifier="flaksuit" equip="true" />
+        <Item identifier="ballistichelmet_scst" equip="true" />
+        <Item identifier="idcardwreck" equip="true" tags="wreck_security" />
+        <Item identifier="flamer_co" equip="true">
+          <Item identifier="incendiumfueltank" condition="0.5" />
+        </Item>
+        <Item identifier="divingknife" equip="false" />
+        <Item identifier="headset" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="0.8">
+        <Item identifier="securityuniform2" equip="true" />
+        <Item identifier="idcardwreck" equip="true" tags="wreck_security" />
+        <Item identifier="divingknife_m" equip="true" />
+        <Item identifier="headset" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="securityuniform2" equip="true" />
+        <Item identifier="idcardwreck" equip="true" tags="wreck_security" />
+        <Item identifier="stungun" equip="true" />
+        <Item identifier="stungundart" />
+        <Item identifier="handcuffs" />
+        <Item identifier="antibleeding1" />
+        <Item identifier="bodyarmor" equip="true" />
+        <Item identifier="headset" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="securityuniform3" equip="true" />
+        <Item identifier="idcardwreck" equip="true" tags="wreck_security" />
+        <Item identifier="wrench" />
+        <Item identifier="antibleeding1" />
+        <Item identifier="headset" equip="true" />
+      </ItemSet>
+    </Corpse>
+    <Corpse identifier="assistantcorpse1" spawnposition="wreck" job="assistant" commonness="2" minmoney="0" maxmoney="20">
+      <ItemSet commonness="1">
+        <Item identifier="idcardwreck" equip="true" />
+        <Item identifier="assistantclothes" equip="true" />
+        <Item identifier="wrench" />
+        <Item identifier="screwdriver" />
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="idcardwreck" equip="true" />
+        <Item identifier="assistantclothes" equip="true" />
+        <Item identifier="divingmask" equip="true" />
+        <Item identifier="crowbar" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="0.4">
+        <Item identifier="idcardwreck" equip="true" />
+        <Item identifier="assistantclothes" equip="true" />
+        <Item identifier="divingsuit" equip="true">
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="plasmacutter" equip="true">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="0.4">
+        <Item identifier="idcardwreck" equip="true" />
+        <Item identifier="assistantclothes" equip="true" />
+        <Item identifier="divingsuit" equip="true">
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="weldingtool" equip="true">
+          <Item identifier="weldingfueltank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="0.4">
+        <Item identifier="idcardwreck" equip="true" />
+        <Item identifier="assistantclothes" equip="true" />
+        <Item identifier="divingsuit" equip="true">
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="plasmacutter" equip="true">
+          <Item identifier="weldingfueltank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="0.3">
+        <Item identifier="idcardwreck" equip="true" />
+        <Item identifier="assistantclothes" equip="true" />
+        <Item identifier="divingsuit" equip="true">
+          <Item identifier="weldingfueltank" />
+        </Item>
+        <Item identifier="weldingtool" equip="true">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <!--Clowns-->
+      <ItemSet commonness="0.2">
+        <Item identifier="clownmask" equip="true" />
+        <Item identifier="clowncostume" equip="true" />
+        <Item identifier="huskeggs" />
+      </ItemSet>
+      <ItemSet commonness="0.2">
+        <Item identifier="clownmask" equip="true" />
+        <Item identifier="clowncostume" equip="true" />
+        <Item identifier="bikehorn" />
+      </ItemSet>
+      <ItemSet commonness="0.2">
+        <Item identifier="clownmask" equip="true" />
+        <Item identifier="clowncostume" equip="true" />
+        <Item identifier="smallmudraptoregg" />
+        <Item identifier="antibloodloss1" />
+      </ItemSet>
+      <ItemSet commonness="0.2">
+        <Item identifier="clownmask" equip="true" />
+        <Item identifier="clowncostume" equip="true" />
+        <Item identifier="detonator" />
+        <Item identifier="c4block" />
+      </ItemSet>
+      <ItemSet commonness="0.2">
+        <Item identifier="clownmaskunique" equip="true" />
+        <Item identifier="clowncostume" equip="true" />
+        <Item identifier="alientrinket1" />
+      </ItemSet>
+      <ItemSet commonness="0.2">
+        <Item identifier="clownmask" equip="true" />
+        <Item identifier="clownsuitunique" equip="true" />
+        <Item identifier="alientrinket2" />
+      </ItemSet>
+      <ItemSet commonness="0.1">
+        <Item identifier="clownmaskunique" equip="true" />
+        <Item identifier="clownsuitunique" equip="true" />
+        <Item identifier="alientrinket3" />
+      </ItemSet>
+      <!--Misc characters (for flavor and loot variation)-->
+      <ItemSet commonness="0.2">
+        <Item identifier="commonerclothes3" equip="true" />
+        <Item identifier="antidama1" />
+        <Item identifier="antibleeding1" />
+      </ItemSet>
+      <ItemSet commonness="0.2">
+        <Item identifier="researcherclothes" equip="true" />
+        <Item identifier="syringegun" equip="true">
+          <Item identifier="cyanide" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="0.2">
+        <Item identifier="prisonerclothes" equip="true" />
+        <Item identifier="handcuffs" />
+      </ItemSet>
+      <ItemSet commonness="0.2">
+        <Item identifier="commonerclothes1" equip="true" />
+        <Item identifier="morbusine" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="0.2">
+        <Item identifier="commonerclothes4" equip="true" />
+        <Item identifier="toolbox" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="0.2">
+        <Item identifier="commonerclothes5" equip="true" />
+        <Item identifier="wrench" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="0.2">
+        <Item identifier="quartermasterclothes" equip="true" />
+        <Item identifier="wrench" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="0.2">
+        <Item identifier="banditclothes1" equip="true" />
+        <Item identifier="divingmask" equip="true">
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="co_mace" />
+      </ItemSet>
+      <ItemSet commonness="0.1">
+        <Item identifier="securitypatrolclothes" equip="true" />
+        <Item identifier="9mm_carbine" equip="true">
+          <Item identifier="smg9mm_magazine_extended" />
+        </Item>
+        <Item identifier="divingknife" />
+        <Item identifier="bodyarmor" equip="true" />
+        <Item identifier="divingmask" equip="true">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="0.1">
+        <Item identifier="pirateclothes" equip="true" />
+        <Item identifier="shotgun_toz" equip="true">
+          <Item identifier="shotgunshell" />
+          <Item identifier="shotgunshell" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="0.1">
+        <Item identifier="commonerclothes4" equip="true" />
+        <Item identifier="toolbox" equip="true">
+          <Item identifier="divingknifeunique" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="0.1">
+        <Item identifier="banditclothes2" equip="true" />
+        <Item identifier="flaksuit" equip="true" />
+        <Item identifier="ballistichelmet_scst" equip="true" />
+        <Item identifier="idcardwreck" equip="true" tags="wreck_security" />
+        <Item identifier="flamer_co" equip="true">
+          <Item identifier="incendiumfueltank" condition="0.5" />
+        </Item>
+        <Item identifier="divingknife" equip="false" />
+        <Item identifier="headset" equip="true" />
+        <Item identifier="infiniterifle" equip="true" />
+      </ItemSet>
+    </Corpse>
+  </Override>
+</Corpses>
