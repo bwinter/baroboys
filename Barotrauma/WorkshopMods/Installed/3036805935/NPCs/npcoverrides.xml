@@ -2,7 +2,7 @@
 <npcsets>
   <Override>
     <npcset identifier="DE_outpostnpcs">
-      <npc identifier="sergeantcoalition" job="captain" tags="cosergeant" spawnpointtags="admin" healthmultiplier="1.1" skillmultiplier="2" behavior="StayInHull">
+      <npc identifier="sergeantcoalition" job="captain" tags="cosergeant" spawnpointtags="admin" healthmultiplier="1.1" skillmultiplier="2" aimspeed="1.5" behavior="StayInHull">
         <ItemSet>
           <Item identifier="scp_heavyuniform" equip="true" />
           <Item identifier="scp_heavyrig" equip="true" />
@@ -54,7 +54,7 @@
           <Item identifier="eventtrigger_coalitiontakeover" />
         </ItemSet>
       </npc>
-      <npc identifier="sergeantseparatists" job="captain" tags="sepsergeant" spawnpointtags="admin" healthmultiplier="1.1" skillmultiplier="2" behavior="StayInHull">
+      <npc identifier="sergeantseparatists" job="captain" tags="sepsergeant" spawnpointtags="admin" healthmultiplier="1.1" skillmultiplier="2" aimspeed="1.5" behavior="StayInHull">
         <ItemSet>
           <Item identifier="scp_heavyrenuniform" equip="true" />
           <Item identifier="scp_renegadeplatecarrier" equip="true" />
@@ -106,7 +106,7 @@
           <Item identifier="eventtrigger_separatisttakeover" />
         </ItemSet>
       </npc>
-      <npc identifier="tempsoldiercoalition" job="cosoldier" tags="tempcrew" healthmultiplier="1.1" behavior="patrol" skillmultiplier="3">
+      <npc identifier="tempsoldiercoalition" job="cosoldier" tags="tempcrew" healthmultiplier="1.1" behavior="patrol" aimspeed="1.25" skillmultiplier="3">
         <ItemSet>
           <Item identifier="scp_lightuniform" equip="true" />
           <Item identifier="bodyarmor" equip="true" />
@@ -172,7 +172,7 @@
           </Item>
         </ItemSet>
       </npc>
-      <npc identifier="tempsoldierseparatists" job="sepsoldier" tags="tempcrew" healthmultiplier="1.1" behavior="patrol">
+      <npc identifier="tempsoldierseparatists" job="sepsoldier" tags="tempcrew" healthmultiplier="1.1" aimspeed="1.25" behavior="patrol">
         <ItemSet>
           <Item identifier="scp_renegadeuniform" equip="true" />
           <Item identifier="scp_renegadeplatecarrier" equip="true" />
@@ -312,7 +312,7 @@
           </Item>
         </ItemSet>
       </npc>
-      <npc identifier="gunsmith" job="mechanic" spawnpointtags="shop" commonness="1" skillmultiplier="2" behavior="StayInHull">
+      <npc identifier="gunsmith" job="mechanic" spawnpointtags="shop" commonness="1" skillmultiplier="2" aimspeed="1.1" behavior="StayInHull">
         <ItemSet commonness="1">
           <Item identifier="headset" equip="true">
             <Item identifier="batterycell" />
@@ -503,7 +503,7 @@
       </ItemSet>
     </npc>
 -->
-      <npc identifier="securitynpcpirate" job="securityofficer" tags="securitynpcpirate,piratenpc" spawnpointtags="piratesecurity" healthmultiplier="0.6" skillmultiplier="3" behavior="Patrol">
+      <npc identifier="securitynpcpirate" job="securityofficer" tags="securitynpcpirate,piratenpc" spawnpointtags="piratesecurity" healthmultiplier="0.6" skillmultiplier="3" aimspeed="1.2" behavior="Patrol">
         <ItemSet commonness="1">
           <Item identifier="pirateclothesPA" equip="true" />
           <Item identifier="piratebodyarmorPA" equip="true" />
@@ -550,7 +550,7 @@
         </ItemSet>
         <ItemSet commonness="0.7">
           <Item identifier="pirateclotheshardPA" equip="true" />
-          <Item identifier="piratebodyarmorPA" equip="true" />
+          <Item identifier="scp_softvest" equip="true" />
           <Item identifier="idcard" equip="true" tags="id_piratesecurity" />
           <Item identifier="stunbaton">
             <Item identifier="batterycell" />
@@ -561,6 +561,26 @@
             <Item identifier="revolverround" amount="6" />
           </Item>
           <Item identifier="revolverround" amount="12" />
+          <Item identifier="divingknife" />
+          <Item identifier="antibleeding1" />
+          <Item identifier="piratehelmetPA" equip="true" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="0.5">
+          <Item identifier="pirateclotheshardPA" equip="true" />
+          <Item identifier="scp_softvest" equip="true" />
+          <Item identifier="idcard" equip="true" tags="id_piratesecurity" />
+          <Item identifier="stunbaton">
+            <Item identifier="batterycell" />
+          </Item>
+          <Item identifier="batterycell" amount="8" />
+          <Item identifier="handcuffs" />
+          <Item identifier="scp_g36" equip="false">
+            <Item identifier="scp_556mag" />
+          </Item>
+          <Item identifier="scp_556mag" amount="2" />
           <Item identifier="divingknife" />
           <Item identifier="antibleeding1" />
           <Item identifier="piratehelmetPA" equip="true" />
@@ -597,7 +617,7 @@
           </Item>
         </ItemSet>
       </npc>
-      <npc identifier="commonerpirate" commonness="0" moduleflags="none" job="assistant" behavior="Passive" tags="commonerpirate,piratenpc" healthmultiplier="0.45" preferredoutpostmoduletypes="crewmodule,seccrewmodule">
+      <npc identifier="commonerpirate" commonness="0" moduleflags="none" job="assistant" behavior="Passive" tags="commonerpirate,piratenpc" healthmultiplier="0.45" aimspeed="0.8" preferredoutpostmoduletypes="crewmodule,seccrewmodule">
         <ItemSet commonness="1">
           <Item identifier="idcard" equip="true" />
           <Item identifier="pirateclothesnovicePA" equip="true" />
@@ -691,10 +711,38 @@
             <Item identifier="oxygentank" />
           </Item>
         </ItemSet>
+        <ItemSet commonness="0.3">
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="pirateclotheshardPA" equip="true" />
+          <Item identifier="scp_heavyvest" equip="true" />
+          <Item identifier="scp_renegadehelmet" equip="true" />
+          <Item identifier="divingknife" equip="false" />
+          <Item identifier="scp_g36">
+            <Item identifier="scp_556mag" />
+          </Item>
+          <Item identifier="scp_556mag" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
+        <ItemSet commonness="0.3">
+          <Item identifier="idcard" equip="true" />
+          <Item identifier="pirateclotheshardPA" equip="true" />
+          <Item identifier="scp_simplehelmet" equip="true" />
+          <Item identifier="bodyarmor" equip="true" />
+          <Item identifier="divingknife" equip="false" />
+          <Item identifier="scp_ak103">
+            <Item identifier="scp_akmag" />
+          </Item>
+          <Item identifier="scp_akmag" />
+          <Item identifier="divingmask">
+            <Item identifier="oxygentank" />
+          </Item>
+        </ItemSet>
       </npc>
     </npcset>
     <npcset identifier="de_coalitioncombat">
-      <npc identifier="soldiercoalition" job="securityofficer" tags="coalitionsoldier" behavior="Patrol" healthmultiplier="0.75" healthmultiplierinmultiplayer="1.25" aimspeed="1" aimaccuracy="0.75" reportrange="3000" skillmultiplier="3">
+      <npc identifier="soldiercoalition" job="securityofficer" tags="coalitionsoldier" behavior="Patrol" healthmultiplier="0.75" healthmultiplierinmultiplayer="1.25" aimspeed="1.15" aimaccuracy="0.75" reportrange="3000" skillmultiplier="3">
         <ItemSet commonness="1">
           <Item identifier="scp_lightuniform" equip="true" />
           <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
@@ -798,7 +846,7 @@
     </npcset>
     <!-- Separatists-->
     <npcset identifier="de_separatistscombat">
-      <npc identifier="soldierseparatists" job="securityofficer" tags="separatistssoldier" behavior="Patrol" healthmultiplier="0.65" healthmultiplierinmultiplayer="1.2" aimspeed="0.8" aimaccuracy="0.75" reportrange="1500" skillmultiplier="2.5">
+      <npc identifier="soldierseparatists" job="securityofficer" tags="separatistssoldier" behavior="Patrol" healthmultiplier="0.65" healthmultiplierinmultiplayer="1.2" aimspeed="1.35" aimaccuracy="0.75" reportrange="1500" skillmultiplier="2.5">
         <ItemSet commonness="1">
           <Item identifier="scp_renegadeuniform" equip="true" />
           <Item identifier="scp_renegadevest" equip="true" />
@@ -957,7 +1005,7 @@
           </Item>
         </ItemSet>
       </npc>
-      <npc identifier="piratesecuritybrute" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="0.9" aimspeed="0.5" aimaccuracy="0.1">
+      <npc identifier="piratesecuritybrute" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="0.9" aimspeed="0.6" aimaccuracy="0.1">
         <ItemSet commonness="1">
           <Item identifier="pirateclothes" equip="true" />
           <Item identifier="idcard" equip="true" />
@@ -984,7 +1032,7 @@
           </Item>
         </ItemSet>
       </npc>
-      <npc identifier="piratesecurityelite" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="1.1" aimspeed="1.0" aimaccuracy="0.8">
+      <npc identifier="piratesecurityelite" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="1.1" aimspeed="1.5" aimaccuracy="0.8">
         <ItemSet commonness="1">
           <Item identifier="pirateclotheshard" equip="true" />
           <Item identifier="idcard" equip="true" />
@@ -1032,7 +1080,7 @@
           </Item>
         </ItemSet>
       </npc>
-      <npc identifier="pirateannihilator" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="0.55" aimspeed="0.8" aimaccuracy="0.3" skillmultiplier="2.5">
+      <npc identifier="pirateannihilator" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="0.55" aimspeed="1.1" aimaccuracy="0.3" skillmultiplier="2.5">
         <ItemSet commonness="0.4">
           <Item identifier="pirateclotheshard" equip="true" />
           <Item identifier="idcard" equip="true" />
@@ -1282,7 +1330,7 @@
     </npcset>
     <!-- Raving Pirates -->
     <npcset identifier="partypirates">
-      <npc identifier="partypiratecaptain" job="captain" moduleflags="none" behavior="Patrol" healthmultiplier="0.5" aimspeed="0.8" aimaccuracy="0.3">
+      <npc identifier="partypiratecaptain" job="captain" moduleflags="none" behavior="Patrol" healthmultiplier="0.5" aimspeed="1" aimaccuracy="0.3">
         <ItemSet commonness="1">
           <Item identifier="idcard" equip="true" showpreview="false" />
           <Item identifier="piratecaptainhat" equip="true" />
@@ -1475,7 +1523,7 @@
           <Item identifier="ethanol" />
         </ItemSet>
       </npc>
-      <npc identifier="partypiratesecurityelite" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="1.1" aimspeed="1.0" aimaccuracy="0.8">
+      <npc identifier="partypiratesecurityelite" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="1.1" aimspeed="1.2" aimaccuracy="0.8">
         <ItemSet commonness="1">
           <Item identifier="pirateclotheshard" equip="true" />
           <Item identifier="idcard" equip="true" />
@@ -1606,7 +1654,7 @@
     </npcset>
     <!-- Coalition -->
     <npcset identifier="coalition_npcs">
-      <npc identifier="coalition_captain" job="captain" moduleflags="none" tags="coalitionnpc" behavior="Patrol" healthmultiplier="0.5" aimspeed="0.8" aimaccuracy="0.3">
+      <npc identifier="coalition_captain" job="captain" moduleflags="none" tags="coalitionnpc" behavior="Patrol" healthmultiplier="0.75" aimspeed="1" aimaccuracy="0.3">
         <ItemSet commonness="1">
           <Item identifier="idcard" equip="true" showpreview="false" tags="id_coalitioncaptain,id_coalitionsecurity" />
           <Item identifier="captainscap2" equip="true" />
@@ -1619,7 +1667,7 @@
           <Item identifier="captainspipe" equip="false" />
         </ItemSet>
       </npc>
-      <npc identifier="coalition_captainveteran" job="captain" moduleflags="none" tags="coalitionnpc" behavior="Patrol" healthmultiplier="1.1" aimspeed="0.8" aimaccuracy="0.7" skillmultiplier="3">
+      <npc identifier="coalition_captainveteran" job="captain" moduleflags="none" tags="coalitionnpc" behavior="Patrol" healthmultiplier="1.1" aimspeed="1.35" aimaccuracy="0.7" skillmultiplier="3">
         <ItemSet commonness="1">
           <Item identifier="idcard" equip="true" showpreview="false" tags="id_coalitioncaptain,id_coalitionsecurity" />
           <Item identifier="captainscap3" equip="true" />
@@ -1727,7 +1775,7 @@
           </Item>
         </ItemSet>
       </npc>
-      <npc identifier="coalition_securityelite" job="securityofficer" spawnpointtags="security" tags="coalitionnpc" behavior="Patrol" healthmultiplier="1.1" aimspeed="1.0" aimaccuracy="0.8" skillmultiplier="2.5">
+      <npc identifier="coalition_securityelite" job="securityofficer" spawnpointtags="security" tags="coalitionnpc" behavior="Patrol" healthmultiplier="1.1" aimspeed="1.2" aimaccuracy="0.8" skillmultiplier="2.5">
         <ItemSet commonness="1">
           <Item identifier="scp_lightuniform" equip="true" />
           <Item identifier="idcard" equip="true" tags="id_coalitionsecurity" />
@@ -2043,7 +2091,7 @@
     </npcset>
     <!-- Separatists -->
     <npcset identifier="separatist_npcs">
-      <npc identifier="separatist_captain" job="captain" moduleflags="none" behavior="Patrol" healthmultiplier="0.5" aimspeed="0.8" aimaccuracy="0.3">
+      <npc identifier="separatist_captain" job="captain" moduleflags="none" behavior="Patrol" healthmultiplier="0.5" aimspeed="1.3" aimaccuracy="0.3">
         <ItemSet commonness="1">
           <Item identifier="idcard" equip="true" showpreview="false" />
           <Item identifier="scp_renegadecaptainuniform" equip="true" />
@@ -2061,7 +2109,7 @@
           <Item identifier="captainspipe" equip="false" />
         </ItemSet>
       </npc>
-      <npc identifier="separatist_captainveteran" job="captain" moduleflags="none" behavior="Patrol" healthmultiplier="1.1" aimspeed="0.8" aimaccuracy="0.7" skillmultiplier="2">
+      <npc identifier="separatist_captainveteran" job="captain" moduleflags="none" behavior="Patrol" healthmultiplier="1.1" aimspeed="1.5" aimaccuracy="0.7" skillmultiplier="2">
         <ItemSet commonness="1">
           <Item identifier="idcard" equip="true" showpreview="false" />
           <Item identifier="scp_renegadecaptainuniform" equip="true" />
@@ -2159,7 +2207,7 @@
           </Item>
         </ItemSet>
       </npc>
-      <npc identifier="separatist_securityelite" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="1.1" aimspeed="1.0" aimaccuracy="0.8" skillmultiplier="3">
+      <npc identifier="separatist_securityelite" job="securityofficer" spawnpointtags="security" behavior="Patrol" healthmultiplier="1.1" aimspeed="1.5" aimaccuracy="0.8" skillmultiplier="3">
         <ItemSet commonness="1">
           <Item identifier="scp_renegadeuniform" equip="true" />
           <Item identifier="idcard" equip="true" />
