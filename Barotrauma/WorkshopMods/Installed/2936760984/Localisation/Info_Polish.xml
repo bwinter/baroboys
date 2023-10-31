@@ -127,6 +127,8 @@ Uwaga: wstrzyknięcie dawki leku w ten sposób przy zdrowym środowisku może sp
   <beaconsonartooltip>Włącz obrażenia od ekranów sonaru.</beaconsonartooltip>
   <shuttlesonar>Sonar statków transportowych</shuttlesonar>
   <shuttlesonartooltip>Włącz obrażenia od terminali nawigacyjnych transportowca.</shuttlesonartooltip>
+  <customsonar>Niestandardowy sonar</customsonar>
+  <customsonartooltip>Włącz obrażenia od terminali niestandardowe. Wyłączenie może poprawić wydajność.</customsonartooltip>
   <targetcreatures>Stworzenia</targetcreatures>
   <targetcreaturestooltip>Włacz obrażenia dla kreatur nie będących człowiekiem.</targetcreaturestooltip>
   <targetplayers>Gracze</targetplayers>
@@ -142,6 +144,14 @@ Uwaga: wstrzyknięcie dawki leku w ten sposób przy zdrowym środowisku może sp
   <defaultfx>Inne efekty wizualne (Krwotok mózgu, Kortyzyd, itp.):\nStandardowe</defaultfx>
   <lowfx>Inne efekty wizualne (Krwotok mózgu, Kortyzyd, itp.):\nZredukowane</lowfx>
   <nofx>Inne efekty wizualne (Krwotok mózgu, Kortyzyd, itp.):\nWyłączone</nofx>
+  <ignoredcharacters>Ignorowane identyfikatory postaci</ignoredcharacters>
+  <wearableprotections>Odporność skafandra do nurkowania</wearableprotections>
+  <sonarterminals>Terminale sonaru</sonarterminals>
+  <requirescustomsonar>(Wymaga włączenia opcji "Niestandardowy sonar".)</requirescustomsonar>
+  <resetdefault>Zresetuj</resetdefault>
+  <resetalldefault>Zresetować wszystko</resetalldefault>
+  <invalidinput>Nieprawidłowe dane wejściowe</invalidinput>
+  <close>Zamknąć</close>
   <!-- Dialogue -->
   <dialoggetanechoicsuit>Potrzebuję bezechowy sprzęt do nurkowania!</dialoggetanechoicsuit>
   <dialoggetanechoicsuit>Potrzebuję bezechowego skafandra żeby naprawiać przy włączonym sonarze!</dialoggetanechoicsuit>

@@ -91,23 +91,23 @@
       <StatusEffect type="OnFailure" target="UseTarget, Limb" comparison="and">
         <Conditional isLocalPlayer="true" />
         <Conditional limbtype="eq head" />
-        <Sound file="%ModDir%/Sounds/cortizideInjection.ogg" dontmuffle="true" volume="1.6" />
+        <Sound file="%ModDir%/Sounds/cortizideInjection.ogg" dontmuffle="true" volume="1.5" />
       </StatusEffect>
       <StatusEffect type="OnSuccess" target="UseTarget, Limb" comparison="and">
         <Conditional isLocalPlayer="true" />
         <Conditional limbtype="eq head" />
-        <Sound file="%ModDir%/Sounds/cortizideInjection.ogg" dontmuffle="true" volume="1.6" />
+        <Sound file="%ModDir%/Sounds/cortizideInjection.ogg" dontmuffle="true" volume="1.5" />
       </StatusEffect>
       <!-- Apply "cortizideinjection" if administered to the head. This affliction handles the visuals. -->
       <StatusEffect tags="medical" type="OnSuccess" target="This, Limb" disabledeltatime="true" interval="1" multiplyafflictionsbymaxvitality="true" comparison="and">
         <Conditional serversidelua="lteq 0" />
         <Conditional limbtype="eq head" />
-        <Affliction identifier="cortizideinjection" amount="100" />
+        <Affliction identifier="cortizideinjection" amount="1" />
       </StatusEffect>
       <StatusEffect tags="medical" type="OnFailure" target="This, Limb" disabledeltatime="true" interval="1" multiplyafflictionsbymaxvitality="true" comparison="and">
         <Conditional serversidelua="lteq 0" />
         <Conditional limbtype="eq head" />
-        <Affliction identifier="cortizideinjection" amount="100" />
+        <Affliction identifier="cortizideinjection" amount="1" />
       </StatusEffect>
       <!-- On success, with affliction -->
       <StatusEffect tags="medical" type="OnSuccess" target="This, Limb" disabledeltatime="true" interval="0.1" delay="2" duration="10" multiplyafflictionsbymaxvitality="true" comparison="and">
@@ -181,12 +181,12 @@
         <Affliction identifier="psychosis" amount="0.1" />
       </StatusEffect>
       <!-- Delayed head explosion -->
-      <StatusEffect tags="medical" type="OnSuccess" target="This, Limb" disabledeltatime="true" delay="15.5" multiplyafflictionsbymaxvitality="true" comparison="and">
+      <StatusEffect tags="medical" type="OnSuccess" target="This, Limb" disabledeltatime="true" comparison="and" duration="0">
         <Conditional brainhemorrhage="lteq 0" />
         <Conditional brainhemorrhagelowfx="lteq 0" />
         <Conditional brainhemorrhagenofx="lteq 0" />
         <Conditional limbtype="eq head" />
-        <Affliction identifier="cortizidedeath" amount="1" />
+        <Affliction identifier="cortizidedeathdelay" amount="1" />
       </StatusEffect>
       <!-- On failure, no affliction -->
       <StatusEffect tags="medical" type="OnFailure" target="This, Limb" disabledeltatime="true" interval="0.1" delay="2" duration="10" multiplyafflictionsbymaxvitality="true" comparison="and">
@@ -207,8 +207,8 @@
         <Conditional limbtype="eq rightarm" />
         <Conditional limbtype="eq leftleg" />
         <Conditional limbtype="eq rightleg" />
-        <ReduceAffliction type="bleeding" amount="0.3" />
-        <Affliction identifier="burn" amount="0.07" />
+        <ReduceAffliction type="bleeding" amount="0.3" target="limb" />
+        <Affliction identifier="burn" amount="0.07" target="limb" />
       </StatusEffect>
       <!-- On failure, body injection -->
       <StatusEffect tags="medical" type="OnFailure" target="This, Limb" disabledeltatime="true" interval="0.1" delay="2" duration="10" multiplyafflictionsbymaxvitality="true" comparison="or">

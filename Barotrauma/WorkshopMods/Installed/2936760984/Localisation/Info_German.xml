@@ -127,6 +127,8 @@ WARNUNG: Injitzierung in ein Gesundes Gehirn kann einen Druckaufbau im Schädel 
   <beaconsonartooltip>Schaden von Sonarmonitoren aktivieren.</beaconsonartooltip>
   <shuttlesonar>Shuttle-sonar</shuttlesonar>
   <shuttlesonartooltip>Schaden von Shuttle-Terminals aktivieren.</shuttlesonartooltip>
+  <customsonar>Benutzerdefiniertes Sonar</customsonar>
+  <customsonartooltip>Schaden von benutzerdefiniertes-terminals aktivieren. Dies auszuschalten kann die Spielleistung verbessern.</customsonartooltip>
   <targetcreatures>Kreaturen anviesieren</targetcreatures>
   <targetcreaturestooltip>Schaden für nichtmenschliche Kreaturen aktivieren.</targetcreaturestooltip>
   <targetplayers>Spieler anvisieren</targetplayers>
@@ -142,6 +144,14 @@ WARNUNG: Injitzierung in ein Gesundes Gehirn kann einen Druckaufbau im Schädel 
   <defaultfx>Diverse Effekte (Gehirnblutung, Kortizid etc.):\nÜblich</defaultfx>
   <lowfx>Diverse Effekte (Gehirnblutung, Kortizid etc.):\nReduziert</lowfx>
   <nofx>Diverse Effekte (Gehirnblutung, Kortizid etc.):\nDeaktiviert</nofx>
+  <ignoredcharacters>Ignorierte Zeichen-IDs</ignoredcharacters>
+  <wearableprotections>Widerstände von Tauchanzügen</wearableprotections>
+  <sonarterminals>Sonar-Terminals</sonarterminals>
+  <requirescustomsonar>(Erfordert die Aktivierung der Option "Benutzerdefiniertes Sonar")</requirescustomsonar>
+  <resetdefault>Zurücksetzen</resetdefault>
+  <resetalldefault>Alles zurücksetzen</resetalldefault>
+  <invalidinput>Ungültige Eingabe</invalidinput>
+  <close>Schließen</close>
   <!-- Dialogue -->
   <dialoggetanechoicsuit>Ich brauche anechoische Taucherausrüstung!</dialoggetanechoicsuit>
   <dialoggetanechoicsuit>Ich brauche einen anechoischen Taucheranzug, um trotz dem Sonar das Schiff zu reparieren!</dialoggetanechoicsuit>

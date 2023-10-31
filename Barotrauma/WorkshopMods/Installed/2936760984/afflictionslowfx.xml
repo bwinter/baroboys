@@ -110,19 +110,21 @@
     </Effect>
   </Affliction>
   <!-- Cortizide injection LOW visuals -->
-  <Affliction identifier="cortizideinjectionlowfx" showiconthreshold="1000" showinhealthscannerthreshold="1000" maxstrength="100">
+  <Affliction identifier="cortizideinjectionlowfx" showiconthreshold="1000" showinhealthscannerthreshold="1000" maxstrength="122">
     <Effect minstrength="0" maxstrength="100">
-      <StatusEffect target="Character" interval="1">
+      <StatusEffect target="Character">
         <Affliction identifier="blurandabberationlowfx" strength="1" />
+        <Affliction identifier="cortizideinjectionlowfx" strength="9.92" />
       </StatusEffect>
-      <StatusEffect target="Character" disabledeltatime="true" interval="0.1" delay="2" comparison="and">
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1" comparison="and">
         <Conditional isLocalPlayer="true" />
-        <Conditional cortizideinjectionlowfx="gteq 90" />
-        <Explosion range="1" force="1" smoke="false" sparks="false" flames="false" shockwave="false" underwaterbubble="false" camerashake="15" camerashakerange="3000" flashrange="1000" flashduration="0.4" screencolor="255,0,0,20" screencolorrange="1000" screencolorduration="0.5" />
+        <Conditional cortizideinjectionlowfx="gteq 21.34" />
+        <Explosion range="1" force="0" smoke="false" sparks="false" flames="false" shockwave="false" underwaterbubble="false" camerashake="15" camerashakerange="3000" flashrange="0" flashduration="0.4" screencolor="255,0,0,25" screencolorrange="1000" screencolorduration="0.5" />
       </StatusEffect>
-      <StatusEffect target="Character" disabledeltatime="true" interval="0.1" delay="10">
-        <Affliction identifier="cortizideinjectionlowfx" strength="-10" />
-        <Affliction identifier="blurandabberationlowfx" strength="-10" />
+      <StatusEffect target="Character" disabledeltatime="true">
+        <Conditional cortizideinjectionlowfx="gteq 122" />
+        <Affliction identifier="cortizideinjectionlowfx" strength="-1000" />
+        <Affliction identifier="blurandabberationlowfx" strength="-1000" />
       </StatusEffect>
     </Effect>
   </Affliction>
@@ -150,8 +152,8 @@
     <Effect minstrength="0" maxstrength="100">
       <!-- Remove photopsia if brainhemorrhage is treated. -->
       <StatusEffect target="Character" interval="1" disabledeltatime="true" comparison="and">
-        <Conditional brainhemorrhagelowfx="lteq 0" />
-        <Affliction identifier="photopsialowfx" strength="-10" />
+        <Conditional brainhemorrhagelowfx="lt 25" />
+        <Affliction identifier="photopsialowfx" strength="-1000" />
       </StatusEffect>
     </Effect>
     <Description textidentifier="afflictiondescription.photopsia" target="OtherCharacter" />
@@ -184,25 +186,29 @@
     </PeriodicEffect>
   </Affliction>
   <!-- Ataxia : Poor muslce control that leads to clumsy voluntary movements. -->
-  <Affliction name="Ataxia" identifier="ataxialowfx" type="brainhemorrhage" maxstrength="100" limbspecific="true" indicatorlimb="Head" showiconthreshold="0" showinhealthscannerthreshold="0" healableinmedicalclinic="false">
+  <Affliction name="Ataxia" identifier="ataxialowfx" type="ataxia" maxstrength="100" limbspecific="true" indicatorlimb="Head" showiconthreshold="0" showinhealthscannerthreshold="0" healableinmedicalclinic="false">
     <icon texture="%ModDir%/Icons/Afflictions.png" sourcerect="896,0,128,128" origin="0,0" />
     <Description textidentifier="afflictiondescription.ataxia" target="OtherCharacter" />
     <Description textidentifier="afflictiondescription.ataxia.self" target="Self" />
     <Effect minstrength="0" maxstrength="100">
       <!-- Remove ataxia if brainhemorrhage is treated. -->
       <StatusEffect target="Character" interval="1" disabledeltatime="true">
-        <Conditional brainhemorrhagelowfx="lteq 0" />
-        <Affliction identifier="ataxialowfx" strength="-8" />
+        <Conditional brainhemorrhagelowfx="lt 30" />
+        <ReduceAffliction identifier="invertcontrols" strength="1000" />
+        <Affliction identifier="ataxialowfx" strength="-1000" />
       </StatusEffect>
     </Effect>
     <!-- Repeatedly inverts the characters movement. -->
     <PeriodicEffect mininterval="9" maxinterval="18">
-      <Conditional cortizideinjectionlowfx="lteq 0" />
       <StatusEffect target="Character">
-        <Affliction identifier="invertcontrols" strength="10" />
+        <Conditional invertcontrols="lteq 0" />
+        <Conditional brainhemorrhagelowfx="gteq 30" />
+        <Affliction identifier="invertcontrols" strength="20" />
       </StatusEffect>
+    </PeriodicEffect>
+    <PeriodicEffect mininterval="9" maxinterval="18">
       <StatusEffect target="Character">
-        <Conditional invertcontrols="gteq 11" />
+        <Conditional invertcontrols="gteq 1" />
         <ReduceAffliction identifier="invertcontrols" strength="1000" />
       </StatusEffect>
     </PeriodicEffect>
@@ -223,8 +229,9 @@
     <Effect minstrength="0" maxstrength="100" dialogflag="BrainHemorrhageHigh">
       <!-- Remove opticneuritis if brainhemorrhage is treated. -->
       <StatusEffect target="Character" interval="1" disabledeltatime="true">
-        <Conditional brainhemorrhagelowfx="lteq 0" />
-        <Affliction identifier="opticneuritislowfx" strength="-4" />
+        <Conditional brainhemorrhagelowfx="lt 80" />
+        <Affliction identifier="opticneuritislowfx" strength="-1000" />
+        <Affliction identifier="blindness" strength="-1000" />
       </StatusEffect>
     </Effect>
     <PeriodicEffect mininterval="11" maxinterval="18">
