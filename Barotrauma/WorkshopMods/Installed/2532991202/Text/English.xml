@@ -1,8 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <infotext language="English" nowhitespace="false" translatedname="English">
   <!--NEW TRANSLATION NEEDED | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE-->
+  <!--Move into items category when translating | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE-->
+  <entityname.kazuyakumoradio>Kumo's Radio</entityname.kazuyakumoradio>
+  <entitydescription.kazuyakumoradio>A radio Kazuya Kumo gave to you with a pre-configured frequency to call in a favor from her when docked to a separatist station.</entitydescription.kazuyakumoradio>
   <!--Move into Structures category when translating | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE-->
   <!--Move into Dialog category when translating | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE-->
+  <eventtext.missionevent_killmonster_regional.c1>“I posted about an assignment earlier. Some fauna exclusive to this region is causing us massive trouble. I've sent all the details to your onboard navigation system, in case you're interested.”</eventtext.missionevent_killmonster_regional.c1>
+  <!--Move into Missions category when translating | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE-->
+  <missionname.killelectricspineling1>Killing a Great Electric Spineling</missionname.killelectricspineling1>
+  <missiondescription.killelectricspineling1>A particularly aggressive Great Electric Spineling has been terrorizing vessels traveling between [location1] and [location2]. A reward of [reward] marks has been promised to those who kill the creature.</missiondescription.killelectricspineling1>
+  <missionsonarlabel.killelectricspineling1>Great Electric Spineling</missionsonarlabel.killelectricspineling1>
+  <missionsuccess.killelectricspineling1>The Great Electric Spineling has been killed.</missionsuccess.killelectricspineling1>
+  <missionheader0.killelectricspineling1>Target terminated</missionheader0.killelectricspineling1>
+  <missionmessage0.killelectricspineling1>The Great Electric Spineling is dead. Navigate the submarine out of the cavern to claim the reward.</missionmessage0.killelectricspineling1>
+  <missionname.killelectricspineling2>Killing 2 Great Electric Spinelings</missionname.killelectricspineling2>
+  <missiondescription.killelectricspineling2>A particularly aggressive pair of Great Electric Spinelings have been terrorizing vessels traveling between [location1] and [location2]. A reward of [reward] marks has been promised to those who kill the creatures.</missiondescription.killelectricspineling2>
+  <missionsonarlabel.killelectricspineling2>Great Electric Spineling</missionsonarlabel.killelectricspineling2>
+  <missionsuccess.killelectricspineling2>The Great Electric Spinelings have been killed.</missionsuccess.killelectricspineling2>
+  <missionheader0.killelectricspineling2>Targets terminated</missionheader0.killelectricspineling2>
+  <missionmessage0.killelectricspineling2>The Great Electric Spinelings are dead. Navigate the submarine out of the cavern to claim the reward.</missionmessage0.killelectricspineling2>
+  <!--Move into Characters category when translating | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE-->
+  <charactername.Lithomorph_Cassiterite>Lithomorph</charactername.Lithomorph_Cassiterite>
+  <charactername.Lithomorph_Chamosite>Lithomorph</charactername.Lithomorph_Chamosite>
+  <charactername.Lithomorph_Cryolite>Lithomorph</charactername.Lithomorph_Cryolite>
+  <charactername.Lithomorph_Galena>Lithomorph</charactername.Lithomorph_Galena>
+  <charactername.Lithomorph_Hydroxyapatite>Lithomorph</charactername.Lithomorph_Hydroxyapatite>
+  <charactername.Lithomorph_Pyromorphite>Lithomorph</charactername.Lithomorph_Pyromorphite>
+  <charactername.Lithomorph_Sphalerite>Lithomorph</charactername.Lithomorph_Sphalerite>
+  <charactername.Lithomorph_Sylvite>Lithomorph</charactername.Lithomorph_Sylvite>
+  <charactername.Lithomorph_Triphylite>Lithomorph</charactername.Lithomorph_Triphylite>
+  <charactername.Lithomorph>Lithomorph</charactername.Lithomorph>
+  <charactername.spineling_electric>Great Electric Spineling</charactername.spineling_electric>
+  <charactername.kazuyakumo>Kazuya Kumo</charactername.kazuyakumo>
+  <charactername.captainsmith>John Smith</charactername.captainsmith>
+  <charactername.loyalcommissar>Separatists Commissar</charactername.loyalcommissar>
+  <charactername.jokster>Jokster</charactername.jokster>
+  <!--Move into Talents category when translating | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE-->
+  <talentname.forbiddenknowledge>Extensive Research</talentname.forbiddenknowledge>
+  <talentdescription.knowledgefrombeyond>Her dedication to her research has given her the knowledge to use alien materials to craft dementonite tools.</talentdescription.knowledgefrombeyond>
+  <!--Move into Locations category when translating | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE-->
+  <locationname.LairMudraptor>Breeding Grounds</locationname.LairMudraptor>
+  <locationname.LairThresher>Breeding Grounds</locationname.LairThresher>
+  <locationdescription.LairMudraptor>Local fauna spreading rapidly to nearby locations.</locationdescription.LairMudraptor>
+  <locationdescription.LairThresher>Local fauna spreading rapidly to nearby locations.</locationdescription.LairThresher>
+  <!-- END OF NEW TRANSLATION NEEDED | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE -->
+  <!-- Dialog -->
   <eventtext.missionevent_piratemission1.c1>“We received multiple reports about a pirate vessel causing trouble. We need you to get rid of them by any means.”</eventtext.missionevent_piratemission1.c1>
   <eventtext.missionevent_piratemission2.c1>“We received multiple reports about a pirate vessel blasting music into the depths and luring more monsters close to our stations. We need you to get rid of them by any means.”</eventtext.missionevent_piratemission2.c1>
   <eventtext.missionevent_piratemission3.c1>“We recently lost contact to some of our vessels. We believe they got attacked by a strange vessel that was reported lurking around these parts. We need you to get rid of it to hopefully prevent other vessels getting lost in the future.”</eventtext.missionevent_piratemission3.c1>
@@ -22,11 +65,6 @@
   <eventtext.reactormalfunction.reactor.success>You resolved the issue and the reactor is returning to normal values!</eventtext.reactormalfunction.reactor.success>
   <eventtext.reactormalfunction.reactor.failure>You failed to release the pressure. Try again?</eventtext.reactormalfunction.reactor.failure>
   <eventtext.reactormalfunction.reactor.smack.failure>A part fell off. Let's hope it's nothing important...</eventtext.reactormalfunction.reactor.smack.failure>
-  <!--Move into Missions category when translating | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE-->
-  <!--Move into Characters category when translating | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE-->
-  <!--Move into Talents category when translating | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE-->
-  <!-- END OF NEW TRANSLATION NEEDED | YOU CAN DELETE THIS COMMENT IN YOUR TRANSLATION FILE -->
-  <!-- Dialog -->
   <eventtext.bartender.buy.coalitionbeer>Beer - Coalition Premium (10 MK)</eventtext.bartender.buy.coalitionbeer>
   <eventtext.bartender.buy.separatistbeer>Beer - Jovian Force (10 MK)</eventtext.bartender.buy.separatistbeer>
   <eventtext.bartender.buy.huskbeer>Beer - Liquid Ascension (59 MK)</eventtext.bartender.buy.huskbeer>
@@ -119,7 +157,7 @@
   <eventtext.cocivtransport.option.hire>"Join us or die like the others!"</eventtext.cocivtransport.option.hire>
   <eventtext.cocivtransport.option.hire.success>"Ok ok! I'll do anything, but please don't hurt me!"</eventtext.cocivtransport.option.hire.success>
   <eventtext.cocivtransport.option.hire.failure>"I'd rather die than join some filthy pirates!"</eventtext.cocivtransport.option.hire.failure>
-  <eventtext.jobboardde.interact>A colleciton of fliers dot the wall, each with a reward. Which one do you pick up?</eventtext.jobboardde.interact>
+  <eventtext.jobboardde.interact>A collection of fliers dot the wall, each with a reward. Which one do you pick up?</eventtext.jobboardde.interact>
   <eventtext.jobboardde.option.piratemission>Pirate Bounty</eventtext.jobboardde.option.piratemission>
   <eventtext.jobboardde.option.piratemission.info>-BOUNTIES AVAILABLE FOR LOCAL PIRATE HUNTERS-</eventtext.jobboardde.option.piratemission.info>
   <eventtext.jobboardde.option.piratemission.accept>You think to yourself: "The coalition really needs people to do their dirty work anonymously."</eventtext.jobboardde.option.piratemission.accept>
@@ -341,10 +379,10 @@
   <missionmessage0.wasteyard>"Didn't think you'd get there out alive! Seems like you got them all. Leave the area and we'll send you your pay."</missionmessage0.wasteyard>
   <missionname.coalition_cargo2>Robbing A Coalition Cargo Vessel</missionname.coalition_cargo2>
   <missiondescription.coalition_cargo2>A coalition cargo vessel is passing through. Eliminate their crew and loot their ship!</missiondescription.coalition_cargo2>
-  <missionsuccess.coalition_cargo2>You successfully eliminated the coalition crew and took their cargo!</missionsuccess.coalition_cargo2>
-  <missionfailure.coalition_cargo2>You didn't kill the coalition crew!</missionfailure.coalition_cargo2>
+  <missionsuccess.coalition_cargo2>You successfully dealt with the coalition crew!</missionsuccess.coalition_cargo2>
+  <missionfailure.coalition_cargo2>You didn't deal with the coalition crew!</missionfailure.coalition_cargo2>
   <missionheader0.coalition_cargo2>Coalition vessel detected</missionheader0.coalition_cargo2>
-  <missionmessage0.coalition_cargo2>Time to attack! They got the loot you want!</missionmessage0.coalition_cargo2>
+  <missionmessage0.coalition_cargo2>Time to deal with them! They got the loot you want!</missionmessage0.coalition_cargo2>
   <missionheader1.coalition_cargo2>Coalition crew eliminated</missionheader1.coalition_cargo2>
   <missionmessage1.coalition_cargo2>Loot their vessel and continue onwards to [location2].</missionmessage1.coalition_cargo2>
   <missionname.gotorandomencounter>Random Encounter</missionname.gotorandomencounter>

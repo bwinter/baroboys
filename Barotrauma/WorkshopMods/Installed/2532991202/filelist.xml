@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="DynamicEuropa" steamworkshopid="2532991202" corepackage="false" modversion="1.1.107" gameversion="1.0.21.0" installtime="1692313598" expectedhash="954D3886E94E56DAE47243BF0A87B86D">
+<contentpackage name="DynamicEuropa" steamworkshopid="2532991202" corepackage="false" modversion="1.1.109" gameversion="1.1.18.1" installtime="1697822551" expectedhash="4363DD4808F012B1CAD9FA343E275380">
   <Afflictions file="%ModDir%/Integrations/Hungry Europans/Content/Afflictions.xml" />
+  <Afflictions file="%ModDir%/Characters/Special Creatures/Lithomorph/LithomorphAfflictions.xml" />
   <Jobs file="%ModDir%/Events/Jobs.xml" />
   <Item file="%ModDir%/Integrations/Hungry Europans/Content/Items/Fabricators/fabricators.xml" />
   <Item file="%ModDir%/Integrations/Hungry Europans/Content/Items/Food/Food.xml" />
   <Item file="%ModDir%/Integrations/Hungry Europans/Content/Items/Food/Drinks.xml" />
   <Item file="%ModDir%/Integrations/Hungry Europans/Content/Items/Food/Ingredients.xml" />
+  <Item file="%ModDir%/Characters/Special Creatures/Lithomorph/LithomorphItems.xml" />
   <NPCSets file="%ModDir%/Integrations/Hungry Europans/Content/NPCPrefabs/OutpostNpcs.xml" />
   <Text file="%ModDir%/Text/HE_English.xml" />
   <Character file="%ModDir%/Characters/Husked Creatures/DE-Crawlerhusk/DE-Crawlerhusk.xml" />
@@ -17,6 +19,17 @@
   <Character file="%ModDir%/Characters/Lair Creatures/DE-LairMudraptor_hatchling/DE-LairMudraptor_hatchling.xml" />
   <Character file="%ModDir%/Characters/Lair Creatures/DE-LairMudraptor_unarmored/DE-LairMudraptor_unarmored.xml" />
   <Character file="%ModDir%/Characters/Lair Creatures/DE-LairMudraptor_veteran/DE-LairMudraptor_veteran.xml" />
+  <Character file="%ModDir%/Characters/Special Creatures/Spineling_Electric/Spineling_Electric.xml" />
+  <Character file="%ModDir%/Characters/Special Creatures/Lithomorph/Lithomorph.xml" />
+  <Character file="%ModDir%/Characters/Special Creatures/Lithomorph/Lithomorph_Cassiterite.xml" />
+  <Character file="%ModDir%/Characters/Special Creatures/Lithomorph/Lithomorph_Chamosite.xml" />
+  <Character file="%ModDir%/Characters/Special Creatures/Lithomorph/Lithomorph_Cryolite.xml" />
+  <Character file="%ModDir%/Characters/Special Creatures/Lithomorph/Lithomorph_Galena.xml" />
+  <Character file="%ModDir%/Characters/Special Creatures/Lithomorph/Lithomorph_Hydroxyapatite.xml" />
+  <Character file="%ModDir%/Characters/Special Creatures/Lithomorph/Lithomorph_Pyromorphite.xml" />
+  <Character file="%ModDir%/Characters/Special Creatures/Lithomorph/Lithomorph_Sphalerite.xml" />
+  <Character file="%ModDir%/Characters/Special Creatures/Lithomorph/Lithomorph_Sylvite.xml" />
+  <Character file="%ModDir%/Characters/Special Creatures/Lithomorph/Lithomorph_Triphylite.xml" />
   <Character file="%ModDir%/Characters/Waste Creatures/DE-Wastebonethresher/DE-Wastebonethresher.xml" />
   <Character file="%ModDir%/Characters/Waste Creatures/DE-Wastetigerthresher/DE-Wastetigerthresher.xml" />
   <Character file="%ModDir%/Characters/Waste Creatures/DE-Wastecrawler/DE-Wastecrawler.xml" />
@@ -55,6 +68,7 @@
   <Item file="%ModDir%/Items/Alien/alienitems.xml" />
   <Item file="%ModDir%/Items/Effects/effectitems.xml" />
   <Item file="%ModDir%/Items/EventItems/eventitems.xml" />
+  <Item file="%ModDir%/Items/EventItems/dementonitetools.xml" />
   <Item file="%ModDir%/Items/Electricity/signalitems.xml" />
   <Item file="%ModDir%/Items/Fabricators/vendingmachines.xml" />
   <Item file="%ModDir%/Items/Materials/minerals.xml" />

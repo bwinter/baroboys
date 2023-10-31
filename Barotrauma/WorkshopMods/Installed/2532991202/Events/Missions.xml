@@ -78,8 +78,8 @@
   </CrawlerLairMission>
   <MudraptorLairMission identifier="mudraptorlair" tags="lair,mudraptorlair" type="OutpostDestroy" reward="4000" difficulty="4" commonness="100" allowretry="true" sonarlabel="Nest" unhideentitysubcategories="abandonedmonster" requireCorrectLocationType="true">
     <Icon texture="Content/UI/MissionIcons.png" sourcerect="256,256,256,256" color="214,50,48" />
-    <LocationType identifier="Lair" />
-    <LocationTypeChange from="Lair" to="Blockade" requiredduration="1" cooldownafterchange="1" />
+    <LocationType identifier="LairMudraptor" />
+    <LocationTypeChange from="LairMudraptor" to="Blockade" requiredduration="1" cooldownafterchange="1" />
     <Characters>
       <Character identifier="mudraptor" min="15" max="30" spawnpointtags="nest" />
       <Character identifier="mudraptor_veteran" min="0" max="3" spawnpointtags="boss" />
@@ -100,8 +100,8 @@
   </MudraptorLairMission>
   <ThresherLairMission identifier="thresherlair" tags="lair,thresherlair" type="OutpostDestroy" reward="4500" difficulty="4" commonness="100" allowretry="true" sonarlabel="Nest" unhideentitysubcategories="abandonedmonster" requireCorrectLocationType="true">
     <Icon texture="Content/UI/MissionIcons.png" sourcerect="256,256,256,256" color="214,50,48" />
-    <LocationType identifier="Lair" />
-    <LocationTypeChange from="Lair" to="Blockade" requiredduration="1" cooldownafterchange="1" />
+    <LocationType identifier="LairThresher" />
+    <LocationTypeChange from="LairThresher" to="Blockade" requiredduration="1" cooldownafterchange="1" />
     <Characters>
       <Character identifier="tigerthresher" min="15" max="30" spawnpointtags="nest" />
       <Character identifier="bonethresher" min="0" max="3" spawnpointtags="boss" />
@@ -178,6 +178,187 @@
     </Items>
     <message header="missionheader0.abandonedoutpostmonsters" text="missionmessage0.abandonedoutpostmonsters" />
   </WasteyardMission>
+  <!-- Lithomorph | BROKEN
+  <MineralMission
+    identifier="pyromorphitecollectionlithomorph"
+    textIdentifier="miningmission1"
+    tags="collectminerals,collectminerals_set1,collectminerals_mainpath"
+    achievementidentifier="miningmission"
+    type="Mineral"
+    difficulty="1"
+    commonness="50"
+    resourceHandoverAmount="0.25"
+    positionType="mainpath"
+    reward="1200">
+    <Items>
+      <Item identifier="lithomorphspawnerpyromorphite" />
+      <Item identifier="pyromorphite" />
+      <Item identifier="pyromorphite" />
+      <Item identifier="pyromorphite" />
+      <Item identifier="pyromorphite" />
+      <Item identifier="pyromorphite" />
+      <Item identifier="pyromorphite" />
+      <Item identifier="pyromorphite" />
+    </Items>
+    <Icon texture="Content/UI/MissionIcons2.png" sourcerect="256,0,256,256" color="243,146,55"/>
+    <LocationType from="Outpost" to="City"/>
+    <LocationType from="Outpost" to="Outpost"/>
+    <LocationType from="Outpost" to="Military"/>
+    <LocationType from="Outpost" to="Research"/>
+    <LocationType from="Outpost" to="Mine"/>
+    <LocationType from="City" to="Mine"/>
+    <LocationType from="Military" to="Mine"/>
+    <LocationType from="Research" to="Mine"/>
+    <LocationType from="Mine" to="AnyOutpost"/>
+    <Reputation identifier="location" amount="1" />
+    <message header="missionheader0.pyromorphitecollection" text="missionmessage0.pyromorphitecollection"/>
+  </MineralMission>
+
+  <MineralMission
+    identifier="galenacollectionlithomorph"
+    textIdentifier="miningmission1"
+    tags="collectminerals,collectminerals_set1"
+    achievementidentifier="miningmission"
+    type="Mineral"
+    difficulty="2"
+    commonness="30"
+    resourceHandoverAmount="0.25"
+    reward="1600">
+    <Items>
+      <Item identifier="lithomorphspawnergalena" />
+      <Item identifier="galena" />
+      <Item identifier="galena" />
+      <Item identifier="galena" />
+      <Item identifier="galena" />
+      <Item identifier="galena" />
+      <Item identifier="galena" />
+      <Item identifier="galena" />
+    </Items>
+    <Icon texture="Content/UI/MissionIcons2.png" sourcerect="256,0,256,256" color="243,146,55"/>
+    <LocationType from="Outpost" to="City"/>
+    <LocationType from="Outpost" to="Outpost"/>
+    <LocationType from="Outpost" to="Military"/>
+    <LocationType from="Outpost" to="Research"/>
+    <LocationType from="Outpost" to="Mine"/>
+    <LocationType from="City" to="Mine"/>
+    <LocationType from="Military" to="Mine"/>
+    <LocationType from="Research" to="Mine"/>
+    <LocationType from="Mine" to="AnyOutpost"/>
+    <Reputation identifier="location" amount="2" />
+    <message header="missionheader0.miningmission1" text="missionmessage0.miningmission1"/>
+  </MineralMission>
+
+  <MineralMission
+    identifier="triphylitecollectionlithomorph"
+    textIdentifier="miningmission1"
+    tags="collectminerals,collectminerals_set2"
+    achievementidentifier="miningmission"
+    type="Mineral"
+    difficulty="2"
+    commonness="75"
+    resourceHandoverAmount="0.33"
+    reward="2100">
+    <Items>
+      <Item identifier="lithomorphspawnertriphylite" />
+      <Item identifier="triphylite" />
+      <Item identifier="triphylite" />
+      <Item identifier="triphylite" />
+      <Item identifier="triphylite" />
+      <Item identifier="triphylite" />
+    </Items>
+    <Icon texture="Content/UI/MissionIcons2.png" sourcerect="256,0,256,256" color="243,146,55"/>
+    <LocationType from="Outpost" to="City"/>
+    <LocationType from="Outpost" to="Outpost"/>
+    <LocationType from="Outpost" to="Military"/>
+    <LocationType from="Outpost" to="Research"/>
+    <LocationType from="Outpost" to="Mine"/>
+    <LocationType from="City" to="Mine"/>
+    <LocationType from="Military" to="Mine"/>
+    <LocationType from="Research" to="Mine"/>
+    <LocationType from="Mine" to="AnyOutpost"/>
+    <Reputation identifier="location" amount="1" />
+    <message header="missionheader0.miningmission1" text="missionmessage0.miningmission1"/>
+  </MineralMission>
+
+  <MineralMission
+    identifier="ilmenitechamositecollectionlithomorph"
+    textIdentifier="miningmission2"
+    tags="collectminerals,collectminerals_set2"
+    achievementidentifier="miningmission"
+    type="Mineral"
+    difficulty="2"
+    commonness="30"
+    resourceHandoverAmount="0.25"
+    reward="2400">
+    <Items>
+      <Item identifier="ilmenite" />
+      <Item identifier="ilmenite" />
+      <Item identifier="ilmenite" />
+      <Item identifier="ilmenite" />
+      <Item identifier="lithomorphspawnerchamosite" />
+      <Item identifier="chamosite" />
+      <Item identifier="chamosite" />
+      <Item identifier="chamosite" />
+    </Items>
+    <Icon texture="Content/UI/MissionIcons2.png" sourcerect="256,0,256,256" color="243,146,55"/>
+    <LocationType from="Outpost" to="City"/>
+    <LocationType from="Outpost" to="Outpost"/>
+    <LocationType from="Outpost" to="Military"/>
+    <LocationType from="Outpost" to="Research"/>
+    <LocationType from="Outpost" to="Mine"/>
+    <LocationType from="City" to="Mine"/>
+    <LocationType from="Military" to="Mine"/>
+    <LocationType from="Research" to="Mine"/>
+    <LocationType from="Mine" to="AnyOutpost"/>
+    <Reputation identifier="location" amount="1" />
+    <message header="missionheader0.miningmission2" text="missionmessage0.miningmission2"/>
+  </MineralMission>
+
+  <MineralMission
+    identifier="titanitecollectionlithomorph"
+    textIdentifier="miningmission1"
+    tags="collectminerals,collectminerals_set3"
+    achievementidentifier="miningmission"
+    type="Mineral"
+    difficulty="2"
+    commonness="50"
+    resourceHandoverAmount="0.33"
+    reward="2700">
+    <Items>
+      <Item identifier="lithomorphspawnertitanite" />
+      <Item identifier="titanite" />
+      <Item identifier="titanite" />
+      <Item identifier="titanite" />
+      <Item identifier="titanite" />
+      <Item identifier="titanite" />
+    </Items>
+    <Icon texture="Content/UI/MissionIcons2.png" sourcerect="256,0,256,256" color="243,146,55"/>
+    <LocationType from="Outpost" to="City"/>
+    <LocationType from="Outpost" to="Outpost"/>
+    <LocationType from="Outpost" to="Military"/>
+    <LocationType from="Outpost" to="Research"/>
+    <LocationType from="Outpost" to="Mine"/>
+    <LocationType from="City" to="Mine"/>
+    <LocationType from="Military" to="Mine"/>
+    <LocationType from="Research" to="Mine"/>
+    <LocationType from="Mine" to="AnyOutpost"/>
+    <Reputation identifier="location" amount="1" />
+    <message header="missionheader0.titanitecollection" text="missionmessage0.titanitecollection"/>
+  </MineralMission> -->
+  <!-- Electric Spineling -->
+  <MonsterMission identifier="killelectricspineling1" tags="killmonster_thegreatsea" type="Monster" difficulty="3" commonness="33" reward="3500" maxsonarmarkerdistance="10000" sonarlabel="character.spineling" monsterfile="spineling_electric">
+    <monster character="spineling" min="4" max="8" />
+    <Reputation identifier="location" amount="2" />
+    <Icon texture="Content/UI/MissionIcons.png" sourcerect="768,768,256,256" color="214,50,48" />
+    <message header="missionheader0.spineling_electric1" text="missionmessage0.spineling_electric1" />
+  </MonsterMission>
+  <MonsterMission identifier="killelectricspineling2" tags="killmonster_thegreatsea" type="Monster" difficulty="4" commonness="33" reward="5000" maxsonarmarkerdistance="10000" sonarlabel="character.spineling" monsterfile="spineling_electric">
+    <monster character="spineling" min="4" max="5" />
+    <monster character="spineling_electric" min="2" max="2" />
+    <Reputation identifier="location" amount="2" />
+    <Icon texture="Content/UI/MissionIcons.png" sourcerect="768,768,256,256" color="214,50,48" />
+    <message header="missionheader0.spineling_electric2" text="missionmessage0.spineling_electric2" />
+  </MonsterMission>
   <SalvageMission identifier="stealingintel" tags="stealintel" type="Salvage" difficulty="3" commonness="0" reward="3000" sonarlabel="target" spawntype="Outpost" showmessagewhenpickedup="true" itemidentifier="documents" removeitem="true" containertag="admincabinet" requirewreck="false" BlockLocationTypeChanges="true">
     <Reputation identifier="coalition" amount="-10" />
     <Reputation identifier="separatists" amount="10" />

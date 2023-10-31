@@ -5,8 +5,8 @@
     <!--commsrelay EVENTS-->
     <!--TODO: NEEDS EVENT SPRITE FOR TERMINAL-->
     <ScriptedEvent identifier="commsrelay_randomencounter" commonness="100">
-      <TagAction criteria="player" tag="player" />
-      <TagAction criteria="itemidentifier:navterminal" tag="commsrelay" submarinetype="player" />
+      <TagAction criteria="player" tag="player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="itemidentifier:navterminal" tag="commsrelay" submarinetype="player" ContinueIfNoTargetsFound="true" />
       <TriggerAction target1tag="commsrelay" target2tag="player" applytotarget2="cre_trig_player" radius="100" waitforinteraction="true" />
       <ConversationAction text="eventtext.commsrelay.monster" dialogtype="Small" targettag="cre_trig_player">
         <Option text="eventtext.option.listen" endconversation="true">
@@ -26,20 +26,20 @@
     </ScriptedEvent>
     <!--TRIGGERED AT A WRECK TO ALERT YOU-->
     <ScriptedEvent identifier="commsrelay_wreck">
-      <TagAction criteria="hullname:Airlock" tag="wreck" submarinetype="wreck" />
-      <TagAction criteria="hullname:Command room" tag="wreck" submarinetype="wreck" />
-      <TagAction criteria="hullname:Amidships" tag="wreck" submarinetype="wreck" />
-      <TagAction criteria="hullname:Mid aft side" tag="wreck" submarinetype="wreck" />
-      <TagAction criteria="hullname:Mid fore side" tag="wreck" submarinetype="wreck" />
-      <TagAction criteria="hullname:Reactor room" tag="wreck" submarinetype="wreck" />
-      <TagAction criteria="player" tag="player" />
+      <TagAction criteria="hullname:Airlock" tag="wreck" submarinetype="wreck" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="hullname:Command room" tag="wreck" submarinetype="wreck" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="hullname:Amidships" tag="wreck" submarinetype="wreck" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="hullname:Mid aft side" tag="wreck" submarinetype="wreck" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="hullname:Mid fore side" tag="wreck" submarinetype="wreck" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="hullname:Reactor room" tag="wreck" submarinetype="wreck" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="player" tag="player" ContinueIfNoTargetsFound="true" />
       <WaitAction time="30" />
       <TriggerAction target1tag="wreck" target2tag="player" radius="500000" waitforinteraction="false" />
       <Label name="checkeventstate" />
       <CheckDataAction identifier="commsrelay_ruin_triggered" condition="neq 1">
         <Success>
           <SetDataAction identifier="commsrelay_multiwreck_triggered" operation="Set" value="1" />
-          <TagAction criteria="itemidentifier:navterminal" tag="commsrelay" submarinetype="player" />
+          <TagAction criteria="itemidentifier:navterminal" tag="commsrelay" submarinetype="player" ContinueIfNoTargetsFound="true" />
           <TriggerAction target1tag="commsrelay" target2tag="player" applytotarget2="crw_trig_player" radius="100" waitforinteraction="true" />
           <ConversationAction text="eventtext.commsrelay.wreck" dialogtype="Small" targettag="crw_trig_player">
             <Option text="eventtext.option.investigate">
@@ -73,9 +73,9 @@
       <CheckDataAction identifier="commsrelay_ruin_triggered" condition="neq 1">
         <Success>
           <SetDataAction identifier="commsrelay_multiwreck_triggered" operation="Set" value="1" />
-          <TagAction criteria="player" tag="player"/>
-          <TagAction criteria="itemidentifier:navterminal" tag="commsrelay" submarinetype="player"/>
-          <TagAction criteria="itemidentifier:eventtrigger_multiwreck" tag="multiwreck" />
+          <TagAction criteria="player" tag="player" ContinueIfNoTargetsFound="true" />
+          <TagAction criteria="itemidentifier:navterminal" tag="commsrelay" submarinetype="player" ContinueIfNoTargetsFound="true" />
+          <TagAction criteria="itemidentifier:eventtrigger_multiwreck" tag="multiwreck" ContinueIfNoTargetsFound="true" />
           <TriggerAction target1tag="multiwreck" target2tag="player" applytotarget1="multiwrecktrigger" radius="1000000" waitforinteraction="false" allowmultipletargets="false"/>
           <TriggerAction target1tag="multiwrecktrigger" target2tag="player" radius="1000000" waitforinteraction="false" allowmultipletargets="false"/>
           <TriggerAction target1tag="commsrelay" target2tag="player" applytotarget2="crw_trig_player" radius="100" waitforinteraction="true"/>
@@ -111,8 +111,8 @@
           <CheckDataAction identifier="commsrelay_wreck_triggered" condition="neq 1">
             <Success>
               <SetDataAction identifier="commsrelay_ruin_triggered" operation="Set" value="1" />
-              <TagAction criteria="player" tag="player" />
-              <TagAction criteria="itemidentifier:navterminal" tag="commsrelay" submarinetype="player" />
+              <TagAction criteria="player" tag="player" ContinueIfNoTargetsFound="true" />
+              <TagAction criteria="itemidentifier:navterminal" tag="commsrelay" submarinetype="player" ContinueIfNoTargetsFound="true" />
               <TriggerAction target1tag="commsrelay" target2tag="player" applytotarget2="crr_trig_player" radius="100" waitforinteraction="true" />
               <ConversationAction text="eventtext.commsrelay.ruin" dialogtype="Small" targettag="crr_trig_player">
                 <Option text="eventtext.option.investigate">
@@ -146,7 +146,7 @@
       </CheckDataAction>
     </ScriptedEvent>
     <ScriptedEvent identifier="factionstowaway" commonness="50">
-      <TagAction criteria="player" tag="player" />
+      <TagAction criteria="player" tag="player" ContinueIfNoTargetsFound="true" />
       <SpawnAction itemidentifier="metalcrate" targettag="factionstowaway" spawnlocation="MainSub" spawnpointtype="cargo" ignorebyai="true" />
       <Label name="stowawayreturn" />
       <TriggerAction target1tag="factionstowaway" target2tag="player" applytotarget2="fsa_trig_player" radius="150" waitforinteraction="true" />
@@ -237,12 +237,12 @@
     </ScriptedEvent>
     <!--Seperatist Events-->
     <ScriptedEvent identifier="factionseparatist" commonness="100">
-      <TagAction criteria="player" tag="player" />
+      <TagAction criteria="player" tag="player" ContinueIfNoTargetsFound="true" />
       <CheckReputationAction targettype="faction" identifier="separatists" condition="lte -60">
         <Success>
           <RNGAction chance="0.25">
             <Success>
-              <TagAction criteria="itemtag:reactor" tag="potentialmeltdown" />
+              <TagAction criteria="itemtag:reactor" tag="potentialmeltdown" ContinueIfNoTargetsFound="true" />
               <StatusEffectAction targettag="potentialmeltdown">
                 <StatusEffect condition="35" setvalue="true" />
               </StatusEffectAction>
@@ -285,7 +285,7 @@
               </ConversationAction>
             </Success>
             <Failure>
-              <TagAction criteria="itemtag:hidden" tag="potentialIED" />
+              <TagAction criteria="itemtag:hidden" tag="potentialIED" ContinueIfNoTargetsFound="true" />
               <TriggerAction target1tag="potentialIED" target2tag="player" applytotarget1="IED" applytotarget2="fs_trig_player" radius="100" waitforinteraction="false" />
               <ConversationAction text="eventtext.factionseparatist.smellofsulfur" dialogtype="Small" targettag="fs_trig_player" />
               <SpawnAction itemidentifier="volatilecompoundn" targetinventory="IED" />
@@ -298,13 +298,13 @@
             <Success>
               <RNGAction chance="0.5">
                 <Success>
-                  <TagAction criteria="itemtag:deepdiving" tag="breathtaking" />
+                  <TagAction criteria="itemtag:deepdiving" tag="breathtaking" ContinueIfNoTargetsFound="true" />
                   <RemoveItemAction targettag="breathtaking" itemidentifiers="oxygentank" />
                   <SpawnAction itemidentifier="weldingfueltank" targetinventory="breathtaking" />
                   <ClearTagAction tag="fs_trig_player" />
                 </Success>
                 <Failure>
-                  <TagAction criteria="itemtag:weldingequipment" tag="welderbomb" />
+                  <TagAction criteria="itemtag:weldingequipment" tag="welderbomb" ContinueIfNoTargetsFound="true" />
                   <RemoveItemAction targettag="welderbomb" itemidentifiers="weldingfueltank" />
                   <SpawnAction itemidentifier="oxygentank" targetinventory="welderbomb" />
                   <ClearTagAction tag="fs_trig_player" />
@@ -312,7 +312,7 @@
               </RNGAction>
             </Success>
             <Failure>
-              <TagAction criteria="itemtag:hidden" tag="deaddrop" />
+              <TagAction criteria="itemtag:hidden" tag="deaddrop" ContinueIfNoTargetsFound="true" />
               <Label name="deaddropreturn" />
               <TriggerAction target1tag="deaddrop" target2tag="player" applytotarget1="selecteddeaddrop" applytotarget2="fs_trig_player" radius="50" waitforinteraction="true" />
               <ConversationAction text="eventtext.factionseparatist.hiddenstash" dialogtype="Small" targettag="fs_trig_player" eventsprite="vent">
@@ -356,11 +356,11 @@
         </Failure>
       </RNGAction>
       <Label name="start" />
-      <TagAction criteria="hullname:airlock" tag="airlock" submarinetype="Player" />
-      <TagAction criteria="itemidentifier:statusmonitor" tag="monitor" />
-      <TagAction criteria="player" tag="player" />
-      <TagAction criteria="player" tag="crew" />
-      <TagAction criteria="crew" tag="crew" />
+      <TagAction criteria="hullname:airlock" tag="airlock" submarinetype="Player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="itemidentifier:statusmonitor" tag="monitor" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="player" tag="player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="player" tag="crew" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="crew" tag="crew" ContinueIfNoTargetsFound="true" />
       <TriggerAction target1tag="monitor" target2tag="player" applytotarget1="activemonitor" applytotarget2="pd_player" radius="300" waitforinteraction="false" />
       <SpawnAction npcsetidentifier="pirate_npcs" npcidentifier="piratediver" targettag="piratediver" SpawnLocation="MainSub" spawnpointtag="airlock" TeamID="2" />
       <WaitAction time="0.5" />
@@ -388,11 +388,11 @@
         </Failure>
       </RNGAction>
       <Label name="start" />
-      <TagAction criteria="hullname:airlock" tag="airlock" submarinetype="Player" />
-      <TagAction criteria="itemidentifier:statusmonitor" tag="monitor" />
-      <TagAction criteria="player" tag="player" />
-      <TagAction criteria="player" tag="crew" />
-      <TagAction criteria="crew" tag="crew" />
+      <TagAction criteria="hullname:airlock" tag="airlock" submarinetype="Player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="itemidentifier:statusmonitor" tag="monitor" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="player" tag="player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="player" tag="crew" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="crew" tag="crew" ContinueIfNoTargetsFound="true" />
       <TriggerAction target1tag="monitor" target2tag="player" applytotarget1="activemonitor" applytotarget2="pd_player" radius="300" waitforinteraction="false" />
       <SpawnAction npcsetidentifier="pirate_npcs" npcidentifier="piratediver" targettag="piratediver" SpawnLocation="MainSub" spawnpointtag="airlock" TeamID="2" />
       <WaitAction time="0.5" />
@@ -424,11 +424,11 @@
         </Failure>
       </RNGAction>
       <Label name="start" />
-      <TagAction criteria="hullname:airlock" tag="airlock" submarinetype="Player" />
-      <TagAction criteria="itemidentifier:statusmonitor" tag="monitor" />
-      <TagAction criteria="player" tag="player" />
-      <TagAction criteria="player" tag="crew" />
-      <TagAction criteria="crew" tag="crew" />
+      <TagAction criteria="hullname:airlock" tag="airlock" submarinetype="Player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="itemidentifier:statusmonitor" tag="monitor" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="player" tag="player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="player" tag="crew" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="crew" tag="crew" ContinueIfNoTargetsFound="true" />
       <TriggerAction target1tag="monitor" target2tag="player" applytotarget1="activemonitor" applytotarget2="pd_player" radius="300" waitforinteraction="false" />
       <SpawnAction npcsetidentifier="pirate_npcs" npcidentifier="piratediver" targettag="piratediver" SpawnLocation="MainSub" spawnpointtag="airlock" TeamID="2" />
       <WaitAction time="0.5" />
@@ -467,11 +467,11 @@
         </Failure>
       </RNGAction>
       <Label name="start" />
-      <TagAction criteria="hullname:airlock" tag="airlock" submarinetype="Player" />
-      <TagAction criteria="itemidentifier:statusmonitor" tag="monitor" />
-      <TagAction criteria="player" tag="player" />
-      <TagAction criteria="player" tag="crew" />
-      <TagAction criteria="crew" tag="crew" />
+      <TagAction criteria="hullname:airlock" tag="airlock" submarinetype="Player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="itemidentifier:statusmonitor" tag="monitor" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="player" tag="player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="player" tag="crew" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="crew" tag="crew" ContinueIfNoTargetsFound="true" />
       <TriggerAction target1tag="monitor" target2tag="player" applytotarget1="activemonitor" applytotarget2="he_player" radius="300" waitforinteraction="false" />
       <SpawnAction speciesname="husk" targettag="husk" SpawnLocation="MainSub" spawnpointtag="airlock" TeamID="2" />
       <WaitAction time="0.5" />
@@ -499,11 +499,11 @@
         </Failure>
       </RNGAction>
       <Label name="start" />
-      <TagAction criteria="hullname:airlock" tag="airlock" submarinetype="Player" />
-      <TagAction criteria="itemidentifier:statusmonitor" tag="monitor" />
-      <TagAction criteria="player" tag="player" />
-      <TagAction criteria="player" tag="crew" />
-      <TagAction criteria="crew" tag="crew" />
+      <TagAction criteria="hullname:airlock" tag="airlock" submarinetype="Player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="itemidentifier:statusmonitor" tag="monitor" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="player" tag="player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="player" tag="crew" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="crew" tag="crew" ContinueIfNoTargetsFound="true" />
       <TriggerAction target1tag="monitor" target2tag="player" applytotarget1="activemonitor" applytotarget2="he_player" radius="300" waitforinteraction="false" />
       <SpawnAction speciesname="husk" targettag="husk" SpawnLocation="MainSub" spawnpointtag="airlock" TeamID="2" />
       <WaitAction time="0.5" />
@@ -535,11 +535,11 @@
         </Failure>
       </RNGAction>
       <Label name="start" />
-      <TagAction criteria="hullname:airlock" tag="airlock" submarinetype="Player" />
-      <TagAction criteria="itemidentifier:statusmonitor" tag="monitor" />
-      <TagAction criteria="player" tag="player" />
-      <TagAction criteria="player" tag="crew" />
-      <TagAction criteria="crew" tag="crew" />
+      <TagAction criteria="hullname:airlock" tag="airlock" submarinetype="Player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="itemidentifier:statusmonitor" tag="monitor" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="player" tag="player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="player" tag="crew" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="crew" tag="crew" ContinueIfNoTargetsFound="true" />
       <TriggerAction target1tag="monitor" target2tag="player" applytotarget1="activemonitor" applytotarget2="he_player" radius="300" waitforinteraction="false" />
       <SpawnAction speciesname="husk" targettag="husk" SpawnLocation="MainSub" spawnpointtag="airlock" TeamID="2" />
       <WaitAction time="0.5" />
@@ -578,9 +578,9 @@
         </Failure>
       </RNGAction>
       <Label name="start" />
-      <TagAction criteria="itemtag:engine" tag="engine" submarinetype="player" />
-      <TagAction criteria="itemidentifier:statusmonitor" tag="monitor" submarinetype="player" />
-      <TagAction criteria="player" tag="player" />
+      <TagAction criteria="itemtag:engine" tag="engine" submarinetype="player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="itemidentifier:statusmonitor" tag="monitor" submarinetype="player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="player" tag="player" ContinueIfNoTargetsFound="true" />
       <SetDataAction identifier="EnginesOffline" value="1" />
       <TriggerAction target1tag="monitor" target2tag="player" applytotarget1="activemonitor" applytotarget2="te_player1" radius="500" waitforinteraction="false" />
       <TriggerEventAction identifier="troubledenginestatusevent" />
@@ -750,7 +750,7 @@
       <ClearTagAction tag="te_player" />
     </ScriptedEvent>
     <ScriptedEvent identifier="troubledenginestatusevent">
-      <TagAction criteria="itemtag:engine" tag="engine" submarinetype="player" />
+      <TagAction criteria="itemtag:engine" tag="engine" submarinetype="player" ContinueIfNoTargetsFound="true" />
       <Label name="checkstatus" />
       <CheckDataAction identifier="EnginesOffline" condition="eq 1">
         <Success>
@@ -780,9 +780,9 @@
         </Failure>
       </RNGAction>
       <Label name="start" />
-      <TagAction criteria="itemtag:reactor" tag="reactor" submarinetype="player" />
-      <TagAction criteria="itemidentifier:statusmonitor" tag="monitor" submarinetype="player" />
-      <TagAction criteria="player" tag="player" />
+      <TagAction criteria="itemtag:reactor" tag="reactor" submarinetype="player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="itemidentifier:statusmonitor" tag="monitor" submarinetype="player" ContinueIfNoTargetsFound="true" />
+      <TagAction criteria="player" tag="player" ContinueIfNoTargetsFound="true" />
       <SetDataAction identifier="ReactorMalfunction" value="1" />
       <TriggerAction target1tag="monitor" target2tag="player" applytotarget1="activemonitor" applytotarget2="rm_player1" radius="500" waitforinteraction="false" />
       <TriggerEventAction identifier="reactormalfunctionstatusevent" />
@@ -962,7 +962,7 @@
       <ClearTagAction tag="rm_player" />
     </ScriptedEvent>
     <ScriptedEvent identifier="reactormalfunctionstatusevent">
-      <TagAction criteria="itemtag:reactor" tag="reactor" submarinetype="player" />
+      <TagAction criteria="itemtag:reactor" tag="reactor" submarinetype="player" ContinueIfNoTargetsFound="true" />
       <Label name="checkstatus" />
       <CheckDataAction identifier="ReactorMalfunction" condition="eq 1">
         <Success>

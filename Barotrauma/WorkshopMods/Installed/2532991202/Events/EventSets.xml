@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Randomevents>
+  <!-- 
+    ///BIOME DIFFICULTY VALUES\\\
+    
+    Cold Caverns: 0-15
+    Europan Ridge: 15-35
+    The Aphotic Plateau: 35-50
+    The Great Sea: 50-65
+    Hydrothermal Wastes: 65-80
+
+  -->
   <!--OUTPOST EVENTS-->
   <Override>
     <EventSet identifier="outpostevents" leveltype="outpost" locationtype="outpost,city,research,military,mine,colony,settlement,construction,camp,base,blockade,survey,extraction,study,lab,clinic,hospital,surgery,hydroponics,biosphere,nourishment,factory,shipyard,fusion" allowatstart="true" minleveldifficulty="0" maxleveldifficulty="80" chooserandom="false" ignorecooldown="true">
@@ -162,6 +172,7 @@
         <ScriptedEvent identifier="hognose" commonness="50" probability="0.5" />
         <ScriptedEvent identifier="radiationescapee" commonness="50" />
       </EventSet>
+      <!-- MISSIONS -->
       <EventSet identifier="outpostevents.coldcaverns.start.missionevents" minleveldifficulty="0" maxleveldifficulty="1" allowatstart="true" chooserandom="true" eventcount="3" exhaustible="true">
         <OverrideEventCount locationtype="City" eventcount="4" />
         <OverrideEventCount locationtype="Surgery" eventcount="4" />
@@ -179,7 +190,7 @@
         <ScriptedEvent identifier="missionevent_escort1coalition" commonness="100" faction="coalition" />
         <ScriptedEvent identifier="missionevent_escort1separatists" commonness="100" faction="separatists" />
       </EventSet>
-      <EventSet identifier="outpostevents.coldcaverns.basic.generic.missionevents" minleveldifficulty="1" maxleveldifficulty="5" allowatstart="true" chooserandom="true" eventcount="3" exhaustible="true">
+      <EventSet identifier="outpostevents.coldcaverns.basic.missionevents" minleveldifficulty="1" maxleveldifficulty="5" allowatstart="true" chooserandom="true" eventcount="3" exhaustible="true">
         <OverrideEventCount locationtype="City" eventcount="6" />
         <OverrideEventCount locationtype="Surgery" eventcount="5" />
         <OverrideEventCount locationtype="Nourishment" eventcount="4" />
@@ -202,7 +213,7 @@
         <ScriptedEvent identifier="missionevent_escort1clowns" commonness="30" faction="clowns" />
         <ScriptedEvent identifier="missionevent_collectminerals_mainpath" commonness="80" />
       </EventSet>
-      <EventSet identifier="outpostevents.coldcaverns.advanced.generic.missionevents" minleveldifficulty="5" maxleveldifficulty="15" allowatstart="true" chooserandom="true" eventcount="3" exhaustible="true">
+      <EventSet identifier="outpostevents.coldcaverns.advanced.missionevents" minleveldifficulty="5" maxleveldifficulty="15" allowatstart="true" chooserandom="true" eventcount="3" exhaustible="true">
         <OverrideEventCount locationtype="City" eventcount="6" />
         <OverrideEventCount locationtype="Surgery" eventcount="5" />
         <OverrideEventCount locationtype="Nourishment" eventcount="4" />
@@ -228,7 +239,7 @@
         <ScriptedEvent identifier="missionevent_escort1huskcult" commonness="50" faction="huskcult" />
         <ScriptedEvent identifier="missionevent_escort1clowns" commonness="50" faction="clowns" />
       </EventSet>
-      <EventSet identifier="outpostevents.europanridge.basic.generic.missionevents" minleveldifficulty="15" maxleveldifficulty="25" allowatstart="true" chooserandom="true" eventcount="3" exhaustible="true">
+      <EventSet identifier="outpostevents.europanridge.basic.missionevents" minleveldifficulty="15" maxleveldifficulty="25" allowatstart="true" chooserandom="true" eventcount="3" exhaustible="true">
         <OverrideEventCount locationtype="City" eventcount="6" />
         <OverrideEventCount locationtype="Surgery" eventcount="5" />
         <OverrideEventCount locationtype="Nourishment" eventcount="4" />
@@ -266,7 +277,7 @@
         <ScriptedEvent identifier="missionevent_escort1huskcult" commonness="50" faction="huskcult" />
         <ScriptedEvent identifier="missionevent_escort1clowns" commonness="50" faction="clowns" />
       </EventSet>
-      <EventSet identifier="outpostevents.europanridge.advanced.generic.missionevents" minleveldifficulty="25" maxleveldifficulty="35" allowatstart="true" chooserandom="true" eventcount="4" exhaustible="true">
+      <EventSet identifier="outpostevents.europanridge.advanced.missionevents" minleveldifficulty="25" maxleveldifficulty="35" allowatstart="true" chooserandom="true" eventcount="4" exhaustible="true">
         <OverrideEventCount locationtype="City" eventcount="6" />
         <OverrideEventCount locationtype="Surgery" eventcount="5" />
         <OverrideEventCount locationtype="Nourishment" eventcount="4" />
@@ -306,7 +317,7 @@
         <ScriptedEvent identifier="missionevent_escort1huskcult" commonness="50" faction="huskcult" />
         <ScriptedEvent identifier="missionevent_escort1clowns" commonness="50" faction="clowns" />
       </EventSet>
-      <EventSet identifier="outpostevents.theaphoticplateau.basic.generic.missionevents" minleveldifficulty="35" maxleveldifficulty="50" allowatstart="true" chooserandom="true" eventcount="4" exhaustible="true">
+      <EventSet identifier="outpostevents.theaphoticplateau.missionevents" minleveldifficulty="35" maxleveldifficulty="50" allowatstart="true" chooserandom="true" eventcount="4" exhaustible="true">
         <OverrideEventCount locationtype="City" eventcount="6" />
         <OverrideEventCount locationtype="Surgery" eventcount="5" />
         <OverrideEventCount locationtype="Nourishment" eventcount="4" />
@@ -346,7 +357,49 @@
         <ScriptedEvent identifier="missionevent_escort1huskcult" commonness="50" faction="huskcult" />
         <ScriptedEvent identifier="missionevent_escort1clowns" commonness="50" faction="clowns" />
       </EventSet>
-      <EventSet identifier="outpostevent.difficult.generic.missionevents" minleveldifficulty="50" maxleveldifficulty="100" allowatstart="true" chooserandom="true" eventcount="4" exhaustible="true">
+      <EventSet identifier="outpostevent.thegreatsea.missionevents" minleveldifficulty="50" maxleveldifficulty="65" allowatstart="true" chooserandom="true" eventcount="4" exhaustible="true">
+        <!-- same missions as in the previous tier, but with adjusted probabilities to favor more difficult ones -->
+        <OverrideEventCount locationtype="City" eventcount="6" />
+        <OverrideEventCount locationtype="Surgery" eventcount="5" />
+        <OverrideEventCount locationtype="Nourishment" eventcount="4" />
+        <OverrideEventCount locationtype="Research" eventcount="4" />
+        <OverrideEventCount locationtype="Military" eventcount="5" />
+        <OverrideEventCount locationtype="Mine" eventcount="4" />
+        <OverrideEventCount locationtype="Outpost" eventcount="3" />
+        <OverrideEventCount locationtype="Colony" eventcount="2" />
+        <OverrideEventCount locationtype="Study" eventcount="2" />
+        <OverrideEventCount locationtype="Survey" eventcount="2" />
+        <OverrideEventCount locationtype="Camp" eventcount="3" />
+        <ScriptedEvent identifier="missionevent_cargoany" commonness="10" />
+        <ScriptedEvent identifier="missionevent_cargoweaponscoalition" commonness="100" faction="coalition" />
+        <ScriptedEvent identifier="missionevent_cargoexplosiveseparatists" commonness="100" faction="separatists" />
+        <ScriptedEvent identifier="missionevent_killswarm_set2" commonness="5" />
+        <ScriptedEvent identifier="missionevent_killswarm_set3" commonness="75" />
+        <ScriptedEvent identifier="missionevent_killswarm_set4" commonness="60" />
+        <ScriptedEvent identifier="missionevent_killmonster_set2" commonness="5" />
+        <ScriptedEvent identifier="missionevent_killmonster_set3" commonness="75" />
+        <ScriptedEvent identifier="missionevent_killmonster_set4" commonness="60" />
+        <ScriptedEvent identifier="missionevent_killmonster_thegreatsea" commonness="75" />
+        <ScriptedEvent identifier="missionevent_salvageartifact" commonness="120" />
+        <ScriptedEvent identifier="missionevent_salvagewreck" commonness="100" />
+        <ScriptedEvent identifier="missionevent_mudraptornest" commonness="70" />
+        <ScriptedEvent identifier="missionevent_tigerthreshernest" commonness="80" />
+        <ScriptedEvent identifier="missionevent_collectminerals_set1" commonness="5" />
+        <ScriptedEvent identifier="missionevent_collectminerals_set2" commonness="5" />
+        <ScriptedEvent identifier="missionevent_collectminerals_set3" commonness="75" />
+        <ScriptedEvent identifier="missionevent_collectminerals_set4" commonness="75" />
+        <ScriptedEvent identifier="missionevent_escort2coalition,missionevent_escort3coalition,missionevent_escort4coalition" commonness="160" faction="coalition" />
+        <ScriptedEvent identifier="missionevent_escort2separatists,missionevent_escort3separatists,missionevent_escort4separatists" commonness="160" faction="separatists" />
+        <ScriptedEvent identifier="missionevent_jailbreak_separatists" commonness="50" faction="separatists" />
+        <ScriptedEvent identifier="missionevent_jailbreak_coalition" commonness="50" faction="coalition" />
+        <ScriptedEvent identifier="missionevent_pirate1" commonness="80" faction="coalition" />
+        <ScriptedEvent identifier="missionevent_pirate1separatists" commonness="80" faction="separatists" />
+        <ScriptedEvent identifier="missionevent_scanruin" commonness="100" />
+        <ScriptedEvent identifier="missionevent_clearruin" commonness="120" />
+        <ScriptedEvent identifier="missionevent_escort1huskcult" commonness="50" faction="huskcult" />
+        <ScriptedEvent identifier="missionevent_escort1clowns" commonness="50" faction="clowns" />
+      </EventSet>
+      <EventSet identifier="outpostevent.hydrothermalwastes.missionevents" minleveldifficulty="65" maxleveldifficulty="100" allowatstart="true" chooserandom="true" eventcount="4" exhaustible="true">
         <!-- same missions as in the previous tier, but with adjusted probabilities to favor more difficult ones -->
         <OverrideEventCount locationtype="City" eventcount="6" />
         <OverrideEventCount locationtype="Surgery" eventcount="5" />
