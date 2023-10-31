@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
-  <Item name="" identifier="scp_revolverammobox" description="" tags="smallitem,smallammocrate" scale="0.25" waterproof="true" pickdistance="150" showcontentsintooltip="true" impactsoundtag="impact_metal_heavy">
+  <Item name="" identifier="scp_revolverammobox" description="" tags="smallitem,smallammocrate" scale="0.1" waterproof="true" pickdistance="150" showcontentsintooltip="true" impactsoundtag="impact_metal_heavy">
     <PreferredContainer primary="secarmcab,armcab" />
     <Price baseprice="150" sold="false" />
     <Deconstruct time="20">
@@ -19,7 +19,7 @@
       <Containable items="scp_arevolverround,revolverammo,357ammo,handcannonround,44ammo" />
     </ItemContainer>
   </Item>
-  <Item name="" identifier="scp_amrammobox" description="" tags="smallitem" scale="0.25" waterproof="true" pickdistance="150" showcontentsintooltip="true" impactsoundtag="impact_metal_heavy">
+  <Item name="" identifier="scp_amrammobox" description="" tags="smallitem" scale="0.2" waterproof="true" pickdistance="150" showcontentsintooltip="true" impactsoundtag="impact_metal_heavy">
     <PreferredContainer primary="secarmcab,armcab" />
     <Price baseprice="150" sold="false" />
     <Deconstruct time="20">
@@ -88,7 +88,7 @@
       <Containable items="ehaammo,revolverammo,shotgunammo" />
     </ItemContainer>
   </Item>
-  <Item name="" identifier="scp_rifleammobox" description="" tags="mediumitem,ammocrate" scale="0.25" waterproof="true" pickdistance="150" showcontentsintooltip="true" impactsoundtag="impact_metal_heavy">
+  <Item name="" identifier="scp_rifleammobox" description="" tags="mediumitem,ammocrate" scale="0.2" waterproof="true" pickdistance="150" showcontentsintooltip="true" impactsoundtag="impact_metal_heavy">
     <Price baseprice="600" displaynonempty="true" minleveldifficulty="10">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
@@ -111,7 +111,7 @@
     <Sprite texture="%ModDir%/Misc/ammocrates.png" depth="0.54" sourcerect="11,541,363,218" origin="0.5,0.5" />
     <Body width="150" height="85" density="10" />
     <Holdable slots="RightHand+LeftHand" holdpos="0,-90" handle1="-30,14" handle2="30,14" aimable="false" msg="ItemMsgPickUpSelect" />
-    <ItemContainer capacity="18" maxstacksize="12" canbeselected="false" hideitems="true" keepopenwhenequipped="true" movableframe="true">
+    <ItemContainer capacity="16" maxstacksize="12" canbeselected="false" hideitems="true" keepopenwhenequipped="true" movableframe="true">
       <Containable items="556ammo,akammo,ashammo,t5000ammo,65ammo,kirammo,762ammo,valammo,ak74ammo,assaultrifleammo,saigaammo,pkpammo,alienammo,rifleammo" />
     </ItemContainer>
   </Item>
@@ -184,5 +184,70 @@
     <ItemContainer capacity="20" canbeselected="false" hideitems="true" keepopenwhenequipped="true" movableframe="true">
       <Containable items="gun" excludeditems="crate,weaponcrate" />
     </ItemContainer>
+  </Item>
+  <Item name="" identifier="scp_strangescribble1" descriptionidentifier="" allowstealingalways="true" category="Misc" hideinmenus="true" Tags="smallitem" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_soft">
+    <PreferredContainer primary="crewcab" spawnprobability="0.01" />
+    <PreferredContainer secondary="wreckarmcab,wreckmedcab,wrecksecarmcab,wreckstoragecab,wreckengcab,wrecktoxcab" spawnprobability="0.02" />
+    <InventoryIcon name="strangepaperinv" texture="Content/Map/Outposts/Art/FactionItems.png" sourcerect="214,200,50,50" origin="0.5,0.5" />
+    <Sprite texture="Content/Map/Outposts/Art/FactionItems.png" sourcerect="367,194,12,44" origin="0.5,0.5" depth="0.8" />
+    <Body width="35" height="40" density="8" />
+    <Holdable slots="Any,RightHand,LeftHand" holdangle="30" handle1="-10,0" msg="ItemMsgPickUpSelect" />
+    <Terminal canbeselected="true" msg="ItemMsgInteractSelect" AllowInGameEditing="false" AutoHideScrollbar="true" readonly="true" autoscrolltobottom="false" linestartsymbol="" marginmultiplier="1.5" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.33,0.66" anchor="Center" style="scp_slugscribble" hidedragicons="true" />
+    </Terminal>
+  </Item>
+  <Item name="" identifier="scp_strangescribble2" variantof="scp_strangescribble1">
+    <Holdable slots="Any,RightHand,LeftHand" holdangle="30" handle1="-10,0" msg="ItemMsgPickUpSelect" />
+    <Terminal canbeselected="true" msg="ItemMsgInteractSelect" AllowInGameEditing="false" AutoHideScrollbar="true" readonly="true" autoscrolltobottom="false" linestartsymbol="" marginmultiplier="1.5" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.33,0.66" anchor="Center" style="scp_psiwarning" hidedragicons="true" />
+    </Terminal>
+  </Item>
+  <Item name="" identifier="scp_strangescribble3" variantof="scp_strangescribble1">
+    <Holdable slots="Any,RightHand,LeftHand" holdangle="30" handle1="-10,0" msg="ItemMsgPickUpSelect" />
+    <Terminal canbeselected="true" msg="ItemMsgInteractSelect" AllowInGameEditing="false" AutoHideScrollbar="true" readonly="true" autoscrolltobottom="false" linestartsymbol="" marginmultiplier="1.5" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.33,0.66" anchor="Center" style="scp_maskscribble" hidedragicons="true" />
+    </Terminal>
+  </Item>
+  <Item name="" identifier="scp_strangescribble4" variantof="scp_strangescribble1">
+    <Holdable slots="Any,RightHand,LeftHand" holdangle="30" handle1="-10,0" msg="ItemMsgPickUpSelect" />
+    <Terminal canbeselected="true" msg="ItemMsgInteractSelect" AllowInGameEditing="false" AutoHideScrollbar="true" readonly="true" autoscrolltobottom="false" linestartsymbol="" marginmultiplier="1.5" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.33,0.66" anchor="Center" style="scp_maskscribbletrag" hidedragicons="true" />
+    </Terminal>
+  </Item>
+  <Item name="" identifier="scp_strangescribble5" variantof="scp_strangescribble1">
+    <Holdable slots="Any,RightHand,LeftHand" holdangle="30" handle1="-10,0" msg="ItemMsgPickUpSelect" />
+    <Terminal canbeselected="true" msg="ItemMsgInteractSelect" AllowInGameEditing="false" AutoHideScrollbar="true" readonly="true" autoscrolltobottom="false" linestartsymbol="" marginmultiplier="1.5" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.33,0.66" anchor="Center" style="scp_scribblepictureweapon" hidedragicons="true" />
+    </Terminal>
+  </Item>
+  <Item name="" identifier="scp_weaponsinfodoc" descriptionidentifier="" allowstealingalways="true" category="Misc" Tags="smallitem" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_soft">
+    <PreferredContainer primary="storagecab" spawnprobability="1" />
+    <InventoryIcon name="strangepaperinv" texture="Content/Map/Outposts/Art/FactionItems.png" sourcerect="214,200,50,50" origin="0.5,0.5" />
+    <Sprite texture="Content/Map/Outposts/Art/FactionItems.png" sourcerect="367,194,12,44" origin="0.5,0.5" depth="0.8" />
+    <Body width="35" height="40" density="8" />
+    <Holdable slots="Any,RightHand,LeftHand" holdangle="30" handle1="-10,0" msg="ItemMsgPickUpSelect" />
+    <Terminal canbeselected="true" msg="ItemMsgInteractSelect" AllowInGameEditing="false" AutoHideScrollbar="true" readonly="true" autoscrolltobottom="false" linestartsymbol="" marginmultiplier="1.5" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.38,0.76" anchor="Center" style="scp_weaponcraftinfo" hidedragicons="true" />
+    </Terminal>
+  </Item>
+  <Item name="" identifier="scp_psiinfodoc" descriptionidentifier="" allowstealingalways="true" category="Misc" Tags="smallitem" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_soft">
+    <PreferredContainer primary="medcab" spawnprobability="0.8" />
+    <InventoryIcon name="strangepaperinv" texture="Content/Map/Outposts/Art/FactionItems.png" sourcerect="214,200,50,50" origin="0.5,0.5" />
+    <Sprite texture="Content/Map/Outposts/Art/FactionItems.png" sourcerect="367,194,12,44" origin="0.5,0.5" depth="0.8" />
+    <Body width="35" height="40" density="8" />
+    <Holdable slots="Any,RightHand,LeftHand" holdangle="30" handle1="-10,0" msg="ItemMsgPickUpSelect" />
+    <Terminal canbeselected="true" msg="ItemMsgInteractSelect" AllowInGameEditing="false" AutoHideScrollbar="true" readonly="true" autoscrolltobottom="false" linestartsymbol="" marginmultiplier="1.5" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.38,0.76" anchor="Center" style="scp_psiinfo" hidedragicons="true" />
+    </Terminal>
+  </Item>
+  <Item name="" identifier="scp_chemdoc" descriptionidentifier="" allowstealingalways="true" category="Misc" Tags="smallitem" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_soft">
+    <PreferredContainer primary="toxcab" spawnprobability="1" />
+    <InventoryIcon name="strangepaperinv" texture="Content/Map/Outposts/Art/FactionItems.png" sourcerect="214,200,50,50" origin="0.5,0.5" />
+    <Sprite texture="Content/Map/Outposts/Art/FactionItems.png" sourcerect="367,194,12,44" origin="0.5,0.5" depth="0.8" />
+    <Body width="35" height="40" density="8" />
+    <Holdable slots="Any,RightHand,LeftHand" holdangle="30" handle1="-10,0" msg="ItemMsgPickUpSelect" />
+    <Terminal canbeselected="true" msg="ItemMsgInteractSelect" AllowInGameEditing="false" AutoHideScrollbar="true" readonly="true" autoscrolltobottom="false" linestartsymbol="" marginmultiplier="1.5" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.38,0.76" anchor="Center" style="scp_cheminfo" hidedragicons="true" />
+    </Terminal>
   </Item>
 </Items>
