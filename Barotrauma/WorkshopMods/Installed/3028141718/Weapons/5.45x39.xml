@@ -33,17 +33,17 @@
     <BrokenSprite texture="%ModDir%/CO_spritelist_anims2.png" sourcerect="627,675,253,64" depth="0.55" origin="0.5,0.25" maxcondition="98" />
     <Body width="180" height="30" density="50" />
     <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="52,-5" aimpos="60,5" handle1="-44,-20" handle2="-12,-5" holdangle="-32" msg="ItemMsgPickUpSelect">
-      <StatusEffect type="OnActive" target="This" barrelpos="142,0" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="142,0" stackable="false" setvalue="true">
         <Conditional HasStatusTag="suppressed" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" barrelpos="90,0" stackable="false" setvalue="true" comparison="AND">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="90,0" stackable="false" setvalue="true" comparison="AND">
         <Conditional HasStatusTag="neq suppressed" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
         <RequiredItem items="545_suppressor" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="compensated" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="compensated" duration="0.05" setvalue="true">
         <RequiredItem items="545_compensator" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
@@ -56,13 +56,13 @@
         <Conditional hasstatustag="neq worn" />
       </StatusEffect>
       <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
-      <StatusEffect type="OnActive" targettype="This" tags="extended" barrelpos="125,0" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="extended" barrelpos="125,0" duration="0.05" setvalue="true">
         <RequiredItem items="545_extender" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="Contained,This" tags="rad" duration="1" interval="1.1" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="Contained,This" tags="rad" duration="1" interval="1.1" setvalue="true">
         <RequiredItems items="radiationattachment" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="Contained,This" tags="sulp" duration="1" interval="1.1" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="Contained,This" tags="sulp" duration="1" interval="1.1" setvalue="true">
         <RequiredItems items="sulpationattachment" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
@@ -107,11 +107,11 @@
         <Conditional Spread="gt 3" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
-      <StatusEffect type="Always" target="this" spread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
+      <StatusEffect type="OnSecondaryUse" target="this" spread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
         <Conditional Spread="lt 3" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
-      <StatusEffect type="Always" target="this" unskilledspread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
+      <StatusEffect type="OnSecondaryUse" target="this" unskilledspread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
         <Conditional unskilledspread="lt 8" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
@@ -189,18 +189,18 @@
     <BrokenSprite texture="%ModDir%/CO_spritelist_anims.png" sourcerect="26,483,235,59" depth="0.55" origin="0.5,0.5" scale="0.45" maxcondition="98" />
     <Body width="72" height="40" density="50" />
     <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="60,-5" aimpos="60,0" handle1="-35,-15" handle2="16,5" holdangle="-35" msg="ItemMsgPickUpSelect">
-      <StatusEffect type="OnActive" target="This" barrelpos="150,5" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="150,5" stackable="false" setvalue="true">
         <Conditional HasStatusTag="suppressed" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" barrelpos="100,5" stackable="false" setvalue="true" comparison="AND">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="100,5" stackable="false" setvalue="true" comparison="AND">
         <Conditional HasStatusTag="neq suppressed" />
         <Conditional HasStatusTag="neq underwater" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
         <RequiredItem items="545_suppressor" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="compensated" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="compensated" duration="0.05" setvalue="true">
         <RequiredItem items="545_compensator" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
@@ -216,19 +216,19 @@
       <StatusEffect type="Always" targettype="This" tags="underwater" duration="0.05" setvalue="true">
         <RequiredItem items="co_shootunderwater" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" reload="0.25" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" reload="0.25" stackable="false" setvalue="true">
         <Conditional HasStatusTag="neq underwater" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" reload="0.28" barrelpos="150,5" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" reload="0.28" barrelpos="150,5" stackable="false" setvalue="true">
         <Conditional HasStatusTag="underwater" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="extended" barrelpos="140,5" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="extended" barrelpos="140,5" duration="0.05" setvalue="true">
         <RequiredItem items="545_extender" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="Contained,This" tags="rad_mag" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="Contained,This" tags="rad_mag" duration="0.05" setvalue="true">
         <RequiredItems items="radiationattachment" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="Contained,This" tags="sulp_mag" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="Contained,This" tags="sulp_mag" duration="0.05" setvalue="true">
         <RequiredItems items="sulpationattachment" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
@@ -295,11 +295,11 @@
         <Conditional unskilledspread="gt 16" />
         <Conditional HasStatusTag="extended" />
       </StatusEffect>
-      <StatusEffect type="Always" target="this" spread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
+      <StatusEffect type="OnSecondaryUse" target="this" spread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
         <Conditional Spread="lt 10" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
-      <StatusEffect type="Always" target="this" unskilledspread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
+      <StatusEffect type="OnSecondaryUse" target="this" unskilledspread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
         <Conditional unskilledspread="lt 25" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
@@ -372,17 +372,17 @@
     <BrokenSprite texture="%ModDir%/CO_spritelist_anims.png" sourcerect="495,881,245,60" depth="0.55" origin="0.5,0.5" scale="0.45" maxcondition="98" />
     <Body width="72" height="40" density="50" />
     <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="60,-5" aimpos="60,0" handle1="-45,-19" handle2="26,4" holdangle="-35" msg="ItemMsgPickUpSelect">
-      <StatusEffect type="OnActive" target="This" barrelpos="167,12" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="167,12" stackable="false" setvalue="true">
         <Conditional HasStatusTag="suppressed" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" barrelpos="117,12" stackable="false" setvalue="true" comparison="AND">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="117,12" stackable="false" setvalue="true" comparison="AND">
         <Conditional HasStatusTag="neq suppressed" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
         <RequiredItem items="545_suppressor" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="compensated" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="compensated" duration="0.05" setvalue="true">
         <RequiredItem items="545_compensator" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
@@ -395,13 +395,13 @@
         <Conditional hasstatustag="neq worn" />
       </StatusEffect>
       <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
-      <StatusEffect type="OnActive" targettype="This" tags="extended" barrelpos="155,12" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="extended" barrelpos="155,12" duration="0.05" setvalue="true">
         <RequiredItem items="545_extender" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="Contained,This" tags="rad_mag" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="Contained,This" tags="rad_mag" duration="0.05" setvalue="true">
         <RequiredItems items="radiationattachment" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="Contained,This" tags="sulp_mag" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="Contained,This" tags="sulp_mag" duration="0.05" setvalue="true">
         <RequiredItems items="sulpationattachment" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
@@ -449,11 +449,11 @@
         <Conditional unskilledspread="gt 16" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
-      <StatusEffect type="Always" target="this" spread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
+      <StatusEffect type="OnSecondaryUse" target="this" spread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
         <Conditional Spread="lt 6" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
-      <StatusEffect type="Always" target="this" unskilledspread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
+      <StatusEffect type="OnSecondaryUse" target="this" unskilledspread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
         <Conditional unskilledspread="lt 16" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
@@ -626,17 +626,17 @@
     <BrokenSprite texture="%ModDir%/CO_spritelist_anims.png" sourcerect="302,310,260,60" depth="0.55" origin="0.5,0.5" scale="0.45" maxcondition="98" />
     <Body width="72" height="40" density="50" />
     <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="75,-15" aimpos="65,-5" handle1="-45,-15" handle2="25,5" holdangle="-35" msg="ItemMsgPickUpSelect">
-      <StatusEffect type="OnActive" target="This" barrelpos="150,8" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="150,8" stackable="false" setvalue="true">
         <Conditional HasStatusTag="suppressed" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" barrelpos="105,8" stackable="false" setvalue="true" comparison="AND">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="105,8" stackable="false" setvalue="true" comparison="AND">
         <Conditional HasStatusTag="neq suppressed" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
         <RequiredItem items="545_suppressor" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="compensated" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="compensated" duration="0.05" setvalue="true">
         <RequiredItem items="545_compensator" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
@@ -649,13 +649,13 @@
         <Conditional hasstatustag="neq worn" />
       </StatusEffect>
       <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
-      <StatusEffect type="OnActive" targettype="This" tags="extended" barrelpos="140,8" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="extended" barrelpos="140,8" duration="0.05" setvalue="true">
         <RequiredItem items="545_extender" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="Contained,This" tags="rad_mag" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="Contained,This" tags="rad_mag" duration="0.05" setvalue="true">
         <RequiredItems items="radiationattachment" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="Contained,This" tags="sulp_mag" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="Contained,This" tags="sulp_mag" duration="0.05" setvalue="true">
         <RequiredItems items="sulpationattachment" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
@@ -711,11 +711,11 @@
         <Conditional unskilledspread="gt 9" />
         <Conditional HasStatusTag="extended" />
       </StatusEffect>
-      <StatusEffect type="Always" target="this" spread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
+      <StatusEffect type="OnSecondaryUse" target="this" spread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
         <Conditional Spread="lt 3" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
-      <StatusEffect type="Always" target="this" unskilledspread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
+      <StatusEffect type="OnSecondaryUse" target="this" unskilledspread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
         <Conditional unskilledspread="lt 16" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
@@ -799,21 +799,17 @@
         <Conditional hasstatustag="neq worn" />
       </StatusEffect>
       <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
-      <StatusEffect type="OnActive" target="Nearbyitems,This" tags="rad" targettags="bullet" range="35" duration="1.1" interval="1" comparison="And">
-        <RequiredItems items="radiationattachment" type="Contained" />
-      </StatusEffect>
       <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
       <StatusEffect type="OnSecondaryUse" target="Character,This" SpeedMultiplier="1.3" setvalue="true" disabledeltatime="true">
         <Conditional HasStatusTag="laser" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" tags="grenadeloaded" duration="0.05" stackable="false">
+      <StatusEffect type="OnSecondaryUse" target="This" tags="grenadeloaded" duration="0.05" stackable="false">
         <RequiredItem items="grenade" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" reload="2.5" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" reload="2.5" stackable="false" setvalue="true">
         <Conditional HasStatusTag="grenadeloaded" />
       </StatusEffect>
-      <!--GL Firing-->
-      <StatusEffect type="OnActive" target="This" reload="0.18" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" reload="0.18" stackable="false" setvalue="true">
         <Conditional HasStatusTag="neq grenadeloaded" />
       </StatusEffect>
     </Holdable>
@@ -1096,17 +1092,17 @@
     <BrokenSprite texture="%ModDir%/CO_spritelist_anims4.png" sourcerect="305,417,270,73" depth="0.55" origin="0.5,0.5" scale="0.4" maxcondition="98" />
     <Body width="72" height="40" density="50" />
     <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="65,-15" aimpos="60,-8" handle1="-50,-14" handle2="1,-5" holdangle="-35" msg="ItemMsgPickUpSelect">
-      <StatusEffect type="OnActive" target="This" barrelpos="170,14" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="170,14" stackable="false" setvalue="true">
         <Conditional HasStatusTag="suppressed" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" barrelpos="125,14" stackable="false" setvalue="true" comparison="AND">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="125,14" stackable="false" setvalue="true" comparison="AND">
         <Conditional HasStatusTag="neq suppressed" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
         <RequiredItem items="545_suppressor" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="compensated" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="compensated" duration="0.05" setvalue="true">
         <RequiredItem items="545_compensator" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
@@ -1119,13 +1115,13 @@
         <Conditional hasstatustag="neq worn" />
       </StatusEffect>
       <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
-      <StatusEffect type="OnActive" targettype="This" tags="extended" barrelpos="160,14" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="extended" barrelpos="160,14" duration="0.05" setvalue="true">
         <RequiredItem items="545_extender" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="Contained,This" tags="rad_mag" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="Contained,This" tags="rad_mag" duration="0.05" setvalue="true">
         <RequiredItems items="radiationattachment" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="Contained,This" tags="sulp_mag" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="Contained,This" tags="sulp_mag" duration="0.05" setvalue="true">
         <RequiredItems items="sulpationattachment" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
@@ -1186,11 +1182,11 @@
         <Conditional unskilledspread="gt 14" />
         <Conditional HasStatusTag="extended" />
       </StatusEffect>
-      <StatusEffect type="Always" target="this" spread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
+      <StatusEffect type="OnSecondaryUse" target="this" spread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
         <Conditional Spread="lt 4" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
-      <StatusEffect type="Always" target="this" unskilledspread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
+      <StatusEffect type="OnSecondaryUse" target="this" unskilledspread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
         <Conditional unskilledspread="lt 15" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
@@ -1254,17 +1250,17 @@
     <BrokenSprite texture="%ModDir%/CO_spritelist_anims4.png" sourcerect="312,320,265,77" depth="0.55" origin="0.5,0.5" scale="0.4" maxcondition="98" />
     <Body width="72" height="40" density="50" />
     <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="65,-15" aimpos="60,-8" handle1="-55,-17" handle2="1,-5" holdangle="-35" msg="ItemMsgPickUpSelect">
-      <StatusEffect type="OnActive" target="This" barrelpos="170,14" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="170,14" stackable="false" setvalue="true">
         <Conditional HasStatusTag="suppressed" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" barrelpos="125,14" stackable="false" setvalue="true" comparison="AND">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="125,14" stackable="false" setvalue="true" comparison="AND">
         <Conditional HasStatusTag="neq suppressed" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
         <RequiredItem items="545_suppressor" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="compensated" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="compensated" duration="0.05" setvalue="true">
         <RequiredItem items="545_compensator" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
@@ -1277,13 +1273,13 @@
         <Conditional hasstatustag="neq worn" />
       </StatusEffect>
       <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
-      <StatusEffect type="OnActive" targettype="This" tags="extended" barrelpos="160,14" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="extended" barrelpos="160,14" duration="0.05" setvalue="true">
         <RequiredItem items="545_extender" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="Contained,This" tags="rad_mag" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="Contained,This" tags="rad_mag" duration="0.05" setvalue="true">
         <RequiredItems items="radiationattachment" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="Contained,This" tags="sulp_mag" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="Contained,This" tags="sulp_mag" duration="0.05" setvalue="true">
         <RequiredItems items="sulpationattachment" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
@@ -1340,11 +1336,11 @@
         <Conditional unskilledspread="gt 19" />
         <Conditional HasStatusTag="extended" />
       </StatusEffect>
-      <StatusEffect type="Always" target="this" spread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
+      <StatusEffect type="OnSecondaryUse" target="this" spread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
         <Conditional Spread="lt 10" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>
-      <StatusEffect type="Always" target="this" unskilledspread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
+      <StatusEffect type="OnSecondaryUse" target="this" unskilledspread="0.3" stackable="true" disabledeltatime="true" setvalue="false" comparison="AND">
         <Conditional unskilledspread="lt 27" />
         <Conditional HasStatusTag="neq extended" />
       </StatusEffect>

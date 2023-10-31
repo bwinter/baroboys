@@ -13,10 +13,28 @@
     </AbilityGroupEffect>
   </Talent>
   <Override>
+    <Talent identifier="vitaminsupplements">
+      <Icon texture="Content/UI/TalentsIcons1.png" sheetindex="4,5" sheetelementsize="128,128" />
+      <Description tag="talentdescription.vitaminsupplements">
+        <Replace tag="[healthboost]" value="20" color="gui.green" />
+      </Description>
+      <Description tag="talentdescription.unlockrecipe">
+        <Replace tag="[itemname]" value="entityname.dontfallstim" color="gui.orange" />
+      </Description>
+      <AbilityGroupEffect abilityeffecttype="OnApplyTreatment">
+        <Conditions>
+          <AbilityConditionCharacter targettype="Ally,NotSelf" />
+        </Conditions>
+        <Abilities>
+          <CharacterAbilityGiveAffliction affliction="bedsidemanner" strength="600" setvalue="true" />
+        </Abilities>
+      </AbilityGroupEffect>
+      <AddedRecipe itemidentifier="dontfallstim" />
+    </Talent>
     <Talent identifier="deliverysystem">
       <Icon texture="Content/UI/TalentsIcons3.png" sheetindex="5,4" sheetelementsize="128,128" />
       <Description tag="talentdescription.unlockrecipe">
-        <Replace tag="[itemname]" value="entityname.advancedsyringegun, M7A5 medical carbine" color="gui.orange" />
+        <Replace tag="[itemname]" value="entityname.advancedsyringegun, entityname.carbine_medic" color="gui.orange" />
       </Description>
       <AddedRecipe itemidentifier="advancedsyringegun" />
       <AddedRecipe itemidentifier="carbine_medic" />

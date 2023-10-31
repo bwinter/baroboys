@@ -1,5 +1,117 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
+<Item name="" description="" identifier="co_riotarmor" category="Equipment" subcategory="Upgrades" tags="mediumitem,clothing" scale="0.35" cargocontaineridentifier="metalcrate" impactsoundtag="impact_soft">
+    <Upgrade gameversion="0.9.3.0" scale="0.45" />
+    <PreferredContainer primary="armcab" />
+    <Price baseprice="685" soldeverywhere="false" />
+    <Deconstruct time="5">
+      <Item identifier="co_riotarmor" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="upgrader" requiredtime="25">
+      <RequiredSkill identifier="weapons" level="80" />
+      <RequiredItem identifier="co_riotarmor" />
+      <RequiredItem identifier="titaniumaluminiumalloy" amount="2" />
+      <RequiredItem identifier="ballisticfiber" />
+      <RequiredItem identifier="plastic" amount="4" />
+    </Fabricate>
+    <InventoryIcon texture="upgradeicons.png" sourcerect="399,304,108,183" origin="0.5,0.5" />
+    <Sprite name="Riot Vest Item" texture="MilitaryVest.png" sourcerect="508,229,103,184" depth="0.6" origin="0.5,0.5" />
+    <Body radius="45" height="50" density="40" />
+    <Wearable slots="OuterClothes" armorvalue="40.0" msg="ItemMsgPickUpSelect">
+      <damagemodifier afflictiontypes="burn" armorsector="0.0,360.0" damagemultiplier="0.5" />
+      <damagemodifier afflictionidentifiers="blunttrauma,lacerations" armorsector="0.0,360.0" damagemultiplier="0.08" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.35" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="explosiondamage,burn" armorsector="0.0,360.0" damagemultiplier="0.2" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="progressivestun,incrementalstun" armorsector="0.0,360.0" damagemultiplier="0" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.4" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.35" damagesound="LimbArmor" deflectprojectiles="true" />
+      <sprite name="Riot Vest Wearable" texture="MilitaryVest.png" limb="Torso" hidelimb="false" inheritscale="true" scale="0.7" inheritorigin="false" origin="0.5,0.52" inheritsourcerect="false" sourcerect="509,231,102,182" />
+      <StatValue stattype="WalkingSpeed" value="-0.15" />
+    </Wearable>
+    <Holdable slots="RightHand+LeftHand" holdpos="0,-70" handle1="0,0-30" handle2="0,-30" holdangle="0" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" allowswappingwhenpicked="false" />
+    <ItemContainer capacity="2">
+      <SlotIcon slotindex="0" texture="Content/UI/ContainerIndicators.png" sourcerect="1,62,120,29" origin="0.5,0.5" />
+      <SlotIcon slotindex="1" texture="Content/UI/ContainerIndicators.png" sourcerect="1,62,120,29" origin="0.5,0.5" />
+      <SlotIcon slotindex="2" texture="%ModDir%/magazineicons.png" sourcerect="315,19,240,240" origin="0.45,0.5" />
+      <SlotIcon slotindex="3" texture="%ModDir%/magazineicons.png" sourcerect="315,19,240,240" origin="0.45,0.5" />
+      <Containable items="bullet" />
+      <SubContainer capacity="2" maxstacksize="1">
+        <Containable items="magazine" itempos="11,2" hide="false" />
+      </SubContainer>
+    </ItemContainer>
+  </Item>
+
+ <Item name="" description="" identifier="bodyarmor_m" category="Equipment" subcategory="Upgrades" tags="mediumitem,clothing" scale="0.35" cargocontaineridentifier="metalcrate" impactsoundtag="impact_soft">
+    <Upgrade gameversion="0.9.3.0" scale="0.45" />
+    <PreferredContainer primary="armcab" />
+    <Price baseprice="820" soldeverywhere="false" />
+    <Deconstruct time="5">
+      <Item identifier="bodyarmor_m" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="upgrader" requiredtime="30">
+      <RequiredSkill identifier="weapons" level="80" />
+      <RequiredItem identifier="bodyarmor" />
+      <RequiredItem identifier="ballisticfiber" amount="2" />
+      <RequiredItem identifier="titaniumaluminiumalloy" />
+      <RequiredItem identifier="organicfiber" amount="2" />
+      <RequiredItem identifier="carbon" />
+    </Fabricate>
+    <InventoryIcon texture="upgradeicons.png" sourcerect="10,43,111,162" origin="0.5,0.5" />
+    <Sprite name="Military Vest Item" texture="MilitaryVest.png" sourcerect="14,45,103,180" depth="0.6" origin="0.5,0.5" />
+    <Body radius="45" height="50" density="40" />
+    <Wearable slots="OuterClothes" armorvalue="40.0" msg="ItemMsgPickUpSelect">
+      <damagemodifier afflictiontypes="burn" armorsector="0.0,360.0" damagemultiplier="0.5" />
+      <damagemodifier afflictionidentifiers="blunttrauma,lacerations,gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.35" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.85" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="explosiondamage" armorsector="0.0,360.0" damagemultiplier="0.35" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="progressivestun,incrementalstun" armorsector="0.0,360.0" damagemultiplier="0" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.2" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.35" damagesound="LimbArmor" deflectprojectiles="true" />
+      <sprite name="Military Vest Wearable" texture="MilitaryVest.png" limb="Torso" hidelimb="false" inheritscale="true" scale="0.7" inheritorigin="false" origin="0.5,0.5" inheritsourcerect="false" sourcerect="14,45,103,180" />
+      <StatValue stattype="WalkingSpeed" value="-0.15" />
+    </Wearable>
+    <Holdable slots="RightHand+LeftHand" holdpos="0,-70" handle1="0,0-30" handle2="0,-30" holdangle="0" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" allowswappingwhenpicked="false" />
+    <ItemContainer capacity="2">
+      <SlotIcon slotindex="0" texture="Content/UI/ContainerIndicators.png" sourcerect="1,62,120,29" origin="0.5,0.5" />
+      <SlotIcon slotindex="1" texture="Content/UI/ContainerIndicators.png" sourcerect="1,62,120,29" origin="0.5,0.5" />
+      <SlotIcon slotindex="2" texture="%ModDir%/magazineicons.png" sourcerect="315,19,240,240" origin="0.45,0.5" />
+      <SlotIcon slotindex="3" texture="%ModDir%/magazineicons.png" sourcerect="315,19,240,240" origin="0.45,0.5" />
+      <Containable items="bullet" />
+      <SubContainer capacity="2" maxstacksize="1">
+        <Containable items="magazine" itempos="11,2" hide="false" />
+      </SubContainer>
+    </ItemContainer>
+  </Item>
+
+ <Item name="" identifier="light_tachelm" category="Equipment" subcategory="Upgrades" tags="smallitem,clothing" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_metal_heavy" scale="0.42">
+    <PreferredContainer secondary="locker" />
+    <Price baseprice="250" buyingpricemultiplier="2" />
+    <Deconstruct time="5">
+      <Item identifier="light_tachelm" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="upgrader" requiredtime="5">
+      <RequiredSkill identifier="electrical" level="5" />
+      <RequiredItem identifier="light_tachelm" />
+      <RequiredItem identifier="silicon" />
+    </Fabricate>
+    <Sprite name="lightac" texture="MilitaryVest.png" sourcerect="273,332,73,82" depth="0.6" origin="0.49292699,0.48658425" />
+    <Body radius="30" density="50" />
+    <Wearable slots="Any,Head" armorvalue="18.0" msg="ItemMsgPickUpSelect">
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="gunshotconcussion" damagemultiplier="0.0" probabilitymultiplier="0.0" />
+      <StatusEffect type="OnWearing" target="Character" stackable="false" interval="3" duration="3.1" tags="hasheadset" />
+      <damagemodifier afflictionidentifiers="blunttrauma,lacerations,gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.19" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.2" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="explosiondamage" armorsector="0.0,360.0" damagemultiplier="0.55" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.2" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="concussion" armorsector="0.0,360.0" damagemultiplier="0.0" damagesound="" deflectprojectiles="true" />
+      <sprite name="lightacworn" texture="MilitaryVest.png" limb="Head" hidewearablesoftype="Hair" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.7" sourcerect="273,330,74,83" origin="0.49859267,0.5242609" />
+      <StatValue stattype="RangedSpreadReduction" value="0.05" />
+      <SkillModifier skillidentifier="weapons" skillvalue="15" />
+      <StatusEffect type="OnWearing" target="Character,This" disabledeltatime="true" setvalue="true">
+        <Affliction identifier="aasoverlay" amount="20" />
+      </StatusEffect>
+    </Wearable>
+  </Item>
 <Item name="" identifier="tacticalhelmet" description="" category="Equipment" subcategory="Upgrades" tags="smallitem" cargocontaineridentifier="metalcrate" scale="0.4" impactsoundtag="impact_metal_heavy">
     <Price baseprice="1000" soldeverywhere="false" canbespecial="false"  />
     <Deconstruct time="10">
@@ -487,6 +599,239 @@
     </Item>
    beginning of actual items -->
 <Items>
+  <Item name="" description="" identifier="co_riotarmor_lightweight" category="Equipment" subcategory="Upgrades" tags="mediumitem,clothing" scale="0.35" cargocontaineridentifier="metalcrate" impactsoundtag="impact_soft">
+    <Upgrade gameversion="0.9.3.0" scale="0.45" />
+    <PreferredContainer primary="armcab" />
+    <Price baseprice="685" soldeverywhere="false" />
+    <Deconstruct time="5">
+      <Item identifier="co_riotarmor" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="upgrader" requiredtime="15">
+      <RequiredSkill identifier="weapons" level="35" />
+      <RequiredSkill identifier="mechanical" level="40" />
+      <RequiredItem identifier="co_riotarmor" />
+      <RequiredItem identifier="titanium" />
+      <RequiredItem identifier="aluminium" amount="3" />
+      <RequiredItem identifier="plastic" amount="2" />
+    </Fabricate>
+    <InventoryIcon texture="upgradeicons.png" sourcerect="399,304,108,183" origin="0.5,0.5" />
+    <Sprite name="Riot Vest Item" texture="MilitaryVest.png" sourcerect="508,229,103,184" depth="0.6" origin="0.5,0.5" />
+    <Body radius="45" height="50" density="40" />
+    <Wearable slots="OuterClothes" armorvalue="25.0" msg="ItemMsgPickUpSelect">
+      <damagemodifier afflictionidentifiers="blunttrauma,lacerations" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.5" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="explosiondamage,burn" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="progressivestun,incrementalstun" armorsector="0.0,360.0" damagemultiplier="0" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.4" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.35" damagesound="LimbArmor" deflectprojectiles="true" />
+      <StatValue stattype="FlowResistance" value="0.45" />
+      <sprite name="Riot Vest Wearable" texture="MilitaryVest.png" limb="Torso" hidelimb="false" inheritscale="true" scale="0.7" inheritorigin="false" origin="0.5,0.52" inheritsourcerect="false" sourcerect="509,231,102,182" />
+    </Wearable>
+    <Holdable slots="RightHand+LeftHand" holdpos="0,-70" handle1="0,0-30" handle2="0,-30" holdangle="0" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" allowswappingwhenpicked="false" />
+  </Item>
+  <Item name="" description="" identifier="co_riotarmor_upgrade_injector" category="Equipment" subcategory="Upgrades" tags="mediumitem,clothing" scale="0.35" cargocontaineridentifier="metalcrate" impactsoundtag="impact_soft">
+    <Upgrade gameversion="0.9.3.0" scale="0.45" />
+    <PreferredContainer primary="armcab" />
+    <Price baseprice="775" soldeverywhere="false" />
+    <Deconstruct time="5">
+      <Item identifier="co_riotarmor" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="upgrader" requiredtime="25">
+      <RequiredSkill identifier="medical" level="60" />
+      <RequiredSkill identifier="mechanical" level="30" />
+      <RequiredItem identifier="co_riotarmor" />
+      <RequiredItem identifier="fpgacircuit" amount="2" />
+      <RequiredItem identifier="copper" amount="3" />
+      <RequiredItem identifier="titanium" />
+    </Fabricate>
+    <InventoryIcon texture="upgradeicons.png" sourcerect="399,304,108,183" origin="0.5,0.5" />
+    <Sprite name="Riot Vest Item" texture="MilitaryVest.png" sourcerect="508,229,103,184" depth="0.6" origin="0.5,0.5" />
+    <Body radius="45" height="50" density="40" />
+    <Wearable slots="OuterClothes" armorvalue="40.0" msg="ItemMsgPickUpSelect">
+      <damagemodifier afflictiontypes="burn" armorsector="0.0,360.0" damagemultiplier="0.5" />
+      <damagemodifier afflictionidentifiers="blunttrauma,lacerations" armorsector="0.0,360.0" damagemultiplier="0.08" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.35" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="explosiondamage,burn" armorsector="0.0,360.0" damagemultiplier="0.2" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="progressivestun,incrementalstun" armorsector="0.0,360.0" damagemultiplier="0" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.4" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.35" damagesound="LimbArmor" deflectprojectiles="true" />
+      <sprite name="Riot Vest Wearable" texture="MilitaryVest.png" limb="Torso" hidelimb="false" inheritscale="true" scale="0.7" inheritorigin="false" origin="0.5,0.52" inheritsourcerect="false" sourcerect="509,231,102,182" />
+      <StatValue stattype="WalkingSpeed" value="-0.15" />
+    </Wearable>
+    <Holdable slots="RightHand+LeftHand" holdpos="0,-70" handle1="0,0-30" handle2="0,-30" holdangle="0" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" allowswappingwhenpicked="false" />
+    <ItemContainer capacity="1" maxstacksize="1" autoinject="true" containedstateindicatorstyle="syringe">
+      <SlotIcon slotindex="0" texture="Content/UI/ContainerIndicators.png" sourcerect="2,155,120,29" origin="0.5,0.5" />
+      <Containable items="chem,medical" />
+    </ItemContainer>
+  </Item>
+  <Item name="" identifier="ballistichelmet_bandit_alt_upgrade" category="Equipment" tags="smallitem,clothing" subcategory="Upgrades" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_metal_heavy" scale="0.35">
+    <PreferredContainer secondary="locker" />
+    <Price baseprice="280" />
+    <Fabricate suitablefabricators="upgrader" requiredtime="5">
+      <RequiredSkill identifier="weapons" level="15" />
+      <RequiredItem identifier="organicfiber" />
+      <RequiredItem identifier="ballistichelmet_bandit_alt" />
+    </Fabricate>
+    <Deconstruct time="10">
+      <Item identifier="ballistichelmet_bandit_alt" />
+    </Deconstruct>
+    <Sprite name="combathelm" texture="upgradeicons.png" sourcerect="278,178,83,77" depth="0.6" origin="0.49292699,0.48658425" />
+    <Body radius="30" density="50" />
+    <Wearable slots="Any,Head" armorvalue="22.0" msg="ItemMsgPickUpSelect">
+      <damagemodifier afflictionidentifiers="blunttrauma,lacerations,gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.15" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="explosiondamage" armorsector="0.0,360.0" damagemultiplier="0.5" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="concussion" armorsector="0.0,360.0" damagemultiplier="0.0" damagesound="" deflectprojectiles="true" />
+      <sprite name="combathelm" texture="upgradeicons.png" limb="Head" hidewearablesoftype="Hair" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" sourcerect="279,179,83,76" origin="0.5036864,0.61572164" />
+    </Wearable>
+    <ItemContainer capacity="1" maxstacksize="5">
+      <SlotIcon slotindex="0" texture="Content/UI/ContainerIndicators.png" sourcerect="1,62,120,29" origin="0.5,0.5" />
+      <SlotIcon slotindex="1" texture="%ModDir%/magazineicons.png" sourcerect="315,19,240,240" origin="0.45,0.5" />
+      <Containable items="bullet" />
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="magazine" hide="false" />
+      </SubContainer>
+    </ItemContainer>
+  </Item>
+  <Item name="" description="" identifier="bodyarmor_m_upgrade_coverage" category="Equipment" subcategory="Upgrades" tags="mediumitem,clothing" scale="0.35" cargocontaineridentifier="metalcrate" impactsoundtag="impact_soft">
+    <Upgrade gameversion="0.9.3.0" scale="0.45" />
+    <PreferredContainer primary="armcab" />
+    <Price baseprice="854" soldeverywhere="false" />
+    <Deconstruct time="5">
+      <Item identifier="bodyarmor_m" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="upgrader" requiredtime="30">
+      <RequiredSkill identifier="weapons" level="40" />
+      <RequiredSkill identifier="mechanical" level="40" />
+      <RequiredItem identifier="bodyarmor_m" />
+      <RequiredItem identifier="ballisticfiber" />
+      <RequiredItem identifier="organicfiber" />
+      <RequiredItem identifier="titanium" />
+      <RequiredItem identifier="steel" />
+    </Fabricate>
+    <InventoryIcon texture="upgradeicons.png" sourcerect="386,126,111,162" origin="0.5,0.5" />
+    <Sprite name="Military Vest Item" texture="MilitaryVest.png" sourcerect="14,45,103,180" depth="0.6" origin="0.5,0.5" />
+    <Body radius="45" height="50" density="40" />
+    <Wearable slots="OuterClothes" armorvalue="55.0" msg="ItemMsgPickUpSelect">
+      <damagemodifier afflictiontypes="burn" armorsector="0.0,360.0" damagemultiplier="0.5" />
+      <damagemodifier afflictionidentifiers="blunttrauma,lacerations,gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.35" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.85" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="explosiondamage" armorsector="0.0,360.0" damagemultiplier="0.25" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="progressivestun,incrementalstun" armorsector="0.0,360.0" damagemultiplier="0" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.2" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.35" damagesound="LimbArmor" deflectprojectiles="true" />
+      <sprite name="Military Vest Right Upper Arm" texture="bodyarmor_pieces.png" limb="RightArm" hidelimb="false" inheritscale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,0,0" origin="0.5,0.5" />
+      <sprite name="Military Vest Left Upper Arm" texture="bodyarmor_pieces.png" limb="LeftArm" hidelimb="false" inheritscale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,0,0" origin="0.5,0.5" />
+      <sprite name="Military Vest Right Thigh" texture="bodyarmor_pieces.png" limb="RightThigh" hidelimb="false" inheritscale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,0,0" origin="0.5,0.5" />
+      <sprite name="Military Vest Left Thigh" texture="bodyarmor_pieces.png" limb="LeftThigh" hidelimb="false" inheritscale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,0,0" origin="0.5,0.5" />
+      <sprite name="Military Vest Torso" texture="MilitaryVest.png" limb="Torso" hidelimb="false" inheritscale="true" scale="0.7" inheritorigin="false" origin="0.5,0.5" inheritsourcerect="false" sourcerect="14,45,103,180" />
+      <StatValue stattype="WalkingSpeed" value="-0.22" />
+    </Wearable>
+    <Holdable slots="RightHand+LeftHand" holdpos="0,-70" handle1="0,0-30" handle2="0,-30" holdangle="0" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" allowswappingwhenpicked="false" />
+    <ItemContainer capacity="2">
+      <SlotIcon slotindex="0" texture="Content/UI/ContainerIndicators.png" sourcerect="1,62,120,29" origin="0.5,0.5" />
+      <SlotIcon slotindex="1" texture="Content/UI/ContainerIndicators.png" sourcerect="1,62,120,29" origin="0.5,0.5" />
+      <SlotIcon slotindex="2" texture="%ModDir%/magazineicons.png" sourcerect="315,19,240,240" origin="0.45,0.5" />
+      <SlotIcon slotindex="3" texture="%ModDir%/magazineicons.png" sourcerect="315,19,240,240" origin="0.45,0.5" />
+      <Containable items="bullet" />
+      <SubContainer capacity="2" maxstacksize="1">
+        <Containable items="magazine" itempos="11,2" hide="false" />
+      </SubContainer>
+    </ItemContainer>
+  </Item>
+  <Item name="" description="" identifier="bodyarmor_m_upgrade_smallitem" category="Equipment" subcategory="Upgrades" tags="smallitem,clothing" scale="0.35" cargocontaineridentifier="metalcrate" impactsoundtag="impact_soft">
+    <Upgrade gameversion="0.9.3.0" scale="0.45" />
+    <PreferredContainer primary="armcab" />
+    <Price baseprice="820" soldeverywhere="false" />
+    <Deconstruct time="5">
+      <Item identifier="bodyarmor_m" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="upgrader" requiredtime="5">
+      <RequiredSkill identifier="mechanical" level="10" />
+      <RequiredItem identifier="bodyarmor_m" />
+      <RequiredItem identifier="carbon" />
+    </Fabricate>
+    <InventoryIcon texture="upgradeicons.png" sourcerect="386,126,111,162" origin="0.5,0.5" />
+    <Sprite name="Military Vest Item" texture="MilitaryVest.png" sourcerect="14,45,103,180" depth="0.6" origin="0.5,0.5" />
+    <Body radius="45" height="50" density="40" />
+    <Wearable slots="Any,OuterClothes" armorvalue="38.0" msg="ItemMsgPickUpSelect">
+      <damagemodifier afflictiontypes="burn" armorsector="0.0,360.0" damagemultiplier="0.5" />
+      <damagemodifier afflictionidentifiers="blunttrauma,lacerations,gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.35" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.85" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="explosiondamage" armorsector="0.0,360.0" damagemultiplier="0.35" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="progressivestun,incrementalstun" armorsector="0.0,360.0" damagemultiplier="0" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.2" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.5" damagesound="LimbArmor" deflectprojectiles="true" />
+      <sprite name="Military Vest Wearable" texture="MilitaryVest.png" limb="Torso" hidelimb="false" inheritscale="true" scale="0.7" inheritorigin="false" origin="0.5,0.5" inheritsourcerect="false" sourcerect="14,45,103,180" />
+      <StatValue stattype="WalkingSpeed" value="-0.8" />
+    </Wearable>
+  </Item>
+  <Item name="" identifier="balaklava_upgrade" description="" subcategory="Upgrades" category="Equipment" tags="smallitem" cargocontaineridentifier="metalcrate" scale="0.4" impactsoundtag="impact_soft">
+    <Price baseprice="140" soldeverywhere="false" />
+    <Deconstruct time="2">
+      <Item identifier="balaklava" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="upgrader" requiredtime="3">
+      <RequiredItem identifier="balaklava" />
+      <RequiredItem identifier="whitepaint" />
+    </Fabricate>
+    <InventoryIcon texture="upgradeicons.png" sourcerect="385,11,83,80" origin="0.5,0.5" />
+    <sprite texture="MilitaryVest.png" limb="Head" inherittexturescale="false" sourcerect="153,279,61,24" origin="0.52,0.51" scale="0.75" hidewearablesoftype="Beard" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" />
+    <Body radius="20" density="50" />
+    <Wearable slots="Any,Head" armorvalue="1.0" msg="ItemMsgPickUpSelect" displaycontainedstatus="true">
+      <StatusEffect type="OnWearing" target="Character" HideFace="true" setvalue="true" disabledeltatime="true" />
+      <sprite texture="upgradeicons.png" name="Balaklava worn" limb="Head" sourcerect="387,11,83,80" origin="0.52,0.51" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.76" hidewearablesoftype="hair,moustache,beard" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="blunttrauma,lacerations,bitewounds,gunshotwound" damagemultiplier="0.95" bleedingmultiplier="0.9" damagesound="LimbArmor" deflectprojectiles="false" />
+    </Wearable>
+  </Item>
+  <Item name="" identifier="light_tachelm_upgrade" category="Equipment" subcategory="Upgrades" tags="smallitem,clothing" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_metal_heavy" scale="0.42">
+    <PreferredContainer secondary="locker" />
+    <Price baseprice="250" buyingpricemultiplier="2" />
+    <Deconstruct time="5">
+      <Item identifier="light_tachelm" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="upgrader" requiredtime="5">
+      <RequiredSkill identifier="electrical" level="5" />
+      <RequiredItem identifier="light_tachelm" />
+      <RequiredItem identifier="silicon" />
+    </Fabricate>
+    <Sprite name="lightac" texture="MilitaryVest.png" sourcerect="273,332,73,82" depth="0.6" origin="0.49292699,0.48658425" />
+    <InventoryIcon texture="upgradeicons.png" sourcerect="287,72,73,82" origin="0.5,0.5" />
+    <Body radius="30" density="50" />
+    <Wearable slots="Any,Head" armorvalue="18.0" msg="ItemMsgPickUpSelect">
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="gunshotconcussion" damagemultiplier="0.0" probabilitymultiplier="0.0" />
+      <StatusEffect type="OnWearing" target="Character" stackable="false" interval="3" duration="3.1" tags="hasheadset" />
+      <damagemodifier afflictionidentifiers="blunttrauma,lacerations,gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.19" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.2" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="explosiondamage" armorsector="0.0,360.0" damagemultiplier="0.55" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.2" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="concussion" armorsector="0.0,360.0" damagemultiplier="0.0" damagesound="" deflectprojectiles="true" />
+      <sprite name="lightacworn" texture="MilitaryVest.png" limb="Head" hidewearablesoftype="Hair" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.7" sourcerect="273,330,74,83" origin="0.49859267,0.5242609" />
+      <StatValue stattype="RangedSpreadReduction" value="0.05" />
+      <SkillModifier skillidentifier="weapons" skillvalue="15" />
+    </Wearable>
+  </Item>
+  <Item name="" description="" identifier="aimaasist_upgrade" category="Equipment" subcategory="Upgrades" tags="smallitem,clothing" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light" scale="0.35">
+    <PreferredContainer secondary="locker" />
+    <Price baseprice="190" buyingpricemultiplier="2" />
+    <Deconstruct time="5">
+      <Item identifier="aimaasist" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="upgrader" requiredtime="5">
+      <RequiredSkill identifier="electrical" level="5" />
+      <RequiredItem identifier="aimaasist" />
+      <RequiredItem identifier="silicon" />
+    </Fabricate>
+    <Sprite name="tacnabsprite" texture="MilitaryVest.png" sourcerect="404,199,89,40" depth="0.6" origin="0.5,0.5" />
+    <InventoryIcon texture="upgradeicons.png" sourcerect="284,4,79,67" origin="0.5,0.5" />
+    <Body radius="30" density="50" />
+    <Wearable slots="Any,Head" msg="ItemMsgPickUpSelect">
+      <StatValue stattype="RangedSpreadReduction" value="0.1" />
+      <SkillModifier skillidentifier="weapons" skillvalue="20" />
+      <sprite name="tacnabworn" texture="MilitaryVest.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" sourcerect="401,181,94,76" origin="0.45,0.5" />
+    </Wearable>
+  </Item>
   <Item name="" description="" identifier="co_aps_upgrade_inventory" category="Equipment" subcategory="Upgrades" tags="mediumitem,clothing,kaz,flashlight" scale="0.4" cargocontaineridentifier="metalcrate" impactsoundtag="impact_soft" InvulnerableToDamage="true">
     <Upgrade gameversion="0.9.3.0" scale="0.45" />
     <PreferredContainer primary="armcab" />
@@ -537,7 +882,7 @@
       </SubContainer>
     </ItemContainer>
   </Item>
-  <Item name="" description="" identifier="divingsuit_improvisedarmor_upgrade_hearing" category="Diving,Equipment" subcategory="Upgrades" tags="diving,deepdiving,provocative,respawnsuit,divingsuit" scale="0.5" fireproof="true" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy">
+  <Item name="" description="" identifier="divingsuit_improvisedarmor_upgrade_hearing" category="Diving,Equipment" subcategory="Upgrades" tags="diving,deepdiving,provocative,divingsuit" scale="0.5" fireproof="true" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy">
     <Price baseprice="260" sold="false" canbespecial="false" />
     <PreferredContainer primary="divingsuitcontainer" />
     <Deconstruct time="10">
@@ -1347,7 +1692,7 @@
     </ItemContainer>
     <aitarget maxsightrange="10" />
   </Item>
-  <Item name="" identifier="abyssdivingsuit_upgrade_armor" category="Diving,Equipment" subcategory="Upgrades" tags="diving,deepdiving,provocative,respawnsuitdeep,abyssdivingsuit" scale="0.5" fireproof="true" description="" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy">
+  <Item name="" identifier="abyssdivingsuit_upgrade_armor" category="Diving,Equipment" subcategory="Upgrades" tags="diving,deepdiving,provocative,abyssdivingsuit" scale="0.5" fireproof="true" description="" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy">
     <Price baseprice="430" canbespecial="false" />
     <PreferredContainer primary="divingsuitcontainer" spawnprobability="0" />
     <Deconstruct time="10">
@@ -1444,7 +1789,7 @@
     </ItemContainer>
     <aitarget maxsightrange="1500" />
   </Item>
-  <Item name="" identifier="abyssdivingsuit_upgrade_sonar" category="Diving,Equipment" subcategory="Upgrades" tags="diving,deepdiving,provocative,respawnsuitdeep,abyssdivingsuit" scale="0.5" fireproof="true" description="" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy">
+  <Item name="" identifier="abyssdivingsuit_upgrade_sonar" category="Diving,Equipment" subcategory="Upgrades" tags="diving,deepdiving,provocative,abyssdivingsuit" scale="0.5" fireproof="true" description="" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy">
     <Price baseprice="430" canbespecial="false" />
     <PreferredContainer primary="divingsuitcontainer" spawnprobability="0" />
     <Deconstruct time="10">
@@ -1576,7 +1921,7 @@
     </ItemContainer>
     <aitarget maxsightrange="1500" />
   </Item>
-  <Item name="" identifier="abyssdivingsuit_upgrade_movement" category="Diving,Equipment" subcategory="Upgrades" tags="diving,deepdiving,provocative,respawnsuitdeep,abyssdivingsuit" scale="0.5" fireproof="true" description="" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy">
+  <Item name="" identifier="abyssdivingsuit_upgrade_movement" category="Diving,Equipment" subcategory="Upgrades" tags="diving,deepdiving,provocative,abyssdivingsuit" scale="0.5" fireproof="true" description="" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy">
     <Price baseprice="430" canbespecial="false" />
     <PreferredContainer primary="divingsuitcontainer" spawnprobability="0" />
     <Deconstruct time="10">
@@ -1671,7 +2016,7 @@
     </ItemContainer>
     <aitarget maxsightrange="1500" />
   </Item>
-  <Item name="" identifier="abyssdivingsuit_upgrade_rebreather" category="Diving,Equipment" subcategory="Upgrades" tags="diving,deepdiving,provocative,respawnsuitdeep,abyssdivingsuit" scale="0.5" fireproof="true" description="" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy">
+  <Item name="" identifier="abyssdivingsuit_upgrade_rebreather" category="Diving,Equipment" subcategory="Upgrades" tags="diving,deepdiving,provocative,abyssdivingsuit" scale="0.5" fireproof="true" description="" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy">
     <Price baseprice="430" canbespecial="false" />
     <PreferredContainer primary="divingsuitcontainer" spawnprobability="0" />
     <Deconstruct time="10">

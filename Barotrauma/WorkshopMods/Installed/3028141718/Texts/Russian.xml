@@ -26,6 +26,22 @@
   <entityname.mod_arsenal>Терминал с модулями</entityname.mod_arsenal>
   <entitydescription.mod_arsenal>Терминалы позволяют вам моментально получить сколько угодно какого угодно предмета из данной категории. Используются для тестировки и на Стрельбище.</entitydescription.mod_arsenal>
   <!-- gear_upgrades -->
+  <entityname.co_riotarmor_lightweight>Тяжелый полицейский бронежилет(Легкая Броня)</entityname.co_riotarmor_lightweight>
+  <entitydescription.co_riotarmor_lightweight>Никакого больше штрафа к скорости перемещения, ценой подсумков и стойкости брони. Этот бронежилет теперь идеальная защита для рискованных ремонтных операций, ведь он не только предохраняет от осколков, но и немного снижает воздействие потока воды на персонажа.</entitydescription.co_riotarmor_lightweight>
+  <entityname.co_riotarmor_upgrade_injector>Тяжелый полицейский бронежилет(Автоинжектор)</entityname.co_riotarmor_upgrade_injector>
+  <entitydescription.co_riotarmor_upgrade_injector>Установка аварийной системы введения медпрепаратов на место подсумков для патронов.</entitydescription.co_riotarmor_upgrade_injector>
+  <entityname.ballistichelmet_bandit_alt_upgrade>Боевой Шлем(Ремень)</entityname.ballistichelmet_bandit_alt_upgrade>
+  <entitydescription.ballistichelmet_bandit_alt_upgrade>Солдаты старой Земли бывало обматывали кожанные ремни вокруг шлема, нося на них игральные карты, сигареты и патроны. Это улучшение позволяет делатиь примерно то же самое, добавляя ячейку для одного магазина и пяти патронов.</entitydescription.ballistichelmet_bandit_alt_upgrade>
+  <entityname.bodyarmor_m_upgrade_coverage>Военный Бронежилет(Дополнительное Бронирование)</entityname.bodyarmor_m_upgrade_coverage>
+  <entitydescription.bodyarmor_m_upgrade_coverage>Добавление защитных элементов на плечи и бедра, а так же пары слоев противоосколочной брони на тело позволит значительно увеличить сопротивление взрывному урону и улучшить покрытие бронекостюма. Однако за такую защиту придется платиться сниженной мобильностью.</entitydescription.bodyarmor_m_upgrade_coverage>
+  <entityname.bodyarmor_m_upgrade_smallitem>Военный Бронежилет(Складной Каркас)</entityname.bodyarmor_m_upgrade_smallitem>
+  <entitydescription.bodyarmor_m_upgrade_smallitem>Пожертвовав подсумками для патронов можно заставить этот бронежилет складываться, что в свою очередь позволит таскать его в инвентаре и ложить в меньшие контейнеры.</entitydescription.bodyarmor_m_upgrade_smallitem>
+  <entityname.balaklava_upgrade>Балаклава(Эджовый Принт)</entityname.balaklava_upgrade>
+  <entitydescription.balaklava_upgrade>Наводите ужас на своих врагов этим крутым и оригинальным принтом черепа на своем лице!</entitydescription.balaklava_upgrade>
+  <entityname.light_tachelm_upgrade>Шлем тактического наблюдения(Улучшенный Дисплей)</entityname.light_tachelm_upgrade>
+  <entitydescription.light_tachelm_upgrade>Это улучшение позволит вам избавиться от надоедливого красного дисплея не потеряв в функциональности системы.</entitydescription.light_tachelm_upgrade>
+  <entityname.aimaasist_upgrade>Тактический Визор СПП(Улучшенный Дисплей)</entityname.aimaasist_upgrade>
+  <entitydescription.aimaasist_upgrade>Это улучшение позволит вам избавиться от надоедливого красного дисплея не потеряв в функциональности системы.</entitydescription.aimaasist_upgrade>
   <entityname.co_aps_upgrade_inventory>Система активной защиты 'Рикошет'(Подсумки)</entityname.co_aps_upgrade_inventory>
   <entitydescription.co_aps_upgrade_inventory>Использование пустого пространства внутри этого рюкзака в качестве контейнеров позволит вам носить дополнительные вещи.</entitydescription.co_aps_upgrade_inventory>
   <entityname.divingsuit_improvisedarmor_upgrade_hearing>Самодельный бронескафандр(Улучшенный Шлемофон)</entityname.divingsuit_improvisedarmor_upgrade_hearing>
@@ -250,6 +266,8 @@
   <entityname.45_smg>ХКЕ-95 полицейский</entityname.45_smg>
   <entitydescription.45_smg>Тяжелый пистолет-пулемет калибра .45 на базе штурмовой винтовки HK-90. Надежное оружие для ближнего боя на подводных лодках и аванпостах, но не способно стрелять под водой.</entitydescription.45_smg>
   <!-- .44.xml -->
+  <entityname.howdah_44>Пистолет-Хаудах В44</entityname.howdah_44>
+  <entitydescription.howdah_44>Предназначение этого четырехствольного пистолета калибром .44 - оборона против хищной фауны. Хаудах способен почти моментально выстрелить все четыре заряженных патрона, однако не имеет механизма автоматического взведения и каждые четыре выстрела должен быть перезаряжен и взведен вручную.</entitydescription.howdah_44>
   <entityname.revolver_44_com>РКК-5 Коммандо</entityname.revolver_44_com>
   <entitydescription.revolver_44_com>Модифицированная версия стандартного револьвера РКК-5. Оснащена глушителем, коллиматорным прицелом и лазерным целеуказателем. Внутренние детали заменены на их аналоги из инопланетных материалов.</entitydescription.revolver_44_com>
   <entityname.revolver_44>Револьвер РКК-5</entityname.revolver_44>
@@ -276,6 +294,14 @@
   <entityname.38_carbine_2>К-12 близнецы</entityname.38_carbine_2>
   <entitydescription.38_carbine_2>Уникальная двухствольная винтовка калибра .38 со встроенным магазином на 10 патронов. Оба ствола стреляют одновременно, образуя точную очередь из двух пуль.</entitydescription.38_carbine_2>
   <!-- Ammunition.xml -->
+  <entityname.co_airgunround_improved>Улучшенная пуля для пневмата</entityname.co_airgunround_improved>
+  <entitydescription.co_airgunround_improved>Эта пуля сделана из титана, более легкого и прочного, чем сталь. Наносит больше урона и заглубляется в броню, однако все еще даже близко не стоит с нормальными патронами по эффективности.</entitydescription.co_airgunround_improved>
+  <entityname.co_airgunround>Пуля для пневмата</entityname.co_airgunround>
+  <entitydescription.co_airgunround>Стандартные патроны для пневматических ружей. Наносят низкий урон и отскакивают от любого подобия брони.</entitydescription.co_airgunround>
+  <entityname.co_airgunround_incendiary>Зажигательная пуля для пневмата</entityname.co_airgunround_incendiary>
+  <entitydescription.co_airgunround_incendiary>Эта пуля несет небольшой взрывчатый заряд, разрываясь при попадании, имея шанс поджечь врага.</entitydescription.co_airgunround_incendiary>
+  <entityname.co_airgunround_physicorium>Физикориевая пуля для пневмата</entityname.co_airgunround_physicorium>
+  <entitydescription.co_airgunround_physicorium>Подкалибераня заостренная пуля из инопланетного материала. Хорошо пробивает броню и наносит сносный урон.</entitydescription.co_airgunround_physicorium>
   <entityname.clip45>Обойма .45</entityname.clip45>
   <entitydescription.clip45>Специальная металлическая обойма, сделанная для карабина М11.</entitydescription.clip45>
   <entityname.shotgunslugfixfoam>Ремонтный патрон для дробовика</entityname.shotgunslugfixfoam>
@@ -582,6 +608,8 @@
   <entitydescription.co_bolt>Можно установить на оружие с помповым, рычажным и продольно-скользящим затвором. Увеличивает скорострельность.</entitydescription.co_bolt>
   <entityname.co_trigger>Курок двойного действия</entityname.co_trigger>
   <entitydescription.co_trigger>Можно установить на не-автоматические револьверы чтобы значительно повысить их скорострельность.</entitydescription.co_trigger>
+  <entitydescription.extender>Увеличивает изначальную точность.</entitydescription.extender>
+  <entitydescription.compensator>Снижает отдачу.</entitydescription.compensator>
   <entityname.kurz_extender>Удлиненный ствол(7,62 Курц)</entityname.kurz_extender>
   <entitydescription.kurz_extender>Увеличивает изначальную точность.</entitydescription.kurz_extender>
   <entityname.57_extender>Удлиненный ствол(5.7)</entityname.57_extender>
@@ -650,9 +678,13 @@
   <entitydescription.9x19_suppressor>Простой, но эффективный глушитель. Снижает заметность выстрела для враждебных существ.</entitydescription.9x19_suppressor>
   <entityname.545_suppressor>Глушитель(5.45)</entityname.545_suppressor>
   <entitydescription.545_suppressor>Простой, но эффективный глушитель. Снижает заметность выстрела для враждебных существ.</entitydescription.545_suppressor>
-  <entityname.flashlight_t>Tактический фонарик</entityname.flashlight_t>
+  <entityname.flashlight_t>Тактический фонарик</entityname.flashlight_t>
   <entitydescription.flashlight_t>Фонарик с усиленным корпусом и креплением, позволяющим установить его на оружие.</entitydescription.flashlight_t>
   <!-- Weapons.xml -->
+  <entityname.dontfallstim>Боевой Анальгетик</entityname.dontfallstim>
+  <entitydescription.dontfallstim>Этот препарат значительно повышает устойчивость пациента к шоку и боли, позволяя тому оставаться в сознании с тяжелыми ранениями.</entitydescription.dontfallstim>
+  <entityname.co_airgun>Пневматическая винтовка ХА-150</entityname.co_airgun>
+  <entitydescription.co_airgun>Эта винтовка со скользящим затвором использует баллоны с сжатым кислородом, чтобы разгонять маленькие металлические пули. Весьма полезный инструмент охоты на мелкуих обитателей глубин, однако крайне спорынй выбор для боя. Может быть модифицирована тепловизионным прицелом и улучшенным затвором..</entitydescription.co_airgun>
   <entityname.co_disposablerocketlaucnher>Одноразовый гранатомет РМГ-45 Мавка</entityname.co_disposablerocketlaucnher>
   <entitydescription.co_disposablerocketlaucnher>Этот гранатомет снабжен одиночной осколочно-фугасной гранатой, способной нанести тяжелые повреждения любому типу цели. Поток пороховых газов может ранить стоящего за стрелком.</entitydescription.co_disposablerocketlaucnher>
   <entityname.guidebook1>Руководство Офицера СБ</entityname.guidebook1>
@@ -845,12 +877,14 @@
   <talentname.cps_craft>Теперь вы можете изготавливать стабилизатор затворного давления!</talentname.cps_craft>
   <talentname.omni_craft>Теперь вы можете изготавливать все предметы из COR!</talentname.omni_craft>
   <!-- Afflictions-->
+  <afflictionname.dontfall_afl>Обезболен</afflictionname.dontfall_afl>
+  <afflictiondescription.dontfall_afl>Под эффектом сильного анальгетика.</afflictiondescription.dontfall_afl>
   <afflictionname.gunshotconcussion>Тугоухость</afflictionname.gunshotconcussion>
   <afflictiondescription.gunshotconcussion>Стрельба из оружия без глушителя или защиты для ушей приводит к тугоухости.</afflictiondescription.gunshotconcussion>
   <afflictionname.govno>Говно</afflictionname.govno>
   <afflictiondescription.govno>Превратился в говно.</afflictiondescription.govno>
   <afflictionname.aimresist>Под защитой</afflictionname.aimresist>
-  <afflictiondescription.aimresist>Получаемый урон снижен</afflictiondescription.aimresist>
+  <afflictiondescription.aimresist>Получаемый урон снижен.</afflictiondescription.aimresist>
   <afflictionname.stab>Стабилизация</afflictionname.stab>
   <afflictiondescription.stab>Улучшена точность</afflictiondescription.stab>
   <afflictionname.crit>Готов критовать</afflictionname.crit>

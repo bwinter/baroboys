@@ -25,6 +25,22 @@
   <entityname.mod_arsenal>Attachments Terminal</entityname.mod_arsenal>
   <entitydescription.mod_arsenal>Terminals allow you to instantly get any item of given category in any amount. They are used for testing purposes and on Shooting Range.</entitydescription.mod_arsenal>
   <!-- gear_upgrades -->
+  <entityname.co_riotarmor_lightweight>Heavy riot armor(Lightweight Armor)</entityname.co_riotarmor_lightweight>
+  <entitydescription.co_riotarmor_lightweight>No more movement penalties with these new plates of aluminium alloy. Armor toughness has been decreased and pouches were removed but now this vest is a perfect option for risky repairs as it grants perfect protection against shrapnel and resists water flow a bit.</entitydescription.co_riotarmor_lightweight>
+  <entityname.co_riotarmor_upgrade_injector>Heavy riot armor(Auto-injector)</entityname.co_riotarmor_upgrade_injector>
+  <entitydescription.co_riotarmor_upgrade_injector>Installation of an emergency injector on the place of ammunition pouches.</entitydescription.co_riotarmor_upgrade_injector>
+  <entityname.ballistichelmet_bandit_alt_upgrade>Combat helmet(Belt)</entityname.ballistichelmet_bandit_alt_upgrade>
+  <entitydescription.ballistichelmet_bandit_alt_upgrade>Soldiers of old earth used to wrap leather belts around their helmets carrying their personal things and ammunition. This upgrade does practically the same, allowing you to carry one magazine and up to 5 rounds on your helmet.</entitydescription.ballistichelmet_bandit_alt_upgrade>
+  <entityname.bodyarmor_m_upgrade_coverage>Military body armor(Additional Plating)</entityname.bodyarmor_m_upgrade_coverage>
+  <entitydescription.bodyarmor_m_upgrade_coverage>Equip this vest with additional pieces that protect your shoulders, arms and thighs as well as some extra flak armor for the body improving overall explosion resistances and armor coverage. Comes at a cost of lower mobility.</entitydescription.bodyarmor_m_upgrade_coverage>
+  <entityname.bodyarmor_m_upgrade_smallitem>Military body armor(Foldable Body)</entityname.bodyarmor_m_upgrade_smallitem>
+  <entitydescription.bodyarmor_m_upgrade_smallitem>This upgrade allows you to store this armor piece in your inventory and smaller containers. Ammunition pouches are sacrificed to allow this.</entitydescription.bodyarmor_m_upgrade_smallitem>
+  <entityname.balaklava_upgrade>Balaklava(Edgy Print)</entityname.balaklava_upgrade>
+  <entitydescription.balaklava_upgrade>Terrify your enemies with this cool and original print of a skull on your mask.</entitydescription.balaklava_upgrade>
+  <entityname.light_tachelm_upgrade>Tactical observation helmet(Better Display)</entityname.light_tachelm_upgrade>
+  <entitydescription.light_tachelm_upgrade>This upgrade allows you to hide the annoying red display with no real downsides.</entitydescription.light_tachelm_upgrade>
+  <entityname.aimaasist_upgrade>AAS Tactical Visor(Better Display)</entityname.aimaasist_upgrade>
+  <entitydescription.aimaasist_upgrade>This upgrade allows you to hide the annoying red display with no real downsides.</entitydescription.aimaasist_upgrade>
   <entityname.co_aps_upgrade_inventory>'Ricochet' Active protection system(Tactical Pouches)</entityname.co_aps_upgrade_inventory>
   <entitydescription.co_aps_upgrade_inventory>Repurposing some empty space inside this backpack into contaners allows you to carry up to 3 stacks of small items inside it.</entitydescription.co_aps_upgrade_inventory>
   <entityname.divingsuit_improvisedarmor_upgrade_hearing>Improvised Armored Diving Suit(Improved Headgear)</entityname.divingsuit_improvisedarmor_upgrade_hearing>
@@ -58,7 +74,7 @@
   <entityname.abyssdivingsuit_upgrade_movement>Abyss Diving Suit(Mobility Enhancement)</entityname.abyssdivingsuit_upgrade_movement>
   <entitydescription.abyssdivingsuit_upgrade_movement>Addition of special fins as well as removing some weight from suit's body by getting rid of heavy armor plates and replacing standard joints with more flexible new ones greatly increases mobility of this suit, reducing protection in exchange.</entitydescription.abyssdivingsuit_upgrade_movement>
   <entityname.abyssdivingsuit_upgrade_rebreather>Abyss Diving Suit(Electric Rebreather)</entityname.abyssdivingsuit_upgrade_rebreather>
-  <entitydescription.abyssdivingsuit_upgrade_rebreather>A special rebreathing device recycles wearer's breath as well as functions as a miniature oxygen generator. Now this suit requires battery cells instead of oxygen tank. Each cell lasts twice longer than an oxygen tank would.</entitydescription.abyssdivingsuit_upgrade_rebreather>
+  <entitydescription.abyssdivingsuit_upgrade_rebreather>A special rebreathing device recycles wearer's breath as well as functions as a miniature oxygen generator. Now this suit requires battery cells instead of oxygen tank.</entitydescription.abyssdivingsuit_upgrade_rebreather>
   <entityname.bodyarmor_upgrade_inventory>Body Armor(Tactical Pouches)</entityname.bodyarmor_upgrade_inventory>
   <entitydescription.bodyarmor_upgrade_inventory>This upgrade provides additional space for ammunition, medicine and a small item of your choice.</entitydescription.bodyarmor_upgrade_inventory>
   <entityname.bodyarmor_upgrade_toughness>Body Armor(Ceramic Plating)</entityname.bodyarmor_upgrade_toughness>
@@ -72,7 +88,7 @@
   <entityname.combatdivingsuit_upgrade_hearing>Combat Diving Suit(Improved Headgear)</entityname.combatdivingsuit_upgrade_hearing>
   <entitydescription.combatdivingsuit_upgrade_hearing>Improves visibility, provides clear hearing while wearing the suit and prevents you from getting Shooter's Ear.</entitydescription.combatdivingsuit_upgrade_hearing>
   <entityname.combatdivingsuit_upgrade_rebreather>Combat Diving Suit(Electric Rebreather)</entityname.combatdivingsuit_upgrade_rebreather>
-  <entitydescription.combatdivingsuit_upgrade_rebreather>A special rebreathing device recycles wearer's breath as well as functions as a miniature oxygen generator. Now this suit requires battery cells instead of oxygen tank. Each cell lasts twice longer than an oxygen tank would.</entitydescription.combatdivingsuit_upgrade_rebreather>
+  <entitydescription.combatdivingsuit_upgrade_rebreather>A special rebreathing device recycles wearer's breath as well as functions as a miniature oxygen generator. Now this suit requires battery cells instead of oxygen tank.</entitydescription.combatdivingsuit_upgrade_rebreather>
   <entityname.divingsuit_upgrade_flak>Diving Suit(Flak Armor)</entityname.divingsuit_upgrade_flak>
   <entitydescription.divingsuit_upgrade_flak>Body of this diving suit is reinforced with kevlar fiber, additional armor plates are installed on limbs. This greatly reduces damage taken from explosions and schrapnel, however elemental protection is sacrificed in order to retain mobility.</entitydescription.divingsuit_upgrade_flak>
   <entityname.divingsuit_upgrade_inventory>Diving Suit(Cargo Belt)</entityname.divingsuit_upgrade_inventory>
@@ -249,6 +265,8 @@
   <entityname.45_smg>HKE-95 Police</entityname.45_smg>
   <entitydescription.45_smg>Heavy .45 submachinegun, based on HK-90 assault rifle. Reliable weapon for close-quarter fights inside submarines and outposts, but it is not capable of shooting underwater.</entitydescription.45_smg>
   <!-- .44.xml -->
+  <entityname.howdah_44>W44 Howdah Pistol</entityname.howdah_44>
+  <entitydescription.howdah_44>This quad-barreled .44 pistol's main purpose is self defence against hostile fauna. Capable of firing all of its barrels in quick succession Howdah is able to stop even the most fearsome predators in their tracks. This pistol doesnt have a recocking mechanism which means it has to be manually reloaded and re-cocked every 4 shots.</entitydescription.howdah_44>
   <entityname.revolver_44_com>RKX-5 Commando</entityname.revolver_44_com>
   <entitydescription.revolver_44_com>A modified version of standard RKX-5 revolver. Comes with a suppressor, red dot sight and a laser pointer. Inner parts are replaced with their analogs made from alien materials. Uses .44 ammunition.</entitydescription.revolver_44_com>
   <entityname.revolver_44>RKX-5 Revolver</entityname.revolver_44>
@@ -275,6 +293,14 @@
   <entityname.38_carbine_2>K-12 Gemini</entityname.38_carbine_2>
   <entitydescription.38_carbine_2>A unique twin-barrel .38 rifle with integrated magazine holding up to 10 rounds. Both barrels fire at the same time forming a precise and dealy burst of two bullets.</entitydescription.38_carbine_2>
   <!-- Ammunition.xml -->
+  <entityname.co_airgunround_improved>Improved airgun slug</entityname.co_airgunround_improved>
+  <entitydescription.co_airgunround_improved>This slug is made out of harder but lighter materials, which gives it more punch and penetration. Still is nowhere near as effective as conventional rounds.</entitydescription.co_airgunround_improved>
+  <entityname.co_airgunround>Airgun slug</entityname.co_airgunround>
+  <entitydescription.co_airgunround>Standard ammunition for airguns. Dirt-cheap, somewhat lethal, can be easily produced in large quantities. Deals low damage and bounces of any armor.</entitydescription.co_airgunround>
+  <entityname.co_airgunround_incendiary>Incendiary airgun slug</entityname.co_airgunround_incendiary>
+  <entitydescription.co_airgunround_incendiary>This airgun slug comes with a little explosive tip, that can ingnite enemies, dealing additional damage.</entitydescription.co_airgunround_incendiary>
+  <entityname.co_airgunround_physicorium>Physicorium airgun pellet</entityname.co_airgunround_physicorium>
+  <entitydescription.co_airgunround_physicorium>These pellets come with a sabot, that separates from the projectile, giving it higher speed and thus better penetration.</entitydescription.co_airgunround_physicorium>
   <entityname.clip45>.45 Clip</entityname.clip45>
   <entitydescription.clip45>A special metal clip made for M11 carbine. Holds 10 rounds.</entitydescription.clip45>
   <entityname.shotgunslugfixfoam>Fixfoam shotgun shell</entityname.shotgunslugfixfoam>
@@ -636,6 +662,10 @@
   <entityname.flashlight_t>Tactical flashlight</entityname.flashlight_t>
   <entitydescription.flashlight_t>A flashlight with reinforced body and a rail, allowing it to be attached to weapons.</entitydescription.flashlight_t>
   <!-- Weapons.xml -->
+  <entityname.dontfallstim>Battlefield Analgesic</entityname.dontfallstim>
+  <entitydescription.dontfallstim>This drug greatly enhances patient's tolerance to pain and shock, allowing them to stay conscious with injuries that would otherwise knock them out.</entitydescription.dontfallstim>
+  <entityname.co_airgun>XA-150 Airgun</entityname.co_airgun>
+  <entitydescription.co_airgun>This bolt-action weapon utilizes power of compressed oxygen to propell small metal pellets at somewhat lethal velocity, providing a great Enhance to your early-game Armaments. Though useful for hunting on smaller creatures, airguns can hardly be called a reliable weapon of combat. Can be modified with an Improved Bolt and a Thermal Sight.</entitydescription.co_airgun>
   <entityname.co_disposablerocketlaucnher>RMG-45 Mavka Disposable rocket launcher</entityname.co_disposablerocketlaucnher>
   <entitydescription.co_disposablerocketlaucnher>This launcher is equipped with a single high-explosive rocket-propelled grenade, capable of dealing heavy damage to any sort of target. Bevare of the backblast.</entitydescription.co_disposablerocketlaucnher>
   <entityname.guidebook1>Security's Manual</entityname.guidebook1>
@@ -828,6 +858,8 @@
   <talentname.cps_craft>You can now craft Chamber pressure stabiliser!</talentname.cps_craft>
   <talentname.omni_craft>You can now craft every COR item!</talentname.omni_craft>
   <!--Afflictions.xml -->
+  <afflictionname.dontfall_afl>Resistance to Pain</afflictionname.dontfall_afl>
+  <afflictiondescription.dontfall_afl>Under the effect of a strong painkiller.</afflictiondescription.dontfall_afl>
   <afflictionname.co_godmode>Godmode</afflictionname.co_godmode>
   <afflictiondescription.co_godmode>Fucking Invincible.</afflictiondescription.co_godmode>
   <afflictionname.gunshotconcussion>Shooter's Ear</afflictionname.gunshotconcussion>
