@@ -1,6 +1,13 @@
-local easySettings = {}
+-- This code was adapted from EvilFactory's LuaAudioOverhaul mod.
+-- https://steamcommunity.com/sharedfiles/filedetails/?id=2868921484
 
+local easySettings = {}
+local configPath = RealSonar.Path .. "/config.json"
+local defaultConfig = dofile(RealSonar.Path .. "/Lua/defaultconfig.lua")
 easySettings.Settings = {}
+easySettings.needRangeUpdate = false
+easySettings.needSonarItemsUpdate = false
+easySettings.needWearableProtectionsUpdate = false
 
 local GUIComponent = LuaUserData.CreateStatic("Barotrauma.GUIComponent")
 
@@ -25,10 +32,36 @@ Hook.Patch("Barotrauma.GUI", "TogglePauseMenu", {}, function ()
                 value.OnOpen(frame)
             end
         end
+    -- The else block runs on menu close.
     else
         if Game.IsMultiplayer then
             local message = Networking.Start("reloadserverconfig")
             Networking.Send(message)
+        end
+
+        if easySettings.needSonarItemsUpdate then
+            if Game.IsMultiplayer then
+                local message = Networking.Start("getsonaritems")
+                Networking.Send(message)
+            else
+                RealSonar.getSonarItems()
+            end
+            easySettings.needSonarItemsUpdate = false
+        end
+
+        if easySettings.needWearableProtectionsUpdate then
+            if Game.IsMultiplayer then
+                local message = Networking.Start("setitemtags")
+                Networking.Send(message)
+            else
+                RealSonar.setItemTags()
+            end
+            easySettings.needWearableProtectionsUpdate = false
+        end
+
+        if not Game.IsMultiplayer and easySettings.needRangeUpdate then
+            RealSonar.setSonarRanges()
+            easySettings.needRangeUpdate = false
         end
     end
 end, Hook.HookMethodType.After)
@@ -53,6 +86,7 @@ easySettings.BasicList = function (parent, size)
     local menuList = GUI.ListBox(GUI.RectTransform(Vector2(0.9, 0.8), menuContent.RectTransform, GUI.Anchor.Center))
 
     easySettings.CloseButton(menuContent)
+    easySettings.ResetButton(menuContent)
 
     return menuList
 end
@@ -81,9 +115,22 @@ easySettings.TickBox = function (parent, text, onSelected, state)
 end
 
 easySettings.CloseButton = function (parent)
-    local button = GUI.Button(GUI.RectTransform(Vector2(0.7, 0.05), parent.RectTransform, GUI.Anchor.BottomCenter), "Close", GUI.Alignment.Center, "GUIButton")
+    local button = GUI.Button(GUI.RectTransform(Vector2(0.5, 0.05), parent.RectTransform, GUI.Anchor.BottomRight), TextManager.Get("close").Value, GUI.Alignment.Center, "GUIButton")
 
     button.OnClicked = function ()
+        GUI.GUI.TogglePauseMenu()
+    end
+
+    return button
+end
+
+easySettings.ResetButton = function (parent)
+    local button = GUI.Button(GUI.RectTransform(Vector2(0.5, 0.05), parent.RectTransform, GUI.Anchor.BottomLeft), TextManager.Get("resetalldefault").Value, GUI.Alignment.Center, "GUIButton")
+
+    button.OnClicked = function ()
+        RealSonar.Config = dofile(RealSonar.Path .. "/Lua/defaultconfig.lua")
+        File.Write(configPath, json.serialize(RealSonar.Config))
+        easySettings.needRangeUpdate = true
         GUI.GUI.TogglePauseMenu()
     end
 

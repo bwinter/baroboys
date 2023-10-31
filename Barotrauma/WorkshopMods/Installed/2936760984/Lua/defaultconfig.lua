@@ -16,6 +16,7 @@ config.SonarSlow = 1
 config.SubmarineSonar = true
 config.BeaconSonar = true
 config.ShuttleSonar = true
+config.CustomSonar = false
 config.CreatureDamage = true
 config.PlayerDamage = true
 config.BotDamage = true
@@ -23,10 +24,27 @@ config.HumanHullDetection = true
 config.CreatureHullDetection = true
 config.LowLatencyMode = false
 
+config.SonarTerminals = {}
+config.SonarTerminals["navterminal"] = {}
+config.SonarTerminals["navterminal"]["damage"] = "high"
+config.SonarTerminals["navterminal"]["sounds"] = "default"
+config.SonarTerminals["navterminal"]["range"] = 12000
+config.SonarTerminals["shuttlenavterminal"] = {}
+config.SonarTerminals["shuttlenavterminal"]["damage"] = "medium"
+config.SonarTerminals["shuttlenavterminal"]["sounds"] = "shuttle"
+config.SonarTerminals["shuttlenavterminal"]["range"] = 10000
+config.SonarTerminals["sonarmonitor"] = {}
+config.SonarTerminals["sonarmonitor"]["damage"] = "low"
+config.SonarTerminals["sonarmonitor"]["sounds"] = "default"
+config.SonarTerminals["sonarmonitor"]["range"] = 8000
+
 config.IgnoredCharacters = {}
 table.insert(config.IgnoredCharacters, "Put_ids_here")
 
 config.WearableProtections = {}
+config.WearableProtections["anechoicdivingsuit"] = {}
+config.WearableProtections["anechoicdivingsuit"]["damageMultiplier"] = 0.4
+config.WearableProtections["anechoicdivingsuit"]["anechoic"] = true
 config.WearableProtections["divingsuit"] = {}
 config.WearableProtections["divingsuit"]["damageMultiplier"] = 0.1
 config.WearableProtections["divingsuit"]["anechoic"] = false

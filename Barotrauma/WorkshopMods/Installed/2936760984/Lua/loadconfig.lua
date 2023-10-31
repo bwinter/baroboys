@@ -41,7 +41,21 @@ else
     for key, value in pairs(defaultConfig) do
         if RealSonar.Config[key] == nil then
             RealSonar.Config[key] = value
+            print(value)
         end
+    end
+    
+    -- In case someone deletes the three default terminals.
+    -- The reason I am not adding them in the same manner as the package specific ignored characters below is
+    -- because I still want people to be able to edit the values of the terminals, just not delete them.
+    if not RealSonar.Config.SonarTerminals["navterminal"] then
+        RealSonar.Config.SonarTerminals["navterminal"] = defaultConfig.SonarTerminals["navterminal"]
+    end
+    if not RealSonar.Config.SonarTerminals["shuttlenavterminal"] then
+        RealSonar.Config.SonarTerminals["shuttlenavterminal"] = defaultConfig.SonarTerminals["shuttlenavterminal"]
+    end
+    if not RealSonar.Config.SonarTerminals["sonarmonitor"] then
+        RealSonar.Config.SonarTerminals["sonarmonitor"] = defaultConfig.SonarTerminals["sonarmonitor"]
     end
 end
 

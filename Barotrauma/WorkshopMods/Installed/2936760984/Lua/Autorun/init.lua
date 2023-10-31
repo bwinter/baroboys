@@ -4,17 +4,6 @@ RealSonar.sonarItems = {}
 RealSonar.EnemySub = nil
 RealSonar.LITE = false
 
-RealSonar.defaultSonarRange = {}
-RealSonar.defaultSonarRange["navterminal"] = 12000
-RealSonar.defaultSonarRange["sonarmonitor"] = 8000
-RealSonar.defaultSonarRange["shuttlenavterminal"] = 10000
-
--- The maximum distance that bots consider sonar to be dangerous.
-RealSonar.dangerRange = {}
-RealSonar.dangerRange["navterminal"] = 9000
-RealSonar.dangerRange["sonarmonitor"] = 6000
-RealSonar.dangerRange["shuttlenavterminal"] = 7500
-
 -- Load config.
 dofile(RealSonar.Path .. "/Lua/loadconfig.lua")
 
@@ -28,7 +17,7 @@ if (Game.IsMultiplayer and SERVER) or not Game.IsMultiplayer or RealSonar.Config
     dofile(RealSonar.Path .. "/Lua/roundstart.lua")
     dofile(RealSonar.Path .. "/Lua/servercontrol.lua")
     dofile(RealSonar.Path .. "/Lua/cortizideoverride.lua")
-    dofile(RealSonar.Path .. "/Lua/reloadserverconfig.lua")
+    dofile(RealSonar.Path .. "/Lua/networkmessages.lua")
     dofile(RealSonar.Path .. "/Lua/think.lua")
     if RealSonar.LITE == false then
         dofile(RealSonar.Path .. "/Lua/aiobjectives.lua")

@@ -98,7 +98,7 @@ function RealSonar.characterInSonarRange(character)
     local sonar
     for item in RealSonar.sonarItems do
         sonar = item.GetComponentString("Sonar")
-        if tostring(sonar.currentMode) == "Active" and sonar.Voltage > sonar.minVoltage and RealSonar.distanceBetween(item.worldPosition, character.worldPosition) <= RealSonar.dangerRange[item.Prefab.Identifier.Value] then
+        if tostring(sonar.currentMode) == "Active" and sonar.Voltage > sonar.minVoltage and RealSonar.distanceBetween(item.worldPosition, character.worldPosition) <= sonar.Range * 0.75 then
             if sonar.UseDirectionalPing then
                 if RealSonar.inDirectionalSector(character, item) then
                     inSonar = true
@@ -164,7 +164,7 @@ function RealSonar.getSonarResistanceData(character)
     local wearable
     local configOverride = false
     for clothing in equippedClothing do
-        identifier = clothing.Prefab.Identifier
+        identifier = clothing.Prefab.Identifier.Value
         wearable = clothing.GetComponentString("Wearable")
 
         -- Checking config.
@@ -193,11 +193,11 @@ function RealSonar.getSonarResistanceData(character)
         configOverride = false
     end
 
-    -- Constraints.
+    -- Constraints. Having 2 be the max allows for negative protection values on diving suits up to -1.0
     if damageModifier < 0 then
         damageModifier = 0
-    elseif damageModifier > 1 then
-        damageModifier = 1
+    elseif damageModifier > 2 then
+        damageModifier = 2
     end
     
     table.insert(resistanceData, damageModifier)
@@ -234,18 +234,27 @@ function RealSonar.isEnabledForTerminal(terminal_id)
         else
             return false
         end
-    
+    elseif RealSonar.Config.SonarTerminals[terminal_id] then
+        if RealSonar.Config.CustomSonar then
+            return true
+        else
+            return false
+        end
+    -- The default return value is true because all terminals should be enabled by default.
     else
-        return false
+        return true
     end
 end
 
 function RealSonar.getSonarItems()
     RealSonar.sonarItems = {}
     for item in Item.RepairableItems do
-        local id = item.Prefab.Identifier.Value
-        if id == "navterminal" or id == "sonarmonitor" or id == "shuttlenavterminal" then
-            table.insert(RealSonar.sonarItems, item)
+        local item_id = item.Prefab.Identifier.Value
+        
+        for terminal_id in pairs(RealSonar.Config.SonarTerminals) do
+            if item_id == terminal_id then
+                table.insert(RealSonar.sonarItems, item)
+            end
         end
     end
 end
@@ -268,12 +277,19 @@ function RealSonar.getVFXPresetString()
     end
 end
 
-function RealSonar.getTerminalTypeFromID(terminal_id)
+-- General reminder: It might be worth globally changing the naming convention of "", "shuttle", and "beacon" to match "high", "medium", "low"
+function RealSonar.getTerminalType(terminal_id)
+    local damagePreset = "high"
+
+    if RealSonar.Config.SonarTerminals[terminal_id] then
+        damagePreset = RealSonar.Config.SonarTerminals[terminal_id]["damage"]
+    end
+
     local terminal_type = ""
-    if terminal_id == "sonarmonitor" then
-        terminal_type = "beacon"
-    elseif terminal_id == "shuttlenavterminal" then
+    if damagePreset == "medium" then
         terminal_type = "shuttle"
+    elseif damagePreset == "low" then
+        terminal_type = "beacon"
     end
     return terminal_type
 end
@@ -289,33 +305,40 @@ function RealSonar.getEnemySub()
     end
 end
 
--- Toggles pirate sonar. Unfortunately, "currentMode" is not serializable, causing some desync when looking at the pirate terminal.
 function RealSonar.updateEnemySonarMode()
     local terminal = RealSonar.EnemySub.terminal
     local sonar = RealSonar.EnemySub.sonar
     local captain = RealSonar.EnemySub.captain
     if tostring(sonar.currentMode) == "Passive" and captain and not captain.IsUnconscious and not captain.isDead and RealSonar.distanceBetween(captain.WorldPosition, terminal.WorldPosition) < 700 and not RealSonar.hullBreached(captain) then
         sonar.currentMode = 0
-        sonar.Update(1, nil)
+        if Game.IsMultiplayer then
+            terminal.CreateServerEvent(Components.Sonar, sonar)
+        end
         return math.random(1,3)
     elseif tostring(sonar.currentMode) == "Active" and captain and not captain.IsUnconscious and not captain.isDead then
         sonar.currentMode = 1
-        sonar.Update(1, nil)
+        if Game.IsMultiplayer then
+            terminal.CreateServerEvent(Components.Sonar, sonar)
+        end
     end
     return math.random(6,12)
 end
 
--- Only works in single-player due to sonar Range not being serializable.
-function RealSonar.setSonarRange()
-    if Game.IsMultiplayer or not Game.RoundStarted then return end
-    for sub in Submarine.MainSubs do
-        local terminal = RealSonar.getTerminalFromSub(sub)
-        local sonar = terminal.GetComponentString("Sonar")
-        for terminal_id, defaultRange in pairs(RealSonar.defaultSonarRange) do
-            if terminal_id == terminal.Prefab.Identifier then
-                sonar.Range = defaultRange * RealSonar.Config.SonarRange
-            end
+function RealSonar.setSonarRanges()
+    if Game.IsMultiplayer then return end
+    local defaultRange = 12000
+    local terminal_id
+    local sonar
+    for terminal in RealSonar.sonarItems do
+        terminal_id = terminal.Prefab.Identifier.Value
+
+        if RealSonar.Config.SonarTerminals[terminal_id] then
+            defaultRange = RealSonar.Config.SonarTerminals[terminal_id]["range"]
         end
+        
+        sonar = terminal.GetComponentString("Sonar")
+        sonar.Range = defaultRange * RealSonar.Config.SonarRange
+        --if Game.IsMultiplayer then terminal.CreateServerEvent(Components.Sonar, sonar) end
     end
 end
 
@@ -325,7 +348,7 @@ function RealSonar.setItemTags()
     local property
     for item in Item.ItemList do
         for id, data in pairs(RealSonar.Config.WearableProtections) do
-            if item.Prefab.Identifier == id and data["anechoic"] then
+            if item.Prefab.Identifier.Value == id and data["anechoic"] then
                 item.AddTag("anechoic")
                 if Game.IsMultiplayer then
                     property = item.SerializableProperties[Identifier("Tags")]
@@ -354,13 +377,12 @@ function RealSonar.updateBrainHemorrhage()
         if character.isHuman and not character.isDead then
             brainHemorrhages = {}
             for affliction in character.CharacterHealth.GetAllAfflictions() do
-                if affliction.Prefab.Identifier == "brainhemorrhage" or affliction.Prefab.Identifier == "brainhemorrhagelowfx" or affliction.Prefab.Identifier == "brainhemorrhagenofx" then
+                if affliction.Prefab.Identifier.Value == "brainhemorrhage" or affliction.Prefab.Identifier.Value == "brainhemorrhagelowfx" or affliction.Prefab.Identifier == "brainhemorrhagenofx" then
                     table.insert(brainHemorrhages, affliction)
                 end
             end
-
             for _, brainHemorrhage in pairs(brainHemorrhages) do
-                if brainHemorrhage.Prefab.Identifier ~= string.format("brainhemorrhage%s", fx_preset) then
+                if brainHemorrhage.Prefab.Identifier.Value ~= string.format("brainhemorrhage%s", fx_preset) then
                     RealSonar.GiveAfflictionHead(character, string.format("brainhemorrhage%s", fx_preset), brainHemorrhage.Strength)
                     brainHemorrhage.Strength = 0
                 end
