@@ -1,5 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Afflictions>
+  <Affliction name="" identifier="dontfall_afl" description="" type="resistance" isbuff="true" limbspecific="false" maxstrength="600">
+    <Effect minstrength="0" maxstrength="600" strengthchange="-1.25" resistancefor="stun" minresistance="0.6" maxresistance="0.6" />
+    <icon texture="%ModDir%/magazineicons.png" sourcerect="194,530,128,128" color="165,165,235,255" origin="0,0" />
+  </Affliction>
+  <Affliction identifier="dontfall_buff" type="talentbuff" isbuff="true" hideiconafterdelay="true" limbspecific="false" maxstrength="10" showiconthreshold="100" treatmentthreshold="1000" afflictionoverlayalphaislinear="true">
+    <Effect minstrength="0" maxstrength="2" strengthchange="-1" minskillmultiplier="0.4" maxskillmultiplier="0.5" minscreendistort="0" maxscreendistort="0.2">
+      <AbilityFlag flagtype="AlwaysStayConscious" />
+      <StatusEffect target="Character" setvalue="true" LowPassMultiplier="0.5">
+        <Conditional IsLocalPlayer="True" />
+        <Sound file="%ModDir%/Sounds/dontfall_loop.ogg" loop="true" volume="1" dontmuffle="true" />
+        <Affliction identifier="dontfall_aftermath" amount="2" />
+      </StatusEffect>
+    </Effect>
+    <AfflictionOverlay texture="Content/UI/damageOverlay.png" />
+    <Icon texture="Content/UI/TalentsIcons3.png" sheetindex="0,0" sheetelementsize="128,128" color="10,193,114,255" origin="0,0" />
+  </Affliction>
+  <Affliction identifier="dontfall_aftermath" description="" type="resistance" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" showiconthreshold="1000" treatmentthreshold="1000" maxstrength="60">
+    <Effect minstrength="0" maxstrength="60" strengthchange="-1">
+      <StatusEffect target="Character" setvalue="true">
+        <Conditional IsLocalPlayer="True" />
+        <Sound file="%ModDir%/Sounds/dontfall_ambient.ogg" loop="true" volume="2.5" dontmuffle="true" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <Affliction name="" identifier="spawnused" description="" type="immunity" isbuff="true" limbspecific="true" showiconthreshold="100" maxstrength="2">
+    <Effect minstrength="0" maxstrength="2" strengthchange="0" />
+    <icon texture="%ModDir%/magazineicons.png" sourcerect="795,380,128,128" color="205,77,0,255" origin="0,0" />
+  </Affliction>
   <Affliction name="Funnysound" identifier="funnysound" description="" type="damage" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" showiconthreshold="1000" maxstrength="1">
     <Effect minstrength="0" maxstrength="2" strengthchange="-2">
       <StatusEffect target="Character" setvalue="true">
@@ -22,7 +50,6 @@
   <Affliction name="Shield" identifier="co_shield" description="Damage be gone." type="resistance" isbuff="true" limbspecific="false" maxstrength="10" showiconthreshold="1000" treatmentthreshold="1000">
     <Effect minstrength="0" maxstrength="10" strengthchange="-20" resistancefor="damage" minresistance="0.0" maxresistance="0.2" />
     <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="256,896,128,128" color="10,193,114,10" origin="0,0" />
-    <DamageOverlay texture="Content/UI/damageOverlay.png" />
   </Affliction>
   <Affliction identifier="co_dashing_afl" type="talentbuff" isbuff="true" limbspecific="false" maxstrength="4" showiconthreshold="4" treatmentthreshold="1000" iconcolors="33,75,78;126,211,224;126,211,224;227,247,249">
     <Effect minstrength="0" maxstrength="8" strengthchange="0" />
