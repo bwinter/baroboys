@@ -28,7 +28,6 @@
     <sound file="%ModDir%/Sounds/rocketloop.ogg" range="2000" loop="true" />
     <Affliction identifier="internaldamage" strength="2" />
   </StatusEffect>
-  <StatusEffect type="OnDeath" target="This" targetlimb="Head"></StatusEffect>
   <StatusEffect type="OnDeath" target="This" disabledeltatime="true" stackable="false">
     <RemoveCharacter />
   </StatusEffect>

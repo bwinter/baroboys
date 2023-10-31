@@ -202,7 +202,7 @@
       <aitarget sightrange="3000" soundrange="4000" fadeouttime="2" />
       <Upgrade gameversion="0.10.0.0" Scale="0.45" />
     </Item>
-    <Item name="" identifier="handcannonround" category="Weapon" maxstacksize="12" interactthroughwalls="true" cargocontaineridentifier="metalcrate" hideinmenus="true" tags="smallitem,rifleammo,riflemanbonus" Scale="0.5" impactsoundtag="impact_metal_light">
+    <Item name="" identifier="handcannonround" category="Weapon" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" hideinmenus="true" tags="smallitem,rifleammo,riflemanbonus" Scale="0.5" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="12" MaxStackSizeHoldableOrWearableInventory="24">
       <InventoryIcon texture="Content/Items/InventoryIconAtlas2.png" sourcerect="128,832,64,64" origin="0.5,0.5" />
       <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="233,163,23,9" depth="0.55" origin="0.5,0.5" />
       <Body width="23" height="9" density="40" />
@@ -225,7 +225,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <Item name="" identifier="riflebullet" category="Weapon" maxstacksize="12" interactthroughwalls="true" cargocontaineridentifier="metalcrate" hideinmenus="true" tags="smallitem,rifleammo,riflemanbonus" Scale="0.5" impactsoundtag="impact_metal_light">
+    <Item name="" identifier="riflebullet" category="Weapon" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" hideinmenus="true" tags="smallitem,rifleammo,riflemanbonus" Scale="0.5" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="12" MaxStackSizeHoldableOrWearableInventory="24">
       <InventoryIcon texture="Content/Items/InventoryIconAtlas2.png" sourcerect="128,832,64,64" origin="0.5,0.5" />
       <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="233,163,23,9" depth="0.55" origin="0.5,0.5" />
       <Body width="23" height="9" density="40" />
@@ -248,7 +248,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <Item name="" description="" identifier="revolverround" hideinmenus="true" category="Weapon" maxstacksize="7" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,pistolammoitem,38_ammo,bullet" impactsoundtag="impact_metal_light" scale="0.5">
+    <Item name="" description="" identifier="revolverround" hideinmenus="true" category="Weapon" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,pistolammoitem,38_ammo,bullet" impactsoundtag="impact_metal_light" scale="0.5" maxstacksizecharacterinventory="7" MaxStackSizeHoldableOrWearableInventory="14">
       <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="468,766,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="992,898,16,4" depth="0.55" origin="0.50153744,0.44822764" />
       <Body width="40" height="14" density="40" />
@@ -275,7 +275,7 @@
       </Projectile>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Item>
-    <Item name="" description="" maxstacksize="7" hideinmenus="true" impactsoundtag="impact_metal_light" identifier="revolverrounddepletedfuel" tags="smallitem,pistolammoitem,38_ammo,bullet,revolverround" inventoryiconcolor="110,120,110,255" spritecolor="110,120,110" scale="0.5">
+    <Item name="" description="" maxstacksize="32" hideinmenus="true" impactsoundtag="impact_metal_light" identifier="revolverrounddepletedfuel" tags="smallitem,pistolammoitem,38_ammo,bullet,revolverround" inventoryiconcolor="110,120,110,255" spritecolor="110,120,110" scale="0.5" maxstacksizecharacterinventory="7" MaxStackSizeHoldableOrWearableInventory="14">
       <PreferredContainer primary="revolver" spawnprobability="0" />
       <PreferredContainer primary="armcab" spawnprobability="0" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" spawnprobability="0" />

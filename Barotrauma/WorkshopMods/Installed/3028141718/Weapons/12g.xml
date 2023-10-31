@@ -303,8 +303,8 @@
         <Conditional HasStatusTag="neq suppressed" />
       </StatusEffect>
     </RangedWeapon>
-    <ItemContainer capacity="2" maxstacksize="1" itempos="27,10" iteminterval="0,-4" hideitems="true" showcontainedstateindicator="false">
-      <Containable items="shotgunammo" />
+    <ItemContainer capacity="2" maxstacksize="1" itempos="27,10" iteminterval="0,-4" showcontainedstateindicator="false">
+      <Containable items="shotgunammo" hide="true" />
       <SlotIcon texture="%ModDir%/magazineicons.png" sourcerect="620,51,240,240" origin="0.45,0.5" />
       <SlotIcon slotindex="2" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
       <SubContainer capacity="1" maxstacksize="1">
@@ -346,13 +346,13 @@
     <BrokenSprite texture="%ModDir%/CO_spritelist_mod.png" sourcerect="519,853,211,56" depth="0.55" origin="0.5,0.25" maxcondition="98" />
     <Body width="180" height="30" density="50" />
     <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="50,-8" aimpos="50,-10" handle1="-50,-22" handle2="26,7" holdangle="-40" msg="ItemMsgPickUpSelect">
-      <StatusEffect type="OnActive" target="This" barrelpos="160,5" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="160,5" stackable="false" setvalue="true">
         <Conditional HasStatusTag="suppressed" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" barrelpos="80,5" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="80,5" stackable="false" setvalue="true">
         <Conditional HasStatusTag="neq suppressed" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
         <RequiredItem items="12_suppressor" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
@@ -365,19 +365,19 @@
         <Conditional hasstatustag="neq worn" />
       </StatusEffect>
       <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
-      <StatusEffect type="OnActive" target="NearbyItems,This" targettags="shotgunammo" range="35" tags="choke" duration="1" interval="1" stackable="false">
+      <StatusEffect type="OnSecondaryUse" target="NearbyItems,This" targettags="shotgunammo" range="35" tags="choke" duration="1" interval="1" stackable="false">
         <RequiredItems items="co_choke" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="bolt" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="bolt" duration="0.05" setvalue="true">
         <RequiredItem items="co_bolt" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" reload="1.3" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" reload="1.3" stackable="false" setvalue="true">
         <Conditional HasStatusTag="bolt" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" reload="1.45" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" reload="1.45" stackable="false" setvalue="true">
         <Conditional HasStatusTag="neq bolt" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="Contained,This" tags="fire" duration="1" interval="1.1" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="Contained,This" tags="fire" duration="1" interval="1.1" setvalue="true">
         <RequiredItems items="fireattachment" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
@@ -556,14 +556,14 @@
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="30,572,222,56" depth="0.55" origin="0.5,0.25" />
     <BrokenSprite texture="%ModDir%/CO_spritelist_anims.png" sourcerect="30,572,222,56" depth="0.55" origin="0.5,0.25" maxcondition="98" />
     <Body width="180" height="30" density="50" />
-    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="60,-5" aimpos="72,5" handle1="-65,-32" handle2="-45,-15" holdangle="-40" msg="ItemMsgPickUpSelect">
-      <StatusEffect type="OnActive" target="This" barrelpos="160,2" stackable="false" setvalue="true">
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="60,-5" aimpos="61,5" handle1="-65,-32" handle2="-45,-15" holdangle="-40" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="160,2" stackable="false" setvalue="true">
         <Conditional HasStatusTag="suppressed" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" barrelpos="80,2" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="80,2" stackable="false" setvalue="true">
         <Conditional HasStatusTag="neq suppressed" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
         <RequiredItem items="12_suppressor" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
@@ -576,10 +576,10 @@
         <Conditional hasstatustag="neq worn" />
       </StatusEffect>
       <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
-      <StatusEffect type="OnActive" target="NearbyItems,This" targettags="shotgunammo" range="35" tags="choke" duration="1" interval="1" stackable="false">
+      <StatusEffect type="OnSecondaryUse" target="NearbyItems,This" targettags="shotgunammo" range="35" tags="choke" duration="1" interval="1" stackable="false">
         <RequiredItems items="co_choke" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="Contained,This" tags="fire" duration="1" interval="1.1" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="Contained,This" tags="fire" duration="1" interval="1.1" setvalue="true">
         <RequiredItems items="fireattachment" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
@@ -680,13 +680,13 @@
     <BrokenSprite texture="%ModDir%/CO_spritelist_pistols.png" sourcerect="14,92,254,53" depth="0.55" origin="0.5,0.25" maxcondition="98" />
     <Body width="180" height="30" density="50" />
     <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="60,-5" aimpos="60,5" handle1="-60,-25" handle2="26,5" holdangle="-40" msg="ItemMsgPickUpSelect">
-      <StatusEffect type="OnActive" target="This" barrelpos="160,5" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="160,5" stackable="false" setvalue="true">
         <Conditional HasStatusTag="suppressed" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" barrelpos="80,5" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="80,5" stackable="false" setvalue="true">
         <Conditional HasStatusTag="neq suppressed" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
         <RequiredItem items="12_suppressor" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
@@ -699,19 +699,19 @@
         <Conditional hasstatustag="neq worn" />
       </StatusEffect>
       <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
-      <StatusEffect type="OnActive" target="NearbyItems,This" targettags="shotgunammo" range="35" tags="choke" duration="1" interval="1" stackable="false">
+      <StatusEffect type="OnSecondaryUse" target="NearbyItems,This" targettags="shotgunammo" range="35" tags="choke" duration="1" interval="1" stackable="false">
         <RequiredItems items="co_choke" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="bolt" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="bolt" duration="0.05" setvalue="true">
         <RequiredItem items="co_bolt" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" reload="1.8" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" reload="1.8" stackable="false" setvalue="true">
         <Conditional HasStatusTag="bolt" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" reload="2.0" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" reload="2.0" stackable="false" setvalue="true">
         <Conditional HasStatusTag="neq bolt" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="Contained,This" tags="fire" duration="1" interval="1.1" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="Contained,This" tags="fire" duration="1" interval="1.1" setvalue="true">
         <RequiredItems items="fireattachment" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
@@ -817,13 +817,13 @@
     <BrokenSprite texture="%ModDir%/CO_spritelist_pistols.png" sourcerect="304,265,245,64" depth="0.55" origin="0.5,0.25" maxcondition="98" />
     <Body width="180" height="30" density="50" />
     <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="60,-5" aimpos="73,5" handle1="-56,-22" handle2="-50,-15" holdangle="-40" msg="ItemMsgPickUpSelect">
-      <StatusEffect type="OnActive" target="This" barrelpos="170,2" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="170,2" stackable="false" setvalue="true">
         <Conditional HasStatusTag="suppressed" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" barrelpos="90,2" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" barrelpos="90,2" stackable="false" setvalue="true">
         <Conditional HasStatusTag="neq suppressed" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
         <RequiredItem items="12_suppressor" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
@@ -836,19 +836,19 @@
         <Conditional hasstatustag="neq worn" />
       </StatusEffect>
       <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
-      <StatusEffect type="OnActive" target="NearbyItems,This" targettags="shotgunammo" range="35" tags="choke" duration="1" interval="1" stackable="false">
+      <StatusEffect type="OnSecondaryUse" target="NearbyItems,This" targettags="shotgunammo" range="35" tags="choke" duration="1" interval="1" stackable="false">
         <RequiredItems items="co_choke" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" targettype="This" tags="bolt" duration="0.05" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" targettype="This" tags="bolt" duration="0.05" setvalue="true">
         <RequiredItem items="co_bolt" type="Contained" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" reload="1.15" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" reload="1.15" stackable="false" setvalue="true">
         <Conditional HasStatusTag="bolt" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="This" reload="1.3" stackable="false" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="This" reload="1.3" stackable="false" setvalue="true">
         <Conditional HasStatusTag="neq bolt" />
       </StatusEffect>
-      <StatusEffect type="OnActive" target="Contained,This" tags="fire" duration="1" interval="1.1" setvalue="true">
+      <StatusEffect type="OnSecondaryUse" target="Contained,This" tags="fire" duration="1" interval="1.1" setvalue="true">
         <RequiredItems items="fireattachment" type="Contained" />
       </StatusEffect>
       <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
@@ -1005,8 +1005,8 @@
       </StatusEffect>
     </RangedWeapon>
     <SkillRequirementHint identifier="weapons" level="90" />
-    <ItemContainer capacity="5" maxstacksize="2" itempos="27,10" iteminterval="0,-4" hideitems="true" showcontainedstateindicator="false">
-      <Containable items="shotgunammo" />
+    <ItemContainer capacity="5" maxstacksize="2" itempos="27,10" iteminterval="0,-4" showcontainedstateindicator="false">
+      <Containable items="shotgunammo" hide="true" />
       <SlotIcon texture="%ModDir%/magazineicons.png" sourcerect="620,51,240,240" origin="0.45,0.5" />
       <SlotIcon slotindex="5" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
       <SubContainer capacity="1" maxstacksize="1">
@@ -1049,13 +1049,13 @@
       <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="328,572,210,64" depth="0.55" origin="0.5,0.5" scale="0.45" />
       <Body width="72" height="40" density="50" />
       <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="60,-5" aimpos="57,2" handle1="-15,-10" handle2="46,5" holdangle="-35" msg="ItemMsgPickUpSelect">
-        <StatusEffect type="OnActive" target="This" barrelpos="172,15" stackable="false" setvalue="true">
+        <StatusEffect type="OnSecondaryUse" target="This" barrelpos="172,15" stackable="false" setvalue="true">
           <Conditional HasStatusTag="suppressed" />
         </StatusEffect>
-        <StatusEffect type="OnActive" target="This" barrelpos="92,15" stackable="false" setvalue="true">
+        <StatusEffect type="OnSecondaryUse" target="This" barrelpos="92,15" stackable="false" setvalue="true">
           <Conditional HasStatusTag="neq suppressed" />
         </StatusEffect>
-        <StatusEffect type="OnActive" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
+        <StatusEffect type="OnSecondaryUse" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
           <RequiredItem items="12_suppressor" type="Contained" />
         </StatusEffect>
         <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
@@ -1068,10 +1068,10 @@
           <Conditional hasstatustag="neq worn" />
         </StatusEffect>
         <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
-        <StatusEffect type="OnActive" target="NearbyItems,This" targettags="shotgunammo" range="35" tags="choke" duration="1" interval="1" stackable="false">
+        <StatusEffect type="OnSecondaryUse" target="NearbyItems,This" targettags="shotgunammo" range="35" tags="choke" duration="1" interval="1" stackable="false">
           <RequiredItems items="co_choke" type="Contained" />
         </StatusEffect>
-        <StatusEffect type="OnActive" target="Contained,This" tags="fire" duration="1" interval="1.1" setvalue="true">
+        <StatusEffect type="OnSecondaryUse" target="Contained,This" tags="fire" duration="1" interval="1.1" setvalue="true">
           <RequiredItems items="fireattachment" type="Contained" />
         </StatusEffect>
         <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
@@ -1212,12 +1212,12 @@
           <Conditional HasStatusTag="neq suppressed" />
         </StatusEffect>
       </RangedWeapon>
-      <ItemContainer capacity="2" maxstacksize="1" itempos="27,10" iteminterval="0,-4" hideitems="true" showcontainedstateindicator="false">
-        <Containable items="shotgunammo" />
+      <ItemContainer capacity="2" maxstacksize="1" itempos="27,10" iteminterval="0,-4" showcontainedstateindicator="false">
+        <Containable items="shotgunammo" hide="true" />
         <SlotIcon texture="%ModDir%/magazineicons.png" sourcerect="620,51,240,240" origin="0.45,0.5" />
         <SlotIcon slotindex="2" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
         <SubContainer capacity="1" maxstacksize="1">
-          <Containable items="attachment_light" setactive="true" itempos="11,2" hide="false"></Containable>
+          <Containable items="attachment_light" setactive="true" itempos="11,2" hide="true"></Containable>
         </SubContainer>
       </ItemContainer>
       <SkillRequirementHint identifier="weapons" level="55" />
@@ -1257,14 +1257,14 @@
       <BrokenSprite texture="%ModDir%/CO_spritelist_pistols.png" sourcerect="9,32,243,54" depth="0.55" origin="0.5,0.25" maxcondition="98" />
       <Body width="180" height="30" density="50" />
       <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="40,-10" aimpos="60,4" handle1="-35,-16" handle2="26,0" holdangle="-40" msg="ItemMsgPickUpSelect">
-        <StatusEffect type="OnActive" target="This" barrelpos="160,5" stackable="false" setvalue="true">
+        <StatusEffect type="OnSecondaryUse" target="This" barrelpos="160,5" stackable="false" setvalue="true">
           <Conditional HasStatusTag="suppressed" />
         </StatusEffect>
-        <StatusEffect type="OnActive" target="This" barrelpos="80,5" stackable="false" setvalue="true" comparison="AND">
+        <StatusEffect type="OnSecondaryUse" target="This" barrelpos="80,5" stackable="false" setvalue="true" comparison="AND">
           <Conditional HasStatusTag="neq suppressed" />
           <Conditional HasStatusTag="neq underwater" />
         </StatusEffect>
-        <StatusEffect type="OnActive" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
+        <StatusEffect type="OnSecondaryUse" targettype="This" tags="suppressed" duration="0.05" setvalue="true">
           <RequiredItem items="12_suppressor" type="Contained" />
         </StatusEffect>
         <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
@@ -1280,16 +1280,16 @@
         <StatusEffect type="Always" targettype="This" tags="underwater" duration="0.05" setvalue="true">
           <RequiredItem items="co_shootunderwater" type="Contained" />
         </StatusEffect>
-        <StatusEffect type="OnActive" target="This" reload="1.5" stackable="false" setvalue="true">
+        <StatusEffect type="OnSecondaryUse" target="This" reload="1.5" stackable="false" setvalue="true">
           <Conditional HasStatusTag="neq underwater" />
         </StatusEffect>
-        <StatusEffect type="OnActive" target="This" reload="1.8" barrelpos="115,5" stackable="false" setvalue="true">
+        <StatusEffect type="OnSecondaryUse" target="This" reload="1.8" barrelpos="115,5" stackable="false" setvalue="true">
           <Conditional HasStatusTag="underwater" />
         </StatusEffect>
-        <StatusEffect type="OnActive" target="NearbyItems,This" targettags="shotgunammo" range="35" tags="choke" duration="1" interval="1" stackable="false">
+        <StatusEffect type="OnSecondaryUse" target="NearbyItems,This" targettags="shotgunammo" range="35" tags="choke" duration="1" interval="1" stackable="false">
           <RequiredItems items="co_choke" type="Contained" />
         </StatusEffect>
-        <StatusEffect type="OnActive" target="Contained,This" tags="fire" duration="1" interval="1.1" setvalue="true">
+        <StatusEffect type="OnSecondaryUse" target="Contained,This" tags="fire" duration="1" interval="1.1" setvalue="true">
           <RequiredItems items="fireattachment" type="Contained" />
         </StatusEffect>
         <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />

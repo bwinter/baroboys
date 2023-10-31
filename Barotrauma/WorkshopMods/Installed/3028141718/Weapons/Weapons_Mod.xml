@@ -1066,9 +1066,9 @@
       </StatusEffect>
     </Holdable>
   </Item>
-  <Item name="" description="" identifier="thermalsight" category="weapon" subcategory="Attachments" Tags="smallitem,tool,attachment_rifle" cargocontaineridentifier="metalcrate" Scale="0.45" impactsoundtag="impact_metal_light">
+  <Item name="" description="" identifier="thermalsight" category="weapon" subcategory="Attachments" Tags="smallitem,tool,attachment_rifle,attachment_thermal" cargocontaineridentifier="metalcrate" Scale="0.45" impactsoundtag="impact_metal_light">
     <PreferredContainer secondary="locker" />
-    <Price baseprice="400" minleveldifficulty="30">
+    <Price baseprice="850" minleveldifficulty="30">
       <Price locationtype="outpost" multiplier="1" sold="false" />
       <Price locationtype="city" multiplier="0.9" sold="false" />
       <Price locationtype="research" multiplier="1.25" sold="false" />

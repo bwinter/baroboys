@@ -14,7 +14,175 @@
       <StatusEffect type="OnUse" target="this" Condition="95" stackable="false" SetValue="true" />
 light_fluorescent_L2
 -->
-  <Item name="" description="" identifier="co_disposablerocketlaucnher" category="Weapon" tags="mediumitem,weapon,gun,demolitionsexpert" Scale="0.45" impactsoundtag="bigwepimpact">
+  <dontfallstim name="" description="" identifier="dontfallstim" category="Medical" maxstacksize="32" maxstacksizecharacterinventory="8" MaxStackSizeHoldableOrWearableInventory="8" cargocontaineridentifier="chemicalcrate" Tags="smallitem,chem,medical,syringe" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
+    <Upgrade gameversion="0.10.0.0" scale="0.5" />
+    <PreferredContainer primary="medcab" />
+    <PreferredContainer secondary="wreckmedcab,abandonedmedcab" amount="1" spawnprobability="0.05" />
+    <PreferredContainer secondary="abandonedcrewcab" amount="1" spawnprobability="0.01" />
+    <Price baseprice="560" sold="false" />
+    <Fabricate suitablefabricators="medicalfabricator" requiredtime="75" requiresrecipe="true">
+      <RequiredSkill identifier="medical" level="70" />
+      <RequiredSkill identifier="weapons" level="30" />
+      <RequiredItem identifier="antibloodloss1" />
+      <RequiredItem identifier="antidama1" />
+      <RequiredItem identifier="liquidoxygenite" />
+      <RequiredItem identifier="meth" />
+    </Fabricate>
+    <Deconstruct time="10">
+      <Item identifier="meth" />
+      <Item identifier="morphine" />
+    </Deconstruct>
+    <InventoryIcon texture="%ModDir%/CO_spritelist_anims2.png" sourcerect="463,14,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/CO_spritelist_anims2.png" sourcerect="406,5,38,69" depth="0.55" origin="0.5,0.5" />
+    <Body width="35" height="65" density="15" />
+    <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="-5,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect">
+      <RequiredSkill identifier="medical" level="60" />
+      <StatusEffect type="OnFailure" target="This" Condition="-100.0" disabledeltatime="true">
+        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+      </StatusEffect>
+      <StatusEffect type="OnSuccess" target="This" Condition="-100.0" disabledeltatime="true">
+        <Sound file="Content/Items/Medical/Syringe.ogg" range="450" />
+      </StatusEffect>
+      <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10.0">
+        <Affliction identifier="chemaddiction" amount="0.6" />
+        <ReduceAffliction identifier="chemwithdrawal" amount="3.5" />
+      </StatusEffect>
+      <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" disabledeltatime="true">
+        <Affliction identifier="dontfall_afl" amount="500" />
+        <GiveTalentInfo talentidentifiers="stim_dontfall" />
+      </StatusEffect>
+      <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="10.0">
+        <Affliction identifier="chemaddiction" amount="1.2" />
+        <ReduceAffliction identifier="chemwithdrawal" amount="3.5" />
+      </StatusEffect>
+      <StatusEffect tags="medical" type="OnFailure" target="UseTarget" disabledeltatime="true">
+        <Affliction identifier="dontfall_afl" amount="225" />
+        <GiveTalentInfo talentidentifiers="stim_dontfall" />
+      </StatusEffect>
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+      </StatusEffect>
+    </MeleeWeapon>
+    <SkillRequirementHint identifier="medical" level="60" />
+    <Projectile characterusable="false" launchimpulse="20.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
+  </dontfallstim>
+  <Item name="" description="" identifier="co_airgun" category="weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,mountableweapon,gun,gunsmith,airgun" Scale="0.45" impactsoundtag="bigwepimpact">
+    <Price baseprice="87" soldeverywhere="false" buyingpricemultiplier="4">
+      <Price storeidentifier="merchantoutpost" multiplier="1.0" minavailable="5" />
+      <Price storeidentifier="merchantcity" multiplier="1.2" minavailable="3" />
+      <Price storeidentifier="merchantresearch" multiplier="1.25" minavailable="2" />
+      <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="8" />
+      <Price storeidentifier="merchantmine" multiplier="1.25" minavailable="2" />
+      <Price storeidentifier="merchantmilitary" multiplier="0.85" minavailable="2" />
+    </Price>
+    <PreferredContainer primary="armcab" spawnprobability="1" amount="1" />
+    <PreferredContainer secondary="secarmcab" />
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+      <Item identifier="carbon" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="milfabricator,fabricator" requiredtime="15">
+      <RequiredSkill identifier="weapons" level="25" />
+      <RequiredItem identifier="steel" />
+      <RequiredItem identifier="tin" />
+      <RequiredItem identifier="plastic" />
+    </Fabricate>
+    <Fabricate suitablefabricators="weaponry_arsenal" requiredtime="0" />
+    <Sprite texture="%ModDir%/CO_spritelist_anims2.png" sourcerect="6,12,271,64" depth="0.55" origin="0.5,0.25" />
+    <BrokenSprite name="airguncocking" texture="%ModDir%/CO_spritelist_anims2.png" sourcerect="5,85,272,64" depth="0.55" origin="0.5,0.25" maxcondition="98" />
+    <Body width="180" height="30" density="50" />
+    <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="60,-15" aimpos="65,5" handle1="-60,-30" handle2="-25,0" holdangle="-40" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnActive" target="this" thermalgoggles="false" overlaycolor="176,0,0,0" disabledeltatime="true" setvalue="true" conditional="or">
+        <Conditional hasstatustag="neq thermal" />
+        <Conditional hasstatustag="worn" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="this" thermalgoggles="true" overlaycolor="176,0,0,120" disabledeltatime="true" setvalue="true" comparison="AND">
+        <Conditional hasstatustag="thermal" />
+        <Conditional hasstatustag="neq worn" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="This" tags="thermal" duration="0.05" setvalue="true">
+        <RequiredItem items="thermalsight" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="this" showtexts="false" disabledeltatime="true" setvalue="true" conditional="or">
+        <Conditional hasstatustag="neq medical" />
+        <Conditional hasstatustag="worn" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="this" showtexts="true" disabledeltatime="true" setvalue="true" comparison="AND">
+        <Conditional hasstatustag="medical" />
+        <RequiredItems items="medscanner_t" type="Contained" />
+        <Conditional hasstatustag="neq worn" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="Contained" tags="medattached" duration="0.05" stackable="false" />
+      <StatusEffect type="OnActive" targettype="This" tags="bolt" duration="0.05" setvalue="true">
+        <RequiredItem items="co_bolt" type="Contained" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="This" reload="1.4" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="bolt" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" target="This" reload="1.7" stackable="false" setvalue="true">
+        <Conditional HasStatusTag="neq bolt" />
+      </StatusEffect>
+      <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.6" setvalue="true" disabledeltatime="true" />
+      <StatusEffect type="OnSecondaryUse" target="Character,This" SpeedMultiplier="1.3" setvalue="true" disabledeltatime="true">
+        <Conditional HasStatusTag="laser" />
+      </StatusEffect>
+    </Holdable>
+    <SkillRequirementHint identifier="weapons" level="25" />
+    <RangedWeapon barrelpos="120,5" spread="2" reload="1.7" weapondamagemodifier="1.0" unskilledspread="4" combatPriority="65" drawhudwhenequipped="true" crosshairscale="0.2">
+      <Crosshair texture="Content/Items/weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+      <CrosshairPointer texture="Content/Items/weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+      <Sound file="%ModDir%/Sounds/co_airgun.ogg" type="OnUse" range="250" volume="1.2" />
+      <StatusEffect type="OnUse">
+        <Explosion range="150.0" force="0.2" shockwave="false" smoke="false" flash="true" sparks="false" flames="false" underwaterbubble="false" camerashake="10.0" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" delay="0.5">
+        <Sound file="%ModDir%/Sounds/airgun_cock.ogg" type="OnUse" range="250" selectionmode="Random" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="this" Condition="100" stackable="false" delay="1.03" SetValue="true" />
+      <StatusEffect type="OnUse" target="this" Condition="95" stackable="false" SetValue="true" delay="0.55" />
+      <StatusEffect type="OnUse" delay="0.53">
+        <Explosion range="150.0" force="0.5" shockwave="false" smoke="false" flash="false" sparks="false" flames="false" underwaterbubble="false" camerashake="15.0" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="Contained" targetslot="0" Condition="-10.1" disabledeltatime="true">
+        <RequiredItem items="oxygentank" type="Contained" msg="ItemMsgBatteryCellRequired" />
+      </StatusEffect>
+      <RequiredItems items="airgunammo" type="Contained" />
+      <RequiredItem items="oxygentank" type="Contained" TargetSlot="0" msg="ItemMsgOxygenTankRequired" />
+      <RequiredSkill identifier="weapons" level="25" />
+    </RangedWeapon>
+    <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
+      <StatusEffect type="OnWearing" targettype="This" tags="worn" duration="0.05" setvalue="true" thermalgoggles="false" showtexts="false" overlaycolor="176,0,0,0" />
+      <sprite name="airgun_Worn" texture="%ModDir%/CO_spritelist_anims2.png" sourcerect="6,12,271,64" canbehiddenbyotherwearables="false" rotation="90" inheritlimbdepth="false" depth="0.6" limb="Torso" ignorelimbscale="true" scale="0.45" origin="0.5,0.9" />
+    </Wearable>
+    <ItemContainer capacity="1" maxstacksize="1" slotsperrow="3" hideitems="flase" itempos="48,-8" containedspritedepths="0.561" containedstateindicatorslot="0" containedstateindicatorstyle="tank">
+      <Containable items="oxygentank" rotation="91" />
+      <SlotIcon texture="Content/UI/ContainerIndicators.png" sourcerect="1,62,120,29" origin="0.5,0.5" />
+      <SlotIcon slotindex="0" texture="Content/UI/ContainerIndicators.png" sourcerect="1,93,120,29" origin="0.5,0.5" />
+      <SlotIcon slotindex="1" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
+      <SlotIcon slotindex="2" texture="%ModDir%/magazineicons.png" sourcerect="872,55,240,240" origin="0.45,0.5" />
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="attachment_light" setactive="true" itempos="32,4" />
+      </SubContainer>
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="attachment_thermal,boltattachment" itempos="-4,11" />
+      </SubContainer>
+      <SubContainer capacity="6" maxstacksize="1" containedstateindicatorstyle="tank">
+        <Containable items="airgunammo" hide="true" />
+      </SubContainer>
+    </ItemContainer>
+    <CustomInterface canbeselected="true" drawhudwhenequipped="true">
+      <GuiFrame relativesize="0.12,0.08" anchor="BottomLeft" absoluteoffset="20,128" style="ItemUI" />
+      <TickBox text="Tactical Light(If attached)">
+        <StatusEffect type="OnUse" target="Contained" tags="on" duration="0.05" disabledeltatime="true" />
+        <StatusEffect type="OnSecondaryUse" target="Contained" tags="off" duration="0.05" disabledeltatime="true" />
+      </TickBox>
+    </CustomInterface>
+    <aitarget sightrange="10" soundrange="100" fadeouttime="1" />
+    <StatusHUD drawhudwhenequipped="true" range="3000" thermalgoggles="true" showdeadcharacters="false" showtexts="false" />
+    <Upgrade gameversion="0.10.0.0" Scale="0.45" />
+  </Item>
+  <Item name="" description="" identifier="co_disposablerocketlaucnher" category="Weapon" tags="mediumitem,weapon,gun,demolitionsexpert,co_disposablerocketlaucnher,mountableweapon" Scale="0.45" impactsoundtag="bigwepimpact">
     <Price baseprice="210" minleveldifficulty="30" buyingpricemultiplie="2">
       <Price storeidentifier="merchantoutpost" multiplier="1.1" minavailable="1" />
       <Price storeidentifier="merchantcity" multiplier="1.15" minavailable="1" />
@@ -65,7 +233,7 @@ light_fluorescent_L2
     </Quality>
   </Item>
   <Item name="disp_rocket" identifier="co_rocket" category="weapon" hideinmenus="true" interactthroughwalls="true" maxstacksize="1" cargocontaineridentifier="metalcrate" tags="smallitem,co_rocket,demolitionsexpert" impactsoundtag="impact_metal_light" scale="0.35">
-    <PreferredContainer secondary="sturmfaust" amount="1" spawnprobability="1" />
+    <PreferredContainer secondary="co_disposablerocketlaucnher" amount="1" spawnprobability="1" />
     <Sprite texture="%ModDir%/CO_spritelist_mod3.png" sourcerect="840,460,164,27" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="160" height="14" density="12" />
     <Holdable slots="Any,RightHand,LeftHand" holdpos="0,0" handle1="0,0" holdangle="70" aimable="false" msg="ItemMsgPickUpSelect" />
@@ -98,8 +266,8 @@ light_fluorescent_L2
     </Projectile>
     <Upgrade gameversion="0.10.0.0" scale="0.5" />
   </Item>
-  <Item name="" description="" identifier="sturmfaust" category="Weapon" tags="mediumitem,weapon,gun,sturmfaust" Scale="0.45" impactsoundtag="bigwepimpact">
-    <Price baseprice="350" soldeverywhere="false">
+  <Item name="" description="" identifier="sturmfaust" category="Weapon" tags="mediumitem,weapon,gun,sturmfaust,mountableweapon" Scale="0.45" impactsoundtag="bigwepimpact">
+    <Price baseprice="650" soldeverywhere="false">
       <Price locationtype="outpost" multiplier="1.5" sold="false" />
       <Price locationtype="city" multiplier="1.25" sold="false" />
       <Price locationtype="research" multiplier="1.25" sold="false" />
@@ -318,7 +486,7 @@ light_fluorescent_L2
   <Item name="heatjet" identifier="heatjet" tags="smallitem" Scale="0.5" impactsoundtag="impact_metal_light" hideinmenus="true">
     <Sprite texture="%ModDir%/CO_spritelist_mod.png" sourcerect="985,501,23,11" depth="0.55" origin="0.5,0.5" />
     <Body width="23" height="10" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" damagedoors="true" spread="1" maxtargetstohit="100" launchimpulse="10">
       <Attack structuredamage="100" targetforce="5" severlimbsprobability="0" penetration="0.0">
         <Affliction identifier="burn" strength="100" />
@@ -978,7 +1146,7 @@ light_fluorescent_L2
     </CustomInterface>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" identifier="concussion_round" description="" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="8" cargocontaineridentifier="metalcrate" tags="smallitem,pistolammoitem,bullet" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" identifier="concussion_round" description="" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="metalcrate" tags="smallitem,pistolammoitem,bullet" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="8" MaxStackSizeHoldableOrWearableInventory="16">
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.15" />
     <PreferredContainer primary="abandonedarmcab" minamount="0" maxamount="2" spawnprobability="0.15" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="3" spawnprobability="0.15" />
@@ -987,7 +1155,7 @@ light_fluorescent_L2
     <InventoryIcon texture="%ModDir%/CO_spritelist_mod2.png" sourcerect="168,623,55,55" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist_mod2.png" depth="0.54" sourcerect="185,685,21,14" origin="0.5,0.5" />
     <Body width="40" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Price baseprice="15" soldeverywhere="false">
       <Price storeidentifier="merchantoutpost" multiplier="1.1" minavailable="20" />
       <Price storeidentifier="merchantcity" multiplier="1.15" minavailable="40" />
@@ -1504,7 +1672,7 @@ light_fluorescent_L2
       </Containable>
     </ItemContainer>
   </Item>
-  <Item name="" identifier="40mmgrenadeguided" category="Weapon" subcategory="Ammunition" maxstacksize="2" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,grenade,bullet" Scale="0.5" impactsoundtag="impact_metal_light">
+  <Item name="" identifier="40mmgrenadeguided" category="Weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,grenade,bullet" Scale="0.5" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="2" MaxStackSizeHoldableOrWearableInventory="4">
     <Price baseprice="200" soldeverywhere="false">
       <Price locationtype="outpost" multiplier="1.5" sold="false" />
       <Price locationtype="city" multiplier="1.25" sold="false" />
@@ -1908,7 +2076,7 @@ light_fluorescent_L2
       </StatusEffect>
     </Throwable>
   </Item>
-  <Item name="" description="" identifier="divingsuit_improvisedarmor" category="Diving,Equipment" tags="diving,deepdiving,provocative,respawnsuit" scale="0.5" fireproof="true" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy">
+  <Item name="" description="" identifier="divingsuit_improvisedarmor" category="Diving,Equipment" tags="diving,deepdiving,provocative" scale="0.5" fireproof="true" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy">
     <Price baseprice="260" sold="false" />
     <PreferredContainer primary="divingsuitcontainer" />
     <Deconstruct time="30">
@@ -2060,7 +2228,7 @@ light_fluorescent_L2
     <SkillRequirementHint identifier="weapons" level="25" />
     <aitarget sightrange="500" soundrange="500" fadeouttime="1" />
   </Item>
-  <Item name="" description="" identifier="proximitymine_50_monster" category="Weapon" subcategory="Ammunition" damagedbyprojectiles="true" interactthroughwalls="true" hideinmenus="false" maxstacksize="2" cargocontaineridentifier="metalcrate" tags="smallitem,proximitymine,bullet,proximitymine_50" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="proximitymine_50_monster" category="Weapon" subcategory="Ammunition" damagedbyprojectiles="true" interactthroughwalls="true" hideinmenus="false" maxstacksize="32" cargocontaineridentifier="metalcrate" tags="smallitem,proximitymine,bullet,proximitymine_50" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="2" MaxStackSizeHoldableOrWearableInventory="4">
     <InventoryIcon texture="%ModDir%/CO_spritelist_mod.png" sourcerect="958,414,62,62" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist_mod.png" sourcerect="949,309,76,24" depth="0.55" origin="0.5,0.5" />
     <Body width="90" height="14" density="20" />
@@ -2129,7 +2297,7 @@ light_fluorescent_L2
     <MotionSensor range="90" canbeselected="false" IgnoreDead="true" Target="Monster" />
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="proximitymine_50" category="Weapon" subcategory="Ammunition" damagedbyprojectiles="true" interactthroughwalls="true" hideinmenus="false" maxstacksize="2" cargocontaineridentifier="metalcrate" tags="smallitem,proximitymine,bullet" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="proximitymine_50" category="Weapon" subcategory="Ammunition" damagedbyprojectiles="true" interactthroughwalls="true" hideinmenus="false" maxstacksize="32" cargocontaineridentifier="metalcrate" tags="smallitem,proximitymine,bullet" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="2" MaxStackSizeHoldableOrWearableInventory="4">
     <InventoryIcon texture="%ModDir%/CO_spritelist_mod.png" sourcerect="949,345,63,62" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist_mod.png" sourcerect="949,309,76,24" depth="0.55" origin="0.5,0.5" />
     <Body width="90" height="14" density="20" />
@@ -2299,7 +2467,7 @@ light_fluorescent_L2
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" subcategory="Ammunition" identifier="40mmgrenadeincendiary_co" description="" category="Weapon" maxstacksize="2" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,grenade,bullet,deflectable" Scale="0.5" impactsoundtag="impact_metal_light">
+  <Item name="" subcategory="Ammunition" identifier="40mmgrenadeincendiary_co" description="" category="Weapon" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,grenade,bullet,deflectable" Scale="0.5" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="2" MaxStackSizeHoldableOrWearableInventory="4">
     <Price baseprice="140" soldeverywhere="false">
       <Price locationtype="outpost" multiplier="1.5" sold="false" />
       <Price locationtype="city" multiplier="1.25" sold="false" />
@@ -2457,7 +2625,7 @@ light_fluorescent_L2
       <QualityStat stattype="StrikingPowerMultiplier" value="0.25" />
     </Quality>
   </Item>
-  <Item name="" description="" subcategory="Ammunition" identifier="crossbowboltpoison" category="Weapon" maxstacksize="2" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,crossbowammo,bullet" Scale="0.45" impactsoundtag="impact_metal_light" allowasextracargo="true">
+  <Item name="" description="" subcategory="Ammunition" identifier="crossbowboltpoison" category="Weapon" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,crossbowammo,bullet" Scale="0.45" impactsoundtag="impact_metal_light" allowasextracargo="true" maxstacksizecharacterinventory="2" MaxStackSizeHoldableOrWearableInventory="4">
     <PreferredContainer primary="co_crossbow" />
     <PreferredContainer secondary="locker" />
     <Price baseprice="90" sold="false" canbespecial="false" />
@@ -2554,7 +2722,7 @@ light_fluorescent_L2
       </Containable>
     </ItemContainer>
   </Item>
-  <Accuraccystim name="" description="" identifier="accuraccystim" category="Medical" maxstacksize="8" cargocontaineridentifier="chemicalcrate" Tags="smallitem,chem,medical,syringe" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
+  <Accuraccystim name="" description="" identifier="accuraccystim" category="Medical" maxstacksize="32" cargocontaineridentifier="chemicalcrate" Tags="smallitem,chem,medical,syringe" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
     <Upgrade gameversion="0.10.0.0" scale="0.5" />
     <PreferredContainer primary="medcab" />
     <PreferredContainer secondary="wreckmedcab,abandonedmedcab" amount="1" spawnprobability="0.15" />
@@ -2587,20 +2755,20 @@ light_fluorescent_L2
       <StatusEffect type="OnSuccess" target="This" Condition="-100.0" disabledeltatime="true">
         <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
       </StatusEffect>
-      <StatusEffect tags="medical" type="OnSuccess" target="Character" duration="60.0">
+      <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="60.0">
         <ReduceAffliction identifier="oxygenlow" amount="0.2" />
         <Affliction identifier="chemaddiction" amount="0.25" />
         <ReduceAffliction identifier="chemwithdrawal" amount="1.5" />
       </StatusEffect>
-      <StatusEffect tags="medical" type="OnSuccess" target="Character" disabledeltatime="true">
+      <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" disabledeltatime="true">
         <Affliction identifier="co_accuraccybuff" amount="400" />
       </StatusEffect>
-      <StatusEffect tags="medical" type="OnFailure" target="Character" duration="60.0">
+      <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="60.0">
         <ReduceAffliction identifier="oxygenlow" amount="0.2" />
         <Affliction identifier="chemaddiction" amount="0.5" />
         <ReduceAffliction identifier="chemwithdrawal" amount="1.5" />
       </StatusEffect>
-      <StatusEffect tags="medical" type="OnFailure" target="Character" disabledeltatime="true">
+      <StatusEffect tags="medical" type="OnFailure" target="UseTarget" disabledeltatime="true">
         <Affliction identifier="co_accuraccybuff" amount="220" />
       </StatusEffect>
       <!-- Remove the item when fully used -->
@@ -2610,7 +2778,7 @@ light_fluorescent_L2
     </MeleeWeapon>
     <Projectile characterusable="false" launchimpulse="20.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
   </Accuraccystim>
-  <Item name="" description="" subcategory="Ammunition" identifier="crossbowboltshock" category="Weapon" maxstacksize="2" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,crossbowammo,bullet" Scale="0.45" impactsoundtag="impact_metal_light" allowasextracargo="true">
+  <Item name="" description="" subcategory="Ammunition" identifier="crossbowboltshock" category="Weapon" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,crossbowammo,bullet" Scale="0.45" impactsoundtag="impact_metal_light" allowasextracargo="true" maxstacksizecharacterinventory="2" MaxStackSizeHoldableOrWearableInventory="4">
     <PreferredContainer primary="co_crossbow" />
     <PreferredContainer secondary="locker" />
     <Price baseprice="90" sold="false" canbespecial="false" />
@@ -2659,7 +2827,7 @@ light_fluorescent_L2
       </StatusEffect>
     </Projectile>
   </Item>
-  <Item name="" description="" subcategory="Ammunition" identifier="crossbowboltchem" category="Weapon" maxstacksize="2" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,crossbowammo,bullet" Scale="0.45" impactsoundtag="impact_metal_light" allowasextracargo="true">
+  <Item name="" description="" subcategory="Ammunition" identifier="crossbowboltchem" category="Weapon" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,crossbowammo,bullet" Scale="0.45" impactsoundtag="impact_metal_light" allowasextracargo="true" maxstacksizecharacterinventory="2" MaxStackSizeHoldableOrWearableInventory="4">
     <PreferredContainer primary="co_crossbow" />
     <PreferredContainer secondary="locker" />
     <Price baseprice="90" sold="false" canbespecial="false" />
@@ -2710,7 +2878,7 @@ light_fluorescent_L2
       </StatusEffect>
     </LightComponent>
   </Item>
-  <Item name="" description="" identifier="crossbowboltlight" category="Weapon" subcategory="Ammunition" maxstacksize="2" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,crossbowammo,bullet" Scale="0.45" impactsoundtag="impact_metal_light" allowasextracargo="true">
+  <Item name="" description="" identifier="crossbowboltlight" category="Weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,crossbowammo,bullet" Scale="0.45" impactsoundtag="impact_metal_light" allowasextracargo="true" maxstacksizecharacterinventory="2" MaxStackSizeHoldableOrWearableInventory="4">
     <PreferredContainer primary="co_crossbow" />
     <PreferredContainer secondary="locker" />
     <Price baseprice="90" sold="false" canbespecial="false" />
@@ -2742,7 +2910,7 @@ light_fluorescent_L2
       </StatusEffect>
     </LightComponent>
   </Item>
-  <Item name="" description="" identifier="crossbowboltexplosive" category="Weapon" subcategory="Ammunition" maxstacksize="2" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,crossbowammo,bullet" Scale="0.45" impactsoundtag="impact_metal_light" allowasextracargo="true">
+  <Item name="" description="" identifier="crossbowboltexplosive" category="Weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,crossbowammo,bullet" Scale="0.45" impactsoundtag="impact_metal_light" allowasextracargo="true" maxstacksizecharacterinventory="2" MaxStackSizeHoldableOrWearableInventory="4">
     <PreferredContainer primary="co_crossbow" />
     <PreferredContainer secondary="locker" />
     <Price baseprice="90" sold="false" canbespecial="false" />
@@ -2832,7 +3000,7 @@ light_fluorescent_L2
       <SlotIcon texture="Content/UI/ContainerIndicators.png" sourcerect="1,123,120,29" origin="0.5,0.5" />
       <SlotIcon slotindex="1" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
       <SubContainer capacity="1" maxstacksize="1">
-        <Containable items="attachment_light" setactive="true" itempos="15,0"></Containable>
+        <Containable items="attachment_light" setactive="true" itempos="15,0" />
       </SubContainer>
     </ItemContainer>
     <CustomInterface canbeselected="true" drawhudwhenequipped="true">
@@ -3002,11 +3170,11 @@ light_fluorescent_L2
       <StatusEffect type="OnWearing" targettype="This" tags="worn" duration="0.05" setvalue="true" thermalgoggles="false" showtexts="false" overlaycolor="176,0,0,0" />
       <sprite name="Nuclear Gun Worn" texture="%ModDir%/CO_spritelist_mod2.png" canbehiddenbyotherwearables="false" rotation="90" inheritlimbdepth="false" depth="0.6" sourcerect="304,665,217,72" limb="Torso" scale="0.5" origin="0.5,0.8" />
     </Wearable>
-    <ItemContainer capacity="1" itemrotation="20" maxstacksize="1" hideitems="false" itempos="16,-7" containedspritedepth="0.56" showcontainedstateindicator="false">
-      <Containable items="nucleargun_magazine" />
+    <ItemContainer capacity="1" maxstacksize="1" hideitems="false" itempos="16,-7" containedspritedepth="0.56" showcontainedstateindicator="false">
+      <Containable items="nucleargun_magazine" itemrotation="20" />
       <SlotIcon slotindex="1" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
       <SubContainer capacity="1" maxstacksize="1">
-        <Containable items="attachment_light" setactive="true" itempos="20,-3" hide="true"></Containable>
+        <Containable items="attachment_light" setactive="true" itempos="20,-3" hide="true" />
       </SubContainer>
     </ItemContainer>
     <CustomInterface canbeselected="true" drawhudwhenequipped="true">
@@ -3118,7 +3286,7 @@ light_fluorescent_L2
       <Containable items="pyrogentank" />
       <SlotIcon slotindex="1" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
       <SubContainer capacity="1" maxstacksize="1">
-        <Containable items="attachment_light" setactive="true" itempos="20,-3"></Containable>
+        <Containable items="attachment_light" setactive="true" itempos="20,-3" />
       </SubContainer>
     </ItemContainer>
     <LightComponent LightColor="0.5,0.5,0.5,1.0" Flicker="0.02" range="1400" powerconsumption="10" IsOn="true" canbeselected="true" allowingameediting="false">
@@ -3271,7 +3439,7 @@ light_fluorescent_L2
       </StatusEffect>
     </Rangedweapon>
     <SkillRequirementHint identifier="weapons" level="40" />
-    <ItemContainer capacity="1" maxstacksize="1" hideitems="false" itempos="-25,22" itemrotation="270" containedspritedepth="0.56" containedstateindicatorstyle="tank">
+    <ItemContainer capacity="1" maxstacksize="1" hideitems="false" itempos="-25,22" itemrotation="271" containedspritedepth="0.56" containedstateindicatorstyle="tank">
       <Containable items="incendiumfueltank" />
     </ItemContainer>
     <aitarget sightrange="5000" soundrange="500" fadeouttime="5" />
@@ -3547,9 +3715,9 @@ light_fluorescent_L2
     <Sprite texture="%ModDir%/CO_spritelist_mod.png" sourcerect="216,188,89,123" depth="0.56" origin="0.5,0.5" />
     <!--<Sprite texture="Content/Items/Containers/crates.png" depth="0.54" sourcerect="1,0,68,39"/>-->
     <Body width="90" height="60" density="20" />
-    <MeleeWeapon slots="RightHand+LeftHand" controlpose="true" aimpos="45,10" handle1="0,30" holdangle="90" reload="1" range="50" combatpriority="8" msg="ItemMsgPickUpSelect">
-      <Attack structuredamage="1" itemdamage="5" targetimpulse="4">
-        <Affliction identifier="blunttrauma" strength="10" />
+    <MeleeWeapon slots="RightHand+LeftHand" controlpose="true" aimpos="45,10" handle1="0,30" holdangle="90" reload="1.4" range="50" combatpriority="8" msg="ItemMsgPickUpSelect">
+      <Attack structuredamage="3" itemdamage="5" targetimpulse="9">
+        <Affliction identifier="blunttrauma" strength="20" />
         <Affliction identifier="stun" strength="0.2" />
         <Sound file="Content/Items/Weapons/Smack2.ogg" range="800" />
       </Attack>
@@ -3738,7 +3906,7 @@ light_fluorescent_L2
     <Wearable slots="Any,OuterClothes" msg="ItemMsgPickUpSelect" armorvalue="1">
       <damagemodifier afflictionidentifiers="lacerations,bleeding" armorsector="0.0,360.0" damagemultiplier="0.5" />
       <damagemodifier afflictiontypes="burn" armorsector="0.0,360.0" damagemultiplier="0.4" />
-      <damagemodifier afflictiontypes="explosiondamage" armorsector="0.0,360.0" damagemultiplier="0.25" />
+      <damagemodifier afflictionidentifiers="explosiondamage" armorsector="0.0,360.0" damagemultiplier="0.25" />
       <sprite name="flak Torso" texture="flakjacket.png" limb="Torso" hidelimb="false" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,0,0" origin="0.5,0.5" />
       <sprite name="flak Right Lower Arm" texture="flakjacket.png" limb="RightArm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,0,0" origin="0.5,0.5" />
       <sprite name="flak Left Lower Arm" texture="flakjacket.png" limb="LeftArm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,0,0" origin="0.5,0.5" />
@@ -4992,15 +5160,15 @@ light_fluorescent_L2
       </StatusEffect>
     </Rangedweapon>
     <!--Holds one grenade at a time-->
-    <ItemContainer capacity="6" maxstacksize="1" itempos="27,10" iteminterval="0,-4" hideitems="true" showcontainedstateindicator="false">
-      <Containable items="grenade" />
+    <ItemContainer capacity="6" maxstacksize="1" itempos="27,10" showcontainedstateindicator="false">
+      <Containable items="grenade" hide="true" />
       <SlotIcon slotindex="6" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
       <SlotIcon slotindex="7" texture="%ModDir%/magazineicons.png" sourcerect="872,55,240,240" origin="0.45,0.5" />
       <SubContainer capacity="1" maxstacksize="1">
-        <Containable items="attachment_light" setactive="true" itempos="18,10" hide="true"></Containable>
+        <Containable items="attachment_light" setactive="true" hide="true" />
       </SubContainer>
       <SubContainer capacity="1" maxstacksize="1">
-        <Containable items="40attachment" hide="true"></Containable>
+        <Containable items="40attachment" hide="true" />
       </SubContainer>
     </ItemContainer>
     <CustomInterface canbeselected="true" drawhudwhenequipped="true">
@@ -5099,15 +5267,15 @@ light_fluorescent_L2
         </Explosion>
       </StatusEffect>
     </Rangedweapon>
-    <ItemContainer capacity="3" maxstacksize="1" itempos="27,10" iteminterval="0,-4" hideitems="true" showcontainedstateindicator="false">
-      <Containable items="grenade" />
+    <ItemContainer capacity="3" maxstacksize="1" itempos="27,10" showcontainedstateindicator="false">
+      <Containable items="grenade" hide="true" />
       <SlotIcon slotindex="3" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
       <SlotIcon slotindex="4" texture="%ModDir%/magazineicons.png" sourcerect="872,55,240,240" origin="0.45,0.5" />
       <SubContainer capacity="1" maxstacksize="1">
-        <Containable items="attachment_light" setactive="true" itempos="18,10" hide="true"></Containable>
+        <Containable items="attachment_light" setactive="true" hide="true" />
       </SubContainer>
       <SubContainer capacity="1" maxstacksize="1">
-        <Containable items="40attachment,boltattachment" hide="true"></Containable>
+        <Containable items="40attachment,boltattachment" hide="true" />
       </SubContainer>
     </ItemContainer>
     <CustomInterface canbeselected="true" drawhudwhenequipped="true">
@@ -5199,15 +5367,15 @@ light_fluorescent_L2
       </StatusEffect>
     </RangedWeapon>
     <!--Holds one grenade at a time-->
-    <ItemContainer capacity="1" maxstacksize="1" itempos="27,10" iteminterval="0,-4" hideitems="true" showcontainedstateindicator="false">
+    <ItemContainer capacity="1" maxstacksize="1" itempos="27,10" hideitems="flase" showcontainedstateindicator="false">
       <SlotIcon slotindex="1" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
       <SlotIcon slotindex="2" texture="%ModDir%/magazineicons.png" sourcerect="872,55,240,240" origin="0.45,0.5" />
-      <Containable items="grenade" />
+      <Containable items="grenade" hide="true" />
       <SubContainer capacity="1" maxstacksize="1">
-        <Containable items="attachment_light" setactive="true" itempos="18,10" hide="true"></Containable>
+        <Containable items="attachment_light" setactive="true" hide="true" />
       </SubContainer>
       <SubContainer capacity="1" maxstacksize="1">
-        <Containable items="40attachment" hide="true"></Containable>
+        <Containable items="40attachment" hide="true" />
       </SubContainer>
     </ItemContainer>
     <CustomInterface canbeselected="true" drawhudwhenequipped="true">

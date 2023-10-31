@@ -169,7 +169,7 @@
         <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="huskinfection" damagemultiplier="0.5" probabilitymultiplier="0.5" damagesound="LimbArmor" />
         <damagemodifier afflictionidentifiers="progressivestun,incrementalstun" armorsector="0.0,360.0" damagemultiplier="0" damagesound="LimbArmor" deflectprojectiles="true" />
       </Wearable>
-      <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="0,-50" handle1="-10,-20" handle2="10,-20" holdangle="45" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use"></Holdable>
+      <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="0,-50" handle1="-10,-20" handle2="10,-20" holdangle="45" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" />
       <ItemContainer capacity="1" maxstacksize="1" hideitems="true" containedstateindicatorstyle="tank">
         <Containable items="oxygensource,weldingtoolfuel" />
         <StatusEffect type="OnWearing" target="Contained">
@@ -185,7 +185,7 @@
       </ItemContainer>
       <aitarget maxsightrange="1500" />
     </Item>
-    <Item name="" identifier="40mmnuke" category="Weapon" maxstacksize="2" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,grenade,separatists,bullet" Scale="0.5" impactsoundtag="impact_metal_light">
+    <Item name="" identifier="40mmnuke" category="Weapon" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,grenade,separatists,bullet" Scale="0.5" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="2" MaxStackSizeHoldableOrWearableInventory="4">
       <PreferredContainer primary="grenadelauncher" amount="1" spawnprobability="0" />
       <PreferredContainer secondary="wreckarmcab,abandonedarmcab" spawnprobability="0" />
       <PreferredContainer primary="secarmcab" secondary="armcab" />
@@ -247,7 +247,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <Item name="" identifier="uex" category="Weapon" description="" Scale="0.5" Tags="smallitem,explosive,demolitionsexpert" maxstacksize="8" cargocontaineridentifier="explosivecrate" impactsoundtag="impact_soft">
+    <Item name="" identifier="uex" category="Weapon" description="" Scale="0.5" Tags="smallitem,explosive,demolitionsexpert" maxstacksize="32" cargocontaineridentifier="explosivecrate" impactsoundtag="impact_soft" maxstacksizecharacterinventory="8" MaxStackSizeHoldableOrWearableInventory="16">
       <Upgrade gameversion="0.9.3.0" scale="0.5" />
       <PreferredContainer primary="secarmcab" minamount="1" maxamount="2" spawnprobability="0.5" notcampaign="true" />
       <PreferredContainer secondary="wreckarmcab,abandonedarmcab" amount="1" spawnprobability="0.1" />
@@ -300,7 +300,7 @@
         <QualityStat stattype="ExplosionDamage" value="0.1" />
       </Quality>
     </Item>
-    <Item name="" identifier="c4block" category="Weapon" Tags="smallitem,explosive,demolitionsexpert" maxstacksize="8" Scale="0.5" cargocontaineridentifier="explosivecrate" impactsoundtag="impact_soft">
+    <Item name="" identifier="c4block" category="Weapon" Tags="smallitem,explosive,demolitionsexpert" maxstacksize="32" Scale="0.5" cargocontaineridentifier="explosivecrate" impactsoundtag="impact_soft" maxstacksizecharacterinventory="8" MaxStackSizeHoldableOrWearableInventory="16">
       <Upgrade gameversion="0.9.3.0" scale="0.5" />
       <PreferredContainer primary="secarmcab" minamount="1" maxamount="2" spawnprobability="0.5" notcampaign="true" />
       <PreferredContainer secondary="wreckarmcab,abandonedarmcab" amount="1" spawnprobability="0.05" />
@@ -345,7 +345,7 @@
         <QualityStat stattype="ExplosionDamage" value="0.1" />
       </Quality>
     </Item>
-    <Item name="" identifier="ic4block" description="" category="Weapon" Tags="smallitem,explosive,demolitionsexpert" maxstacksize="8" Scale="0.5" cargocontaineridentifier="explosivecrate" impactsoundtag="impact_soft">
+    <Item name="" identifier="ic4block" description="" category="Weapon" Tags="smallitem,explosive,demolitionsexpert" maxstacksize="32" Scale="0.5" cargocontaineridentifier="explosivecrate" impactsoundtag="impact_soft" maxstacksizecharacterinventory="8" MaxStackSizeHoldableOrWearableInventory="16">
       <Upgrade gameversion="0.9.3.0" scale="0.5" />
       <PreferredContainer primary="secarmcab" minamount="1" maxamount="2" spawnprobability="0.5" notcampaign="true" />
       <PreferredContainer secondary="wreckarmcab,abandonedarmcab" amount="1" spawnprobability="0.02" />
@@ -393,7 +393,7 @@
         <QualityStat stattype="ExplosionDamage" value="0.1" />
       </Quality>
     </Item>
-    <Item name="" identifier="compoundn" category="Weapon,Material" Tags="smallitem,explosive,demolitionsexpert" maxstacksize="8" Scale="0.5" cargocontaineridentifier="explosivecrate" impactsoundtag="impact_soft">
+    <Item name="" identifier="compoundn" category="Weapon,Material" Tags="smallitem,explosive,demolitionsexpert" maxstacksize="32" Scale="0.5" cargocontaineridentifier="explosivecrate" impactsoundtag="impact_soft" maxstacksizecharacterinventory="8" MaxStackSizeHoldableOrWearableInventory="16">
       <Upgrade gameversion="0.9.3.0" scale="0.5" />
       <PreferredContainer primary="secarmcab" secondary="armcab" />
       <PreferredContainer secondary="wreckstoragecab,abandonedstoragecab" amount="1" spawnprobability="0.01" />
@@ -877,7 +877,7 @@
       </Projectile>
       <Upgrade gameversion="0.10.0.0" scale="*0.5" />
     </Item>
-    <Item name="" identifier="spear" category="Weapon" subcategory="Ammunition" maxstacksize="6" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,harpoonammo,deflectable" Scale="0.5" impactsoundtag="impact_metal_light">
+    <Item name="" identifier="spear" category="Weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,harpoonammo,deflectable" Scale="0.5" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="6" MaxStackSizeHoldableOrWearableInventory="12">
       <PreferredContainer primary="harpoongun" minamount="6" maxamount="6" spawnprobability="1" />
       <PreferredContainer primary="armcab" minamount="0" maxamount="5" spawnprobability="0.25" />
       <PreferredContainer secondary="wreckarmcab" minamount="0" maxamount="3" spawnprobability="0.25" />
@@ -891,7 +891,7 @@
         <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
         <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="12" />
       </Price>
-      <Deconstruct time="5"></Deconstruct>
+      <Deconstruct time="5" />
       <Fabricate suitablefabricators="fabricator,milfabricator" requiredtime="10" amount="3">
         <RequiredSkill identifier="weapons" level="20" />
         <RequiredItem identifier="steel" />
@@ -1286,7 +1286,7 @@
         <sprite name="Riot Shield Worn" texture="Content/Items/Jobgear/Security/riotgear.png" canbehiddenbyotherwearables="false" sourcerect="31,54,27,147" rotation="180" inheritlimbdepth="true" depth="0.6" limb="Torso" ignorelimbscale="true" scale="0.8" origin="-0.2,0.5" />
       </Wearable>
     </Item>
-    <Item name="" identifier="nitroglycerin" category="Material,Weapon" maxstacksize="8" description="" spritecolor="1.0,1.0,1.0,1.0" containercolor="1.0,1.0,1.0,1.0" cargocontaineridentifier="explosivecrate" Tags="smallitem,chem,medical" impacttolerance="6" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light">
+    <Item name="" identifier="nitroglycerin" category="Material,Weapon" maxstacksize="32" maxstacksizecharacterinventory="32" description="" spritecolor="1.0,1.0,1.0,1.0" containercolor="1.0,1.0,1.0,1.0" cargocontaineridentifier="explosivecrate" Tags="smallitem,chem,medical" impacttolerance="6" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" MaxStackSizeHoldableOrWearableInventory="64">
       <PreferredContainer primary="secarmcab" secondary="armcab" />
       <PreferredContainer secondary="wreckstoragecab,abandonedstoragecab,wreckmedcab,wreckarmcab,abandonedarmcab,wrecksecarmcab,abandonedsecarmcab,wrecktoxcab" minamount="0" maxamount="2" spawnprobability="0.05" />
       <Price baseprice="175">
@@ -1426,7 +1426,7 @@
           <Containable items="mobilebattery" hide="true" />
         </SubContainer>
         <SubContainer capacity="1" maxstacksize="1">
-          <Containable items="attachment_light" setactive="true" itempos="18,10" hide="true"></Containable>
+          <Containable items="attachment_light" setactive="true" itempos="18,10" hide="true" />
         </SubContainer>
       </ItemContainer>
       <CustomInterface canbeselected="true" drawhudwhenequipped="true">
@@ -1443,7 +1443,7 @@
       </Quality>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Item>
-    <Item name="" identifier="incendiumfueltank" category="Equipment,Fuel" maxstacksize="8" Tags="smallitem,weldingtoolfuel,weldingfuel,incendiumfueltank,ritual" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <Item name="" identifier="incendiumfueltank" category="Equipment,Fuel" maxstacksize="8" maxstacksizecharacterinventory="1" MaxStackSizeHoldableOrWearableInventory="1" Tags="smallitem,weldingtoolfuel,weldingfuel,incendiumfueltank,ritual" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
       <PreferredContainer primary="engcab" secondary="supplycab" />
       <PreferredContainer primary="wreckengcab,abandonedengcab" amount="1" spawnprobability="0.05" />
       <PreferredContainer primary="wreckstoragecab,abandonedstoragecab" amount="1" spawnprobability="0.02" />
@@ -1505,7 +1505,7 @@
       </Quality>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Item>
-    <Item name="" identifier="40mmchemgrenade" category="Weapon" maxstacksize="2" interactthroughwalls="true" subcategory="Ammunition" cargocontaineridentifier="metalcrate" tags="smallitem,grenade,bullet,deflectable" Scale="0.5" impactsoundtag="impact_metal_light">
+    <Item name="" identifier="40mmchemgrenade" category="Weapon" maxstacksize="32" interactthroughwalls="true" subcategory="Ammunition" cargocontaineridentifier="metalcrate" tags="smallitem,grenade,bullet,deflectable" Scale="0.5" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="2" MaxStackSizeHoldableOrWearableInventory="4">
       <PreferredContainer primary="grenadelauncher" amount="1" spawnprobability="0" />
       <PreferredContainer secondary="wreckarmcab,abandonedarmcab" minamount="1" maxamount="2" spawnprobability="0" />
       <PreferredContainer primary="secarmcab" secondary="armcab" />
@@ -1632,7 +1632,7 @@
         </StatusEffect>
       </ItemComponent>
     </Item>
-    <Adrenaline name="" identifier="adrenaline" category="Medical,Material" maxstacksize="8" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical,syringe" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
+    <Adrenaline name="" identifier="adrenaline" category="Medical,Material" maxstacksize="32" maxstacksizecharacterinventory="8" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical,syringe" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
       <PreferredContainer primary="medfabcab" secondary="medcontainer" />
       <PreferredContainer secondary="abandonedmedcab,wreckmedcab" minamount="1" maxamount="2" spawnprobability="0.5" />
@@ -1725,7 +1725,7 @@
         <SlotIcon texture="Content/UI/ContainerIndicators.png" sourcerect="1,123,120,29" origin="0.5,0.5" />
         <SlotIcon slotindex="6" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
         <SubContainer capacity="1" maxstacksize="1">
-          <Containable items="attachment_light" setactive="true" itempos="18,10"></Containable>
+          <Containable items="attachment_light" setactive="true" itempos="18,10" />
         </SubContainer>
       </ItemContainer>
       <LightComponent LightColor="0.5,0.5,0.5,1.0" Flicker="0.02" range="1400" powerconsumption="10" IsOn="true" canbeselected="true" allowingameediting="false">
@@ -1869,28 +1869,26 @@
       <Body radius="30" height="30" density="40" />
       <Wearable slots="Bag" msg="ItemMsgPickUpSelect" canbeselected="false" canbepicked="true" pickkey="Select">
         <sprite name="Bandolier" texture="Content/Items/JobGear/TalentGear.png" limb="Torso" hidelimb="false" inheritlimbdepth="true" canbehiddenbyotherwearables="false" spritedepth="0.1" sourcerect="215,209,79,97" inherittexturescale="true" origin="0.45,0.6" />
-        <StatusEffect type="OnWearing" target="Character" disabledeltatime="true">
-          <StatValue stattype="RangedSpreadReduction" value="0.1" />
-          <StatValue stattype="TurretAttackSpeed" value="0.1" />
-          <Conditional marksmansuit="eq 0" />
-        </StatusEffect>
+        <StatValue stattype="RangedSpreadReduction" value="0.1" />
+        <StatValue stattype="TurretAttackSpeed" value="0.1" />
       </Wearable>
       <Holdable slots="RightHand+LeftHand" holdpos="0,-70" handle1="0,0-30" handle2="0,-30" holdangle="0" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" allowswappingwhenpicked="false" />
-      <ItemContainer capacity="4" slotsperrow="2">
-        <SlotIcon slotindex="0" texture="Content/UI/ContainerIndicators.png" sourcerect="1,62,120,29" origin="0.5,0.5" />
-        <SlotIcon slotindex="1" texture="Content/UI/ContainerIndicators.png" sourcerect="1,62,120,29" origin="0.5,0.5" />
-        <SlotIcon slotindex="2" texture="Content/UI/ContainerIndicators.png" sourcerect="1,62,120,29" origin="0.5,0.5" />
-        <SlotIcon slotindex="3" texture="Content/UI/ContainerIndicators.png" sourcerect="1,62,120,29" origin="0.5,0.5" />
-        <SlotIcon slotindex="4" texture="%ModDir%/magazineicons.png" sourcerect="315,19,240,240" origin="0.45,0.5" />
-        <SlotIcon slotindex="5" texture="%ModDir%/magazineicons.png" sourcerect="315,19,240,240" origin="0.45,0.5" />
+      <ItemContainer capacity="6" slotsperrow="2">
+        <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="256,448,64,64" origin="0.5,0.5" />
+        <SlotIcon slotindex="1" texture="Content/UI/StatusMonitorUI.png" sourcerect="256,448,64,64" origin="0.5,0.5" />
+        <SlotIcon slotindex="2" texture="Content/UI/StatusMonitorUI.png" sourcerect="256,448,64,64" origin="0.5,0.5" />
+        <SlotIcon slotindex="3" texture="Content/UI/StatusMonitorUI.png" sourcerect="256,448,64,64" origin="0.5,0.5" />
+        <SlotIcon slotindex="4" texture="Content/UI/StatusMonitorUI.png" sourcerect="256,448,64,64" origin="0.5,0.5" />
+        <SlotIcon slotindex="5" texture="Content/UI/StatusMonitorUI.png" sourcerect="256,448,64,64" origin="0.5,0.5" />
         <SlotIcon slotindex="6" texture="Content/UI/StatusMonitorUI.png" sourcerect="384,448,64,64" origin="0.5,0.5" />
         <SlotIcon slotindex="7" texture="Content/UI/StatusMonitorUI.png" sourcerect="384,448,64,64" origin="0.5,0.5" />
-        <Containable items="bullet,faustammo" />
-        <SubContainer capacity="2" maxstacksize="1">
-          <Containable items="magazine" itempos="11,2" />
-        </SubContainer>
-        <SubContainer capacity="2" maxstacksize="4">
+        <SlotIcon slotindex="10" texture="%ModDir%/magazineicons.png" sourcerect="27,705,100,100" origin="0.5,0.5" />
+        <Containable items="bullet,faustammo,harpoonammo,explosive,magazine," />
+        <SubContainer capacity="2" maxstacksize="8">
           <Containable items="chem,medical" />
+        </SubContainer>
+        <SubContainer capacity="2" maxstacksize="8">
+          <Containable items="smallitem" excludeditems="toolbelt,toolbox,bandolier" />
         </SubContainer>
         <SubContainer capacity="1" maxstacksize="1">
           <Containable items="weapon,mountableweapon" />
@@ -2102,7 +2100,7 @@
       <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="0,-50" handle1="-10,-20" handle2="10,-20" holdangle="45" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" />
       <aitarget maxsightrange="1500" />
     </Item>
-    <Item name="" identifier="spearunique" category="Weapon" subcategory="Ammunition" maxstacksize="6" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,harpoonammo" Scale="0.5" impactsoundtag="impact_metal_light" hideinmenus="true" allowasextracargo="true">
+    <Item name="" identifier="spearunique" category="Weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,harpoonammo" Scale="0.5" impactsoundtag="impact_metal_light" hideinmenus="true" allowasextracargo="true" maxstacksizecharacterinventory="6" MaxStackSizeHoldableOrWearableInventory="12">
       <PreferredContainer primary="harpoongun" />
       <PreferredContainer primary="armcab" />
       <PreferredContainer secondary="wreckstoragecab" minamount="2" maxamount="5" spawnprobability="0.02" />
@@ -2139,7 +2137,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <Item name="" identifier="alienspear" subcategory="Ammunition" category="Weapon,Alien" maxstacksize="6" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,harpoonammo,deflectable" Scale="0.5" impactsoundtag="impact_metal_light">
+    <Item name="" identifier="alienspear" subcategory="Ammunition" category="Weapon,Alien" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,harpoonammo,deflectable" Scale="0.5" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="6" MaxStackSizeHoldableOrWearableInventory="12">
       <PreferredContainer primary="armcab" minamount="0" maxamount="5" spawnprobability="0.125" />
       <PreferredContainer secondary="locker" />
       <Price baseprice="230" sold="false">
@@ -2149,7 +2147,7 @@
         <Price storeidentifier="merchantmilitary" multiplier="0.9" />
         <Price storeidentifier="merchantmine" multiplier="1.25" />
       </Price>
-      <Deconstruct time="10"></Deconstruct>
+      <Deconstruct time="10" />
       <Fabricate suitablefabricators="milfabricator" requiredtime="10" amount="2">
         <RequiredSkill identifier="weapons" level="30" />
         <RequiredItem identifier="physicorium" />
@@ -2201,7 +2199,7 @@
       </Projectile>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Item>
-    <Item name="" identifier="explosivespear" subcategory="Ammunition" category="Weapon" maxstacksize="6" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,harpoonammo,demolitionsexpert,deflectable" Scale="0.5" impactsoundtag="impact_metal_light">
+    <Item name="" identifier="explosivespear" subcategory="Ammunition" category="Weapon" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,harpoonammo,demolitionsexpert,deflectable" Scale="0.5" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="6" MaxStackSizeHoldableOrWearableInventory="12">
       <PreferredContainer primary="armcab" minamount="0" maxamount="5" spawnprobability="0.125" />
       <PreferredContainer secondary="wreckarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
       <PreferredContainer secondary="abandonedarmcab" minamount="0" maxamount="1" spawnprobability="0.125" />
@@ -2460,7 +2458,7 @@
         <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="huskinfection" damagemultiplier="0.5" probabilitymultiplier="0.5" damagesound="LimbArmor" />
         <damagemodifier afflictionidentifiers="progressivestun,incrementalstun" armorsector="0.0,360.0" damagemultiplier="0" damagesound="LimbArmor" deflectprojectiles="true" />
       </Wearable>
-      <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="0,-50" handle1="-10,-20" handle2="10,-20" holdangle="45" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use"></Holdable>
+      <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="0,-50" handle1="-10,-20" handle2="10,-20" holdangle="45" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" />
       <ItemContainer capacity="1" maxstacksize="1" hideitems="true" containedstateindicatorstyle="tank">
         <Containable items="oxygensource,weldingtoolfuel" />
         <StatusEffect type="OnWearing" target="Contained">
@@ -2476,7 +2474,7 @@
       </ItemContainer>
       <aitarget maxsightrange="1500" />
     </Item>
-    <Item name="" identifier="stungundartfulgurium" subcategory="Ammunition" category="Weapon" maxstacksize="8" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,stungunammo" Scale="0.5" impactsoundtag="impact_metal_light">
+    <Item name="" identifier="stungundartfulgurium" subcategory="Ammunition" category="Weapon" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,stungunammo" Scale="0.5" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="8" MaxStackSizeHoldableOrWearableInventory="16">
       <PreferredContainer primary="armcab" />
       <PreferredContainer secondary="locker" />
       <Price baseprice="120" soldeverywhere="false">
@@ -2514,7 +2512,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <Item name="" identifier="stungundart" category="Weapon" subcategory="Ammunition" maxstacksize="8" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,stungunammo" Scale="0.5" impactsoundtag="impact_metal_light">
+    <Item name="" identifier="stungundart" category="Weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,stungunammo" Scale="0.5" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="8" MaxStackSizeHoldableOrWearableInventory="16">
       <PreferredContainer primary="armcab" minamount="0" maxamount="10" spawnprobability="0.25" />
       <PreferredContainer secondary="wreckarmcab" minamount="0" maxamount="3" spawnprobability="0.2" />
       <PreferredContainer secondary="abandonedarmcab" minamount="1" maxamount="2" spawnprobability="0.125" />
@@ -2989,7 +2987,7 @@
       </Quality>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Item>
-    <Item name="" identifier="40mmgrenade" category="Weapon" subcategory="Ammunition" maxstacksize="2" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,grenade,bullet,deflectable" Scale="0.5" impactsoundtag="impact_metal_light">
+    <Item name="" identifier="40mmgrenade" category="Weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,grenade,bullet,deflectable" Scale="0.5" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="2" MaxStackSizeHoldableOrWearableInventory="4">
       <PreferredContainer primary="grenadelauncher_m99" minamount="6" maxamount="6" spawnprobability="1" />
       <PreferredContainer primary="grenadelauncher_m500" minamount="1" maxamount="1" spawnprobability="1" />
       <Price baseprice="98" soldeverywhere="false">
@@ -3058,7 +3056,7 @@
       </Projectile>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Item>
-    <Item name="" identifier="40mmstungrenade" subcategory="Ammunition" category="Weapon" maxstacksize="2" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,grenade,bullet,deflectable" Scale="0.5" impactsoundtag="impact_metal_light">
+    <Item name="" identifier="40mmstungrenade" subcategory="Ammunition" category="Weapon" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,grenade,bullet,deflectable" Scale="0.5" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="2" MaxStackSizeHoldableOrWearableInventory="4">
       <Price baseprice="220" soldeverywhere="false">
         <Price locationtype="outpost" multiplier="1.5" sold="false" />
         <Price locationtype="city" multiplier="1.25" sold="false" />

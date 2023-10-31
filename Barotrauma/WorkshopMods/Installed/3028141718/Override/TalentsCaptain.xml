@@ -37,6 +37,9 @@
         <Replace tag="[amount]" value="20" color="gui.green" />
         <Replace tag="[stattype]" value="stattypenames.meleedamagebonus" color="gui.orange" />
       </Description>
+      <Description tag="talentdescription.unlockrecipe">
+        <Replace tag="[itemname]" value="entityname.howdah_44" color="gui.orange" />
+      </Description>
       <AbilityGroupInterval interval="0.9">
         <Conditions>
           <AbilityConditionAllyNearby distance="2000" truthywhen="NoCharacterMatches" />
@@ -51,6 +54,7 @@
           </CharacterAbilityApplyStatusEffects>
         </Abilities>
       </AbilityGroupInterval>
+      <AddedRecipe itemidentifier="howdah_44" />
     </Talent>
     <Talent identifier="gunsmith">
       <Icon texture="Content/UI/TalentsIcons1.png" sheetindex="5,3" sheetelementsize="128,128" />

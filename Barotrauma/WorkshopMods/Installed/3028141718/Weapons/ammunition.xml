@@ -21,6 +21,176 @@
     </Pickable>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
+  <Item name="airgunroundincendiary" description="" identifier="co_airgunround_incendiary" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,bullet,riflemanbonus,airgunammo" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="12" MaxStackSizeHoldableOrWearableInventory="24">
+    <Fabricate suitablefabricators="milfabricator,fabricator" requiredtime="5" amount="4">
+      <RequiredSkill identifier="weapons" level="15" />
+      <RequiredItem identifier="iron" />
+      <RequiredItem identifier="phosphorus" />
+      <RequiredItem identifier="potassium" />
+    </Fabricate>
+    <Price baseprice="10" soldeverywhere="false" buyingpricemultiplier="2" minleveldifficulty="30">
+      <Price storeidentifier="merchantoutpost" multiplier="1.1" minavailable="24" />
+      <Price storeidentifier="merchantcity" multiplier="1.15" minavailable="24" />
+      <Price storeidentifier="merchantresearch" multiplier="1.15" sold="false" />
+      <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="60" />
+      <Price storeidentifier="merchantmine" multiplier="1.15" sold="false" />
+    </Price>
+    <InventoryIcon texture="%ModDir%/CO_spritelist_anims2.png" sourcerect="54,222,60,60" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/CO_spritelist_anims2.png" sourcerect="234,155,19,11" depth="0.55" origin="0.50153744,0.44822764" />
+    <Body width="80" height="14" density="40" />
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
+    <Deconstruct time="0" />
+    <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="8" />
+    <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
+      <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="100,100,100,55" scalemultiplier="1,0.6" />
+      <Attack structuredamage="0.5" targetforce="1" itemdamage="5" severlimbsprobability="0.05">
+        <Affliction identifier="bleeding" strength="2" />
+        <Affliction identifier="gunshotwound" strength="27.5" />
+        <Affliction identifier="stun" strength="0.01" />
+      </Attack>
+      <StatusEffect type="OnImpact" target="This" disabledeltatime="true">
+        <Explosion range="90.0" structuredamage="0" itemdamage="0" force="1.1" flames="false" smoke="false" sparks="false" underwaterbubble="false" flashcolor="255,90,115,150">
+          <Affliction identifier="burn" strength="25" />
+          <Affliction identifier="co_burning_hhfc" strength="15" />
+          <Affliction identifier="stun" strength="0.1" />
+        </Explosion>
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="UseTarget">
+        <ParticleEmitter particle="impactfirearm" particleamount="1" velocitymin="0" velocitymax="0" />
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="UseTarget">
+        <Conditional entitytype="eq Structure" />
+        <Conditional hastag="eq door" />
+        <Sound file="%ModDir%/Sounds/impact1.ogg" range="500" selectionmode="Random" />
+        <Sound file="%ModDir%/Sounds/impact2.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/impact3.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/impact4.ogg" range="500" volume="0.7" />
+        <ParticleEmitter particle="spark" copyentityangle="true" anglemin="-10" anglemax="10" particleamount="5" velocitymin="-10" velocitymax="-200" scalemin="0.2" scalemax="0.5" />
+      </StatusEffect>
+    </Projectile>
+    <Upgrade gameversion="0.10.0.0" Scale="0.45" />
+  </Item>
+  <Item name="airgunroundphys" description="" identifier="co_airgunround_physicorium" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,bullet,riflemanbonus,airgunammo" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="12" MaxStackSizeHoldableOrWearableInventory="24">
+    <Fabricate suitablefabricators="milfabricator" requiredtime="10" amount="8">
+      <RequiredSkill identifier="weapons" level="40" />
+      <RequiredItem identifier="physicorium" />
+      <RequiredItem identifier="copper" amount="2" />
+    </Fabricate>
+    <Price baseprice="35" soldeverywhere="false" buyingpricemultiplier="2" />
+    <InventoryIcon texture="%ModDir%/CO_spritelist_anims2.png" sourcerect="115,223,60,60" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/CO_spritelist_anims2.png" sourcerect="255,155,19,11" depth="0.55" origin="0.50153744,0.44822764" />
+    <Body width="80" height="14" density="40" />
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
+    <Deconstruct time="0" />
+    <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="8" />
+    <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
+      <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="100,20,20,55" scalemultiplier="1,0.6" />
+      <Attack structuredamage="1" targetforce="2" itemdamage="10" severlimbsprobability="0.05" penetration="0.5">
+        <Affliction identifier="bleeding" strength="25" />
+        <Affliction identifier="gunshotwound" strength="42" />
+        <Affliction identifier="stun" strength="0.1" />
+      </Attack>
+      <StatusEffect type="OnImpact" target="UseTarget">
+        <ParticleEmitter particle="impactfirearm" particleamount="1" velocitymin="0" velocitymax="0" />
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="UseTarget">
+        <Conditional entitytype="eq Structure" />
+        <Conditional hastag="eq door" />
+        <Sound file="%ModDir%/Sounds/impact1.ogg" range="500" selectionmode="Random" />
+        <Sound file="%ModDir%/Sounds/impact2.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/impact3.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/impact4.ogg" range="500" volume="0.7" />
+        <ParticleEmitter particle="spark" copyentityangle="true" anglemin="-10" anglemax="10" particleamount="5" velocitymin="-10" velocitymax="-200" scalemin="0.2" scalemax="0.5" />
+      </StatusEffect>
+    </Projectile>
+    <Upgrade gameversion="0.10.0.0" Scale="0.45" />
+  </Item>
+  <Item name="airgunroundimproved" description="" identifier="co_airgunround_improved" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,bullet,riflemanbonus,airgunammo" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="12" MaxStackSizeHoldableOrWearableInventory="24">
+    <Fabricate suitablefabricators="milfabricator,fabricator" requiredtime="7" amount="4">
+      <RequiredSkill identifier="weapons" level="30" />
+      <RequiredItem identifier="titanium" />
+      <RequiredItem identifier="tin" />
+    </Fabricate>
+    <Price baseprice="20" soldeverywhere="false" buyingpricemultiplier="2" minleveldifficulty="10">
+      <Price storeidentifier="merchantoutpost" multiplier="1.1" minavailable="12" />
+      <Price storeidentifier="merchantcity" multiplier="1.15" minavailable="24" />
+      <Price storeidentifier="merchantresearch" multiplier="1.15" minavailable="6" />
+      <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="48" />
+      <Price storeidentifier="merchantmine" multiplier="1.15" minavailable="12" />
+    </Price>
+    <InventoryIcon texture="%ModDir%/CO_spritelist_anims2.png" sourcerect="109,160,60,60" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/CO_spritelist_anims2.png" sourcerect="212,155,19,11" depth="0.55" origin="0.50153744,0.44822764" />
+    <Body width="80" height="14" density="40" />
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
+    <Deconstruct time="0" />
+    <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="8" />
+    <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
+      <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="100,20,20,55" scalemultiplier="1,0.6" />
+      <Attack structuredamage="1" targetforce="2" itemdamage="6" severlimbsprobability="0.05" penetration="0.2">
+        <Affliction identifier="bleeding" strength="12" />
+        <Affliction identifier="gunshotwound" strength="35" />
+        <Affliction identifier="stun" strength="0.1" />
+      </Attack>
+      <StatusEffect type="OnImpact" target="UseTarget">
+        <ParticleEmitter particle="impactfirearm" particleamount="1" velocitymin="0" velocitymax="0" />
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="UseTarget">
+        <Conditional entitytype="eq Structure" />
+        <Conditional hastag="eq door" />
+        <Sound file="%ModDir%/Sounds/impact1.ogg" range="500" selectionmode="Random" />
+        <Sound file="%ModDir%/Sounds/impact2.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/impact3.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/impact4.ogg" range="500" volume="0.7" />
+        <ParticleEmitter particle="spark" copyentityangle="true" anglemin="-10" anglemax="10" particleamount="5" velocitymin="-10" velocitymax="-200" scalemin="0.2" scalemax="0.5" />
+      </StatusEffect>
+    </Projectile>
+    <Upgrade gameversion="0.10.0.0" Scale="0.45" />
+  </Item>
+  <Item name="airgunround" description="" identifier="co_airgunround" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,bullet,riflemanbonus,airgunammo" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="12" MaxStackSizeHoldableOrWearableInventory="24">
+    <PreferredContainer primary="wreckarmcab" minamount="0" maxamount="4" spawnprobability="0.1" />
+    <PreferredContainer primary="abandonedarmcab" minamount="0" maxamount="12" spawnprobability="0.08" />
+    <PreferredContainer primary="airgun" minamount="6" maxamount="6" spawnprobability="1" />
+    <PreferredContainer primary="armcab" minamount="6" maxamount="6" spawnprobability="1" />
+    <Fabricate suitablefabricators="milfabricator,fabricator" requiredtime="5" amount="4">
+      <RequiredSkill identifier="weapons" level="15" />
+      <RequiredItem identifier="iron" />
+      <RequiredItem identifier="lead" />
+    </Fabricate>
+    <Price baseprice="10" soldeverywhere="false" buyingpricemultiplier="2">
+      <Price storeidentifier="merchantoutpost" multiplier="1.1" minavailable="24" />
+      <Price storeidentifier="merchantcity" multiplier="1.15" minavailable="48" />
+      <Price storeidentifier="merchantresearch" multiplier="1.15" minavailable="12" />
+      <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="36" />
+      <Price storeidentifier="merchantmine" multiplier="1.15" minavailable="24" />
+    </Price>
+    <InventoryIcon texture="%ModDir%/CO_spritelist_anims2.png" sourcerect="57,159,60,60" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/CO_spritelist_anims2.png" sourcerect="186,154,19,11" depth="0.55" origin="0.50153744,0.44822764" />
+    <Body width="80" height="14" density="40" />
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
+    <Deconstruct time="0" />
+    <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="8" />
+    <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
+      <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="100,100,100,55" scalemultiplier="1,0.6" />
+      <Attack structuredamage="0.5" targetforce="1" itemdamage="5" severlimbsprobability="0.05">
+        <Affliction identifier="bleeding" strength="7" />
+        <Affliction identifier="gunshotwound" strength="27.5" />
+        <Affliction identifier="stun" strength="0.01" />
+      </Attack>
+      <StatusEffect type="OnImpact" target="UseTarget">
+        <ParticleEmitter particle="impactfirearm" particleamount="1" velocitymin="0" velocitymax="0" />
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="UseTarget">
+        <Conditional entitytype="eq Structure" />
+        <Conditional hastag="eq door" />
+        <Sound file="%ModDir%/Sounds/impact1.ogg" range="500" selectionmode="Random" />
+        <Sound file="%ModDir%/Sounds/impact2.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/impact3.ogg" range="500" />
+        <Sound file="%ModDir%/Sounds/impact4.ogg" range="500" volume="0.7" />
+        <ParticleEmitter particle="spark" copyentityangle="true" anglemin="-10" anglemax="10" particleamount="5" velocitymin="-10" velocitymax="-200" scalemin="0.2" scalemax="0.5" />
+      </StatusEffect>
+    </Projectile>
+    <Upgrade gameversion="0.10.0.0" Scale="0.45" />
+  </Item>
   <Item name="" description="" identifier="clip45" maxstacksize="1" Scale="0.45" category="weapon" subcategory="Ammunition" allowsellingwhenbroken="true" cargocontaineridentifier="metalcrate" linkable="true" tags="smallitem,45_ammo,magazine,45_clip" impactsoundtag="magimpact">
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.2" />
     <Price baseprice="15" soldeverywhere="false">
@@ -99,7 +269,7 @@
     </Holdable>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" identifier="shotgunslugfixfoam" category="weapon" subcategory="Ammunition" maxstacksize="5" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,shotgunammo,bullet" Scale="0.5" impactsoundtag="impact_metal_light">
+  <Item name="" identifier="shotgunslugfixfoam" category="weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,shotgunammo,bullet" Scale="0.5" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <Price baseprice="25" soldeverywhere="false" buyingpricemultiplier="2">
       <Price locationtype="outpost" multiplier="1.5" sold="false" />
       <Price locationtype="city" multiplier="1.25" sold="false" />
@@ -107,7 +277,7 @@
       <Price locationtype="military" multiplier="0.9" sold="false" />
       <Price locationtype="mine" multiplier="1.25" sold="false" />
     </Price>
-    <Deconstruct time="2"></Deconstruct>
+    <Deconstruct time="2" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Fabricate suitablefabricators="milfabricator" requiredtime="8" requiresrecipe="true" amount="8">
       <RequiredSkill identifier="weapons" level="20" />
@@ -128,7 +298,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_mod.png" sourcerect="954,523,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist_mod.png" sourcerect="985,501,23,11" depth="0.55" origin="0.5,0.5" />
     <Body width="23" height="10" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" hitscancount="1" removeonhit="true" spread="1">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="15,150,200,250" scalemultiplier="1,0.9" />
       <Attack structuredamage="-70" targetforce="2" itemdamage="-35" severlimbsprobability="0" penetration="0.0">
@@ -151,11 +321,11 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" scale="0.5" />
   </Item>
-  <Item name="" description="" identifier="5.7mm_round_noff" maxstacksize="5" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,57_ammo,bullet,5.7mm_round" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="5.7mm_round_noff" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,57_ammo,bullet,5.7mm_round" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <InventoryIcon texture="%ModDir%/CO_spritelist_anims.png" sourcerect="386,1019,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,940,31,5" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Price baseprice="17" soldeverywhere="false" buyingpricemultiplier="5" minleveldifficulty="35" />
@@ -202,7 +372,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" identifier="5.56mm_round_noff" description="" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,5.56mm_round,556_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" maxstacksize="5" Scale="0.45">
+  <Item name="" identifier="5.56mm_round_noff" description="" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,5.56mm_round,556_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" maxstacksize="32" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <Fabricate suitablefabricators="milfabricator" requiredtime="10" amount="10">
       <RequiredSkill identifier="electrical" level="60" />
       <RequiredItem identifier="5.56mm_round" amount="10" />
@@ -213,7 +383,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_anims.png" sourcerect="323,1020,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="991,940,30,5" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true" friendlyfire="false">
@@ -249,7 +419,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="5.45mm_round_noff" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="5" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,5.45mm_round,545_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="5.45mm_round_noff" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,5.45mm_round,545_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <Fabricate suitablefabricators="milfabricator" requiredtime="10" amount="10">
       <RequiredSkill identifier="electrical" level="55" />
       <RequiredItem identifier="5.45mm_round" amount="10" />
@@ -260,7 +430,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_anims.png" sourcerect="448,1017,68,69" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,920,32,7" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true" friendlyfire="false">
@@ -296,11 +466,11 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" identifier="9x39mm_round_noff" description="" maxstacksize="5" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,9x39mm_round,ammo,939_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" identifier="9x39mm_round_noff" description="" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,9x39mm_round,ammo,939_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <InventoryIcon texture="%ModDir%/CO_spritelist_anims.png" sourcerect="255,1017,71,69" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,920,32,7" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Price baseprice="21" soldeverywhere="false" buyingpricemultiplier="5" minleveldifficulty="20" />
@@ -343,7 +513,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="mg_round_noff" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="20" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,kurz_ammo,bullet,mgbonus,mg_round" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="mg_round_noff" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,kurz_ammo,bullet,mgbonus,mg_round" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="20" MaxStackSizeHoldableOrWearableInventory="40">
     <Fabricate suitablefabricators="milfabricator" requiredtime="20" amount="20">
       <RequiredSkill identifier="electrical" level="55" />
       <RequiredItem identifier="mg_round" amount="20" />
@@ -354,7 +524,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_anims.png" sourcerect="14,947,65,66" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,889,34,8" depth="0.55" origin="0.5,0.5" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true" friendlyfire="false">
@@ -394,7 +564,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="7.62mm_round_noff" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="5" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,762_ammo,bullet,riflemanbonus,sniperbonus,7.62mm_round,rifleammo,handcannonammo" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45">
+  <Item name="" description="" identifier="7.62mm_round_noff" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,762_ammo,bullet,riflemanbonus,sniperbonus,7.62mm_round,rifleammo,handcannonammo" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <Price baseprice="41" soldeverywhere="false" buyingpricemultiplier="4" minleveldifficulty="30" />
     <Fabricate suitablefabricators="milfabricator" requiredtime="10" amount="10">
       <RequiredSkill identifier="electrical" level="60" />
@@ -405,7 +575,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_anims.png" sourcerect="511,1016,71,71" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,889,34,8" depth="0.55" origin="0.5,0.5" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true" friendlyfire="false">
@@ -447,7 +617,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="44_round_noff" maxstacksize="6" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,bullet,44_round" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45">
+  <Item name="" description="" identifier="44_round_noff" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,bullet,44_round" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45" maxstacksizecharacterinventory="6" MaxStackSizeHoldableOrWearableInventory="12">
     <Price baseprice="28" soldeverywhere="false" buyingpricemultiplier="4" />
     <Fabricate suitablefabricators="milfabricator" requiredtime="10" amount="10">
       <RequiredSkill identifier="electrical" level="45" />
@@ -458,7 +628,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_anims.png" sourcerect="131,1021,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="992,912,18,7" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true" friendlyfire="false">
@@ -489,7 +659,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="38_round_noff" category="weapon" subcategory="Ammunition" maxstacksize="7" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,38_ammo,bullet,revolverround,revolverammo" impactsoundtag="impact_metal_light" hideinmenus="false" scale="0.5">
+  <Item name="" description="" identifier="38_round_noff" category="weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,38_ammo,bullet,revolverround,revolverammo" impactsoundtag="impact_metal_light" hideinmenus="false" scale="0.5" maxstacksizecharacterinventory="7" MaxStackSizeHoldableOrWearableInventory="14">
     <Price baseprice="13" soldeverywhere="false" buyingpricemultiplier="5" />
     <Fabricate suitablefabricators="milfabricator" requiredtime="10" amount="10">
       <RequiredSkill identifier="electrical" level="45" />
@@ -500,7 +670,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_anims.png" sourcerect="193,1021,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="992,898,16,4" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true" friendlyfire="false">
@@ -532,13 +702,13 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" scale="0.5" />
   </Item>
-  <Item name="" identifier="45_round_noff" description="" maxstacksize="5" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,45_ammo,bullet,45_round" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" identifier="45_round_noff" description="" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,45_ammo,bullet,45_round" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <PreferredContainer primary="pistol45_magazine" />
     <PreferredContainer primary="smg45_magazine" />
     <InventoryIcon texture="%ModDir%/CO_spritelist_anims.png" sourcerect="5,1021,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="992,883,14,5" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Price baseprice="15" soldeverywhere="false" buyingpricemultiplier="5" />
@@ -585,13 +755,13 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" identifier="9mm_round_noff" description="" category="weapon" subcategory="Ammunition" maxstacksize="5" interactthroughwalls="true" allowsellingwhenbroken="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,9mm_round,919_ammo,bullet" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" identifier="9mm_round_noff" description="" category="weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" allowsellingwhenbroken="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,9mm_round,919_ammo,bullet" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <PreferredContainer primary="pistol9mm_magazine" />
     <PreferredContainer primary="smg9mm_magazine" />
     <InventoryIcon texture="%ModDir%/CO_spritelist_anims.png" sourcerect="69,1021,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="991,904,17,7" depth="0.55" origin="0.5,0.5" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Price baseprice="13" soldeverywhere="false" buyingpricemultiplier="5" />
@@ -638,7 +808,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="44_round_hs" maxstacksize="6" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,bullet,44_round" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45">
+  <Item name="" description="" identifier="44_round_hs" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,bullet,44_round" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45" maxstacksizecharacterinventory="6" MaxStackSizeHoldableOrWearableInventory="12">
     <Price baseprice="35" soldeverywhere="false" buyingpricemultiplier="4" minleveldifficulty="40">
       <Price storeidentifier="merchantoutpost" multiplier="1.15" minavailable="24" />
       <Price storeidentifier="merchantcity" multiplier="1.15" minavailable="12" />
@@ -656,7 +826,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="71,1006,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="992,912,18,7" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
@@ -686,11 +856,11 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" identifier="45_round_rifle" description="" maxstacksize="5" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,45_ammo,bullet,45_round,sniperbonus" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" identifier="45_round_rifle" description="" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,45_ammo,bullet,45_round,sniperbonus" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="712,456,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="992,883,14,5" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Price baseprice="16" soldeverywhere="false" buyingpricemultiplier="5">
@@ -744,11 +914,11 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" identifier="9mm_round_hs" description="" category="weapon" subcategory="Ammunition" maxstacksize="5" interactthroughwalls="true" allowsellingwhenbroken="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,9mm_round,919_ammo,bullet" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" identifier="9mm_round_hs" description="" category="weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" allowsellingwhenbroken="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,9mm_round,919_ammo,bullet" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="713,519,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="991,904,17,7" depth="0.55" origin="0.5,0.5" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Price baseprice="14" soldeverywhere="false" buyingpricemultiplier="5" minleveldifficulty="45">
@@ -801,7 +971,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="5.45mm_round_incendiary" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="5" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,5.45mm_round,545_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="5.45mm_round_incendiary" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,5.45mm_round,545_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <PreferredContainer primary="5.45mm_magazine" />
     <Fabricate suitablefabricators="milfabricator" requiredtime="20" amount="15" requiresrecipe="true">
       <RequiredSkill identifier="weapons" level="80" />
@@ -820,7 +990,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="931,1031,68,69" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,920,32,7" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
@@ -858,11 +1028,11 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="5.7mm_round_lb" maxstacksize="5" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,57_ammo,bullet,5.7mm_round" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="5.7mm_round_lb" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,57_ammo,bullet,5.7mm_round" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="853,1034,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,940,31,5" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Price baseprice="14" soldeverywhere="false" buyingpricemultiplier="5" minleveldifficulty="10">
@@ -922,7 +1092,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="mg_round_ripper" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="20" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,kurz_ammo,bullet,mgbonus,mg_round" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="mg_round_ripper" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,kurz_ammo,bullet,mgbonus,mg_round" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="20" MaxStackSizeHoldableOrWearableInventory="40">
     <Fabricate suitablefabricators="milfabricator" requiredtime="15" amount="20">
       <RequiredSkill identifier="weapons" level="85" />
       <RequiredItem identifier="mg_round" amount="20" />
@@ -939,7 +1109,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="780,1037,65,66" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,889,34,8" depth="0.55" origin="0.5,0.5" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
@@ -967,7 +1137,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="44_round_homing" maxstacksize="6" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,bullet,44_round" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45">
+  <Item name="" description="" identifier="44_round_homing" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,bullet,44_round" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45" maxstacksizecharacterinventory="6" MaxStackSizeHoldableOrWearableInventory="12">
     <Price baseprice="35" soldeverywhere="false" buyingpricemultiplier="4">
       <Price storeidentifier="merchantoutpost" multiplier="1.5" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
@@ -986,7 +1156,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="700,1035,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="992,912,18,7" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="false" damagedoors="false" removeonhit="true" launchimpulse="20.0">
@@ -1017,7 +1187,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" identifier="9x39mm_round_homing" description="" maxstacksize="5" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,9x39mm_round,ammo,939_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" identifier="9x39mm_round_homing" description="" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,9x39mm_round,ammo,939_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="612,1032,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,920,32,7" depth="0.55" origin="0.50153744,0.44822764" />
     <Fabricate suitablefabricators="milfabricator" requiredtime="15" amount="10" requiresrecipe="true">
@@ -1036,7 +1206,7 @@
       <Price storeidentifier="merchantmine" multiplier="1.25" sold="false" />
     </Price>
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="false" damagedoors="false" removeonhit="true">
@@ -1067,7 +1237,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" identifier="5.56mm_round_homing" description="" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,5.56mm_round,556_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" maxstacksize="5" Scale="0.45">
+  <Item name="" identifier="5.56mm_round_homing" description="" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,5.56mm_round,556_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" maxstacksize="32" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <Fabricate suitablefabricators="milfabricator" requiredtime="15" amount="10" requiresrecipe="true">
       <RequiredSkill identifier="weapons" level="80" />
       <RequiredSkill identifier="electrical" level="60" />
@@ -1086,7 +1256,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="521,1032,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="991,940,30,5" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="false" damagedoors="false" removeonhit="true" launchimpulse="20">
@@ -1121,11 +1291,11 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="5.7mm_round_hp" maxstacksize="5" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,57_ammo,bullet,5.7mm_round" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="5.7mm_round_hp" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,57_ammo,bullet,5.7mm_round" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="421,1031,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,940,31,5" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Price baseprice="18" soldeverywhere="false" buyingpricemultiplier="5">
@@ -1178,7 +1348,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" identifier="9x39mm_round_df" description="" maxstacksize="5" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,9x39mm_round,ammo,939_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" identifier="9x39mm_round_df" description="" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,9x39mm_round,ammo,939_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="170,1008,72,70" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,920,32,7" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
@@ -1189,7 +1359,7 @@
       <Price storeidentifier="merchantarmory" multiplier="1.1" sold="false" />
       <Price storeidentifier="merchantmine" multiplier="1.25" sold="false" />
     </Price>
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Fabricate suitablefabricators="milfabricator" requiredtime="10" requiresrecipe="true" amount="10">
@@ -1220,7 +1390,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="7.62mm_round_light" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="5" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,762_ammo,bullet,riflemanbonus,sniperbonus,7.62mm_round,rifleammo,handcannonammo" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45">
+  <Item name="" description="" identifier="7.62mm_round_light" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,762_ammo,bullet,riflemanbonus,sniperbonus,7.62mm_round,rifleammo,handcannonammo" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="4" spawnprobability="0.15" />
     <PreferredContainer primary="wreckarmcab" minamount="1" maxamount="2" spawnprobability="0.09" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="1" maxamount="2" spawnprobability="0.1" />
@@ -1250,7 +1420,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="425,935,71,71" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,889,34,8" depth="0.55" origin="0.5,0.5" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
@@ -1292,7 +1462,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="7.62mm_round" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="5" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,762_ammo,bullet,riflemanbonus,sniperbonus,rifleammo,handcannonammo" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45">
+  <Item name="" description="" identifier="7.62mm_round" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,762_ammo,bullet,riflemanbonus,sniperbonus,rifleammo,handcannonammo" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <PreferredContainer primary="762_rifle" minamount="4" maxamount="4" spawnprobability="1" />
     <PreferredContainer primary="7.62_magazine" minamount="1" maxamount="10" spawnprobability="1" />
     <PreferredContainer primary="7.62_magazine" minamount="10" maxamount="10" spawnprobability="1" notcampaign="true" />
@@ -1325,7 +1495,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="786,764,71,71" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,889,34,8" depth="0.55" origin="0.5,0.5" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
@@ -1367,7 +1537,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" identifier="co_shotgunslug" category="weapon" subcategory="Ammunition" description="" maxstacksize="5" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,shotgunammo,bullet,shotgunbonus" Scale="0.5" impactsoundtag="impact_metal_light">
+  <Item name="" identifier="co_shotgunslug" category="weapon" subcategory="Ammunition" description="" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,shotgunammo,bullet,shotgunbonus" Scale="0.5" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <Price baseprice="58" soldeverywhere="false" buyingpricemultiplier="2">
       <Price locationtype="outpost" multiplier="1.5" sold="false" />
       <Price locationtype="city" multiplier="1.25" sold="false" />
@@ -1390,7 +1560,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="609,665,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist_icons.png" sourcerect="966,650,25,12" depth="0.55" origin="0.5,0.5" />
     <Body width="23" height="10" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" hitscancount="1" removeonhit="true" spread="2">
@@ -1415,7 +1585,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" scale="0.5" />
   </Item>
-  <Item name="" description="" identifier="44_round_df" maxstacksize="6" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,bullet,44_round" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45">
+  <Item name="" description="" identifier="44_round_df" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,bullet,44_round" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45" maxstacksizecharacterinventory="6" MaxStackSizeHoldableOrWearableInventory="12">
     <Price baseprice="32" soldeverywhere="false" buyingpricemultiplier="4">
       <Price storeidentifier="merchantoutpost" multiplier="1.5" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
@@ -1432,7 +1602,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="268,1067,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="992,912,18,7" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true" maxtargetstohit="2">
@@ -1457,7 +1627,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="38_round_explosive" category="weapon" subcategory="Ammunition" maxstacksize="7" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,revolverround,38_ammo,bullet,revolverammo" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45">
+  <Item name="" description="" identifier="38_round_explosive" category="weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,revolverround,38_ammo,bullet,revolverammo" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45" maxstacksizecharacterinventory="7" MaxStackSizeHoldableOrWearableInventory="14">
     <Price baseprice="16" soldeverywhere="false" buyingpricemultiplier="5" minleveldifficulty="25">
       <Price storeidentifier="merchantoutpost" multiplier="1.5" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
@@ -1474,7 +1644,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="344,1002,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="991,898,18,5" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
@@ -1506,11 +1676,11 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="9mm_round_ripper" maxstacksize="5" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,9mm_round,919_ammo,bullet" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="9mm_round_ripper" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,9mm_round,919_ammo,bullet" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="271,1009,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,882,17,7" depth="0.55" origin="0.5,0.5" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Price baseprice="16" soldeverywhere="false" buyingpricemultiplier="5" minleveldifficulty="55">
@@ -1552,11 +1722,11 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" maxstacksize="5" description="" identifier="45_round_explosive" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,45_round,45_ammo,bullet" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45">
+  <Item name="" maxstacksize="32" description="" identifier="45_round_explosive" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,45_round,45_ammo,bullet" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="354,933,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="992,883,14,5" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Price baseprice="16" soldeverywhere="false" buyingpricemultiplier="5">
@@ -1601,7 +1771,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="mg_round_ap" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="20" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,kurz_ammo,bullet,mgbonus,mg_round" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="mg_round_ap" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,kurz_ammo,bullet,mgbonus,mg_round" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="20" MaxStackSizeHoldableOrWearableInventory="40">
     <Fabricate suitablefabricators="milfabricator" requiredtime="12" amount="20">
       <RequiredSkill identifier="weapons" level="45" />
       <RequiredItem identifier="mg_round" amount="20" />
@@ -1619,7 +1789,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="271,933,65,66" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,889,34,8" depth="0.55" origin="0.5,0.5" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
@@ -1659,11 +1829,11 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="5.7mm_round_piercing" maxstacksize="5" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,57_ammo,bullet,5.7mm_round" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="5.7mm_round_piercing" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,57_ammo,bullet,5.7mm_round" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="19,927,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,940,31,5" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Price baseprice="16" soldeverywhere="false" buyingpricemultiplier="5">
@@ -1701,7 +1871,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="44_round_explosive" maxstacksize="6" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,bullet,44_round" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45">
+  <Item name="" description="" identifier="44_round_explosive" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,bullet,44_round" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45" maxstacksizecharacterinventory="6" MaxStackSizeHoldableOrWearableInventory="12">
     <Price baseprice="32" soldeverywhere="false" buyingpricemultiplier="4">
       <Price storeidentifier="merchantoutpost" multiplier="1.5" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
@@ -1718,7 +1888,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="266,842,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="992,912,18,7" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
@@ -2455,7 +2625,7 @@
     </Holdable>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="gunpowder" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" Tags="smallitem,chem,explosive" useinhealthinterface="true" scale="0.4" impactsoundtag="impact_metal_light">
+  <Item name="" description="" identifier="gunpowder" category="Material" maxstacksize="32" maxstacksizecharacterinventory="32" cargocontaineridentifier="chemicalcrate" Tags="smallitem,chem,explosive" useinhealthinterface="true" scale="0.4" impactsoundtag="impact_metal_light" MaxStackSizeHoldableOrWearableInventory="64">
     <PreferredContainer primary="storagecab" />
     <PreferredContainer secondary="wreckstoragecab,abandonedstoragecab,wreckmedcab,wreckarmcab,wrecksecarmcab" minamount="0" maxamount="3" spawnprobability="0.05" />
     <Price baseprice="235">
@@ -2491,7 +2661,7 @@
       </StatusEffect>
     </Throwable>
   </Item>
-  <Item name="" description="" identifier="7.62mm_round_df" category="weapon" subcategory="Ammunition" spritecolor="110,120,110" interactthroughwalls="true" maxstacksize="5" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,762_ammo,bullet,riflemanbonus,sniperbonus,7.62mm_round,rifleammo,handcannonammo" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45">
+  <Item name="" description="" identifier="7.62mm_round_df" category="weapon" subcategory="Ammunition" spritecolor="110,120,110" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,762_ammo,bullet,riflemanbonus,sniperbonus,7.62mm_round,rifleammo,handcannonammo" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <Price baseprice="45" soldeverywhere="false" buyingpricemultiplier="4">
       <Price storeidentifier="merchantoutpost" multiplier="1.5" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
@@ -2508,7 +2678,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="100,931,68,68" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,889,34,8" depth="0.55" origin="0.5,0.5" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true" maxtargetstohit="3">
@@ -2533,7 +2703,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" identifier="5.56mm_round_hp" description="" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,5.56mm_round,556_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" maxstacksize="5" Scale="0.45">
+  <Item name="" identifier="5.56mm_round_hp" description="" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,5.56mm_round,556_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" maxstacksize="32" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <Fabricate suitablefabricators="milfabricator" requiredtime="15" amount="10" requiresrecipe="true">
       <RequiredSkill identifier="weapons" level="55" />
       <RequiredItem identifier="5.56mm_round" amount="10" />
@@ -2586,7 +2756,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="mg_round_hp" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="20" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,kurz_ammo,bullet,mgbonus,mg_round" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="mg_round_hp" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,kurz_ammo,bullet,mgbonus,mg_round" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="20" MaxStackSizeHoldableOrWearableInventory="40">
     <Fabricate suitablefabricators="milfabricator" requiredtime="15" amount="20" requiresrecipe="true">
       <RequiredSkill identifier="weapons" level="55" />
       <RequiredItem identifier="mg_round" amount="20" />
@@ -2603,7 +2773,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="191,838,65,66" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,889,34,8" depth="0.55" origin="0.5,0.5" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
@@ -2643,7 +2813,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="5.45mm_round_hp" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="5" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,5.45mm_round,545_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="5.45mm_round_hp" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,5.45mm_round,545_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <Fabricate suitablefabricators="milfabricator" requiredtime="15" amount="10" requiresrecipe="true">
       <RequiredSkill identifier="weapons" level="55" />
       <RequiredItem identifier="5.45mm_round" amount="10" />
@@ -2660,7 +2830,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="17,836,68,69" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,920,32,7" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
@@ -3187,7 +3357,7 @@
     </Holdable>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="mg_round" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="20" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,kurz_ammo,bullet,mgbonus,mg_round" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="mg_round" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,kurz_ammo,bullet,mgbonus,mg_round" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="20" MaxStackSizeHoldableOrWearableInventory="40">
     <PreferredContainer primary="mg_magazine" minamount="80" maxamount="80" spawnprobability="1" notcampaign="true" />
     <PreferredContainer primary="mg_magazine" minamount="1" maxamount="80" spawnprobability="1" />
     <Fabricate suitablefabricators="milfabricator" requiredtime="20" amount="20" requiresrecipe="true">
@@ -3217,7 +3387,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="267,695,65,66" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,889,34,8" depth="0.55" origin="0.5,0.5" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
@@ -3332,7 +3502,7 @@
     </Holdable>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" identifier="5.56mm_round" description="" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,5.56mm_round,556_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" maxstacksize="5" Scale="0.45">
+  <Item name="" identifier="5.56mm_round" description="" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,5.56mm_round,556_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" maxstacksize="32" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <PreferredContainer primary="5.56_magazine" minamount="25" maxamount="25" spawnprobability="1" notcampaign="true" />
     <PreferredContainer primary="5.56_magazine" minamount="1" maxamount="25" spawnprobability="1" />
     <Fabricate suitablefabricators="milfabricator" requiredtime="20" amount="10" requiresrecipe="true">
@@ -3359,7 +3529,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="596,766,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="991,940,30,5" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
@@ -3470,7 +3640,7 @@
     </Holdable>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="5.45mm_round" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="5" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,5.45mm_round,545_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="5.45mm_round" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,5.45mm_round,545_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <PreferredContainer primary="5.45mm_magazine" minamount="25" maxamount="25" spawnprobability="1" notcampaign="true" />
     <Fabricate suitablefabricators="milfabricator" requiredtime="20" amount="10" requiresrecipe="true">
       <RequiredSkill identifier="weapons" level="55" />
@@ -3495,7 +3665,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="722,764,68,69" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,920,32,7" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
@@ -3606,11 +3776,11 @@
     </Holdable>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="5.45mm_round_sb" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="5" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,5.45mm_round,riflemanbonus,545_ammo,bullet" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="5.45mm_round_sb" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,5.45mm_round,riflemanbonus,545_ammo,bullet" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="372,948,70,73" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,920,32,7" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Price baseprice="18" soldeverywhere="false" buyingpricemultiplier="4">
@@ -3671,12 +3841,12 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="5.7mm_round" maxstacksize="5" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,57_ammo,bullet" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="5.7mm_round" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,57_ammo,bullet" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <PreferredContainer primary="57_magazine" minamount="15" maxamount="15 " spawnprobability="1" />
     <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="660,766,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,940,31,5" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Price baseprice="15" soldeverywhere="false" buyingpricemultiplier="5" minleveldifficulty="35">
@@ -3754,6 +3924,9 @@
       <RequiredItem identifier="carbon" />
       <RequiredItem identifier="steel" />
     </Fabricate>
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+    </Deconstruct>
     <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="465,700,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" depth="0.551" sourcerect="830,594,22,54" origin="0.5,0.5" />
     <Body width="30" height="40" density="50" />
@@ -3808,7 +3981,7 @@
     </Holdable>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="7.62mm_round_incendiary" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="5" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,7.62mm_round,762_ammo,bullet,riflemanbonus,sniperbonus,rifleammo,handcannonammo" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45">
+  <Item name="" description="" identifier="7.62mm_round_incendiary" category="weapon" subcategory="Ammunition" interactthroughwalls="true" maxstacksize="32" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,7.62mm_round,762_ammo,bullet,riflemanbonus,sniperbonus,rifleammo,handcannonammo" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <Price baseprice="41" soldeverywhere="false" buyingpricemultiplier="4" minleveldifficulty="50">
       <Price storeidentifier="merchantoutpost" multiplier="1.2" minavailable="20" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
@@ -3830,7 +4003,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="935,303,74,72" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,889,34,8" depth="0.55" origin="0.5,0.5" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
@@ -3946,7 +4119,7 @@
     </Holdable>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="44_round" maxstacksize="6" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,bullet,44_round" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45">
+  <Item name="" description="" identifier="44_round" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,bullet,44_round" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45" maxstacksizecharacterinventory="6" MaxStackSizeHoldableOrWearableInventory="12">
     <Price baseprice="22" soldeverywhere="false" buyingpricemultiplier="4">
       <Price storeidentifier="merchantoutpost" multiplier="1.2" minavailable="36" />
       <Price storeidentifier="merchantcity" multiplier="1.15" minavailable="24" />
@@ -3979,7 +4152,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="404,766,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="992,912,18,7" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
@@ -4080,7 +4253,7 @@
     </Holdable>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="38_round_ap" category="weapon" subcategory="Ammunition" maxstacksize="7" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,revolverround,38_ammo,bullet,revolverammo" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45">
+  <Item name="" description="" identifier="38_round_ap" category="weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,revolverround,38_ammo,bullet,revolverammo" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45" maxstacksizecharacterinventory="7" MaxStackSizeHoldableOrWearableInventory="14">
     <Price baseprice="14" soldeverywhere="false" buyingpricemultiplier="5" minleveldifficulty="25">
       <Price storeidentifier="merchantoutpost" multiplier="1.1" minavailable="15" />
       <Price storeidentifier="merchantcity" multiplier="1.15" minavailable="25" />
@@ -4107,7 +4280,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="294,955,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="991,898,18,5" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
@@ -4139,11 +4312,11 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" description="" identifier="9mm_round_ap" maxstacksize="5" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,9mm_round,919_ammo,bullet" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" description="" identifier="9mm_round_ap" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,9mm_round,919_ammo,bullet" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="502,953,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,882,17,7" depth="0.55" origin="0.5,0.5" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Price baseprice="13" soldeverywhere="false" buyingpricemultiplier="5" minleveldifficulty="35">
@@ -4197,7 +4370,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" identifier="9mm_round" description="" category="weapon" subcategory="Ammunition" maxstacksize="5" interactthroughwalls="true" allowsellingwhenbroken="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,9mm_round,919_ammo,bullet" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" identifier="9mm_round" description="" category="weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" allowsellingwhenbroken="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,9mm_round,919_ammo,bullet" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <PreferredContainer primary="pistol9mm_magazine" minamount="10" maxamount="10" spawnprobability="1" notcampaign="true" />
     <PreferredContainer primary="smg9mm_magazine" minamount="25" maxamount="25" spawnprobability="1" notcampaign="true" />
     <PreferredContainer primary="pistol9mm_magazine" minamount="1" maxamount="10" spawnprobability="1" />
@@ -4211,7 +4384,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="340,766,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="991,904,17,7" depth="0.55" origin="0.5,0.5" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Price baseprice="11" soldeverywhere="false" buyingpricemultiplier="5">
@@ -4432,11 +4605,11 @@
     </Holdable>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" maxstacksize="5" description="" identifier="45_round_ap" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,45_round,45_ammo,bullet" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45">
+  <Item name="" maxstacksize="32" description="" identifier="45_round_ap" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,45_round,45_ammo,bullet" impactsoundtag="impact_metal_light" hideinmenus="false" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="441,955,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="992,883,14,5" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Price baseprice="16" soldeverywhere="false" buyingpricemultiplier="5" minleveldifficulty="35">
@@ -4490,7 +4663,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" identifier="45_round" description="" maxstacksize="5" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,45_ammo,bullet,45_round" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" identifier="45_round" description="" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,45_ammo,bullet,45_round" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <PreferredContainer primary="pistol45_magazine" minamount="8" maxamount="8" spawnprobability="1" notcampaign="true" />
     <PreferredContainer primary="smg45_magazine" minamount="20" maxamount="20" spawnprobability="1" notcampaign="true" />
     <PreferredContainer primary="pistol45_magazine" minamount="1" maxamount="8" spawnprobability="1" />
@@ -4502,7 +4675,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="276,766,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="992,883,14,5" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Price baseprice="14" soldeverywhere="false" buyingpricemultiplier="5">
@@ -4797,7 +4970,7 @@
       </Holdable>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Item>
-    <Item name="" identifier="shotgunslugexplosive" category="weapon" subcategory="Ammunition" maxstacksize="5" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,shotgunammo,bullet" Scale="0.5" impactsoundtag="impact_metal_light">
+    <Item name="" identifier="shotgunslugexplosive" category="weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,shotgunammo,bullet" Scale="0.5" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
       <Price baseprice="85" soldeverywhere="false" buyingpricemultiplier="2">
         <Price locationtype="outpost" multiplier="1.5" sold="false" />
         <Price locationtype="city" multiplier="1.25" sold="false" />
@@ -4805,7 +4978,7 @@
         <Price locationtype="military" multiplier="0.9" sold="false" />
         <Price locationtype="mine" multiplier="1.25" sold="false" />
       </Price>
-      <Deconstruct time="5"></Deconstruct>
+      <Deconstruct time="5" />
       <Fabricate suitablefabricators="milfabricator" requiredtime="10" requiresrecipe="true" amount="8">
         <RequiredSkill identifier="weapons" level="65" />
         <RequiredItem identifier="plastic" />
@@ -4823,7 +4996,7 @@
       <InventoryIcon texture="Content/Items/InventoryIconAtlas2.png" sourcerect="0,704,64,64" origin="0.5,0.5" />
       <Sprite texture="Content/Items/JobGear/TalentGear.png" sourcerect="449,211,24,12" depth="0.55" origin="0.5,0.5" />
       <Body width="23" height="10" density="40" />
-      <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+      <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
       <Deconstruct time="0" />
       <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
       <Projectile characterusable="false" hitscan="true" damagedoors="false" hitscancount="1" removeonhit="true" spread="1">
@@ -4846,7 +5019,7 @@
       </Projectile>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Item>
-    <Item name="" identifier="shotgunshell" category="weapon" subcategory="Ammunition" maxstacksize="5" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,shotgunammo,bullet,shotgunbonus" Scale="0.5" impactsoundtag="impact_metal_light">
+    <Item name="" identifier="shotgunshell" category="weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,shotgunammo,bullet,shotgunbonus" Scale="0.5" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
       <PreferredContainer primary="shotgun_air" minamount="5" maxamount="5" spawnprobability="1" />
       <PreferredContainer primary="shotgun_db" minamount="2" maxamount="2" spawnprobability="1" />
       <PreferredContainer primary="shotgununique" minamount="2" maxamount="2" spawnprobability="1" />
@@ -4878,7 +5051,7 @@
       <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="832,960,64,64" origin="0.5,0.5" />
       <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="189,299,23,11" depth="0.55" origin="0.5,0.5" />
       <Body width="23" height="10" density="40" />
-      <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+      <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
       <Deconstruct time="0" />
       <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
       <Projectile characterusable="false" hitscan="true" damagedoors="false" hitscancount="16" removeonhit="true" spread="10.5">
@@ -4915,7 +5088,7 @@
       </Projectile>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Item>
-    <Item name="" identifier="shotgunshellblunt" category="weapon" subcategory="Ammunition" maxstacksize="5" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,shotgunammo,bullet" Scale="0.5" impactsoundtag="impact_metal_light">
+    <Item name="" identifier="shotgunshellblunt" category="weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,shotgunammo,bullet" Scale="0.5" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
       <PreferredContainer primary="shotgun,autoshotgun,shotgununique" />
       <PreferredContainer secondary="outpostsecarmcab" minamount="1" maxamount="6" spawnprobability="0.5" />
       <PreferredContainer secondary="wreckarmcab,wrecksecarmcab,abandonedarmcab,abandonedsecarmcab" minamount="1" maxamount="3" spawnprobability="0.2" />
@@ -4938,7 +5111,7 @@
       <InventoryIcon texture="Content/Items/InventoryIconAtlas2.png" sourcerect="384,646,64,64" origin="0.5,0.5" />
       <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="189,269,22,10" depth="0.55" origin="0.5,0.5" />
       <Body width="23" height="10" density="40" />
-      <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+      <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
       <Deconstruct time="0" />
       <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
       <Projectile characterusable="false" hitscan="true" damagedoors="false" hitscancount="8" removeonhit="true" spread="8">
@@ -4965,7 +5138,7 @@
       </Projectile>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Item>
-    <Item name="" description="" identifier="38_round" category="weapon" subcategory="Ammunition" maxstacksize="7" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,38_ammo,bullet,revolverround,revolverammo" impactsoundtag="impact_metal_light" hideinmenus="false" scale="0.5">
+    <Item name="" description="" identifier="38_round" category="weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,pistolammoitem,38_ammo,bullet,revolverround,revolverammo" impactsoundtag="impact_metal_light" hideinmenus="false" scale="0.5" maxstacksizecharacterinventory="7" MaxStackSizeHoldableOrWearableInventory="14">
       <PreferredContainer primary="revolver" minamount="5" maxamount="5" spawnprobability="1" />
       <PreferredContainer primary="revolver_38_uw" minamount="7" maxamount="7" spawnprobability="1" />
       <PreferredContainer primary="38_magazine" minamount="10" maxamount="10" spawnprobability="1" notcampaign="true" />
@@ -4993,7 +5166,7 @@
       <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="468,766,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="992,898,16,4" depth="0.55" origin="0.50153744,0.44822764" />
       <Body width="80" height="14" density="40" />
-      <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+      <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
       <Deconstruct time="0" />
       <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
       <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true">
@@ -5025,7 +5198,7 @@
       </Projectile>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Item>
-    <Item name="" description="" maxstacksize="7" category="weapon" subcategory="Ammunition" impactsoundtag="impact_metal_light" identifier="38_round_df" tags="smallitem,pistolammoitem,38_ammo,bullet,revolverround" cargocontaineridentifier="co_ammobox_disp" spritecolor="110,120,110" scale="0.5">
+    <Item name="" description="" maxstacksize="32" category="weapon" subcategory="Ammunition" impactsoundtag="impact_metal_light" identifier="38_round_df" tags="smallitem,pistolammoitem,38_ammo,bullet,revolverround" cargocontaineridentifier="co_ammobox_disp" spritecolor="110,120,110" scale="0.5" maxstacksizecharacterinventory="7" MaxStackSizeHoldableOrWearableInventory="14">
       <PreferredContainer primary="armcab" />
       <Price baseprice="17" soldeverywhere="false" buyingpricemultiplier="5">
         <Price storeidentifier="merchantoutpost" multiplier="1.5" sold="false" />
@@ -5046,7 +5219,7 @@
       <InventoryIcon texture="%ModDir%/CO_spritelist_icons.png" sourcerect="183,932,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="992,898,16,4" depth="0.55" origin="0.50153744,0.44822764" />
       <Body width="80" height="14" density="40" />
-      <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+      <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
       <Deconstruct time="0" />
       <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
       <Projectile characterusable="false" hitscan="true" damagedoors="false" removeonhit="true" maxtargetstohit="2">
@@ -5071,13 +5244,13 @@
       </Projectile>
     </Item>
   </Override>
-  <Item name="" identifier="9x39mm_round" description="" maxstacksize="5" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,9x39mm_round,ammo,939_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" identifier="9x39mm_round" description="" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,9x39mm_round,ammo,939_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <PreferredContainer primary="9x39_magazine" minamount="0" maxamount="20" spawnprobability="1" />
     <PreferredContainer primary="9x39_magazine" minamount="20" maxamount="20" spawnprobability="1" notcampaign="true" />
     <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="529,764,71,69" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,920,32,7" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Price baseprice="19" soldeverywhere="false" buyingpricemultiplier="5" minleveldifficulty="20">
@@ -5135,7 +5308,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" identifier="9x39mm_round_hs" description="" maxstacksize="5" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,9x39mm_round,ammo,939_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" Scale="0.45">
+  <Item name="" identifier="9x39mm_round_hs" description="" maxstacksize="32" category="weapon" subcategory="Ammunition" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,9x39mm_round,ammo,939_ammo,bullet,riflemanbonus" impactsoundtag="impact_metal_light" Scale="0.45" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <InventoryIcon texture="%ModDir%/CO_spritelist.png" sourcerect="587,951,72,70" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist.png" sourcerect="990,920,32,7" depth="0.55" origin="0.50153744,0.44822764" />
     <Body width="80" height="14" density="40" />
@@ -5147,7 +5320,7 @@
       <Price storeidentifier="merchantmine" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="20" />
     </Price>
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Fabricate suitablefabricators="milfabricator" requiredtime="5" requiresrecipe="true">
@@ -5196,7 +5369,7 @@
     </Projectile>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" identifier="shotgundart" description="" category="weapon" subcategory="Ammunition" maxstacksize="5" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,shotgunammo,bullet" Scale="0.45" impactsoundtag="impact_metal_light">
+  <Item name="" identifier="shotgundart" description="" category="weapon" subcategory="Ammunition" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="co_ammobox_disp" tags="smallitem,shotgunammo,bullet" Scale="0.45" impactsoundtag="impact_metal_light" maxstacksizecharacterinventory="5" MaxStackSizeHoldableOrWearableInventory="10">
     <Price baseprice="65" soldeverywhere="false" buyingpricemultiplier="2" minleveldifficulty="35">
       <Price storeidentifier="merchantoutpost" multiplier="1.5" minavailable="8" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="10" />
@@ -5208,7 +5381,7 @@
     <InventoryIcon texture="%ModDir%/CO_spritelist_mod.png" sourcerect="939,635,64,64" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/CO_spritelist_mod.png" sourcerect="972,609,23,11" depth="0.55" origin="0.5,0.5" />
     <Body width="23" height="10" density="40" />
-    <Pickable slots="Any" msg="ItemMsgPickUpSelect"></Pickable>
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Deconstruct time="0" />
     <Fabricate suitablefabricators="ammo_arsenal" requiredtime="0" amount="5" />
     <Projectile characterusable="false" hitscan="true" damagedoors="false" hitscancount="6" removeonhit="true" spread="8">

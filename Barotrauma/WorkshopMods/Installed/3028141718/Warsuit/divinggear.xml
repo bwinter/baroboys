@@ -117,7 +117,7 @@
     </Pickable>
     <Upgrade gameversion="0.10.0.0" Scale="0.45" />
   </Item>
-  <Item name="" identifier="honk_eternal" category="Misc" tags="smallitem,hornitem,clowns,eternalhonk" scale="0.5" cargocontaineridentifier="metalcrate" description="HONK">
+  <Item name="" identifier="honk_eternal" category="Misc" tags="smallitem,hornitem,clowns,eternalhonk" scale="0.5" cargocontaineridentifier="metalcrate" description="HONK" hideinmenus="true">
     <Price baseprice="115" canbespecial="false" />
     <Sprite texture="%ModDir%/CO_spritelist_pistols.png" sourcerect="28,457,53,22" depth="0.55" origin="0.5,0.5" />
     <Body width="50" height="20" density="20" />
@@ -138,7 +138,7 @@
     <aitarget soundrange="1000" fadeouttime="5" />
     <Upgrade gameversion="0.10.0.0" scale="0.5" />
   </Item>
-  <Item name="CorporalCoin" identifier="corporalcoin" category="weapon" subcategory="Ammunition" maxstacksize="1" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem" Scale="0.5" impactsoundtag="impact_metal_light">
+  <Item name="CorporalCoin" identifier="corporalcoin" category="weapon" hideinmenus="true" subcategory="Ammunition" maxstacksize="1" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem" Scale="0.5" impactsoundtag="impact_metal_light">
     <Price baseprice="100" soldeverywhere="false" />
     <Deconstruct time="2" />
     <InventoryIcon texture="%ModDir%/Warsuit/headgears.png" sourcerect="172,253,313,288" origin="0.5,0.5" />

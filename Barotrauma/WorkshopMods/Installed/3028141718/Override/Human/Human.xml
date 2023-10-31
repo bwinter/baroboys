@@ -302,64 +302,64 @@
       </Wearable>
     </HeadAttachments>
     <!-- Easter egg items for special nicknames -->
-    <StatusEffect type="OnSpawn" target="this" interval="3">
+    <StatusEffect type="OnSpawn" target="this" interval="3" delay="1" comparison="AND" disabledelattime="true">
+      <Affliction identifier="spawnused" amount="10" />
+    </StatusEffect>
+    <StatusEffect type="OnSpawn" target="this" interval="3" comparison="AND">
       <SpawnItem identifiers="shotgun_assalt" spawnposition="ThisInventory" />
       <SpawnItem identifiers="shotgunshell" spawnposition="ThisInventory" count="4" />
       <Conditional DisplayName="M12" />
+      <Conditional spawnused="0" />
     </StatusEffect>
-    <StatusEffect type="OnSpawn" target="this" interval="3">
+    <StatusEffect type="OnSpawn" target="this" interval="3" comparison="AND">
       <SpawnItem identifiers="easterwrench" spawnposition="ThisInventory" />
       <Conditional DisplayName="Battle Engineer" />
+      <Conditional spawnused="0" />
     </StatusEffect>
-    <StatusEffect type="OnSpawn" target="this" interval="3" conditional="OR">
+    <StatusEffect type="OnSpawn" target="this" interval="3" comparison="AND">
       <SpawnItem identifiers="corporalcoin" spawnposition="ThisInventory" />
       <Conditional DisplayName="Kapral Efimenko" />
-      <Conditional DisplayName="Капрал Ефименко" />
-      <Conditional DisplayName="Corporal Efimenko" />
+      <Conditional spawnused="0" />
     </StatusEffect>
-    <StatusEffect type="OnSpawn" target="this" interval="3" conditional="OR">
+    <StatusEffect type="OnSpawn" target="this" interval="3" comparison="AND">
       <SpawnItem identifiers="sword_murza" spawnposition="ThisInventory" />
       <Conditional DisplayName="Jetstream Sam" />
-      <Conditional DisplayName="JetstreamSam" />
-      <Conditional DisplayName="Sam Jetstream" />
+      <Conditional spawnused="0" />
     </StatusEffect>
-    <StatusEffect type="OnSpawn" target="this" interval="3" conditional="OR">
+    <StatusEffect type="OnSpawn" target="this" interval="3" comparison="AND">
       <SpawnItem identifiers="9mm_pistol_smg" spawnposition="ThisInventory" />
       <Conditional DisplayName="Christian Calsow" />
-      <Conditional DisplayName="Chris Calsow" />
-      <Conditional DisplayName="Кристиан Кальсов" />
+      <Conditional spawnused="0" />
     </StatusEffect>
-    <StatusEffect type="OnSpawn" target="this" interval="3">
+    <StatusEffect type="OnSpawn" target="this" interval="3" comparison="AND">
       <SpawnItem identifiers="honk_eternal" spawnposition="ThisInventory" />
       <Conditional DisplayName="Stimpy The Clown" />
+      <Conditional spawnused="0" />
     </StatusEffect>
-    <StatusEffect type="OnSpawn" target="this" interval="3" conditional="OR" delay="258">
+    <StatusEffect type="OnSpawn" target="this" interval="3" delay="175">
       <SpawnItem identifiers="honk_proxy_funny" spawnposition="ThisInventory" />
       <Conditional DisplayName="Knarrenbluntz" />
-      <Conditional DisplayName="Бэб" />
-      <Conditional DisplayName="Быб" />
-      <Conditional DisplayName="Джон Максвелл" />
-      <Conditional DisplayName="Микола Бахмут" />
-      <Conditional DisplayName="Мыкола Бахмут" />
-      <Conditional DisplayName="Рыр" />
-      <Conditional DisplayName="Дмитрий Шевченко" />
     </StatusEffect>
-    <StatusEffect type="OnSpawn" target="this" interval="3">
+    <StatusEffect type="OnSpawn" target="this" interval="3" comparison="AND">
       <SpawnItem identifiers="panofaman" spawnposition="ThisInventory" />
       <Conditional DisplayName="Panman" />
+      <Conditional spawnused="0" />
     </StatusEffect>
-    <StatusEffect type="OnSpawn" target="this" interval="3">
+    <StatusEffect type="OnSpawn" target="this" interval="3" comparison="AND">
       <SpawnItem identifiers="co_disposablerocketlaucnher" spawnposition="ThisInventory" />
       <Conditional DisplayName="To Be A Hero" />
+      <Conditional spawnused="0" />
     </StatusEffect>
-    <StatusEffect type="OnSpawn" target="this" interval="3">
+    <StatusEffect type="OnSpawn" target="this" interval="3" comparison="AND">
       <SpawnItem identifiers="co_fraggrenade" spawnposition="ThisInventory" count="2" />
       <Conditional DisplayName="Greyed Grenadier" />
+      <Conditional spawnused="0" />
     </StatusEffect>
-    <StatusEffect type="OnSpawn" target="this" interval="3">
+    <StatusEffect type="OnSpawn" target="this" interval="3" comparison="AND">
       <SpawnItem identifiers="co_c4charge" spawnposition="ThisInventory" />
       <SpawnItem identifiers="co_remotedet" spawnposition="ThisInventory" />
       <Conditional DisplayName="Dr. Javier" />
+      <Conditional spawnused="0" />
     </StatusEffect>
   </Character>
 </override>
