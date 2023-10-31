@@ -25,9 +25,9 @@
     <Sprite name="Heavy Security Vest Item" texture="%ModDir%/Jobgear/heavyarmor.png" sourcerect="0,0,117,168" depth="0.6" />
     <Body radius="45" height="25" density="40" />
     <Wearable slots="Any,OuterClothes" msg="ItemMsgPickUpSelect">
-      <damagemodifier afflictionidentifiers="lacerations,gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.15" damagesound="armourmedimpact" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="bleeding" armorsector="0.0,360.0" damagemultiplier="0.15" damagesound="armourmedimpact" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="lacerations,gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.2" damagesound="armourmedimpact" deflectprojectiles="true" />
       <damagemodifier afflictionidentifiers="bitewounds,blunttrauma" armorsector="0.0,360.0" damagemultiplier="0.6" damagesound="armourmedimpact" deflectprojectiles="true" />
-      <damagemodifier afflictionidentifiers="bleeding" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="armourmedimpact" deflectprojectiles="true" />
       <sprite name="Heavy Security Vest Wearable" texture="%ModDir%/Jobgear/heavyarmor.png" limb="Torso" hidelimb="false" inheritscale="true" scale="1" inheritorigin="false" origin="0.5,0.565" inheritsourcerect="false" sourcerect="11,7,97,115" />
       <sprite name="Heavy Security Vest Holster" texture="renegadeplatecarrier.png" limb="RightThigh" hidelimb="false" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
       <StatValue stattype="WalkingSpeed" value="-0.05" />
@@ -65,9 +65,9 @@
     <Body radius="45" height="40" density="40" />
     <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="15,-80" handle1="-10,30" holdangle="-5" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" />
     <Wearable slots="OuterClothes" msg="ItemMsgPickUpSelect">
+      <damagemodifier afflictionidentifiers="bleeding" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="armourmedimpact" deflectprojectiles="true" />
       <damagemodifier afflictionidentifiers="lacerations,gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.15" damagesound="armourmedimpact" deflectprojectiles="true" />
       <damagemodifier afflictionidentifiers="bitewounds,blunttrauma" armorsector="0.0,360.0" damagemultiplier="0.5" damagesound="armourmedimpact" deflectprojectiles="true" />
-      <damagemodifier afflictionidentifiers="bleeding" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="armourmedimpact" deflectprojectiles="true" />
       <SkillModifier skillidentifier="weapons" skillvalue="-10" />
       <SkillModifier skillidentifier="mechanical" skillvalue="-15" />
       <SkillModifier skillidentifier="electrical" skillvalue="-20" />
@@ -111,10 +111,11 @@
     <InventoryIcon name="specialriginv" texture="%ModDir%/Jobgear/specialrig.png" sourcerect="166,33,106,113" origin="0.5,0.5" />
     <Sprite name="specialrigground" texture="%ModDir%/Jobgear/specialrig.png" sourcerect="166,33,106,113" depth="0.6" origin="0.53862745,0.49777433" />
     <Body radius="45" height="30" density="40" />
-    <Wearable slots="OuterClothes+Bag" msg="ItemMsgPickUpSelect">
-      <damagemodifier afflictionidentifiers="lacerations,gunshotwound,bleeding" armorsector="0.0,360.0" damagemultiplier="0.05" damagesound="armourheavyimpact" deflectprojectiles="true" />
+    <Wearable slots="OuterClothes" msg="ItemMsgPickUpSelect">
+      <damagemodifier afflictionidentifiers="lacerations,gunshotwound,bleeding" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="armourheavyimpact" deflectprojectiles="true" />
       <damagemodifier afflictionidentifiers="bitewounds,blunttrauma" armorsector="0.0,360.0" damagemultiplier="0.4" damagesound="armourheavyimpact" deflectprojectiles="true" />
-      <SkillModifier skillidentifier="weapons" skillvalue="-20" />
+      <SkillModifier skillidentifier="weapons" skillvalue="-10" />
+      <SkillModifier skillidentifier="medical" skillvalue="-10" />
       <SkillModifier skillidentifier="mechanical" skillvalue="-40" />
       <SkillModifier skillidentifier="electrical" skillvalue="-40" />
       <sprite name="Special Rig Wearable" texture="%ModDir%/Jobgear/specialrig.png" sound="footstep_armor_heavy" limb="Torso" hidelimb="false" inherittexturescale="true" inheritorigin="true" hideotherwearables="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
@@ -128,7 +129,7 @@
       <StatValue stattype="SwimmingSpeed" value="-0.2" />
     </Wearable>
     <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="0,-50" handle1="-10,-20" handle2="10,-20" holdangle="45" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" />
-    <ItemContainer capacity="6" slotsperrow="16" keepopenwhenequipped="false" movableframe="true">
+    <ItemContainer capacity="4" slotsperrow="8" keepopenwhenequipped="false" movableframe="true">
       <Containable items="smallitem" excludeditems="toolbox,mobilecontainer,rucksack,backpack,waistbelt,vest,backpack1,medicalbackpack,power-backpack,duffelbag,heavybackpack,oxy-gen. backpack,xeno-backpack,techno-backpack" />
     </ItemContainer>
   </Item>
@@ -165,12 +166,13 @@
     <InventoryIcon name="renegadespecialriginv" texture="%ModDir%/Jobgear/renegadespecialrig.png" sourcerect="160,43,98,112" origin="0.5,0.5" />
     <Sprite name="renegadespecialrigground" texture="%ModDir%/Jobgear/renegadespecialrig.png" sourcerect="160,43,98,112" depth="0.6" origin="0.53862745,0.49777433" />
     <Body radius="45" height="30" density="40" />
-    <Wearable slots="OuterClothes+Bag" msg="ItemMsgPickUpSelect">
-      <damagemodifier afflictionidentifiers="lacerations,gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="armourheavyimpact" deflectprojectiles="true" />
-      <damagemodifier afflictionidentifiers="bitewounds,bleeding" armorsector="0.0,360.0" damagemultiplier="0.3" damagesound="armourheavyimpact" deflectprojectiles="true" />
-      <SkillModifier skillidentifier="weapons" skillvalue="-25" />
-      <SkillModifier skillidentifier="mechanical" skillvalue="-10" />
-      <SkillModifier skillidentifier="electrical" skillvalue="-10" />
+    <Wearable slots="OuterClothes" msg="ItemMsgPickUpSelect">
+      <damagemodifier afflictionidentifiers="gunshotwound,bleeding" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="armourheavyimpact" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="bitewounds,lacerations" armorsector="0.0,360.0" damagemultiplier="0.5" damagesound="armourheavyimpact" deflectprojectiles="true" />
+      <SkillModifier skillidentifier="weapons" skillvalue="-15" />
+      <SkillModifier skillidentifier="medical" skillvalue="-15" />
+      <SkillModifier skillidentifier="mechanical" skillvalue="-20" />
+      <SkillModifier skillidentifier="electrical" skillvalue="-30" />
       <sprite name="Special Rig Wearable" texture="%ModDir%/Jobgear/renegadespecialrig.png" sound="footstep_armor_heavy" limb="Torso" hidelimb="false" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
       <sprite name="Special Rig Right Protector" texture="%ModDir%/Jobgear/renegadespecialrig.png" limb="RightThigh" hidelimb="false" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
       <sprite name="Special Rig Left Protector" texture="%ModDir%/Jobgear/renegadespecialrig.png" limb="LeftThigh" hidelimb="false" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
@@ -178,13 +180,10 @@
       <sprite name="Special Rig Left Armpad" texture="%ModDir%/Jobgear/renegadespecialrig.png" limb="LeftArm" hidelimb="false" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
       <sprite name="Special Rig Right Lower Arm" texture="%ModDir%/Jobgear/renegadespecialrig.png" limb="RightForearm" hidelimb="false" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
       <sprite name="Special Rig Left Lower Arm" texture="%ModDir%/Jobgear/renegadespecialrig.png" limb="LeftForearm" hidelimb="false" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
-      <StatValue stattype="WalkingSpeed" value="-0.125" />
+      <StatValue stattype="WalkingSpeed" value="-0.15" />
       <StatValue stattype="SwimmingSpeed" value="-0.25" />
     </Wearable>
     <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="0,-50" handle1="-10,-20" handle2="10,-20" holdangle="45" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" />
-    <ItemContainer capacity="6" slotsperrow="8" keepopenwhenequipped="false" movableframe="true">
-      <Containable items="smallitem" excludeditems="toolbox,mobilecontainer,rucksack,backpack,waistbelt,vest,backpack1,medicalbackpack,power-backpack,duffelbag,heavybackpack,oxy-gen. backpack,xeno-backpack,techno-backpack" />
-    </ItemContainer>
   </Item>
   <Item name="" identifier="scp_simplehelmet" category="Equipment" subcategory="Renegade" tags="smallitem,clothing" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_metal_heavy" scale="0.5">
     <PreferredContainer primary="engcab,storagecab,reactorcab" minamount="0" maxamount="1" spawnprobability="0.065" />
@@ -210,7 +209,7 @@
     <Wearable slots="Any,Head" msg="ItemMsgPickUpSelect">
       <damagemodifier afflictionidentifiers="gunshotwound,bleeding,lacerations" armorsector="0.0,360.0" damagemultiplier="0.6" damagesound="LimbArmor" deflectprojectiles="true" />
       <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.9" damagesound="LimbArmor" deflectprojectiles="true" />
-      <sprite name="Simple Helmet Wearable" texture="%ModDir%/Jobgear/helmets.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.74" hidewearablesoftype="hair" sourcerect="167,0,73,55" origin="0.5,0.7" />
+      <sprite name="Simple Helmet Wearable" texture="%ModDir%/Jobgear/helmets.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.74" hidewearablesoftype="hair" sourcerect="168,0,72,79" origin="0.49987426,0.54756904" />
     </Wearable>
   </Item>
   <Item name="" identifier="scp_combathelmet" category="Equipment" subcategory="Coalition" tags="smallitem,clothing" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_metal_heavy" scale="0.5">
@@ -274,8 +273,9 @@
       <damagemodifier afflictionidentifiers="blunttrauma,bitewounds" armorsector="0.0,360.0" damagemultiplier="0.4" damagesound="armourheavyimpact" deflectprojectiles="true" />
       <damagemodifier afflictionidentifiers="concussion" armorsector="0.0,360.0" damagemultiplier="0.0" damagesound="" deflectprojectiles="true" />
       <SkillModifier skillidentifier="weapons" skillvalue="-5" />
-      <SkillModifier skillidentifier="mechanical" skillvalue="-10" />
-      <SkillModifier skillidentifier="electrical" skillvalue="-20" />
+      <SkillModifier skillidentifier="medical" skillvalue="-10" />
+      <SkillModifier skillidentifier="mechanical" skillvalue="-25" />
+      <SkillModifier skillidentifier="electrical" skillvalue="-25" />
       <sprite name="Heavy Combat Helmet Wearable" texture="%ModDir%/Jobgear/helmets.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.8" hidewearablesoftype="hair" sourcerect="82,0,83,77" origin="0.59,0.47" />
       <StatValue stattype="WalkingSpeed" value="-0.05" />
       <StatusEffect type="OnWearing" target="Character" setvalue="true" HideFace="true" disabledeltatime="true" ObstructVision="true"></StatusEffect>
@@ -317,7 +317,10 @@
       <damagemodifier afflictionidentifiers="blunttrauma,bitewounds" armorsector="0.0,360.0" damagemultiplier="0.5" damagesound="armourheavyimpact" deflectprojectiles="true" />
       <damagemodifier afflictionidentifiers="bleeding" armorsector="0.0,360.0" damagemultiplier="0.15" damagesound="armourheavyimpact" deflectprojectiles="true" />
       <damagemodifier afflictionidentifiers="concussion" armorsector="0.0,360.0" damagemultiplier="0.0" damagesound="" deflectprojectiles="true" />
-      <SkillModifier skillidentifier="weapons" skillvalue="-8" />
+      <SkillModifier skillidentifier="weapons" skillvalue="-5" />
+      <SkillModifier skillidentifier="medical" skillvalue="-15" />
+      <SkillModifier skillidentifier="mechanical" skillvalue="-15" />
+      <SkillModifier skillidentifier="electrical" skillvalue="-15" />
       <StatValue stattype="WalkingSpeed" value="-0.075" />
       <sprite name="renheavycombatwear" texture="%ModDir%/Jobgear/helmets.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.8" hidewearablesoftype="hair" sourcerect="423,76,83,77" origin="0.5422843,0.543" />
       <StatusEffect type="OnWearing" target="Character" setvalue="true" HideFace="true" disabledeltatime="true" ObstructVision="true"></StatusEffect>
@@ -478,7 +481,7 @@
     </Price>
     <InventoryIcon name="fieldpackinv" texture="%ModDir%/Jobgear/fieldpack.png" sourcerect="130,-2,64,64" origin="0.5,0.5" />
     <Sprite name="fieldpack" texture="%ModDir%/Jobgear/fieldpack.png" depth="0.6" sourcerect="141,66,115,83" origin="0.5,0.5" />
-    <Body width="100" height="100" density="15" />
+    <Body width="115" height="83" density="15" />
     <Deconstruct time="10">
       <Item identifier="plastic" amount="2" />
       <Item identifier="organicfiber" amount="2" />
@@ -486,7 +489,7 @@
     <Fabricate suitablefabricators="fabricator" requiredtime="35">
       <RequiredSkill identifier="weapons" level="55" />
       <RequiredItem identifier="scp_tacpack" />
-      <RequiredItem identifier="ballisticfiber" amount="4" />
+      <RequiredItem identifier="steel" amount="3" />
       <RequiredItem identifier="organicfiber" amount="6" />
     </Fabricate>
     <ItemContainer capacity="16" depth="0.5">
@@ -602,7 +605,7 @@
     <ItemContainer capacity="2" depth="0.5">
       <Containable items="smallitem,ammo" excludeditems="clothing,toolbox,mobilecontainer,rucksack,backpack,waistbelt,vest,backpack1,medicalbackpack,power-backpack,duffelbag,heavybackpack,oxy-gen. backpack,xeno-backpack,techno-backpack" />
     </ItemContainer>
-    <InventoryIcon name="heavyuniforminv" texture="%ModDir%/Jobgear/heavyuniform.png" sourcerect="619,0,64,50" origin="0.5,0.5" />
+    <InventoryIcon name="heavyuniforminv" texture="%ModDir%/Jobgear/heavyuniform.png" sourcerect="573,134,90,90" origin="0.5,0.5" />
     <Sprite name="heavyuniformground" texture="%ModDir%/Jobgear/heavyuniform.png" sourcerect="564,53,117,62" depth="0.6" origin="0.5,0.5" />
     <Body width="180" height="50" density="30" friction="0.8" restitution="0.01" />
     <Wearable slots="Any,InnerClothes" msg="ItemMsgPickUpSelect">
@@ -620,8 +623,7 @@
       <sprite name="Heavy Uniform Left Leg" texture="heavyuniform.png" limb="LeftLeg" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
       <sprite name="Heavy Uniform Left Shoe" texture="heavyuniform.png" limb="LeftFoot" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
       <sprite name="Heavy Uniform Right Shoe" texture="heavyuniform.png" limb="RightFoot" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
-      <damagemodifier afflictionidentifiers="burn" armorsector="0.0,360.0" damagemultiplier="0.8" />
-      <damagemodifier afflictionidentifiers="gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.8" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="burn,gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.8" damagesound="LimbArmor" deflectprojectiles="true" />
       <damagemodifier afflictionidentifiers="explosiondamage,lacerations" armorsector="0.0,360.0" damagemultiplier="0.6" damagesound="LimbArmor" deflectprojectiles="true" />
       <damagemodifier afflictionidentifiers="bleeding" armorsector="0.0,360.0" damagemultiplier="0.55" damagesound="LimbArmor" deflectprojectiles="true" />
       <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.8" damagesound="LimbArmor" deflectprojectiles="true" />
@@ -683,7 +685,7 @@
       <sprite name="Heavy Renegade Uniform Left Shoe" texture="heavyrenuniform.png" limb="LeftFoot" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
       <sprite name="Heavy Renegade Uniform Right Shoe" texture="heavyrenuniform.png" limb="RightFoot" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
       <damagemodifier afflictionidentifiers="burn" armorsector="0.0,360.0" damagemultiplier="0.9" />
-      <damagemodifier afflictionidentifiers="gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.7" damagesound="LimbArmor" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.75" damagesound="LimbArmor" deflectprojectiles="true" />
       <damagemodifier afflictionidentifiers="explosiondamage,lacerations" armorsector="0.0,360.0" damagemultiplier="0.55" damagesound="LimbArmor" deflectprojectiles="true" />
       <damagemodifier afflictionidentifiers="bleeding" armorsector="0.0,360.0" damagemultiplier="0.65" damagesound="LimbArmor" deflectprojectiles="true" />
       <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.85" damagesound="LimbArmor" deflectprojectiles="true" />
@@ -730,9 +732,9 @@
       <sprite name="Renegade Carrier Vest" texture="renegadeplatecarrier.png" limb="Torso" hidelimb="false" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
       <sprite name="Renegade Carrier Right Armpad" texture="%ModDir%/Jobgear/renegadeplatecarrier.png" limb="RightArm" hidelimb="false" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
       <sprite name="Renegade Carrier Holster" texture="renegadeplatecarrier.png" limb="RightThigh" hidelimb="false" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
-      <damagemodifier afflictionidentifiers="gunshotwound,lacerations" armorsector="0.0,360.0" damagemultiplier="0.25" damagesound="armourmedimpact" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="gunshotwound,lacerations" armorsector="0.0,360.0" damagemultiplier="0.33" damagesound="armourmedimpact" deflectprojectiles="true" />
       <damagemodifier afflictionidentifiers="bitewounds,blunttrauma" armorsector="0.0,360.0" damagemultiplier="0.7" damagesound="armourmedimpact" deflectprojectiles="true" />
-      <damagemodifier afflictionidentifiers="bleeding" armorsector="0.0,360.0" damagemultiplier="0.2" damagesound="armourmedimpact" deflectprojectiles="true" />
+      <damagemodifier afflictionidentifiers="bleeding" armorsector="0.0,360.0" damagemultiplier="0.25" damagesound="armourmedimpact" deflectprojectiles="true" />
       <SkillModifier skillidentifier="weapons" skillvalue="-5" />
       <StatValue stattype="WalkingSpeed" value="-0.1" />
       <StatValue stattype="SwimmingSpeed" value="-0.1" />
@@ -742,15 +744,15 @@
     </ItemContainer>
   </Item>
   <Item name="" identifier="scp_heavyhazmatuniform" category="Equipment" subcategory="Renegade" tags="smallitem,clothing" fireproof="true" cargocontaineridentifier="metalcrate" description="" scale="0.5" impactsoundtag="impact_soft">
-    <PreferredContainer primary="engcab,storagecab" minamount="0" maxamount="1" spawnprobability="0.03" />
+    <PreferredContainer primary="engcab,storagecab" minamount="0" maxamount="1" spawnprobability="0.03" notcampaign="true" />
     <PreferredContainer primary="wreckstoragecab,wreckengcab" minamount="0" maxamount="1" spawnprobability="0.05" minleveldifficulty="10" />
-    <Price baseprice="550" displaynonempty="true" minleveldifficulty="15">
+    <Price baseprice="750" displaynonempty="true" minleveldifficulty="15">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" minavailable="1" maxavailable="4" multiplier="0.85" />
-      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="0" maxavailable="2" />
+      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="2" />
       <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="0" maxavailable="2" />
+      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="2" />
     </Price>
     <Fabricate suitablefabricators="fabricator" requiredtime="35">
       <RequiredSkill identifier="mechanical" level="25" />
@@ -788,8 +790,8 @@
       <sprite name="Heavy HAZMAT Right Shoe" texture="heavyhazmat.png" limb="RightFoot" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,755,256" origin="0.5,0.5" />
       <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="scp_presolatexinfection" damagemultiplier="0" probabilitymultiplier="0" />
       <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="scp_ae035damage" damagemultiplier="0.1" probabilitymultiplier="0.3" />
-      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness,burn" damagemultiplier="0.15" />
-      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="acidburn,scp_psidamage" damagemultiplier="0.5" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness" damagemultiplier="0.15" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="acidburn,burn,scp_psidamage" damagemultiplier="0.5" />
       <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="lacerations,gunshotwound" damagemultiplier="0.85" />
       <SkillModifier skillidentifier="electrical" skillvalue="5" />
       <SkillModifier skillidentifier="weapons" skillvalue="-20" />
@@ -859,9 +861,10 @@
       <sprite name="highperfhazmat Left Leg" texture="highperfhazmat.png" limb="LeftLeg" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,755,256" origin="0.5,0.5" />
       <sprite name="highperfhazmat Left Shoe" texture="highperfhazmat.png" limb="LeftFoot" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,755,256" origin="0.5,0.5" />
       <sprite name="highperfhazmat Right Shoe" texture="highperfhazmat.png" limb="RightFoot" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,755,256" origin="0.5,0.5" />
-      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="scp_presolatexinfection,acidburn,scp_hexgasdamage,scp_ae035damage" damagemultiplier="0" probabilitymultiplier="0" />
-      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness,burn,scp_psidamage" damagemultiplier="0.03" />
-      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="lacerations,gunshotwound" damagemultiplier="0.7" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="scp_presolatexinfection,scp_hexgasdamage,scp_ae035damage" damagemultiplier="0" probabilitymultiplier="0" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness,scp_psidamage" damagemultiplier="0.05" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="acidburn,burn" damagemultiplier="0.1" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="lacerations,gunshotwound" damagemultiplier="0.75" />
       <SkillModifier skillidentifier="electrical" skillvalue="10" />
       <SkillModifier skillidentifier="weapons" skillvalue="-35" />
       <StatValue stattype="WalkingSpeed" value="-0.2" />
@@ -924,7 +927,7 @@
       <Item identifier="ballisticfiber" amount="3" />
       <Item identifier="organicfiber" amount="6" />
     </Fabricate>
-    <InventoryIcon name="combatmedicinv" texture="%ModDir%/Jobgear/combatmedic.png" sourcerect="690,2,96,86" origin="0.5,0.5" />
+    <InventoryIcon name="combatmedicinv" texture="%ModDir%/Jobgear/combatmedic.png" sourcerect="678,-2,90,90" origin="0.5,0.5" />
     <Sprite name="combatmedicground" texture="%ModDir%/Jobgear/combatmedic.png" sourcerect="668,92,117,73" depth="0.6" origin="0.5,0.5" />
     <Body width="180" height="50" density="30" friction="0.8" restitution="0.01" />
     <Wearable slots="Any,InnerClothes" msg="ItemMsgPickUpSelect">
@@ -943,9 +946,11 @@
       <sprite name="Combat Medic Right Shoe" texture="combatmedic.png" limb="RightFoot" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,786,256" origin="0.5,0.5" />
       <sprite name="Combat Medic Left Shoe" texture="combatmedic.png" limb="LeftFoot" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,786,256" origin="0.5,0.5" />
       <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="lacerations,bitewounds" damagemultiplier="0.8" />
-      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="gunshotwound" damagemultiplier="0.75" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="gunshotwound,scp_psidamage" damagemultiplier="0.75" />
       <SkillModifier skillidentifier="medical" skillvalue="10" />
       <SkillModifier skillidentifier="weapons" skillvalue="10" />
+      <SkillModifier skillidentifier="electrical" skillvalue="-10" />
+      <SkillModifier skillidentifier="mechanical" skillvalue="-10" />
       <StatValue stattype="WalkingSpeed" value="0.025" />
       <StatValue stattype="SwimmingSpeed" value="0.025" />
     </Wearable>
@@ -1006,6 +1011,8 @@
       <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="gunshotwound" damagemultiplier="0.8" />
       <SkillModifier skillidentifier="medical" skillvalue="5" />
       <SkillModifier skillidentifier="weapons" skillvalue="5" />
+      <SkillModifier skillidentifier="electrical" skillvalue="-10" />
+      <SkillModifier skillidentifier="mechanical" skillvalue="-10" />
       <StatValue stattype="WalkingSpeed" value="0.05" />
       <StatValue stattype="SwimmingSpeed" value="0.05" />
     </Wearable>
@@ -1042,7 +1049,7 @@
       <Item identifier="rubber" />
       <Item identifier="organicfiber" amount="3" />
     </Fabricate>
-    <InventoryIcon name="renegadeuniforminv" texture="%ModDir%/Jobgear/renegadeuniform.png" sourcerect="742,0,63,47" origin="0.5,0.5" />
+    <InventoryIcon name="renegadeuniforminv" texture="%ModDir%/Jobgear/renegadeuniform.png" sourcerect="689,130,90,90" origin="0.5,0.5" />
     <Sprite name="renegadeuniformground" texture="%ModDir%/Jobgear/renegadeuniform.png" sourcerect="690,58,115,58" depth="0.6" origin="0.5,0.5" />
     <Body width="180" height="50" density="30" friction="0.8" restitution="0.01" />
     <Wearable slots="Any,InnerClothes" msg="ItemMsgPickUpSelect">
@@ -1064,7 +1071,7 @@
       <StatValue stattype="WalkingSpeed" value="0.025" />
       <StatValue stattype="SwimmingSpeed" value="0.025" />
     </Wearable>
-    <ItemContainer capacity="4">
+    <ItemContainer capacity="2">
       <Containable items="smallitem" excludeditems="clothing,toolbox,mobilecontainer,rucksack,backpack,waistbelt,vest,backpack1,medicalbackpack,power-backpack,duffelbag,heavybackpack,oxy-gen. backpack,xeno-backpack,techno-backpack" />
     </ItemContainer>
   </Item>
@@ -1240,7 +1247,7 @@
   </Item>
   <Item name="" identifier="scp_combathardsuit" description="" category="Diving" subcategory="Coalition" tags="diving,deepdiving,provocative,divingsuit" scale="0.5" fireproof="true" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy">
     <PreferredContainer primary="divingsuitcontainer" />
-    <Price baseprice="3000" displaynonempty="true" minleveldifficulty="55">
+    <Price baseprice="5000" displaynonempty="true" minleveldifficulty="55">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -1258,7 +1265,7 @@
       <Item identifier="titaniumaluminiumalloy" amount="2" />
       <Item identifier="rubber" amount="2" />
     </Deconstruct>
-    <Fabricate suitablefabricators="fabricator" requiredtime="45">
+    <Fabricate suitablefabricators="fabricator" requiredtime="60">
       <RequiredSkill identifier="mechanical" level="65" />
       <RequiredSkill identifier="weapons" level="75" />
       <RequiredItem identifier="abyssdivingsuit" />
@@ -1329,11 +1336,11 @@
       </StatusEffect>
       <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="lacerations,blunttrauma,burn" damagemultiplier="0.25" damagesound="armourheavyimpact" />
       <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="gunshotwound,bleeding,explosiondamage" damagemultiplier="0.3" damagesound="armourheavyimpact" deflectprojectiles="true" />
-      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness,bitewounds" damagemultiplier="0.5" damagesound="armourheavyimpact" />
+      <damagemodifier armorsector="0.0,360.0" afflictionidentifiers="radiationsickness,bitewounds,scp_psidamage" damagemultiplier="0.5" damagesound="armourheavyimpact" />
       <sound file="Content/Items/Weapons/WEAPONS_chargeUp.ogg" type="OnWearing" range="500.0" volumeproperty="Speed" volume="0.15" loop="true" frequencymultiplier="0.75" />
       <SkillModifier skillidentifier="weapons" skillvalue="-10" />
-      <SkillModifier skillidentifier="mechanical" skillvalue="-30" />
-      <SkillModifier skillidentifier="electrical" skillvalue="-40" />
+      <SkillModifier skillidentifier="mechanical" skillvalue="-50" />
+      <SkillModifier skillidentifier="electrical" skillvalue="-75" />
     </Wearable>
     <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="0,-50" handle1="-10,-20" handle2="10,-20" holdangle="45" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" />
     <ItemContainer capacity="0" hideitems="true" containedstateindicatorstyle="tank" containedstateindicatorslot="0">
@@ -1423,49 +1430,16 @@
       <sprite name="scp_riotwear" texture="%ModDir%/jobgear/riotvest.png" limb="Torso" hidelimb="false" inheritscale="true" scale="0.74" inheritorigin="false" origin="0.5,0.5" inheritsourcerect="false" sourcerect="2,3,103,180" />
     </Wearable>
   </Item>
-  <Item name="" identifier="scp_bulldozerhelm" category="Equipment" tags="smallitem,clothing" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_metal_heavy" scale="0.47">
-    <PreferredContainer primary="secarmcab,armcab" />
-    <PreferredContainer primary="abandonedarmcab,abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.01" minleveldifficulty="15" />
-    <Price baseprice="1250" sold="false" displaynonempty="true"></Price>
-    <Deconstruct time="20">
-      <Item identifier="ballisticfiber" amount="5" />
-      <Item identifier="titaniumaluminiumalloy" amount="3" />
-    </Deconstruct>
-    <Sprite name="Dozer Helmet" texture="%ModDir%/Jobgear/helmets.png" sourcerect="421,162,114,89" depth="0.6" origin="0.5,0.5" />
-    <InventoryIcon name="Dozerinv" texture="%ModDir%/Jobgear/helmets.png" sourcerect="541,191,70,63" origin="0.5,0.5" />
-    <Body radius="30" density="50" />
-    <Wearable slots="Any,Head" msg="ItemMsgPickUpSelect">
-      <damagemodifier afflictionidentifiers="blunttrauma,lacerations,gunshotwound,explosiondamage,bitewounds" armorsector="0.0,360.0" damagemultiplier="0.05" damagesound="LimbArmor" deflectprojectiles="true" />
-      <damagemodifier afflictionidentifiers="bleeding" armorsector="0.0,360.0" damagemultiplier="0" damagesound="LimbArmor" deflectprojectiles="true" />
-      <damagemodifier afflictionidentifiers="concussion" armorsector="0.0,360.0" damagemultiplier="0.0" damagesound="" deflectprojectiles="true" />
-      <StatValue stattype="WalkingSpeed" value="-0.1" />
-      <StatValue stattype="SwimmingSpeed" value="-0.05" />
-      <sprite name="Dozer Helmet Wearable" texture="%ModDir%/Jobgear/helmets.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.825" hidewearablesoftype="hair,moustache,beard" sourcerect="421,162,114,89" origin="0.43495515,0.6" />
-      <StatusEffect type="OnWearing" target="Character" setvalue="true" disabledeltatime="true" ObstructVision="true" />
-    </Wearable>
-  </Item>
-  <!--https://sketchfab.com/3d-models/yui-specops-cat-0bf094216bfd4279a8ce8139e91b1147-->
   <Item name="" identifier="scp_yuihelmet" category="Equipment" subcategory="Renegade" tags="smallitem,clothing" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_metal_heavy" scale="0.4">
     <PreferredContainer primary="secarmcab,armcab" />
-    <Price baseprice="2750" displaynonempty="true" minleveldifficulty="35">
-      <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
-      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
-      <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="separatists" min="100" />
-      </Price>
-      <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="separatists" min="100" />
-      </Price>
-    </Price>
+    <Price baseprice="1200" displaynonempty="true" sold="false" />
     <Deconstruct time="20">
       <Item identifier="ballisticfiber" amount="2" />
       <Item identifier="titaniumaluminiumalloy" amount="4" />
       <Item identifier="carbon" amount="2" />
     </Deconstruct>
-    <Sprite name="Spec Ops Helmet" texture="%ModDir%/Jobgear/helmets.png" sourcerect="520,1,87,107" depth="0.6" origin="0.5,0.5" />
-    <InventoryIcon name="specopsinv" texture="%ModDir%/Jobgear/helmets.png" sourcerect="611,49,61,66" origin="0.5,0.5" />
+    <Sprite name="Spec Ops Helmet" texture="%ModDir%/Jobgear/helmets.png" sourcerect="429,668,99,89" depth="0.6" origin="0.5,0.5" />
+    <InventoryIcon name="specopsinv" texture="%ModDir%/Jobgear/helmets.png" sourcerect="549,662,60,60" origin="0.5,0.5" />
     <Body radius="30" density="50" />
     <Wearable slots="Any,Head" msg="ItemMsgPickUpSelect">
       <damagemodifier afflictionidentifiers="lacerations,gunshotwound,explosiondamage" armorsector="0.0,360.0" damagemultiplier="0.2" damagesound="armourmedimpact" deflectprojectiles="true" />
@@ -1477,7 +1451,7 @@
       <SkillModifier skillidentifier="electrical" skillvalue="-10" />
       <StatValue stattype="WalkingSpeed" value="0.075" />
       <StatValue stattype="SwimmingSpeed" value="0.025" />
-      <sprite name="Yui Helmet Wearable" texture="%ModDir%/Jobgear/helmets.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.68" hidewearablesoftype="hair,moustache,beard" sourcerect="520,1,87,106" origin="0.5325714,0.6" />
+      <sprite name="Yui Helmet Wearable" texture="%ModDir%/Jobgear/helmets.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.68" hidewearablesoftype="hair,moustache,beard" sourcerect="429,668,99,89" origin="0.5325714,0.6" />
       <StatusEffect type="OnWearing" target="Character" setvalue="true" disabledeltatime="true"></StatusEffect>
       <StatusEffect type="OnWearing" target="Character" disabledeltatime="true">
         <Affliction identifier="haste" amount="0.1" />
@@ -1486,18 +1460,7 @@
   </Item>
   <Item name="" identifier="scp_yuirig" category="Equipment" subcategory="Renegade" tags="smallitem,clothing,vest" scale="0.5" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_soft">
     <PreferredContainer primary="secarmcab,armcab" />
-    <Price baseprice="3500" displaynonempty="true" minleveldifficulty="35">
-      <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
-      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
-      <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="separatists" min="100" />
-      </Price>
-      <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="separatists" min="100" />
-      </Price>
-    </Price>
+    <Price baseprice="1750" displaynonempty="true" sold="false" />
     <Deconstruct time="40">
       <Item identifier="titaniumaluminiumalloy" amount="3" />
       <Item identifier="plastic" />
@@ -1522,18 +1485,7 @@
   </Item>
   <Item name="" identifier="scp_specopsuniform" description="" category="Equipment" subcategory="Renegade" cargocontaineridentifier="metalcrate" tags="smallitem,clothing" scale="0.5" impactsoundtag="impact_soft">
     <PreferredContainer primary="wreckarmcab,abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.005" minleveldifficulty="30" />
-    <Price baseprice="2500" displaynonempty="true" minleveldifficulty="35">
-      <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
-      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
-      <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="separatists" min="100" />
-      </Price>
-      <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="separatists" min="100" />
-      </Price>
-    </Price>
+    <Price baseprice="1500" displaynonempty="true" sold="false" />
     <Deconstruct time="10">
       <Item identifier="ballisticfiber" amount="2" />
       <Item identifier="physicorium" amount="3" />
@@ -1576,18 +1528,7 @@
   </Item>
   <Item name="" identifier="scp_livuniform" description="" category="Equipment" subcategory="Renegade" cargocontaineridentifier="metalcrate" tags="smallitem,clothing" scale="0.5" impactsoundtag="impact_soft">
     <PreferredContainer primary="secarmcab,armcab" />
-    <Price baseprice="3500" displaynonempty="true" minleveldifficulty="45">
-      <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
-      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
-      <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="separatists" min="100" />
-      </Price>
-      <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="separatists" min="100" />
-      </Price>
-    </Price>
+    <Price baseprice="2000" displaynonempty="true" sold="false" />
     <Deconstruct time="10">
       <Item identifier="ballisticfiber" amount="4" />
       <Item identifier="physicorium" amount="3" />
@@ -1627,18 +1568,7 @@
   </Item>
   <Item name="" identifier="scp_livrig" category="Equipment" subcategory="Renegade" tags="mediumitem,clothing,vest" scale="0.5" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_soft">
     <PreferredContainer primary="secarmcab,armcab" />
-    <Price baseprice="6000" displaynonempty="true" minleveldifficulty="45">
-      <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
-      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
-      <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="separatists" min="100" />
-      </Price>
-      <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="separatists" min="100" />
-      </Price>
-    </Price>
+    <Price baseprice="2500" displaynonempty="true" sold="false" />
     <Deconstruct time="20">
       <Item identifier="titaniumaluminiumalloy" />
       <Item identifier="physicorium" />
@@ -1665,28 +1595,16 @@
       <Containable items="smallitem" excludeditems="toolbox,mobilecontainer,rucksack,backpack,waistbelt,vest,backpack1,medicalbackpack,power-backpack,duffelbag,heavybackpack,oxy-gen. backpack,xeno-backpack,techno-backpack" />
     </ItemContainer>
   </Item>
-  <!--https://sketchfab.com/3d-models/liv-specops-wolf-6a3312f50fab4e5a8fa6fd9c15e11ce4-->
   <Item name="" identifier="scp_livhelmet" category="Equipment" subcategory="Renegade" tags="smallitem,clothing" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_metal_heavy" scale="0.4">
     <PreferredContainer primary="secarmcab,armcab" />
-    <Price baseprice="4000" displaynonempty="true" minleveldifficulty="45">
-      <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
-      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
-      <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="separatists" min="100" />
-      </Price>
-      <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="separatists" min="100" />
-      </Price>
-    </Price>
+    <Price baseprice="2500" displaynonempty="true" sold="false" />
     <Deconstruct time="20">
       <Item identifier="scp_durasteel" />
       <Item identifier="titaniumaluminiumalloy" />
       <Item identifier="physicorium" amount="2" />
     </Deconstruct>
-    <Sprite name="Vanguard Helmet" texture="%ModDir%/Jobgear/helmets.png" sourcerect="428,341,96,102" depth="0.6" origin="0.5,0.5" />
-    <InventoryIcon name="vanguardinv" texture="%ModDir%/Jobgear/helmets.png" sourcerect="536,391,56,56" origin="0.5,0.5" />
+    <Sprite name="Vanguard Helmet" texture="%ModDir%/Jobgear/helmets.png" sourcerect="430,561,97,98" depth="0.6" origin="0.5,0.5" />
+    <InventoryIcon name="vanguardinv" texture="%ModDir%/Jobgear/helmets.png" sourcerect="549,599,60,60" origin="0.5,0.5" />
     <Body radius="30" density="50" />
     <Wearable slots="Any,Head" msg="ItemMsgPickUpSelect">
       <damagemodifier afflictionidentifiers="lacerations,gunshotwound,explosiondamage,bleeding" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="armourheavyimpact" deflectprojectiles="true" />
@@ -1695,7 +1613,7 @@
       <SkillModifier skillidentifier="weapons" skillvalue="15" />
       <SkillModifier skillidentifier="mechanical" skillvalue="-20" />
       <SkillModifier skillidentifier="electrical" skillvalue="-20" />
-      <sprite name="Van Helmet Wearable" texture="%ModDir%/Jobgear/helmets.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.7" hidewearablesoftype="hair,moustache,beard" sourcerect="428,341,96,102" origin="0.5325714,0.6" />
+      <sprite name="Van Helmet Wearable" texture="%ModDir%/Jobgear/helmets.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.62" hidewearablesoftype="hair,moustache,beard" sourcerect="430,561,97,98" origin="0.55,0.6" />
       <StatusEffect type="OnWearing" target="Character" setvalue="true" disabledeltatime="true" ObstructVision="true"></StatusEffect>
       <StatusEffect type="OnWearing" target="Character" disabledeltatime="true">
         <Affliction identifier="strengthen" amount="0.05" />
@@ -1704,18 +1622,7 @@
   </Item>
   <Item name="" identifier="scp_veronrig" category="Equipment" subcategory="Coalition" tags="mediumitem,clothing,vest" scale="0.48" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_soft">
     <PreferredContainer primary="secarmcab,armcab" />
-    <Price baseprice="5500" displaynonempty="true" minleveldifficulty="55">
-      <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
-      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
-      <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="coalition" min="100" />
-      </Price>
-      <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="coalition" min="100" />
-      </Price>
-    </Price>
+    <Price baseprice="3500" displaynonempty="true" sold="false" />
     <Deconstruct time="20">
       <Item identifier="durasteel" />
       <Item identifier="physicorium" />
@@ -1745,18 +1652,7 @@
   </Item>
   <Item name="" identifier="scp_veronhelmet" category="Equipment" subcategory="Coalition" tags="smallitem,clothing" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_metal_heavy" scale="0.4">
     <PreferredContainer primary="secarmcab,armcab" />
-    <Price baseprice="4000" displaynonempty="true" minleveldifficulty="55">
-      <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
-      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
-      <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="coalition" min="100" />
-      </Price>
-      <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="coalition" min="100" />
-      </Price>
-    </Price>
+    <Price baseprice="2500" displaynonempty="true" sold="false" />
     <Deconstruct time="20">
       <Item identifier="ballisticfiber" amount="2" />
       <Item identifier="titaniumaluminiumalloy" amount="4" />
@@ -1779,18 +1675,7 @@
   </Item>
   <Item name="" identifier="scp_marauderrig" category="Equipment" subcategory="Coalition" tags="mediumitem,clothing,vest" scale="0.48" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_soft">
     <PreferredContainer primary="secarmcab,armcab" />
-    <Price baseprice="3500" displaynonempty="true" minleveldifficulty="35">
-      <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
-      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
-      <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="coalition" min="100" />
-      </Price>
-      <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="coalition" min="100" />
-      </Price>
-    </Price>
+    <Price baseprice="2000" displaynonempty="true" sold="false" />
     <Deconstruct time="20">
       <Item identifier="titaniumaluminiumalloy" />
       <Item identifier="physicorium" />
@@ -1821,18 +1706,7 @@
   </Item>
   <Item name="" identifier="scp_marauderhelmet" category="Equipment" subcategory="Coalition" tags="smallitem,clothing" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_metal_heavy" scale="0.4">
     <PreferredContainer primary="secarmcab,armcab" />
-    <Price baseprice="2500" displaynonempty="true" minleveldifficulty="35">
-      <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
-      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
-      <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="coalition" min="100" />
-      </Price>
-      <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="coalition" min="100" />
-      </Price>
-    </Price>
+    <Price baseprice="1750" displaynonempty="true" sold="false" />
     <Deconstruct time="20">
       <Item identifier="scp_durasteel" amount="2" />
       <Item identifier="titaniumaluminiumalloy" amount="2" />
@@ -1854,18 +1728,7 @@
   </Item>
   <Item name="" identifier="scp_marauderuniform" category="Equipment" subcategory="Coalition" description="" cargocontaineridentifier="metalcrate" tags="smallitem,clothing" scale="0.5" impactsoundtag="impact_soft">
     <PreferredContainer primary="secarmcab,armcab" />
-    <Price baseprice="2000" displaynonempty="true" minleveldifficulty="35">
-      <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
-      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
-      <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="coalition" min="100" />
-      </Price>
-      <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="coalition" min="100" />
-      </Price>
-    </Price>
+    <Price baseprice="1750" displaynonempty="true" sold="false" />
     <Deconstruct time="20">
       <Item identifier="ballisticfiber" />
       <Item identifier="organicfiber" />
@@ -1902,18 +1765,7 @@
   </Item>
   <Item name="" identifier="scp_veronuniform" description="" category="Equipment" subcategory="Coalition" cargocontaineridentifier="metalcrate" tags="smallitem,clothing" scale="0.5" impactsoundtag="impact_soft">
     <PreferredContainer primary="secarmcab,armcab" />
-    <Price baseprice="3500" displaynonempty="true" minleveldifficulty="35">
-      <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
-      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
-      <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="coalition" min="100" />
-      </Price>
-      <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="1">
-        <Reputation faction="coalition" min="100" />
-      </Price>
-    </Price>
+    <Price baseprice="2000" displaynonempty="true" sold="false" />
     <Deconstruct time="10">
       <Item identifier="ballisticfiber" />
     </Deconstruct>
@@ -1972,7 +1824,7 @@
     <ItemContainer capacity="3" depth="0.5">
       <Containable items="smallitem,ammo" excludeditems="clothing,toolbox,mobilecontainer,rucksack,backpack,waistbelt,vest,backpack1,medicalbackpack,power-backpack,duffelbag,heavybackpack,oxy-gen. backpack,xeno-backpack,techno-backpack" />
     </ItemContainer>
-    <InventoryIcon name="lightuniforminv" texture="%ModDir%/Jobgear/lightuniform.png" sourcerect="619,0,64,50" origin="0.5,0.5" />
+    <InventoryIcon name="lightuniforminv" texture="%ModDir%/Jobgear/lightuniform.png" sourcerect="574,128,90,90" origin="0.5,0.5" />
     <Sprite name="lightuniformground" texture="%ModDir%/Jobgear/lightuniform.png" sourcerect="564,53,117,62" depth="0.6" origin="0.5,0.5" />
     <Body width="180" height="50" density="30" friction="0.8" restitution="0.01" />
     <Wearable slots="Any,InnerClothes" msg="ItemMsgPickUpSelect">
@@ -1995,7 +1847,7 @@
       <SkillModifier skillidentifier="weapons" skillvalue="5" />
     </Wearable>
   </Item>
-  <Item name="CBRN Suit" identifier="scp_cbrnsuit" description="" category="Equipment" subcategory="Coalition" cargocontaineridentifier="metalcrate" tags="smallitem,clothing" scale="0.5" impactsoundtag="impact_soft">
+  <Item name="" identifier="scp_cbrnsuit" description="" category="Equipment" subcategory="Coalition" cargocontaineridentifier="metalcrate" tags="smallitem,clothing" scale="0.5" impactsoundtag="impact_soft">
     <PreferredContainer primary="armcab" minamount="0" maxamount="1" spawnprobability="0.1" />
     <Price baseprice="600" displaynonempty="true" minleveldifficulty="15">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
@@ -2022,15 +1874,12 @@
       <SubContainer capacity="1" maxstacksize="1">
         <Containable items="oxygensource,weldingtoolfuel" />
       </SubContainer>
-      <SubContainer capacity="2" maxstacksize="8" slotindex="1">
-        <Containable items="smallitem,ammo" excludeditems="clothing,toolbox,mobilecontainer,rucksack,backpack,waistbelt,vest,backpack1,medicalbackpack,power-backpack,duffelbag,heavybackpack,oxy-gen. backpack,xeno-backpack,techno-backpack"></Containable>
-      </SubContainer>
     </ItemContainer>
     <InventoryIcon name="cbrnsuitinv" texture="%ModDir%/Jobgear/cbrnsuit.png" sourcerect="619,-3,69,63" origin="0.5,0.5" />
     <Sprite name="cbrnsuitground" texture="%ModDir%/Jobgear/cbrnsuit.png" sourcerect="544,65,162,73" depth="0.6" origin="0.5,0.5" />
     <Body width="180" height="50" density="30" friction="0.8" restitution="0.01" />
     <Wearable slots="Any,InnerClothes+Head" msg="ItemMsgPickUpSelect">
-      <sprite name="CBRN helmet" texture="%ModDir%/Jobgear/helmets.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.77" hidelimb="true" hideotherwearables="true" sourcerect="675,107,88,86" origin="0.5,0.51" />
+      <sprite name="CBRN helmet" texture="%ModDir%/Jobgear/helmets.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.72" hidelimb="true" hideotherwearables="true" sourcerect="675,107,88,86" origin="0.5,0.51" />
       <sprite name="CBRN Torso" texture="cbrnsuit.png" limb="Torso" hidelimb="false" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
       <sprite name="CBRN Uniform Right Hand" texture="cbrnsuit.png" limb="RightHand" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
       <sprite name="CBRN Uniform Left Hand" texture="cbrnsuit.png" limb="LeftHand" hidelimb="true" inherittexturescale="true" inheritorigin="true" inheritsourcerect="true" sourcerect="0,0,683,264" origin="0.5,0.5" />
@@ -2245,7 +2094,7 @@
     </Wearable>
   </Item>
   <Item name="" identifier="scp_ae035tragedy" category="Equipment" tags="smallitem,clothing,anomalous" cargocontaineridentifier="metalcrate" description="" hideinmenus="true" impactsoundtag="impact_metal_heavy" scale="0.4">
-    <PreferredContainer primary="wreckarmcab,wrecksecarmcab,abandonedarmcab,wreckengcab,wreckstoragecab" minamount="0" maxamount="1" spawnprobability="0.004" />
+    <PreferredContainer primary="wreckarmcab,wrecksecarmcab,wreckengcab,wreckstoragecab" minamount="0" maxamount="1" spawnprobability="0.005" />
     <PreferredContainer primary="ruinstorage,ruinstoragesmall,ruinstoragelarge" minamount="0" maxamount="1" spawnprobability="0.005" />
     <Price baseprice="4500" sold="false"></Price>
     <InventoryIcon name="AE-035 Traj Inv" texture="%ModDir%/Materials/wreckitems.png" sourcerect="677,183,66,82" origin="0.5,0.5" />
@@ -2259,22 +2108,21 @@
         <Affliction identifier="scp_psidamage" amount="20" />
       </StatusEffect>
       <StatusEffect type="Always" target="This">
-        <sound file="%ModDir%/Sounds/ae035traj.ogg" volume="1" loop="true" range="1200" />
+        <sound file="%ModDir%/Sounds/ae035traj.ogg" volume="2.5" loop="true" range="1200" />
         <ParticleEmitter particle="nasonovsparkles" anglemax="360" distancemax="25" velocitymin="2" velocitymax="5" emitinterval="2" particleamount="8" particlespersecond="2" colormultiplier="175,0,0,255" />
       </StatusEffect>
       <StatusEffect type="Always" target="This">
         <sound file="%ModDir%/Sounds/ae035psi.ogg" volume="1" dontmuffle="true" loop="true" range="6000" />
       </StatusEffect>
-      <StatusEffect type="Always" target="NearbyCharacters,This" range="2000" interval="3">
+      <StatusEffect type="Always" target="NearbyCharacters,This" range="2750" interval="3">
         <Conditional hastag="neq radiationshielding" targetcontainer="true" />
-        <Affliction identifier="psychosis" amount="5" />
         <Affliction identifier="scp_ae035tragscare" amount="2000" probability="0.03" />
       </StatusEffect>
       <StatusEffect type="Always" target="NearbyCharacters,This" range="1000" interval="1">
         <Conditional hastag="neq radiationshielding" targetcontainer="true" />
         <Affliction identifier="scp_psidamage" amount="64" />
         <Affliction identifier="scp_ae035curse" amount="2" probability="0.005" />
-        <Affliction identifier="scp_psidamage" amount="80" probability="0.25" />
+        <Affliction identifier="scp_psidamage" amount="65" probability="0.25" />
       </StatusEffect>
       <StatusEffect type="OnWearing" target="Character" comparison="and">
         <Conditional IsLocalPlayer="True" />

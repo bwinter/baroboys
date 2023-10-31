@@ -234,12 +234,6 @@
         <Item identifier="shotgunshellblunt" />
         <Item identifier="shotgunshellblunt" />
         <Item identifier="shotgunshellblunt" />
-        <Item identifier="shotgunshellblunt" />
-        <Item identifier="shotgunshellblunt" />
-        <Item identifier="shotgunshellblunt" />
-        <Item identifier="shotgunshellblunt" />
-        <Item identifier="shotgunshellblunt" />
-        <Item identifier="shotgunshellblunt" />
         <Item identifier="batterycell" showpreview="false" />
         <Item identifier="handcuffs" />
         <Item identifier="antibleeding1" />
@@ -361,22 +355,44 @@
           <Item identifier="antibleeding1" />
           <Item identifier="antibleeding1" />
           <Item identifier="antibleeding1" />
+          <Item identifier="antibleeding1" />
+          <Item identifier="opium" />
+          <Item identifier="opium" />
+          <Item identifier="opium" />
           <Item identifier="opium" />
           <Item identifier="antinarc" />
           <Item identifier="antinarc" />
           <Item identifier="tonicliquid" />
           <Item identifier="tonicliquid" />
-          <Item identifier="antidama1" />
-          <Item identifier="antidama1" />
-          <Item identifier="antidama1" />
         </Item>
         <Item identifier="healthscanner" />
         <Item identifier="headset" equip="true" showpreview="false" />
-        <Item identifier="syringegun" />
         <Item identifier="scp_smallcivkit" />
         <PreviewSprites dims="120,109">
           <sprite texture="Content/Items/Jobgear/Medic/medic_torso_[GENDER]_2.png" sourcerect="2,38,120,109" offset="0,0" />
           <sprite texture="Content/Items/Jobgear/Medic/medic_torso_[GENDER]_2.png" sourcerect="121,0,76,80" offset="-20,15" />
+        </PreviewSprites>
+      </ItemSet>
+      <ItemSet>
+        <Item identifier="idcard" equip="true" showpreview="false" />
+        <Item identifier="doctorsuniform1" equip="true" outfit="true">
+          <Item identifier="antinarc" />
+          <Item identifier="antibleeding1" />
+          <Item identifier="antibleeding1" />
+          <Item identifier="antidama1" />
+          <Item identifier="antidama1" />
+        </Item>
+        <Item identifier="scp_softvest" equip="true">
+          <Item identifier="scp_meusoc" equip="false">
+            <Item identifier="scp_45mag" showpreview="false" />
+          </Item>
+        </Item>
+        <Item identifier="scp_simplehelmet" equip="true" />
+        <Item identifier="healthscanner" />
+        <Item identifier="headset" equip="true" showpreview="false" />
+        <PreviewSprites dims="120,109">
+          <sprite texture="Content/Items/Jobgear/Medic/medic_torso_[GENDER]_1.png" sourcerect="2,38,120,109" offset="0,0" />
+          <sprite texture="Content/Items/Jobgear/Medic/medic_torso_[GENDER]_1.png" sourcerect="121,0,76,80" offset="-20,15" />
         </PreviewSprites>
       </ItemSet>
       <PortraitClothing>

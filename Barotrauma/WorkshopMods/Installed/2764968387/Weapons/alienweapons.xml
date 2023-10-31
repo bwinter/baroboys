@@ -2,8 +2,7 @@
 <Items>
   <!--TAR-4A3-->
   <Item name="" identifier="scp_tar4a3" description="" tags="mediumitem,weapon,gun,gunsmith,alien,aliengun" Scale="0.4" category="Alien" impactsoundtag="impact_metal_light">
-    <PreferredContainer primary="ruinstoragelarge" minamount="0" maxamount="1" spawnprobability="0.025" />
-    <PreferredContainer primary="ruinstorage,ruinstoragesmall" minamount="0" maxamount="1" spawnprobability="0.015" />
+    <PreferredContainer primary="ruinstoragelarge,ruinstorage,ruinstoragesmall" minamount="0" maxamount="1" spawnprobability="0.02" />
     <PreferredContainer secondary="weaponholder" />
     <Price baseprice="1000" sold="false"></Price>
     <Deconstruct time="35">
@@ -59,8 +58,7 @@
   </Item>
   <!--TBR-6A4-->
   <Item name="" identifier="scp_tbr6a4" description="" tags="mediumitem,weapon,gun,gunsmith,alien,aliengun" Scale="0.45" category="Alien" impactsoundtag="impact_metal_light">
-    <PreferredContainer primary="ruinstoragelarge" minamount="0" maxamount="1" spawnprobability="0.05" />
-    <PreferredContainer primary="ruinstorage,ruinstoragesmall" minamount="0" maxamount="1" spawnprobability="0.025" />
+    <PreferredContainer primary="ruinstoragelarge,ruinstorage,ruinstoragesmall" minamount="0" maxamount="1" spawnprobability="0.01" />
     <PreferredContainer secondary="weaponholder" />
     <Price baseprice="1250" sold="false"></Price>
     <Deconstruct time="35">
@@ -116,8 +114,7 @@
   </Item>
   <!--TB-1 pistol-->
   <Item name="" identifier="scp_tb1" description="" tags="smallitem,weapon,gun,gunsmith,alien,aliengun" Scale="0.25" category="Alien" impactsoundtag="impact_metal_light">
-    <PreferredContainer primary="ruinstoragelarge" minamount="0" maxamount="1" spawnprobability="0.1" />
-    <PreferredContainer primary="ruinstorage,ruinstoragesmall" minamount="0" maxamount="1" spawnprobability="0.075" />
+    <PreferredContainer primary="ruinstoragelarge,ruinstorage,ruinstoragesmall" minamount="0" maxamount="1" spawnprobability="0.05" />
     <PreferredContainer secondary="weaponholder" />
     <Price baseprice="1100" sold="false" />
     <Deconstruct time="25">
@@ -174,8 +171,7 @@
   </Item>
   <!--TBSR-7-->
   <Item name="" identifier="scp_tbsr7" description="" tags="mediumitem,weapon,gun,gunsmith,alien,aliengun,bulkyweapon" Scale="0.38" category="Alien" impactsoundtag="impact_metal_light">
-    <PreferredContainer primary="ruinstoragelarge" minamount="0" maxamount="1" spawnprobability="0.01" />
-    <PreferredContainer primary="ruinstorage" minamount="0" maxamount="1" spawnprobability="0.01" />
+    <PreferredContainer primary="ruinstoragelarge,ruinstorage" minamount="0" maxamount="1" spawnprobability="0.008" />
     <PreferredContainer secondary="weaponholder" />
     <Price baseprice="1600" sold="false"></Price>
     <Deconstruct time="45">
@@ -236,8 +232,7 @@
   </Item>
   <!--TMG12-->
   <Item name="" description="" identifier="scp_tmg12" category="Alien" tags="mediumitem,weapon,gun,gunsmith,alien,aliengun" Scale="0.35" impactsoundtag="impact_metal_heavy">
-    <PreferredContainer primary="ruinstoragelarge" minamount="0" maxamount="1" spawnprobability="0.0125" />
-    <PreferredContainer primary="ruinstorage,ruinstoragesmall" minamount="0" maxamount="1" spawnprobability="0.005" />
+    <PreferredContainer primary="ruinstoragelarge,ruinstorage,ruinstoragesmall" minamount="0" maxamount="1" spawnprobability="0.008" />
     <PreferredContainer secondary="weaponholder" />
     <Price baseprice="1450" sold="false"></Price>
     <Deconstruct time="35">
@@ -299,8 +294,7 @@
     </Quality>
   </Item>
   <Item name="" identifier="scp_fractalbatterycell" description="" tags="smallitem,fractalbattery,alien,alienammo,ehaammo" category="Alien" maxstacksize="2" impactsoundtag="impact_metal_light" scale="0.25">
-    <PreferredContainer primary="ruinstoragelarge" minamount="0" maxamount="2" spawnprobability="0.03" />
-    <PreferredContainer primary="ruinstorage,ruinstoragesmall" minamount="0" maxamount="1" spawnprobability="0.04" />
+    <PreferredContainer primary="ruinstoragelarge,ruinstorage,ruinstoragesmall" minamount="0" maxamount="2" spawnprobability="0.05" />
     <Price baseprice="600" sold="false"></Price>
     <Deconstruct time="20">
       <Item identifier="steel" />

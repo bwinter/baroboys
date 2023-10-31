@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <npcsets>
   <npcset identifier="abandonedlivnpcs">
-    <npc identifier="seplivfollower" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="0.85" healthmultiplierinmultiplayer="1" aimspeed="1.8" aimaccuracy="0.55" reportrange="1000" skillmultiplier="3.0">
+    <npc identifier="seplivfollower" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="0.85" healthmultiplierinmultiplayer="1" aimspeed="2" aimaccuracy="0.65" reportrange="1000" skillmultiplier="3.0">
       <ItemSet commonness="0.9">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="scp_renegadeuniform" equip="true" />
@@ -52,10 +52,22 @@
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="scp_renegadeuniform" equip="true" />
         <Item identifier="scp_renegadeplatecarrier" equip="true" />
-        <Item identifier="scp_renegadeheavyhelmet" equip="true" />
+        <Item identifier="scp_renegadehelmet" equip="true" />
         <Item identifier="divingmask">
           <Item identifier="oxygentank" />
         </Item>
+        <Item identifier="scp_g36">
+          <Item identifier="scp_556apmag" />
+        </Item>
+        <Item identifier="scp_556apmag" amount="3" />
+        <Item identifier="scp_m9bayonet" equip="false" />
+        <Item identifier="scp_npcprotectionsepfollower" />
+      </ItemSet>
+      <ItemSet commonness="0.7">
+        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
+        <Item identifier="scp_renegadeuniform" equip="true" />
+        <Item identifier="scp_renegadeplatecarrier" equip="true" />
+        <Item identifier="scp_renegadeheavyhelmet" equip="true" />
         <Item identifier="scp_g3">
           <Item identifier="scp_scarmag" />
         </Item>
@@ -154,50 +166,8 @@
         <Item identifier="scp_m9bayonet" />
         <Item identifier="scp_npcprotectionsepfollower" />
       </ItemSet>
-      <ItemSet commonness="0.1">
-        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
-        <Item identifier="scp_specopsuniform" equip="true" />
-        <Item identifier="scp_heavyrig" equip="true" />
-        <Item identifier="scp_yuihelmet" equip="true" />
-        <Item identifier="scp_hk433">
-          <Item identifier="scp_556apmag" />
-        </Item>
-        <Item identifier="scp_556apmag" amount="2" />
-        <Item identifier="scp_armykit" />
-        <Item identifier="scp_physicoriumsword" equip="false" />
-        <Item identifier="scp_assaultpack" equip="true" />
-        <Item identifier="scp_npcprotectionsepfollower" />
-      </ItemSet>
-      <ItemSet commonness="0.1">
-        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
-        <Item identifier="scp_livuniform" equip="true" />
-        <Item identifier="scp_livrig" equip="true" />
-        <Item identifier="scp_livhelmet" equip="true" />
-        <Item identifier="scp_ak103">
-          <Item identifier="scp_akdumag" />
-        </Item>
-        <Item identifier="scp_akdumag" amount="2" />
-        <Item identifier="scp_armykit" />
-        <Item identifier="scp_physicoriumsword" equip="false" />
-        <Item identifier="scp_assaultpack" equip="true" />
-        <Item identifier="scp_npcprotectionsepfollower" />
-      </ItemSet>
-      <ItemSet commonness="0.1">
-        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
-        <Item identifier="scp_livuniform" equip="true" />
-        <Item identifier="scp_livrig" equip="true" />
-        <Item identifier="scp_livhelmet" equip="true" />
-        <Item identifier="scp_kh2020">
-          <Item identifier="scp_65incendmag" />
-        </Item>
-        <Item identifier="scp_65incendmag" amount="2" />
-        <Item identifier="scp_armykit" />
-        <Item identifier="scp_physicoriumsword" equip="false" />
-        <Item identifier="scp_assaultpack" equip="true" />
-        <Item identifier="scp_npcprotectionsepfollower" />
-      </ItemSet>
     </npc>
-    <npc identifier="seplivfollowerwanderer" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Patrol" healthmultiplier="0.9" healthmultiplierinmultiplayer="1" aimspeed="1.6" aimaccuracy="0.55" reportrange="1000" skillmultiplier="3.0">
+    <npc identifier="seplivfollowerwanderer" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Patrol" healthmultiplier="0.9" healthmultiplierinmultiplayer="1" aimspeed="2" aimaccuracy="0.65" reportrange="1000" skillmultiplier="3.0">
       <ItemSet commonness="0.9">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="scp_renegadeuniform" equip="true" />
@@ -242,6 +212,21 @@
         </Item>
         <Item identifier="scp_deaglemag" />
         <Item identifier="scp_deaglemag" />
+        <Item identifier="scp_m9bayonet" equip="false" />
+        <Item identifier="scp_npcprotectionsepfollower" />
+      </ItemSet>
+      <ItemSet commonness="0.7">
+        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
+        <Item identifier="scp_renegadeuniform" equip="true" />
+        <Item identifier="scp_renegadeplatecarrier" equip="true" />
+        <Item identifier="scp_renegadehelmet" equip="true" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="scp_g36">
+          <Item identifier="scp_556apmag" />
+        </Item>
+        <Item identifier="scp_556apmag" amount="3" />
         <Item identifier="scp_m9bayonet" equip="false" />
         <Item identifier="scp_npcprotectionsepfollower" />
       </ItemSet>
@@ -307,50 +292,8 @@
         <Item identifier="scp_m9bayonet" equip="false" />
         <Item identifier="scp_npcprotectionsepfollower" />
       </ItemSet>
-      <ItemSet commonness="0.1">
-        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
-        <Item identifier="scp_specopsuniform" equip="true" />
-        <Item identifier="scp_heavyrig" equip="true" />
-        <Item identifier="scp_yuihelmet" equip="true" />
-        <Item identifier="scp_hk433">
-          <Item identifier="scp_556apmag" />
-        </Item>
-        <Item identifier="scp_556apmag" amount="2" />
-        <Item identifier="scp_armykit" />
-        <Item identifier="scp_physicoriumsword" equip="false" />
-        <Item identifier="scp_assaultpack" equip="true" />
-        <Item identifier="scp_npcprotectionsepfollower" />
-      </ItemSet>
-      <ItemSet commonness="0.1">
-        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
-        <Item identifier="scp_livuniform" equip="true" />
-        <Item identifier="scp_livrig" equip="true" />
-        <Item identifier="scp_livhelmet" equip="true" />
-        <Item identifier="scp_ak103">
-          <Item identifier="scp_akdumag" />
-        </Item>
-        <Item identifier="scp_akdumag" amount="2" />
-        <Item identifier="scp_armykit" />
-        <Item identifier="scp_physicoriumsword" equip="false" />
-        <Item identifier="scp_assaultpack" equip="true" />
-        <Item identifier="scp_npcprotectionsepfollower" />
-      </ItemSet>
-      <ItemSet commonness="0.1">
-        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
-        <Item identifier="scp_livuniform" equip="true" />
-        <Item identifier="scp_livrig" equip="true" />
-        <Item identifier="scp_livhelmet" equip="true" />
-        <Item identifier="scp_kh2020">
-          <Item identifier="scp_65incendmag" />
-        </Item>
-        <Item identifier="scp_65incendmag" amount="2" />
-        <Item identifier="scp_armykit" />
-        <Item identifier="scp_physicoriumsword" equip="false" />
-        <Item identifier="scp_assaultpack" equip="true" />
-        <Item identifier="scp_npcprotectionsepfollower" />
-      </ItemSet>
     </npc>
-    <npc identifier="liv" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="1.1" healthmultiplierinmultiplayer="1.2" aimspeed="3" aimaccuracy="0.7" reportrange="15000" skillmultiplier="4.0">
+    <npc identifier="liv" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="1.5" healthmultiplierinmultiplayer="2" aimspeed="3.25" aimaccuracy="0.7" reportrange="15000" skillmultiplier="4.0">
       <ItemSet commonness="0.9">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="scp_livuniform" equip="true" />
@@ -394,12 +337,12 @@
         <Item identifier="scp_livhelmet" equip="true" />
         <Item identifier="scp_protopack" equip="true" />
         <Item identifier="scp_ma37">
-          <Item identifier="scp_scarextmag" />
+          <Item identifier="scp_scarmag" />
         </Item>
         <Item identifier="scp_m6">
           <Item identifier="scp_deaglemag" />
         </Item>
-        <Item identifier="scp_scarextmag" amount="2" />
+        <Item identifier="scp_scarmag" amount="4" />
         <Item identifier="scp_deaglemag" />
         <Item identifier="scp_armykit" />
         <Item identifier="scp_dementonitemachete" equip="false" />
@@ -425,7 +368,7 @@
     </npc>
   </npcset>
   <npcset identifier="roguecoalitionmembers">
-    <npc identifier="roguecoalitionsoldier" commonness="0" tags="bandit" moduleflags="crewmodule" job="securityofficer" behavior="Passive" healthmultiplier="0.75" healthmultiplierinmultiplayer="0.9" aimspeed="1.1" aimaccuracy="0.35" reportrange="1000">
+    <npc identifier="roguecoalitionsoldier" commonness="0" tags="bandit" moduleflags="crewmodule" job="securityofficer" behavior="Passive" healthmultiplier="0.8" healthmultiplierinmultiplayer="0.9" aimspeed="1.5" aimaccuracy="0.4" reportrange="1000">
       <ItemSet commonness="0.95">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="scp_lightuniform" equip="true" />
@@ -583,23 +526,8 @@
         <Item identifier="riflebullet" amount="5" />
         <Item identifier="scp_m9bayonet" equip="false" />
       </ItemSet>
-      <ItemSet commonness="0.125">
-        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
-        <Item identifier="scp_marauderuniform" equip="true" />
-        <Item identifier="scp_marauderrig" equip="true" />
-        <Item identifier="scp_marauderhelmet" equip="true">
-          <Item identifier="scp_smallcivkit" />
-          <Item identifier="steroids" />
-        </Item>
-        <Item identifier="scp_m35a2">
-          <Item identifier="scp_556duramag" />
-        </Item>
-        <Item identifier="scp_556duramag" amount="2" />
-        <Item identifier="scp_dementonitemachete" />
-        <Item identifier="scp_npcprotectionsepfollower" />
-      </ItemSet>
     </npc>
-    <npc identifier="roguecoalitionsoldierwanderer" commonness="0" tags="bandit" moduleflags="crewmodule" job="securityofficer" behavior="Patrol" healthmultiplier="0.75" healthmultiplierinmultiplayer="0.9" aimspeed="1.1" aimaccuracy="0.35" reportrange="1000">
+    <npc identifier="roguecoalitionsoldierwanderer" commonness="0" tags="bandit" moduleflags="crewmodule" job="securityofficer" behavior="Patrol" healthmultiplier="0.75" healthmultiplierinmultiplayer="0.9" aimspeed="1.5" aimaccuracy="0.5" reportrange="1000">
       <ItemSet commonness="0.95">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="scp_lightuniform" equip="true" />
@@ -743,23 +671,8 @@
         <Item identifier="riflebullet" amount="5" />
         <Item identifier="scp_m9bayonet" equip="false" />
       </ItemSet>
-      <ItemSet commonness="0.125">
-        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
-        <Item identifier="scp_marauderuniform" equip="true" />
-        <Item identifier="scp_marauderrig" equip="true" />
-        <Item identifier="scp_marauderhelmet" equip="true">
-          <Item identifier="scp_smallcivkit" />
-          <Item identifier="steroids" />
-        </Item>
-        <Item identifier="scp_m35a2">
-          <Item identifier="scp_556duramag" />
-        </Item>
-        <Item identifier="scp_556duramag" amount="2" />
-        <Item identifier="scp_dementonitemachete" />
-        <Item identifier="scp_npcprotectionsepfollower" />
-      </ItemSet>
     </npc>
-    <npc identifier="rogueleader" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="0.8" healthmultiplierinmultiplayer="1" aimspeed="1.5" aimaccuracy="0.5" reportrange="10000">
+    <npc identifier="rogueleader" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="0.8" healthmultiplierinmultiplayer="1" aimspeed="1.75" aimaccuracy="0.5" reportrange="10000">
       <ItemSet commonness="0.9">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="captainsuniform1" equip="true" />
@@ -838,7 +751,7 @@
     </npc>
   </npcset>
   <npcset identifier="abandonedyuinpcs">
-    <npc identifier="sepyuifollower" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="0.85" healthmultiplierinmultiplayer="0.9" aimspeed="1.5" aimaccuracy="0.55" reportrange="1000" skillmultiplier="5.0">
+    <npc identifier="sepyuifollower" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="0.85" healthmultiplierinmultiplayer="0.9" aimspeed="2" aimaccuracy="0.55" reportrange="1000" skillmultiplier="5.0">
       <ItemSet commonness="0.95">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="scp_renegadeuniform" equip="true" />
@@ -881,6 +794,21 @@
           <Item identifier="scp_scarmag" />
         </Item>
         <Item identifier="scp_scarmag" />
+        <Item identifier="scp_m9bayonet" equip="false" />
+        <Item identifier="scp_npcprotectionsepfollower" />
+      </ItemSet>
+      <ItemSet commonness="0.7">
+        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
+        <Item identifier="scp_renegadeuniform" equip="true" />
+        <Item identifier="scp_renegadeplatecarrier" equip="true" />
+        <Item identifier="scp_renegadehelmet" equip="true" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="scp_g36">
+          <Item identifier="scp_556apmag" />
+        </Item>
+        <Item identifier="scp_556apmag" amount="3" />
         <Item identifier="scp_m9bayonet" equip="false" />
         <Item identifier="scp_npcprotectionsepfollower" />
       </ItemSet>
@@ -1017,7 +945,7 @@
         <Item identifier="scp_npcprotectionsepfollower" />
       </ItemSet>
     </npc>
-    <npc identifier="sepyuifollowerwanderer" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Patrol" healthmultiplier="0.85" healthmultiplierinmultiplayer="0.9" aimspeed="1.5" aimaccuracy="0.55" reportrange="1000" skillmultiplier="5.0">
+    <npc identifier="sepyuifollowerwanderer" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Patrol" healthmultiplier="0.85" healthmultiplierinmultiplayer="0.9" aimspeed="2" aimaccuracy="0.55" reportrange="1000" skillmultiplier="5.0">
       <ItemSet commonness="0.95">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="scp_renegadeuniform" equip="true" />
@@ -1060,6 +988,21 @@
           <Item identifier="scp_scarmag" />
         </Item>
         <Item identifier="scp_scarmag" />
+        <Item identifier="scp_m9bayonet" equip="false" />
+        <Item identifier="scp_npcprotectionsepfollower" />
+      </ItemSet>
+      <ItemSet commonness="0.7">
+        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
+        <Item identifier="scp_renegadeuniform" equip="true" />
+        <Item identifier="scp_renegadeplatecarrier" equip="true" />
+        <Item identifier="scp_renegadehelmet" equip="true" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="scp_g36">
+          <Item identifier="scp_556apmag" />
+        </Item>
+        <Item identifier="scp_556apmag" amount="3" />
         <Item identifier="scp_m9bayonet" equip="false" />
         <Item identifier="scp_npcprotectionsepfollower" />
       </ItemSet>
@@ -1137,82 +1080,8 @@
         <Item identifier="scp_m9bayonet" equip="false" />
         <Item identifier="scp_npcprotectionsepfollower" />
       </ItemSet>
-      <ItemSet commonness="0.2">
-        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
-        <Item identifier="scp_specopsuniform" equip="true" />
-        <Item identifier="scp_yuirig" equip="true" />
-        <Item identifier="scp_yuihelmet" equip="true" />
-        <Item identifier="divingmask">
-          <Item identifier="oxygentank" />
-        </Item>
-        <Item identifier="scp_sr3">
-          <Item identifier="scp_valbigmag" />
-        </Item>
-        <Item identifier="scp_valbigmag" amount="2" />
-        <Item identifier="scp_armykit" />
-        <Item identifier="scp_physicoriumsword" equip="false" />
-        <Item identifier="scp_npcprotectionsepfollower" />
-      </ItemSet>
-      <ItemSet commonness="0.2">
-        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
-        <Item identifier="scp_specopsuniform" equip="true" />
-        <Item identifier="scp_yuirig" equip="true" />
-        <Item identifier="scp_yuihelmet" equip="true" />
-        <Item identifier="divingmask">
-          <Item identifier="oxygentank" />
-        </Item>
-        <Item identifier="scp_kir">
-          <Item identifier="scp_ash12extmag" />
-        </Item>
-        <Item identifier="scp_ash12extmag" amount="2" />
-        <Item identifier="scp_armykit" />
-        <Item identifier="scp_physicoriumsword" equip="false" />
-        <Item identifier="scp_npcprotectionsepfollower" />
-      </ItemSet>
-      <ItemSet commonness="0.1">
-        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
-        <Item identifier="scp_specopsuniform" equip="true" />
-        <Item identifier="scp_heavyrig" equip="true" />
-        <Item identifier="scp_yuihelmet" equip="true" />
-        <Item identifier="scp_hk433">
-          <Item identifier="scp_556apmag" />
-        </Item>
-        <Item identifier="scp_556apmag" amount="2" />
-        <Item identifier="scp_armykit" />
-        <Item identifier="scp_physicoriumsword" equip="false" />
-        <Item identifier="scp_assaultpack" equip="true" />
-        <Item identifier="scp_npcprotectionsepfollower" />
-      </ItemSet>
-      <ItemSet commonness="0.05">
-        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
-        <Item identifier="scp_livuniform" equip="true" />
-        <Item identifier="scp_livrig" equip="true" />
-        <Item identifier="scp_livhelmet" equip="true" />
-        <Item identifier="scp_ak103">
-          <Item identifier="scp_akdumag" />
-        </Item>
-        <Item identifier="scp_akdumag" amount="2" />
-        <Item identifier="scp_armykit" />
-        <Item identifier="scp_physicoriumsword" equip="false" />
-        <Item identifier="scp_assaultpack" equip="true" />
-        <Item identifier="scp_npcprotectionsepfollower" />
-      </ItemSet>
-      <ItemSet commonness="0.05">
-        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
-        <Item identifier="scp_livuniform" equip="true" />
-        <Item identifier="scp_livrig" equip="true" />
-        <Item identifier="scp_livhelmet" equip="true" />
-        <Item identifier="scp_kh2020">
-          <Item identifier="scp_65incendmag" />
-        </Item>
-        <Item identifier="scp_65incendmag" amount="2" />
-        <Item identifier="scp_armykit" />
-        <Item identifier="scp_physicoriumsword" equip="false" />
-        <Item identifier="scp_assaultpack" equip="true" />
-        <Item identifier="scp_npcprotectionsepfollower" />
-      </ItemSet>
     </npc>
-    <npc identifier="yui" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="1.1" healthmultiplierinmultiplayer="1.25" aimspeed="7" aimaccuracy="0.75" reportrange="20000" skillmultiplier="4.0">
+    <npc identifier="yui" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="1.25" healthmultiplierinmultiplayer="1.45" aimspeed="9" aimaccuracy="0.75" reportrange="20000" skillmultiplier="4.0">
       <ItemSet commonness="0.85">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="scp_specopsuniform" equip="true" />
@@ -1292,7 +1161,7 @@
         <Item identifier="commonerclothes5" equip="true" />
         <Item identifier="scp_simplehelmet" equip="true" />
         <Item identifier="scp_softvest" equip="true" />
-        <Item identifier="scp_mp433">
+        <Item identifier="scp_mp443">
           <Item identifier="scp_9mmmag" />
         </Item>
         <Item identifier="scp_9mmmag" />
@@ -1319,7 +1188,7 @@
       <ItemSet commonness="0.75">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="commonerclothes4" equip="true" />
-        <Item identifier="scp_piratehelmet" equip="true" />
+        <Item identifier="piratehelmet" equip="true" />
         <Item identifier="scp_riotvest" equip="true" />
         <Item identifier="smg">
           <Item identifier="smgmagazine" />
@@ -1330,7 +1199,7 @@
       <ItemSet commonness="0.75">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="commonerclothes3" equip="true" />
-        <Item identifier="scp_piratebandana" equip="true" />
+        <Item identifier="piratebandana" equip="true" />
         <Item identifier="scp_riotvest" equip="true" />
         <Item identifier="machinepistol">
           <Item identifier="smgmagazine" />
@@ -1341,7 +1210,7 @@
       <ItemSet commonness="0.75">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="commonerclothes5" equip="true" />
-        <Item identifier="scp_piratebandana" equip="true" />
+        <Item identifier="piratebandana" equip="true" />
         <Item identifier="scp_riotvest" equip="true" />
         <Item identifier="scp_python">
           <Item identifier="scp_357round" amount="6" />
@@ -1351,7 +1220,7 @@
       <ItemSet commonness="0.8">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="commonerclothes5" equip="true" />
-        <Item identifier="scp_piratebandana" equip="true" />
+        <Item identifier="piratebandana" equip="true" />
         <Item identifier="scp_softvest" equip="true" />
         <Item identifier="revolver">
           <Item identifier="revolverround" amount="6" />
@@ -1457,7 +1326,7 @@
       <ItemSet commonness="0.75">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="commonerclothes4" equip="true" />
-        <Item identifier="scp_piratehelmet" equip="true" />
+        <Item identifier="piratehelmet" equip="true" />
         <Item identifier="scp_riotvest" equip="true" />
         <Item identifier="smg">
           <Item identifier="smgmagazine" />
@@ -1468,8 +1337,8 @@
       <ItemSet commonness="0.75">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="commonerclothes3" equip="true" />
-        <Item identifier="scp_piratebandana" equip="true" />
-        <Item identifier="scp_riotvest" equip="true" />
+        <Item identifier="piratebandana" equip="true" />
+        <Item identifier="riotvest" equip="true" />
         <Item identifier="machinepistol">
           <Item identifier="smgmagazine" />
         </Item>
@@ -1479,7 +1348,7 @@
       <ItemSet commonness="0.75">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="commonerclothes5" equip="true" />
-        <Item identifier="scp_piratebandana" equip="true" />
+        <Item identifier="piratebandana" equip="true" />
         <Item identifier="scp_riotvest" equip="true" />
         <Item identifier="scp_python">
           <Item identifier="scp_357round" amount="6" />
@@ -1489,7 +1358,7 @@
       <ItemSet commonness="0.8">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="commonerclothes5" equip="true" />
-        <Item identifier="scp_piratebandana" equip="true" />
+        <Item identifier="piratebandana" equip="true" />
         <Item identifier="scp_softvest" equip="true" />
         <Item identifier="revolver">
           <Item identifier="revolverround" amount="6" />
@@ -1520,7 +1389,7 @@
         <Item identifier="scp_sledge" equip="false" />
       </ItemSet>
     </npc>
-    <npc identifier="piratescavleader" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="0.8" healthmultiplierinmultiplayer="0.9" aimspeed="1.1" aimaccuracy="0.45" reportrange="12000">
+    <npc identifier="piratescavleader" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="0.8" healthmultiplierinmultiplayer="0.9" aimspeed="1.3" aimaccuracy="0.45" reportrange="12000">
       <ItemSet commonness="0.85">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="pirateclotheshard" equip="true" />
@@ -1713,7 +1582,7 @@
         <Item identifier="divingknife" equip="false" />
       </ItemSet>
     </npc>
-    <npc identifier="pirateoperator" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Patrol" healthmultiplier="0.75" healthmultiplierinmultiplayer="0.85" aimspeed="1.35" aimaccuracy="0.4" reportrange="3500" skillmultiplier="1.10">
+    <npc identifier="pirateoperator" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Patrol" healthmultiplier="0.75" healthmultiplierinmultiplayer="0.85" aimspeed="1.4" aimaccuracy="0.4" reportrange="3500" skillmultiplier="1.10">
       <ItemSet commonness="0.95">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="pirateclothes" equip="true" />
@@ -1771,7 +1640,7 @@
         <Item identifier="divingknife" equip="false" />
       </ItemSet>
     </npc>
-    <npc identifier="pirateoperatorwanderer" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Patrol" healthmultiplier="0.75" healthmultiplierinmultiplayer="0.85" aimspeed="1.35" aimaccuracy="0.4" reportrange="3500" skillmultiplier="1.10">
+    <npc identifier="pirateoperatorwanderer" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Patrol" healthmultiplier="0.75" healthmultiplierinmultiplayer="0.85" aimspeed="1.4" aimaccuracy="0.4" reportrange="3500" skillmultiplier="1.10">
       <ItemSet commonness="0.95">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="pirateclothes" equip="true" />
@@ -1878,7 +1747,7 @@
     </npc>
   </npcset>
   <npcset identifier="separatistoutpostmembers">
-    <npc identifier="separatistsoldier" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="0.7" healthmultiplierinmultiplayer="0.85" aimspeed="1" aimaccuracy="0.45" reportrange="8500" skillmultiplier="1.25">
+    <npc identifier="separatistsoldier" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="0.7" healthmultiplierinmultiplayer="0.85" aimspeed="1.25" aimaccuracy="0.45" reportrange="8500" skillmultiplier="1.25">
       <ItemSet commonness="0.9">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="scp_renegadeuniform" equip="true">
@@ -1972,6 +1841,21 @@
         <Item identifier="crowbar" />
         <Item identifier="scp_smallcivkit" />
         <Item identifier="toolbelt" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="0.7">
+        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
+        <Item identifier="scp_renegadeuniform" equip="true" />
+        <Item identifier="scp_renegadeplatecarrier" equip="true" />
+        <Item identifier="scp_renegadehelmet" equip="true" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="scp_g36">
+          <Item identifier="scp_556mag" />
+        </Item>
+        <Item identifier="scp_556mag" amount="3" />
+        <Item identifier="scp_m9bayonet" equip="false" />
+        <Item identifier="scp_npcprotectionsepfollower" />
       </ItemSet>
       <ItemSet commonness="0.6">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
@@ -2086,7 +1970,7 @@
         <Item identifier="scp_m9bayonet" />
       </ItemSet>
     </npc>
-    <npc identifier="separatistsoldierwanderer" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Patrol" healthmultiplier="0.75" healthmultiplierinmultiplayer="0.85" aimspeed="1" aimaccuracy="0.45" reportrange="8500" skillmultiplier="1.25">
+    <npc identifier="separatistsoldierwanderer" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Patrol" healthmultiplier="0.75" healthmultiplierinmultiplayer="0.85" aimspeed="1.25" aimaccuracy="0.45" reportrange="8500" skillmultiplier="1.25">
       <ItemSet commonness="0.9">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="scp_renegadeuniform" equip="true">
@@ -2180,6 +2064,21 @@
         <Item identifier="crowbar" />
         <Item identifier="scp_smallcivkit" />
         <Item identifier="toolbelt" equip="true" />
+      </ItemSet>
+      <ItemSet commonness="0.7">
+        <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
+        <Item identifier="scp_renegadeuniform" equip="true" />
+        <Item identifier="scp_renegadeplatecarrier" equip="true" />
+        <Item identifier="scp_renegadehelmet" equip="true" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="scp_g36">
+          <Item identifier="scp_556mag" />
+        </Item>
+        <Item identifier="scp_556mag" amount="3" />
+        <Item identifier="scp_m9bayonet" equip="false" />
+        <Item identifier="scp_npcprotectionsepfollower" />
       </ItemSet>
       <ItemSet commonness="0.6">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
@@ -2294,7 +2193,7 @@
         <Item identifier="scp_m9bayonet" />
       </ItemSet>
     </npc>
-    <npc identifier="separatistoutpostleader" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="0.8" healthmultiplierinmultiplayer="0.9" aimspeed="1.15" aimaccuracy="0.45" reportrange="8500" skillmultiplier="1.5">
+    <npc identifier="separatistoutpostleader" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="0.8" healthmultiplierinmultiplayer="0.9" aimspeed="1.35" aimaccuracy="0.45" reportrange="8500" skillmultiplier="1.5">
       <ItemSet commonness="0.5">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="scp_renegadecaptainhat" equip="true" />
@@ -2384,7 +2283,7 @@
     </npc>
   </npcset>
   <npcset identifier="abandonedveronnpcs">
-    <npc identifier="coalveronfollower" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="0.9" healthmultiplierinmultiplayer="0.95" aimspeed="1.75" aimaccuracy="0.6" reportrange="8500" skillmultiplier="3">
+    <npc identifier="coalveronfollower" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="0.9" healthmultiplierinmultiplayer="0.95" aimspeed="1.85" aimaccuracy="0.6" reportrange="8500" skillmultiplier="3">
       <ItemSet commonness="0.9">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="scp_lightuniform" equip="true" />
@@ -2599,7 +2498,7 @@
         <Item identifier="scp_npcprotectionsepfollower" />
       </ItemSet>
     </npc>
-    <npc identifier="coalveronfollowerwanderer" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Patrol" healthmultiplier="0.9" healthmultiplierinmultiplayer="1.1" aimspeed="1.75" aimaccuracy="0.6" reportrange="8500" skillmultiplier="3">
+    <npc identifier="coalveronfollowerwanderer" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Patrol" healthmultiplier="0.9" healthmultiplierinmultiplayer="1.1" aimspeed="1.85" aimaccuracy="0.6" reportrange="8500" skillmultiplier="3">
       <ItemSet commonness="0.9">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="scp_lightuniform" equip="true" />
@@ -2778,7 +2677,7 @@
         <Item identifier="scp_npcprotectionsepfollower" />
       </ItemSet>
     </npc>
-    <npc identifier="veron" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Patrol" healthmultiplier="1.1" healthmultiplierinmultiplayer="1.5" aimspeed="5" aimaccuracy="0.75" reportrange="8500" skillmultiplier="3">
+    <npc identifier="veron" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Patrol" healthmultiplier="1.25" healthmultiplierinmultiplayer="2" aimspeed="3.5" aimaccuracy="0.75" reportrange="8500" skillmultiplier="3">
       <ItemSet commonness="0.5">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="scp_veronuniform" equip="true" />
@@ -2988,7 +2887,7 @@
         <Item identifier="scp_npcprotectionsepfollower" />
       </ItemSet>
     </npc>
-    <npc identifier="marauder" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="1" healthmultiplierinmultiplayer="1.25" aimspeed="5" aimaccuracy="0.6" reportrange="8500" skillmultiplier="3">
+    <npc identifier="marauder" commonness="0" tags="bandit" moduleflags="crewmodule,engineeringmodule" job="securityofficer" behavior="Passive" healthmultiplier="1.15" healthmultiplierinmultiplayer="1.3" aimspeed="10" aimaccuracy="0.6" reportrange="8500" skillmultiplier="3">
       <ItemSet commonness="1">
         <Item identifier="idcard" equip="true" tags="abandonedsecarmcab" />
         <Item identifier="scp_marauderuniform" equip="true" />

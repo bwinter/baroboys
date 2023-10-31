@@ -34,7 +34,7 @@
       <output name="condition_out" displayname="connection.conditionout" />
     </ConnectionPanel>
     <Repairable selectkey="Action" header="mechanicalrepairsheader" deteriorationspeed="0.50" mindeteriorationdelay="60" maxdeteriorationdelay="120" RepairThreshold="80" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
-      <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.1,0.27" style="ItemUI" />
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
       <RequiredSkill identifier="mechanical" level="55" />
       <RequiredItem items="wrench" type="Equipped" />
       <ParticleEmitter particle="damagebubbles" particleburstamount="2" particleburstinterval="2.0" particlespersecond="2" scalemin="0.5" scalemax="1.5" anglemin="0" anglemax="359" velocitymin="-10" velocitymax="10" mincondition="0.0" maxcondition="50.0" />
@@ -46,7 +46,7 @@
         <Affliction identifier="stun" strength="4" />
       </StatusEffect>
     </Repairable>
-    <ItemContainer capacity="5" canbeselected="true" hideitems="true" slotsperrow="3" uilabel="" allowuioverlap="true" />
+    <ItemContainer capacity="5" canbeselected="true" hideitems="true" slotsperrow="5" uilabel="" allowuioverlap="true" />
     <ItemContainer capacity="1" canbeselected="true" hideitems="true" slotsperrow="1" uilabel="" allowuioverlap="true" />
   </Item>
   <Item name="" description="" identifier="scp_reloadfabricator" tags="reloadfabricator,donttakeitems" category="Machine" linkable="true" allowedlinks="deconstructor,locker" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2">
@@ -62,7 +62,7 @@
       <RequiredSkill identifier="mechanical" level="30" />
       <RequiredItem identifier="steel" amount="2" />
       <RequiredItem identifier="fpgacircuit" />
-      <RequiredItem identifier="plastic" />
+      <RequiredItem identifier="plastic" amount="2" />
     </Fabricate>
     <Deconstruct time="20">
       <Item identifier="steel" />

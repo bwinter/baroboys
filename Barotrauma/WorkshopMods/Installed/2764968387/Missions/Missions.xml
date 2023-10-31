@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Missions>
-  <OutpostDestroyMission name="Vanguard Assassination" identifier="abandonedoutpostassassinateliv" tags="abandonedoutpost" textidentifier="abandonedoutpostassassinateliv" type="OutpostDestroy" reward="12000" difficulty="5" commonness="30" allowretry="true" sonarlabel="target" unhideentitysubcategories="abandonedhuman" achievementidentifier="abandonedoutpostassassinate">
+  <OutpostDestroyMission name="Vanguard Assassination" identifier="abandonedoutpostassassinateliv" tags="abandonedoutpost" textidentifier="abandonedoutpostassassinateliv" type="OutpostDestroy" reward="12000" difficulty="5" commonness="25" allowretry="true" sonarlabel="target" unhideentitysubcategories="abandonedhuman" achievementidentifier="abandonedoutpostassassinate">
     <Icon texture="Content/UI/MissionIcons.png" sourcerect="0,512,256,256" color="214,50,48" />
     <LocationType identifier="Abandoned" />
     <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
@@ -362,5 +362,99 @@
     <LocationType from="Research" to="Mine" />
     <LocationType from="Research" to="Lair" />
     <message header="missionheader0.scp_radartifactruin" text="missionmessage0.scp_radartifactruin" />
+  </SalvageMission>
+  <SalvageMission identifier="scp_slugcatartifactcave" textidentifier="scp_anomalousartifactruin" tags="salvage,salvageartifact" type="Salvage" difficulty="3" commonness="25" reward="6000" achievementidentifier="artifactmission" sonaricon="artifact" spawntype="cave" itemtag="psiartifactslugcat" existingitemtag="alienartifact" containertag="artifactholder" requireruin="true">
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins2.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins3.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins4.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Reputation identifier="location" amount="2" />
+    <Icon texture="Content/UI/MissionIcons2.png" sourcerect="768,0,256,256" color="49,93,233" />
+    <LocationType from="City" to="Research" />
+    <LocationType from="City" to="None" />
+    <LocationType from="City" to="Lair" />
+    <LocationType from="City" to="Military" />
+    <LocationType from="Outpost" to="Research" />
+    <LocationType from="Outpost" to="None" />
+    <LocationType from="Outpost" to="Lair" />
+    <LocationType from="Outpost" to="Military" />
+    <LocationType from="Research" to="None" />
+    <LocationType from="Research" to="City" />
+    <LocationType from="Research" to="Outpost" />
+    <LocationType from="Research" to="Military" />
+    <LocationType from="Research" to="Research" />
+    <LocationType from="Research" to="Mine" />
+    <LocationType from="Research" to="Lair" />
+    <message header="missionheader0.scp_anomalousartifactruin" text="missionmessage0.scp_anomalousartifactruin" />
+  </SalvageMission>
+  <SalvageMission identifier="scp_ae035artifactcave" textidentifier="scp_anomalousartifactruin" tags="salvage,salvageartifact" type="Salvage" difficulty="3" commonness="10" reward="6000" achievementidentifier="artifactmission" sonaricon="artifact" spawntype="cave" itemtag="psiartifactae035" existingitemtag="alienartifact" containertag="artifactholder" requireruin="true">
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins2.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins3.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins4.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Reputation identifier="location" amount="2" />
+    <Icon texture="Content/UI/MissionIcons2.png" sourcerect="768,0,256,256" color="49,93,233" />
+    <LocationType from="City" to="Research" />
+    <LocationType from="City" to="None" />
+    <LocationType from="City" to="Lair" />
+    <LocationType from="City" to="Military" />
+    <LocationType from="Outpost" to="Research" />
+    <LocationType from="Outpost" to="None" />
+    <LocationType from="Outpost" to="Lair" />
+    <LocationType from="Outpost" to="Military" />
+    <LocationType from="Research" to="None" />
+    <LocationType from="Research" to="City" />
+    <LocationType from="Research" to="Outpost" />
+    <LocationType from="Research" to="Military" />
+    <LocationType from="Research" to="Research" />
+    <LocationType from="Research" to="Mine" />
+    <LocationType from="Research" to="Lair" />
+    <message header="missionheader0.scp_anomalousartifactruin" text="missionmessage0.scp_anomalousartifactruin" />
+  </SalvageMission>
+  <SalvageMission identifier="scp_toxartifactcave" textidentifier="scp_toxartifactfind" tags="salvage,salvageartifact" type="Salvage" difficulty="4" commonness="25" reward="5000" achievementidentifier="artifactmission" sonaricon="artifact" spawntype="cave" itemtag="toxartifact" existingitemtag="alienartifact" containertag="artifactholder" requireruin="true">
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins2.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins3.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins4.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Reputation identifier="location" amount="2" />
+    <Icon texture="Content/UI/MissionIcons2.png" sourcerect="768,0,256,256" olor="50,175,50" />
+    <LocationType from="City" to="Research" />
+    <LocationType from="City" to="None" />
+    <LocationType from="City" to="Lair" />
+    <LocationType from="City" to="Military" />
+    <LocationType from="Outpost" to="Research" />
+    <LocationType from="Outpost" to="None" />
+    <LocationType from="Outpost" to="Lair" />
+    <LocationType from="Outpost" to="Military" />
+    <LocationType from="Research" to="None" />
+    <LocationType from="Research" to="City" />
+    <LocationType from="Research" to="Outpost" />
+    <LocationType from="Research" to="Military" />
+    <LocationType from="Research" to="Research" />
+    <LocationType from="Research" to="Mine" />
+    <LocationType from="Research" to="Lair" />
+    <message header="missionheader0.scp_toxartifactfind" text="missionmessage0.scp_toxartifactfind" />
+  </SalvageMission>
+  <SalvageMission identifier="scp_toxartifactruin" textidentifier="scp_toxartifactfind" tags="salvage,salvageartifact" type="Salvage" difficulty="4" commonness="25" reward="5000" achievementidentifier="artifactmission" sonaricon="artifact" spawntype="ruin" itemtag="toxartifact" existingitemtag="alienartifact" containertag="artifactholder" requireruin="true">
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins2.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins3.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Portrait texture="Content/Map/LocationPortraits/AlienRuins4.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+    <Reputation identifier="location" amount="6" />
+    <Icon texture="Content/UI/MissionIcons2.png" sourcerect="512,0,256,256" color="50,175,50" />
+    <LocationType from="City" to="Research" />
+    <LocationType from="City" to="None" />
+    <LocationType from="City" to="Lair" />
+    <LocationType from="Outpost" to="Research" />
+    <LocationType from="Outpost" to="None" />
+    <LocationType from="Outpost" to="Lair" />
+    <LocationType from="Research" to="None" />
+    <LocationType from="Research" to="City" />
+    <LocationType from="Research" to="Outpost" />
+    <LocationType from="Research" to="Military" />
+    <LocationType from="Research" to="Research" />
+    <LocationType from="Research" to="Mine" />
+    <LocationType from="Research" to="Lair" />
+    <message header="missionheader0.scp_toxartifactfind" text="missionmessage0.scp_toxartifactfind" />
   </SalvageMission>
 </Missions>
