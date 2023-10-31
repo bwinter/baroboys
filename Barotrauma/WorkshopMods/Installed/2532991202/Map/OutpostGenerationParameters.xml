@@ -121,12 +121,12 @@
     <modulecount flag="CaveModule" count="4" />
     <npcs></npcs>
   </OutpostConfig>
-  <OutpostConfig identifier="MediumLair" totalmodulecount="9" minhallwaylength="400" allowedlocationtypes="Lair" allowstealing="true" spawncrewinsideoutpost="false" removeunusedgaps="false" appendtoreachtotalmodulecount="false">
+  <OutpostConfig identifier="MediumLair" totalmodulecount="9" minhallwaylength="400" allowedlocationtypes="Lair,LairMudraptor,LairThresher" allowstealing="true" spawncrewinsideoutpost="false" removeunusedgaps="false" appendtoreachtotalmodulecount="false">
     <modulecount flag="CaveAirlock" count="1" />
     <modulecount flag="CaveModule" count="6" />
     <npcs></npcs>
   </OutpostConfig>
-  <OutpostConfig identifier="LargeLair" totalmodulecount="9" minhallwaylength="400" allowedlocationtypes="Lair" allowstealing="true" spawncrewinsideoutpost="false" removeunusedgaps="false" appendtoreachtotalmodulecount="false">
+  <OutpostConfig identifier="LargeLair" totalmodulecount="9" minhallwaylength="400" allowedlocationtypes="LairMudraptor,LairThresher" allowstealing="true" spawncrewinsideoutpost="false" removeunusedgaps="false" appendtoreachtotalmodulecount="false">
     <modulecount flag="CaveAirlock" count="1" />
     <modulecount flag="CaveModule" count="8" />
     <npcs></npcs>

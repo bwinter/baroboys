@@ -64,7 +64,7 @@
         </StatusEffect>
       </ItemComponent>
       <LevelResource deattachduration="Infinity" allowatstart="false">
-        <Commonness cavecommonness="0.0" abysscommonness="0.5" fixedquantity="true" clusterquantity="46" clustersize="1" leveltype="thegreatsea" isislandspecific="false" />
+        <Commonness cavecommonness="0.0" abysscommonness="0.5" fixedquantity="true" clusterquantity="23" clustersize="1" leveltype="thegreatsea" isislandspecific="false" />
         <RequiredItem items="nonexistentitem" type="Equipped" />
       </LevelResource>
       <aitarget minsightrange="1000" maxsightrange="10000" soundrange="10000" />

@@ -1,5 +1,190 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
+  <!-- Kazuya Kumo Items -->
+  <Override>
+    <Item name="Kumo's Radio" identifier="kazuyakumoradio" Tags="smallitem,kumoradio" category="Misc" description="A radio Kazuya Kumo gave to you with a pre-configured frequency to call in a favor from her when docked to a separatist station." hideinmenus="true" cargocontaineridentifier="metalcrate" scale="0.5" isshootable="true" requireaimtouse="true" impactsoundtag="impact_soft">
+      <PreferredContainer primary="crewcab" secondary="locker" />
+      <InventoryIcon texture="%ModDir%/Items/EventItems/Radio.png" sourcerect="0,0,61,52" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Items/EventItems/Radio.png" sourcerect="62,25,64,27" depth="0.55" />
+      <Body width="64" height="24" density="30" />
+      <Holdable slots="Any,RightHand,LeftHand" holdpos="25,35" handle1="15,0" holdangle="260" aimpos="30,18" aimangle="260" aimable="false" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnUse" target="This" oneshot="true">
+          <TriggerEvent identifier="callkumo" />
+        </StatusEffect>
+        <StatusEffect type="OnUse" target="This" duration="0.1">
+          <Sound file="Content/Sounds/RadioStatic.ogg" loop="true" range="500" volume="1.0" />
+        </StatusEffect>
+      </Holdable>
+    </Item>
+  </Override>
+  <Override>
+    <Item name="Duffel Bag" identifier="kumoduffelbag1" nameidentifier="duffelbag" category="Equipment" tags="mobilecontainer" fireproof="true" description="" impactsoundtag="impact_soft" scale="0.4" hideinmenus="true">
+      <Deconstruct time="5">
+        <Item identifier="ballisticfiber" mincondition="0.25" />
+        <Item identifier="organicfiber" mincondition="0.25" />
+        <Item identifier="ballisticfiber" mincondition="0.5" />
+        <Item identifier="organicfiber" mincondition="0.5" />
+      </Deconstruct>
+      <Sprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="1,0,202,108" origin="0.5,0.56" depth="0.56" />
+      <BrokenSprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="204,0,202,108" origin="0.5,0.56" depth="0.56" maxcondition="80" fadein="true" />
+      <BrokenSprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="407,0,202,108" origin="0.5,0.56" depth="0.56" maxcondition="0" fadein="false" />
+      <Body width="120" radius="45" density="20" friction="1.0" restitution="0.01" />
+      <Holdable slots="RightHand,LeftHand" holdpos="0,-80" handle1="0,50" handle2="0,50" aimable="false" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnActive" targettype="This" Condition="-0.5" />
+        <StatusEffect type="OnBroken" target="This">
+          <DropContainedItems />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This" capacity="0" allowaccess="false" drawinventory="false" setvalue="true" />
+      </Holdable>
+      <ItemContainer capacity="5" keepopenwhenequipped="false" movableframe="true" spawnwithid="revolver,revolver,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel,revolverrounddepletedfuel">
+        <Containable items="weapon,gun,weaponsmith,grenade,smgammo,shotgunammo,stungunammo,harpoonammo,rifleammo,hmgammo,revolverammo,pistolammoitem,ammo,ammunition,bullet,assaultrifleammo" />
+      </ItemContainer>
+    </Item>
+  </Override>
+  <Override>
+    <Item name="Duffel Bag" identifier="kumoduffelbag2" nameidentifier="duffelbag" category="Equipment" tags="mobilecontainer" fireproof="true" description="" impactsoundtag="impact_soft" scale="0.4" hideinmenus="true">
+      <Deconstruct time="5">
+        <Item identifier="ballisticfiber" mincondition="0.25" />
+        <Item identifier="organicfiber" mincondition="0.25" />
+        <Item identifier="ballisticfiber" mincondition="0.5" />
+        <Item identifier="organicfiber" mincondition="0.5" />
+      </Deconstruct>
+      <Sprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="1,0,202,108" origin="0.5,0.56" depth="0.56" />
+      <BrokenSprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="204,0,202,108" origin="0.5,0.56" depth="0.56" maxcondition="80" fadein="true" />
+      <BrokenSprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="407,0,202,108" origin="0.5,0.56" depth="0.56" maxcondition="0" fadein="false" />
+      <Body width="120" radius="45" density="20" friction="1.0" restitution="0.01" />
+      <Holdable slots="RightHand,LeftHand" holdpos="0,-80" handle1="0,50" handle2="0,50" aimable="false" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnActive" targettype="This" Condition="-0.5" />
+        <StatusEffect type="OnBroken" target="This">
+          <DropContainedItems />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This" capacity="0" allowaccess="false" drawinventory="false" setvalue="true" />
+      </Holdable>
+      <ItemContainer capacity="5" keepopenwhenequipped="false" movableframe="true" spawnwithid="smg,smgmagazine,smgmagazine,smgmagazine,smgmagazine,smgmagazinedepletedfuel,smgmagazinedepletedfuel,smgmagazinedepletedfuel,smgmagazinedepletedfuel">
+        <Containable items="weapon,gun,weaponsmith,grenade,smgammo,shotgunammo,stungunammo,harpoonammo,rifleammo,hmgammo,revolverammo,pistolammoitem,ammo,ammunition,bullet,assaultrifleammo" />
+      </ItemContainer>
+    </Item>
+  </Override>
+  <Override>
+    <Item name="Duffel Bag" identifier="kumoduffelbag3" nameidentifier="duffelbag" category="Equipment" tags="mobilecontainer" fireproof="true" description="" impactsoundtag="impact_soft" scale="0.4" hideinmenus="true">
+      <Deconstruct time="5">
+        <Item identifier="ballisticfiber" mincondition="0.25" />
+        <Item identifier="organicfiber" mincondition="0.25" />
+        <Item identifier="ballisticfiber" mincondition="0.5" />
+        <Item identifier="organicfiber" mincondition="0.5" />
+      </Deconstruct>
+      <Sprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="1,0,202,108" origin="0.5,0.56" depth="0.56" />
+      <BrokenSprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="204,0,202,108" origin="0.5,0.56" depth="0.56" maxcondition="80" fadein="true" />
+      <BrokenSprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="407,0,202,108" origin="0.5,0.56" depth="0.56" maxcondition="0" fadein="false" />
+      <Body width="120" radius="45" density="20" friction="1.0" restitution="0.01" />
+      <Holdable slots="RightHand,LeftHand" holdpos="0,-80" handle1="0,50" handle2="0,50" aimable="false" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnActive" targettype="This" Condition="-0.5" />
+        <StatusEffect type="OnBroken" target="This">
+          <DropContainedItems />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This" capacity="0" allowaccess="false" drawinventory="false" setvalue="true" />
+      </Holdable>
+      <ItemContainer capacity="5" keepopenwhenequipped="false" movableframe="true" spawnwithid="shotgun,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell,shotgunshell">
+        <Containable items="weapon,gun,weaponsmith,grenade,smgammo,shotgunammo,stungunammo,harpoonammo,rifleammo,hmgammo,revolverammo,pistolammoitem,ammo,ammunition,bullet,assaultrifleammo" />
+      </ItemContainer>
+    </Item>
+  </Override>
+  <Override>
+    <Item name="Duffel Bag" identifier="kumoduffelbag4" nameidentifier="duffelbag" category="Equipment" tags="mobilecontainer" fireproof="true" description="" impactsoundtag="impact_soft" scale="0.4" hideinmenus="true">
+      <Deconstruct time="5">
+        <Item identifier="ballisticfiber" mincondition="0.25" />
+        <Item identifier="organicfiber" mincondition="0.25" />
+        <Item identifier="ballisticfiber" mincondition="0.5" />
+        <Item identifier="organicfiber" mincondition="0.5" />
+      </Deconstruct>
+      <Sprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="1,0,202,108" origin="0.5,0.56" depth="0.56" />
+      <BrokenSprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="204,0,202,108" origin="0.5,0.56" depth="0.56" maxcondition="80" fadein="true" />
+      <BrokenSprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="407,0,202,108" origin="0.5,0.56" depth="0.56" maxcondition="0" fadein="false" />
+      <Body width="120" radius="45" density="20" friction="1.0" restitution="0.01" />
+      <Holdable slots="RightHand,LeftHand" holdpos="0,-80" handle1="0,50" handle2="0,50" aimable="false" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnActive" targettype="This" Condition="-0.5" />
+        <StatusEffect type="OnBroken" target="This">
+          <DropContainedItems />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This" capacity="0" allowaccess="false" drawinventory="false" setvalue="true" />
+      </Holdable>
+      <ItemContainer capacity="5" keepopenwhenequipped="false" movableframe="true" spawnwithid="autoshotgun,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive,shotgunslugexplosive">
+        <Containable items="weapon,gun,weaponsmith,grenade,smgammo,shotgunammo,stungunammo,harpoonammo,rifleammo,hmgammo,revolverammo,pistolammoitem,ammo,ammunition,bullet,assaultrifleammo" />
+      </ItemContainer>
+    </Item>
+  </Override>
+  <Override>
+    <Item name="Duffel Bag" identifier="kumoduffelbag5" nameidentifier="duffelbag" category="Equipment" tags="mobilecontainer" fireproof="true" description="" impactsoundtag="impact_soft" scale="0.4" hideinmenus="true">
+      <Deconstruct time="5">
+        <Item identifier="ballisticfiber" mincondition="0.25" />
+        <Item identifier="organicfiber" mincondition="0.25" />
+        <Item identifier="ballisticfiber" mincondition="0.5" />
+        <Item identifier="organicfiber" mincondition="0.5" />
+      </Deconstruct>
+      <Sprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="1,0,202,108" origin="0.5,0.56" depth="0.56" />
+      <BrokenSprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="204,0,202,108" origin="0.5,0.56" depth="0.56" maxcondition="80" fadein="true" />
+      <BrokenSprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="407,0,202,108" origin="0.5,0.56" depth="0.56" maxcondition="0" fadein="false" />
+      <Body width="120" radius="45" density="20" friction="1.0" restitution="0.01" />
+      <Holdable slots="RightHand,LeftHand" holdpos="0,-80" handle1="0,50" handle2="0,50" aimable="false" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnActive" targettype="This" Condition="-0.5" />
+        <StatusEffect type="OnBroken" target="This">
+          <DropContainedItems />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This" capacity="0" allowaccess="false" drawinventory="false" setvalue="true" />
+      </Holdable>
+      <ItemContainer capacity="5" keepopenwhenequipped="false" movableframe="true" spawnwithid="assaultrifle,assaultriflemagazine,assaultriflemagazine,assaultriflemagazine,assaultriflemagazine,assaultriflemagazine">
+        <Containable items="weapon,gun,weaponsmith,grenade,smgammo,shotgunammo,stungunammo,harpoonammo,rifleammo,hmgammo,revolverammo,pistolammoitem,ammo,ammunition,bullet,assaultrifleammo" />
+      </ItemContainer>
+    </Item>
+  </Override>
+  <Override>
+    <Item name="Duffel Bag" identifier="kumoduffelbag6" nameidentifier="duffelbag" category="Equipment" tags="mobilecontainer" fireproof="true" description="" impactsoundtag="impact_soft" scale="0.4" hideinmenus="true">
+      <Deconstruct time="5">
+        <Item identifier="ballisticfiber" mincondition="0.25" />
+        <Item identifier="organicfiber" mincondition="0.25" />
+        <Item identifier="ballisticfiber" mincondition="0.5" />
+        <Item identifier="organicfiber" mincondition="0.5" />
+      </Deconstruct>
+      <Sprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="1,0,202,108" origin="0.5,0.56" depth="0.56" />
+      <BrokenSprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="204,0,202,108" origin="0.5,0.56" depth="0.56" maxcondition="80" fadein="true" />
+      <BrokenSprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="407,0,202,108" origin="0.5,0.56" depth="0.56" maxcondition="0" fadein="false" />
+      <Body width="120" radius="45" density="20" friction="1.0" restitution="0.01" />
+      <Holdable slots="RightHand,LeftHand" holdpos="0,-80" handle1="0,50" handle2="0,50" aimable="false" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnActive" targettype="This" Condition="-0.5" />
+        <StatusEffect type="OnBroken" target="This">
+          <DropContainedItems />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This" capacity="0" allowaccess="false" drawinventory="false" setvalue="true" />
+      </Holdable>
+      <ItemContainer capacity="5" keepopenwhenequipped="false" movableframe="true" spawnwithid="grenadelauncher,40mmgrenade,40mmgrenade,40mmgrenade,40mmgrenade,40mmgrenade,40mmgrenade,40mmgrenade,40mmgrenade">
+        <Containable items="weapon,gun,weaponsmith,grenade,smgammo,shotgunammo,stungunammo,harpoonammo,rifleammo,hmgammo,revolverammo,pistolammoitem,ammo,ammunition,bullet,assaultrifleammo" />
+      </ItemContainer>
+    </Item>
+  </Override>
+  <Override>
+    <Item name="Duffel Bag" identifier="kumoduffelbag7" nameidentifier="duffelbag" category="Equipment" tags="mobilecontainer" fireproof="true" description="" impactsoundtag="impact_soft" scale="0.4" hideinmenus="true">
+      <Deconstruct time="5">
+        <Item identifier="ballisticfiber" mincondition="0.25" />
+        <Item identifier="organicfiber" mincondition="0.25" />
+        <Item identifier="ballisticfiber" mincondition="0.5" />
+        <Item identifier="organicfiber" mincondition="0.5" />
+      </Deconstruct>
+      <Sprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="1,0,202,108" origin="0.5,0.56" depth="0.56" />
+      <BrokenSprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="204,0,202,108" origin="0.5,0.56" depth="0.56" maxcondition="80" fadein="true" />
+      <BrokenSprite texture="%ModDir%/Items/EventItems/DuffelBag.png" sourcerect="407,0,202,108" origin="0.5,0.56" depth="0.56" maxcondition="0" fadein="false" />
+      <Body width="120" radius="45" density="20" friction="1.0" restitution="0.01" />
+      <Holdable slots="RightHand,LeftHand" holdpos="0,-80" handle1="0,50" handle2="0,50" aimable="false" msg="ItemMsgPickUpSelect">
+        <StatusEffect type="OnActive" targettype="This" Condition="-0.5" />
+        <StatusEffect type="OnBroken" target="This">
+          <DropContainedItems />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This" capacity="0" allowaccess="false" drawinventory="false" setvalue="true" />
+      </Holdable>
+      <ItemContainer capacity="5" keepopenwhenequipped="false" movableframe="true" spawnwithid="hmg,hmgmagazine,hmgmagazine,hmgmagazine,hmgmagazine">
+        <Containable items="weapon,gun,weaponsmith,grenade,smgammo,shotgunammo,stungunammo,harpoonammo,rifleammo,hmgammo,revolverammo,pistolammoitem,ammo,ammunition,bullet,assaultrifleammo" />
+      </ItemContainer>
+    </Item>
+  </Override>
   <!-- Pirate Armory Alarm -->
   <Item name="Alarm Buzzer" identifier="pa-armoryalarmbuzzer" description="TRIGGERS PIRATE ARMORY EVENT WHEN ACTIVATED TO MAKE PIRATES HOSTILE" category="Electrical" Tags="smallitem,sound" maxstacksize="8" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" isshootable="true" noninteractable="true" hideinmenus="true">
     <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="128,127,64,64" origin="0.5,0.5" />

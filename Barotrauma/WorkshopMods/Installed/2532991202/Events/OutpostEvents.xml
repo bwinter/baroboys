@@ -318,7 +318,8 @@
                 <Success>
                   <NPCFollowAction npctag="securitynpc" targettag="cso_trig_player" follow="true" />
                   <SpawnAction npcsetidentifier="outpostnpcs1" npcidentifier="securitynpccoalition" targettag="backup" spawnlocation="Outpost" spawnpointtype="Path" />
-                  <CheckItemAction targettag="cso_trig_player" itemtags="stolen">
+                  <CheckItemAction targettag="cso_trig_player" RequiredConditionalMatchPercentage="1">
+                    <Conditional HasTag="stolen" targetcontainedItem="true" />
                     <Success>
                       <ReputationAction targettype="Faction" identifier="coalition" increase="-10" />
                       <NPCFollowAction npctag="securitynpc" targettag="cso_trig_player" follow="false" />
@@ -431,7 +432,7 @@
               <Label name="arrest" />
               <CombatAction combatmode="arrest" npctag="securitynpc" enemytag="cso_trig_player" isinstigator="false" guardreaction="none" witnessreaction="retreat" />
               <WaitAction time="60" />
-              <GoTo name="Patrol" />
+              <GoTo name="patrol" />
             </Failure>
           </CheckReputationAction>
         </Failure>
@@ -724,7 +725,7 @@
                       <CombatAction combatmode="Offensive" npctag="securitynpcpirate" enemytag="pso_trig_player" isinstigator="false" guardreaction="none" witnessreaction="none" />
                       <WaitAction time="60" />
                       <ClearTagAction tag="pso_trig_player" />
-                      <GoTo name="Patrol" />
+                      <GoTo name="patrol" />
                     </Option>
                   </ConversationAction>
                 </Success>
@@ -1128,6 +1129,440 @@
         </Success>
       </CheckReputationAction>
     </ScriptedEvent>
+    <ScriptedEvent identifier="kazuyakumo">
+      <TriggerEventAction identifier="callingkumo" nextround="false" />
+      <CheckReputationAction targettype="Faction" identifier="separatists" condition="gte 20" _npos="3081.734,-3461.2917">
+        <Success>
+          <CheckDataAction identifier="kumorecruited" condition="eq true" _npos="3618.501,-3446.757">
+            <Failure>
+              <CheckDataAction identifier="kumofavor" condition="eq true" _npos="4219.909,-3447.921">
+                <Failure>
+                  <CheckDataAction identifier="kumodeath" condition="eq 1" _npos="4733.2314,-3460.5898">
+                    <Failure>
+                      <CheckDataAction identifier="kumobetrayal" condition="eq true" _npos="5352.1934,-3472.27">
+                        <Failure>
+                          <CheckDataAction identifier="playerrejectkumojob" condition="eq true" _npos="5844.821,-3474.644">
+                            <Failure>
+                              <CheckDataAction identifier="kumointeraction" condition="eq true" _npos="6381.037,-3480.2942">
+                                <Failure>
+                                  <TagAction criteria="player" tag="player" _npos="6884.285,-3484.7275" />
+                                  <SpawnAction npcsetidentifier="customnpcs" npcidentifier="kazuyakumo" targettag="kumo" spawnlocation="Outpost" teamid="FriendlyNPC" allowduplicates="false" targetmoduletags="airlock" _npos="7413.623,-3501.4363" />
+                                  <Label name="restart" _npos="7889.2505,-3482.1643" />
+                                  <TriggerAction target1tag="kumo" target2tag="player" applytotarget2="triggereventplayer" disableiftargetincapacitated="true" waitforinteraction="true" _npos="8416.992,-3531.8098" />
+                                  <SetDataAction value="true" identifier="kumointeraction" _npos="8765.8125,-3513.754" />
+                                  <NPCWaitAction npctag="kumo" wait="true" _npos="9156.628,-3517.955" />
+                                  <ConversationAction text="You see a high ranking officer in formal attire befitting a First Mate leaning against a wall. Her furtive eyes glance through the passersby until her eyes meet yours. She pushes herself off the wall and slowly approaches you, a friendly smile can be seen on her face as she says, “Look who we have here… The new Underdog of the Jovian people…" targettag="triggereventplayer" _npos="9662.875,-3547.708">
+                                    <Option text="“Who are you?”">
+                                      <ConversationAction text="“That’s not important right now, I’ve been looking for someone… And you look like the perfect person for the task. Interested in a job?” She asks." targettag="triggereventplayer" _npos="10434.242,-4068.4995">
+                                        <Option text="“What’s the job?”">
+                                          <Label name="jobtalking" _npos="10966.043,-4114.484" />
+                                          <NPCWaitAction npctag="kumo" wait="true" _npos="11320.706,-4284.0034" />
+                                          <ConversationAction text="She glances around her for a second, making sure no one is listening in on the conversation, before leaning closer to you to continue. “There’s a Coalition traitor among my crew and I need an outsider like you to get rid of him.”" targettag="triggereventplayer" _npos="11722.487,-4240.281">
+                                            <Option text="“Who is the traitor?”">
+                                              <ConversationAction text="Her face seems to darken when she answers, “As much as I hate to say this, the traitor is my captain.”" targettag="triggereventplayer" _npos="12227.832,-4698.448">
+                                                <Option text="“What?! If the captain is the traitor, why didn’t you report him to the authorities?”">
+                                                  <Label name="firstlink" _npos="12732.276,-4726.814" />
+                                                  <NPCWaitAction npctag="kumo" wait="true" _npos="13023.985,-4596.2847" />
+                                                  <ConversationAction text="“I can’t do that. Being the second in command, my movements are being watched by the captain. If I report to the authorities, I would be executed the moment my captain realizes what I did.” She responds calmly." targettag="triggereventplayer" _npos="13431.868,-4793.421">
+                                                    <Option text="“So what do you suggest?”">
+                                                      <ConversationAction text="“Kill the captain for me.” She asserts." targettag="triggereventplayer" _npos="13957.121,-4804.839">
+                                                        <Option text="“Wouldn’t that get me into trouble?”">
+                                                          <ConversationAction text="“No, I’ll be the witness and testimony to your actions. With that, you’ll be crowned as a hero among the Separatists and easily rise among the ranks with my help… While I get to keep my crew safe.” A charming smile can be seen on the officer as the words leave her mouth." targettag="triggereventplayer" _npos="14614.328,-4847.319">
+                                                            <Option text="“Other than that, what else would I get in return?”">
+                                                              <ConversationAction text="She ponders for a bit, before replying, “I could lend you a hand on your travels by joining your crew. After all, I am one with many talents and skilled in many aspects. I’m not just any average captain in the sea.”" targettag="triggereventplayer" _npos="15305.597,-4863.444">
+                                                                <Option text="“Then what would happen to your crew if you joined me?”">
+                                                                  <ConversationAction text="“I’ll make sure the crew gets a better captain once I leave them to join you.”" targettag="triggereventplayer" _npos="16113.79,-5289.842">
+                                                                    <Option text="“Alright, I’ll help you with this. Give me a description of your captain.”">
+                                                                      <GoTo name="acceptjob" _npos="16729.094,-5307.7153" />
+                                                                    </Option>
+                                                                    <Option text="“No way I’m doing this, you’re on your own.”">
+                                                                      <GoTo name="rejectjob" _npos="16786.791,-5086.245" />
+                                                                    </Option>
+                                                                  </ConversationAction>
+                                                                </Option>
+                                                                <Option text="“Alright, I’ll help you with this. Give me a description of your captain.”">
+                                                                  <Label name="acceptjob" _npos="15899.58,-4745.6494" />
+                                                                  <NPCWaitAction npctag="kumo" _npos="16260.707,-4733.9624" />
+                                                                  <ConversationAction text="“His name is John Smith. He has a burn scar on his face and a security officer following him around like a dog. It’s not hard to miss.” She explains." targettag="triggereventplayer" _npos="16662.578,-4705.8076">
+                                                                    <Option text="“I’ll see what I can do about your traitor incident.”">
+                                                                      <ConversationAction text="“I’ll be waiting here for your good news and accomplishment.” She comments while giving a dry smile towards you." targettag="triggereventplayer" _npos="17148.29,-4721.419">
+                                                                        <Option text="Leave." endconversation="true">
+                                                                          <ClearTagAction tag="triggereventplayer" _npos="17605.037,-4639.525" />
+                                                                          <NPCWaitAction npctag="kumo" wait="false" _npos="17551.654,-4496.9233" />
+                                                                          <SpawnAction npcsetidentifier="customnpcs" npcidentifier="captainsmith" lootingisstealing="true" targettag="smith" spawnlocation="Outpost" teamid="FriendlyNPC" allowduplicates="false" targetmoduletags="adminmodule" _npos="18064.191,-4682.6943" />
+                                                                          <SpawnAction npcsetidentifier="customnpcs" npcidentifier="loyalcommissar" lootingisstealing="true" targettag="commissar" spawnlocation="Outpost" teamid="FriendlyNPC" allowduplicates="false" targetmoduletags="adminmodule" _npos="18461.973,-4687.506" />
+                                                                          <TagAction criteria="humanprefabidentifier:captainsmith" tag="groupattack" _npos="18821.275,-4662.4336" />
+                                                                          <TagAction criteria="humanprefabidentifier:loyalcommissar" tag="groupattack" _npos="19233.68,-4630.3633" />
+                                                                          <NPCFollowAction npctag="commissar" targettag="smith" follow="true" abandononreset="false" _npos="19195.053,-4281.205" />
+                                                                          <TriggerAction target1tag="smith" target2tag="player" applytotarget2="triggereventplayer1" disableiftargetincapacitated="true" waitforinteraction="true" _npos="19622.805,-4338.281" />
+                                                                          <NPCWaitAction npctag="smith" wait="true" _npos="20023.582,-4284.7285" />
+                                                                          <ConversationAction text="A scarred-face captain and his commissar walks down the hallway. You notice many medals on the captain’s uniform, entailing that he is a prestigious captain. It fits the description of the traitor you are looking for. You could kill the captain right now… However, perhaps it's better to talk to them first?" targettag="triggereventplayer1" _npos="20453.465,-4403.677">
+                                                                            <Option text="Go through with the plan and kill him.">
+                                                                              <ConversationAction text="A traitor is a traitor… There is no point chatting with them. The captain and his commissar notice your hostility and prepare to defend themselves." targettag="triggereventplayer1" _npos="20987.666,-4824.4146">
+                                                                                <Option text="Fight." endconversation="true">
+                                                                                  <NPCWaitAction npctag="smith" wait="false" _npos="21466.658,-4784.866" />
+                                                                                  <NPCChangeTeamAction npctag="smith" teamid="Team2" _npos="21952.82,-4824.3203" />
+                                                                                  <NPCChangeTeamAction npctag="commissar" teamid="Team2" _npos="22383.992,-4869.75" />
+                                                                                  <Label name="attackcap1" _npos="22861.375,-5003.48" />
+                                                                                  <CombatAction combatmode="Offensive" isinstigator="false" guardreaction="retreat" witnessreaction="retreat" npctag="groupattack" enemytag="triggereventplayer1" _npos="23349.5,-5137.617" />
+                                                                                  <CheckDataAction identifier="kumokill" condition="eq 2" _npos="23748.49,-5157.394">
+                                                                                    <Success>
+                                                                                      <Label name="successfulcaptainkillmission" _npos="23353.533,-5453.124" />
+                                                                                      <ConversationAction text="The captain is dead and so is his loyal commissar. You should probably inform the first mate about your success..." targettag="triggereventplayer1" waitforinteraction="false" dialogtype="Small" ignoreinterruptdistance="true" _npos="23302.389,-6340.246" />
+                                                                                      <ClearTagAction tag="triggereventplayer1" _npos="23729.383,-6278.741" />
+                                                                                      <TriggerAction target1tag="kumo" target2tag="player" applytotarget2="triggereventplayer" radius="225" disableiftargetincapacitated="true" waitforinteraction="true" _npos="24339.559,-6252.661" />
+                                                                                      <NPCWaitAction npctag="kumo" wait="true" _npos="24835.783,-6303.237" />
+                                                                                      <ConversationAction text="“Haha! You have done well! The news of the incident spread fast in the outpost. Do not fret, I will be able to solve any issues that come up from this. You’ll have my words, you will not get into trouble.” She reassures you with her beaming smile." targettag="triggereventplayer" _npos="25406.082,-6721.256">
+                                                                                        <Option text="“I’m glad I could help but let’s talk about my reward.”">
+                                                                                          <ConversationAction text="“Straight to the point? That’s fine by me. Still, where are my manners? My name is Kazuya Kumo, First Mate to the Separatists Vessel called Seawolf. As promised, I will join your crew and assist you on your journey.” " targettag="triggereventplayer" _npos="26009.648,-7040.494">
+                                                                                            <Option text="“Welcome on board.”">
+                                                                                              <ConversationAction text="“Thank you. I will join you as soon as you depart from the outpost. Since I have some documents to submit to the higher ups and also to clean up any loose ends in this outpost.” " targettag="triggereventplayer" _npos="26653.357,-7358.691">
+                                                                                                <Option text="Leave." endconversation="true">
+                                                                                                  <NPCChangeTeamAction npctag="kumo" teamid="Team1" addtocrew="true" _npos="27180.42,-7324.3745" />
+                                                                                                  <ReputationAction increase="10" identifier="separatists" targettype="Faction" _npos="27641.445,-7320.2515" />
+                                                                                                  <SetDataAction value="true" identifier="kumorecruited" _npos="28078.42,-7320.0312" />
+                                                                                                  <NPCWaitAction npctag="kumo" wait="false" _npos="28566.049,-7321.29" />
+                                                                                                  <ClearTagAction tag="triggereventplayer" _npos="29041.062,-7321.7134" />
+                                                                                                </Option>
+                                                                                              </ConversationAction>
+                                                                                            </Option>
+                                                                                            <Option text="“I don’t need another crewmate… I want something else in return.”">
+                                                                                              <ConversationAction text="One of her eyebrows rises at your statement. “Oh? I wasn’t expecting you to reject the offer…” She comments, bringing her right hand up to rub the bottom of her chin while thinking." targettag="triggereventplayer" _npos="26598.908,-6772.932">
+                                                                                                <Option text="Wait patiently.">
+                                                                                                  <ConversationAction text="Eventually she reaches onto her belt, grabbing something and handing it to you. She continues, “I don’t exactly have anything I could offer right now… So tell you what, I’ll give you my radio. The frequency is already configured. When the time comes where you need help, call me while docked at a Separatists station and I will return the favor.”" targettag="triggereventplayer" _npos="27144.719,-6742.139">
+                                                                                                    <Option text="“Alright, I’ll keep that in mind.”">
+                                                                                                      <ConversationAction text="“Now I shall get going, I got reports to do and things to clean up…” She casually waves a bye to you as she leaves with a bright smile on her face." targettag="triggereventplayer" _npos="27705.24,-7025.612">
+                                                                                                        <Option text="Leave." endconversation="true">
+                                                                                                          <ReputationAction increase="10" identifier="separatists" targettype="Faction" _npos="28253.729,-7005.097" />
+                                                                                                          <SetDataAction value="true" identifier="kumofavor" _npos="28696.5,-7010.356" />
+                                                                                                          <NPCWaitAction npctag="kumo" wait="false" _npos="29151.13,-7013.8594" />
+                                                                                                          <SpawnAction itemidentifier="kazuyakumoradio" lootingisstealing="false" targetinventory="triggereventplayer" />
+                                                                                                          <ClearTagAction tag="triggereventplayer" _npos="29572.734,-7007.365" />
+                                                                                                        </Option>
+                                                                                                      </ConversationAction>
+                                                                                                    </Option>
+                                                                                                    <Option text="“You better keep your promise.”">
+                                                                                                      <ConversationAction text="“I will. After all, I do not like to owe people a favor. Now if you excuse me, I got reports to do and a mess to clean up.” With that, she leaves to do her work." targettag="triggereventplayer" _npos="27697.7,-6535.1587">
+                                                                                                        <Option text="Leave." endconversation="true">
+                                                                                                          <ReputationAction increase="10" identifier="separatists" targettype="Faction" _npos="28262.533,-6537.3867" />
+                                                                                                          <SetDataAction value="true" identifier="kumofavor" _npos="28695.121,-6537.1157" />
+                                                                                                          <NPCWaitAction npctag="kumo" wait="false" _npos="29179.59,-6523.708" />
+                                                                                                          <SpawnAction itemidentifier="kazuyakumoradio" lootingisstealing="false" targetinventory="triggereventplayer" />
+                                                                                                          <ClearTagAction tag="triggereventplayer" _npos="29592.201,-6516.2725" />
+                                                                                                        </Option>
+                                                                                                      </ConversationAction>
+                                                                                                    </Option>
+                                                                                                  </ConversationAction>
+                                                                                                </Option>
+                                                                                              </ConversationAction>
+                                                                                            </Option>
+                                                                                          </ConversationAction>
+                                                                                        </Option>
+                                                                                      </ConversationAction>
+                                                                                    </Success>
+                                                                                    <Failure>
+                                                                                      <WaitAction time="10" />
+                                                                                      <StatusEffectAction targettag="smith">
+                                                                                        <StatusEffect target="Character" oneshot="true" comparison="And" disabledeltatime="true">
+                                                                                          <Conditional vitality="lt 0" />
+                                                                                          <Conditional isdead="eq false" />
+                                                                                          <Affliction identifier="bloodloss" amount="1000" />
+                                                                                          <TriggerEvent identifier="kumokill" />
+                                                                                        </StatusEffect>
+                                                                                      </StatusEffectAction>
+                                                                                      <StatusEffectAction targettag="commissar">
+                                                                                        <StatusEffect target="Character" oneshot="true" comparison="And" disabledeltatime="true">
+                                                                                          <Conditional vitality="lt 0" />
+                                                                                          <Conditional isdead="eq false" />
+                                                                                          <Affliction identifier="bloodloss" amount="1000" />
+                                                                                          <TriggerEvent identifier="kumokill" />
+                                                                                        </StatusEffect>
+                                                                                      </StatusEffectAction>
+                                                                                      <StatusEffectAction targettag="kumo">
+                                                                                        <StatusEffect target="Character" oneshot="true" comparison="And" disabledeltatime="true">
+                                                                                          <Conditional vitality="lt 0" />
+                                                                                          <Conditional isdead="eq false" />
+                                                                                          <Affliction identifier="bloodloss" amount="1000" />
+                                                                                          <TriggerEvent identifier="kumodeath" />
+                                                                                        </StatusEffect>
+                                                                                      </StatusEffectAction>
+                                                                                      <GoTo name="attackcap1" />
+                                                                                    </Failure>
+                                                                                  </CheckDataAction>
+                                                                                </Option>
+                                                                              </ConversationAction>
+                                                                            </Option>
+                                                                            <Option text="Approach the captain.">
+                                                                              <ConversationAction text="The menacing captain notices you approaching and he questions, “Is there something you need, citizen?”" targettag="triggereventplayer1" _npos="21067.455,-4292.8076">
+                                                                                <Option text="“Hey! It’s an honor to meet a captain like yourself! Can you please tell me some of your stories?”">
+                                                                                  <ConversationAction text="The captain examines you carefully to find out your motive but the moment he sees your enthusiasm, he perceives you as another curious seaman. His demeanor changes to one that is prideful as he speaks arrogantly, “Ah… Another young seafarer with such curiosity. You’re lucky to meet someone like me, not many captains have time to chat. Very well, I’ll share some war stories from my time.”" targettag="triggereventplayer1" _npos="21627.861,-4267.1035">
+                                                                                    <Option text="Continue.">
+                                                                                      <ConversationAction text="You listen in on the stories. The captain points to each of his medals and shares what each medal means. A few of the medals were how he bravely took over many different Coalition outposts while others were how he destroyed a fleet of Coalition submarines alone with his own submarine. His feats are remarkable indeed. However, you suddenly grow curious about the burnt scars on his face." targettag="triggereventplayer1" _npos="22087.55,-4202.9478">
+                                                                                        <Option text="“How did you get your scars?”">
+                                                                                          <ConversationAction text="“During an escort mission, I was ambushed by a Coalition submarine. Those coalition scums boarded our submarine and attempted to capture my crew alive. I wasn’t going to let that happen, so I blew my submarine up, taking all those scums down with me. Somehow I survived the blast, I was stuck under some rumbles and a submarine dropped by to rescue me. That’s how I got my scars.” He answers." targettag="triggereventplayer1" _npos="22599.422,-4111.835">
+                                                                                            <Option text="“You killed your whole crew just to stop the Coalitions?!”">
+                                                                                              <ConversationAction text="“Of course. I did what was necessary to prevent valuable information from falling into our enemies’ hands. A death of a mere crew is nothing compared to the information we hold.” The cold captain states as a matter of fact." targettag="triggereventplayer1" _npos="23154.125,-4087.3225">
+                                                                                                <Option text="Continue.">
+                                                                                                  <ConversationAction text="After listening to the captain’s words, you realize he is not a traitor but a ruthless captain loyal to the Separatists. You wonder why the First Mate wants him dead until it dawns on you that maybe she just wants to protect her crew from a captain that merely sees them as tools to use and dispose off. Now you have to decide… To continue with the plan of murdering him, despite knowing he is loyal to the Jovian Separatists… Or maybe you can betray the First Mate by revealing her assassination plans to gain favor with the merciless captain?" targettag="triggereventplayer1" _npos="23751.598,-4068.606">
+                                                                                                    <Option text="Kill the heartless captain and his commissar.">
+                                                                                                      <SetDataAction value="true" identifier="hiddentruth" _npos="23996.531,-4381.865" />
+                                                                                                      <ConversationAction text="You prepare yourself to murder them. The surprised party has no choice but to defend themselves." targettag="triggereventplayer1" _npos="24578.396,-4487.8076">
+                                                                                                        <Option text="Fight." endconversation="true">
+                                                                                                          <NPCWaitAction npctag="smith" wait="false" _npos="25078.693,-4423.7695" />
+                                                                                                          <NPCChangeTeamAction npctag="smith" teamid="Team2" _npos="25510.346,-4419.3105" />
+                                                                                                          <NPCChangeTeamAction npctag="commissar" teamid="Team2" _npos="25987.736,-4416.121" />
+                                                                                                          <Label name="attackcap2" _npos="26508.574,-4419.2563" />
+                                                                                                          <CombatAction combatmode="Offensive" isinstigator="false" guardreaction="retreat" witnessreaction="retreat" npctag="groupattack" enemytag="triggereventplayer1" _npos="26901.227,-4332.8555" />
+                                                                                                          <CheckDataAction identifier="kumokill" condition="eq 2" _npos="27393.014,-4348.999">
+                                                                                                            <Success>
+                                                                                                              <GoTo name="successfulcaptainkillmission" _npos="28026.592,-4513.809" />
+                                                                                                            </Success>
+                                                                                                            <Failure>
+                                                                                                              <WaitAction time="10" />
+                                                                                                              <StatusEffectAction targettag="smith">
+                                                                                                                <StatusEffect target="Character" oneshot="true" comparison="And" disabledeltatime="true">
+                                                                                                                  <Conditional vitality="lt 0" />
+                                                                                                                  <Conditional isdead="eq false" />
+                                                                                                                  <Affliction identifier="bloodloss" amount="1000" />
+                                                                                                                  <TriggerEvent identifier="kumokill" />
+                                                                                                                </StatusEffect>
+                                                                                                              </StatusEffectAction>
+                                                                                                              <StatusEffectAction targettag="commissar">
+                                                                                                                <StatusEffect target="Character" oneshot="true" comparison="And" disabledeltatime="true">
+                                                                                                                  <Conditional vitality="lt 0" />
+                                                                                                                  <Conditional isdead="eq false" />
+                                                                                                                  <Affliction identifier="bloodloss" amount="1000" />
+                                                                                                                  <TriggerEvent identifier="kumokill" />
+                                                                                                                </StatusEffect>
+                                                                                                              </StatusEffectAction>
+                                                                                                              <StatusEffectAction targettag="kumo">
+                                                                                                                <StatusEffect target="Character" oneshot="true" comparison="And" disabledeltatime="true">
+                                                                                                                  <Conditional vitality="lt 0" />
+                                                                                                                  <Conditional isdead="eq false" />
+                                                                                                                  <Affliction identifier="bloodloss" amount="1000" />
+                                                                                                                  <TriggerEvent identifier="kumodeath" />
+                                                                                                                </StatusEffect>
+                                                                                                              </StatusEffectAction>
+                                                                                                              <GoTo name="attackcap2" />
+                                                                                                            </Failure>
+                                                                                                          </CheckDataAction>
+                                                                                                        </Option>
+                                                                                                      </ConversationAction>
+                                                                                                    </Option>
+                                                                                                    <Option text="Betray the First Mate by revealing her assassination plans.">
+                                                                                                      <ConversationAction text="The captain is not surprised by your words. He is well aware that such actions will happen eventually. Yet the captain thanks you for the information and rewards you with some cash, before leaving to find his First Mate." targettag="triggereventplayer1" _npos="24488.346,-3686.8577">
+                                                                                                        <Option text="Leave." endconversation="true">
+                                                                                                          <MoneyAction amount="1000" targettag="triggereventplayer1" _npos="24916.008,-3551.325" />
+                                                                                                          <ReputationAction increase="5" identifier="separatists" targettype="Faction" _npos="25326.55,-3554.7148" />
+                                                                                                          <ClearTagAction tag="triggereventplayer1" _npos="25741.8,-3493.375" />
+                                                                                                          <SetDataAction value="true" identifier="kumobetrayal" _npos="26174.867,-3630.949" />
+                                                                                                          <NPCWaitAction npctag="smith" wait="false" _npos="26179.025,-3359.302" />
+                                                                                                          <NPCFollowAction npctag="smith" targettag="kumo" follow="true" abandononreset="false" _npos="26663.8,-3375.718" />
+                                                                                                          <NPCWaitAction npctag="kumo" wait="true" _npos="27093.158,-3315.8171" />
+                                                                                                          <TriggerAction target1tag="kumo" target2tag="player" applytotarget2="triggereventplayer" radius="225" disableiftargetincapacitated="true" _npos="27743.549,-3347.0425" />
+                                                                                                          <ConversationAction text="You stumble onto a scene that looks like two high ranking officers having a serious conversation." targettag="triggereventplayer" _npos="28232.44,-3331.7046">
+                                                                                                            <Option text="Continue.">
+                                                                                                              <ConversationAction text="“Damn those rats…” The First Mate curses." targettag="triggereventplayer" _npos="29041.883,-3316.465">
+                                                                                                                <Option text="Continue.">
+                                                                                                                  <ConversationAction text="The scarred-face captain stands tall, approaching his First Mate with a sinister grin. He mocks her, “Kumo Kumo Kumo… You think you can outsmart me? Have you not learned from your mistake? Now, I am in a rather pleasant mood, so all you have to do is submit to me and I’ll let your foolish plans slide.”" targettag="triggereventplayer" _npos="29507.84,-3301.23">
+                                                                                                                    <Option text="Continue.">
+                                                                                                                      <ConversationAction text="The First Mate clutches her fists and her spiteful eyes lock onto her captain. “Screw this, I lost enough… I am done with your torment, Smith. I will no longer be under your manipulative control. This ends here!” Her angry voice echoes through the halls as she pulls out a weapon to attack her captain. " targettag="triggereventplayer" _npos="30033.51,-3287.3018">
+                                                                                                                        <Option text="Better leave while you can." endconversation="true">
+                                                                                                                          <NPCWaitAction npctag="kumo" wait="false" _npos="30450.18,-3204.278" />
+                                                                                                                          <NPCFollowAction npctag="smith" targettag="kumo" follow="false" abandononreset="false" _npos="30883.027,-3161.9038" />
+                                                                                                                          <Label name="kumofight" _npos="31335.621,-3093.0325" />
+                                                                                                                          <CombatAction combatmode="Offensive" isinstigator="true" guardreaction="retreat" witnessreaction="retreat" npctag="kumo" enemytag="groupattack" _npos="31719.102,-3075.925" />
+                                                                                                                          <CombatAction combatmode="Offensive" isinstigator="false" npctag="groupattack" enemytag="kumo" _npos="32167.188,-2934.8284" />
+                                                                                                                          <CheckDataAction identifier="kumokill" condition="eq 2">
+                                                                                                                            <Success>
+                                                                                                                              <NPCWaitAction npctag="kumo" wait="true" _npos="32785.566,-3125.9453" />
+                                                                                                                              <TriggerAction target1tag="kumo" target2tag="triggereventplayer" radius="225" disableiftargetincapacitated="true" waitforinteraction="false" _npos="33341.242,-3337.6555" />
+                                                                                                                              <ConversationAction text="“You god damn snitch! Get the hell out of my sight before I kill you too!” She growls at you." targettag="triggereventplayer" dialogtype="Small" _npos="34062.527,-3503.5469" />
+                                                                                                                              <NPCWaitAction npctag="kumo" wait="false" _npos="34632.797,-3442.4365" />
+                                                                                                                              <ClearTagAction tag="triggereventplayer" _npos="35212.523,-3408.8643" />
+                                                                                                                            </Success>
+                                                                                                                            <Failure>
+                                                                                                                              <CheckDataAction identifier="kumodead" condition="eq 1">
+                                                                                                                                <Success>
+                                                                                                                                  <NPCWaitAction npctag="smith" wait="true" _npos="33434.22,-2724.4988" />
+                                                                                                                                  <TriggerAction target1tag="smith" target2tag="triggereventplayer" radius="225" disableiftargetincapacitated="true" waitforinteraction="false" _npos="34098.41,-2791.6494" />
+                                                                                                                                  <ConversationAction text="“Once again, thank you for informing me about this. A shame such a potential person wasted her life for something so petty.&quot; The captain remarks." targettag="triggereventplayer" dialogtype="Small" _npos="34680.91,-2834.7522" />
+                                                                                                                                  <NPCWaitAction npctag="smith" wait="false" _npos="35263.77,-2829.9856" />
+                                                                                                                                  <ClearTagAction tag="triggereventplayer" _npos="35823.414,-2817.5146" />
+                                                                                                                                </Success>
+                                                                                                                                <Failure>
+                                                                                                                                  <WaitAction time="6" />
+                                                                                                                                  <StatusEffectAction targettag="smith">
+                                                                                                                                    <StatusEffect target="Character" oneshot="true" comparison="And" disabledeltatime="true">
+                                                                                                                                      <Conditional vitality="lt 0" />
+                                                                                                                                      <Conditional isdead="eq false" />
+                                                                                                                                      <Affliction identifier="bloodloss" amount="1000" />
+                                                                                                                                      <TriggerEvent identifier="kumokill" />
+                                                                                                                                    </StatusEffect>
+                                                                                                                                  </StatusEffectAction>
+                                                                                                                                  <StatusEffectAction targettag="commissar">
+                                                                                                                                    <StatusEffect target="Character" oneshot="true" comparison="And" disabledeltatime="true">
+                                                                                                                                      <Conditional vitality="lt 0" />
+                                                                                                                                      <Conditional isdead="eq false" />
+                                                                                                                                      <Affliction identifier="bloodloss" amount="1000" />
+                                                                                                                                      <TriggerEvent identifier="kumokill" />
+                                                                                                                                    </StatusEffect>
+                                                                                                                                  </StatusEffectAction>
+                                                                                                                                  <StatusEffectAction targettag="kumo">
+                                                                                                                                    <StatusEffect target="Character" oneshot="true" comparison="And" disabledeltatime="true">
+                                                                                                                                      <Conditional vitality="lt 0" />
+                                                                                                                                      <Conditional isdead="eq false" />
+                                                                                                                                      <Affliction identifier="bloodloss" amount="1000" />
+                                                                                                                                      <TriggerEvent identifier="kumodeath" />
+                                                                                                                                    </StatusEffect>
+                                                                                                                                  </StatusEffectAction>
+                                                                                                                                  <GoTo name="kumofight" />
+                                                                                                                                </Failure>
+                                                                                                                              </CheckDataAction>
+                                                                                                                            </Failure>
+                                                                                                                          </CheckDataAction>
+                                                                                                                        </Option>
+                                                                                                                      </ConversationAction>
+                                                                                                                    </Option>
+                                                                                                                  </ConversationAction>
+                                                                                                                </Option>
+                                                                                                              </ConversationAction>
+                                                                                                            </Option>
+                                                                                                          </ConversationAction>
+                                                                                                        </Option>
+                                                                                                      </ConversationAction>
+                                                                                                    </Option>
+                                                                                                  </ConversationAction>
+                                                                                                </Option>
+                                                                                              </ConversationAction>
+                                                                                            </Option>
+                                                                                          </ConversationAction>
+                                                                                        </Option>
+                                                                                      </ConversationAction>
+                                                                                    </Option>
+                                                                                  </ConversationAction>
+                                                                                </Option>
+                                                                              </ConversationAction>
+                                                                            </Option>
+                                                                          </ConversationAction>
+                                                                        </Option>
+                                                                      </ConversationAction>
+                                                                    </Option>
+                                                                  </ConversationAction>
+                                                                </Option>
+                                                                <Option text="“No way I’m doing this, you’re on your own.”">
+                                                                  <Label name="rejectjob" _npos="15831.36,-4389.776" />
+                                                                  <NPCWaitAction npctag="kumo" wait="true" _npos="15803.321,-4157.068" />
+                                                                  <ConversationAction text="“What a shame… Here I thought you were the dark horse among the crowd. I guess you aren’t what the people claimed you to be.” She remarks in a disappointing tone and begins to walk away from you." targettag="triggereventplayer" _npos="16273.207,-4112.6523">
+                                                                    <Option text="Leave." endconversation="true">
+                                                                      <ClearTagAction tag="triggereventplayer" _npos="16794.732,-4065.117" />
+                                                                      <NPCWaitAction npctag="kumo" wait="false" _npos="16786.203,-3867.1626" />
+                                                                      <SetDataAction value="true" identifier="playerrejectkumojob" _npos="16772.834,-3669.0989" />
+                                                                    </Option>
+                                                                  </ConversationAction>
+                                                                </Option>
+                                                              </ConversationAction>
+                                                            </Option>
+                                                          </ConversationAction>
+                                                        </Option>
+                                                      </ConversationAction>
+                                                    </Option>
+                                                  </ConversationAction>
+                                                </Option>
+                                              </ConversationAction>
+                                            </Option>
+                                            <Option text="“If there is a traitor, why didn’t you get rid of him yourself?”">
+                                              <ConversationAction text="She frowns at your question, “It’s complicated… I would have already done it myself a long time ago if I could. However, the traitor in question is my captain.”" targettag="triggereventplayer" _npos="12225.757,-4032.8403">
+                                                <Option text="“What?! If the captain is the traitor, why didn’t you report him to the authorities?”">
+                                                  <GoTo name="firstlink" _npos="12745.376,-3940.8103" />
+                                                </Option>
+                                              </ConversationAction>
+                                            </Option>
+                                          </ConversationAction>
+                                        </Option>
+                                        <Option text="“I’m not interested.”">
+                                          <ConversationAction text="She shakes her head and scoffs, “I guess I’ve made a poor judgment on the person.” She proceeds to move away as though she is looking for another potential person. " targettag="triggereventplayer" _npos="11065.521,-3701.963">
+                                            <Option text="Leave." endconversation="true">
+                                              <ClearTagAction tag="triggereventplayer" _npos="11543.092,-3578.0059" />
+                                              <NPCWaitAction npctag="kumo" wait="false" _npos="11551.063,-3439.335" />
+                                              <GoTo name="restart" _npos="11563.287,-3250.9612" />
+                                            </Option>
+                                          </ConversationAction>
+                                        </Option>
+                                      </ConversationAction>
+                                    </Option>
+                                    <Option text="“Do I know you?”">
+                                      <ConversationAction text="“No… But you look like someone who could get things done. Interested in a job?” She asks." targettag="triggereventplayer" _npos="10262.433,-2844.345">
+                                        <Option text="“What’s the job?”">
+                                          <GoTo name="jobtalking" _npos="10902.737,-2909.9287" />
+                                        </Option>
+                                        <Option text="“I’m not interested.”">
+                                          <ConversationAction text="She shakes her head and scoffs, “I guess I’ve made a poor judgment on the person.” She proceeds to move away as though she is looking for another potential person. " targettag="triggereventplayer" _npos="10760.835,-2640.626">
+                                            <Option text="Leave." endconversation="true">
+                                              <ClearTagAction tag="triggereventplayer" _npos="11269.735,-2506.464" />
+                                              <NPCWaitAction npctag="kumo" wait="false" _npos="11299.439,-2351.5789" />
+                                              <GoTo name="restart" _npos="11287.542,-2153.8113" />
+                                            </Option>
+                                          </ConversationAction>
+                                        </Option>
+                                      </ConversationAction>
+                                    </Option>
+                                  </ConversationAction>
+                                </Failure>
+                              </CheckDataAction>
+                            </Failure>
+                          </CheckDataAction>
+                        </Failure>
+                      </CheckDataAction>
+                    </Failure>
+                  </CheckDataAction>
+                </Failure>
+              </CheckDataAction>
+            </Failure>
+          </CheckDataAction>
+        </Success>
+      </CheckReputationAction>
+    </ScriptedEvent>
+    <ScriptedEvent identifier="kumokill">
+      <SetDataAction identifier="kumokill" operation="Add" value="1" />
+      <TagAction criteria="humanprefabidentifier:kazuyakumo" tag="kumo" _npos="18821.275,-4662.4336" />
+      <StatusEffectAction targettag="kumo">
+        <StatusEffect target="Character" oneshot="true" comparison="And" disabledeltatime="true">
+          <ReduceAffliction type="damage" amount="1000" />
+          <ReduceAffliction type="bleeding" amount="1000" />
+        </StatusEffect>
+      </StatusEffectAction>
+    </ScriptedEvent>
+    <ScriptedEvent identifier="kumodeath">
+      <SetDataAction identifier="kumodead" operation="Set" value="1" />
+      <TagAction criteria="humanprefabidentifier:captainsmith" tag="groupattack" ContinueIfNoTargetsFound="true" _npos="18821.275,-4662.4336" />
+      <TagAction criteria="humanprefabidentifier:loyalcommissar" tag="groupattack" ContinueIfNoTargetsFound="true" _npos="18849.65,-4276.0493" />
+      <StatusEffectAction targettag="groupattack">
+        <StatusEffect target="Character" oneshot="true" comparison="And" disabledeltatime="true">
+          <ReduceAffliction type="damage" amount="1000" />
+          <ReduceAffliction type="bleeding" amount="1000" />
+        </StatusEffect>
+      </StatusEffectAction>
+    </ScriptedEvent>
+    <ScriptedEvent identifier="######callingkumo">
+      <Label name="recheck" />
+      <CheckDataAction identifier="kumofavor" condition="eq true">
+        <Success>
+          <CheckDataAction identifier="calledkumo" condition="eq 1">
+            <Success>
+              <WaitAction time="1" />
+              <Label name="start" />
+              <ConversationAction text="HEEELP! HELP ME! | Or in other words start working on this event from here :P" />
+            </Success>
+            <Failure>
+              <WaitAction time="1" />
+              <GoTo name="recheck" />
+            </Failure>
+          </CheckDataAction>
+        </Success>
+        <Failure />
+      </CheckDataAction>
+    </ScriptedEvent>
     <!-- Mission Events -->
     <ScriptedEvent identifier="missionevent_pirateany" commonness="100">
       <NPCWaitAction npctag="outpostmanager" wait="true" />
@@ -1151,6 +1586,12 @@
       <NPCWaitAction npctag="outpostmanager" wait="true" />
       <ConversationAction text="eventtext.missionevent_piratemission3.c1" speakertag="outpostmanager" endeventifinterrupted="false" dialogtype="Small" />
       <MissionAction missiontag="strangepirate" />
+      <NPCWaitAction npctag="outpostmanager" wait="false" />
+    </ScriptedEvent>
+    <ScriptedEvent identifier="missionevent_killmonster_thegreatsea" commonness="85">
+      <NPCWaitAction npctag="outpostmanager" wait="true" />
+      <ConversationAction text="eventtext.missionevent_killmonster_regional.c1" speakertag="outpostmanager" endeventifinterrupted="false" dialogtype="Small" />
+      <MissionAction missiontag="killmonster_thegreatsea" />
       <NPCWaitAction npctag="outpostmanager" wait="false" />
     </ScriptedEvent>
   </EventPrefabs>

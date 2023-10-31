@@ -3,10 +3,11 @@
   <Override>
     <Biomes>
       <Biome identifier="coldcaverns" name="Cold Caverns" description="" AllowedZones="1" mindifficulty="0" maxdifficulty="15">
-        <Submarines maxtier="1" />
-        <Override locationtype="military" class="attack" maxtier="1" />
-        <Override locationtype="research" class="scout" maxtier="1" />
-        <Override locationtype="mine" class="transport" maxtier="1" />
+        <Submarines maxtier="1">
+          <Override locationtype="military" class="attack" maxtier="1" />
+          <Override locationtype="research" class="scout" maxtier="1" />
+          <Override locationtype="mine" class="transport" maxtier="1" />
+        </Submarines>
       </Biome>
       <Biome identifier="europanridge" name="Europan Ridge" description="" AllowedZones="2" mindifficulty="15" maxdifficulty="35">
         <Submarines maxtier="1">
