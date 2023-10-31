@@ -13,6 +13,8 @@
   <label.beacon_exhaust>ВЫПУСК</label.beacon_exhaust>
   <label.beacon_coolant>ОХЛАДИТЕЛЬ</label.beacon_coolant>
   <label.beacon_communications>ПУНКТ СВЯЗИ</label.beacon_communications>
+  <label.beacon_antennae_power_on>Радиопередатчик активирован</label.beacon_antennae_power_on>
+  <label.beacon_antennae_power_off>Радиопередатчик отключен. Необходимо активировать передатчик на вершине антенны.</label.beacon_antennae_power_off>
   <!-- UBER Beacon Labels -->
   <label.beacon_subjectstat_friendly>Поведение особи: дружелюбное</label.beacon_subjectstat_friendly>
   <label.beacon_powercell_docked>ЭНЕРГОЯЧЕЙКА ПРИСТЫКОВАНА</label.beacon_powercell_docked>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Beacons Extended" steamworkshopid="2389600483" corepackage="false" modversion="1.0.61" gameversion="1.0.21.0" installtime="1689857950" expectedhash="95FC544DABF34D369D36B43C8A5BA5B0">
+<contentpackage name="Beacons Extended" steamworkshopid="2389600483" corepackage="false" modversion="1.0.65" gameversion="1.1.18.1" installtime="1697900737" expectedhash="E83E1730F8DD6BF8C6BC5DAC25B1A63A">
   <Submarine file="%ModDir%/BeaconStations/Modules/Beacon_PowerPod.sub" />
   <Submarine file="%ModDir%/BeaconStations/Modules/Beacon_Deco_Cargo18E.sub" />
   <Submarine file="%ModDir%/BeaconStations/Modules/Beacon_BoardingShuttle.sub" />
@@ -39,28 +39,8 @@
   <BeaconStation file="%ModDir%/BeaconStations/BeaconSB03.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconSB04.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconSB05.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING01A.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING01B.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING01B_Bandit.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING02.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING03.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING04.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING04_Bandit.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING05.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING06.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING07.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING08A.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING08B.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING09A.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING09B.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING10A.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING10A_Bandit.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING10B.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING10B_Bandit.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING11A.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING11B.sub" />
-  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING11B_Bandit.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconUBER01.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconUBER02.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconUBER03.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconUBER03_bandit.sub" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconUBER04.sub" />
@@ -79,4 +59,25 @@
   <Text file="%ModDir%/Localisation/Beacons_Finnish.xml" />
   <Text file="%ModDir%/Localisation/Beacons_Polish.xml" />
   <BeaconStation file="%ModDir%/BeaconStations/BeaconT01.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING01B.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING01B_Bandit.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING02.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING04.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING04_Bandit.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING05.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING09A.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING09B.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING11B.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING10B_Bandit.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING10B.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING10A_Bandit.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING10A.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING08B.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING07.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING06.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING03.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING01A.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING11B_Bandit.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING11A.sub" />
+  <BeaconStation file="%ModDir%/BeaconStations/BeaconSING08A.sub" />
 </contentpackage>
