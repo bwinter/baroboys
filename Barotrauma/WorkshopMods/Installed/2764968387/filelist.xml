@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Enhanced Armaments" steamworkshopid="2764968387" corepackage="false" modversion="1.0.161" gameversion="1.0.21.0" installtime="1695653116" expectedhash="57771DA7BD2447542C6DC2EB60D434CA">
+<contentpackage name="Enhanced Armaments" steamworkshopid="2764968387" corepackage="false" modversion="1.0.171" gameversion="1.1.18.1" installtime="1698395116" expectedhash="B909FD8D10CA4512AE5E79B801A4E220">
   <Item file="%ModDir%/Weapons/Enhanced_Armaments.xml" />
   <Item file="%ModDir%/Weapons/alienweapons.xml" />
   <Item file="%ModDir%/Weapons/vintageweapons.xml" />
@@ -26,4 +26,5 @@
   <NPCSets file="%ModDir%/NPCs/CustomNPCs.xml" />
   <Text file="%ModDir%/Text/english.xml" />
   <NPCConversations file="%ModDir%/NPCs/Conversations.xml" />
+  <UIStyle file="%ModDir%/Misc/styles.xml" />
 </contentpackage>

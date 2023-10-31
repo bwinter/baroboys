@@ -52,4 +52,35 @@
     </ItemContainer>
     <aitarget sightrange="1000" soundrange="1000" fadeouttime="2" />
   </Item>
+  <Item name="" description="" identifier="scp_contrabandcontainer" tags="concealed,smallitem" category="Equipment" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2">
+    <Price baseprice="500" soldeverywhere="false">
+      <Price storeidentifier="outpost" multiplier="1.1" minavailable="1" />
+      <Price storeidentifier="city" multiplier="0.9" minavailable="2" />
+      <Price storeidentifier="research" multiplier="1" minavailable="1" />
+      <Price storeidentifier="military" multiplier="1" minavailable="1" />
+      <Price storeidentifier="mine" multiplier="0.8" minavailable="3" />
+    </Price>
+    <Fabricate suitablefabricators="fabricator" requiredtime="10">
+      <RequiredSkill identifier="mechanical" level="30" />
+      <RequiredItem identifier="steel" amount="2" />
+      <RequiredItem identifier="plastic" amount="3" />
+    </Fabricate>
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+      <Item identifier="plastic" />
+    </Deconstruct>
+    <Sprite name="contrabandcontainer" texture="%ModDir%/Misc/containers.png" sourcerect="3,409,50,74" depth="0.85" origin="0.5,0.5" />
+    <Body width="50" height="74" density="40" />
+    <Holdable selectkey="Select" pickkey="Use" slots="Any,RightHand,LeftHand" msg="ItemMsgDetachWrench" PickingTime="3.0" aimpos="65,-10" handle1="0,0" attachable="true" aimable="false">
+      <RequiredItem identifier="wrench" type="Equipped" />
+      <StatusEffect type="Always" target="This" disabledeltatime="true" stackable="false" setvalue="true" condition="100" allowwhenbroken="true">
+        <Conditional attached="false" />
+      </StatusEffect>
+    </Holdable>
+    <ItemContainer capacity="3" canbeselected="true" hideitems="true" slotsperrow="5" allowuioverlap="true">
+      <Containable items="smallitem" excludeditems="toolbox,mobilecontainer,rucksack,backpack,waistbelt,vest,duffelbag,ammocrate" />
+      <StatusEffect type="OnContained" target="This" setvalue="true" drawinventory="false" />
+      <StatusEffect type="OnNotContained" target="This" setvalue="true" drawinventory="true" />
+    </ItemContainer>
+  </Item>
 </Items>

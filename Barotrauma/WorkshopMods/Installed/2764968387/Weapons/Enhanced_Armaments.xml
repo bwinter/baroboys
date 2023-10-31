@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
   <!--5.56x45 mag-->
-  <Item impactsoundtag="impact_metal_light" scale="0.48" cargocontaineridentifier="scp_ammocrate" description="" category="Weapon" subcategory="Coalition" identifier="scp_556mag" name="" tags="smallitem,556ammo,ehaammo,55630mag" maxstacksize="8" linkable="true" interactthroughwall="true">
+  <Item identifier="scp_556mag" impactsoundtag="impact_metal_light" scale="0.48" cargocontaineridentifier="scp_ammocrate" description="" category="Weapon" subcategory="Coalition" name="" tags="smallitem,556ammo,ehaammo,55630mag" maxstacksize="8" linkable="true" interactthroughwall="true">
     <PreferredContainer spawnprobability="1" maxamount="1" minamount="0" primary="scp_sg550" />
     <PreferredContainer spawnprobability="1" maxamount="8" minamount="2" primary="secarmcab" />
     <PreferredContainer spawnprobability="0.06" maxamount="4" minamount="0" primary="wrecksecarmcab" />
@@ -17,17 +17,19 @@
         <Reputation faction="coalition" min="5" />
       </Price>
     </Price>
-    <Fabricate suitablefabricators="ammofabricator,fabricator" requiredtime="30" amount="4">
-      <RequiredSkill identifier="weapons" level="35" />
-      <RequiredItem identifier="lead" amount="2" />
+    <Fabricate suitablefabricators="ammofabricator,fabricator" requiredtime="30" amount="3">
+      <RequiredSkill identifier="weapons" level="45" />
       <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="magnesium" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="2" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="2" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="5" amount="1">
       <RequiredSkill identifier="weapons" level="25" />
       <RequiredItem tag="55630mag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" />
-      <RequiredItem identifier="magnesium" mincondition="0.5" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="plastic" outcondition="0.2" />
@@ -62,15 +64,17 @@
     </Price>
     <Fabricate suitablefabricators="ammofabricator,fabricator" requiredtime="30">
       <RequiredSkill identifier="weapons" level="40" />
-      <RequiredItem identifier="lead" amount="3" />
       <RequiredItem identifier="plastic" amount="2" />
-      <RequiredItem identifier="magnesium" amount="3" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="3" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="3" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="3" />
     </Fabricate>
-    <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="20" amount="1">
+    <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="20">
       <RequiredSkill identifier="weapons" level="25" />
       <RequiredItem identifier="scp_556extmag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" amount="3" />
-      <RequiredItem identifier="magnesium" amount="3" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="3" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="3" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="3" />
     </Fabricate>
     <Deconstruct time="15">
       <Item identifier="plastic" />
@@ -94,11 +98,11 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,175" scalemultiplier="1,0.6" />
-      <Attack structuredamage="1.0" targetforce="1" itemdamage="0.5" severlimbsprobability="0.05" penetration="0.05">
+      <Attack structuredamage="1.0" targetforce="1" itemdamage="1" severlimbsprobability="0.05" penetration="0.05">
         <Affliction identifier="bleeding" strength="12.5" />
-        <Affliction identifier="bleeding" strength="10" probability="0.2" />
-        <Affliction identifier="gunshotwound" strength="10" />
-        <Affliction identifier="gunshotwound" strength="6.5" probability="0.1" />
+        <Affliction identifier="bleeding" strength="12.5" probability="0.25" />
+        <Affliction identifier="gunshotwound" strength="12" />
+        <Affliction identifier="gunshotwound" strength="7" probability="0.1" />
         <Affliction identifier="stun" strength="0.15" probability="0.15" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -115,7 +119,7 @@
     <PreferredContainer primary="secarmcab" minamount="0" maxamount="1" spawnprobability="0.3" />
     <PreferredContainer primary="wrecksecarmcab,abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.06" minleveldifficulty="5" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="600" displaynonempty="true" minleveldifficulty="10">
+    <Price baseprice="700" displaynonempty="true" minleveldifficulty="10">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -162,16 +166,21 @@
       </StatusEffect>
       <RequiredItems items="shotgunammo" type="Contained" msg="ItemMsgAmmoRequired" />
       <RequiredSkill identifier="weapons" level="65" />
-      <ItemContainer capacity="1" maxstacksize="9" hideitems="false" containedstateindicatorslot="0" containedstateindicatorstyle="bullet" containedspritedepth="0.56">
-        <Containable items="shotgunammo" hide="true" />
-        <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="256,448,64,64" origin="0.5,0.5" />
-      </ItemContainer>
       <StatusEffect type="OnUse" target="This" comparison="and">
         <Conditional condition="lt 35" />
         <ParticleEmitter particle="steamspray" particleamount="1" velocitymin="5" velocitymax="10" scalemin="1.5" scalemax="2.5" anglemin="0" anglemax="360" colormultiplier="15,15,15,255" />
         <ParticleEmitter particle="weldspark" particleamount="10" velocitymin="2000" velocitymax="3000" scalemin="0.8" scalemax="1" anglemin="-20" anglemax="20" copyentityangle="true" colormultiplier="255,200,200,225" />
       </StatusEffect>
+      <StatusEffect type="OnUse" target="This" delay="0.05">
+        <ParticleEmitter particle="scp_spentcasingshotgun" emitinterval="0.25" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="250" velocitymax="500" copyentityangle="true" scalemin="0.35" scalemax="0.35" />
+      </StatusEffect>
     </RangedWeapon>
+    <ItemContainer capacity="1" maxstacksize="9" hideitems="false" containedstateindicatorslot="0" containedstateindicatorstyle="bullet" containedspritedepth="0.56">
+      <Containable items="shotgunammo" hide="true" />
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="flashlight" hide="false" itempos="36,0" setactive="true" />
+      </SubContainer>
+    </ItemContainer>
     <aitarget sightrange="3000" soundrange="5000" fadeouttime="5" />
     <Quality>
       <QualityStat stattype="FirepowerMultiplier" value="0.05" />
@@ -184,7 +193,7 @@
     <PreferredContainer primary="secarmcab" minamount="0" maxamount="2" spawnprobability="0.75" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.1" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="350" displaynonempty="true">
+    <Price baseprice="400" displaynonempty="true">
       <Price storeidentifier="merchantoutpost" minavailable="0" maxavailable="2" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="2">
         <Reputation faction="coalition" min="15" />
@@ -235,16 +244,21 @@
       </StatusEffect>
       <RequiredItems items="shotgunammo" type="Contained" msg="ItemMsgAmmoRequired" />
       <RequiredSkill identifier="weapons" level="50" />
-      <ItemContainer capacity="1" maxstacksize="7" hideitems="false" containedstateindicatorslot="0" containedstateindicatorstyle="bullet" containedspritedepth="0.56">
-        <Containable items="shotgunammo" hide="true" />
-        <SlotIcon slotindex="1" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
-      </ItemContainer>
       <StatusEffect type="OnUse" target="This" comparison="and">
         <Conditional condition="lt 35" />
         <ParticleEmitter particle="steamspray" particleamount="1" velocitymin="5" velocitymax="10" scalemin="1.5" scalemax="2.5" anglemin="0" anglemax="360" colormultiplier="15,15,15,255" />
         <ParticleEmitter particle="weldspark" particleamount="10" velocitymin="2000" velocitymax="3000" scalemin="0.8" scalemax="1" anglemin="-20" anglemax="20" copyentityangle="true" colormultiplier="255,200,200,225" />
       </StatusEffect>
+      <StatusEffect type="OnUse" target="This" delay="0.37">
+        <ParticleEmitter particle="scp_spentcasingshotgun" emitinterval="0.25" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="250" velocitymax="500" copyentityangle="true" scalemin="0.35" scalemax="0.35" />
+      </StatusEffect>
     </RangedWeapon>
+    <ItemContainer capacity="1" maxstacksize="7" hideitems="false" containedstateindicatorslot="0" containedstateindicatorstyle="bullet" containedspritedepth="0.56">
+      <Containable items="shotgunammo" hide="true" />
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="flashlight" hide="false" itempos="39,0" setactive="true" />
+      </SubContainer>
+    </ItemContainer>
     <aitarget sightrange="3000" soundrange="5000" fadeouttime="5" />
     <Quality>
       <QualityStat stattype="FirepowerMultiplier" value="0.05" />
@@ -326,7 +340,7 @@
     <PreferredContainer primary="scp_rsh12" minamount="5" maxamount="5" spawnprobability="0.85" />
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="5" spawnprobability="0.03" minleveldifficulty="20" />
-    <Price baseprice="350" displaynonempty="true" minleveldifficulty="15">
+    <Price baseprice="500" displaynonempty="true" minleveldifficulty="15">
       <Price storeidentifier="merchantoutpost" minavailable="0" maxavailable="4" multiplier="1.5">
         <Reputation faction="coalition" min="75" />
       </Price>
@@ -356,7 +370,7 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" maxtargetstohit="1" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,125,125,175" scalemultiplier="1,0.6" />
-      <Attack structuredamage="15" targetforce="17" itemdamage="5" severlimbsprobability="0.25" penetration="0.4">
+      <Attack structuredamage="15" targetforce="17" itemdamage="8" severlimbsprobability="0.25" penetration="0.4">
         <Affliction identifier="bleeding" strength="60" />
         <Affliction identifier="bleeding" strength="30" probability="0.5" />
         <Affliction identifier="gunshotwound" strength="75" />
@@ -377,7 +391,7 @@
   <Item name="" identifier="scp_arevolverduraround" interactthroughwalls="true" description="" cargocontaineridentifier="scp_ammocrate" category="Weapon" subcategory="Coalition" tags="smallitem,weapon,ammo,pistolammoitem,gunsmith,ehaammo,arevolverround" scale="0.5" maxstacksize="5" impactsoundtag="impact_metal_light">
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="5" spawnprobability="0.006" minleveldifficulty="35" />
-    <Price baseprice="650" displaynonempty="true" minleveldifficulty="35">
+    <Price baseprice="800" displaynonempty="true" minleveldifficulty="35">
       <Price storeidentifier="merchantoutpost" multiplier="1.5" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="2" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -405,7 +419,7 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" maxtargetstohit="2" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,125,125,175" scalemultiplier="1,0.6" />
-      <Attack structuredamage="15" targetforce="12" itemdamage="5" severlimbsprobability="0.25" penetration="0.6">
+      <Attack structuredamage="15" targetforce="12" itemdamage="15" severlimbsprobability="0.25" penetration="0.6">
         <Affliction identifier="bleeding" strength="35" />
         <Affliction identifier="bleeding" strength="25" probability="0.33" />
         <Affliction identifier="gunshotwound" strength="65" />
@@ -428,7 +442,7 @@
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab,abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.05" minleveldifficulty="10" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="800" displaynonempty="true" minleveldifficulty="10">
+    <Price baseprice="900" displaynonempty="true" minleveldifficulty="10">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -520,20 +534,21 @@
       <RequiredSkill identifier="weapons" level="50" />
       <RequiredItem identifier="steel" />
       <RequiredItem identifier="flashpowder" amount="2" />
-      <RequiredItem identifier="lead" amount="2" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="2" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="7.5" amount="1">
       <RequiredSkill identifier="weapons" level="35" />
       <RequiredItem identifier="scp_deaglemag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" />
       <RequiredItem identifier="flashpowder" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="2" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="steel" />
       <Item identifier="flashpowder" mincondition="0.95" />
     </Deconstruct>
-    <InventoryIcon texture="%ModDir%/Ammo/ammo.png" sourcerect="729,161,30,51" origin="0.5,0.5" />
-    <Sprite texture="%ModDir%/Ammo/ammo.png" depth="0.54" sourcerect="729,161,30,51" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Ammo/ammo.png" depth="0.54" sourcerect="129,8,29,51" origin="0.5,0.5" />
     <Body width="30" height="40" density="50" />
     <ItemContainer hideitems="true" capacity="1" drawinventory="false" canbeselected="false" ShowConditionInContainedStateIndicator="true" SpawnWithId="scp_deagleprojectile" removecontaineditemsondeconstruct="true" containedstateindicatorstyle="bullet">
       <Containable items="scp_deagleprojectile" />
@@ -631,7 +646,7 @@
     <PreferredContainer primary="scp_python" minamount="6" maxamount="6" spawnprobability="0.75" />
     <PreferredContainer primary="secarmcab" minamount="6" maxamount="12" spawnprobability="0.45" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="12" spawnprobability="0.05" minleveldifficulty="5" />
-    <Price baseprice="125" displaynonempty="true">
+    <Price baseprice="175" displaynonempty="true">
       <Price storeidentifier="merchantoutpost" minavailable="0" maxavailable="6" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="6" maxavailable="12" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -645,9 +660,9 @@
     </Price>
     <Fabricate suitablefabricators="fabricator,ammofabricator" requiredtime="25" amount="6">
       <RequiredSkill identifier="weapons" level="30" />
-      <RequiredItem identifier="copper" amount="2" />
-      <RequiredItem identifier="magnesium" amount="2" />
-      <RequiredItem identifier="lead" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="2" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="2" />
     </Fabricate>
     <Deconstruct time="2">
       <Item identifier="copper" outcondition="0.1" />
@@ -659,7 +674,7 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,100,100,240" scalemultiplier="0.5,0.5" />
-      <Attack structuredamage="1.0" targetforce="10" itemdamage="1" severlimbsprobability="0.05" penetration="0.05">
+      <Attack structuredamage="1.0" targetforce="10" itemdamage="4" severlimbsprobability="0.05" penetration="0.05">
         <Affliction identifier="bleeding" strength="30" />
         <Affliction identifier="bleeding" strength="15" probability="0.5" />
         <Affliction identifier="gunshotwound" strength="32.5" />
@@ -680,7 +695,7 @@
     <PreferredContainer primary="secarmcab" minamount="1" maxamount="2" spawnprobability="0.6" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.08" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="475" displaynonempty="true" minleveldifficulty="5">
+    <Price baseprice="650" displaynonempty="true" minleveldifficulty="10">
       <Price storeidentifier="merchantoutpost" minavailable="0" maxavailable="1" multiplier="1.5">
         <Reputation faction="coalition" min="35" />
       </Price>
@@ -715,8 +730,8 @@
       <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
       <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
       <Sound file="%ModDir%/Sounds/5.561.ogg" type="OnUse" range="3000" selectionmode="Random" />
-      <Sound file="%ModDir%/Sounds/5.562.ogg" type="OnUse" range="3000" />
-      <Sound file="%ModDir%/Sounds/5.563.ogg" type="OnUse" range="3000" />
+      <Sound file="%ModDir%/Sounds/5.561.ogg" type="OnUse" range="3000" frequencymultiplier="0.96" />
+      <Sound file="%ModDir%/Sounds/5.561.ogg" type="OnUse" range="3000" frequencymultiplier="1.02" />
       <StatusEffect type="OnUse" target="This" Condition="-120" />
       <StatusEffect type="Always" target="This" Condition="5">
         <Conditional condition="gt 0" />
@@ -743,7 +758,7 @@
       </StatusEffect>
     </RangedWeapon>
     <ItemContainer capacity="1" maxstacksize="1" hideitems="false" containedstateindicatorslot="0" containedstateindicatorstyle="bullet" containedspritedepth="0.56">
-      <Containable items="556ammo" hide="false" itempos="2.5,-6" />
+      <Containable items="556ammo" hide="false" itempos="2.5,-4" />
       <SlotIcon slotindex="1" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
       <SubContainer capacity="1" maxstacksize="1" containedspritedepth="0.5">
         <Containable items="flashlight" hide="false" itempos="25,1" setactive="true" />
@@ -757,22 +772,16 @@
     <SkillRequirementHint identifier="weapons" level="55" />
   </Item>
   <!--AS Val-->
-  <Item name="" identifier="scp_val" description="" cargocontaineridentifier="scp_weaponcrate" tags="smallitem,weapon,gun,gunsmith,mountableweapon" Scale="0.5" category="Weapon" subcategory="Coalition" impactsoundtag="weaponlightdrop">
+  <Item name="" identifier="scp_val" description="" cargocontaineridentifier="scp_weaponcrate" tags="smallitem,weapon,gun,gunsmith,mountableweapon" Scale="0.5" category="Weapon" subcategory="Renegade" impactsoundtag="weaponlightdrop">
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab,abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.03" minleveldifficulty="5" />
-    <Price baseprice="550" displaynonempty="true" minleveldifficulty="8">
+    <Price baseprice="700" displaynonempty="true" minleveldifficulty="8">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
-      <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="1">
-        <Reputation faction="separatists" min="45" />
-      </Price>
+      <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="1"></Price>
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="1" maxavailable="2">
-        <Reputation faction="separatists" min="35" />
-      </Price>
+      <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="0" maxavailable="2"></Price>
       <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="1" maxavailable="2">
-        <Reputation faction="separatists" min="35" />
-      </Price>
+      <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="0" maxavailable="2"></Price>
     </Price>
     <Fabricate suitablefabricators="fabricator,weaponfabricator" requiredtime="30">
       <RequiredSkill identifier="weapons" level="35" />
@@ -834,11 +843,11 @@
     <SkillRequirementHint identifier="weapons" level="75" />
   </Item>
   <!--AS Val 20 round mag-->
-  <Item name="" identifier="scp_valmag" description="" tags="smallitem,valammo,ehaammo" Scale="0.7" category="Weapon" subcategory="Coalition" maxstacksize="4" cargocontaineridentifier="scp_ammocrate" impactsoundtag="impact_metal_light" scale="0.5">
+  <Item name="" identifier="scp_valmag" description="" tags="smallitem,valammo,ehaammo" Scale="0.7" category="Weapon" subcategory="Renegade" maxstacksize="4" cargocontaineridentifier="scp_ammocrate" impactsoundtag="impact_metal_light" scale="0.5">
     <PreferredContainer spawnprobability="0.1" maxamount="1" minamount="0" primary="scp_val" />
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer spawnprobability="0.03" maxamount="3" minamount="0" primary="wrecksecarmcab,abandonedsecarmcab" minleveldifficulty="15" />
-    <Price baseprice="300" displaynonempty="true" minleveldifficulty="8">
+    <Price baseprice="450" displaynonempty="true" minleveldifficulty="8">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="2">
         <Reputation faction="separatists" min="55" />
@@ -854,15 +863,17 @@
     </Price>
     <Fabricate suitablefabricators="fabricator,ammofabricator" requiredtime="20" amount="2">
       <RequiredSkill identifier="weapons" level="45" />
+      <RequiredItem identifier="plastic" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" />
       <RequiredItem identifier="titanium" amount="2" />
-      <RequiredItem identifier="magnesium" />
-      <RequiredItem identifier="plastic" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="8" amount="1">
       <RequiredSkill identifier="weapons" level="45" />
       <RequiredItem identifier="scp_valmag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="titanium" />
-      <RequiredItem identifier="magnesium" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" />
+      <RequiredItem identifier="titanium" amount="2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="plastic" outcondition="0.25" />
@@ -926,11 +937,11 @@
     </Projectile>
   </Item>
   <!--SR-3 30 round mag-->
-  <Item name="" identifier="scp_valextmag" description="" tags="smallitem,valammo,ehaammo" cargocontaineridentifier="scp_ammocrate" Scale="0.5" category="Weapon" subcategory="Coalition" maxstacksize="3" impactsoundtag="impact_metal_light" scale="0.5">
+  <Item name="" identifier="scp_valextmag" description="" tags="smallitem,valammo,ehaammo" cargocontaineridentifier="scp_ammocrate" Scale="0.5" category="Weapon" subcategory="Renegade" maxstacksize="3" impactsoundtag="impact_metal_light" scale="0.5">
     <PreferredContainer spawnprobability="0.5" maxamount="1" minamount="0" primary="scp_val" />
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer spawnprobability="0.04" maxamount="3" minamount="0" primary="wrecksecarmcab,abandonedsecarmcab" minleveldifficulty="5" />
-    <Price baseprice="550" displaynonempty="true" minleveldifficulty="12">
+    <Price baseprice="600" displaynonempty="true" minleveldifficulty="12">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -944,15 +955,17 @@
     </Price>
     <Fabricate suitablefabricators="ammofabricator" requiredtime="30">
       <RequiredSkill identifier="weapons" level="35" />
-      <RequiredItem identifier="lead" amount="2" />
-      <RequiredItem identifier="magnesium" amount="2" />
       <RequiredItem identifier="plastic" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="2" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="3" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="2" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="12" amount="1">
       <RequiredSkill identifier="weapons" level="25" />
       <RequiredItem identifier="scp_valextmag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" />
-      <RequiredItem identifier="magnesium" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="2" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="3" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="2" />
     </Fabricate>
     <Deconstruct time="15">
       <Item identifier="plastic" />
@@ -973,7 +986,7 @@
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="abandonedsecarmcab,wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.01" minleveldifficulty="25" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="900" displaynonempty="true" minleveldifficulty="20">
+    <Price baseprice="2000" displaynonempty="true" minleveldifficulty="20">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -1070,7 +1083,7 @@
   <Item name="" identifier="scp_ash12mag" description="" cargocontaineridentifier="scp_ammocrate" tags="smallitem,ashammo,ehaammo" maxstacksize="4" category="Weapon" subcategory="Coalition" impactsoundtag="impact_metal_light" scale="0.35">
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab,abandonedsecarmcab" minamount="0" maxamount="2" spawnprobability="0.006" minleveldifficulty="35" />
-    <Price baseprice="600" displaynonempty="true" />
+    <Price baseprice="1000" displaynonempty="true" />
     <Fabricate suitablefabricators="ammofabricator" requiredtime="20" amount="2">
       <RequiredSkill identifier="weapons" level="70" />
       <RequiredItem identifier="scp_ash12extmag" />
@@ -1103,7 +1116,7 @@
     <PreferredContainer primary="scp_ash12" minamount="0" maxamount="1" spawnprobability="0.4" />
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab,abandonedsecarmcab" minamount="0" maxamount="2" spawnprobability="0.01" minleveldifficulty="25" />
-    <Price baseprice="600" displaynonempty="true" minleveldifficulty="30">
+    <Price baseprice="1200" displaynonempty="true" minleveldifficulty="30">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -1118,14 +1131,16 @@
     <Fabricate suitablefabricators="ammofabricator" requiredtime="30">
       <RequiredSkill identifier="weapons" level="60" />
       <RequiredItem identifier="plastic" amount="2" />
-      <RequiredItem identifier="titanium" amount="3" />
       <RequiredItem identifier="flashpowder" amount="3" />
+      <RequiredItem identifier="titanium" amount="3" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="3" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="18" amount="1">
       <RequiredSkill identifier="weapons" level="40" />
       <RequiredItem identifier="scp_ash12extmag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="titanium" amount="3" />
       <RequiredItem identifier="flashpowder" amount="3" />
+      <RequiredItem identifier="titanium" amount="3" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="3" />
     </Fabricate>
     <Deconstruct time="12">
       <Item identifier="plastic" />
@@ -1149,7 +1164,7 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="210,255,115,100" scalemultiplier="1,0.6" />
-      <Attack structuredamage="1.0" targetforce="5" itemdamage="4" severlimbsprobability="0.05" penetration="0.2">
+      <Attack structuredamage="1.0" targetforce="5" itemdamage="7.5" severlimbsprobability="0.05" penetration="0.2">
         <Affliction identifier="bleeding" strength="30" />
         <Affliction identifier="bleeding" strength="15" probability="0.5" />
         <Affliction identifier="gunshotwound" strength="30" />
@@ -1172,7 +1187,7 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="210,255,115,100" scalemultiplier="1,0.6" />
-      <Attack structuredamage="1.0" targetforce="5" itemdamage="4" severlimbsprobability="0.05" penetration="0.35">
+      <Attack structuredamage="1.0" targetforce="5" itemdamage="25" severlimbsprobability="0.05" penetration="0.35">
         <Affliction identifier="bleeding" strength="25" />
         <Affliction identifier="bleeding" strength="10" probability="0.5" />
         <Affliction identifier="gunshotwound" strength="25" />
@@ -1196,30 +1211,31 @@
     <PreferredContainer primary="secarmcab" minamount="5" maxamount="10" spawnprobability="1" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="5" spawnprobability="0.125" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="10" spawnprobability="0.25" />
-    <Price baseprice="75" displaynonempty="true">
-      <Price storeidentifier="merchantoutpost" minavailable="2" maxavailable="6" multiplier="1.5" />
+    <Price baseprice="100" displaynonempty="true">
+      <Price storeidentifier="merchantoutpost" minavailable="1" maxavailable="3" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="4" maxavailable="8" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="6" maxavailable="12" />
+      <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="2" maxavailable="6" />
       <Price storeidentifier="merchantmine" minavailable="0" maxavailable="4" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="6" maxavailable="12" />
+      <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="2" maxavailable="6" />
     </Price>
     <Fabricate suitablefabricators="ammofabricator,fabricator" requiredtime="15" amount="5">
       <RequiredSkill identifier="weapons" level="30" />
       <RequiredItem identifier="steel" />
-      <RequiredItem identifier="magnesium" amount="2" />
-      <RequiredItem identifier="lead" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="2" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="3" amount="1">
       <RequiredSkill identifier="weapons" level="25" />
       <RequiredItem identifier="scp_9mmmag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" mincondition="0.25" />
-      <RequiredItem identifier="magnesium" mincondition="0.5" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" mincondition="0.5" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" mincondition="0.2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" mincondition="0.2" />
     </Fabricate>
     <Deconstruct time="5">
       <Item identifier="steel" outcondition="0.1" />
     </Deconstruct>
-    <InventoryIcon texture="%ModDir%/Ammo/ammo.png" sourcerect="10,0,28,56" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Ammo/ammo.png" depth="0.54" sourcerect="10,0,28,56" origin="0.5,0.5" />
     <Body width="30" height="40" density="50" />
     <ItemContainer hideitems="true" capacity="1" drawinventory="false" canbeselected="false" ShowConditionInContainedStateIndicator="true" SpawnWithId="scp_9x19pprojectile" removecontaineditemsondeconstruct="true" containedstateindicatorstyle="bullet">
@@ -1242,8 +1258,8 @@
       <Attack structuredamage="1.0" targetforce="1" itemdamage="0.1" severlimbsprobability="0.05">
         <Affliction identifier="bleeding" strength="8" />
         <Affliction identifier="bleeding" strength="6" probability="0.2" />
-        <Affliction identifier="gunshotwound" strength="9" />
-        <Affliction identifier="gunshotwound" strength="5" probability="0.15" />
+        <Affliction identifier="gunshotwound" strength="10" />
+        <Affliction identifier="gunshotwound" strength="5" probability="0.1" />
         <Affliction identifier="stun" strength="0.1" probability="0.1" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -1263,12 +1279,12 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,135" scalemultiplier="1,0.6" />
-      <Attack structuredamage="1.0" targetforce="1.5" itemdamage="0.1" severlimbsprobability="0.05" penetration="0.025">
+      <Attack structuredamage="1.0" targetforce="1.5" itemdamage="0.3" severlimbsprobability="0.05">
         <Affliction identifier="bleeding" strength="15" />
-        <Affliction identifier="bleeding" strength="9" probability="0.2" />
-        <Affliction identifier="gunshotwound" strength="12.5" />
-        <Affliction identifier="gunshotwound" strength="6" probability="0.25" />
-        <Affliction identifier="stun" strength="0.08" />
+        <Affliction identifier="bleeding" strength="9" probability="0.25" />
+        <Affliction identifier="gunshotwound" strength="16" />
+        <Affliction identifier="gunshotwound" strength="8" probability="0.2" />
+        <Affliction identifier="stun" strength="0.1" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
         <ParticleEmitter particle="impactfirearm" particleamount="1" velocitymin="0" velocitymax="0" />
@@ -1284,17 +1300,17 @@
     <PreferredContainer primary="secarmcab" minamount="0" maxamount="1" spawnprobability="0.4" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.1" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="200" displaynonempty="true">
+    <Price baseprice="275" displaynonempty="true">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="2">
         <Reputation faction="coalition" min="20" />
       </Price>
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="1" maxavailable="4">
+      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="1" maxavailable="3">
         <Reputation faction="coalition" min="15" />
       </Price>
       <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="1" maxavailable="4">
+      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="1" maxavailable="3">
         <Reputation faction="coalition" min="15" />
       </Price>
     </Price>
@@ -1345,31 +1361,32 @@
     <PreferredContainer primary="secarmcab" minamount="0" maxamount="4" spawnprobability="0.35" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="3" spawnprobability="0.1" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="4" spawnprobability="0.15" />
-    <Price baseprice="150" displaynonempty="true">
+    <Price baseprice="165" displaynonempty="true">
       <Price storeidentifier="merchantoutpost" minavailable="0" maxavailable="3" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="2" maxavailable="4" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="2" maxavailable="6" />
+      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="1" maxavailable="4" />
       <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="2" maxavailable="6" />
+      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="1" maxavailable="4" />
     </Price>
     <Fabricate suitablefabricators="ammofabricator,fabricator" requiredtime="20" amount="3">
       <RequiredSkill identifier="weapons" level="35" />
       <RequiredItem identifier="steel" />
-      <RequiredItem identifier="magnesium" amount="3" />
-      <RequiredItem identifier="lead" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="2" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="5" amount="1">
       <RequiredSkill identifier="weapons" level="25" />
       <RequiredItem tag="4510mag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" mincondition="0.5" />
-      <RequiredItem identifier="magnesium" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" mincondition="0.8" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" mincondition="0.4" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" mincondition="0.4" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="steel" outcondition="0.25" />
     </Deconstruct>
-    <InventoryIcon texture="%ModDir%/Ammo/ammo.png" sourcerect="39,0,27,58" origin="0.5,0.5" />
-    <Sprite texture="%ModDir%/Ammo/ammo.png" depth="0.54" sourcerect="39,0,27,58" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Ammo/ammo.png" depth="0.54" sourcerect="39,0,24,58" origin="0.5,0.5" />
     <Body width="30" height="40" density="50" />
     <ItemContainer hideitems="true" capacity="1" drawinventory="false" canbeselected="false" ShowConditionInContainedStateIndicator="true" SpawnWithId="scp_45pprojectile" removecontaineditemsondeconstruct="true" containedstateindicatorstyle="bullet">
       <Containable items="scp_45pprojectile" />
@@ -1391,8 +1408,8 @@
       <Attack structuredamage="1.0" targetforce="2.5" itemdamage="0.2" severlimbsprobability="0.1">
         <Affliction identifier="bleeding" strength="15" />
         <Affliction identifier="bleeding" strength="8.5" probability="0.33" />
-        <Affliction identifier="gunshotwound" strength="10" />
-        <Affliction identifier="gunshotwound" strength="7.5" probability="0.33" />
+        <Affliction identifier="gunshotwound" strength="12" />
+        <Affliction identifier="gunshotwound" strength="8" probability="0.33" />
         <Affliction identifier="stun" strength="0.15" probability="0.2" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -1412,11 +1429,11 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,135" scalemultiplier="0.8,0.6" />
-      <Attack structuredamage="1.0" targetforce="1.5" itemdamage="0.2" severlimbsprobability="0.125">
+      <Attack structuredamage="1.0" targetforce="1.5" itemdamage="0.4" severlimbsprobability="0.125">
         <Affliction identifier="bleeding" strength="17.5" />
         <Affliction identifier="bleeding" strength="15" probability="0.33" />
-        <Affliction identifier="gunshotwound" strength="16" />
-        <Affliction identifier="gunshotwound" strength="8" probability="0.25" />
+        <Affliction identifier="gunshotwound" strength="22" />
+        <Affliction identifier="gunshotwound" strength="10" probability="0.25" />
         <Affliction identifier="stun" strength="0.1" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -1434,7 +1451,7 @@
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.13" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.4" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="100" displaynonempty="true">
+    <Price baseprice="150" displaynonempty="true">
       <Price storeidentifier="merchantoutpost" minavailable="0" maxavailable="2" multiplier="1.5">
         <Reputation faction="coalition" min="10" />
       </Price>
@@ -1444,19 +1461,19 @@
       <Price storeidentifier="merchantresearch" minavailable="0" maxavailable="2" multiplier="1.25">
         <Reputation faction="coalition" min="5" />
       </Price>
-      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="3" maxavailable="6" />
+      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="3" maxavailable="6" />
       <Price storeidentifier="merchantmine" minavailable="0" maxavailable="2" multiplier="1.25">
         <Reputation faction="coalition" min="10" />
       </Price>
-      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="3" maxavailable="6">
+      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="3" maxavailable="6">
         <Reputation faction="coalition" min="5" />
       </Price>
     </Price>
     <Fabricate suitablefabricators="weaponfabricator,fabricator" requiredtime="20">
       <RequiredSkill identifier="weapons" level="15" />
-      <RequiredItem identifier="scp_pistolkit" mincondition="0.25" />
+      <RequiredItem identifier="scp_pistolkit" mincondition="0.1" />
       <RequiredItem identifier="steel" />
-      <RequiredItem identifier="plastic" />
+      <RequiredItem identifier="plastic" amount="2" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="steel" />
@@ -1495,24 +1512,24 @@
   <!--CMMG MXA1-->
   <Item name="" identifier="scp_mxa1" description="" cargocontaineridentifier="scp_weaponcrate" category="Weapon" subcategory="Coalition" tags="mediumitem,weapon,gun,gunsmith,mountableweapon" Scale="0.45" impactsoundtag="weaponlightdrop">
     <PreferredContainer primary="secarmcab" />
-    <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.075" minleveldifficulty="10" />
+    <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.05" minleveldifficulty="10" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="550" displaynonempty="true" minleveldifficulty="5">
+    <Price baseprice="750" displaynonempty="true" minleveldifficulty="20">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="0" maxavailable="2">
+      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="2">
         <Reputation faction="coalition" min="35" />
       </Price>
       <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="0" maxavailable="2">
+      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="2">
         <Reputation faction="coalition" min="35" />
       </Price>
     </Price>
     <Fabricate suitablefabricators="weaponfabricator" requiredtime="40">
       <RequiredSkill identifier="weapons" level="40" />
       <RequiredItem identifier="scp_riflekit" mincondition="0.5" />
-      <RequiredItem identifier="titaniumaluminiumalloy" />
+      <RequiredItem identifier="titaniumaluminiumalloy" amount="2" />
       <RequiredItem identifier="plastic" amount="6" />
     </Fabricate>
     <Deconstruct time="15">
@@ -1523,14 +1540,14 @@
     <InventoryIcon texture="%ModDir%/Weapons/weaponsinv.png" sourcerect="413,85,66,75" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Weapons/weapons.png" sourcerect="204,62,258,94" depth="0.55" origin="0.5,0.5" />
     <Body width="250" height="60" density="50" />
-    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="50,-10" aimpos="59,-5" handle1="-42,-15" handle2="32,7" holdangle="-35" msg="ItemMsgPickUpSelect" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="65,-6" aimpos="65,0" handle1="-42,-15" handle2="32,7" holdangle="-35" msg="ItemMsgPickUpSelect" />
     <RangedWeapon reload="0.115" reloadnoskill="0.19" reloadskillrequirement="75" barrelpos="85,4" spread="5" unskilledspread="25" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
       <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
       <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
       <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
       <Sound file="%ModDir%/Sounds/65mx1.ogg" type="OnUse" range="3000" selectionmode="Random" />
-      <Sound file="%ModDir%/Sounds/65mx2.ogg" type="OnUse" range="3000" />
-      <Sound file="%ModDir%/Sounds/65mx3.ogg" type="OnUse" range="3000" />
+      <Sound file="%ModDir%/Sounds/65mx1.ogg" type="OnUse" range="3000" frequencymultiplier="0.96" />
+      <Sound file="%ModDir%/Sounds/65mx1.ogg" type="OnUse" range="3000" frequencymultiplier="1.02" />
       <StatusEffect type="OnUse" target="This" Condition="-130" />
       <StatusEffect type="Always" target="This" Condition="2">
         <Conditional condition="gt 0" />
@@ -1575,7 +1592,7 @@
     <PreferredContainer primary="scp_mxa1" minamount="0" maxamount="1" spawnprobability="0.5" />
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="3" spawnprobability="0.03" minleveldifficulty="10" />
-    <Price baseprice="350" displaynonempty="true" minleveldifficulty="5">
+    <Price baseprice="450" displaynonempty="true" minleveldifficulty="20">
       <Price storeidentifier="merchantoutpost" minavailable="0" maxavailable="2" multiplier="1.35">
         <Reputation faction="coalition" min="45" />
       </Price>
@@ -1583,25 +1600,27 @@
         <Reputation faction="coalition" min="35" />
       </Price>
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="1" maxavailable="6">
+      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="1" maxavailable="6">
         <Reputation faction="coalition" min="35" />
       </Price>
       <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="1" maxavailable="6">
+      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="1" maxavailable="6">
         <Reputation faction="coalition" min="35" />
       </Price>
     </Price>
     <Fabricate suitablefabricators="ammofabricator" requiredtime="30" amount="2">
-      <RequiredSkill identifier="weapons" level="35" />
+      <RequiredSkill identifier="weapons" level="45" />
       <RequiredItem identifier="plastic" amount="2" />
-      <RequiredItem identifier="lead" amount="2" />
       <RequiredItem identifier="magnesium" amount="3" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
-    <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="10" amount="1">
-      <RequiredSkill identifier="weapons" level="38" />
+    <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="15" amount="1">
+      <RequiredSkill identifier="weapons" level="35" />
       <RequiredItem tag="mx30mag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" />
-      <RequiredItem identifier="magnesium" amount="2" />
+      <RequiredItem identifier="magnesium" amount="1" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" mincondition="0.5" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="plastic" />
@@ -1624,11 +1643,11 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,175" scalemultiplier="1,0.6" />
-      <Attack structuredamage="1.0" targetforce="1.75" itemdamage="2" severlimbsprobability="0.05" penetration="0.1">
+      <Attack structuredamage="1.0" targetforce="1.75" itemdamage="4" severlimbsprobability="0.05" penetration="0.1">
         <Affliction identifier="bleeding" strength="10" />
         <Affliction identifier="bleeding" strength="7.5" probability="0.15" />
-        <Affliction identifier="gunshotwound" strength="15" />
-        <Affliction identifier="gunshotwound" strength="7.5" probability="0.15" />
+        <Affliction identifier="gunshotwound" strength="16" />
+        <Affliction identifier="gunshotwound" strength="7.5" probability="0.2" />
         <Affliction identifier="stun" strength="0.2" probability="0.175" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -1644,7 +1663,7 @@
     <PreferredContainer primary="scp_mxa1" />
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.01" minleveldifficulty="10" />
-    <Price baseprice="550" displaynonempty="true" minleveldifficulty="5">
+    <Price baseprice="550" displaynonempty="true" minleveldifficulty="30">
       <Price storeidentifier="merchantoutpost" minavailable="0" maxavailable="2" multiplier="1.35">
         <Reputation faction="coalition" min="45" />
       </Price>
@@ -1663,16 +1682,16 @@
     <Fabricate suitablefabricators="ammofabricator" requiredtime="35" amount="2">
       <RequiredSkill identifier="weapons" level="65" />
       <RequiredItem identifier="plastic" amount="2" />
-      <RequiredItem identifier="lead" amount="2" />
-      <RequiredItem identifier="magnesium" amount="3" />
-      <RequiredItem identifier="scp_firelatex" mincondition="0.25" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="3" />
+      <RequiredItem identifier="scp_firelatex" mincondition="0.5" />
+      <RequiredItem identifier="titanium" />
     </Fabricate>
-    <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="20" amount="1">
+    <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="15" amount="1">
       <RequiredSkill identifier="weapons" level="40" />
       <RequiredItem tag="mx30mag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" />
-      <RequiredItem identifier="magnesium" amount="2" />
-      <RequiredItem identifier="scp_firelatex" mincondition="0.12" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" />
+      <RequiredItem identifier="scp_firelatex" mincondition="0.25" />
+      <RequiredItem identifier="titanium" mincondition="0.5" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="plastic" />
@@ -1694,12 +1713,12 @@
     <Body width="40" height="15" density="40" />
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
-      <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,175" scalemultiplier="1,0.6" />
-      <Attack structuredamage="1.0" targetforce="1.75" itemdamage="2" severlimbsprobability="0.05" penetration="0.2">
-        <Affliction identifier="bleeding" strength="7.5" />
+      <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,200,225,180" scalemultiplier="1,0.6" />
+      <Attack structuredamage="1.0" targetforce="1.75" itemdamage="7" severlimbsprobability="0.05" penetration="0.22">
+        <Affliction identifier="bleeding" strength="5" />
         <Affliction identifier="gunshotwound" strength="10" />
-        <Affliction identifier="gunshotwound" strength="6.5" probability="0.1" />
-        <Affliction identifier="scp_firelatexburn" strength="2" probability="0.5" />
+        <Affliction identifier="gunshotwound" strength="6.5" probability="0.125" />
+        <Affliction identifier="scp_firelatexburn" strength="5" probability="0.6" />
         <Affliction identifier="stun" strength="0.15" probability="0.2" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -1719,7 +1738,7 @@
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.025" minleveldifficulty="20" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.05" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="700" displaynonempty="true" minleveldifficulty="15">
+    <Price baseprice="1500" displaynonempty="true" minleveldifficulty="25">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -1783,7 +1802,7 @@
       <StatusEffect type="OnBroken" target="This">
         <sound file="%ModDir%/Sounds/machinegunjam.ogg" type="OnUse" range="900.0" loop="false" />
       </StatusEffect>
-      <StatusEffect type="OnBroken" target="This" Condition="50" disabledeltatime="true" delay="4.5" stackable="false" />
+      <StatusEffect type="OnBroken" target="This" Condition="65" disabledeltatime="true" delay="10.2" stackable="false" />
       <StatusEffect type="OnUse">
         <Explosion range="150.0" force="1.85" shockwave="false" smoke="false" flames="false" sparks="false" underwaterbubble="false" camerashake="23" />
       </StatusEffect>
@@ -1814,7 +1833,7 @@
     <PreferredContainer primary="scp_pkp,scp_pkm,scp_mag" minamount="0" maxamount="1" spawnprobability="0.25" />
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab,abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.03" minleveldifficulty="15" />
-    <Price baseprice="550" displaynonempty="true" minleveldifficulty="15">
+    <Price baseprice="750" displaynonempty="true" minleveldifficulty="25">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -1825,19 +1844,21 @@
     <Fabricate suitablefabricators="ammofabricator" requiredtime="35">
       <RequiredSkill identifier="weapons" level="40" />
       <RequiredItem identifier="steel" amount="3" />
+      <RequiredItem identifier="flashpowder" amount="6" />
       <RequiredItem identifier="titanium" amount="4" />
-      <RequiredItem identifier="flashpowder" amount="8" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="4" />
     </Fabricate>
-    <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="20" amount="1">
+    <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="25" amount="1">
       <RequiredSkill identifier="weapons" level="35" />
       <RequiredItem identifier="scp_pkpboxmag" mincondition="0.0" maxcondition="0.0" />
+      <RequiredItem identifier="flashpowder" amount="6" />
       <RequiredItem identifier="titanium" amount="4" />
-      <RequiredItem identifier="flashpowder" amount="8" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="4" />
     </Fabricate>
     <Deconstruct time="15">
       <Item identifier="steel" amount="2" />
     </Deconstruct>
-    <InventoryIcon texture="%ModDir%/Ammo/ammo.png" sourcerect="581,1,106,76" origin="0.5,0.5" />
+    <InventoryIcon texture="%ModDir%/Ammo/ammo.png" sourcerect="0,203,108,75" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Ammo/improvedammo.png" depth="0.54" sourcerect="79,219,27,42" origin="0.5,0.5" />
     <Body width="30" height="40" density="50" />
     <ItemContainer hideitems="true" capacity="1" drawinventory="false" canbeselected="false" ShowConditionInContainedStateIndicator="true" SpawnWithId="scp_762natoprojectile" removecontaineditemsondeconstruct="true" containedstateindicatorstyle="bullet">
@@ -1845,6 +1866,7 @@
       <StatusEffect type="OnUse" target="This" condition="-1" disabledeltatime="true">
         <SpawnItem identifier="scp_762natoprojectile" spawnposition="ThisInventory" />
         <ParticleEmitter particle="scp_spentcasingriflemed" emitinterval="1.5" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="250" velocitymax="500" copyentityangle="true" scalemin="0.35" scalemax="0.35" />
+        <ParticleEmitter particle="scp_mglink" emitinterval="1.5" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="90" velocitymax="175" copyentityangle="true" scalemin="0.4" scalemax="0.4" />
       </StatusEffect>
     </ItemContainer>
     <Holdable canBeCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect" />
@@ -1854,7 +1876,7 @@
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.05" minleveldifficulty="20" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="700" displaynonempty="true" minleveldifficulty="15">
+    <Price baseprice="1100" displaynonempty="true" minleveldifficulty="20">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -1904,10 +1926,16 @@
       </StatusEffect>
       <RequiredItems items="shotgunammo" type="Contained" msg="ItemMsgAmmoRequired" />
       <RequiredSkill identifier="weapons" level="70" />
-      <ItemContainer capacity="2" maxstacksize="7" hideitems="false" containedstateindicatorslot="0" containedstateindicatorstyle="bullet" containedspritedepth="0.56">
-        <Containable items="shotgunammo" hide="true" />
-      </ItemContainer>
+      <StatusEffect type="OnUse" target="This" delay="0.52">
+        <ParticleEmitter particle="scp_spentcasingshotgun" emitinterval="0.25" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="250" velocitymax="500" copyentityangle="true" scalemin="0.35" scalemax="0.35" />
+      </StatusEffect>
     </RangedWeapon>
+    <ItemContainer capacity="2" maxstacksize="7" hideitems="false" containedstateindicatorslot="0" containedstateindicatorstyle="bullet" containedspritedepth="0.56">
+      <Containable items="shotgunammo" hide="true" />
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="flashlight" hide="false" itempos="38,-3" setactive="true" />
+      </SubContainer>
+    </ItemContainer>
     <aitarget sightrange="3000" soundrange="5000" fadeouttime="5" />
     <Quality>
       <QualityStat stattype="FirepowerMultiplier" value="0.05" />
@@ -1920,7 +1948,7 @@
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.04" minleveldifficulty="15" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="800" displaynonempty="true" minleveldifficulty="10">
+    <Price baseprice="1500" displaynonempty="true" minleveldifficulty="25">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -2000,7 +2028,7 @@
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.03" minleveldifficulty="15" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="875" displaynonempty="true" minleveldifficulty="10">
+    <Price baseprice="1200" displaynonempty="true" minleveldifficulty="10">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -2084,14 +2112,16 @@
     <Fabricate suitablefabricators="ammofabricator" requiredtime="30" amount="2">
       <RequiredSkill identifier="weapons" level="45" />
       <RequiredItem identifier="steel" />
-      <RequiredItem identifier="titanium" amount="2" />
       <RequiredItem identifier="flashpowder" amount="2" />
+      <RequiredItem identifier="titanium" amount="2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="2" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="15" amount="1">
       <RequiredSkill identifier="weapons" level="40" />
       <RequiredItem tag="76251mag" mincondition="0.0" maxcondition="0.0" />
       <RequiredItem identifier="titanium" />
       <RequiredItem identifier="flashpowder" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
     <Deconstruct time="15">
       <Item identifier="steel" />
@@ -2111,7 +2141,7 @@
     <PreferredContainer primary="scp_scar17" minamount="0" maxamount="1" spawnprobability="0.1" />
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.025" minleveldifficulty="25" />
-    <Price baseprice="700" displaynonempty="true" minleveldifficulty="17">
+    <Price baseprice="800" displaynonempty="true" minleveldifficulty="17">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -2126,14 +2156,16 @@
     <Fabricate suitablefabricators="ammofabricator" requiredtime="45" amount="1">
       <RequiredSkill identifier="weapons" level="65" />
       <RequiredItem identifier="steel" amount="2" />
-      <RequiredItem identifier="titanium" amount="4" />
       <RequiredItem identifier="flashpowder" amount="4" />
+      <RequiredItem identifier="titanium" amount="4" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="4" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="25">
       <RequiredSkill identifier="weapons" level="50" />
       <RequiredItem identifier="scp_scarextmag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="titanium" amount="4" />
       <RequiredItem identifier="flashpowder" amount="4" />
+      <RequiredItem identifier="titanium" amount="4" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="4" />
     </Fabricate>
     <Deconstruct time="15">
       <Item identifier="steel" />
@@ -2157,11 +2189,11 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,175" scalemultiplier="1,0.6" />
-      <Attack structuredamage="1.0" targetforce="4" itemdamage="3" severlimbsprobability="0.15" penetration="0.175">
+      <Attack structuredamage="1.0" targetforce="4" itemdamage="8" severlimbsprobability="0.35" penetration="0.175">
         <Affliction identifier="bleeding" strength="15" />
         <Affliction identifier="bleeding" strength="20" probability="0.25" />
-        <Affliction identifier="gunshotwound" strength="24" />
-        <Affliction identifier="gunshotwound" strength="12" probability="0.2" />
+        <Affliction identifier="gunshotwound" strength="28" />
+        <Affliction identifier="gunshotwound" strength="14" probability="0.2" />
         <Affliction identifier="stun" strength="0.25" probability="0.25" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -2178,7 +2210,7 @@
     <PreferredContainer primary="secarmcab" minamount="1" maxamount="2" spawnprobability="1" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.1" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="250" displaynonempty="true">
+    <Price baseprice="300" displaynonempty="true">
       <Price storeidentifier="merchantoutpost" minavailable="0" maxavailable="2" multiplier="1.5">
         <Reputation faction="coalition" min="10" />
       </Price>
@@ -2245,7 +2277,7 @@
     <PreferredContainer primary="secarmcab" minamount="2" maxamount="6" spawnprobability="1" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="3" spawnprobability="0.1" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="6" spawnprobability="0.1" />
-    <Price baseprice="175" displaynonempty="true">
+    <Price baseprice="200" displaynonempty="true">
       <Price storeidentifier="merchantoutpost" minavailable="0" maxavailable="3" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="1" maxavailable="4" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -2253,17 +2285,19 @@
       <Price storeidentifier="merchantmine" multiplier="1.25" minavailable="0" maxavailable="3" />
       <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="2" maxavailable="6" />
     </Price>
-    <Fabricate suitablefabricators="ammofabricator,fabricator" requiredtime="15" amount="2">
+    <Fabricate suitablefabricators="ammofabricator,fabricator" requiredtime="15">
       <RequiredSkill identifier="weapons" level="25" />
       <RequiredItem identifier="steel" />
-      <RequiredItem identifier="magnesium" />
-      <RequiredItem identifier="lead" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="8" amount="1">
       <RequiredSkill identifier="weapons" level="25" />
       <RequiredItem tag="9mmsmgmag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" />
-      <RequiredItem identifier="magnesium" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
     <Deconstruct time="12">
       <Item identifier="steel" outcondition="0.25" />
@@ -2284,7 +2318,7 @@
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.05" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="2" spawnprobability="0.05" />
-    <Price baseprice="250" displaynonempty="true">
+    <Price baseprice="375" displaynonempty="true">
       <Price storeidentifier="merchantoutpost" minavailable="0" maxavailable="1" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="1" maxavailable="2" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -2295,14 +2329,16 @@
     <Fabricate suitablefabricators="ammofabricator,fabricator" requiredtime="30">
       <RequiredSkill identifier="weapons" level="25" />
       <RequiredItem identifier="steel" />
-      <RequiredItem identifier="magnesium" amount="2" />
-      <RequiredItem identifier="lead" amount="3" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="3" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="3" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="3" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="8" amount="1">
       <RequiredSkill identifier="weapons" level="25" />
       <RequiredItem identifier="scp_9mmsmgdrummag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" amount="3" />
-      <RequiredItem identifier="magnesium" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="3" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="3" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="3" />
     </Fabricate>
     <Deconstruct time="12">
       <Item identifier="steel" outcondition="0.25" />
@@ -2323,7 +2359,7 @@
     <PreferredContainer primary="secarmcab" minamount="0" maxamount="1" spawnprobability="0.55" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.075" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="400" displaynonempty="true">
+    <Price baseprice="475" displaynonempty="true">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="1">
         <Reputation faction="coalition" min="20" />
@@ -2342,7 +2378,7 @@
       <RequiredItem identifier="scp_pistolkit" mincondition="0.5" />
       <RequiredItem identifier="plastic" amount="3" />
       <RequiredItem identifier="steel" />
-      <RequiredItem identifier="rubber" />
+      <RequiredItem identifier="rubber" amount="2" />
     </Fabricate>
     <Deconstruct time="12">
       <Item identifier="steel" />
@@ -2370,10 +2406,10 @@
     </RangedWeapon>
     <aitarget sightrange="2000" soundrange="4000" fadeouttime="5" />
     <ItemContainer capacity="1" maxstacksize="1" hideitems="false" containedstateindicatorslot="0" containedstateindicatorstyle="bullet" containedspritedepth="0.56">
-      <Containable items="45ammo,45pistolammo" hide="true" />
+      <Containable items="45ammo,45pistolammo" hide="false" itempos="16,-5" rotation="15" />
       <SlotIcon slotindex="1" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
-      <SubContainer capacity="1" maxstacksize="1" containedspritedepth="0.5">
-        <Containable items="flashlight" hide="false" itempos="27,2" setactive="true" />
+      <SubContainer capacity="1" maxstacksize="1" containedspritedepth="0.4">
+        <Containable items="flashlight" hide="false" itempos="30,6" setactive="true" />
       </SubContainer>
     </ItemContainer>
     <Quality>
@@ -2382,11 +2418,11 @@
     <SkillRequirementHint identifier="weapons" level="45" />
   </Item>
   <!--25 round 11.43 box magazine-->
-  <Item name="" identifier="scp_umpmag" description="" tags="smallitem,45ammo,ehaammo" category="Weapon" subcategory="Coalition" maxstacksize="6" cargocontaineridentifier="scp_ammocrate" impactsoundtag="impact_metal_light" scale="0.3">
+  <Item name="" identifier="scp_umpmag" description="" tags="smallitem,45ammo,ehaammo" category="Weapon" subcategory="Coalition" maxstacksize="6" cargocontaineridentifier="scp_ammocrate" impactsoundtag="impact_metal_light" scale="0.5">
     <PreferredContainer primary="scp_ump45" minamount="0" maxamount="1" spawnprobability="1" />
     <PreferredContainer primary="secarmcab" minamount="0" maxamount="6" spawnprobability="0.55" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="3" spawnprobability="0.06" />
-    <Price baseprice="250" displaynonempty="true">
+    <Price baseprice="275" displaynonempty="true">
       <Price storeidentifier="merchantoutpost" minavailable="0" maxavailable="2" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="2" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -2395,22 +2431,23 @@
       <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="1" maxavailable="4" />
     </Price>
     <Fabricate suitablefabricators="ammofabricator,fabricator" requiredtime="30" amount="2">
-      <RequiredSkill identifier="weapons" level="30" />
+      <RequiredSkill identifier="weapons" level="35" />
       <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="lead" amount="2" />
-      <RequiredItem identifier="magnesium" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="2" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
-    <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="8" amount="1">
-      <RequiredSkill identifier="weapons" level="25" />
+    <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="15" amount="1">
+      <RequiredSkill identifier="weapons" level="37" />
       <RequiredItem identifier="scp_umpmag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" />
-      <RequiredItem identifier="magnesium" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
     <Deconstruct time="12">
       <Item identifier="plastic" outcondition="0.5" />
     </Deconstruct>
-    <InventoryIcon texture="%ModDir%/Ammo/ammo.png" sourcerect="547,135,16,64" origin="0.5,0.5" />
-    <Sprite texture="%ModDir%/Ammo/ammo.png" depth="0.54" sourcerect="547,135,16,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Ammo/improvedammo.png" depth="0.54" sourcerect="160,142,15,66" origin="0.5,0.5" />
     <Body width="30" height="40" density="50" />
     <ItemContainer hideitems="true" capacity="1" drawinventory="false" canbeselected="false" ShowConditionInContainedStateIndicator="true" SpawnWithId="scp_45projectile" removecontaineditemsondeconstruct="true" containedstateindicatorstyle="bullet">
       <Containable items="scp_45projectile" />
@@ -2426,15 +2463,15 @@
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.02" minleveldifficulty="30" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="900" displaynonempty="true" minleveldifficulty="20">
+    <Price baseprice="1600" displaynonempty="true" minleveldifficulty="20">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="2" maxavailable="1">
+      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="0" maxavailable="1">
         <Reputation faction="coalition" min="65" />
       </Price>
       <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="2" maxavailable="1">
+      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="0" maxavailable="1">
         <Reputation faction="coalition" min="65" />
       </Price>
     </Price>
@@ -2459,7 +2496,7 @@
       <StatValue stattype="WalkingSpeed" value="-0.15" />
       <StatValue stattype="SwimmingSpeed" value="-0.15" />
     </Wearable>
-    <RangedWeapon reload="3" barrelpos="200,9" spread="0.25" unskilledspread="8" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
+    <RangedWeapon reload="4" barrelpos="200,9" spread="1" unskilledspread="8" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
       <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
       <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
       <ParticleEmitter particle="impactfirearm" particleamount="1" velocitymin="0" velocitymax="0" scalemultiplier="16.0,6.0" colormultiplier="255,200,200,200" />
@@ -2490,6 +2527,27 @@
         <Affliction identifier="blunttrauma" strength="24" />
       </StatusEffect>
       <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.2" setvalue="true" />
+      <StatusEffect type="OnUse" delay="0.5" target="Character">
+        <Conditional skillrequirement="true" weapons="gte 100" />
+        <Sound file="%ModDir%/Sounds/riflebolt50.ogg" type="OnUse" range="1000" frequencymultiplier="0.85" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" delay="0.5" target="Character" comparison="and">
+        <Conditional skillrequirement="true" weapons="lt 75" />
+        <Conditional skillrequirement="true" weapons="gte 50" />
+        <Sound file="%ModDir%/Sounds/riflebolt2050.ogg" type="OnUse" range="1000" frequencymultiplier="0.85" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" delay="1" target="Character">
+        <Conditional skillrequirement="true" weapons="lt 50" />
+        <Sound file="%ModDir%/Sounds/riflebolt20.ogg" type="OnUse" range="1000" frequencymultiplier="0.85" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This,Character" delay="0.6">
+        <Conditional skillrequirement="true" weapons="gte 50" />
+        <ParticleEmitter particle="scp_spentcasingriflelarge" emitinterval="0.25" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="250" velocitymax="500" copyentityangle="true" scalemin="0.4" scalemax="0.4" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This,Character" delay="2.3">
+        <Conditional skillrequirement="true" weapons="lt 50" />
+        <ParticleEmitter particle="scp_spentcasingriflelarge" emitinterval="0.25" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="250" velocitymax="500" copyentityangle="true" scalemin="0.4" scalemax="0.4" />
+      </StatusEffect>
     </RangedWeapon>
     <ItemContainer capacity="1" maxstacksize="1" hideitems="true" containedstateindicatorstyle="bullet">
       <Containable items="127ammo" />
@@ -2521,12 +2579,11 @@
     <Fabricate suitablefabricators="ammofabricator" requiredtime="25" amount="5">
       <RequiredSkill identifier="weapons" level="65" />
       <RequiredItem identifier="steel" amount="2" />
-      <RequiredItem identifier="lead" amount="5" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="5" />
       <RequiredItem identifier="flashpowder" amount="5" />
     </Fabricate>
     <Deconstruct time="12">
-      <Item identifier="lead" outcondition="0.25" />
-      <Item identifier="flashpowder" outcondition="0.25" />
+      <Item identifier="flashpowder" outcondition="0.5" />
     </Deconstruct>
     <InventoryIcon name="50bmgfmjinv" texture="%ModDir%/Ammo/improvedammo.png" sourcerect="324,127,60,63" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Ammo/improvedammo.png" sourcerect="1,282,10,69" origin="0.5,0.5" />
@@ -2534,10 +2591,10 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" maxtargetstohit="2" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="175,150,125,150" scalemultiplier="1,2" />
-      <Attack structuredamage="35.0" targetforce="15" itemdamage="20" severlimbsprobability="0.35" penetration="0.5">
-        <Affliction identifier="bleeding" strength="105" />
-        <Affliction identifier="gunshotwound" strength="85" />
-        <Affliction identifier="explosiondamage" strength="50" probability="0.45" />
+      <Attack structuredamage="35.0" targetforce="15" itemdamage="20" severlimbsprobability="1" penetration="0.5">
+        <Affliction identifier="bleeding" strength="125" />
+        <Affliction identifier="gunshotwound" strength="100" />
+        <Affliction identifier="gunshotwound" strength="50" probability="0.75" />
         <Affliction identifier="stun" strength="0.25" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -2579,11 +2636,11 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" maxtargetstohit="3" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,50,50,200" scalemultiplier="1,2.5" />
-      <Attack structuredamage="65.0" targetforce="15" itemdamage="35" severlimbsprobability="0.5" penetration="0.65">
-        <Affliction identifier="bleeding" strength="65" />
-        <Affliction identifier="gunshotwound" strength="55" />
+      <Attack structuredamage="65.0" targetforce="15" itemdamage="35" severlimbsprobability="1" penetration="0.65">
+        <Affliction identifier="bleeding" strength="85" />
+        <Affliction identifier="gunshotwound" strength="70" />
         <Affliction identifier="explosiondamage" strength="25" probability="0.4" />
-        <Affliction identifier="scp_firelatexburn" strength="50" />
+        <Affliction identifier="scp_firelatexburn" strength="15" />
         <Affliction identifier="stun" strength="0.3" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -2624,11 +2681,10 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" maxtargetstohit="3" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="50,50,255,200" scalemultiplier="1,2.5" />
-      <Attack structuredamage="65.0" targetforce="15" itemdamage="35" severlimbsprobability="0.5" penetration="0.8">
+      <Attack structuredamage="65.0" targetforce="15" itemdamage="50" severlimbsprobability="0.65" penetration="0.85">
         <Affliction identifier="bleeding" strength="55" />
         <Affliction identifier="gunshotwound" strength="70" />
-        <Affliction identifier="explosiondamage" strength="70" probability="0.4" />
-        <Affliction identifier="gunshotwound" strength="55" probability="0.25" />
+        <Affliction identifier="explosiondamage" strength="70" probability="0.5" />
         <Affliction identifier="stun" strength="0.3" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -2665,8 +2721,8 @@
     <Fabricate suitablefabricators="ammofabricator" requiredtime="20" amount="10">
       <RequiredSkill identifier="weapons" level="30" />
       <RequiredItem identifier="shotgunshell" amount="10" />
-      <RequiredItem identifier="magnesium" amount="2" />
-      <RequiredItem identifier="lead" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="2" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="2" />
     </Fabricate>
     <InventoryIcon name="12gsluginv" texture="%ModDir%/Ammo/shotgunshells.png" sourcerect="0,0,45,46" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Ammo/shotgunshells.png" sourcerect="0,134,22,10" depth="0.55" origin="0.5,0.5" />
@@ -2674,7 +2730,7 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" hitscancount="1" removeonhit="true" spread="1">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,100" scalemultiplier="1,0.5" />
-      <Attack structuredamage="0.5" targetforce="8" itemdamage="8" severlimbsprobability="0.2" penetration="0.2">
+      <Attack structuredamage="0.5" targetforce="10" itemdamage="8" severlimbsprobability="0.2" penetration="0.15">
         <Affliction identifier="bleeding" strength="35" />
         <Affliction identifier="bleeding" strength="25" probability="0.25" />
         <Affliction identifier="gunshotwound" strength="45" />
@@ -2707,7 +2763,8 @@
     <Fabricate suitablefabricators="ammofabricator" requiredtime="20" amount="10">
       <RequiredSkill identifier="weapons" level="25" />
       <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="magnesium" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="2" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" />
     </Fabricate>
     <InventoryIcon name="12gsluginv" texture="%ModDir%/Ammo/shotgunshells.png" sourcerect="98,48,45,46" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Ammo/shotgunshells.png" sourcerect="0,134,22,10" depth="0.55" origin="0.5,0.5" />
@@ -2741,7 +2798,7 @@
     <PreferredContainer primary="secarmcab" minamount="5" maxamount="10" spawnprobability="0.25" notcampaign="true" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="10" spawnprobability="0.1" minleveldifficulty="15" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="10" spawnprobability="0.1" minleveldifficulty="15" />
-    <Price baseprice="125" displaynonempty="true" minleveldifficulty="15">
+    <Price baseprice="150" displaynonempty="true" minleveldifficulty="20">
       <Price storeidentifier="merchantoutpost" minavailable="1" maxavailable="4" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="1" maxavailable="4" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -2764,11 +2821,11 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" hitscancount="1" removeonhit="true" spread="0.5">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,100" scalemultiplier="1,0.65" />
-      <Attack structuredamage="0.5" targetforce="4" itemdamage="8" severlimbsprobability="0.2" penetration="0.45">
+      <Attack structuredamage="0.5" targetforce="4" itemdamage="8" severlimbsprobability="0.35" penetration="0.45">
         <Affliction identifier="bleeding" strength="15" />
         <Affliction identifier="bleeding" strength="10" probability="0.1" />
         <Affliction identifier="gunshotwound" strength="40" />
-        <Affliction identifier="explosiondamage" strength="15" probability="0.2" />
+        <Affliction identifier="explosiondamage" strength="15" probability="0.25" />
         <Affliction identifier="stun" strength="0.2" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -2804,7 +2861,7 @@
       <RequiredSkill identifier="weapons" level="45" />
       <RequiredItem identifier="shotgunshell" amount="10" />
       <RequiredItem identifier="flashpowder" />
-      <RequiredItem identifier="lead" amount="2" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="2" />
     </Fabricate>
     <InventoryIcon name="12gmagbuckinv" texture="%ModDir%/Ammo/shotgunshells.png" sourcerect="93,0,46,46" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Ammo/shotgunshells.png" sourcerect="0,156,22,10" depth="0.55" origin="0.5,0.5" />
@@ -2812,7 +2869,7 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" hitscancount="8" removeonhit="true" spread="17.5">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,100" scalemultiplier="1,0.5" />
-      <Attack structuredamage="0.5" targetforce="5" itemdamage="0.05" severlimbsprobability="0.2" penetration="0.03">
+      <Attack structuredamage="0.5" targetforce="5" itemdamage="0.05" severlimbsprobability="0.3" penetration="0.02">
         <Affliction identifier="bleeding" strength="10" />
         <Affliction identifier="bleeding" strength="10" probability="0.33" />
         <Affliction identifier="gunshotwound" strength="12" />
@@ -2833,7 +2890,7 @@
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="toxcab" minamount="0" maxamount="10" spawnprobability="0.06" />
     <PreferredContainer primary="abandonedsecarmcab,wreckmedcab" minamount="0" maxamount="10" spawnprobability="0.05" minleveldifficulty="20" />
-    <Price baseprice="150" displaynonempty="true" minleveldifficulty="5">
+    <Price baseprice="150" displaynonempty="true" minleveldifficulty="25">
       <Price storeidentifier="merchantoutpost" minavailable="2" maxavailable="6" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="2" maxavailable="4" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -2849,7 +2906,7 @@
       <RequiredSkill identifier="medical" level="60" />
       <RequiredItem identifier="shotgunshell" amount="10" />
       <RequiredItem identifier="scp_devilsblood" mincondition="0.5" />
-      <RequiredItem identifier="magnesium" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="2" />
     </Fabricate>
     <InventoryIcon name="12gdevilinv" texture="%ModDir%/Ammo/shotgunshells.png" sourcerect="46,48,52,49" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Ammo/shotgunshells.png" sourcerect="0,134,22,10" depth="0.55" origin="0.5,0.5" />
@@ -2891,15 +2948,17 @@
     </Price>
     <Fabricate suitablefabricators="ammofabricator" requiredtime="30" amount="3">
       <RequiredSkill identifier="weapons" level="45" />
-      <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="titanium" amount="2" />
-      <RequiredItem identifier="magnesium" amount="3" />
+      <RequiredItem identifier="scp_556mag" amount="3" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="2" />
+      <RequiredItem identifier="titanium" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="8" amount="1">
       <RequiredSkill identifier="weapons" level="25" />
       <RequiredItem tag="55630mag" mincondition="0.0" maxcondition="0.0" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" />
       <RequiredItem identifier="titanium" mincondition="0.5" />
-      <RequiredItem identifier="magnesium" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" mincondition="0.5" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="steel" outcondition="0.25" />
@@ -2923,11 +2982,10 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,200,115,200" scalemultiplier="1,0.6" />
-      <Attack structuredamage="3" targetforce="1" itemdamage="2" severlimbsprobability="0.05" penetration="0.25">
-        <Affliction identifier="bleeding" strength="5" />
-        <Affliction identifier="bleeding" strength="5" probability="0.15" />
-        <Affliction identifier="gunshotwound" strength="10" />
-        <Affliction identifier="explosiondamage" strength="5" probability="0.15" />
+      <Attack structuredamage="3" targetforce="1" itemdamage="4" severlimbsprobability="0.05" penetration="0.25">
+        <Affliction identifier="bleeding" strength="6" />
+        <Affliction identifier="gunshotwound" strength="12" />
+        <Affliction identifier="explosiondamage" strength="7.5" probability="0.15" />
         <Affliction identifier="stun" strength="0.1" probability="0.2" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -2954,22 +3012,24 @@
       <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
       <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="2" maxavailable="6" />
     </Price>
-    <Fabricate suitablefabricators="ammofabricator" requiredtime="15" amount="5">
+    <Fabricate suitablefabricators="ammofabricator" requiredtime="25" amount="3">
       <RequiredSkill identifier="weapons" level="40" />
-      <RequiredItem identifier="steel" />
-      <RequiredItem identifier="magnesium" amount="2" />
+      <RequiredItem identifier="scp_9mmmag" amount="3" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" />
       <RequiredItem identifier="titanium" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
-    <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="5" amount="1">
+    <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="7" amount="1">
       <RequiredSkill identifier="weapons" level="25" />
       <RequiredItem tag="9mm16mag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="titanium" mincondition="0.2" />
-      <RequiredItem identifier="magnesium" mincondition="0.5" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" mincondition="0.25" />
+      <RequiredItem identifier="titanium" mincondition="0.25" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" mincondition="0.25" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="steel" outcondition="0.2" />
     </Deconstruct>
-    <Sprite texture="%ModDir%/Ammo/ammo.png" depth="0.54" sourcerect="53,678,28,56" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Ammo/ammo.png" depth="0.54" sourcerect="67,3,28,56" origin="0.5,0.5" />
     <Body width="30" height="40" density="50" />
     <ItemContainer hideitems="true" capacity="1" drawinventory="false" canbeselected="false" ShowConditionInContainedStateIndicator="true" SpawnWithId="scp_9x19cappprojectile" removecontaineditemsondeconstruct="true" containedstateindicatorstyle="bullet">
       <Containable items="scp_9x19cappprojectile" />
@@ -2988,11 +3048,11 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,135" scalemultiplier="1,0.6" />
-      <Attack structuredamage="1.0" targetforce="0.2" itemdamage="1" severlimbsprobability="0.05" penetration="0.15">
+      <Attack structuredamage="1.0" targetforce="0.2" itemdamage="3" severlimbsprobability="0.05" penetration="0.15">
         <Affliction identifier="bleeding" strength="5" />
         <Affliction identifier="bleeding" strength="5" probability="0.25" />
-        <Affliction identifier="gunshotwound" strength="10" />
-        <Affliction identifier="explosiondamage" strength="5" probability="0.15" />
+        <Affliction identifier="gunshotwound" strength="12" />
+        <Affliction identifier="explosiondamage" strength="6" probability="0.1" />
         <Affliction identifier="stun" strength="0.05" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -3012,11 +3072,11 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,135" scalemultiplier="1,0.6" />
-      <Attack structuredamage="1.0" targetforce="0.2" itemdamage="1" severlimbsprobability="0.05" penetration="0.15">
+      <Attack structuredamage="1.0" targetforce="0.2" itemdamage="4" severlimbsprobability="0.05" penetration="0.15">
         <Affliction identifier="bleeding" strength="10" />
         <Affliction identifier="bleeding" strength="6" probability="0.1" />
-        <Affliction identifier="gunshotwound" strength="12" />
-        <Affliction identifier="gunshotwound" strength="8" probability="0.2" />
+        <Affliction identifier="gunshotwound" strength="16" />
+        <Affliction identifier="explosiondamage" strength="8" probability="0.2" />
         <Affliction identifier="stun" strength="0.05" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -3034,7 +3094,7 @@
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.075" />
     <PreferredContainer primary="scp_smg9,scp_uzi,scp_vector" minamount="0" maxamount="2" spawnprobability="0.1" />
-    <Price baseprice="300" displaynonempty="true" minleveldifficulty="5">
+    <Price baseprice="400" displaynonempty="true" minleveldifficulty="5">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -3044,19 +3104,20 @@
     </Price>
     <Fabricate suitablefabricators="ammofabricator" requiredtime="30" amount="2">
       <RequiredSkill identifier="weapons" level="45" />
-      <RequiredItem identifier="steel" />
-      <RequiredItem identifier="magnesium" amount="2" />
+      <RequiredItem identifier="scp_9mmsmgmag" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="2" />
       <RequiredItem identifier="titanium" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
-    <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="3" amount="1">
+    <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="15" amount="1">
       <RequiredSkill identifier="weapons" level="25" />
       <RequiredItem tag="9mmsmgmag" mincondition="0.0" maxcondition="0.0" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" />
       <RequiredItem identifier="titanium" />
-      <RequiredItem identifier="magnesium" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
     <Deconstruct time="12">
       <Item identifier="steel" />
-      <Item identifier="lead" />
     </Deconstruct>
     <Sprite texture="%ModDir%/Ammo/improvedammo.png" depth="0.54" sourcerect="56,142,37,66" origin="0.5,0.5" />
     <Body width="30" height="40" density="50" />
@@ -3084,20 +3145,22 @@
     </Price>
     <Fabricate suitablefabricators="ammofabricator" requiredtime="20" amount="2">
       <RequiredSkill identifier="weapons" level="40" />
-      <RequiredItem identifier="steel" />
-      <RequiredItem identifier="magnesium" amount="2" />
+      <RequiredItem identifier="scp_45mag" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="2" />
       <RequiredItem identifier="titanium" amount="2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="6" amount="1">
       <RequiredSkill identifier="weapons" level="25" />
       <RequiredItem tag="4510mag" mincondition="0.0" maxcondition="0.0" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" />
       <RequiredItem identifier="titanium" />
-      <RequiredItem identifier="magnesium" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" mincondition="0.5" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="steel" outcondition="0.5" />
     </Deconstruct>
-    <Sprite texture="%ModDir%/Ammo/ammo.png" depth="0.54" sourcerect="113,677,27,58" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Ammo/ammo.png" depth="0.54" sourcerect="98,1,27,58" origin="0.5,0.5" />
     <Body width="30" height="40" density="50" />
     <ItemContainer hideitems="true" capacity="1" drawinventory="false" canbeselected="false" ShowConditionInContainedStateIndicator="true" SpawnWithId="scp_45approjectile" removecontaineditemsondeconstruct="true" containedstateindicatorstyle="bullet">
       <Containable items="scp_45approjectile" />
@@ -3116,11 +3179,10 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,200,115,185" scalemultiplier="0.8,0.6" />
-      <Attack structuredamage="1.0" targetforce="1.5" itemdamage="2" severlimbsprobability="0.1" penetration="0.1">
+      <Attack structuredamage="1.0" targetforce="1.5" itemdamage="4" severlimbsprobability="0.1" penetration="0.1">
         <Affliction identifier="bleeding" strength="10" />
-        <Affliction identifier="bleeding" strength="7.5" probability="0.1" />
         <Affliction identifier="gunshotwound" strength="15" />
-        <Affliction identifier="explosiondamage" strength="7.5" probability="0.125" />
+        <Affliction identifier="explosiondamage" strength="7.5" probability="0.2" />
         <Affliction identifier="stun" strength="0.1" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -3157,8 +3219,9 @@
     <Fabricate suitablefabricators="ammofabricator" requiredtime="15" amount="6">
       <RequiredSkill identifier="weapons" level="40" />
       <RequiredItem identifier="scp_357round" amount="6" />
-      <RequiredItem identifier="titanium" />
-      <RequiredItem identifier="magnesium" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" />
+      <RequiredItem identifier="titanium" amount="2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
     <Deconstruct time="2">
       <Item identifier="copper" outcondition="0.1" />
@@ -3171,7 +3234,7 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,175,100,240" scalemultiplier="0.5,0.5" />
-      <Attack structuredamage="1.0" targetforce="10" itemdamage="3" severlimbsprobability="0.05" penetration="0.15">
+      <Attack structuredamage="1.0" targetforce="10" itemdamage="6" severlimbsprobability="0.05" penetration="0.15">
         <Affliction identifier="bleeding" strength="10" />
         <Affliction identifier="bleeding" strength="15" probability="0.15" />
         <Affliction identifier="gunshotwound" strength="30" />
@@ -3281,14 +3344,12 @@
     </Price>
     <Fabricate suitablefabricators="ammofabricator" requiredtime="25" amount="6">
       <RequiredSkill identifier="weapons" level="65" />
-      <RequiredItem identifier="lead" amount="3" />
       <RequiredItem identifier="flashpowder" amount="2" />
-      <RequiredItem identifier="copper" amount="2" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="3" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="2" />
     </Fabricate>
-    <Deconstruct time="2">
-      <Item identifier="copper" outcondition="0.2" />
-      <Item identifier="lead" outcondition="0.1" />
-      <Item identifier="flashpowder" outcondition="0.2" />
+    <Deconstruct time="3">
+      <Item identifier="flashpowder" outcondition="0.4" />
     </Deconstruct>
     <InventoryIcon name="44inv" texture="%ModDir%/Ammo/improvedammo.png" sourcerect="397,51,47,47" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Ammo/improvedammo.png" sourcerect="1,251,8,26" origin="0.5,0.5" />
@@ -3296,7 +3357,7 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,100,100,240" scalemultiplier="0.5,0.5" />
-      <Attack structuredamage="1.0" targetforce="12" itemdamage="3" severlimbsprobability="0.125" penetration="0.05">
+      <Attack structuredamage="1.0" targetforce="12" itemdamage="6" severlimbsprobability="0.125" penetration="0.05">
         <Affliction identifier="bleeding" strength="45" />
         <Affliction identifier="bleeding" strength="15" probability="0.45" />
         <Affliction identifier="gunshotwound" strength="45" />
@@ -3332,13 +3393,12 @@
     <Fabricate suitablefabricators="ammofabricator" requiredtime="30" amount="6">
       <RequiredSkill identifier="weapons" level="45" />
       <RequiredItem identifier="scp_44round" amount="6" />
-      <RequiredItem identifier="titanium" amount="2" />
       <RequiredItem identifier="flashpowder" amount="2" />
+      <RequiredItem identifier="titanium" amount="3" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
-    <Deconstruct time="2">
-      <Item identifier="lead" outcondition="0.1" />
-      <Item identifier="titanium" outcondition="0.2" />
-      <Item identifier="flashpowder" outcondition="0.2" />
+    <Deconstruct time="4">
+      <Item identifier="flashpowder" outcondition="0.6" />
     </Deconstruct>
     <InventoryIcon name="44apinv" texture="%ModDir%/Ammo/improvedammo.png" sourcerect="346,51,47,47" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Ammo/improvedammo.png" sourcerect="10,251,6,26" origin="0.5,0.5" />
@@ -3346,7 +3406,7 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,100,100,240" scalemultiplier="0.5,0.5" />
-      <Attack structuredamage="1.0" targetforce="9" itemdamage="4" severlimbsprobability="0.125" penetration="0.2">
+      <Attack structuredamage="1.0" targetforce="9" itemdamage="8" severlimbsprobability="0.125" penetration="0.2">
         <Affliction identifier="bleeding" strength="15" />
         <Affliction identifier="bleeding" strength="15" probability="0.2" />
         <Affliction identifier="gunshotwound" strength="40" />
@@ -3393,7 +3453,7 @@
     <InventoryIcon texture="%ModDir%/Weapons/weaponsinv.png" sourcerect="223,415,71,79" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Weapons/heavyweapons.png" sourcerect="0,461,260,78" depth="0.55" origin="0.5,0.5" />
     <Body width="140" height="60" density="50" />
-    <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="60,-10" aimpos="67,2.5" handle1="-42,-18" handle2="35,4" holdangle="-35" msg="ItemMsgPickUpSelect" />
+    <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="60,-10" aimpos="67,2.5" handle1="-47,-18" handle2="35,4" holdangle="-35" msg="ItemMsgPickUpSelect" />
     <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
       <sprite name="M249 Worn" texture="%ModDir%/Weapons/heavyweapons.png" canbehiddenbyotherwearables="false" sourcerect="0,461,260,78" rotation="90" inheritlimbdepth="false" depth="0.6" limb="Torso" scale="0.45" origin="0.5,1" />
     </Wearable>
@@ -3408,13 +3468,10 @@
       <StatusEffect type="Always" target="This" Condition="2">
         <Conditional condition="gt 0" />
       </StatusEffect>
-      <StatusEffect type="InWater" target="This" Condition="2">
-        <Conditional condition="gt 0" />
-      </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
-        <sound file="%ModDir%/Sounds/machinegunjam.ogg" type="OnUse" range="900.0" loop="false" />
+        <sound file="%ModDir%/Sounds/machinegunjam.ogg" type="OnUse" range="900.0" loop="false" frequencymultiplier="1.1" />
       </StatusEffect>
-      <StatusEffect type="OnBroken" target="This" Condition="40" disabledeltatime="true" delay="4.5" stackable="false" />
+      <StatusEffect type="OnBroken" target="This" Condition="50" disabledeltatime="true" delay="9" stackable="false" />
       <StatusEffect type="OnUse">
         <Explosion range="150.0" force="1.5" shockwave="false" smoke="false" flames="false" sparks="false" underwaterbubble="false" camerashake="6.5" />
       </StatusEffect>
@@ -3443,7 +3500,7 @@
   <!--100 round 5.56x45 box mag-->
   <Item name="" identifier="scp_m249mag" description="" tags="mediumitem,m249ammo,ehaammo" category="Weapon" subcategory="Coalition" cargocontaineridentifier="scp_ammocrate" impactsoundtag="impact_metal_light" scale="0.3">
     <PreferredContainer primary="scp_m249" minamount="0" maxamount="1" spawnprobability="0.25" />
-    <PreferredContainer primary="secarmcab" minamount="0" maxamount="1" spawnprobability="0.2" />
+    <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.05" minleveldifficulty="15" />
     <Price baseprice="400" displaynonempty="true" minleveldifficulty="9">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
@@ -3459,26 +3516,29 @@
     </Price>
     <Fabricate suitablefabricators="ammofabricator" requiredtime="30">
       <RequiredSkill identifier="weapons" level="35" />
-      <RequiredItem identifier="lead" amount="2" />
       <RequiredItem identifier="plastic" amount="2" />
-      <RequiredItem identifier="magnesium" amount="3" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="3" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="3" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="2" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="15" amount="1">
       <RequiredSkill identifier="weapons" level="30" />
       <RequiredItem identifier="scp_m249mag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" amount="2" />
-      <RequiredItem identifier="magnesium" amount="3" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="3" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="3" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="2" />
     </Fabricate>
     <Deconstruct time="15">
       <Item identifier="plastic" amount="2" />
     </Deconstruct>
-    <Sprite texture="%ModDir%/Ammo/ammo.png" depth="0.54" sourcerect="819,277,63,98" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Ammo/ammo.png" depth="0.54" sourcerect="176,104,29,47" origin="0.5,0.5" />
     <Body width="30" height="40" density="50" />
     <ItemContainer hideitems="true" capacity="1" drawinventory="false" canbeselected="false" ShowConditionInContainedStateIndicator="true" SpawnWithId="scp_556projectile" removecontaineditemsondeconstruct="true" containedstateindicatorstyle="bullet">
       <Containable items="scp_556projectile" />
       <StatusEffect type="OnUse" target="This" condition="-1" disabledeltatime="true">
         <SpawnItem identifier="scp_556projectile" spawnposition="ThisInventory" />
         <ParticleEmitter particle="scp_spentcasingriflesmall" emitinterval="1.5" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="250" velocitymax="500" copyentityangle="true" scalemin="0.5" scalemax="0.5" />
+        <ParticleEmitter particle="scp_mglink" emitinterval="1.5" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="90" velocitymax="175" copyentityangle="true" scalemin="0.4" scalemax="0.4" />
       </StatusEffect>
     </ItemContainer>
     <Holdable canBeCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect" />
@@ -3488,7 +3548,7 @@
     <PreferredContainer primary="secarmcab" minamount="0" maxamount="1" spawnprobability="0.2" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.08" minleveldifficulty="10" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="400" displaynonempty="true" minleveldifficulty="9">
+    <Price baseprice="700" displaynonempty="true" minleveldifficulty="15">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -3515,15 +3575,15 @@
     <Sprite texture="%ModDir%/Weapons/weapons.png" sourcerect="212,160,232,103" depth="0.55" origin="0.5,0.5" />
     <Body width="140" height="60" density="50" />
     <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="50,-10" aimpos="55,1" handle1="-15,-15" handle2="35,7" holdangle="-35" msg="ItemMsgPickUpSelect" />
-    <RangedWeapon reload="0.125" barrelpos="79,11" weapondamagemodifier="1.5" spread="2" unskilledspread="16" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
+    <RangedWeapon reload="0.09" barrelpos="79,11" weapondamagemodifier="1.4" spread="2" unskilledspread="16" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
       <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
       <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
       <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
       <Sound file="%ModDir%/Sounds/5.561.ogg" type="OnUse" range="3000" selectionmode="Random" />
-      <Sound file="%ModDir%/Sounds/5.562.ogg" type="OnUse" range="3000" />
-      <Sound file="%ModDir%/Sounds/5.563.ogg" type="OnUse" range="3000" />
+      <Sound file="%ModDir%/Sounds/5.561.ogg" type="OnUse" range="3000" frequencymultiplier="0.96" />
+      <Sound file="%ModDir%/Sounds/5.561.ogg" type="OnUse" range="3000" frequencymultiplier="1.02" />
       <StatusEffect type="OnUse" target="This" reload="0.4" setvalue="true" delay="0.1" />
-      <StatusEffect type="OnUse" target="This" reload="0.09" setvalue="true" delay="0.3" />
+      <StatusEffect type="OnUse" target="This" reload="0.09" setvalue="true" delay="0.5" />
       <StatusEffect type="OnUse">
         <Explosion range="150.0" force="0.8" shockwave="false" smoke="false" flames="false" sparks="false" underwaterbubble="false" camerashake="9" />
       </StatusEffect>
@@ -3551,14 +3611,14 @@
     <Fabricate suitablefabricators="ammofabricator" requiredtime="35" amount="1">
       <RequiredSkill identifier="weapons" level="65" />
       <RequiredItem tag="55630mag" />
-      <RequiredItem identifier="scp_durasteelmunitionscase" mincondition="0.2" />
       <RequiredItem identifier="flashpowder" amount="1" />
+      <RequiredItem identifier="scp_durasteelmunitionscase" mincondition="0.2" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="15" amount="1">
       <RequiredSkill identifier="weapons" level="40" />
       <RequiredItem tag="55630mag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="scp_durasteelmunitionscase" mincondition="0.05" />
       <RequiredItem identifier="flashpowder" mincondition="0.5" />
+      <RequiredItem identifier="scp_durasteelmunitionscase" mincondition="0.05" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="steel" outcondition="0.25" />
@@ -3582,7 +3642,7 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="75,75,180,200" scalemultiplier="1,0.6" />
-      <Attack structuredamage="3" targetforce="1" itemdamage="3" severlimbsprobability="0.05" penetration="0.35">
+      <Attack structuredamage="3" targetforce="1" itemdamage="10" severlimbsprobability="0.05" penetration="0.35">
         <Affliction identifier="bleeding" strength="12" />
         <Affliction identifier="bleeding" strength="6" probability="0.15" />
         <Affliction identifier="gunshotwound" strength="12" />
@@ -3604,18 +3664,18 @@
     <PreferredContainer primary="scp_scar17" minamount="0" maxamount="1" spawnprobability="0.05" />
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.01" minleveldifficulty="30" />
-    <Price baseprice="575" displaynonempty="true" />
+    <Price baseprice="600" displaynonempty="true" />
     <Fabricate suitablefabricators="ammofabricator" requiredtime="40" amount="2">
       <RequiredSkill identifier="weapons" level="70" />
       <RequiredItem identifier="scp_scarmag" amount="2" />
-      <RequiredItem identifier="scp_durasteelmunitionscase" mincondition="0.3" />
       <RequiredItem identifier="flashpowder" amount="3" />
+      <RequiredItem identifier="scp_durasteelmunitionscase" mincondition="0.3" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="23" amount="1">
       <RequiredSkill identifier="weapons" level="50" />
       <RequiredItem tag="76251mag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="scp_durasteelmunitionscase" mincondition="0.15" />
       <RequiredItem identifier="flashpowder" />
+      <RequiredItem identifier="scp_durasteelmunitionscase" mincondition="0.15" />
     </Fabricate>
     <Deconstruct time="15">
       <Item identifier="plastic" />
@@ -3639,11 +3699,10 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,175" scalemultiplier="1,0.6" />
-      <Attack structuredamage="1.0" targetforce="4" itemdamage="3" severlimbsprobability="0.15" penetration="0.35">
-        <Affliction identifier="bleeding" strength="18" />
-        <Affliction identifier="bleeding" strength="10" probability="0.15" />
-        <Affliction identifier="gunshotwound" strength="20" />
-        <Affliction identifier="gunshotwound" strength="10" probability="0.2" />
+      <Attack structuredamage="1.0" targetforce="4" itemdamage="18" severlimbsprobability="0.2" penetration="0.4">
+        <Affliction identifier="bleeding" strength="10" />
+        <Affliction identifier="gunshotwound" strength="26" />
+        <Affliction identifier="gunshotwound" strength="12" probability="0.2" />
         <Affliction identifier="stun" strength="0.2" probability="0.2" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -3666,9 +3725,9 @@
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="1" maxavailable="6" />
+      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="1" maxavailable="3" />
       <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="1" maxavailable="6" />
+      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="1" maxavailable="3" />
     </Price>
     <Deconstruct time="10">
       <Item identifier="steel" />
@@ -3683,7 +3742,7 @@
     <BrokenSprite name="piercingshellproj" texture="%ModDir%/Ammo/railgunshells.png" sourcerect="240,163,171,18" depth="0.55" origin="0.5,0.5" maxcondition="99" />
     <Body width="215" height="30" density="30" />
     <Holdable slots="RightHand+LeftHand" holdpos="0,-50" handle1="-10,0" handle2="10,0" aimable="false" msg="ItemMsgPickUpSelect" />
-    <Projectile characterusable="false" launchimpulse="120.0" maxtargetstohit="2">
+    <Projectile characterusable="false" launchimpulse="150.0" maxtargetstohit="2">
       <Attack structuredamage="150" itemdamage="55" severlimbsprobability="5" penetration="0.6">
         <Affliction identifier="lacerations" strength="200" />
         <Affliction identifier="bleeding" strength="35" />
@@ -3701,7 +3760,7 @@
       </StatusEffect>
       <StatusEffect type="OnUse" target="This" Condition="-1.0" disabledeltatime="true" />
       <StatusEffect type="OnImpact" target="This" Condition="-50.0" disabledeltatime="true">
-        <Explosion range="20.0" structuredamage="100" itemdamage="100" force="40.0" severlimbsprobability="2" decal="explosion">
+        <Explosion range="50.0" structuredamage="100" itemdamage="100" force="40.0" severlimbsprobability="2" decal="explosion">
           <Affliction identifier="explosiondamage" strength="50" />
           <Affliction identifier="stun" strength="5" />
         </Explosion>
@@ -3723,12 +3782,10 @@
       </StatusEffect>
     </Projectile>
   </Item>
-  <Item name="" identifier="scp_railgundevilbloodshell" description="" tags="railgunequipment,railgunammo" showcontentsintooltip="true" category="Weapon" subcategory="Chemical Weapons" sonarsize="5" scale="0.5" impactsoundtag="impact_metal_heavy">
-    <PreferredContainer primary="railgunammoloader" amount="2" mincondition="1" spawnprobability="0.02" />
-    <PreferredContainer primary="railgunammocontainer" amount="2" mincondition="1" spawnprobability="0.02" />
-    <PreferredContainer secondary="wreckrailgunloader" minamount="1" maxamount="2" spawnprobability="0.02" />
-    <PreferredContainer secondary="wreckrailgunammocontainer" amount="1" spawnprobability="0.02" />
-    <Price baseprice="500" displaynonempty="true" minleveldifficulty="15">
+  <Item name="" identifier="scp_railgundushell" description="" health="100" tags="railgunequipment,railgunammo" showcontentsintooltip="true" category="Weapon" sonarsize="5" scale="0.5" impactsoundtag="impact_metal_heavy">
+    <PreferredContainer primary="railgunammoloader,railgunammocontainer" amount="1" spawnprobability="0.025" />
+    <PreferredContainer secondary="wreckrailgunloader,wreckrailgunammocontainer" minamount="1" maxamount="2" spawnprobability="0.03" />
+    <Price baseprice="750" displaynonempty="true" minleveldifficulty="15">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -3737,40 +3794,157 @@
       <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="1" maxavailable="2" />
     </Price>
     <Deconstruct time="10">
-      <Item identifier="scp_devilsblood" />
+      <Item identifier="steel" />
     </Deconstruct>
-    <Fabricate suitablefabricators="chemstation" requiredtime="25">
-      <RequiredSkill identifier="weapons" level="30" />
-      <RequiredSkill identifier="medical" level="65" />
+    <Fabricate suitablefabricators="fabricator" requiredtime="25">
+      <RequiredSkill identifier="weapons" level="65" />
+      <RequiredItem identifier="scp_railgunpiercingshell" />
       <RequiredItem identifier="steel" amount="2" />
-      <RequiredItem identifier="scp_devilsblood" />
+      <RequiredItem identifier="depletedfuel" />
     </Fabricate>
-    <InventoryIcon name="devilshellinv" texture="%ModDir%/Ammo/railgunshells.png" sourcerect="296,3,42,43" origin="0.5,0.5" />
-    <Sprite texture="%ModDir%/Ammo/railgunshells.png" sourcerect="5,40,216,31" depth="0.55" origin="0.5,0.5" />
+    <InventoryIcon name="dushellinv" texture="%ModDir%/Ammo/railgunshells.png" sourcerect="331,100,40,40" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Ammo/railgunshells.png" sourcerect="236,268,219,31" depth="0.55" origin="0.5,0.5" />
+    <BrokenSprite name="dushellproj" texture="%ModDir%/Ammo/railgunshells.png" sourcerect="239,209,171,18" depth="0.55" origin="0.5,0.5" maxcondition="99" />
     <Body width="215" height="30" density="30" />
     <Holdable slots="RightHand+LeftHand" holdpos="0,-50" handle1="-10,0" handle2="10,0" aimable="false" msg="ItemMsgPickUpSelect" />
-    <Projectile characterusable="false" launchimpulse="0" maxtargetstohit="1">
-      <Attack structuredamage="100" itemdamage="55" severlimbsprobability="5" penetration="0.25">
+    <Projectile characterusable="false" launchimpulse="115.0" maxtargetstohit="4">
+      <Attack structuredamage="150" itemdamage="55" severlimbsprobability="5" penetration="1">
         <Affliction identifier="lacerations" strength="200" />
-        <Affliction identifier="bleeding" strength="25" />
-        <Affliction identifier="stun" strength="10" />
+        <Affliction identifier="bleeding" strength="35" />
+        <Affliction identifier="stun" strength="5" />
       </Attack>
       <StatusEffect type="OnActive" target="This">
-        <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particleamount="5" velocitymin="0" velocitymax="50" scalemin="1" scalemax="3" />
+        <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particleamount="5" velocitymin="0" velocitymax="50" scalemin="0.65" scalemax="1" />
       </StatusEffect>
-      <StatusEffect type="OnImpact" target="Contained" allowwhenbroken="true">
-        <sound file="Content/Items/Weapons/ExplosionSmall1.ogg" selectionmode="Random" range="50000" />
-        <sound file="Content/Items/Weapons/ExplosionSmall2.ogg" selectionmode="Random" range="50000" />
-        <sound file="Content/Items/Weapons/ExplosionSmall3.ogg" selectionmode="Random" range="50000" />
-        <ParticleEmitter particle="shrapnel" copyentityangle="true" anglemin="0" anglemax="360" particleamount="50" velocitymin="100" velocitymax="2000" scalemin="1.0" scalemax="1.0" colormultiplier="150,0,0,255" />
+      <StatusEffect type="OnImpact" target="Contained" allowwhenbroken="true" penetration="1">
+        <ParticleEmitter particle="shrapnel" copyentityangle="true" anglemin="0" anglemax="360" particleamount="50" velocitymin="100" velocitymax="2000" scalemin="1.0" scalemax="1.0" />
         <Use />
       </StatusEffect>
-      <StatusEffect type="OnImpact" target="This" Condition="-100.0" disabledeltatime="true">
-        <Explosion range="450.0" structuredamage="200" itemdamage="100" force="40.0" severlimbsprobability="2" decal="explosion">
-          <Affliction identifier="explosiondamage" strength="50" />
-          <Affliction identifier="scp_devilpoisoning" strength="5" probability="0.75" />
+      <StatusEffect type="OnUse" target="This" Condition="-10.0" disabledeltatime="true" />
+      <StatusEffect type="OnImpact" target="This" Condition="-25.0" disabledeltatime="true"></StatusEffect>
+      <StatusEffect type="OnImpact" target="This" disabledeltatime="true">
+        <Conditional condition="lte 100" />
+        <Conditional condition="gte 75" />
+        <sound file="%ModDir%/Sounds/breach.ogg" volume="2" range="2500" />
+        <Explosion range="100.0" structuredamage="15" itemdamage="100" force="40.0" severlimbsprobability="2" decal="explosion">
+          <Affliction identifier="explosiondamage" strength="75" />
+          <Affliction identifier="stun" strength="5" />
+          <ParticleEmitter particle="weldspark" copyentityangle="true" anglemin="-30" anglemax="30" particleamount="25" velocitymin="500" velocitymax="2000" scalemin="1.0" scalemax="2.5" />
+        </Explosion>
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="This" disabledeltatime="true" comparison="or">
+        <Conditional condition="lte 75" />
+        <Conditional condition="gte 50" />
+        <ParticleEmitter particle="weldspark" copyentityangle="true" anglemin="-30" anglemax="30" particleamount="25" velocitymin="500" velocitymax="2000" scalemin="1.0" scalemax="2.5" />
+        <Explosion range="120.0" structuredamage="25" itemdamage="100" force="40.0" severlimbsprobability="2" decal="explosion">
+          <Affliction identifier="lacerations" strength="75" />
+        </Explosion>
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="This" disabledeltatime="true" comparison="or">
+        <Conditional condition="lte 50" />
+        <Conditional condition="gt 25" />
+        <ParticleEmitter particle="weldspark" copyentityangle="true" anglemin="-30" anglemax="30" particleamount="25" velocitymin="500" velocitymax="2000" scalemin="1.0" scalemax="2.5" />
+        <Explosion range="150.0" structuredamage="25" itemdamage="100" force="40.0" severlimbsprobability="2" decal="explosion">
+          <Affliction identifier="lacerations" strength="75" />
+        </Explosion>
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="This" disabledeltatime="true" comparison="or">
+        <Conditional condition="lte 25" />
+        <Conditional condition="gt 0" />
+        <ParticleEmitter particle="weldspark" copyentityangle="true" anglemin="-30" anglemax="30" particleamount="25" velocitymin="500" velocitymax="2000" scalemin="1.0" scalemax="2.5" />
+        <Explosion range="200.0" structuredamage="25" itemdamage="100" force="40.0" severlimbsprobability="2" decal="explosion">
+          <Affliction identifier="lacerations" strength="75" />
           <Affliction identifier="stun" strength="5" />
         </Explosion>
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This" allowwhenbroken="true">
+        <sound file="%ModDir%/Sounds/rocketgrenadebang.ogg" volume="1" range="5000" />
+        <ParticleEmitter particle="shrapnel" copyentityangle="true" anglemin="0" anglemax="360" particleamount="50" velocitymin="100" velocitymax="2000" scalemin="1.0" scalemax="2.5" />
+        <Use />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+      </StatusEffect>
+    </Projectile>
+  </Item>
+  <Item name="" identifier="scp_railgunduflechetteshell" description="" health="100" tags="railgunequipment,railgunammo" showcontentsintooltip="true" category="Weapon" sonarsize="5" scale="0.5" impactsoundtag="impact_metal_heavy">
+    <PreferredContainer primary="railgunammoloader,railgunammocontainer" amount="1" spawnprobability="0.015" />
+    <PreferredContainer secondary="wreckrailgunloader,wreckrailgunammocontainer" minamount="1" maxamount="2" spawnprobability="0.025" />
+    <Price baseprice="750" displaynonempty="true" minleveldifficulty="15">
+      <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
+      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
+      <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
+      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="1" maxavailable="2" />
+      <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
+      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="1" maxavailable="2" />
+    </Price>
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="fabricator" requiredtime="25">
+      <RequiredSkill identifier="weapons" level="65" />
+      <RequiredItem identifier="scp_railgundushell" />
+      <RequiredItem identifier="c4block" />
+      <RequiredItem identifier="depletedfuel" />
+    </Fabricate>
+    <InventoryIcon name="duflechinv" texture="%ModDir%/Ammo/railgunshells.png" sourcerect="373,100,40,41" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Ammo/railgunshells.png" sourcerect="236,304,219,31" depth="0.55" origin="0.5,0.5" />
+    <Body width="215" height="30" density="30" />
+    <Holdable slots="RightHand+LeftHand" holdpos="0,-50" handle1="-10,0" handle2="10,0" aimable="false" msg="ItemMsgPickUpSelect" />
+    <Projectile characterusable="false" launchimpulse="115.0" maxtargetstohit="4">
+      <Attack structuredamage="150" itemdamage="55" severlimbsprobability="5" penetration="1">
+        <Affliction identifier="lacerations" strength="200" />
+        <Affliction identifier="bleeding" strength="35" />
+        <Affliction identifier="stun" strength="5" />
+      </Attack>
+      <StatusEffect type="OnActive" target="This">
+        <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particleamount="5" velocitymin="0" velocitymax="50" scalemin="0.65" scalemax="1" />
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="Contained" allowwhenbroken="true" penetration="1">
+        <ParticleEmitter particle="shrapnel" copyentityangle="true" anglemin="0" anglemax="360" particleamount="50" velocitymin="100" velocitymax="2000" scalemin="1.0" scalemax="1.0" />
+        <Use />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" delay="0.5" Condition="-100.0" disabledeltatime="true" />
+      <StatusEffect type="OnImpact" target="This" disabledeltatime="true" comparison="or">
+        <ParticleEmitter particle="weldspark" copyentityangle="true" anglemin="0" anglemax="360" particleamount="50" velocitymin="500" velocitymax="2000" scalemin="1.0" scalemax="2.5" />
+        <Explosion range="200.0" structuredamage="25" itemdamage="100" force="40.0" severlimbsprobability="2" decal="explosion">
+          <Affliction identifier="lacerations" strength="75" />
+          <Affliction identifier="stun" strength="5" />
+        </Explosion>
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This" allowwhenbroken="true">
+        <SpawnItem identifier="scp_duflech" spawnposition="This" count="20" aimspread="15" rotationtype="Collider" rotation="0" />
+        <sound file="%ModDir%/Sounds/rocketgrenadebang.ogg" volume="1" range="5000" />
+        <ParticleEmitter particle="shrapnel" copyentityangle="true" anglemin="0" anglemax="360" particleamount="50" velocitymin="100" velocitymax="2000" scalemin="1.0" scalemax="2.5" />
+        <Use />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+      </StatusEffect>
+    </Projectile>
+  </Item>
+  <Item name="" identifier="scp_duflech" category="Weapon" scale="0.85" sonarsize="1" hideinmenus="true">
+    <Sprite texture="%ModDir%/Ammo/railgunshells.png" sourcerect="395,276,55,17" depth="0.55" origin="0.5,0.5" />
+    <Body width="75" height="10" density="20" />
+    <Holdable slots="RightHand+LeftHand" holdpos="0,-50" handle1="-10,0" handle2="10,0" aimable="false" />
+    <Projectile characterusable="false" launchimpulse="75.0" impulsespread="0.25" damagedoors="false" maxtargetstohit="2">
+      <Attack structuredamage="15" itemdamage="25" severlimbsprobability="0.25" penetration="0.2">
+        <Affliction identifier="lacerations" strength="35" />
+        <Affliction identifier="lacerations" strength="35" probability="0.5" />
+        <Affliction identifier="radiationsickness" strength="10" />
+        <Affliction identifier="bleeding" strength="25" />
+        <Affliction identifier="lacerations" strength="35" probability="0.5" />
+      </Attack>
+      <StatusEffect type="OnActive" target="This" lifetime="3">
+        <ParticleEmitter particle="ammotrailwater" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="1" velocitymin="-10" velocitymax="-100" scalemin="1.5" scalemax="1.75" />
+      </StatusEffect>
+      <StatusEffect type="OnNotContained" target="This" stackable="false" delay="3">
+        <Remove />
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="This">
+        <sound file="%ModDir%/Sounds/breach.ogg" volume="1" range="1800" />
+        <ParticleEmitter particle="shrapnel" copyentityangle="true" anglemin="0" anglemax="360" particleamount="1" velocitymin="100" velocitymax="2000" scalemin="0.5" scalemax="0.75" />
+        <ParticleEmitter particle="weldspark" copyentityangle="true" anglemin="-30" anglemax="30" particleamount="15" velocitymin="100" velocitymax="2000" scalemin="0.5" scalemax="0.75" />
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This">
         <Remove />
@@ -3778,8 +3952,8 @@
     </Projectile>
   </Item>
   <Item name="" identifier="scp_railgunphyspiercingshell" description="" tags="railgunequipment,railgunammo" showcontentsintooltip="true" category="Weapon" sonarsize="5" scale="0.5" impactsoundtag="impact_metal_heavy">
-    <PreferredContainer primary="railgunammoloader" amount="2" mincondition="1" spawnprobability="0.025" />
-    <PreferredContainer primary="railgunammocontainer" amount="2" mincondition="1" spawnprobability="0.025" />
+    <PreferredContainer primary="railgunammoloader" />
+    <PreferredContainer primary="railgunammocontainer" amount="1" maxcondition="1" spawnprobability="0.01" />
     <PreferredContainer secondary="wreckrailgunloader,wreckrailgunammocontainer" minamount="1" maxamount="2" spawnprobability="0.03" minleveldifficulty="20" />
     <Price baseprice="500" displaynonempty="true" minleveldifficulty="20">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
@@ -3812,6 +3986,7 @@
       <StatusEffect type="OnActive" target="This">
         <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particleamount="5" velocitymin="0" velocitymax="50" scalemin="1" scalemax="3" />
       </StatusEffect>
+      <StatusEffect type="OnUse" target="This" Condition="-1.0" disabledeltatime="true" />
       <StatusEffect type="OnImpact" target="Contained" allowwhenbroken="true">
         <sound file="Content/Items/Weapons/ExplosionSmall1.ogg" selectionmode="Random" range="50000" />
         <sound file="Content/Items/Weapons/ExplosionSmall2.ogg" selectionmode="Random" range="50000" />
@@ -3831,7 +4006,6 @@
           <Affliction identifier="bleeding" strength="150" />
           <Affliction identifier="stun" strength="5" />
         </Explosion>
-        <SpawnItem identifier="scp_tankfrag" spawnposition="This" count="25" aimspread="360" rotationtype="Collider" rotation="0" />
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This" allowwhenbroken="true">
         <sound file="%ModDir%/Sounds/rocketgrenadebang.ogg" volume="2.5" range="10000" />
@@ -3903,6 +4077,91 @@
       <StatusEffect type="OnBroken" target="This">
         <Remove />
       </StatusEffect>
+    </Projectile>
+  </Item>
+  <Item name="" identifier="scp_railgunnukemirvshell" description="" health="100" tags="railgunequipment,railgunammo" showcontentsintooltip="true" category="Weapon" subcategory="Weapons of Mass Destruction" sonarsize="5" scale="0.5" impactsoundtag="impact_metal_heavy">
+    <PreferredContainer primary="railgunammoloader,railgunammocontainer" />
+    <PreferredContainer secondary="wreckrailgunloader,wreckrailgunammocontainer" amount="1" spawnprobability="0.008" minleveldifficulty="25" />
+    <Price baseprice="1200" displaynonempty="true" sold="false" />
+    <Deconstruct time="10">
+      <Item identifier="steel" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="fabricator" requiredtime="25">
+      <RequiredSkill identifier="weapons" level="90" />
+      <RequiredItem identifier="nuclearshell" />
+      <RequiredItem identifier="nuclearshell" />
+      <RequiredItem identifier="ic4block" />
+      <RequiredItem identifier="thorium" amount="2" />
+    </Fabricate>
+    <InventoryIcon name="nukemirvinv" texture="%ModDir%/Ammo/railgunshells.png" sourcerect="289,429,60,60" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Ammo/railgunshells.png" sourcerect="237,341,218,44" depth="0.55" origin="0.5,0.5" />
+    <Body width="215" height="30" density="30" />
+    <Holdable slots="RightHand+LeftHand" holdpos="0,-50" handle1="-10,0" handle2="10,0" aimable="false" msg="ItemMsgPickUpSelect" />
+    <Projectile characterusable="false" launchimpulse="115.0">
+      <Attack structuredamage="150" itemdamage="55" severlimbsprobability="5" penetration="1">
+        <Affliction identifier="lacerations" strength="200" />
+        <Affliction identifier="bleeding" strength="35" />
+        <Affliction identifier="stun" strength="5" />
+      </Attack>
+      <StatusEffect type="OnActive" target="This">
+        <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particleamount="5" velocitymin="0" velocitymax="50" scalemin="0.65" scalemax="1" />
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="Contained" allowwhenbroken="true" penetration="1">
+        <ParticleEmitter particle="shrapnel" copyentityangle="true" anglemin="0" anglemax="360" particleamount="50" velocitymin="100" velocitymax="2000" scalemin="1.0" scalemax="1.0" />
+        <Use />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" delay="0.25" Condition="-100.0" disabledeltatime="true" />
+      <StatusEffect type="OnImpact" target="This" disabledeltatime="true" comparison="or">
+        <ParticleEmitter particle="weldspark" copyentityangle="true" anglemin="0" anglemax="360" particleamount="50" velocitymin="500" velocitymax="2000" scalemin="1.0" scalemax="2.5" />
+        <Explosion range="200.0" structuredamage="25" itemdamage="100" force="40.0" severlimbsprobability="2" decal="explosion">
+          <Affliction identifier="lacerations" strength="75" />
+          <Affliction identifier="stun" strength="5" />
+        </Explosion>
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This" allowwhenbroken="true">
+        <SpawnItem identifier="scp_mirvshell" spawnposition="This" count="6" aimspread="30" rotationtype="Collider" rotation="0" />
+        <sound file="%ModDir%/Sounds/rocketgrenadebang.ogg" volume="1" range="5000" />
+        <ParticleEmitter particle="shrapnel" copyentityangle="true" anglemin="0" anglemax="360" particleamount="50" velocitymin="100" velocitymax="2000" scalemin="1.0" scalemax="2.5" />
+        <Use />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+      </StatusEffect>
+    </Projectile>
+  </Item>
+  <Item name="" identifier="scp_mirvshell" category="Weapon" scale="2" sonarsize="2.5" hideinmenus="true">
+    <Sprite texture="%ModDir%/Ammo/railgunshells.png" sourcerect="395,276,55,17" depth="0.55" origin="0.5,0.5" />
+    <Body width="100" height="10" density="20" />
+    <Holdable slots="RightHand+LeftHand" holdpos="0,-50" handle1="-10,0" handle2="10,0" aimable="false" />
+    <Projectile characterusable="false" launchimpulse="75.0" impulsespread="0.25" damagedoors="false">
+      <Attack structuredamage="5" itemdamage="25" severlimbsprobability="0.25" penetration="0.2">
+        <Affliction identifier="lacerations" strength="35" />
+        <Affliction identifier="radiationsickness" strength="10" />
+        <Affliction identifier="bleeding" strength="25" />
+      </Attack>
+      <StatusEffect type="OnActive" target="This" lifetime="3">
+        <ParticleEmitter particle="ammotrailwater" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="1" velocitymin="-10" velocitymax="-100" scalemin="1.5" scalemax="1.75" />
+      </StatusEffect>
+      <StatusEffect type="OnNotContained" target="This" stackable="false" delay="6">
+        <Remove />
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="This" condition="-100">
+        <sound file="%ModDir%/Sounds/nukesmall.ogg" volume="0.8" range="10000" />
+        <Explosion range="1000.0" structuredamage="300" itemdamage="1000" ballastfloradamage="1000" force="50.0" severlimbsprobability="2" debris="true" decal="explosion" decalsize="1.0" camerashake="1000" camerashakerange="50000" flashrange="10000" flashduration="2.0" screencolor="255,255,255,255" screencolorrange="5000" screencolorduration="2.0" penetration="0.5">
+          <Affliction identifier="explosiondamage" strength="1000" />
+          <Affliction identifier="burn" strength="1000" />
+          <Affliction identifier="radiationsickness" strength="100" />
+          <Affliction identifier="bleeding" strength="40" probability="0.05" dividebylimbcount="false" />
+          <Affliction identifier="stun" strength="30" />
+        </Explosion>
+        <Explosion range="1250" force="0.0" smoke="false" sparks="false" empstrength="2.5" applyfireeffects="false" ignorecover="true">
+          <Affliction identifier="emp" strength="50" multiplybymaxvitality="true" />
+        </Explosion>
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+      </StatusEffect>
+      <LightComponent LightColor="255,150,0,255" Flicker="0.0" range="250" IsOn="True" />
     </Projectile>
   </Item>
   <Item name="" identifier="scp_railgunerdshell" tags="railgunequipment,railgunammo" showcontentsintooltip="true" category="Weapon" subcategory="Weapons of Mass Destruction" sonarsize="5" scale="0.5" impactsoundtag="impact_metal_heavy">

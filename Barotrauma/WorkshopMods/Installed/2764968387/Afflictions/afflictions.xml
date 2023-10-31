@@ -191,7 +191,6 @@
         <sound file="%ModDir%/Medical/Sounds/wastingdisease4.ogg" volume="1.65" dontmuffle="True" />
         <sound file="%ModDir%/Medical/Sounds/wastingdisease5.ogg" volume="1.5" dontmuffle="True" />
         <sound file="%ModDir%/Medical/Sounds/wastingdisease6.ogg" volume="1.5" dontmuffle="True" />
-        <sound file="%ModDir%/Medical/Sounds/wastingdisease8.ogg" volume="1.5" dontmuffle="True" />
       </StatusEffect>
     </PeriodicEffect>
     <icon texture="%ModDir%/Afflictions/afflictions.png" sourcerect="262,1,128,128" color="106,106,106,255" origin="0,1.2100878E-09" />
@@ -275,7 +274,7 @@
     </Effect>
   </Affliction>
   <Affliction name="" identifier="scp_vomiting" description="" type="nausea" causeofdeathdescription="Choked on vomit." selfcauseofdeathdescription="" limbspecific="false" maxstrength="100" treatmentthreshold="1000" karmachangeonapplied="-0.1" damageoverlayalpha="0" healcostmultiplier="2.25">
-    <Effect minstrength="0" maxstrength="100" strengthchange="-0.5" minfacetint="255,255,255,0" maxfacetint="255,255,255,100">
+    <Effect minstrength="0" maxstrength="100" strengthchange="-1" minfacetint="255,255,255,0" maxfacetint="255,255,255,100">
       <StatusEffect target="Character" SpeedMultiplier="0.6" setvalue="true" />
     </Effect>
     <PeriodicEffect mininterval="2" maxinterval="6">
@@ -361,13 +360,13 @@
     <Effect minstrength="0" maxstrength="20" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-5" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="0.0" minchromaticaberration="0.0" maxchromaticaberration="0" minfacetint="0,0,0,0" maxfacetint="0,25,0,25" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.0">
       <StatusEffect target="Character">
         <Conditional HasStatusTag="!equals cbrnsuit" />
-        <Affliction identifier="organdamage" amount="1" />
+        <Affliction identifier="organdamage" amount="2" />
       </StatusEffect>
     </Effect>
     <Effect minstrength="20" maxstrength="40" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-5" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="0.0" minchromaticaberration="0.0" maxchromaticaberration="0" minfacetint="0,0,0,0" maxfacetint="0,25,0,25" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.0">
       <StatusEffect target="Character">
         <Conditional HasStatusTag="!equals cbrnsuit" />
-        <Affliction identifier="organdamage" amount="1" />
+        <Affliction identifier="organdamage" amount="3.5" />
         <Affliction identifier="scp_vomiting" amount="2" />
         <Affliction identifier="scp_presolatexinfection" amount="0.1" />
       </StatusEffect>
@@ -523,7 +522,7 @@
     </Effect>
   </Affliction>
   <Affliction name="" identifier="scp_ae035scare" description="" type="psiscare" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" indicatorlimb="Head" showinhealthscannerthreshold="11" showiconthreshold="11" maxstrength="10">
-    <Effect minstrength="0" maxstrength="10" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-25" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="1" minchromaticaberration="0.0" maxchromaticaberration="0" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="1">
+    <Effect minstrength="0" maxstrength="10" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-17.5" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="1" minchromaticaberration="0.0" maxchromaticaberration="0" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="1">
       <StatusEffect target="Character">
         <Conditional IsLocalPlayer="True" />
         <Affliction identifier="psychosis" amount="25" />
@@ -539,10 +538,9 @@
     <icon texture="%ModDir%/Afflictions/afflictions.png" sourcerect="910,0,128,128" color="0,200,0,255" origin="0,0" />
   </Affliction>
   <Affliction name="" identifier="scp_ae035tragscare" description="" type="psiscare" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" indicatorlimb="Head" showinhealthscannerthreshold="11" showiconthreshold="11" maxstrength="10">
-    <Effect minstrength="0" maxstrength="10" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-25" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="1" minchromaticaberration="0.0" maxchromaticaberration="0" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="1">
+    <Effect minstrength="0" maxstrength="10" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-15" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="1" minchromaticaberration="0.0" maxchromaticaberration="0" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="1">
       <StatusEffect target="Character">
         <Conditional IsLocalPlayer="True" />
-        <Affliction identifier="psychosis" amount="300" />
         <Affliction identifier="stun" amount="1" />
         <Affliction identifier="scp_psidamage" amount="25" />
         <sound file="%ModDir%/Sounds/horrortrag.ogg" volume="3" dontmuffle="True" />
@@ -611,7 +609,6 @@
         <sound file="%ModDir%/Sounds/strangenoise3.ogg" volume="0.5" dontmuffle="True" frequencymultiplier="0.6" />
         <sound file="%ModDir%/Sounds/strangenoise3.ogg" volume="0.5" dontmuffle="True" frequencymultiplier="0.8" />
         <sound file="%ModDir%/Sounds/strangenoise3.ogg" volume="0.5" dontmuffle="True" />
-        <sound file="%ModDir%/Medical/Sounds/wastingdisease8.ogg" volume="3.5" dontmuffle="True" frequencymultiplier="0.5" />
         <sound file="Content/Sounds/Hull/Hull5.ogg" volume="1" dontmuffle="True" frequencymultiplier="0.5" />
         <sound file="Content/Sounds/Hull/Hull3.ogg" volume="1" dontmuffle="True" frequencymultiplier="0.5" />
         <sound file="%ModDir%/Medical/Sounds/wastingdisease3.ogg" volume="2.5" dontmuffle="True" frequencymultiplier="0.5" />
@@ -634,7 +631,6 @@
         <sound file="%ModDir%/Sounds/strangenoise3.ogg" volume="1" dontmuffle="True" frequencymultiplier="0.6" />
         <sound file="%ModDir%/Sounds/strangenoise3.ogg" volume="1" dontmuffle="True" frequencymultiplier="0.8" />
         <sound file="%ModDir%/Sounds/strangenoise3.ogg" volume="1" dontmuffle="True" />
-        <sound file="%ModDir%/Medical/Sounds/wastingdisease8.ogg" volume="3.5" dontmuffle="True" frequencymultiplier="0.5" />
         <sound file="Content/Sounds/Hull/Hull5.ogg" volume="1" dontmuffle="True" frequencymultiplier="0.5" />
         <sound file="Content/Sounds/Hull/Hull3.ogg" volume="1" dontmuffle="True" frequencymultiplier="0.5" />
         <sound file="%ModDir%/Medical/Sounds/wastingdisease3.ogg" volume="2.5" dontmuffle="True" frequencymultiplier="0.5" />
@@ -692,7 +688,6 @@
         <sound file="%ModDir%/Sounds/strangenoise3.ogg" volume="0.5" dontmuffle="True" frequencymultiplier="0.6" />
         <sound file="%ModDir%/Sounds/strangenoise3.ogg" volume="0.5" dontmuffle="True" frequencymultiplier="0.8" />
         <sound file="%ModDir%/Sounds/strangenoise3.ogg" volume="0.5" dontmuffle="True" />
-        <sound file="%ModDir%/Medical/Sounds/wastingdisease8.ogg" volume="3.5" dontmuffle="True" frequencymultiplier="0.5" />
         <sound file="Content/Sounds/Hull/Hull5.ogg" volume="1" dontmuffle="True" frequencymultiplier="0.5" />
         <sound file="Content/Sounds/Hull/Hull3.ogg" volume="1" dontmuffle="True" frequencymultiplier="0.5" />
         <sound file="%ModDir%/Medical/Sounds/wastingdisease3.ogg" volume="2.5" dontmuffle="True" frequencymultiplier="0.5" />
@@ -715,7 +710,6 @@
         <sound file="%ModDir%/Sounds/strangenoise3.ogg" volume="1" dontmuffle="True" frequencymultiplier="0.6" />
         <sound file="%ModDir%/Sounds/strangenoise3.ogg" volume="1" dontmuffle="True" frequencymultiplier="0.8" />
         <sound file="%ModDir%/Sounds/strangenoise3.ogg" volume="1" dontmuffle="True" />
-        <sound file="%ModDir%/Medical/Sounds/wastingdisease8.ogg" volume="3.5" dontmuffle="True" frequencymultiplier="0.5" />
         <sound file="Content/Sounds/Hull/Hull5.ogg" volume="1" dontmuffle="True" frequencymultiplier="0.5" />
         <sound file="Content/Sounds/Hull/Hull3.ogg" volume="1" dontmuffle="True" frequencymultiplier="0.5" />
         <sound file="%ModDir%/Medical/Sounds/wastingdisease3.ogg" volume="2.5" dontmuffle="True" frequencymultiplier="0.5" />
@@ -741,5 +735,13 @@
     <Description textidentifier="scpfirelatexburnsev" minstrength="60" maxstrength="200" />
     <Effect minstrength="0" maxstrength="200" multiplybymaxvitality="true" minvitalitydecrease="0" maxvitalitydecrease="3" />
     <icon texture="%ModDir%/Afflictions/afflictions.png" sourcerect="1170,0,128,128" color="195,104,60,255" origin="0,0" />
+  </Affliction>
+  <Affliction name="" identifier="scp_wastingdiseasecontagion" description="" type="airborneinfection" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" indicatorlimb="Head" showinhealthscannerthreshold="20" showiconthreshold="715" karmachangeonapplied="-100" maxstrength="300">
+    <Effect minstrength="0" maxstrength="3" minvitalitydecrease="0" maxvitalitydecrease="0" strengthchange="-1" minscreendistort="0.0" minscreenblur="0.0" maxscreenblur="0.0" minchromaticaberration="0.0" maxchromaticaberration="0" minfacetint="0,0,0,0" maxfacetint="0,25,0,25" minafflictionoverlayalphamultiplier="0.0" maxafflictionoverlayalphamultiplier="0.0">
+      <StatusEffect target="Character">
+        <Conditional HasStatusTag="!equals cbrnsuit" />
+        <Affliction identifier="scp_wastingdisease" amount="1" />
+      </StatusEffect>
+    </Effect>
   </Affliction>
 </Afflictions>

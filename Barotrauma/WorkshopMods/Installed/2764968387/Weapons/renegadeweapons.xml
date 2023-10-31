@@ -6,7 +6,7 @@
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.05" minleveldifficulty="10" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.1" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="500" displaynonempty="true" minleveldifficulty="5">
+    <Price baseprice="700" displaynonempty="true" minleveldifficulty="15">
       <Price storeidentifier="merchantoutpost" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="2">
         <Reputation faction="separatists" min="35" />
@@ -39,8 +39,8 @@
       <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
       <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
       <Sound file="%ModDir%/Sounds/ak7621.ogg" type="OnUse" range="3000" selectionmode="Random" />
-      <Sound file="%ModDir%/Sounds/ak7622.ogg" type="OnUse" range="3000" />
-      <Sound file="%ModDir%/Sounds/ak7623.ogg" type="OnUse" range="3000" />
+      <Sound file="%ModDir%/Sounds/ak7621.ogg" type="OnUse" range="3000" frequencymultiplier="0.96" />
+      <Sound file="%ModDir%/Sounds/ak7621.ogg" type="OnUse" range="3000" frequencymultiplier="1.02" />
       <StatusEffect type="OnUse" target="This" Condition="-170" />
       <StatusEffect type="Always" target="This" Condition="5">
         <Conditional condition="gt 0" />
@@ -84,7 +84,7 @@
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.05" minleveldifficulty="15" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.1" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="500" displaynonempty="true" minleveldifficulty="5">
+    <Price baseprice="750" displaynonempty="true" minleveldifficulty="15">
       <Price storeidentifier="merchantoutpost" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="1">
         <Reputation faction="separatists" min="35" />
@@ -154,7 +154,7 @@
     <PreferredContainer primary="storagecab" minamount="1" maxamount="2" spawnprobability="0.04" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.075" minleveldifficulty="5" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="6" spawnprobability="0.125" />
-    <Price baseprice="300" displaynonempty="true" minleveldifficulty="5">
+    <Price baseprice="400" displaynonempty="true" minleveldifficulty="15">
       <Price storeidentifier="merchantoutpost" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="3">
         <Reputation faction="separatists" min="35" />
@@ -173,15 +173,17 @@
     </Deconstruct>
     <Fabricate suitablefabricators="ammofabricator,fabricator" requiredtime="20" requiresrecipe="false" amount="2">
       <RequiredSkill identifier="weapons" level="30" />
+      <RequiredItem identifier="plastic" amount="2" />
       <RequiredItem identifier="flashpowder" amount="2" />
-      <RequiredItem identifier="lead" amount="2" />
-      <RequiredItem identifier="plastic" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="10" amount="1">
       <RequiredSkill identifier="weapons" level="25" />
       <RequiredItem tag="ak30mag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" />
       <RequiredItem identifier="flashpowder" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" mincondition="0.5" />
     </Fabricate>
     <Sprite texture="%ModDir%/Ammo/renegadeammo.png" depth="0.54" sourcerect="0,1,42,51" origin="0.5,0.5" />
     <Body width="30" height="40" density="50" />
@@ -199,7 +201,7 @@
     <PreferredContainer primary="scp_ak103" minamount="0" maxamount="1" spawnprobability="0.01" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.05" minleveldifficulty="15" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.1" />
-    <Price baseprice="500" displaynonempty="true" minleveldifficulty="5">
+    <Price baseprice="600" displaynonempty="true" minleveldifficulty="25">
       <Price storeidentifier="merchantoutpost" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="2">
         <Reputation faction="separatists" min="45" />
@@ -218,15 +220,17 @@
     </Deconstruct>
     <Fabricate suitablefabricators="ammofabricator,fabricator" requiredtime="25" requiresrecipe="false">
       <RequiredSkill identifier="weapons" level="40" />
-      <RequiredItem identifier="flashpowder" amount="4" />
-      <RequiredItem identifier="lead" amount="4" />
       <RequiredItem identifier="steel" amount="2" />
+      <RequiredItem identifier="flashpowder" amount="4" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="4" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="3" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="25" amount="1">
       <RequiredSkill identifier="weapons" level="35" />
       <RequiredItem identifier="scp_akdrummag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" amount="4" />
       <RequiredItem identifier="flashpowder" amount="4" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="4" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="3" />
     </Fabricate>
     <Sprite texture="%ModDir%/Ammo/renegadeammo.png" depth="0.54" sourcerect="0,52,42,52" origin="0.5,0.5" />
     <Body width="30" height="40" density="50" />
@@ -244,7 +248,7 @@
     <PreferredContainer primary="scp_ak103" minamount="0" maxamount="1" spawnprobability="0.15" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.05" minleveldifficulty="15" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="1" maxamount="4" spawnprobability="0.065" />
-    <Price baseprice="500" displaynonempty="true" minleveldifficulty="8">
+    <Price baseprice="500" displaynonempty="true" minleveldifficulty="25">
       <Price storeidentifier="merchantoutpost" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="2">
         <Reputation faction="separatists" min="45" />
@@ -288,7 +292,7 @@
   <Item name="" identifier="scp_akdumag" description="" tags="smallitem,akammo,ehaammo,ak30mag" category="Weapon" subcategory="Renegade" cargocontaineridentifier="scp_ammocrate" maxstacksize="3" impactsoundtag="impact_metal_light" scale="0.45">
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.02" minleveldifficulty="25" />
-    <Price baseprice="450" displaynonempty="true" minleveldifficulty="10">
+    <Price baseprice="450" displaynonempty="true" minleveldifficulty="30">
       <Price storeidentifier="merchantoutpost" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="1">
         <Reputation faction="separatists" min="65" />
@@ -308,7 +312,7 @@
     <Fabricate suitablefabricators="ammofabricator" requiredtime="30" requiresrecipe="false" amount="2">
       <RequiredSkill identifier="weapons" level="40" />
       <RequiredSkill identifier="electrical" level="30" />
-      <RequiredItem identifier="scp_akmag" amount="2" />
+      <RequiredItem tag="ak30mag" amount="2" />
       <RequiredItem identifier="flashpowder" />
       <RequiredItem identifier="depletedfuel" />
     </Fabricate>
@@ -362,12 +366,11 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colourmultiplier="255,255,115,175" scalemultiplier="1,0.6" />
-      <Attack structuredamage="1.0" targetforce="2" itemdamage="4" severlimbsprobability="0.05" penetration="0.125">
+      <Attack structuredamage="1.0" targetforce="2" itemdamage="4" severlimbsprobability="0.05" penetration="0.15">
         <Affliction identifier="bleeding" strength="13" />
         <Affliction identifier="bleeding" strength="6.5" probability="0.2" />
         <Affliction identifier="gunshotwound" strength="15" />
-        <Affliction identifier="gunshotwound" strength="5" probability="0.25" />
-        <Affliction identifier="explosiondamage" strength="7.5" probability="0.2" />
+        <Affliction identifier="explosiondamage" strength="8" probability="0.2" />
         <Affliction identifier="stun" strength="0.2" probability="0.25" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -392,8 +395,8 @@
         <Affliction identifier="bleeding" strength="8" />
         <Affliction identifier="gunshotwound" strength="10" />
         <Affliction identifier="explosiondamage" strength="10" probability="0.2" />
-        <Affliction identifier="radiationsickness" strength="4" />
-        <Affliction identifier="radiationsickness" strength="4" probability="0.2" />
+        <Affliction identifier="radiationsickness" strength="6" />
+        <Affliction identifier="radiationsickness" strength="6" probability="0.2" />
         <Affliction identifier="stun" strength="0.2" probability="0.2" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -412,7 +415,7 @@
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.05" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="275" displaynonempty="true">
+    <Price baseprice="300" displaynonempty="true">
       <Price storeidentifier="merchantoutpost" multiplier="1.25" minavailable="1" maxavailable="3">
         <Reputation faction="separatists" min="10" />
       </Price>
@@ -443,13 +446,13 @@
     <Sprite texture="%ModDir%/Weapons/weapons.png" sourcerect="467,69,176,65" depth="0.55" origin="0.5,0.5" />
     <Body width="140" height="60" density="50" />
     <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="40,-10" aimpos="45,-10" handle1="-30,-7" handle2="30,11" holdangle="-35" msg="ItemMsgPickUpSelect" />
-    <RangedWeapon reload="0.096" reloadnoskill="0.11" weapondamagemodifier="0.9" reloadskillrequirement="40" barrelpos="67,12" spread="10" unskilledspread="30" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
+    <RangedWeapon reload="0.095" reloadnoskill="0.11" weapondamagemodifier="0.9" reloadskillrequirement="40" barrelpos="67,12" spread="10" unskilledspread="30" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
       <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
       <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
       <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
       <Sound file="%ModDir%/Sounds/ak5451.ogg" type="OnUse" range="3000" selectionmode="Random" />
-      <Sound file="%ModDir%/Sounds/ak5452.ogg" type="OnUse" range="3000" />
-      <Sound file="%ModDir%/Sounds/ak5453.ogg" type="OnUse" range="3000" />
+      <Sound file="%ModDir%/Sounds/ak5451.ogg" type="OnUse" range="3000" frequencymultiplier="0.98" />
+      <Sound file="%ModDir%/Sounds/ak5451.ogg" type="OnUse" range="3000" frequencymultiplier="1.05" />
       <StatusEffect type="OnUse" target="This" Condition="-250" />
       <StatusEffect type="Always" target="This" Condition="5">
         <Conditional condition="gt 0" />
@@ -492,7 +495,7 @@
     <PreferredContainer primary="storagecab,engcab" minamount="0" maxamount="3" spawnprobability="0.06" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="4" spawnprobability="0.075" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="8" spawnprobability="0.25" />
-    <Price baseprice="175" displaynonempty="true" minleveldifficulty="5">
+    <Price baseprice="175" displaynonempty="true">
       <Price storeidentifier="merchantoutpost" multiplier="1.2" minavailable="0" maxavailable="4">
         <Reputation faction="separatists" min="10" />
       </Price>
@@ -513,15 +516,17 @@
     </Deconstruct>
     <Fabricate suitablefabricators="ammofabricator,fabricator" requiredtime="20" requiresrecipe="false" amount="4">
       <RequiredSkill identifier="weapons" level="20" />
-      <RequiredItem identifier="lead" amount="2" />
-      <RequiredItem identifier="magnesium" amount="2" />
-      <RequiredItem identifier="plastic" />
+      <RequiredItem identifier="plastic" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="2" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="10" amount="1">
       <RequiredSkill identifier="weapons" level="20" />
       <RequiredItem tag="ak7430mag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" mincondition="0.5" />
-      <RequiredItem identifier="magnesium" mincondition="0.5" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" mincondition="0.5" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" mincondition="0.25" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" mincondition="0.25" />
     </Fabricate>
     <Sprite texture="%ModDir%/Ammo/renegadeammo.png" depth="0.54" sourcerect="1,106,37,54" origin="0.5,0.5" />
     <Body width="30" height="40" density="50" />
@@ -541,7 +546,7 @@
     <PreferredContainer primary="storagecab,engcab" minamount="0" maxamount="1" spawnprobability="0.03" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="3" spawnprobability="0.05" minleveldifficulty="5" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="4" spawnprobability="0.1" />
-    <Price baseprice="250" displaynonempty="true" minleveldifficulty="5">
+    <Price baseprice="275" displaynonempty="true" minleveldifficulty="10">
       <Price storeidentifier="merchantoutpost" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="3">
         <Reputation faction="separatists" min="20" />
@@ -562,14 +567,16 @@
     <Fabricate suitablefabricators="ammofabricator,fabricator" requiredtime="20" requiresrecipe="false" amount="3">
       <RequiredSkill identifier="weapons" level="30" />
       <RequiredItem identifier="scp_ak74mag" amount="3" />
-      <RequiredItem identifier="magnesium" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="2" />
       <RequiredItem identifier="titanium" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="10" amount="1">
       <RequiredSkill identifier="weapons" level="35" />
       <RequiredItem tag="ak7430mag" mincondition="0.0" maxcondition="0.0" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" />
       <RequiredItem identifier="titanium" mincondition="0.5" />
-      <RequiredItem identifier="magnesium" mincondition="0.6" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" mincondition="0.5" />
     </Fabricate>
     <Sprite texture="%ModDir%/Ammo/renegadeammo.png" depth="0.54" sourcerect="40,106,37,54" origin="0.5,0.5" />
     <Body width="30" height="40" density="50" />
@@ -586,17 +593,17 @@
   <Item name="" identifier="scp_ak74dumag" description="" cargocontaineridentifier="scp_ammocrate" tags="smallitem,ak74ammo,ehaammo,ak7430mag" category="Weapon" subcategory="Renegade" maxstacksize="4" impactsoundtag="impact_metal_light" scale="0.45">
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.02" minleveldifficulty="15" />
-    <Price baseprice="350" displaynonempty="true" minleveldifficulty="5">
+    <Price baseprice="400" displaynonempty="true" minleveldifficulty="20">
       <Price storeidentifier="merchantoutpost" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="2">
         <Reputation faction="separatists" min="50" />
       </Price>
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="0" maxavailable="2">
+      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="2">
         <Reputation faction="separatists" min="50" />
       </Price>
       <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="0" maxavailable="2">
+      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="2">
         <Reputation faction="separatists" min="50" />
       </Price>
     </Price>
@@ -605,15 +612,15 @@
     </Deconstruct>
     <Fabricate suitablefabricators="ammofabricator" requiredtime="25" requiresrecipe="false" amount="2">
       <RequiredSkill identifier="weapons" level="40" />
-      <RequiredItem identifier="scp_ak74apmag" amount="2" />
-      <RequiredItem identifier="magnesium" />
+      <RequiredItem tag="ak7430mag" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" />
       <RequiredItem identifier="depletedfuel" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="10" amount="1">
       <RequiredSkill identifier="weapons" level="35" />
       <RequiredItem tag="ak7430mag" mincondition="0.0" maxcondition="0.0" />
       <RequiredItem identifier="depletedfuel" mincondition="0.5" />
-      <RequiredItem identifier="magnesium" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" mincondition="0.5" />
     </Fabricate>
     <Sprite texture="%ModDir%/Ammo/renegadeammo.png" depth="0.54" sourcerect="79,106,36,54" origin="0.5,0.5" />
     <Body width="30" height="40" density="50" />
@@ -632,22 +639,37 @@
     <PreferredContainer primary="scp_ak74m" minamount="0" maxamount="1" spawnprobability="0.05" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.01" minleveldifficulty="10" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="1" maxamount="2" spawnprobability="0.15" />
-    <Price baseprice="400" sold="false"></Price>
+    <Price baseprice="450" displaynonempty="true" minleveldifficulty="15">
+      <Price storeidentifier="merchantoutpost" sold="false" />
+      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false">
+        <Reputation faction="separatists" min="50" />
+      </Price>
+      <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
+      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="2">
+        <Reputation faction="separatists" min="50" />
+      </Price>
+      <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
+      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="2">
+        <Reputation faction="separatists" min="50" />
+      </Price>
+    </Price>
     <Deconstruct time="12">
       <Item identifier="plastic" />
       <Item identifier="plastic" />
     </Deconstruct>
     <Fabricate suitablefabricators="ammofabricator,fabricator" requiredtime="30" requiresrecipe="false">
       <RequiredSkill identifier="weapons" level="35" />
-      <RequiredItem identifier="lead" amount="2" />
-      <RequiredItem identifier="magnesium" amount="2" />
       <RequiredItem identifier="plastic" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="2" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="2" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="10" amount="1">
       <RequiredSkill identifier="weapons" level="35" />
       <RequiredItem identifier="scp_ak74extmag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" amount="2" />
-      <RequiredItem identifier="magnesium" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="2" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="2" />
     </Fabricate>
     <Sprite texture="%ModDir%/Ammo/renegadeammo.png" depth="0.54" sourcerect="116,106,37,56" origin="0.5,0.5" />
     <Body width="30" height="40" density="50" />
@@ -689,21 +711,21 @@
     </Deconstruct>
     <Fabricate suitablefabricators="weaponfabricator,fabricator" requiredtime="25" requiresrecipe="false" amount="1">
       <RequiredSkill identifier="weapons" level="25" />
-      <RequiredItem identifier="scp_basicparts" />
-      <RequiredItem identifier="steel" amount="2" />
+      <RequiredItem identifier="scp_basicparts" amount="2" />
+      <RequiredItem identifier="scp_aks74u" />
       <RequiredItem identifier="plastic" />
     </Fabricate>
     <InventoryIcon texture="%ModDir%/Weapons/weaponsinv.png" sourcerect="70,87,68,81" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Weapons/weapons.png" sourcerect="233,375,254,75" depth="0.55" origin="0.5,0.5" />
     <Body width="140" height="60" density="50" />
     <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="45,-10" aimpos="60,-4" handle1="-50,-7" handle2="35,15" holdangle="-35" msg="ItemMsgPickUpSelect" />
-    <RangedWeapon reload="0.1" reloadnoskill="0.125" reloadskillrequirement="50" barrelpos="95,23" spread="7" unskilledspread="25" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
+    <RangedWeapon reload="0.098" reloadnoskill="0.125" reloadskillrequirement="50" barrelpos="95,23" spread="7" unskilledspread="25" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
       <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
       <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
       <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
       <Sound file="%ModDir%/Sounds/ak5451.ogg" type="OnUse" range="3000" selectionmode="Random" />
-      <Sound file="%ModDir%/Sounds/ak5452.ogg" type="OnUse" range="3000" />
-      <Sound file="%ModDir%/Sounds/ak5453.ogg" type="OnUse" range="3000" />
+      <Sound file="%ModDir%/Sounds/ak5451.ogg" type="OnUse" range="3000" frequencymultiplier="0.96" />
+      <Sound file="%ModDir%/Sounds/ak5451.ogg" type="OnUse" range="3000" frequencymultiplier="1.02" />
       <StatusEffect type="OnUse" target="This" Condition="-160" />
       <StatusEffect type="Always" target="This" Condition="4">
         <Conditional condition="gt 0" />
@@ -752,9 +774,9 @@
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colourmultiplier="255,255,115,175" scalemultiplier="1,0.6" />
       <Attack structuredamage="1.0" targetforce="2.5" itemdamage="2" severlimbsprobability="0.05" penetration="0.05">
         <Affliction identifier="bleeding" strength="9" />
-        <Affliction identifier="bleeding" strength="6" probability="0.25" />
+        <Affliction identifier="bleeding" strength="6" probability="0.2" />
         <Affliction identifier="gunshotwound" strength="12" />
-        <Affliction identifier="gunshotwound" strength="10" probability="0.2" />
+        <Affliction identifier="gunshotwound" strength="8" probability="0.2" />
         <Affliction identifier="stun" strength="0.15" probability="0.15" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -774,12 +796,11 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colourmultiplier="255,255,115,175" scalemultiplier="1,0.6" />
-      <Attack structuredamage="1.0" targetforce="2" itemdamage="3" severlimbsprobability="0.05" penetration="0.1">
-        <Affliction identifier="bleeding" strength="8" />
-        <Affliction identifier="bleeding" strength="6" probability="0.075" />
+      <Attack structuredamage="1.0" targetforce="2" itemdamage="3" severlimbsprobability="0.05" penetration="0.15">
+        <Affliction identifier="bleeding" strength="7" />
+        <Affliction identifier="bleeding" strength="4" probability="0.1" />
         <Affliction identifier="gunshotwound" strength="10" />
-        <Affliction identifier="gunshotwound" strength="5" probability="0.25" />
-        <Affliction identifier="explosiondamage" strength="5" probability="0.2" />
+        <Affliction identifier="explosiondamage" strength="8" probability="0.25" />
         <Affliction identifier="stun" strength="0.2" probability="0.15" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -800,12 +821,12 @@
     <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
     <Projectile characterusable="false" hitscan="true" removeonhit="true">
       <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colourmultiplier="50,50,225,200" scalemultiplier="1,0.6" />
-      <Attack structuredamage="1.0" targetforce="1.75" itemdamage="4" severlimbsprobability="0.05" penetration="0.2">
-        <Affliction identifier="bleeding" strength="10" />
-        <Affliction identifier="gunshotwound" strength="9" />
-        <Affliction identifier="explosiondamage" strength="5" probability="0.15" />
+      <Attack structuredamage="1.0" targetforce="1.75" itemdamage="4" severlimbsprobability="0.05" penetration="0.25">
+        <Affliction identifier="bleeding" strength="5" />
+        <Affliction identifier="gunshotwound" strength="10" />
+        <Affliction identifier="explosiondamage" strength="5" probability="0.2" />
         <Affliction identifier="radiationsickness" strength="4" />
-        <Affliction identifier="radiationsickness" strength="4" probability="0.2" />
+        <Affliction identifier="radiationsickness" strength="4" probability="0.25" />
         <Affliction identifier="stun" strength="0.2" probability="0.1" />
       </Attack>
       <StatusEffect type="OnImpact" target="UseTarget">
@@ -846,7 +867,7 @@
     <Fabricate suitablefabricators="weaponfabricator,fabricator" requiredtime="20">
       <RequiredSkill identifier="weapons" level="20" />
       <RequiredItem identifier="steel" amount="2" />
-      <RequiredItem identifier="scp_basicparts" mincondition="0.5" />
+      <RequiredItem identifier="scp_basicparts" mincondition="0.25" />
       <RequiredItem identifier="plastic" />
     </Fabricate>
     <InventoryIcon texture="%ModDir%/Weapons/weaponsinv.png" sourcerect="116,0,54,80" origin="0.5,0.5" />
@@ -881,7 +902,7 @@
       <Containable items="9mmpistolammo" hide="true" />
       <SlotIcon slotindex="1" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
       <SubContainer capacity="1" maxstacksize="1" containedspritedepth="0.5">
-        <Containable items="flashlight" hide="false" itempos="25,1" setactive="true" />
+        <Containable items="flashlight" hide="false" itempos="15,0.5" setactive="true" />
       </SubContainer>
     </ItemContainer>
     <aitarget sightrange="2000" soundrange="4000" fadeouttime="5" />
@@ -897,25 +918,25 @@
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.03" minleveldifficulty="10" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.125" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="565" displaynonempty="true" minleveldifficulty="10">
+    <Price baseprice="650" displaynonempty="true" minleveldifficulty="20">
       <Price storeidentifier="merchantoutpost" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="1">
-        <Reputation faction="separatists" min="50" />
+        <Reputation faction="separatists" min="65" />
       </Price>
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
       <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="0" maxavailable="2">
-        <Reputation faction="separatists" min="50" />
+        <Reputation faction="separatists" min="65" />
       </Price>
       <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
       <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="0" maxavailable="2">
-        <Reputation faction="separatists" min="50" />
+        <Reputation faction="separatists" min="65" />
       </Price>
     </Price>
     <Fabricate suitablefabricators="weaponfabricator,fabricator" requiredtime="40" requiresrecipe="false">
       <RequiredSkill identifier="weapons" level="45" />
-      <RequiredItem identifier="scp_basicparts" amount="2" />
-      <RequiredItem identifier="plastic" amount="4" />
-      <RequiredItem identifier="titaniumaluminiumalloy" amount="2" />
+      <RequiredItem identifier="scp_basicparts" amount="3" />
+      <RequiredItem identifier="plastic" amount="6" />
+      <RequiredItem identifier="titaniumaluminiumalloy" amount="3" />
     </Fabricate>
     <Deconstruct time="15">
       <Item identifier="steel" />
@@ -930,9 +951,9 @@
       <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
       <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
       <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
-      <Sound file="%ModDir%/Sounds/65kh1.ogg" type="OnUse" range="3000" selectionmode="Random" />
-      <Sound file="%ModDir%/Sounds/65kh2.ogg" type="OnUse" range="3000" />
-      <Sound file="%ModDir%/Sounds/65kh3.ogg" type="OnUse" range="3000" />
+      <Sound file="%ModDir%/Sounds/65kh.ogg" type="OnUse" range="3000" selectionmode="Random" />
+      <Sound file="%ModDir%/Sounds/65kh.ogg" type="OnUse" range="3000" frequencymultiplier="0.95" />
+      <Sound file="%ModDir%/Sounds/65kh.ogg" type="OnUse" range="3000" frequencymultiplier="1.02" />
       <StatusEffect type="OnUse" target="This" Condition="-160" />
       <StatusEffect type="Always" target="This" Condition="2.5">
         <Conditional condition="gt 0" />
@@ -974,7 +995,7 @@
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.04" minleveldifficulty="15" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.1" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="600" displaynonempty="true" minleveldifficulty="15">
+    <Price baseprice="800" displaynonempty="true" minleveldifficulty="20">
       <Price storeidentifier="merchantoutpost" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="1">
         <Reputation faction="separatists" min="65" />
@@ -1022,7 +1043,7 @@
       <StatusEffect type="OnBroken" target="This">
         <sound file="%ModDir%/Sounds/machinegunjam.ogg" type="OnUse" range="900.0" loop="false" />
       </StatusEffect>
-      <StatusEffect type="OnBroken" target="This" Condition="45" disabledeltatime="true" delay="4" stackable="false" />
+      <StatusEffect type="OnBroken" target="This" Condition="55" disabledeltatime="true" delay="10.2" stackable="false" />
       <StatusEffect type="OnUse">
         <Explosion range="150.0" force="1.9" shockwave="false" smoke="false" flames="false" sparks="false" underwaterbubble="false" camerashake="25" />
       </StatusEffect>
@@ -1053,18 +1074,18 @@
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="abandonedsecarmcab,wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.1" minleveldifficulty="10" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="350" displaynonempty="true" minleveldifficulty="5">
+    <Price baseprice="500" displaynonempty="true" minleveldifficulty="15">
       <Price storeidentifier="merchantoutpost" sold="false" />
-      <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="1">
-        <Reputation faction="separatists" min="25" />
+      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false">
+        <Reputation faction="separatists" min="40" />
       </Price>
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="0" maxavailable="2">
-        <Reputation faction="separatists" min="25" />
+      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="2">
+        <Reputation faction="separatists" min="40" />
       </Price>
       <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="0" maxavailable="2">
-        <Reputation faction="separatists" min="25" />
+      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="2">
+        <Reputation faction="separatists" min="40" />
       </Price>
     </Price>
     <Fabricate suitablefabricators="fabricator,weaponfabricator" requiredtime="35">
@@ -1116,6 +1137,9 @@
     </RangedWeapon>
     <ItemContainer capacity="1" maxstacksize="1" hideitems="false" containedstateindicatorslot="0" containedstateindicatorstyle="bullet" containedspritedepth="0.56">
       <Containable items="saigaammo" hide="false" itempos="6,-6" />
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="flashlight" hide="false" itempos="32,4" setactive="true" />
+      </SubContainer>
     </ItemContainer>
     <aitarget sightrange="2000" soundrange="5500" fadeouttime="5" />
     <Quality>
@@ -1153,7 +1177,7 @@
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="4" spawnprobability="0.1" minleveldifficulty="15" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="1" maxamount="8" spawnprobability="0.4" />
-    <Price baseprice="200" displaynonempty="true" minleveldifficulty="5">
+    <Price baseprice="175" displaynonempty="true" minleveldifficulty="15">
       <Price storeidentifier="merchantoutpost" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="2">
         <Reputation faction="separatists" min="25" />
@@ -1170,14 +1194,14 @@
     <Fabricate suitablefabricators="ammofabricator,fabricator" requiredtime="20" amount="4">
       <RequiredSkill identifier="weapons" level="35" />
       <RequiredItem identifier="plastic" amount="2" />
-      <RequiredItem identifier="lead" amount="3" />
-      <RequiredItem identifier="magnesium" amount="4" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="3" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="4" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="10" amount="1">
       <RequiredSkill identifier="weapons" level="20" />
       <RequiredItem identifier="scp_saigamag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" />
-      <RequiredItem identifier="magnesium" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="steel" outcondition="0.25" />
@@ -1199,7 +1223,7 @@
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.075" minleveldifficulty="15" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="1" maxamount="3" spawnprobability="0.15" />
-    <Price baseprice="390" displaynonempty="true" minleveldifficulty="7">
+    <Price baseprice="350" displaynonempty="true" minleveldifficulty="20">
       <Price storeidentifier="merchantoutpost" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="2">
         <Reputation faction="separatists" min="30" />
@@ -1219,14 +1243,14 @@
     <Fabricate suitablefabricators="ammofabricator" requiredtime="25" amount="2">
       <RequiredSkill identifier="weapons" level="40" />
       <RequiredItem identifier="plastic" amount="3" />
-      <RequiredItem identifier="lead" amount="4" />
-      <RequiredItem identifier="magnesium" amount="4" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="5" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="4" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="15" amount="1">
       <RequiredSkill identifier="weapons" level="25" />
       <RequiredItem identifier="scp_saigaextmag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" amount="2" />
-      <RequiredItem identifier="magnesium" amount="2" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="2" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="2" />
     </Fabricate>
     <Sprite texture="%ModDir%/Ammo/renegadeammo.png" depth="0.54" sourcerect="188,86,49,81" origin="0.5,0.5" />
     <Body width="30" height="40" density="50" />
@@ -1245,31 +1269,31 @@
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.05" minleveldifficulty="25" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="1" spawnprobability="0.1" />
-    <Price baseprice="550" displaynonempty="true" minleveldifficulty="5">
+    <Price baseprice="600" displaynonempty="true" minleveldifficulty="30">
       <Price storeidentifier="merchantoutpost" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="2">
         <Reputation faction="separatists" min="45" />
       </Price>
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="0" maxavailable="2">
+      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="2">
         <Reputation faction="separatists" min="45" />
       </Price>
       <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="0" maxavailable="2">
+      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="2">
         <Reputation faction="separatists" min="45" />
       </Price>
     </Price>
     <Fabricate suitablefabricators="ammofabricator" requiredtime="35">
       <RequiredSkill identifier="weapons" level="45" />
       <RequiredItem identifier="plastic" amount="2" />
-      <RequiredItem identifier="lead" amount="4" />
-      <RequiredItem identifier="magnesium" amount="4" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="4" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="4" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="25" amount="1">
       <RequiredSkill identifier="weapons" level="40" />
       <RequiredItem identifier="scp_saigadrummag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="lead" amount="4" />
-      <RequiredItem identifier="magnesium" amount="4" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" amount="4" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" amount="4" />
     </Fabricate>
     <Deconstruct time="10">
       <Item identifier="plastic" amount="2" />
@@ -1289,7 +1313,7 @@
     <PreferredContainer primary="wrecksecarmcab,storagecab,engcab,reactorcab" minamount="0" maxamount="1" spawnprobability="0.05" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="2" spawnprobability="0.35" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="150" displaynonempty="true" minleveldifficulty="5">
+    <Price baseprice="150" displaynonempty="true">
       <Price storeidentifier="merchantoutpost" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="4">
         <Reputation faction="separatists" min="5" />
@@ -1353,30 +1377,32 @@
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.06" minleveldifficulty="10" />
     <PreferredContainer primary="abandonedsecarmcab" minamount="1" maxamount="2" spawnprobability="0.15" />
-    <Price baseprice="250" displaynonempty="true" minleveldifficulty="10">
+    <Price baseprice="450" displaynonempty="true" minleveldifficulty="10">
       <Price storeidentifier="merchantoutpost" sold="false" />
-      <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="2"></Price>
+      <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="2" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="0" maxavailable="2"></Price>
+      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="0" maxavailable="2" />
       <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="0" maxavailable="2"></Price>
+      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="0" maxavailable="2" />
     </Price>
     <Fabricate suitablefabricators="fabricator,ammofabricator" requiredtime="27">
       <RequiredSkill identifier="weapons" level="30" />
       <RequiredItem identifier="steel" />
-      <RequiredItem identifier="titanium" amount="2" />
       <RequiredItem identifier="flashpowder" amount="3" />
+      <RequiredItem identifier="titanium" amount="2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="2" />
     </Fabricate>
     <Fabricate suitablefabricators="reloadfabricator" displayname="recycleitem" requiredtime="15" amount="1">
       <RequiredSkill identifier="weapons" level="25" />
       <RequiredItem identifier="scp_pkpsmallboxmag" mincondition="0.0" maxcondition="0.0" />
-      <RequiredItem identifier="titanium" amount="2" />
       <RequiredItem identifier="flashpowder" amount="3" />
+      <RequiredItem identifier="titanium" amount="2" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" amount="2" />
     </Fabricate>
     <Deconstruct time="15">
       <Item identifier="steel" />
     </Deconstruct>
-    <InventoryIcon texture="%ModDir%/Ammo/ammo.png" sourcerect="592,483,84,65" origin="0.5,0.5" />
+    <InventoryIcon texture="%ModDir%/Ammo/ammo.png" sourcerect="111,214,84,65" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Ammo/improvedammo.png" depth="0.54" sourcerect="51,219,27,42" origin="0.5,0.5" />
     <Body width="30" height="40" density="50" />
     <ItemContainer hideitems="true" capacity="1" drawinventory="false" canbeselected="false" ShowConditionInContainedStateIndicator="true" SpawnWithId="scp_762natoprojectile" removecontaineditemsondeconstruct="true" containedstateindicatorstyle="bullet">
@@ -1384,6 +1410,7 @@
       <StatusEffect type="OnUse" target="This" condition="-2" disabledeltatime="true">
         <SpawnItem identifier="scp_762natoprojectile" spawnposition="ThisInventory" />
         <ParticleEmitter particle="scp_spentcasingriflemed" emitinterval="1.5" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="250" velocitymax="500" copyentityangle="true" scalemin="0.35" scalemax="0.35" />
+        <ParticleEmitter particle="scp_mglink" emitinterval="1.5" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="90" velocitymax="175" copyentityangle="true" scalemin="0.4" scalemax="0.4" />
       </StatusEffect>
     </ItemContainer>
     <Holdable canBeCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect" />
@@ -1392,7 +1419,20 @@
     <PreferredContainer primary="storagecab,engcab,reactorcab" minamount="0" maxamount="1" spawnprobability="0.05" />
     <PreferredContainer primary="abandonedsecarmcab,wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.15" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="225" sold="false" canbespecial="false"></Price>
+    <Price baseprice="250" displaynonempty="true">
+      <Price storeidentifier="merchantoutpost" sold="false" />
+      <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="1">
+        <Reputation faction="separatists" min="15" />
+      </Price>
+      <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
+      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="0" maxavailable="3">
+        <Reputation faction="separatists" min="15" />
+      </Price>
+      <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
+      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="0" maxavailable="3">
+        <Reputation faction="separatists" min="15" />
+      </Price>
+    </Price>
     <Fabricate suitablefabricators="fabricator,weaponfabricator" requiredtime="20">
       <RequiredSkill identifier="weapons" level="35" />
       <RequiredItem identifier="scp_basicparts" />
@@ -1449,18 +1489,18 @@
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.035" minleveldifficulty="25" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="600" displaynonempty="true" minleveldifficulty="10">
+    <Price baseprice="1000" displaynonempty="true" minleveldifficulty="25">
       <Price storeidentifier="merchantoutpost" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="1">
-        <Reputation faction="separatists" min="65" />
+        <Reputation faction="separatists" min="85" />
       </Price>
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="0" maxavailable="2">
-        <Reputation faction="separatists" min="65" />
+      <Price storeidentifier="merchantmilitary" multiplier="1" minavailable="0" maxavailable="2">
+        <Reputation faction="separatists" min="85" />
       </Price>
       <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="0" maxavailable="2">
-        <Reputation faction="separatists" min="65" />
+      <Price storeidentifier="merchantarmory" multiplier="1" minavailable="0" maxavailable="2">
+        <Reputation faction="separatists" min="85" />
       </Price>
     </Price>
     <Deconstruct time="30">
@@ -1485,7 +1525,7 @@
       <StatValue stattype="WalkingSpeed" value="-0.2" />
       <StatValue stattype="SwimmingSpeed" value="-0.2" />
     </Wearable>
-    <RangedWeapon reload="3" reloadnoskill="5" barrelpos="64,9" spread="3" unskilledspread="14" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
+    <RangedWeapon reload="3.5" reloadnoskill="6" barrelpos="64,9" spread="2.3" unskilledspread="15" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
       <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
       <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
       <ParticleEmitter particle="impactfirearm" particleamount="1" velocitymin="0" velocitymax="0" scalemultiplier="12.0,12.0" colormultiplier="255,200,200,200" />
@@ -1523,6 +1563,28 @@
       <RequiredItems msg="ItemmsgAmmoRequired" type="Contained" tags="127ammo" />
       <RequiredSkill identifier="weapons" level="85" />
       <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.15" setvalue="true" />
+      <StatusEffect type="OnSecondaryUse" target="Character" SpeedMultiplier="0.2" setvalue="true" />
+      <StatusEffect type="OnUse" delay="0.5" target="Character">
+        <Conditional skillrequirement="true" weapons="gte 100" />
+        <Sound file="%ModDir%/Sounds/riflebolt50.ogg" type="OnUse" range="1000" frequencymultiplier="0.9" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" delay="0.5" target="Character" comparison="and">
+        <Conditional skillrequirement="true" weapons="lt 75" />
+        <Conditional skillrequirement="true" weapons="gte 50" />
+        <Sound file="%ModDir%/Sounds/riflebolt2050.ogg" type="OnUse" range="1000" frequencymultiplier="0.9" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" delay="1" target="Character">
+        <Conditional skillrequirement="true" weapons="lt 50" />
+        <Sound file="%ModDir%/Sounds/riflebolt20.ogg" type="OnUse" range="1000" frequencymultiplier="0.9" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This,Character" delay="0.6">
+        <Conditional skillrequirement="true" weapons="gte 50" />
+        <ParticleEmitter particle="scp_spentcasingriflelarge" emitinterval="0.25" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="250" velocitymax="500" copyentityangle="true" scalemin="0.4" scalemax="0.4" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This,Character" delay="2.3">
+        <Conditional skillrequirement="true" weapons="lt 50" />
+        <ParticleEmitter particle="scp_spentcasingriflelarge" emitinterval="0.25" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="250" velocitymax="500" copyentityangle="true" scalemin="0.4" scalemax="0.4" />
+      </StatusEffect>
     </RangedWeapon>
     <ItemContainer capacity="1" maxstacksize="1" hideitems="true" containedstateindicatorstyle="bullet">
       <Containable items="127ammo" />
@@ -1540,7 +1602,7 @@
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.075" />
     <PreferredContainer primary="wreckstoragecab,storagecab,reactorcab,engcab" minamount="0" maxamount="1" spawnprobability="0.04" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="200" displaynonempty="true">
+    <Price baseprice="275" displaynonempty="true">
       <Price storeidentifier="merchantoutpost" sold="false" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="1">
         <Reputation faction="separatists" min="15" />
@@ -1584,7 +1646,7 @@
       </StatusEffect>
       <StatusEffect type="OnBroken" target="This" Condition="55" disabledeltatime="true" delay="3.12" stackable="false" />
       <StatusEffect type="OnUse">
-        <Explosion range="150.0" force="1.15" shockwave="false" smoke="false" flames="false" sparks="false" underwaterbubble="false" camerashake="18.5" />
+        <Explosion range="150.0" force="1" shockwave="false" smoke="false" flames="false" sparks="false" underwaterbubble="false" camerashake="18.5" />
       </StatusEffect>
       <StatusEffect type="OnUse" target="Contained">
         <Use />
@@ -1598,10 +1660,10 @@
     </RangedWeapon>
     <aitarget sightrange="2000" soundrange="4000" fadeouttime="5" />
     <ItemContainer capacity="1" maxstacksize="1" hideitems="false" containedstateindicatorslot="0" containedstateindicatorstyle="bullet" containedspritedepth="0.56">
-      <Containable items="45pistolammo,45ammo,smgammo" hide="true" />
+      <Containable items="45pistolammo,45ammo,smgammo" hide="false" itempos="11.5,-5" />
       <SlotIcon slotindex="1" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
       <SubContainer capacity="1" maxstacksize="1" containedspritedepth="0.5">
-        <Containable items="flashlight" hide="false" itempos="30,4" setactive="true" />
+        <Containable items="flashlight" hide="false" itempos="34,4" setactive="true" />
       </SubContainer>
     </ItemContainer>
     <Quality>
@@ -1614,7 +1676,7 @@
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.04" minleveldifficulty="15" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="675" displaynonempty="true" minleveldifficulty="5">
+    <Price baseprice="675" displaynonempty="true" minleveldifficulty="20">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
@@ -1707,7 +1769,7 @@
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.1" />
     <PreferredContainer secondary="weaponholder" />
-    <Price baseprice="250" displaynonempty="true">
+    <Price baseprice="300" displaynonempty="true">
       <Price storeidentifier="merchantoutpost" minavailable="0" maxavailable="2" multiplier="1.5" />
       <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="0" maxavailable="2">
         <Reputation faction="separatists" min="5" />
@@ -1759,14 +1821,20 @@
       </StatusEffect>
       <RequiredItems items="shotgunammo" type="Contained" msg="ItemMsgAmmoRequired" />
       <RequiredSkill identifier="weapons" level="55" />
-      <ItemContainer capacity="1" maxstacksize="6" hideitems="false" containedstateindicatorslot="0" containedstateindicatorstyle="bullet" containedspritedepth="0.56">
-        <Containable items="shotgunammo" hide="true" />
-      </ItemContainer>
       <StatusEffect type="OnUse" target="This">
         <Conditional condition="lt 35" />
         <ParticleEmitter particle="weldspark" particleamount="15" velocitymin="2000" velocitymax="3000" scalemin="0.8" scalemax="1" anglemin="-20" anglemax="20" copyentityangle="true" colormultiplier="255,200,200,225" />
       </StatusEffect>
+      <StatusEffect type="OnUse" target="This" delay="0.42">
+        <ParticleEmitter particle="scp_spentcasingshotgun" emitinterval="0.25" particleamount="1" particlespersecond="50" anglemin="70" anglemax="100" velocitymin="0" velocitymax="0" copyentityangle="true" scalemin="0.35" scalemax="0.35" />
+      </StatusEffect>
     </RangedWeapon>
+    <ItemContainer capacity="1" maxstacksize="6" hideitems="false" containedstateindicatorslot="0" containedstateindicatorstyle="bullet" containedspritedepth="0.56">
+      <Containable items="shotgunammo" hide="true" />
+      <SubContainer capacity="1" maxstacksize="1">
+        <Containable items="flashlight" hide="false" itempos="26,-1" setactive="true" />
+      </SubContainer>
+    </ItemContainer>
     <aitarget sightrange="3000" soundrange="5000" fadeouttime="5" />
     <Quality>
       <QualityStat stattype="FirepowerMultiplier" value="0.05" />
@@ -1866,5 +1934,69 @@
       <QualityStat stattype="Condition" value="0.2" />
     </Quality>
     <SkillRequirementHint identifier="weapons" level="75" />
+  </Item>
+  <Item name="" identifier="scp_g36" description="" category="Weapon" subcategory="Renegade" tags="mediumitem,weapon,gun,gunsmith,mountableweapon" cargocontaineridentifier="scp_weaponcrate" Scale="0.45" impactsoundtag="weaponlightdrop">
+    <PreferredContainer primary="secarmcab" />
+    <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.05" minleveldifficulty="10" />
+    <PreferredContainer secondary="weaponholder" />
+    <Price baseprice="500" displaynonempty="true" minleveldifficulty="9">
+      <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
+      <Price storeidentifier="merchantcity" multiplier="1.25" sold="false" />
+      <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
+      <Price storeidentifier="merchantmilitary" multiplier="0.95" minavailable="0" maxavailable="3">
+        <Reputation faction="separatists" min="35" />
+      </Price>
+      <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
+      <Price storeidentifier="merchantarmory" multiplier="0.95" minavailable="0" maxavailable="3">
+        <Reputation faction="separatists" min="35" />
+      </Price>
+    </Price>
+    <Fabricate suitablefabricators="fabricator,weaponfabricator" requiredtime="30">
+      <RequiredSkill identifier="weapons" level="40" />
+      <RequiredItem identifier="scp_ak74m" />
+      <RequiredItem identifier="scp_basicparts" amount="3" />
+      <RequiredItem identifier="plastic" amount="4" />
+    </Fabricate>
+    <Deconstruct time="12">
+      <Item identifier="scp_ak74m" />
+      <Item identifier="scp_basicparts" />
+      <Item identifier="plastic" />
+    </Deconstruct>
+    <InventoryIcon texture="%ModDir%/Weapons/weaponsinv.png" sourcerect="481,497,68,76" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Weapons/weapons.png" sourcerect="0,646,294,75" depth="0.55" origin="0.5,0.5" />
+    <Body width="294" height="75" density="50" />
+    <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="72,-10" aimpos="72,2" handle1="-68,-22" handle2="15,7" holdangle="-35" msg="ItemMsgPickUpSelect" />
+    <RangedWeapon reload="0.1" reloadnoskill="0.15" reloadskillrequirement="55" barrelpos="147,9" weapondamagemodifier="1.2" spread="3" unskilledspread="24" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
+      <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
+      <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
+      <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
+      <Sound file="%ModDir%/Sounds/g36.ogg" type="OnUse" range="3000" selectionmode="Random" />
+      <Sound file="%ModDir%/Sounds/g36.ogg" type="OnUse" range="3000" frequencymultiplier="0.95" />
+      <Sound file="%ModDir%/Sounds/g36.ogg" type="OnUse" range="3000" frequencymultiplier="1.02" />
+      <StatusEffect type="OnUse" target="This" Condition="-160" />
+      <StatusEffect type="Always" target="This" Condition="2">
+        <Conditional condition="gt 0" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This">
+        <sound file="%ModDir%/Sounds/arjam.ogg" type="OnUse" range="900.0" loop="false" volume="1.2" frequencymultiplier="0.85" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This" Condition="65" disabledeltatime="true" delay="5" stackable="false" />
+      <StatusEffect type="OnUse">
+        <Explosion range="150.0" force="0.8" shockwave="false" smoke="false" flames="false" sparks="false" underwaterbubble="false" camerashake="13" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="Contained">
+        <Use />
+      </StatusEffect>
+      <RequiredItems msg="ItemmsgAmmoRequired" type="Contained" tags="556ammo" />
+      <RequiredSkill identifier="weapons" level="55" />
+    </RangedWeapon>
+    <ItemContainer capacity="1" maxstacksize="1" hideitems="false" itempos="-13,-19" containedspritedepth="0.56" containedstateindicatorstyle="bullet">
+      <Containable items="556ammo" excludeditems="scp_556extmag" />
+    </ItemContainer>
+    <aitarget sightrange="2000" soundrange="4000" fadeouttime="5" />
+    <Quality>
+      <QualityStat stattype="FirepowerMultiplier" value="0.05" />
+    </Quality>
+    <SkillRequirementHint identifier="weapons" level="55" />
   </Item>
 </Items>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
   <!--Bayonet-->
-  <Item name="" description="" identifier="scp_m9bayonet" category="Weapon" subcategory="Melee" Tags="smallitem,weapon,gunsmith" cargocontaineridentifier="metalcrate" scale="0.35" impactsoundtag="impact_metal_light" RequireAimToUse="True">
+  <Item name="" description="" identifier="scp_m9bayonet" category="Weapon" subcategory="Melee" Tags="smallitem,weapon,gunsmith" cargocontaineridentifier="metalcrate" scale="0.3" impactsoundtag="impact_metal_light" RequireAimToUse="True">
     <PreferredContainer primary="secarmcab" />
     <PreferredContainer secondary="wreckarmcab,storagecab" minamount="0" maxamount="2" spawnprobability="0.2" />
     <PreferredContainer secondary="abandonedarmcab,abandonedstoragecab" minamount="1" maxamount="1" spawnprobability="0.4" />
@@ -13,20 +13,20 @@
       <Price locationtype="mine" multiplier="1.25" minavailable="2" />
     </Price>
     <Deconstruct time="10">
-      <Item identifier="steel" />
+      <Item identifier="titanium" />
     </Deconstruct>
     <Fabricate suitablefabricators="fabricator" requiredtime="12">
       <RequiredSkill identifier="weapons" level="40" />
-      <RequiredItem identifier="steel" />
+      <RequiredItem identifier="titanium" amount="2" />
       <RequiredItem identifier="plastic" />
     </Fabricate>
     <InventoryIcon texture="%ModDir%/Weapons/meleeweapons.png" sourcerect="0,0,164,38" origin="0.5,0.5" />
     <Sprite texture="%ModDir%/Weapons/meleeweapons.png" sourcerect="0,0,164,38" depth="0.55" origin="0.5,0.5" />
     <Body width="125" height="15" density="50" />
-    <MeleeWeapon slots="Any,RightHand,LeftHand" aimpos="50,0" handle1="-15,0" holdangle="30" reload="0.9" range="150" combatPriority="25" msg="ItemMsgPickUpSelect">
-      <Attack targetimpulse="2" severlimbsprobability="0.1" itemdamage="10" structuredamage="0.1" structuresoundtype="StructureSlash">
-        <Affliction identifier="lacerations" strength="10" />
-        <Affliction identifier="lacerations" strength="10" probability="0.3" />
+    <MeleeWeapon slots="Any,RightHand,LeftHand" aimpos="50,0" handle1="-18,0" holdangle="30" reload="0.9" reloadnoskill="1.6" reloadskillrequirement="50" range="150" combatPriority="25" msg="ItemMsgPickUpSelect">
+      <Attack targetimpulse="2" severlimbsprobability="0.1" itemdamage="10" structuredamage="0" structuresoundtype="StructureSlash" penetration="0.03">
+        <Affliction identifier="lacerations" strength="15" />
+        <Affliction identifier="lacerations" strength="10" probability="0.33" />
         <Affliction identifier="bleeding" strength="20" />
         <Affliction identifier="bleeding" strength="10" probability="0.25" />
         <Affliction identifier="stun" strength="0.1" />
@@ -41,39 +41,7 @@
       </Attack>
     </MeleeWeapon>
     <aitarget sightrange="500" soundrange="250" fadeouttime="1" />
-  </Item>
-  <Item name="" description="" identifier="scp_improvmachete" category="Weapon" subcategory="Melee" Tags="smallitem,weapon,gunsmith" cargocontaineridentifier="metalcrate" scale="0.37" impactsoundtag="impact_metal_light" RequireAimToUse="True">
-    <PreferredContainer primary="storagecab" minamount="0" maxamount="1" spawnprobability="0.1" />
-    <PreferredContainer secondary="wreckarmcab,wreckstoragecab,wreckengcab" minamount="0" maxamount="2" spawnprobability="0.05" />
-    <PreferredContainer secondary="abandonedarmcab,abandonedstoragecab" minamount="1" maxamount="1" spawnprobability="0.4" />
-    <Price baseprice="150" sold="false"></Price>
-    <Deconstruct time="10">
-      <Item identifier="steel" />
-    </Deconstruct>
-    <Fabricate suitablefabricators="fabricator" requiredtime="20">
-      <RequiredSkill identifier="weapons" level="15" />
-      <RequiredSkill identifier="mechanical" level="20" />
-      <RequiredItem identifier="redwire" mincondition="0.5" />
-      <RequiredItem identifier="rubber" />
-      <RequiredItem identifier="iron" amount="2" />
-    </Fabricate>
-    <InventoryIcon texture="%ModDir%/Weapons/meleeweapons.png" sourcerect="2,195,239,30" origin="0.5,0.5" />
-    <Sprite texture="%ModDir%/Weapons/meleeweapons.png" sourcerect="2,195,239,30" depth="0.55" origin="0.5,0.5" />
-    <Body width="180" height="15" density="50" />
-    <MeleeWeapon slots="Any,RightHand+LeftHand" aimpos="50,45" handle1="-35,-4" handle2="-37,-2" holdangle="20" reload="1" range="600" combatPriority="25" msg="ItemMsgPickUpSelect">
-      <Attack targetimpulse="5" severlimbsprobability="0.15" ballastfloradamage="50" itemdamage="10" structuredamage="0.1" structuresoundtype="StructureSlash">
-        <Affliction identifier="lacerations" strength="18" />
-        <Affliction identifier="bleeding" strength="25" />
-        <Affliction identifier="blunttrauma" strength="5" />
-        <Affliction identifier="stun" strength="0.125" />
-        <StatusEffect type="OnUse" target="UseTarget">
-          <Sound file="%ModDir%/Sounds/slash1.ogg" selectionmode="random" range="1000" />
-          <Sound file="%ModDir%/Sounds/slash2.ogg" range="1000" />
-          <Sound file="%ModDir%/Sounds/slash3.ogg" range="1000" />
-        </StatusEffect>
-      </Attack>
-    </MeleeWeapon>
-    <aitarget sightrange="500" soundrange="250" fadeouttime="1" />
+    <SkillRequirementHint identifier="weapons" level="50" />
   </Item>
   <Item name="" description="" identifier="scp_machete" category="Weapon" subcategory="Melee" Tags="smallitem,weapon,gunsmith" cargocontaineridentifier="metalcrate" scale="0.37" impactsoundtag="impact_metal_light" RequireAimToUse="True">
     <PreferredContainer primary="secarmcab" minamount="0" maxamount="1" spawnprobability="0.35" />
@@ -91,9 +59,9 @@
     </Deconstruct>
     <Fabricate suitablefabricators="fabricator" requiredtime="20">
       <RequiredSkill identifier="weapons" level="40" />
-      <RequiredItem identifier="steel" amount="2" />
-      <RequiredItem identifier="titanium" />
-      <RequiredItem identifier="plastic" />
+      <RequiredItem identifier="plastic" amount="2" />
+      <RequiredItem identifier="steel" amount="3" />
+      <RequiredItem identifier="titaniumaluminiumalloy" />
     </Fabricate>
     <Sprite texture="%ModDir%/Weapons/meleeweapons.png" sourcerect="0,41,265,39" depth="0.55" origin="0.5,0.5" />
     <Body width="180" height="15" density="50" />
@@ -126,8 +94,8 @@
     </Deconstruct>
     <Fabricate suitablefabricators="fabricator" requiredtime="20">
       <RequiredSkill identifier="weapons" level="60" />
-      <RequiredItem identifier="titaniumaluminiumalloy" />
-      <RequiredItem identifier="dementonite" />
+      <RequiredItem identifier="titaniumaluminiumalloy" amount="2" />
+      <RequiredItem identifier="dementonite" amount="2" />
       <RequiredItem identifier="scp_machete" />
     </Fabricate>
     <Sprite texture="%ModDir%/Weapons/meleeweapons.png" sourcerect="0,81,209,39" depth="0.55" origin="0.5,0.5" />
@@ -210,7 +178,7 @@
       <Attack targetimpulse="7" itemdamage="1">
         <Sound file="Content/Items/Weapons/Smack1.ogg" range="800" />
         <Affliction identifier="blunttrauma" strength="2" />
-        <Affliction identifier="stun" strength="0.5" />
+        <Affliction identifier="stun" strength="0.25" />
         <Affliction identifier="stun" strength="0.75" probability="0.3" />
         <Affliction identifier="progressivestun" strength="2" probability="0.1" />
       </Attack>
@@ -236,7 +204,7 @@
     </Deconstruct>
     <Fabricate suitablefabricators="fabricator" requiredtime="25">
       <RequiredSkill identifier="mechanical" level="45" />
-      <RequiredItem identifier="steel" amount="3" />
+      <RequiredItem identifier="steel" amount="4" />
       <RequiredItem identifier="plastic" amount="2" />
     </Fabricate>
     <InventoryIcon name="sledgeinv" texture="%ModDir%/Weapons/meleeweapons.png" sourcerect="347,2,100,98" origin="0.5,0.5" />

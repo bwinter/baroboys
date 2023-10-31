@@ -108,6 +108,7 @@
       <sound file="%ModDir%/Sounds/random25.ogg" type="OnUse" range="4000" />
       <sound file="%ModDir%/Sounds/random26.ogg" type="OnUse" range="4000" />
       <sound file="%ModDir%/Sounds/random27.ogg" type="OnUse" range="4000" />
+      <sound file="%ModDir%/Sounds/random28.ogg" type="OnUse" range="4000" />
     </RangedWeapon>
   </Item>
 </Items>
