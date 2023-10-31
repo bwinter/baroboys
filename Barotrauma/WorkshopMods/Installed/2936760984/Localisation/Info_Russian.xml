@@ -128,6 +128,8 @@
   <beaconsonartooltip>Урон от активного сонара радиомаяков (через монитор сонара).</beaconsonartooltip>
   <shuttlesonar>Сонар челноков</shuttlesonar>
   <shuttlesonartooltip>Урон от активного сонара навигационных терминалов шаттла.</shuttlesonartooltip>
+  <customsonar>Сонар пользовательский</customsonar>
+  <customsonartooltip>Урон от активного сонара пользовательский навигационных терминалов. Выключение может улучшить производительность.</customsonartooltip>
   <targetcreatures>Урон существам</targetcreatures>
   <targetcreaturestooltip>Включить урон нечеловеческим сущностям.</targetcreaturestooltip>
   <targetplayers>Урон игрокам</targetplayers>
@@ -143,6 +145,14 @@
   <defaultfx>Другие эффекты (кровоизлияний в мозг, кортизида, и т.д.):\nСтандартные</defaultfx>
   <lowfx>Другие эффекты (кровоизлияний в мозг, кортизида, и т.д.):\nСнижены</lowfx>
   <nofx>Другие эффекты (кровоизлияний в мозг, кортизида, и т.д.):\nВыключены</nofx>
+  <ignoredcharacters>Игнорируемые идентификаторы персонажей</ignoredcharacters>
+  <wearableprotections>Скафандр сопротивления</wearableprotections>
+  <sonarterminals>Пользовательский терминалов</sonarterminals>
+  <requirescustomsonar>(Требовать активация "Сонар пользовательский")</requirescustomsonar>
+  <resetdefault>Сбросить</resetdefault>
+  <resetalldefault>Сбросить все</resetalldefault>
+  <invalidinput>Неверный Ввод</invalidinput>
+  <close>Закрывать</close>
   <!-- Dialogue -->
   <dialoggetanechoicsuit>Надо найти звукоизолирующий скафандр!</dialoggetanechoicsuit>
   <dialoggetanechoicsuit>Мне нужен безэховый скафандр, чтобы чинить со включенным сонаром!</dialoggetanechoicsuit>

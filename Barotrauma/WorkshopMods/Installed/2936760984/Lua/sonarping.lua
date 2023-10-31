@@ -1,29 +1,69 @@
+-- It would technically be faster to patch the Barotrauma.Items.Components.Sonar.Use method.
+-- But doing so would not allow me to stop the default ping sound from playing.
+Hook.Patch(
+    "Barotrauma.Item", "Use", function(instance, ptable)
+    if not RealSonar.Config.CustomSonar then
+        return
+    end
+    local instance_sonar = instance.GetComponentString("Sonar")
+    for terminal in RealSonar.sonarItems do
+        if terminal.GetComponentString("Sonar") == instance_sonar then
+            if instance_sonar.UseDirectionalPing then
+                Hook.Call("sonarPingDirectional", nil, nil, terminal)
+            else
+                Hook.Call("sonarPing", nil, nil, terminal)
+            end
+            -- Prevent default ping sound from playing.
+            ptable.PreventExecution = true
+        end
+    end
+end, Hook.HookMethodType.Before)
+
 Hook.Add("sonarPing", "sonarPing", function(effect, deltaTime, item, targets, worldPosition)
+    local terminal_id = item.Prefab.Identifier.Value
+    local sonar = item.GetComponentString("Sonar")
+
+    -- deltaTime being passed in means that the hook was called from XML
+    if RealSonar.Config.CustomSonar and deltaTime then
+
+        -- If the terminal is registered cancel the XML status effect.
+        if RealSonar.Config.SonarTerminals[terminal_id] then
+            return true
+
+        -- Otherwise, add the terminal to the config.
+        else
+            RealSonar.Config.SonarTerminals[terminal_id] = {}
+            RealSonar.Config.SonarTerminals[terminal_id]["damage"] = "high"
+            RealSonar.Config.SonarTerminals[terminal_id]["sounds"] = "default"
+            RealSonar.Config.SonarTerminals[terminal_id]["range"] = sonar.Range
+            table.insert(RealSonar.sonarItems, item)
+            print("Real Sonar: Automatically added '", terminal_id, "' to config with default values.")
+        end
+    end
+
     local distance
     local amount
     local terminal_type
     local sonarResistanceData
     local damageMultiplier
     local muffleSonar
-    local sonar = item.GetComponentString("Sonar")
-    local terminal_id = item.Prefab.Identifier.Value
-
-    local waterSounds
-    local airSounds
-    local suitSounds
 
     -- Select correct sound-playing function.
-    if terminal_id == "navterminal" or terminal_id == "sonarmonitor" then
-        airSounds = RealSonar.airSounds
-        waterSounds = RealSonar.waterSounds
-        suitSounds = RealSonar.suitSounds
-    elseif terminal_id == "shuttlenavterminal" then
+    local soundPreset = "default"
+    if RealSonar.Config.SonarTerminals[terminal_id] then
+        soundPreset = RealSonar.Config.SonarTerminals[terminal_id]["sounds"]
+    end
+    local airSounds = RealSonar.airSounds
+    local waterSounds = RealSonar.waterSounds
+    local suitSounds = RealSonar.suitSounds
+    if soundPreset == "shuttle" then
         airSounds = RealSonar.airSoundsShuttle
         waterSounds = RealSonar.waterSoundsShuttle
         suitSounds = RealSonar.suitSoundsShuttle
     end
 
-    terminal_type = RealSonar.getTerminalTypeFromID(terminal_id)
+
+    terminal_type = RealSonar.getTerminalType(terminal_id)
     
     for _, character in pairs(Character.CharacterList) do
         distance = RealSonar.distanceBetween(item.worldPosition, character.worldPosition)
@@ -73,33 +113,49 @@ end)
 
 
 Hook.Add("sonarPingDirectional", "sonarPingDirectional", function(effect, deltaTime, item, targets, worldPosition)
+    local terminal_id = item.Prefab.Identifier.Value
+    local sonar = item.GetComponentString("Sonar")
+
+    -- deltaTime being passed in means that the hook was called from XML
+    if RealSonar.Config.CustomSonar and deltaTime then
+        
+        -- If the terminal is registered cancel the XML status effect.
+        if RealSonar.Config.SonarTerminals[terminal_id] then
+            return true
+
+        -- Otherwise, add the terminal to the config.
+        else
+            RealSonar.Config.SonarTerminals[terminal_id] = {}
+            RealSonar.Config.SonarTerminals[terminal_id]["damage"] = "high"
+            RealSonar.Config.SonarTerminals[terminal_id]["sounds"] = "default"
+            RealSonar.Config.SonarTerminals[terminal_id]["range"] = sonar.Range
+            table.insert(RealSonar.sonarItems, item)
+            print("Real Sonar: Automatically added '", terminal_id, "' to config with default values.")
+        end
+    end
+
     local distance
     local amount
     local terminal_type
     local sonarResistanceData
     local damageMultiplier
     local muffleSonar
-    local sonar = item.GetComponentString("Sonar")
-    local terminal_id = item.Prefab.Identifier.Value
 
     local soundRangeMultiplier = 2.0
     local inConeDamageMultiplier = 1.5
     local outConeDamageMultiplier = 0.6
 
-    local airSoundsDirectional
-    local waterSoundsDirectional
-    local suitSoundsDirectional
-    local waterSounds
-    local suitSounds
-
     -- Select correct sound-playing function.
-    if terminal_id == "navterminal" or terminal_id == "sonarmonitor" then
-        airSoundsDirectional = RealSonar.airSoundsDirectional
-        waterSoundsDirectional = RealSonar.waterSoundsDirectional
-        suitSoundsDirectional = RealSonar.suitSoundsDirectional
-        waterSounds = RealSonar.waterSounds
-        suitSounds = RealSonar.suitSounds
-    elseif terminal_id == "shuttlenavterminal" then
+    local soundPreset = "default"
+    if RealSonar.Config.SonarTerminals[terminal_id] then
+        soundPreset = RealSonar.Config.SonarTerminals[terminal_id]["sounds"]
+    end
+    local airSoundsDirectional = RealSonar.airSoundsDirectional
+    local waterSoundsDirectional = RealSonar.waterSoundsDirectional
+    local suitSoundsDirectional = RealSonar.suitSoundsDirectional
+    local waterSounds = RealSonar.waterSounds
+    local suitSounds = RealSonar.suitSounds
+    if soundPreset == "shuttle" then
         airSoundsDirectional = RealSonar.airSoundsShuttleDirectional
         waterSoundsDirectional = RealSonar.waterSoundsShuttleDirectional
         suitSoundsDirectional = RealSonar.suitSoundsShuttleDirectional
@@ -107,7 +163,7 @@ Hook.Add("sonarPingDirectional", "sonarPingDirectional", function(effect, deltaT
         suitSounds = RealSonar.suitSoundsShuttle
     end
 
-    terminal_type = RealSonar.getTerminalTypeFromID(terminal_id)
+    terminal_type = RealSonar.getTerminalType(terminal_id)
 
     for _, character in pairs(Character.CharacterList) do
         distance = RealSonar.distanceBetween(item.worldPosition, character.worldPosition)

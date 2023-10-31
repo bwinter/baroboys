@@ -110,4 +110,67 @@
   <dialogturnoffsonar>水中にいるんだ、ソナーをオフにしろ！</dialogturnoffsonar>
   <dialogturnoffsonar>ソナーをオフに！</dialogturnoffsonar>
   <dialogturnoffsonar>誰かソナーを止めて！</dialogturnoffsonar>
+  <!-- Menu -->
+  <realsonarsettings>リアルソナー設定</realsonarsettings>
+  <volumesettings>音量設定</volumesettings>
+  <airpingvolume>空気でソナー音量</airpingvolume>
+  <waterpingvolume>水中でソナー音量</waterpingvolume>
+  <suitpingvolume>スーツでソナー音量</suitpingvolume>
+  <tinnitusvolume>耳鳴り音量</tinnitusvolume>
+  <distortionvolume>ディストーション音量</distortionvolume>
+  <networksettings>ネットワーク設定ークライアントだけ（コンソールに「cl_reloadlua」入力しなければいけない）</networksettings>
+  <lowlatencymode>低遅延モード（試験的）</lowlatencymode>
+  <lowlatencymodetooltip>サーバーへの高いpingための問題が取り除きます。矛盾的なサーバー設定あると同期がとれないこととか視覚的な不具合が起こるかもしれません。</lowlatencymodetooltip>
+  <gameplaysettingsserver>ホストのゲームプレイ設定</gameplaysettingsserver>
+  <gameplaysettingsclient>ゲームプレイ設定</gameplaysettingsclient>
+  <sonarrange>ソナー射程（シングルプレイだけ）</sonarrange>
+  <sonardamage>ソナーダメージ（非線形）</sonardamage>
+  <submarinesonar>航法装置の有効あり</submarinesonar>
+  <submarinesonartooltip>航法装置が使える許可</submarinesonartooltip>
+  <beaconsonar>ビーコンソナー</beaconsonar>
+  <beaconsonartooltip>ビーコンソナーモニターが使える許可</beaconsonartooltip>
+  <shuttlesonar>シャトル航法装置の有効あり</shuttlesonar>
+  <shuttlesonartooltip>シャトル航法装置が使える許可</shuttlesonartooltip>
+  <customsonar>カスタム ソナー</customsonar>
+  <customsonartooltip>カスタム装置が使える許可。無効にするとパフォーマンスが向上する可能性があります。</customsonartooltip>
+  <targetcreatures>怪物ダメージあり</targetcreatures>
+  <targetcreaturestooltip>人間じゃない生き物にダメージを有効にする</targetcreaturestooltip>
+  <targetplayers>プレイヤーダメージあり</targetplayers>
+  <targetplayerstooltip>プレイヤーにダメージを有効にする</targetplayerstooltip>
+  <targetbots>ボットダメージあり</targetbots>
+  <targetbotstooltip>ボットにダメージを有効にする</targetbotstooltip>
+  <creaturehulldetection>船体上の怪物検知あり</creaturehulldetection>
+  <creaturehulldetectiontooltip>怪物の正確なソナー当たり判定を可能にする。無効にするとパフォーマンスが向上する可能性があります。</creaturehulldetectiontooltip>
+  <humanhulldetection>船体上の人間検知あり</humanhulldetection>
+  <humanhulldetectiontooltip>人間の正確なソナー当たり判定を可能にする。 （人間はバラストの中にソナーダメージ受けられない）</humanhulldetectiontooltip>
+  <impactvisuals>ソナーインパクト視覚強度設定</impactvisuals>
+  <sonarslow>ソナー移動速度ペナルティ設定</sonarslow>
+  <defaultfx>他の視覚効果（脳内出血、コルチジド、など）：\nデフォルト</defaultfx>
+  <lowfx>他の視覚効果（脳内出血、コルチジド、など）：\n少し</lowfx>
+  <nofx>他の視覚効果（脳内出血、コルチジド、など）：\nなし</nofx>
+  <ignoredcharacters>無視されるキャラクターID</ignoredcharacters>
+  <wearableprotections>ダイビングスーツの抵抗</wearableprotections>
+  <sonarterminals>ソナー装置</sonarterminals>
+  <requirescustomsonar>（「カスタム ソナー」オプションを有効にする必要があります）</requirescustomsonar>
+  <resetdefault>リセット</resetdefault>
+  <resetalldefault>すべてリセット</resetalldefault>
+  <invalidinput>無効入力</invalidinput>
+  <close>閉じる</close>
+  <!-- Dialogue -->
+  <dialoggetanechoicsuit>対振動潜水服が必要だ！</dialoggetanechoicsuit>
+  <dialoggetanechoicsuit>ソナー中に修理すると対振動潜水服が必要あるんだよ！</dialoggetanechoicsuit>
+  <dialoggetanechoicsuit>対振動潜水服を探さないと！</dialoggetanechoicsuit>
+  <dialogcantfindanechoicsuit>対振動潜水服が見つからない！　ソナーを切れ！</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>対振動潜水服がが全然ないよ！　そこに入ってはいけない！</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>ソナーが切れるまでは行かないよ!</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>対振動潜水服をつけない！ソナーを切れ！</dialogcantfindanechoicsuit>
+  <dialogcantfindanechoicsuit>ソナーつけてままに修理できないよ！</dialogcantfindanechoicsuit>
+  <dialogturnoffsonar>ソナーを切れ！</dialogturnoffsonar>
+  <dialogturnoffsonar>あのソナーで耳から血が出そうだ！</dialogturnoffsonar>
+  <dialogturnoffsonar>ソナーを止めろ！</dialogturnoffsonar>
+  <dialogturnoffsonar>ソナーに引っかかった！？</dialogturnoffsonar>
+  <dialogturnoffsonar>なんだ、あのソナー音は！？</dialogturnoffsonar>
+  <dialogturnoffsonar>水中にいるんだ、ソナーをオフにしろ！</dialogturnoffsonar>
+  <dialogturnoffsonar>ソナーをオフに！</dialogturnoffsonar>
+  <dialogturnoffsonar>誰かソナーを止めて！</dialogturnoffsonar>
 </infotexts>

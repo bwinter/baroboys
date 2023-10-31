@@ -393,7 +393,7 @@
         <Conditional InWater="true" />
         <Conditional HasStatusTag="! sonarprotection" />
         <Conditional isLocalPlayer="true" />
-        <Explosion range="1" flash="false" stun="0.2" force="5" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="45" />
+        <Explosion range="1" flash="false" stun="0.2" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="45" />
       </StatusEffect>
       <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
         <ReduceAffliction identifier="sonarimpact" strength="1000" />
@@ -415,7 +415,7 @@
         <Conditional InWater="true" />
         <Conditional HasStatusTag="! sonarprotection" />
         <Conditional isLocalPlayer="true" />
-        <Explosion range="1" flash="false" stun="0.4" force="10" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="80" />
+        <Explosion range="1" flash="false" stun="0.4" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="80" />
       </StatusEffect>
       <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
         <ReduceAffliction identifier="sonarimpact" strength="1000" />
@@ -444,7 +444,7 @@
         <Conditional InWater="true" />
         <Conditional HasStatusTag="! sonarprotection" />
         <Conditional isLocalPlayer="true" />
-        <Explosion range="1" flash="false" stun="0.0" force="3" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="30" />
+        <Explosion range="1" flash="false" stun="0.0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="30" />
       </StatusEffect>
       <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
         <ReduceAffliction identifier="sonarimpactbeacon" strength="1000" />
@@ -466,7 +466,7 @@
         <Conditional InWater="true" />
         <Conditional HasStatusTag="! sonarprotection" />
         <Conditional isLocalPlayer="true" />
-        <Explosion range="1" flash="false" stun="0.0" force="7" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="60" />
+        <Explosion range="1" flash="false" stun="0.0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="60" />
       </StatusEffect>
       <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
         <ReduceAffliction identifier="sonarimpactbeacon" strength="1000" />
@@ -495,7 +495,7 @@
         <Conditional InWater="true" />
         <Conditional HasStatusTag="! sonarprotection" />
         <Conditional isLocalPlayer="true" />
-        <Explosion range="1" flash="false" stun="0.1" force="4" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="37.5" />
+        <Explosion range="1" flash="false" stun="0.1" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="37.5" />
       </StatusEffect>
       <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
         <ReduceAffliction identifier="sonarimpactshuttle" strength="1000" />
@@ -517,7 +517,7 @@
         <Conditional InWater="true" />
         <Conditional HasStatusTag="! sonarprotection" />
         <Conditional isLocalPlayer="true" />
-        <Explosion range="1" flash="false" stun="0.2" force="8.5" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="70" />
+        <Explosion range="1" flash="false" stun="0.2" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="70" />
       </StatusEffect>
       <StatusEffect target="Character" delay="0.1" disabledeltatime="true">
         <ReduceAffliction identifier="sonarimpactshuttle" strength="1000" />
@@ -591,7 +591,7 @@
       <StatusEffect target="Character" delay="0.1" disabledeltatime="true" stackable="false" comparison="and">
         <Conditional HasStatusTag="! sonarprotection" />
         <Conditional isLocalPlayer="true" />
-        <Explosion range="1" flash="false" stun="0.0" force="1" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="3.5" />
+        <Explosion range="1" flash="false" stun="0.0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="3.5" />
       </StatusEffect>
       <StatusEffect target="Character" delay="0.3" disabledeltatime="true">
         <ReduceAffliction identifier="sonarshakestun" strength="1000" />
@@ -601,7 +601,7 @@
       <StatusEffect target="Character" delay="0.1" disabledeltatime="true" stackable="false" comparison="and">
         <Conditional HasStatusTag="! sonarprotection" />
         <Conditional isLocalPlayer="true" />
-        <Explosion range="1" flash="false" stun="0.2" force="1" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="28" />
+        <Explosion range="1" flash="false" stun="0.2" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="28" />
       </StatusEffect>
       <StatusEffect target="Character" delay="0.4" disabledeltatime="true">
         <ReduceAffliction identifier="sonarshakestun" strength="1000" />
@@ -615,7 +615,7 @@
       <StatusEffect target="Character" delay="0.1" disabledeltatime="true" stackable="false" comparison="and">
         <Conditional HasStatusTag="! sonarprotection" />
         <Conditional isLocalPlayer="true" />
-        <Explosion range="1" flash="false" stun="0.4" force="1" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="59" />
+        <Explosion range="1" flash="false" stun="0.4" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="59" />
       </StatusEffect>
       <StatusEffect target="Character" delay="0.5" disabledeltatime="true">
         <ReduceAffliction identifier="sonarshakestun" strength="1000" />
@@ -630,7 +630,7 @@
       <StatusEffect target="Character" delay="0.1" disabledeltatime="true" stackable="false" comparison="and">
         <Conditional HasStatusTag="! sonarprotection" />
         <Conditional isLocalPlayer="true" />
-        <Explosion range="1" flash="false" stun="0.4" force="1" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="102" />
+        <Explosion range="1" flash="false" stun="0.4" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="102" />
       </StatusEffect>
       <StatusEffect target="Character" delay="0.5" disabledeltatime="true">
         <ReduceAffliction identifier="sonarshakestun" strength="1000" />
@@ -643,7 +643,7 @@
       <StatusEffect target="Character" delay="0.1" disabledeltatime="true" stackable="false" comparison="and">
         <Conditional HasStatusTag="! sonarprotection" />
         <Conditional isLocalPlayer="true" />
-        <Explosion range="1" flash="false" stun="0.0" force="1" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="1.7" />
+        <Explosion range="1" flash="false" stun="0.0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="1.7" />
       </StatusEffect>
       <StatusEffect target="Character" delay="0.3" disabledeltatime="true">
         <ReduceAffliction identifier="sonarshakestunbeacon" strength="1000" />
@@ -667,7 +667,7 @@
       <StatusEffect target="Character" delay="0.1" disabledeltatime="true" stackable="false" comparison="and">
         <Conditional HasStatusTag="! sonarprotection" />
         <Conditional isLocalPlayer="true" />
-        <Explosion range="1" flash="false" stun="0.0" force="1" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="42.5" />
+        <Explosion range="1" flash="false" stun="0.0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="42.5" />
       </StatusEffect>
       <StatusEffect target="Character" delay="0.5" disabledeltatime="true">
         <ReduceAffliction identifier="sonarshakestunbeacon" strength="1000" />
@@ -682,7 +682,7 @@
       <StatusEffect target="Character" delay="0.1" disabledeltatime="true" stackable="false" comparison="and">
         <Conditional HasStatusTag="! sonarprotection" />
         <Conditional isLocalPlayer="true" />
-        <Explosion range="1" flash="false" stun="0.0" force="1" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="68" />
+        <Explosion range="1" flash="false" stun="0.0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="68" />
       </StatusEffect>
       <StatusEffect target="Character" delay="0.5" disabledeltatime="true">
         <ReduceAffliction identifier="sonarshakestunbeacon" strength="1000" />
@@ -695,7 +695,7 @@
       <StatusEffect target="Character" delay="0.1" disabledeltatime="true" stackable="false" comparison="and">
         <Conditional HasStatusTag="! sonarprotection" />
         <Conditional isLocalPlayer="true" />
-        <Explosion range="1" flash="false" stun="0.0" force="1" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="2.5" />
+        <Explosion range="1" flash="false" stun="0.0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="2.5" />
       </StatusEffect>
       <StatusEffect target="Character" delay="0.3" disabledeltatime="true">
         <ReduceAffliction identifier="sonarshakestunshuttle" strength="1000" />
@@ -705,7 +705,7 @@
       <StatusEffect target="Character" delay="0.1" disabledeltatime="true" stackable="false" comparison="and">
         <Conditional HasStatusTag="! sonarprotection" />
         <Conditional isLocalPlayer="true" />
-        <Explosion range="1" flash="false" stun="0.0" force="1" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="23.3" />
+        <Explosion range="1" flash="false" stun="0.0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="23.3" />
       </StatusEffect>
       <StatusEffect target="Character" delay="0.4" disabledeltatime="true">
         <ReduceAffliction identifier="sonarshakestunshuttle" strength="1000" />
@@ -719,7 +719,7 @@
       <StatusEffect target="Character" delay="0.1" disabledeltatime="true" stackable="false" comparison="and">
         <Conditional HasStatusTag="! sonarprotection" />
         <Conditional isLocalPlayer="true" />
-        <Explosion range="1" flash="false" stun="0.2" force="1" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="51" />
+        <Explosion range="1" flash="false" stun="0.2" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="51" />
       </StatusEffect>
       <StatusEffect target="Character" delay="0.5" disabledeltatime="true">
         <ReduceAffliction identifier="sonarshakestunshuttle" strength="1000" />
@@ -734,7 +734,7 @@
       <StatusEffect target="Character" delay="0.1" disabledeltatime="true" stackable="false" comparison="and">
         <Conditional HasStatusTag="! sonarprotection" />
         <Conditional isLocalPlayer="true" />
-        <Explosion range="1" flash="false" stun="0.4" force="1" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="85" />
+        <Explosion range="1" flash="false" stun="0.4" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="0.0" camerashakerange="1000" camerashake="85" />
       </StatusEffect>
       <StatusEffect target="Character" delay="0.5" disabledeltatime="true">
         <ReduceAffliction identifier="sonarshakestunshuttle" strength="1000" />

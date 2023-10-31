@@ -101,8 +101,20 @@
       </StatusEffect>
     </Effect>
   </Affliction>
+  <Affliction identifier="muscledamagedelay" showiconthreshold="100" showinhealthscannerthreshold="100" maxstrength="60">
+    <Effect minstrength="0" maxstrength="60">
+      <StatusEffect target="Character" disabledeltatime="true" interval="1">
+        <Conditional vibrationdamage="gteq 1" />
+        <Affliction identifier="muscledamagedelay" strength="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" disabledeltatime="true" interval="1">
+        <Conditional vibrationdamage="lteq 0" />
+        <ReduceAffliction identifier="muscledamagedelay" strength="1000" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
   <!-- Vibration damage -->
-  <Affliction name="Vibration damage" identifier="vibrationdamage" type="sonardamage" limbspecific="true" indicatorlimb="Torso" healcostmultiplier="2.5" maxstrength="100" treatmentthreshold="12" showiconthreshold="0" showinhealthscannerthreshold="0" damageoverlayalpha="1" causeofdeathdescription="afflictioncauseofdeath.vibrationdamage" selfcauseofdeathdescription="afflictioncauseofdeathself.vibrationdamage">
+  <Affliction name="Vibration damage" identifier="vibrationdamage" type="sonardamage" limbspecific="true" indicatorlimb="Torso" healcostmultiplier="2.5" maxstrength="100" treatmentthreshold="20" showiconthreshold="0" showinhealthscannerthreshold="0" damageoverlayalpha="1" causeofdeathdescription="afflictioncauseofdeath.vibrationdamage" selfcauseofdeathdescription="afflictioncauseofdeathself.vibrationdamage">
     <icon texture="%ModDir%/Icons/Afflictions.png" sourcerect="128,0,128,128" origin="0,0" />
     <Description textidentifier="afflictiondescription.vibrationdamage" target="OtherCharacter" minstrength="0" maxstrength="33" />
     <Description textidentifier="afflictiondescription.vibrationdamage.medium" target="OtherCharacter" minstrength="33" maxstrength="66" />
@@ -112,11 +124,20 @@
     <Description textidentifier="afflictiondescription.vibrationdamage.high.self" target="Self" minstrength="66" maxstrength="100" />
     <Effect minstrength="0" maxstrength="5" multiplybymaxvitality="true" minvitalitydecrease="0.0" maxvitalitydecrease="0.05">
       <StatusEffect target="Character" disabledeltatime="true" interval="1">
+        <Conditional muscledamagedelay="lteq 0" />
+        <Affliction identifier="muscledamagedelay" strength="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" disabledeltatime="true" interval="1">
         <ReduceAffliction identifier="vibrationdamage" strength="0.09" />
       </StatusEffect>
     </Effect>
     <Effect minstrength="5" maxstrength="33" multiplybymaxvitality="true" minvitalitydecrease="0.05" maxvitalitydecrease="0.3" minbodytint="110,0,0,0" maxbodytint="110,0,0,85" minspeedmultiplier="1.0" maxspeedmultiplier="0.93">
-      <StatusEffect target="Character" targetlimb="LeftLeg,RightLeg" disabledeltatime="true" interval="1" delay="80">
+      <StatusEffect target="Character" disabledeltatime="true" interval="1">
+        <Conditional muscledamagedelay="lteq 0" />
+        <Affliction identifier="muscledamagedelay" strength="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" targetlimb="LeftLeg,RightLeg" disabledeltatime="true" interval="1">
+        <Conditional muscledamagedelay="gteq 60" />
         <Affliction identifier="muscledamage" strength="0.15" />
       </StatusEffect>
       <StatusEffect target="Character" targetlimb="LeftArm,RightArm" disabledeltatime="true" interval="1">
@@ -127,7 +148,12 @@
       </StatusEffect>
     </Effect>
     <Effect minstrength="33" maxstrength="66" multiplybymaxvitality="true" minvitalitydecrease="0.3" maxvitalitydecrease="0.6" minbodytint="110,0,0,85" maxbodytint="110,0,0,170" minspeedmultiplier="0.93" maxspeedmultiplier="0.86">
-      <StatusEffect target="Character" targetlimb="LeftLeg,RightLeg" disabledeltatime="true" interval="1" delay="45">
+      <StatusEffect target="Character" disabledeltatime="true" interval="1">
+        <Conditional muscledamagedelay="lteq 0" />
+        <Affliction identifier="muscledamagedelay" strength="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" targetlimb="LeftLeg,RightLeg" disabledeltatime="true" interval="1">
+        <Conditional muscledamagedelay="gteq 60" />
         <Affliction identifier="muscledamage" strength="0.25" />
       </StatusEffect>
       <StatusEffect target="Character" targetlimb="LeftArm,RightArm" disabledeltatime="true" interval="1">
@@ -138,7 +164,12 @@
       </StatusEffect>
     </Effect>
     <Effect minstrength="66" maxstrength="100" multiplybymaxvitality="true" minvitalitydecrease="0.6" maxvitalitydecrease="0.9" minbodytint="110,0,0,170" maxbodytint="110,0,0,255" minspeedmultiplier="0.86" maxspeedmultiplier="0.75">
+      <StatusEffect target="Character" disabledeltatime="true" interval="1">
+        <Conditional muscledamagedelay="lteq 0" />
+        <Affliction identifier="muscledamagedelay" strength="1" />
+      </StatusEffect>
       <StatusEffect target="Character" targetlimb="LeftLeg,RightLeg" disabledeltatime="true" interval="1">
+        <Conditional muscledamagedelay="gteq 60" />
         <Affliction identifier="muscledamage" strength="0.4" />
       </StatusEffect>
       <StatusEffect target="Character" targetlimb="LeftArm,RightArm" disabledeltatime="true" interval="1">
@@ -172,13 +203,21 @@
     </Effect>
   </Affliction>
   <!-- Rhabdomyolysis -->
-  <Affliction name="Rhabdomyolysis" identifier="muscledamage" type="sonardamage" limbspecific="true" indicatorlimb="LeftLeg,RightLeg" healcostmultiplier="4" maxstrength="100" treatmentthreshold="40" showiconthreshold="10" showinhealthscannerthreshold="5">
+  <Affliction name="Rhabdomyolysis" identifier="muscledamage" type="sonardamage" limbspecific="true" indicatorlimb="LeftLeg,RightLeg" healcostmultiplier="4" maxstrength="100" treatmentthreshold="40" showiconthreshold="6" showinhealthscannerthreshold="0">
     <icon texture="%ModDir%/Icons/Afflictions.png" sourcerect="0,128,128,128" origin="0,0" />
     <Description textidentifier="afflictiondescription.muscledamage" target="OtherCharacter" minstrength="0" maxstrength="60" />
     <Description textidentifier="afflictiondescription.muscledamage.high" target="OtherCharacter" minstrength="60" maxstrength="100" />
     <Description textidentifier="afflictiondescription.muscledamage.self" target="Self" minstrength="0" maxstrength="60" />
     <Description textidentifier="afflictiondescription.muscledamage.high.self" target="Self" minstrength="60" maxstrength="100" />
-    <Effect minstrength="5" maxstrength="20" strengthchange="-0.02" multiplybymaxvitality="true" minvitalitydecrease="0.0" maxvitalitydecrease="0.1" minspeedmultiplier="0.85" maxspeedmultiplier="0.75">
+    <Effect minstrength="5" maxstrength="20" multiplybymaxvitality="true" minvitalitydecrease="0.0" maxvitalitydecrease="0.1" minspeedmultiplier="0.85" maxspeedmultiplier="0.75">
+      <StatusEffect target="Character" targetlimbs="RightLeg" disabledeltatime="true" interval="1">
+        <Conditional vibrationdamage="lt 5" />
+        <Affliction identifier="muscledamage" strength="-0.05" />
+      </StatusEffect>
+      <StatusEffect target="Character" targetlimbs="LeftLeg" disabledeltatime="true" interval="1">
+        <Conditional vibrationdamage="lt 5" />
+        <Affliction identifier="muscledamage" strength="-0.05" />
+      </StatusEffect>
       <!-- Integration with Neurotrauma amputation. -->
       <StatusEffect target="Character" targetlimbs="RightLeg" interval="1" disabledeltatime="true" comparison="or">
         <Conditional trl_amputation="gt 0" />
@@ -191,7 +230,19 @@
         <Affliction identifier="muscledamage" strength="-1000" />
       </StatusEffect>
     </Effect>
-    <Effect minstrength="20" maxstrength="100" strengthchange="0.02" multiplybymaxvitality="true" minvitalitydecrease="0.1" maxvitalitydecrease="0.5" minspeedmultiplier="0.75" maxspeedmultiplier="0.10">
+    <Effect minstrength="20" maxstrength="100" multiplybymaxvitality="true" minvitalitydecrease="0.1" maxvitalitydecrease="0.5" minspeedmultiplier="0.75" maxspeedmultiplier="0.10">
+      <StatusEffect target="Character" targetlimbs="RightLeg" disabledeltatime="true" interval="1" comparison="and">
+        <Conditional vibrationdamage="lt 30" />
+        <Conditional mannainfluence="lteq 0" />
+        <Conditional muscledamage="gteq 10" />
+        <Affliction identifier="muscledamage" strength="0.075" />
+      </StatusEffect>
+      <StatusEffect target="Character" targetlimbs="LeftLeg" disabledeltatime="true" interval="1" comparison="and">
+        <Conditional vibrationdamage="lt 30" />
+        <Conditional mannainfluence="lteq 0" />
+        <Conditional muscledamage="gteq 10" />
+        <Affliction identifier="muscledamage" strength="0.075" />
+      </StatusEffect>
       <!-- Integration with Neurotrauma amputation. -->
       <StatusEffect target="Character" targetlimbs="RightLeg" interval="1" disabledeltatime="true" comparison="or">
         <Conditional trl_amputation="gt 0" />
@@ -224,7 +275,6 @@
     </Effect>
     <!-- Coughing up blood -->
     <PeriodicEffect mininterval="15" maxinterval="27">
-      <StatusEffect target="Character" SpeedMultiplier="0.2" setvalue="true" duration="1.1" />
       <StatusEffect target="Character" comparison="and">
         <Conditional hasspecifiertag="male" />
         <Conditional IsUnconscious="false" />
@@ -398,19 +448,21 @@
     </Effect>
   </Affliction>
   <!-- Cortizide injection visuals -->
-  <Affliction identifier="cortizideinjection" showiconthreshold="1000" showinhealthscannerthreshold="1000" maxstrength="100">
+  <Affliction identifier="cortizideinjection" showiconthreshold="1000" showinhealthscannerthreshold="1000" maxstrength="122">
     <Effect minstrength="0" maxstrength="100">
-      <StatusEffect target="Character" interval="1">
+      <StatusEffect target="Character">
         <Affliction identifier="blurandabberation" strength="1" />
+        <Affliction identifier="cortizideinjection" strength="9.92" />
       </StatusEffect>
-      <StatusEffect target="Character" disabledeltatime="true" interval="0.1" delay="2" comparison="and">
+      <StatusEffect target="Character" disabledeltatime="true" interval="0.1" comparison="and">
         <Conditional isLocalPlayer="true" />
-        <Conditional cortizideinjection="gteq 90" />
-        <Explosion range="1" force="1" smoke="false" sparks="false" flames="false" shockwave="false" underwaterbubble="false" camerashake="100" camerashakerange="3000" flashrange="1000" flashduration="0.13" screencolor="255,0,0,60" screencolorrange="1000" screencolorduration="0.22" />
+        <Conditional cortizideinjection="gteq 21.34" />
+        <Explosion range="1" force="0" smoke="false" sparks="false" flames="false" shockwave="false" underwaterbubble="false" camerashake="100" camerashakerange="3000" flashrange="1000" flashduration="0.13" screencolor="255,0,0,60" screencolorrange="1000" screencolorduration="0.22" />
       </StatusEffect>
-      <StatusEffect target="Character" disabledeltatime="true" interval="0.1" delay="10">
-        <Affliction identifier="cortizideinjection" strength="-10" />
-        <Affliction identifier="blurandabberation" strength="-10" />
+      <StatusEffect target="Character" disabledeltatime="true">
+        <Conditional cortizideinjection="gteq 122" />
+        <Affliction identifier="cortizideinjection" strength="-1000" />
+        <Affliction identifier="blurandabberation" strength="-1000" />
       </StatusEffect>
     </Effect>
   </Affliction>
@@ -430,20 +482,33 @@
       </StatusEffect>
     </Effect>
   </Affliction>
+  <Affliction identifier="cortizidedeathdelay" showiconthreshold="1000" showinhealthscannerthreshold="1000" maxstrength="17">
+    <Effect minstrength="0" maxstrength="17">
+      <StatusEffect target="Character" disabledeltatime="true" interval="1">
+        <Affliction identifier="cortizidedeathdelay" strength="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" interval="1" comparison="and">
+        <Conditional cortizidedeathdelay="gteq 17" />
+        <Conditional cortizidedeath="lteq 0" />
+        <Affliction identifier="cortizidedeath" strength="1" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
   <!-- Instant death -->
-  <Affliction identifier="cortizidedeath" maxstrength="2" limbspecific="true" indicatorlimb="head" karmachangeonapplied="-35" showiconthreshold="1000">
+  <Affliction identifier="cortizidedeath" maxstrength="3" limbspecific="true" indicatorlimb="head" karmachangeonapplied="-35" showiconthreshold="1000">
     <Effect minstrength="0" maxstrength="1">
-      <StatusEffect target="Character" targetlimbs="Head" delay="0.0">
+      <StatusEffect target="Character" delay="0.0">
         <Conditional isLocalPlayer="true" />
         <Sound file="%ModDir%/Sounds/cortizideDeath.ogg" dontmuffle="true" volume="1.5" />
       </StatusEffect>
       <StatusEffect target="Character" targetlimbs="Head" delay="0.1">
-        <Explosion range="1" decal="blood" decalsize="2.8" flashrange="0" stun="0" force="0" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="100" camerashake="0">
+        <ParticleEmitter particle="blood" copyentityangle="true" anglemin="0" anglemax="0" particlespersecond="45" velocitymin="65" velocitymax="220" scalemin="1.5" scalemax="2.8" />
+        <Explosion range="1" decal="blood" decalsize="2.8" flashrange="0" stun="0" force="2" flames="false" smoke="false" shockwave="false" sparks="false" underwaterbubble="false" ignorecover="true" severlimbsprobability="1000" camerashake="45" camerashakerange="500" screencolor="150,0,0,90" screencolorrange="700" screencolorduration="0.4">
           <Affliction identifier="cortizidedeath" strength="1" />
         </Explosion>
       </StatusEffect>
     </Effect>
-    <Effect minstrength="1" maxstrength="2" multiplybymaxvitality="true" minvitalitydecrease="2" maxvitalitydecrease="2" />
+    <Effect minstrength="2" maxstrength="3" multiplybymaxvitality="true" minvitalitydecrease="3" maxvitalitydecrease="3" />
   </Affliction>
   <!-- ↓↓↓ Cosmetic Afflictions ↓↓↓ -->
   <!-- Photopsia : Flash-like vision disturbances. -->
@@ -452,8 +517,8 @@
     <Effect minstrength="0" maxstrength="100">
       <!-- Remove photopsia if brainhemorrhage is treated. -->
       <StatusEffect target="Character" interval="1" disabledeltatime="true" comparison="and">
-        <Conditional brainhemorrhage="lteq 0" />
-        <Affliction identifier="photopsia" strength="-10" />
+        <Conditional brainhemorrhage="lt 25" />
+        <Affliction identifier="photopsia" strength="-1000" />
       </StatusEffect>
     </Effect>
     <Description textidentifier="afflictiondescription.photopsia" target="OtherCharacter" />
@@ -493,10 +558,10 @@
     <Effect minstrength="0" maxstrength="100" dialogflag="BrainHemorrhageMedium">
       <!-- Remove aphasia if brainhemorrhage is treated. -->
       <StatusEffect target="Character" interval="1" disabledeltatime="true" comparison="and">
-        <Conditional brainhemorrhage="lteq 0" />
-        <Conditional brainhemorrhagelowfx="lteq 0" />
-        <Conditional brainhemorrhagenofx="lteq 0" />
-        <Affliction identifier="aphasia" strength="-6" />
+        <Conditional brainhemorrhage="lt 60" />
+        <Conditional brainhemorrhagelowfx="lt 60" />
+        <Conditional brainhemorrhagenofx="lt 60" />
+        <Affliction identifier="aphasia" strength="-1000" />
       </StatusEffect>
     </Effect>
     <PeriodicEffect mininterval="3" maxinterval="6">
@@ -516,25 +581,29 @@
     </PeriodicEffect>
   </Affliction>
   <!-- Ataxia : Poor muslce control that leads to clumsy voluntary movements. -->
-  <Affliction name="Ataxia" identifier="ataxia" type="brainhemorrhage" maxstrength="100" limbspecific="true" indicatorlimb="Head" showiconthreshold="0" showinhealthscannerthreshold="0" healableinmedicalclinic="false">
+  <Affliction name="Ataxia" identifier="ataxia" type="ataxia" maxstrength="100" limbspecific="true" indicatorlimb="Head" showiconthreshold="0" showinhealthscannerthreshold="0" healableinmedicalclinic="false">
     <icon texture="%ModDir%/Icons/Afflictions.png" sourcerect="896,0,128,128" origin="0,0" />
     <Description textidentifier="afflictiondescription.ataxia" target="OtherCharacter" />
     <Description textidentifier="afflictiondescription.ataxia.self" target="Self" />
     <Effect minstrength="0" maxstrength="100">
       <!-- Remove ataxia if brainhemorrhage is treated. -->
-      <StatusEffect target="Character" interval="1" disabledeltatime="true">
-        <Conditional brainhemorrhage="lteq 0" />
-        <Affliction identifier="ataxia" strength="-8" />
+      <StatusEffect target="Character" interval="1" disabledeltatime="true" comparison="and">
+        <Conditional brainhemorrhage="lt 30" />
+        <ReduceAffliction identifier="invertcontrols" strength="1000" />
+        <Affliction identifier="ataxia" strength="-1000" />
       </StatusEffect>
     </Effect>
     <!-- Repeatedly inverts the characters movement. -->
     <PeriodicEffect mininterval="9" maxinterval="18">
-      <Conditional cortizideinjection="lteq 0" />
-      <StatusEffect target="Character">
-        <Affliction identifier="invertcontrols" strength="10" />
+      <StatusEffect target="Character" comparison="and">
+        <Conditional invertcontrols="lteq 0" />
+        <Conditional brainhemorrhage="gteq 30" />
+        <Affliction identifier="invertcontrols" strength="1" />
       </StatusEffect>
+    </PeriodicEffect>
+    <PeriodicEffect mininterval="9" maxinterval="18">
       <StatusEffect target="Character">
-        <Conditional invertcontrols="gteq 11" />
+        <Conditional invertcontrols="gteq 1" />
         <ReduceAffliction identifier="invertcontrols" strength="1000" />
       </StatusEffect>
     </PeriodicEffect>
@@ -555,8 +624,9 @@
     <Effect minstrength="0" maxstrength="100" dialogflag="BrainHemorrhageHigh">
       <!-- Remove opticneuritis if brainhemorrhage is treated. -->
       <StatusEffect target="Character" interval="1" disabledeltatime="true">
-        <Conditional brainhemorrhage="lteq 0" />
-        <Affliction identifier="opticneuritis" strength="-4" />
+        <Conditional brainhemorrhage="lt 80" />
+        <Affliction identifier="opticneuritis" strength="-1000" />
+        <Affliction identifier="blindness" strength="-1000" />
       </StatusEffect>
     </Effect>
     <PeriodicEffect mininterval="11" maxinterval="18">
@@ -658,7 +728,7 @@
     <Description textidentifier="afflictiondescription.mannainfluence" target="OtherCharacter" />
     <Description textidentifier="afflictiondescription.mannainfluence.self" target="Self" />
     <Effect minstrength="0" maxstrength="1" minchromaticaberration="0" maxchromaticaberration="1" resistancefor="damage,vibrationdamage" minresistance="0" maxresistance="0.07">
-      <StatusEffect target="Character" delay="36">
+      <StatusEffect target="Character">
         <ReduceAffliction identifier="mannainfluence" strength="0.5" />
       </StatusEffect>
     </Effect>
@@ -756,7 +826,7 @@
   <!-- Manna Extract active on head. This is used in the brainhemorrhage affliction to stop progression. -->
   <Affliction name="Manna influence" identifier="mannainfluencehead" type="mannainfluence" limbspecific="true" isbuff="true" showiconthreshold="1000" showinhealthscannerthreshold="1000" maxstrength="1">
     <Effect minstrength="0" maxstrength="1" minchromaticaberration="0" maxchromaticaberration="2">
-      <StatusEffect target="Character" disabledeltatime="true" interval="1">
+      <StatusEffect target="Character">
         <ReduceAffliction identifier="mannainfluencehead" strength="0.5" />
       </StatusEffect>
     </Effect>

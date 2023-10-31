@@ -127,6 +127,8 @@ Warning: Administering into a healthy brain environment can cause a dangerous pr
   <beaconsonartooltip>Enable functionality of Sonar Monitors.</beaconsonartooltip>
   <shuttlesonar>Shuttle Sonar</shuttlesonar>
   <shuttlesonartooltip>Enable functionality of Shuttle Terminals.</shuttlesonartooltip>
+  <customsonar>Custom Sonar</customsonar>
+  <customsonartooltip>Enable functionality for custom terminals. Disabling may improve performance.</customsonartooltip>
   <targetcreatures>Target Creatures</targetcreatures>
   <targetcreaturestooltip>Enable damage to all non-human creatures.</targetcreaturestooltip>
   <targetplayers>Target Players</targetplayers>
@@ -142,6 +144,14 @@ Warning: Administering into a healthy brain environment can cause a dangerous pr
   <defaultfx>Other Visuals (Brain hemorrhage, cortizide, etc.):\nStandard</defaultfx>
   <lowfx>Other Visuals (Brain hemorrhage, cortizide, etc.):\nReduced</lowfx>
   <nofx>Other Visuals (Brain hemorrhage, cortizide, etc.):\nDisabled</nofx>
+  <ignoredcharacters>Ignored Character IDs</ignoredcharacters>
+  <wearableprotections>Diving Suit Resistances</wearableprotections>
+  <sonarterminals>Sonar Terminals</sonarterminals>
+  <requirescustomsonar>(Requires the "Custom Sonar" option to be enabled)</requirescustomsonar>
+  <resetdefault>Reset</resetdefault>
+  <resetalldefault>Reset All</resetalldefault>
+  <invalidinput>Invalid Input</invalidinput>
+  <close>Close</close>
   <!-- Dialogue -->
   <dialoggetanechoicsuit>I need anechoic diving gear!</dialoggetanechoicsuit>
   <dialoggetanechoicsuit>I need an anechoic suit to do repairs with the sonar on!</dialoggetanechoicsuit>
