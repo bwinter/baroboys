@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Charactervariant inherit="Human_target" speciesname="Human_target_medium" speciestranslationoverride="Human">
-  <inventory arrowslot="9" slots="Card, Headset, Head, InnerClothes, OuterClothes, LeftHand, RightHand, Bag, Any, Any, Any, Any, Any, Any, Any, Any, Any, Any, HealthInterface">
-    <Item identifier="securitypatrolclothes" slot="InnerClothes" />
-    <Item identifier="bodyarmor" slot="OuterClothes" />
-    <Item identifier="ballistichelmet_bandit_alt2" slot="Head" />
-  </inventory>
-</Charactervariant>
