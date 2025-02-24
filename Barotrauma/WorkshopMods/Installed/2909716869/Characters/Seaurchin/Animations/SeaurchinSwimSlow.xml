@@ -1,2 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<SeaurchinSwimSlow UseSineMovement="False" Flip="True" FlipCooldown="1" FlipDelay="0.5" Mirror="True" MirrorLerp="True" WaveAmplitude="29.4" WaveLength="41.400005" RotateTowardsMovement="True" TailTorque="50" TailTorqueMultiplier="1" FootAngles="" UpdateAnimationWhenNotMoving="False" TailAngle="130" SteerTorque="25" LegTorque="25" MovementSpeed="3.9880393" CycleSpeed="1" HeadAngle="48" TorsoAngle="130" HeadTorque="50" TorsoTorque="50" FootTorque="25" AnimationType="SwimSlow" ArmIKStrength="1" HandIKStrength="1" />

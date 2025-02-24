@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Enhanced Armaments DynamicEuropa Patch" steamworkshopid="3036805935" corepackage="false" modversion="1.0.2" gameversion="1.0.21.0" installtime="1696981747" expectedhash="9E76BF29AF93EF86CBDB950F6067E183">
-  <NPCSets file="%ModDir%/NPCs/npcoverrides.xml" />
-</contentpackage>
