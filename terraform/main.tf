@@ -15,9 +15,7 @@
  */
 
 // Configure the Google Cloud provider
-provider "google-beta" {
-  # Service account: terraform@europan-world.iam.gserviceaccount.com
-  # Keys
+provider "google" {
   credentials = file("europan-world.json")
   project     = var.project
   region      = var.region
@@ -25,13 +23,14 @@ provider "google-beta" {
 
 // Bucket needs user: terraform@europan-world.iam.gserviceaccount.com
 // with: Storage Object Admin
-terraform {
-  backend "gcs" {
-    credentials = "./europan-world.json"
-    bucket      = "tf-state-baroboys"
-    prefix      = "terraform/state"
-  }
-}
+# For shared versioning:
+# terraform {
+#   backend "gcs" {
+#     credentials = "./europan-world.json"
+#     bucket      = "tf-state-baroboys"
+#     prefix      = "terraform/state"
+#   }
+# }
 
 // Terraform plugin for creating random ids
 resource "random_id" "instance_id" {
@@ -40,7 +39,7 @@ resource "random_id" "instance_id" {
 
 // A Single Compute Engine instance
 resource "google_compute_instance" "default" {
-  provider     = google-beta
+  provider     = google
   name         = var.machine_name
   machine_type = var.machine_type
   zone         = var.zone
@@ -50,7 +49,7 @@ resource "google_compute_instance" "default" {
     visible_core_count = 2
   }
 
-  metadata_startup_script = file("${path.module}/scripts/setup.sh")
+  metadata_startup_script = file("${path.module}/../scripts/setup.sh")
 
   boot_disk {
     initialize_params {
