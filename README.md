@@ -28,20 +28,19 @@ Welcome to the Baroboys project — a fully automated and documented setup for d
 
 1. **Configure GitHub SSH access**
     - See [`docs/setup/github-deploy-key.md`](./docs/setup/github-deploy-key.md)
-    - This ensures your VM can clone private repos securely
+    - This ensures your VM can clone private repos
 
 2. **Provision GCP infrastructure**
     - See [`docs/setup/gcp-service-account.md`](./docs/setup/gcp-service-account.md)
-    - Then apply Terraform from the `/terraform` folder
+    - Then apply Terraform in the `/terraform` folder
 
-3. **Start or debug the server**
+3. **Debug server**
     - See [`docs/usage/troubleshooting.md`](./docs/usage/troubleshooting.md)
 
 ---
 
 ## 🔐 Security Notes
 - All secrets (e.g., GitHub deploy key, service account JSON) should be stored locally and excluded from version control.
-- Service account permissions should be locked down after initial bootstrap.
 
 ---
 
