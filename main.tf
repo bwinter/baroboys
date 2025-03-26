@@ -18,7 +18,7 @@
 provider "google-beta" {
   # Service account: terraform@europan-world.iam.gserviceaccount.com
   # Keys
-  credentials = file("europan-world-6c508b9a66f6.json")
+  credentials = file("europan-world.json")
   project     = var.project
   region      = var.region
 }
@@ -27,7 +27,7 @@ provider "google-beta" {
 // with: Storage Object Admin
 terraform {
   backend "gcs" {
-    credentials = "./europan-world-6c508b9a66f6.json"
+    credentials = "./europan-world.json"
     bucket      = "tf-state-baroboys"
     prefix      = "terraform/state"
   }
