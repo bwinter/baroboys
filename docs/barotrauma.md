@@ -10,7 +10,7 @@ Use VirtualBox to get Windows
 
 Setting up file paths:
 
-![VirtualBox Disk Setup](../VirtualBox%20Disk%20Setup.png)
+![VirtualBox Disk Setup](./VirtualBox%20Disk%20Setup.png)
 
 ### Setup local env to use repo:
 
