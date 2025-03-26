@@ -1,8 +1,12 @@
+# Remote (VM)
+
 ### NOTE:
 
 Need to manually put holes in the VPC Firewall to allow the two ports through.
 
 TODO: get doc reference and hardcode.
+
+# Local
 
 ### Get Sub out of Save File
 

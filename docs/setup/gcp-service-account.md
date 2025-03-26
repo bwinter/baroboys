@@ -26,9 +26,7 @@ gcloud projects add-iam-policy-binding europan-world \
   --member="serviceAccount:terraform@europan-world.iam.gserviceaccount.com" \
   --role="roles/owner"
 ```
-Initially grant roles/owner for simplicity:
-
-Later, you can reduce permissions to just the minimum needed.
+Grant roles/owner for simplicity.
 
 
 Create Key File:
