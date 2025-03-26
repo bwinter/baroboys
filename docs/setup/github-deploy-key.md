@@ -6,12 +6,12 @@ To allow VMs to clone private GitHub repositories securely:
 ```bash
 ssh-keygen -t ecdsa -b 521 -C "vm-github-access"
 ```
-Name the key something like `id_ecdsa_github`.  
+Name the key something like `github-deploy-key`.  
 **Keep the private key secure.**
 
 ### 2. Add the Public Key to GitHub
 - Go to your GitHub repo → **Settings** → **Deploy Keys**
-- Add the contents of `id_ecdsa_github.pub` as a new key (read-only or write access as needed)
+- Add the contents of `github-deploy-key.pub` as a new key (read-only or write access as needed)
 
 ### 3. Store the Private Key in Secret Manager
 ```bash
@@ -19,7 +19,7 @@ gcloud secrets create github-deploy-key \
   --replication-policy="automatic"
 
 gcloud secrets versions add github-deploy-key \
-  --data-file="id_ecdsa_github"
+  --data-file="github-deploy-key"
 ```
 
 ### 4. Grant Access to the VM's Service Account
