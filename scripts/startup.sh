@@ -56,6 +56,6 @@ echo "github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHA
 
 git clone "git@github.com:bwinter/baroboys.git" "/root/baroboys"
 
-source "/root/baroboys/setup/git.sh"
-source "/root/baroboys/setup/steam.sh"
-source "/root/baroboys/setup/barotrauma.sh"
+source "/root/baroboys/scripts/setup/git.sh"
+source "/root/baroboys/scripts/setup/steam.sh"
+source "/root/baroboys/scripts/setup/barotrauma.sh"
