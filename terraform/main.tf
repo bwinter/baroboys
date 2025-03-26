@@ -50,7 +50,7 @@ resource "google_compute_instance" "default" {
     visible_core_count = 2
   }
 
-  metadata_startup_script = file("${path.module}/startup.sh")
+  metadata_startup_script = file("${path.module}/scripts/startup.sh")
 
   boot_disk {
     initialize_params {
