@@ -1,14 +1,14 @@
 .idea
-europan-world*.json
+terraform/europan-world.json
 id_ecdsa
 id_ecdsa.pub
-Barotrauma-Save-Decompressor*
+scripts/save-decompressor/Barotrauma-Save-Decompressor.lnk
 
 # logs
 *.log
 
 # Directories
-.terraform/
+terraform/.terraform/
 
 # This is where I keep my uncompressed save.
 # To recude chances of copying the wrong version we want to clean this up every time.
