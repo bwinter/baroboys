@@ -29,13 +29,5 @@ gcloud projects add-iam-policy-binding europan-world \
   --role="roles/secretmanager.secretAccessor"
 ```
 
-### 5. In Your Startup Script on the VM
-```bash
-gcloud secrets versions access latest --secret="github-deploy-key" \
-  | tee "/root/.ssh/id_ecdsa"
-
-chmod 700 "/root/.ssh/id_ecdsa"
-```
-
 > This securely retrieves the deploy key at boot and makes it available for `git clone` without requiring tokens or embedding credentials in your image.
 
