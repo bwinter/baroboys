@@ -17,8 +17,8 @@
 // Configure the Google Cloud provider
 provider "google" {
   credentials = file("europan-world.json")
-  project     = var.project
-  region      = var.region
+  project = var.project
+  region  = var.region
 }
 
 // Bucket needs user: terraform@europan-world.iam.gserviceaccount.com
@@ -43,6 +43,11 @@ resource "google_compute_instance" "default" {
   name         = var.machine_name
   machine_type = var.machine_type
   zone         = var.zone
+  tags = ["barotrauma-server"]
+  labels = {
+    project     = "baroboys"
+    environment = "dev"
+  }
 
   advanced_machine_features {
     threads_per_core   = 1
@@ -56,9 +61,6 @@ resource "google_compute_instance" "default" {
       image = "debian-cloud/debian-11"
     }
   }
-  labels = {
-    created_by = "terraform"
-  }
 
   network_interface {
     network = "default"
@@ -69,7 +71,24 @@ resource "google_compute_instance" "default" {
   }
   service_account {
     // Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = var.service_account_email
+    email = var.service_account_email
     scopes = ["cloud-platform"]
   }
+}
+
+resource "google_compute_firewall" "barotrauma_ports" {
+  name    = "barotrauma-ports"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports = ["27015", "27016"]
+  }
+
+  direction = "INGRESS"
+  priority  = 1000
+
+  source_ranges = ["0.0.0.0/0"]
+
+  target_tags = ["barotrauma-server"]
 }

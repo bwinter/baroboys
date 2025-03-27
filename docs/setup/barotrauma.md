@@ -1,11 +1,3 @@
-# Remote (VM)
-
-### NOTE:
-
-Need to manually put holes in the VPC Firewall to allow the two ports through.
-
-(the default ports are 27015 and 27016).
-
 # Local
 
 ### Get sub out of save file
