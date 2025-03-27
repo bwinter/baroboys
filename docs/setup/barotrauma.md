@@ -4,11 +4,11 @@
 
 Need to manually put holes in the VPC Firewall to allow the two ports through.
 
-TODO: get doc reference and hardcode.
+(the default ports are 27015 and 27016).
 
 # Local
 
-### Get Sub out of Save File
+### Get sub out of save file
 
 Use VirtualBox to get Windows
 

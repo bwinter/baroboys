@@ -30,7 +30,7 @@
   --zone=us-west1-b
   ```
 
-- If No Public IP
+- If no public IP
 
   ```shell
   gcloud compute ssh bwinter_sc81@europa \
