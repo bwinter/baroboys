@@ -18,11 +18,11 @@ Tech tl;dr is basically: Terraform and Bash.
 
 ## 🚀 Getting Started
 
-1. **Configure GitHub SSH access**
+1. **Configure GitHub SSH access (once)**
     - See [`docs/setup/github-deploy-key.md`](./docs/setup/github-deploy-key.md)
     - This ensures your VM can clone private repos
 
-2. **Provision GCP infrastructure**
+2. **Configure & install GCP tooling** (once)
     - See [`docs/setup/gcp-service-account.md`](./docs/setup/gcp-service-account.md)
     - Then apply Terraform in the `/terraform` folder
 
@@ -32,10 +32,11 @@ Tech tl;dr is basically: Terraform and Bash.
 
 4. **Debug server**
     - See [`docs/usage/troubleshooting.md`](./docs/usage/troubleshooting.md)
+    - Some basic commands you can run to debug install and game server issues.
 
-5. **Barotrauma Submarine Developers**
+5. **Barotrauma Submarine Development**
     - See [`docs/setup/barotrauma.md`](./docs/setup/gcp-service-account.md)
-    - Helpful 
+    - Helpful when building submarines.
 
 ---
 

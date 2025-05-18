@@ -34,4 +34,4 @@ Create Key File:
 gcloud iam service-accounts keys create europan-world.json \
   --iam-account=terraform@europan-world.iam.gserviceaccount.com
 ```
-⚠️ Keep this key secure. It's used by Terraform to authenticate when applying infrastructure.
+⚠️ Keep this key secure. It's used by Terraform to authenticate when applying infrastructure. **Do NOT commit it to this repo**
