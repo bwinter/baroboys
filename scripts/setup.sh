@@ -60,5 +60,7 @@ git clone "git@github.com:bwinter/baroboys.git" "/root/baroboys"
 
 source "/root/baroboys/scripts/setup/git.sh"
 source "/root/baroboys/scripts/setup/steam.sh"
+
 # TODO: make this configurable.
+# source "/root/baroboys/scripts/setup/barotrauma.sh"
 source "/root/baroboys/scripts/setup/vrising.sh"
