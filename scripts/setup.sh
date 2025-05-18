@@ -21,11 +21,14 @@ deb http://deb.debian.org/debian bullseye-backports main
 deb-src http://deb.debian.org/debian bullseye-backports main
 " | tee "/etc/apt/sources.list"
 
+# Refresh state.
 dpkg --add-architecture i386
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F24AEA9FB05498B7
 apt-get remove -y --purge man-db
 apt-get -yq update
 apt-get -yq upgrade
+
+# Install initial dependencies
 apt-get install -yq git curl screen silversearcher-ag build-essential wget dirmngr apt-transport-https ca-certificates gnupg
 apt-get autoremove
 
