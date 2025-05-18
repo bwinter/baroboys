@@ -31,7 +31,8 @@ apt-get autoremove
 
 ### gcloud
 curl "https://packages.cloud.google.com/apt/doc/apt-key.gpg" | tee "/usr/share/keyrings/cloud.google.gpg"
-echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee "/etc/apt/sources.list.d/google-cloud-sdk.list"
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" \
+  | tee "/etc/apt/sources.list.d/google-cloud-sdk.list"
 apt-get -yq update
 apt-get install -yq google-cloud-cli
 apt-get autoremove
