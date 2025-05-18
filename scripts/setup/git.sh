@@ -8,7 +8,7 @@
 # Root Clone
 mkdir -p "/root/.ssh"
 gcloud secrets versions access latest --secret="github-deploy-key" | tee "/root/.ssh/id_ecdsa"
-chmod 700 "/root/.ssh/id_ecdsa"
+chmod 600 "/root/.ssh/id_ecdsa"
 
 # This key is also necessary for github deploy keys.
 echo "github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=" | tee "/root/.ssh/known_hosts"
@@ -21,7 +21,7 @@ chown bwinter_sc81:bwinter_sc81 "/home/bwinter_sc81/.ssh"
 chmod 700 "/home/bwinter_sc81/.ssh"
 
 gcloud secrets versions access latest --secret="github-deploy-key" | su bwinter_sc81 -c 'tee "/home/bwinter_sc81/.ssh/id_ecdsa"'
-chmod 700 "/home/bwinter_sc81/.ssh/id_ecdsa"
+chmod 600 "/home/bwinter_sc81/.ssh/id_ecdsa"
 
 # This key is also necessary for github deploy keys.
 echo "github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=" | su bwinter_sc81 -c 'tee "/home/bwinter_sc81/.ssh/known_hosts"'
