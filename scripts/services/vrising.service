@@ -1,0 +1,20 @@
+[Unit]
+Description=VRising server (wine)
+Wants=network-online.target
+Requires=xvfb.service
+After=network-online.target xvfb.service
+
+[Service]
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/wine \
+  VRisingServer.exe \
+  -persistentDataPath ./Data \
+  -serverName "V Rising Server" \
+  -saveName "TestWorld-1" \
+  -logFile ./logs/VRisingServer.log
+WorkingDirectory=/home/bwinter_sc81/baroboys/VRising/
+User=bwinter_sc81
+Group=bwinter_sc81
+
+[Install]
+WantedBy=multi-user.target
