@@ -26,8 +26,16 @@ Tech tl;dr is basically: Terraform and Bash.
     - See [`docs/setup/gcp-service-account.md`](./docs/setup/gcp-service-account.md)
     - Then apply Terraform in the `/terraform` folder
 
-3. **Debug server**
+3. **Terraform Basics**
+    - See [`docs/setup/terraform.md`](./docs/setup/gcp-service-account.md)
+    - Basic Terraform usage
+
+4. **Debug server**
     - See [`docs/usage/troubleshooting.md`](./docs/usage/troubleshooting.md)
+
+5. **Barotrauma Submarine Developers**
+    - See [`docs/setup/barotrauma.md`](./docs/setup/gcp-service-account.md)
+    - Helpful 
 
 ---
 
