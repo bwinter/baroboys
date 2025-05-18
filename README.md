@@ -42,20 +42,11 @@ Welcome to the Baroboys project — a fully automated and documented setup for d
 ## 🔐 Security Notes
 - All secrets (e.g., GitHub deploy key, service account JSON) should be stored locally and excluded from version control.
 
----
+## License
 
-## 🧰 Requirements
-- Terraform
-- Google Cloud SDK (`gcloud`)
-- GitHub account (for deploy keys)
-- A valid GCP project (e.g., `europan-world`)
+This project is licensed under the [Polyform Small Business License](https://polyformproject.org/licenses/small-business/1.0.0/).
 
----
+- ✅ Free for personal, educational, and small business use (under $1M revenue)
+- ❌ Commercial use by larger companies requires a commercial license
 
-## 📂 Directory Overview
-```
-terraform/   → Terraform code and state
-scripts/     → Startup and install scripts
-Barotrauma/  → Game state, mod files, and server config
-docs/        → Markdown docs for setup, usage, and troubleshooting
-```
+If you’re a business above the size threshold and would like to use this project, please contact me at [your-email@example.com].
