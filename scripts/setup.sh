@@ -46,7 +46,7 @@ curl -sSO "https://dl.google.com/cloudagents/add-google-cloud-ops-agent-repo.sh"
 bash "add-google-cloud-ops-agent-repo.sh" --also-install
 
 # Need Service Account: git-service-account@europan-world.iam.gserviceaccount.com
-# With Scopes: Secret Manager Secret Accessor
+# With Scopes: "Secret Manager Secret Accessor"
 # Get Github Deploy Key
 # Needs to be saved into secret manager by hand.
 mkdir -p "/root/.ssh"
