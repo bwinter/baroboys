@@ -16,6 +16,10 @@ echo "github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHA
 git clone "git@github.com:bwinter/baroboys.git" "/root/baroboys"
 
 # User Clone
+mkdir -p "/home/bwinter_sc81/.ssh"
+chown bwinter_sc81:bwinter_sc81 "/home/bwinter_sc81/.ssh"
+chmod 700 "/home/bwinter_sc81/.ssh"
+
 gcloud secrets versions access latest --secret="github-deploy-key" | su bwinter_sc81 -c 'tee "/home/bwinter_sc81/.ssh/id_ecdsa"'
 chmod 700 "/home/bwinter_sc81/.ssh/id_ecdsa"
 
