@@ -42,10 +42,6 @@ apt-get install -yq git curl screen silversearcher-ag build-essential wget dirmn
                     winehq-stable winetricks xvfb
 apt-get autoremove
 
-# echo '"projects/europan-world/zones/us-west1-b/instances/europa","[{""type"":""ops-agent""}]"' > agents_to_install.csv && \
-# curl -sSO "https://dl.google.com/cloudagents/mass-provision-google-cloud-ops-agents.py" && \
-# python3 mass-provision-google-cloud-ops-agents.py --file agents_to_install.csv
-
 curl -sSO "https://dl.google.com/cloudagents/add-google-cloud-ops-agent-repo.sh"
 bash "add-google-cloud-ops-agent-repo.sh" --also-install
 
