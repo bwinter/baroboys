@@ -1,26 +1,18 @@
-# Baroboys Infrastructure & Server Setup
+# Game Server and Infrastructure Setup
 
-Welcome to the Baroboys project — a fully automated and documented setup for deploying and running a dedicated Barotrauma game server on Google Cloud Platform using Terraform, startup scripts, and Secret Manager for secure configuration.
+This project is an attempt at fully automating steam headless servers.
+
+It was initially designed to run a dedicated Barotrauma game server on Google Cloud Platform.
+
+Tech tl;dr is basically: Terraform and Bash.
 
 ---
 
-## 📦 What This Repo Contains
-
-- **Terraform Infrastructure** (`/terraform`)
-    - Provisions VMs, enables GCP APIs, and configures IAM
-    - Automates project metadata and logging setup
-
-- **Startup & Deployment Scripts** (`/scripts`)
-    - Bootstraps Barotrauma environment on VM boot
-    - Securely pulls GitHub SSH key from Secret Manager
-    - Runs custom server setup logic
-
-- **Barotrauma State & Mods** (`/Barotrauma`)
-    - Contains saved games, mod files, and config data
-
-- **Documentation** (`/docs`)
-    - Clear setup and usage instructions
-    - Covers service accounts, SSH key setup, troubleshooting, and more
+## 🧰 Requirements
+- Terraform
+- Google Cloud SDK (`gcloud`)
+- A valid GCP project (e.g., `europan-world`)
+- GitHub account (for deploy keys)
 
 ---
 
@@ -36,6 +28,25 @@ Welcome to the Baroboys project — a fully automated and documented setup for d
 
 3. **Debug server**
     - See [`docs/usage/troubleshooting.md`](./docs/usage/troubleshooting.md)
+
+---
+
+## 📦 Developers
+
+- **Documentation** (`/docs`)
+    - Clear setup and usage instructions
+    - Covers service accounts, SSH key setup, troubleshooting, and more
+
+- **Terraform Infrastructure** (`/terraform`)
+    - Provisions VMs, enables GCP APIs, and configures IAM
+
+- **Startup & Deployment Scripts** (`/scripts`)
+    - Bootstraps Barotrauma environment on VM boot
+    - Securely pulls GitHub SSH key from Secret Manager
+    - Runs custom server setup logic
+
+- **Barotrauma State & Mods** (`/Barotrauma`)
+    - Contains saved games, mod files, and game server config
 
 ---
 
