@@ -21,9 +21,11 @@ provider "google" {
   region  = var.region
 }
 
-// Bucket needs user: terraform@europan-world.iam.gserviceaccount.com
-// with: Storage Object Admin
-# For shared versioning:
+// Optional: use GCS backend for shared Terraform state
+// Requires service account terraform@europan-world.iam.gserviceaccount.com
+// with role: Storage Object Admin (for GCS bucket access)
+// Commented out to avoid GCS storage costs during local-only use
+
 # terraform {
 #   backend "gcs" {
 #     credentials = "./europan-world.json"
