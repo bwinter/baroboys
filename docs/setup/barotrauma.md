@@ -1,6 +1,6 @@
-# Local
+# Local (Mac OS)
 
-### Get sub out of save file
+### Getting sub out of the save file
 
 Use VirtualBox to get Windows
 
@@ -8,7 +8,11 @@ Setting up file paths:
 
 ![VirtualBox Disk Setup](assets/VirtualBox%20Disk%20Setup.png)
 
+See `scripts/save-decompressor`
+
 ### Setup local env to use repo:
+
+This is helpful when iterating as you can have your sub updates show up in your repo for saving.
 
   Link Local Mods
   ```shell
