@@ -7,7 +7,7 @@ To allow VMs to clone private GitHub repositories securely:
 ssh-keygen -t ecdsa -b 521 -C "vm-github-access"
 ```
 Name the key something like `github-deploy-key`.  
-**Keep the private key secure.**
+⚠️ **Keep this private key secure and do not commit to this repo.**
 
 ### 2. Add the Public Key to GitHub
 - Go to your GitHub repo → **Settings** → **Deploy Keys**
@@ -30,4 +30,3 @@ gcloud projects add-iam-policy-binding europan-world \
 ```
 
 > This securely retrieves the deploy key at boot and makes it available for `git clone` without requiring tokens or embedding credentials in your image.
-

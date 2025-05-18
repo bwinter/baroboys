@@ -1,6 +1,6 @@
-# Local (Mac OS)
+# Developers (Mac OS)
 
-### Getting sub out of the save file
+### Getting submarine out of the save file
 
 Use VirtualBox to get Windows
 
@@ -12,7 +12,7 @@ See `scripts/save-decompressor`
 
 ### Setup local env to use repo:
 
-This is helpful when iterating as you can have your sub updates show up in your repo for saving.
+This is helpful when iterating as you can have your sub updates show up in your repo for an easy git commit.
 
   Link Local Mods
   ```shell
@@ -31,5 +31,5 @@ This is helpful when iterating as you can have your sub updates show up in your 
   ```
 
 - Important Locations
-    - Local Content: `/Users/bwinter/Library/Application Support/Steam/steamapps/common/Barotrauma/Barotrauma.app/Contents/MacOS`
-    - Remote Content: `/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma`
+    - Local Install: `/Users/bwinter/Library/Application Support/Steam/steamapps/common/Barotrauma/Barotrauma.app/Contents/MacOS`
+    - Multiplayer & Community Mods: `/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma`
