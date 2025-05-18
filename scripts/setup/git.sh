@@ -13,7 +13,7 @@ chmod 600 "/root/.ssh/id_ecdsa"
 # This key is also necessary for github deploy keys.
 echo "github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=" | tee "/root/.ssh/known_hosts"
 
-[ -d "/root/baroboys" ] || git clone "git@github.com:bwinter/baroboys.git" "/root/baroboys"
+[ -d "/root/baroboys/.git" ] || git clone "git@github.com:bwinter/baroboys.git" "/root/baroboys"
 
 # User Clone
 mkdir -p "/home/bwinter_sc81/.ssh"
@@ -26,6 +26,6 @@ chmod 600 "/home/bwinter_sc81/.ssh/id_ecdsa"
 # This key is also necessary for github deploy keys.
 echo "github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=" | su bwinter_sc81 -c 'tee "/home/bwinter_sc81/.ssh/known_hosts"'
 
-su bwinter_sc81 -c '[ -d "/home/bwinter_sc81/baroboys" ] || git clone git@github.com:bwinter/baroboys.git "/home/bwinter_sc81/baroboys"'
+su bwinter_sc81 -c '[ -d "/home/bwinter_sc81/baroboys/.git" ] || git clone git@github.com:bwinter/baroboys.git "/home/bwinter_sc81/baroboys"'
 
 su bwinter_sc81 -c 'cp /home/bwinter_sc81/baroboys/.gitconfig /home/bwinter_sc81/.gitconfig'
