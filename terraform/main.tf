@@ -45,7 +45,7 @@ resource "google_compute_instance" "default" {
   name         = var.machine_name
   machine_type = var.machine_type
   zone         = var.zone
-  tags = ["barotrauma-server"]
+  tags = ["barotrauma-server", "vrising-server"]
   labels = {
     project     = "baroboys"
     environment = "dev"
@@ -93,4 +93,21 @@ resource "google_compute_firewall" "barotrauma_ports" {
   source_ranges = ["0.0.0.0/0"]
 
   target_tags = ["barotrauma-server"]
+}
+
+resource "google_compute_firewall" "vrising_ports" {
+  name    = "vrising-ports"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports = ["9876", "9877"]
+  }
+
+  direction = "INGRESS"
+  priority  = 1000
+
+  source_ranges = ["0.0.0.0/0"]
+
+  target_tags = ["vrising-server"]
 }
