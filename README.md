@@ -53,9 +53,7 @@ terraform init
 ### 2. Set your game mode (optional, default is `vrising`)
 
 ```bash
-./scripts/switch_game.sh
-# or manually edit `.envrc`:
-# export ACTIVE_GAME=barotrauma
+make switch
 ```
 
 Ensure `direnv` is installed and run (or set env manually):
@@ -69,7 +67,7 @@ direnv allow .
 ### 3. Apply Terraform to create your VM and configure the server
 
 ```bash
-terraform apply
+make apply
 ```
 
 * This boots a VM
@@ -84,7 +82,7 @@ terraform apply
 ### 4. Manually trigger a save (anytime)
 
 ```bash
-./scripts/manual/save_game.sh
+make save
 ```
 
 ---
@@ -92,7 +90,7 @@ terraform apply
 ### 5. Destroy the instance when done
 
 ```bash
-terraform destroy
+make destroy
 ```
 
 💡 Auto-save runs before shutdown if the game service exits cleanly.

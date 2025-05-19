@@ -4,8 +4,10 @@ PROJECT = europan-world
 ZONE = us-west1-b
 INSTANCE = europa
 USER = bwinter_sc81
-REMOTE_SAVE_SCRIPT = /home/$(USER)/baroboys/scripts/save_game.sh
+REMOTE_SAVE_SCRIPT = /home/$(USER)/baroboys/scripts/teardown/user/save_game.sh
 ACTIVE_GAME_FILE = .envrc
+
+.DEFAULT_GOAL := help
 
 # === Terraform ===
 .PHONY: init apply destroy plan refresh
@@ -33,11 +35,8 @@ mode:
 	@grep ACTIVE_GAME $(ACTIVE_GAME_FILE) | cut -d= -f2
 
 # === Save ===
-.PHONY: save remote-save
+.PHONY: save
 save:
-	./scripts/manual/save_game.sh
-
-remote-save:
 	gcloud compute ssh $(USER)@$(INSTANCE) \
 		--project=$(PROJECT) \
 		--zone=$(ZONE) \
@@ -69,8 +68,7 @@ help:
 	@echo "  make switch         - Switch game mode (.envrc)"
 	@echo "  make mode           - Show current game mode"
 	@echo ""
-	@echo "  make save           - Save game state (local)"
-	@echo "  make remote-save    - Save game state remotely (via SSH)"
+	@echo "  make save           - Save game state (via SSH)"
 	@echo ""
 	@echo "  make ssh            - SSH into VM"
 	@echo "  make ssh-iap        - SSH using IAP tunnel"
