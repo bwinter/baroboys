@@ -56,7 +56,10 @@ resource "google_compute_instance" "default" {
     visible_core_count = 2
   }
 
-  metadata_startup_script = file("${path.module}/../scripts/setup.sh")
+  metadata = {
+    startup-script   = file("${path.module}/../scripts/setup.sh")
+    shutdown-script  = file("${path.module}/../scripts/teardown/root/shutdown.sh")
+  }
 
   boot_disk {
     initialize_params {
@@ -71,6 +74,7 @@ resource "google_compute_instance" "default" {
       // Include this section to give the VM an external ip address
     }
   }
+
   service_account {
     // Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     email = var.service_account_email
