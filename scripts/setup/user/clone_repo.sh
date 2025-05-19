@@ -10,14 +10,13 @@ set -eux
 mkdir -p "$HOME/.ssh"
 chmod 700 "$HOME/.ssh"
 
-# Inject deploy key
-mv "/tmp/id_ecdsa" "$HOME/.ssh/"
-install -m 600 -o bwinter_sc81 -g bwinter_sc81 "/tmp/id_ecdsa" "$HOME/.ssh/id_ecdsa"
+# Inject deploy key directly from Secret Manager into proper file
+gcloud secrets versions access latest --secret="github-deploy-key" --quiet > "$HOME/.ssh/id_ecdsa"
+chmod 600 "$HOME/.ssh/id_ecdsa"
 
-# Add known_hosts
+# Add GitHub host key
 echo "github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=" \
-  > "$HOME/.ssh/known_hosts"
-chown bwinter_sc81:bwinter_sc81 "$HOME/.ssh/known_hosts"
+  | tee "$HOME/.ssh/known_hosts"
 
 [ -d "/$HOME/baroboys/.git" ] || git clone "git@github.com:bwinter/baroboys.git" "$HOME/baroboys"
 

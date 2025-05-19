@@ -30,20 +30,17 @@ apt-get -yq update
 apt-get -yq upgrade
 apt-get install -yq git
 
-# Pull deploy key from GCP secret manager
-gcloud secrets versions access latest --secret="github-deploy-key" --quiet > /tmp/id_ecdsa
-install -m 600 -o bwinter_sc81 -g bwinter_sc81 /tmp/id_ecdsa
+# Root SSH setup
+mkdir -p "/root/.ssh"
+chmod 700 "/root/.ssh"
 
 # Need Service Account: vm-runtime@europan-world.iam.gserviceaccount.com
 # With Scopes: "Secret Manager Secret Accessor"
 # Get Github Deploy Key
 # Needs to be saved into secret manager by hand.
 
-# Root SSH setup
-mkdir -p "/root/.ssh"
-chmod 700 "/root/.ssh"
-
-cat "/tmp/id_ecdsa" > "/root/.ssh/id_ecdsa"
+# Pull deploy key from GCP secret manager
+gcloud secrets versions access latest --secret="github-deploy-key" --quiet > "/root/.ssh/id_ecdsa"
 chmod 600 '/root/.ssh/id_ecdsa'
 
 # Add GitHub host key
