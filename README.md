@@ -20,20 +20,19 @@ Tech tl;dr is basically: Terraform and Bash.
     - See [`docs/setup/github-deploy-key.md`](./docs/setup/github-deploy-key.md)
     - This ensures your VM can clone private repos
 
-2. **Configure & install GCP tooling** (once)
-    - See [`docs/setup/gcp-service-account.md`](./docs/setup/gcp-service-account.md)
-    - Then apply Terraform in the `/terraform` folder
+2. **Install GCP tooling** (once)
+    - See [`docs/setup/installing-gcloud.md`](docs/setup/gcp-service-accounts.md)
 
-3. **Terraform Basics**
-    - See [`docs/setup/terraform.md`](./docs/setup/gcp-service-account.md)
-    - Basic Terraform usage
+3. **Configure GCP tooling** (once)
+    - See [`docs/setup/gcp-service-account.md`](docs/setup/gcp-service-accounts.md)
+    - After completion, Makefile should now be usable
 
 4. **Debug server**
     - See [`docs/usage/troubleshooting.md`](./docs/usage/troubleshooting.md)
     - Some basic commands you can run to debug install and game server issues.
 
 5. **Barotrauma Submarine Development**
-    - See [`docs/setup/barotrauma.md`](./docs/setup/gcp-service-account.md)
+    - See [`docs/setup/barotrauma.md`](docs/setup/gcp-service-accounts.md)
     - Helpful when building submarines.
 
 ---

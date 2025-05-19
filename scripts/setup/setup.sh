@@ -31,10 +31,10 @@ apt-get -yq upgrade
 apt-get install -yq git
 
 # Pull deploy key from GCP secret manager
-gcloud secrets versions access latest --secret="github-deploy-key" | tee "/tmp/id_ecdsa"
+gcloud secrets versions access latest --secret="github-deploy-key" --quiet > /tmp/id_ecdsa
 install -m 600 -o bwinter_sc81 -g bwinter_sc81 /tmp/id_ecdsa
 
-# Need Service Account: git-service-account@europan-world.iam.gserviceaccount.com
+# Need Service Account: vm-runtime@europan-world.iam.gserviceaccount.com
 # With Scopes: "Secret Manager Secret Accessor"
 # Get Github Deploy Key
 # Needs to be saved into secret manager by hand.

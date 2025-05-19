@@ -20,7 +20,7 @@ plan:
 apply:
 	cd $(TF_DIR) && terraform apply
 
-destroy: save
+destroy:
 	cd $(TF_DIR) && terraform destroy
 
 refresh:
