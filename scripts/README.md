@@ -1,7 +1,80 @@
-## `scripts/setup/`
-Top-level orchestrator scripts.
+# `scripts/` Directory Overview
 
-- `setup.sh`: full bootstrap entrypoint (called by Terraform)
-- `install/`: per-tool install scripts
-- `user/`: user-context setup (run via `sudo -u`)
-- `root/`: root-context setup (systemd, cloning, service control)
+This directory contains all setup, control, and teardown logic for the Baroboys game server infrastructure.
+
+---
+
+## 🗃️ Conventions
+
+- All branching behavior uses the `.envrc` value of `ACTIVE_GAME`
+- Scripts are designed to be idempotent and safe to re-run
+- Game-specific logic lives under clearly isolated paths
+- Root scripts are only run directly or from Terraform startup hooks
+- User scripts are invoked with `sudo -u bwinter_sc81` for correct context
+
+---
+
+## 🛠️ `setup/`
+
+Top-level bootstrapping logic, invoked by Terraform during VM provisioning.
+
+- `setup.sh`: Core entrypoint called by the VM’s startup script
+
+### 🔧 `setup/install/`
+
+Per-tool installation scripts for global dependencies:
+
+- `apt_core.sh`, `apt_gcloud.sh`, `apt_wine.sh`, `apt_xvfb.sh`, `apt_steam.sh`
+
+### 🧑‍💻 `setup/user/`
+
+User-context setup scripts (run via `sudo -u bwinter_sc81`):
+
+- `clone_repo.sh`: Git clone logic
+- `install_*.sh`: Game-specific userland setup
+- `patch_steam.sh`: Optional Steam configuration tweaks
+
+### 🔐 `setup/root/`
+
+Root-context setup scripts (called directly during provisioning):
+
+- `clone_repo.sh`: Git clone logic for root
+- `patch_steam.sh`, `start_xvfb.sh`: Supporting utilities
+- `setup_game.sh`: Dispatches game-specific setup based on `$ACTIVE_GAME`
+- `setup_*.sh`: Game-specific service setup (systemd, files, symlinks)
+
+---
+
+## 📦 `services/`
+
+Systemd unit files used to launch games and headless dependencies:
+
+- `vrising.service`, `xvfb.service`
+
+---
+
+## 🧭 `manual/`
+
+Utilities for manual operation, debugging, or switching modes:
+
+- `switch_game.sh`: Toggle between game modes (`ACTIVE_GAME`)
+- `save_game.sh`: Dispatch to the correct save script based on mode (`ACTIVE_GAME`)
+- `start_barotrauma_server.sh`: Manual game launch helper
+- `save-decompressor/`: Tools for working with saved game state
+
+---
+
+## ⛔ `teardown/`
+
+Scripts triggered at VM shutdown or manual teardown time.
+
+### 🧑‍💻 `teardown/user/`
+
+Game-aware save logic:
+
+- `save_game.sh`: Dispatcher that calls game-specific save scripts (`ACTIVE_GAME`)
+- `save_vrising.sh`, `save_barotrauma.sh`: Commit-save logic per game
+
+### 🔐 `teardown/root/`
+
+- `shutdown.sh`: Root-level shutdown hook used by Terraform to trigger user-side save
