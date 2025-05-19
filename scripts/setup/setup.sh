@@ -46,7 +46,13 @@ chmod 600 '/root/.ssh/id_ecdsa'
 # Add GitHub host key
 echo "github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=" | tee "/root/.ssh/known_hosts"
 
-[ -d "/root/baroboys/.git" ] || git clone "git@github.com:bwinter/baroboys.git" "/root/baroboys"
+if [ -d "/root/baroboys/.git" ]; then
+  echo "🔄 Repo exists, pulling latest..."
+  git -C "/root/baroboys" pull
+else
+  echo "📦 Repo missing, cloning fresh..."
+  git clone "git@github.com:bwinter/baroboys.git" "/root/baroboys"
+fi
 
 sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/setup/root/clone_repo.sh"
 
