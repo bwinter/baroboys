@@ -1,8 +1,3 @@
-Install Google Cloud SDK:
-```shell
-brew install --cask google-cloud-sdk
-```
-
 Login to GCP:
 ```shell
 gcloud auth login
