@@ -12,6 +12,7 @@ chmod 700 "$HOME/.ssh"
 
 # Inject deploy key
 mv "/tmp/id_ecdsa" "$HOME/.ssh/"
+install -m 600 -o bwinter_sc81 -g bwinter_sc81 "/tmp/id_ecdsa" "$HOME/.ssh/id_ecdsa"
 
 # Add known_hosts
 echo "github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=" \
