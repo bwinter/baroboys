@@ -57,8 +57,8 @@ resource "google_compute_instance" "default" {
   }
 
   metadata = {
-    startup-script   = file("${path.module}/../scripts/setup.sh")
-    shutdown-script  = file("${path.module}/../scripts/teardown/root/shutdown.sh")
+    startup-script   = file("${path.module}/../scripts/setup/setup.sh")
+    shutdown-script  = file("${path.module}/../scripts/teardown/shutdown.sh")
   }
 
   boot_disk {
