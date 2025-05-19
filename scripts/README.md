@@ -55,12 +55,18 @@ Systemd unit files used to launch games and headless dependencies:
 
 ## 🧭 `manual/`
 
-Utilities for manual operation, debugging, or switching modes:
+Utilities for manual operation, debugging, local overrides, or service account bootstrapping.
 
-- `switch_game.sh`: Toggle between game modes (`ACTIVE_GAME`)
-- `save_game.sh`: Dispatch to the correct save script based on mode (`ACTIVE_GAME`)
-- `start_barotrauma_server.sh`: Manual game launch helper
-- `save-decompressor/`: Tools for working with saved game state
+### Game Management
+
+* `switch_game.sh` — Toggles the current game mode (`ACTIVE_GAME`) by updating `.envrc`
+* `start_barotrauma_server.sh` — Manually starts the Barotrauma server (if needed outside systemd)
+* `save-decompressor/` — Tools for working with compressed save-game data
+
+### GCP Service Account Bootstrapping
+
+* `gcp/bootstrap_terraform_sa.sh` — Creates the `terraform@` service account and grants it provisioning roles (e.g., Compute, IAM)
+* `gcp/bootstrap_vm_sa.sh` — Creates the `vm-runtime@` service account and grants it runtime roles (e.g., Secret Manager, Logging)
 
 ---
 
