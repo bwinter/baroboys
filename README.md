@@ -2,8 +2,6 @@
 
 This project is an attempt at fully automating steam headless servers.
 
-It was initially designed to run a dedicated Barotrauma game server on Google Cloud Platform.
-
 Tech tl;dr is basically: Terraform and Bash.
 
 ---
@@ -37,6 +35,77 @@ Tech tl;dr is basically: Terraform and Bash.
 5. **Barotrauma Submarine Development**
     - See [`docs/setup/barotrauma.md`](./docs/setup/gcp-service-account.md)
     - Helpful when building submarines.
+
+---
+
+## 🚀 Step-by-Step Setup
+
+### 1. Clone the repo and initialize Terraform
+
+```bash
+git clone git@github.com:bwinter/baroboys.git
+cd baroboys/terraform
+terraform init
+```
+
+---
+
+### 2. Set your game mode (optional, default is `vrising`)
+
+```bash
+./scripts/switch_game.sh
+# or manually edit `.envrc`:
+# export ACTIVE_GAME=barotrauma
+```
+
+Ensure `direnv` is installed and run (or set env manually):
+
+```bash
+direnv allow .
+```
+
+---
+
+### 3. Apply Terraform to create your VM and configure the server
+
+```bash
+terraform apply
+```
+
+* This boots a VM
+* Installs Wine, SteamCMD, Xvfb
+* Clones this repo for both `root` and `bwinter_sc81`
+* Installs and configures the selected game
+* Registers a `systemd` service for the game
+* Registers a shutdown hook to auto-save to Git
+
+---
+
+### 4. Manually trigger a save (anytime)
+
+```bash
+./scripts/manual/save_game.sh
+```
+
+---
+
+### 5. Destroy the instance when done
+
+```bash
+terraform destroy
+```
+
+💡 Auto-save runs before shutdown if the game service exits cleanly.
+
+---
+
+## 🛠️ Debugging
+
+| Goal              | Command                                                                    |
+| ----------------- | -------------------------------------------------------------------------- |
+| View startup logs | `gcloud compute instances get-serial-port-output europa --zone=us-west1-b` |
+| View systemd logs | `journalctl -u google-startup-scripts.service -e`                          |
+| Debug save        | `journalctl -u barotrauma.service -e` or check Git commit logs             |
 
 ---
 
