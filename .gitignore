@@ -1,5 +1,6 @@
 .idea
-terraform/europan-world.json
+.secrets/
+.secrets/europan-world-terraform-key.json
 id_ecdsa
 id_ecdsa.pub
 scripts/manual/save-decompressor/Barotrauma-Save-Decompressor.lnk

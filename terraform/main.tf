@@ -16,7 +16,7 @@
 
 // Configure the Google Cloud provider
 provider "google" {
-  credentials = file("europan-world.json")
+  credentials = file("${path.module}/../.secrets/europan-world-terraform-key.json")
   project = var.project
   region  = var.region
 }
@@ -28,7 +28,7 @@ provider "google" {
 
 # terraform {
 #   backend "gcs" {
-#     credentials = "./europan-world.json"
+#     credentials = "./europan-world-terraform-key.json"
 #     bucket      = "tf-state-baroboys"
 #     prefix      = "terraform/state"
 #   }

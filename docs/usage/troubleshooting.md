@@ -2,53 +2,75 @@
 
 ### 🧭 When to Use Each Diagnostic Tool
 
-| Tool                                                   | Scope                            | When to Use                                                            |
-| ------------------------------------------------------ | -------------------------------- | ---------------------------------------------------------------------- |
-| `gcloud compute instances get-serial-port-output`      | Serial console output (boot log) | VM won't start properly, startup script failed, SSH is unreachable     |
-| `journalctl -u google-startup-scripts.service`         | Local systemd unit logs          | VM booted, but startup script failed partially or silently             |
-| `sudo systemctl status google-startup-scripts.service` | Summary status of startup unit   | Checking whether the startup unit even ran, or why it failed to reload |
-| `gcloud logging read ...`                              | Cloud Logging (Stackdriver)      | You enabled OSConfig & Logging APIs; want historical logs post-boot    |
-| `gcloud compute ssh ...`                               | SSH shell                        | Use if VM is up and you want to explore, fix, or inspect directly      |
+| Tool                                                   | Scope                            | When to Use                                                             |
+| ------------------------------------------------------ | -------------------------------- | ----------------------------------------------------------------------- |
+| `gcloud compute instances get-serial-port-output`      | Serial console output (boot log) | VM won’t boot, startup script fails silently, or SSH is unreachable     |
+| `journalctl -u google-startup-scripts.service`         | Local systemd unit logs          | VM booted, but startup script failed partially or logged errors         |
+| `sudo systemctl status google-startup-scripts.service` | Startup script unit health       | Quick status check — did the unit run, is it active, why did it stop?   |
+| `gcloud logging read ...`                              | Cloud Logging (Stackdriver)      | View logs after boot or postmortem; requires OSConfig + logging enabled |
+| `gcloud compute ssh ...`                               | SSH shell                        | Use if the VM is up and reachable, for interactive debugging            |
 
 ---
 
 ### 🧰 Helpful Commands
 
-#### Startup script logs:
+#### 🪵 Boot-time logs (no SSH required):
 
-  ```bash
-  sudo journalctl -u google-startup-scripts.service -e
-  ```
+```bash
+gcloud compute instances get-serial-port-output europa \
+  --zone=us-west1-b
+```
 
-#### Debugging a reboot or restart:
+Optional extended logs:
 
-  ```bash
-  sudo systemctl status google-startup-scripts.service
-  ```
+```bash
+gcloud compute instances get-serial-port-output europa \
+  --zone=us-west1-b --port=1
+```
 
-#### Logs via CLI:
+---
 
-  ```bash
-  gcloud logging read \
-    "resource.type=gce_instance AND resource.labels.instance_id=INSTANCE_ID" \
-    --project=europan-world \
-    --limit=50 \
-    --format="json"
-  ```
+#### 📖 Cloud Logging CLI (if enabled):
 
-#### SSH onto the machine:
+```bash
+gcloud logging read \
+  "resource.type=gce_instance AND resource.labels.instance_id=INSTANCE_ID" \
+  --project=europan-world \
+  --limit=50 \
+  --format="json"
+```
 
-  ```bash
-  gcloud compute ssh bwinter_sc81@europa \
-    --project=europan-world \
-    --zone=us-west1-b
-  ```
+---
 
-#### SSH through IAP (if no external IP):
+#### 🔐 SSH to VM (normal):
 
-  ```bash
-  gcloud compute ssh bwinter_sc81@europa \
-    --project=europan-world \
-    --zone=us-west1-b \
-    --tunnel-through-iap
-  ```
+```bash
+gcloud compute ssh bwinter_sc81@europa \
+  --project=europan-world \
+  --zone=us-west1-b
+```
+
+#### 🔒 SSH with IAP (no external IP):
+
+```bash
+gcloud compute ssh bwinter_sc81@europa \
+  --project=europan-world \
+  --zone=us-west1-b \
+  --tunnel-through-iap
+```
+
+---
+
+#### 🧪 Run these after SSHing into the VM:
+
+**Startup script logs:**
+
+```bash
+sudo journalctl -u google-startup-scripts.service -e
+```
+
+**Startup script status:**
+
+```bash
+sudo systemctl status google-startup-scripts.service
+```

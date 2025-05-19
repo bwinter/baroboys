@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eux
 
-# Need Service Account: git-service-account@europan-world.iam.gserviceaccount.com
+# Need Service Account: vm-runtime@europan-world.iam.gserviceaccount.com
 # With Scopes: "Secret Manager Secret Accessor"
 # Get Github Deploy Key
 # Needs to be saved into secret manager by hand.
