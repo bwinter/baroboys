@@ -12,6 +12,7 @@ ExecStart=/usr/bin/wine \
   -serverName "V Rising Server" \
   -saveName "TestWorld-1" \
   -logFile ./logs/VRisingServer.log
+ExecStop=/home/bwinter_sc81/baroboys/scripts/teardown/user/save_game_vrising.sh
 WorkingDirectory=/home/bwinter_sc81/baroboys/VRising/
 User=bwinter_sc81
 Group=bwinter_sc81
