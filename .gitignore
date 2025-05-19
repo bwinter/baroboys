@@ -2,7 +2,7 @@
 terraform/europan-world.json
 id_ecdsa
 id_ecdsa.pub
-scripts/save-decompressor/Barotrauma-Save-Decompressor.lnk
+scripts/manual-tooling/save-decompressor/Barotrauma-Save-Decompressor.lnk
 
 # logs
 *.log
