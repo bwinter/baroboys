@@ -17,29 +17,35 @@
 variable "region" {
   description = "region"
   type        = string
+  default     = "us-west1"
 }
 
 variable "zone" {
   description = "Zone"
   type        = string
+  default     = "us-west1-b"
 }
 
 variable "project" {
   description = "Project"
   type        = string
+  default     = "europan-world"
 }
 
 variable "service_account_email" {
   description = "Service Account Email"
   type        = string
+  default     = "vm-runtime@europan-world.iam.gserviceaccount.com"
 }
 
 variable "machine_name" {
   description = "Machine Name"
   type        = string
+  default     = "europa"
 }
 
 variable "machine_type" {
   description = "Machine Type"
   type        = string
+  default     = "e2-highcpu-4"
 }
