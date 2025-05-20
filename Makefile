@@ -55,6 +55,15 @@ ssh-iap:
 		--zone=$(ZONE) \
 		--tunnel-through-iap
 
+# === Packer ===
+
+PACKER_TEMPLATE := baroboys.pkr.hcl
+
+build:
+	cd terraform/packer && \
+	packer init $(PACKER_TEMPLATE) && \
+	packer build -var-file=../terraform.tfvars $(PACKER_TEMPLATE) | tee packer-$$USER-`date +%Y%m%d-%H%M`.log
+
 # === Help ===
 .PHONY: help
 help:
@@ -72,3 +81,5 @@ help:
 	@echo ""
 	@echo "  make ssh            - SSH into VM"
 	@echo "  make ssh-iap        - SSH using IAP tunnel"
+	@echo ""
+	@echo "  make build          - Build Packer image"

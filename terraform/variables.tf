@@ -49,3 +49,15 @@ variable "machine_type" {
   type        = string
   default     = "e2-highcpu-4"
 }
+
+variable "image_family" {
+  description = "Image Family"
+  type        = string
+  default     = "debian-11"
+}
+
+variable "image_project" {
+  description = "Image Project"
+  type        = string
+  default     = "debian-cloud"
+}
