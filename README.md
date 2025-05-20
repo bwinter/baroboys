@@ -8,6 +8,7 @@ Tech tl;dr is basically: Terraform and Bash.
 
 ## 🧰 Requirements
 - Terraform
+- Packer
 - Google Cloud SDK (`gcloud`)
 - A valid GCP project (e.g., `europan-world`)
 - GitHub account (for deploy keys)
@@ -63,7 +64,15 @@ direnv allow .
 
 ---
 
-### 3. Apply Terraform to create your VM and configure the server
+### 3. Build packer image
+
+```bash
+make build
+```
+
+---
+
+### 4. Apply Terraform to create your VM and configure the server
 
 ```bash
 make apply
@@ -78,7 +87,7 @@ make apply
 
 ---
 
-### 4. Manually trigger a save (anytime)
+### 5. Manually trigger a save (anytime)
 
 ```bash
 make save
@@ -86,7 +95,7 @@ make save
 
 ---
 
-### 5. Destroy the instance when done
+### 6. Destroy the instance when done
 
 ```bash
 make destroy
