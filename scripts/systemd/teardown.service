@@ -1,0 +1,10 @@
+[Unit]
+Description=Baroboys Provisioning Setup
+After=network.target
+ConditionPathExists=!/var/lib/baroboys-shutdown.done
+
+[Service]
+Type=oneshot
+ExecStart=/root/baroboys/scripts/teardown/shutdown.sh
+ExecStartPost=/bin/touch /var/lib/baroboys-shutdown.done
+RemainAfterExit=yes

@@ -39,6 +39,11 @@ resource "random_id" "instance_id" {
   byte_length = 8
 }
 
+data "google_compute_image" "baroboys_base" {
+  family  = var.image_family
+  project = var.project
+}
+
 // A Single Compute Engine instance
 resource "google_compute_instance" "default" {
   provider     = google
@@ -57,13 +62,13 @@ resource "google_compute_instance" "default" {
   }
 
   metadata = {
-    startup-script   = file("${path.module}/../scripts/setup/setup.sh")
-    shutdown-script  = file("${path.module}/../scripts/teardown/shutdown.sh")
+    startup-script   = "systemctl start bootstrap.service"
+    shutdown-script  = "systemctl start teardown.service"
   }
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
+      image = data.google_compute_image.baroboys_base.self_link
     }
   }
 

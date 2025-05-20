@@ -1,6 +1,8 @@
 #!/bin/bash
 set -eux
 
+echo "🎮 Setting up game mode: ${ACTIVE_GAME:-undefined}"
+
 # Load active game mode from repo-local env file
 if [ -f "/root/baroboys/.envrc" ]; then
   source "/root/baroboys/.envrc"
