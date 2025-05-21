@@ -14,18 +14,21 @@ apt-get install -yq winehq-stable winetricks xvfb
 
 echo "🌀 Installing fonts..."
 
-# Initialize Wine prefix to avoid hangs in winetricks
-runuser -l bwinter_sc81 -c '
+# Initialize Wine prefix with sudo -u
+sudo -u bwinter_sc81 -- bash -c '
   echo "🔧 Initializing wine prefix..."
+  export HOME=/home/bwinter_sc81
   wineboot -i
 '
 
-# Install fonts via winetricks using xvfb-run
-runuser -l bwinter_sc81 -c '
+# Install fonts using xvfb-run and winetricks
+sudo -u bwinter_sc81 -- bash -c '
   echo "🔧 Installing corefonts and tahoma via winetricks..."
+  export HOME=/home/bwinter_sc81
   export WINETRICKS_GUI=none
   xvfb-run --auto-servernum --server-args="-screen 0 1024x768x24" \
     winetricks --unattended corefonts tahoma \
     || echo "⚠️ winetricks failed"
 '
+
 echo "✅ Fonts install attempt complete."
