@@ -79,13 +79,13 @@ build:
 		packer init "$(PACKER_TEMPLATE)" && \
 		packer build -var-file="$(PACKER_VARS)" . | tee "packer-$(USER)-$(shell date +%Y%m%d-%H%M).log"
 
-clean-images:
+clean:
 	gcloud compute images list \
 	  --project=europan-world \
 	  --no-standard-images \
 	  --filter="name~^baroboys-base-" \
 	  --sort-by="~creationTimestamp" \
-	  --format="value(name)" | tail -n +4 | \
+	  --format="value(name)" | tail -n +1 | \
 	  xargs -I {} gcloud compute images delete {} --project=europan-world --quiet
 
 # === Help ===
@@ -107,3 +107,4 @@ help:
 	@echo "  make ssh-iap        - SSH using IAP tunnel"
 	@echo ""
 	@echo "  make build          - Build Packer image"
+	@echo "  make clean          - Clean Packer image"
