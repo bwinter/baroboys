@@ -12,6 +12,7 @@ ExecStart=/usr/bin/wine \
   -serverName "Baroboys Playground" \
   -saveName "TestWorld-1" \
   -logFile ./logs/VRisingServer.log
+ExecStop=/bin/kill -INT $MAINPID
 WorkingDirectory=/home/bwinter_sc81/baroboys/VRising
 User=bwinter_sc81
 Group=bwinter_sc81

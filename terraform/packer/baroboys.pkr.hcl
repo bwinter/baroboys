@@ -50,13 +50,7 @@ build {
       "sudo chmod +x /tmp/clone_repo.sh",
       "sudo /tmp/clone_repo.sh",
       "sudo /root/baroboys/scripts/setup/bootstrap.sh",
-
-      "sudo cp /root/baroboys/scripts/systemd/setup_game.service /etc/systemd/system/setup_game.service",
-      "sudo cp /root/baroboys/scripts/systemd/teardown.service /etc/systemd/system/teardown.service",
-      "sudo chmod 644 /etc/systemd/system/setup_game.service",
-      "sudo chmod 644 /etc/systemd/system/teardown.service",
-      "sudo systemctl daemon-reexec",
-      "sudo systemctl daemon-reload"
+      "sudo /root/baroboys/scripts/setup/install/services.sh"
     ]
   }
 }
