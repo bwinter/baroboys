@@ -14,14 +14,14 @@ apt-get install -yq winehq-stable winetricks xvfb
 
 echo "🌀 Installing fonts..."
 
-# Initialize Wine prefix with sudo -u
+# Initialize Wine prefix (once!)
 sudo -u bwinter_sc81 -- bash -c '
   echo "🔧 Initializing wine prefix..."
   export HOME=/home/bwinter_sc81
   wineboot -i
 '
 
-# Install fonts using xvfb-run and winetricks
+# Run winetricks under xvfb
 sudo -u bwinter_sc81 -- bash -c '
   echo "🔧 Installing corefonts and tahoma via winetricks..."
   export HOME=/home/bwinter_sc81
