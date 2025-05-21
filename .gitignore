@@ -268,3 +268,24 @@ Barotrauma/netstandard.dll
 Barotrauma/steamapps/
 Barotrauma/steamclient.so
 Barotrauma/WorkshopMods/Installed
+
+# Ignore V Rising extracted binaries and runtime content
+VRising/GameAssembly.dll
+VRising/README.txt
+VRising/UnityCrashHandler64.exe
+VRising/UnityPlayer.dll
+VRising/VERSION
+VRising/VRisingServer.exe
+VRising/VRisingServer_Data/
+VRising/baselib.dll
+VRising/config/
+VRising/licenses.txt
+VRising/logs/
+VRising/start_server_example.bat
+VRising/steamapps/
+VRising/steamclient.dll
+VRising/steamclient64.dll
+VRising/tier0_s.dll
+VRising/tier0_s64.dll
+VRising/vstdlib_s.dll
+VRising/vstdlib_s64.dll
