@@ -12,4 +12,7 @@ echo "deb [signed-by=/usr/share/keyrings/winehq.gpg] https://dl.winehq.org/wine-
 apt-get -yq update
 apt-get install -yq winehq-stable winetricks xvfb
 
-winetricks allfonts
+sudo -u bwinter_sc81 -- xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' env \
+                          WINETRICKS_GUI=none \
+                          WINEDEBUG=-all \
+                          winetricks allfonts || echo echo "⚠️ Winetricks fonts failed, continuing anyway"

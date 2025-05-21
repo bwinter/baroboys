@@ -20,8 +20,8 @@ source "googlecompute" "baroboys-base" {
   source_image_family = var.gcp_image_family
   source_image_project_id = [var.gcp_image_project]
 
-  disk_size  = 20
-  image_name = "baroboys-base-{{timestamp}}"
+  disk_size    = 20
+  image_name   = "baroboys-base-{{timestamp}}"
   image_family = var.custom_image_family
 
   ssh_username = "packer"
@@ -42,7 +42,11 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["DEBIAN_FRONTEND=noninteractive"]
+    environment_vars = [
+      "DEBIAN_FRONTEND=noninteractive",
+      "WINETRICKS_GUI=none",
+      "WINEDEBUG=-all"
+    ]
     inline = [
       "sudo apt-get install -yq git",
       "sudo chmod +x /tmp/clone_repo.sh",
