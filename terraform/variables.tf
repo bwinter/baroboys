@@ -32,6 +32,12 @@ variable "project" {
   default     = "europan-world"
 }
 
+variable "credentials_file" {
+  description = "Credentials file"
+  type        = string
+  default     = ".secrets/europan-world-terraform-key.jsonn"
+}
+
 variable "service_account_email" {
   description = "Service Account Email"
   type        = string
@@ -50,14 +56,20 @@ variable "machine_type" {
   default     = "e2-highcpu-4"
 }
 
-variable "image_family" {
+variable "gcp_image_family" {
   description = "Image Family"
   type        = string
-  default     = "debian-11"
+  default     = "baroboys-base"
 }
 
-variable "image_project" {
+variable "gcp_image_project" {
   description = "Image Project"
   type        = string
   default     = "debian-cloud"
+}
+
+variable "custom_image_family" {
+  description = "Custom Image's Family"
+  type        = string
+  default     = "baroboys-base"
 }

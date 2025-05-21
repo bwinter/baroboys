@@ -7,9 +7,23 @@ Tech tl;dr is basically: Terraform and Bash.
 ---
 
 ## 🧰 Requirements
+
 - Terraform
+    ```shell
+    brew tap hashicorp/tap
+    brew install hashicorp/tap/packer
+    ```
 - Packer
+    ```shell
+    brew tap hashicorp/tap
+    brew install hashicorp/tap/packer
+    ```
 - Google Cloud SDK (`gcloud`)
+    ```shell
+    curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-457.0.0-darwin-arm.tar.gz
+    tar -xvzf google-cloud-cli-457.0.0-darwin-arm.tar.gz
+    ./google-cloud-sdk/install.sh
+    ```
 - A valid GCP project (e.g., `europan-world`)
 - GitHub account (for deploy keys)
 
@@ -108,7 +122,7 @@ make destroy
 ## 🛠️ Debugging
 
 | Goal              | Command                                                                    |
-| ----------------- | -------------------------------------------------------------------------- |
+|-------------------|----------------------------------------------------------------------------|
 | View startup logs | `gcloud compute instances get-serial-port-output europa --zone=us-west1-b` |
 | View systemd logs | `journalctl -u google-startup-scripts.service -e`                          |
 | Debug save        | `journalctl -u barotrauma.service -e` or check Git commit logs             |
@@ -135,13 +149,17 @@ make destroy
 ---
 
 ## 🔐 Security Notes
-- All secrets (e.g., GitHub deploy key, service account JSON) should be stored locally and excluded from version control.
+
+- All secrets (e.g., GitHub deploy key, service account JSON) should be stored locally and excluded from version
+  control.
 
 ## License
 
-This project is licensed under the [Polyform Small Business License](https://polyformproject.org/licenses/small-business/1.0.0/).
+This project is licensed under
+the [Polyform Small Business License](https://polyformproject.org/licenses/small-business/1.0.0/).
 
 - ✅ Free for personal, educational, and small business use (under $1M revenue)
 - ❌ Commercial use by larger companies requires a commercial license
 
-If you’re a business above the size threshold and would like to use this project, please contact me at [your-email@example.com].
+If you’re a business above the size threshold and would like to use this project, please contact me
+at [your-email@example.com].

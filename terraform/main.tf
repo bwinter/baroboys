@@ -40,7 +40,7 @@ resource "random_id" "instance_id" {
 }
 
 data "google_compute_image" "baroboys_base" {
-  family  = var.image_family
+  family  = var.custom_image_family
   project = var.project
 }
 
