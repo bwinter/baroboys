@@ -1,18 +1,21 @@
 {
-  "Name": "V Rising Server",
-  "Description": "",
+  "Name": "Donald's PvE Server",
+  "Description": "Casual PvE for testing.",
   "Port": 9876,
   "QueryPort": 9877,
   "MaxConnectedUsers": 40,
   "MaxConnectedAdmins": 4,
   "ServerFps": 30,
-  "SaveName": "world1",
-  "Password": "",
+  "LowerFPSWhenEmpty": true,
+  "LowerFPSWhenEmptyValue": 5,
+  "SaveName": "TestWorld-1",
+  "Password": "Donalds",
   "Secure": true,
-  "ListOnSteam": false,
-  "ListOnEOS": false,
+  "ListOnSteam": true,
+  "ListOnEOS": true,
   "AutoSaveCount": 20,
-  "AutoSaveInterval": 120,
+  "AutoSaveInterval": 60,
+  "AutoSaveSmartKeep": "10:2:1,60:0:1,120:0:1,240:0:1,1440:0:1,2880:0:1,43200:99:0",
   "CompressSaveFiles": true,
   "GameSettingsPreset": "",
   "GameDifficultyPreset": "",
@@ -22,8 +25,8 @@
     "Enabled": false
   },
   "Rcon": {
-    "Enabled": false,
+    "Enabled": true,
     "Port": 25575,
-    "Password": ""
+    "Password": "Donalds"
   }
 }
