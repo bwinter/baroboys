@@ -1,47 +1,69 @@
 # baroboys.pkr.hcl
 
+packer {
+  required_plugins {
+    googlecompute = {
+      version = ">= 1.1.9"
+      source  = "github.com/hashicorp/googlecompute"
+    }
+  }
+}
+
 source "googlecompute" "baroboys-base" {
   project_id   = var.project
   zone         = var.zone
   machine_type = var.machine_type
 
-  source_image_family  = var.image_family
-  source_image_project = var.image_project
+  service_account_email = var.service_account_email
+  scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+
+  source_image_family = var.gcp_image_family
+  source_image_project_id = [var.gcp_image_project]
 
   disk_size  = 20
   image_name = "baroboys-base-{{timestamp}}"
+  image_family = var.custom_image_family
 
   ssh_username = "packer"
+
+  image_labels = {
+    source = "packer"
+    role   = "baroboys-base"
+  }
 }
 
 build {
   name = "baroboys-base-image"
   sources = ["source.googlecompute.baroboys-base"]
-  labels = {
-    source = "packer"
-    role   = "baroboys-base"
-  }
 
   provisioner "file" {
     source      = "${path.root}/../../scripts/systemd/bootstrap.service"
-    destination = "/etc/systemd/system/bootstrap.service"
+    destination = "/tmp/bootstrap.service"
   }
 
   provisioner "file" {
     source      = "${path.root}/../../scripts/systemd/teardown.service"
-    destination = "/etc/systemd/system/teardown.service"
+    destination = "/tmp/teardown.service"
   }
 
   provisioner "file" {
-    source      = "${path.root}/../../"
-    destination = "/root/baroboys"
+    source      = "${path.root}/../../scripts/setup/clone_repo.sh"
+    destination = "/tmp/clone_repo.sh"
   }
 
   provisioner "shell" {
+    environment_vars = ["DEBIAN_FRONTEND=noninteractive"]
     inline = [
-      "chmod 644 /etc/systemd/system/bootstrap.service",
-      "chmod 644 /etc/systemd/system/teardown.service",
-      "systemctl daemon-reload"
+      "sudo apt-get install -yq git",
+      "sudo chmod +x /tmp/clone_repo.sh",
+      "sudo /tmp/clone_repo.sh",
+
+      "sudo mv /tmp/bootstrap.service /etc/systemd/system/bootstrap.service",
+      "sudo mv /tmp/teardown.service /etc/systemd/system/teardown.service",
+      "sudo chmod 644 /etc/systemd/system/bootstrap.service",
+      "sudo chmod 644 /etc/systemd/system/teardown.service",
+      "sudo systemctl daemon-reexec",
+      "sudo systemctl daemon-reload"
     ]
   }
 }
