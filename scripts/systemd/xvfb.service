@@ -8,4 +8,4 @@ User=bwinter_sc81
 Group=bwinter_sc81
 
 [Install]
-WantedBy=multi=user.target
+WantedBy=multi-user.target
