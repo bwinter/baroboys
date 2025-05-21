@@ -1,8 +1,11 @@
 #!/bin/bash
 set -eux
 
-/usr/games/steamcmd +force_install_dir "$HOME/baroboys/VRising" \
-  +login anonymous +app_update 1829350 validate +quit
+/usr/games/steamcmd +@sSteamCmdForcePlatformType windows \
+  +force_install_dir "$HOME/baroboys/VRising" \
+  +login anonymous \
+  +app_update 1829350 validate \
+  +quit
 
 # TODO: Restore save game
 # git checkout ...
