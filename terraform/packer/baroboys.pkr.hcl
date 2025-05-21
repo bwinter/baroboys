@@ -43,9 +43,7 @@ build {
 
   provisioner "shell" {
     environment_vars = [
-      "DEBIAN_FRONTEND=noninteractive",
-      "WINETRICKS_GUI=none",
-      "WINEDEBUG=-all"
+      "DEBIAN_FRONTEND=noninteractive"
     ]
     inline = [
       "sudo apt-get install -yq git",
