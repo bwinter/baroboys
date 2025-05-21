@@ -1,11 +1,24 @@
 {
-  "Name": "Baroboys Playground",
-  "Description": "A test server for VRising deployment pipeline.",
+  "Name": "V Rising Server",
+  "Description": "A test server for headless Linux deployment.",
   "Port": 9876,
   "QueryPort": 9877,
+  "MaxConnectedUsers": 10,
+  "MaxConnectedAdmins": 4,
+  "ServerFps": 30,
   "SaveName": "TestWorld-1",
-  "Password": "hunter2",
+  "Password": "Donalds",
   "Secure": true,
   "ListOnSteam": true,
-  "ListOnEOS": true
+  "ListOnEOS": true,
+  "GameSettingsPreset": "StandardPvE",
+  "AutoSaveCount": 20,
+  "AutoSaveInterval": 120,
+  "AutoSaveSmartKeep": "10:1:1,30:0:1,60:0:1,120:0:1,180:0:1,240:0:1,360:0:1,720:0:1,1440:0:1,52560000:99:0",
+  "LanMode": false,
+  "Rcon": {
+    "Enabled": true,
+    "Port": 25575,
+    "Password": "Donalds"
+  }
 }
