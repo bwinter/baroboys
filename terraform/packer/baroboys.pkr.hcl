@@ -22,7 +22,7 @@ source "googlecompute" "baroboys-base" {
 
   disk_size    = 20
   image_name   = "baroboys-base-{{timestamp}}"
-  image_family = var.custom_image_family
+  image_family = var.base_image_family
 
   ssh_username = "packer"
 
@@ -51,7 +51,7 @@ build {
       "sudo /tmp/clone_repo.sh",
       "sudo /root/baroboys/scripts/setup/bootstrap.sh",
 
-      "sudo cp /root/baroboys/scripts/systemd/bootstrap.service /etc/systemd/system/bootstrap.service",
+      "sudo cp /root/baroboys/scripts/systemd/setup_game.service /etc/systemd/system/setup_game.service",
       "sudo cp /root/baroboys/scripts/systemd/teardown.service /etc/systemd/system/teardown.service",
       "sudo chmod 644 /etc/systemd/system/bootstrap.service",
       "sudo chmod 644 /etc/systemd/system/teardown.service",

@@ -1,0 +1,10 @@
+[Unit]
+Description=Baroboys Provisioning Setup
+After=network.target
+ConditionPathExists=!/var/lib/setup_game.done
+
+[Service]
+Type=oneshot
+ExecStart=/root/baroboys/scripts/setup/root/setup_game.sh
+ExecStartPost=/bin/touch /var/lib/setup_game.done
+RemainAfterExit=yes
