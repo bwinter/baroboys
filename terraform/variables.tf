@@ -59,7 +59,7 @@ variable "machine_type" {
 variable "gcp_image_family" {
   description = "Image Family"
   type        = string
-  default     = "baroboys-base"
+  default     = "debian-12"
 }
 
 variable "gcp_image_project" {

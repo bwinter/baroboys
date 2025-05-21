@@ -5,7 +5,7 @@ set -eux
 curl -fsSL "https://packages.cloud.google.com/apt/doc/apt-key.gpg" \
   | gpg --dearmor -o "/usr/share/keyrings/cloud.google.gpg"
 
-# Add the repo for Bookworm or Bullseye
+# Add the repo for Bookworm
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" \
   | tee "/etc/apt/sources.list.d/google-cloud-sdk.list"
 

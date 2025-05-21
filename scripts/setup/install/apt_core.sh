@@ -8,17 +8,17 @@ echo "
 #------------------------------------------------------------------------------#
 
 ###### Debian Main Repos
-deb http://deb.debian.org/debian/ bullseye main contrib non-free
-deb-src http://deb.debian.org/debian/ bullseye main contrib non-free
+deb http://deb.debian.org/debian/ bookworm main contrib non-free
+deb-src http://deb.debian.org/debian/ bookworm main contrib non-free
 
-deb http://deb.debian.org/debian/ bullseye-updates main contrib non-free
-deb-src http://deb.debian.org/debian/ bullseye-updates main contrib non-free
+deb http://deb.debian.org/debian/ bookworm-updates main contrib non-free
+deb-src http://deb.debian.org/debian/ bookworm-updates main contrib non-free
 
-deb http://deb.debian.org/debian-security bullseye-security main
-deb-src http://deb.debian.org/debian-security bullseye-security main
+deb http://deb.debian.org/debian-security bookworm-security main
+deb-src http://deb.debian.org/debian-security bookworm-security main
 
-deb http://deb.debian.org/debian bullseye-backports main
-deb-src http://deb.debian.org/debian bullseye-backports main
+deb http://deb.debian.org/debian bookworm-backports main
+deb-src http://deb.debian.org/debian bookworm-backports main
 " | tee "/etc/apt/sources.list"
 
 # Refresh state and install git for cloning.
