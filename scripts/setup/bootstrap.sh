@@ -2,8 +2,8 @@
 set -eux
 
 # Core install
-source "/root/baroboys/scripts/setup/install/apt_wine.sh"
 source "/root/baroboys/scripts/setup/install/apt_core.sh"
+source "/root/baroboys/scripts/setup/install/apt_wine.sh"
 source "/root/baroboys/scripts/setup/install/apt_gcloud.sh"
 source "/root/baroboys/scripts/setup/install/apt_steam.sh"
 
