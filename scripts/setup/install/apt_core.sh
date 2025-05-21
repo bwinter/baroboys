@@ -28,4 +28,4 @@ apt-get install -yq debian-archive-keyring
 apt-get remove -y --purge man-db
 apt-get -yq update
 # apt-get -yq upgrade
-apt-get install -yq git curl screen silversearcher-ag build-essential wget dirmngr apt-transport-https ca-certificates gnupg
+# apt-get install -yq git curl screen silversearcher-ag build-essential wget dirmngr apt-transport-https ca-certificates gnupg
