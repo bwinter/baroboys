@@ -13,6 +13,13 @@ apt-get -yq update
 apt-get install -yq winehq-stable winetricks xvfb
 
 echo "🌀 Installing fonts..."
+
+# Initialize Wine prefix to avoid hangs in winetricks
+runuser -l bwinter_sc81 -c '
+  echo "🔧 Initializing wine prefix..."
+  wineboot -i
+'
+
 # Install fonts via winetricks using xvfb-run
 runuser -l bwinter_sc81 -c '
   echo "🔧 Installing corefonts and tahoma via winetricks..."
