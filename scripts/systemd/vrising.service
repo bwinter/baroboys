@@ -1,20 +1,18 @@
 [Unit]
-Description=VRising server (wine)
+Description=VRising Dedicated Server (baroboys)
 Wants=network-online.target
 Requires=xvfb.service
 After=network-online.target xvfb.service
 
 [Service]
 Environment=DISPLAY=:0
-Environment=SteamAppId=1829350
 ExecStart=/usr/bin/wine \
   VRisingServer.exe \
   -persistentDataPath ./Data \
-  -serverName "V Rising Server" \
+  -serverName "Baroboys Playground" \
   -saveName "TestWorld-1" \
   -logFile ./logs/VRisingServer.log
-ExecStop=/home/bwinter_sc81/baroboys/scripts/teardown/user/save_game_vrising.sh
-WorkingDirectory=/home/bwinter_sc81/baroboys/VRising/
+WorkingDirectory=/home/bwinter_sc81/baroboys/VRising
 User=bwinter_sc81
 Group=bwinter_sc81
 
