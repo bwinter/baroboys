@@ -13,7 +13,7 @@ apt-get -yq update
 apt-get install -yq winehq-stable winetricks xvfb
 
 echo "🌀 Installing fonts..."
-sudo -u bwinter_sc81 --
+sudo -u bwinter_sc81 -- \
   env WINETRICKS_GUI=none \
   xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' \
   winetricks --unattended corefonts tahoma \
