@@ -7,9 +7,17 @@ USER = bwinter_sc81
 REMOTE_SAVE_SCRIPT = /home/$(USER)/baroboys/scripts/teardown/user/save_game.sh
 ACTIVE_GAME_FILE = .envrc
 
+PACKER_DIR := terraform/packer
+TF_VAR_FILE := terraform/terraform.tfvars
+TF_VAR_DEF_FILE := terraform/variables.tf
+PACKER_VARS := baroboys.pkrvars.hcl
+PACKER_VARDEFS := variables.pkr.hcl
+PACKER_TEMPLATE := baroboys.pkr.hcl
+
 .DEFAULT_GOAL := help
 
 # === Terraform ===
+
 .PHONY: init apply destroy plan refresh
 init:
 	cd $(TF_DIR) && terraform init
@@ -57,12 +65,28 @@ ssh-iap:
 
 # === Packer ===
 
-PACKER_TEMPLATE := baroboys.pkr.hcl
-
 build:
-	cd terraform/packer && \
-	packer init $(PACKER_TEMPLATE) && \
-	packer build -var-file=../terraform.tfvars $(PACKER_TEMPLATE) | tee packer-$$USER-`date +%Y%m%d-%H%M`.log
+	mkdir -p "$(PACKER_DIR)/.secrets"
+	cp ".secrets/europan-world-terraform-key.json" "$(PACKER_DIR)/.secrets/"
+
+	# Sync TF variables
+	mkdir -p "$(PACKER_DIR)"
+	cp -f "$(TF_VAR_FILE)" "$(PACKER_DIR)/$(PACKER_VARS)"
+	cp -f "$(TF_VAR_DEF_FILE)" "$(PACKER_DIR)/$(PACKER_VARDEFS)"
+
+	# Build image
+	cd "$(PACKER_DIR)" && \
+		packer init "$(PACKER_TEMPLATE)" && \
+		packer build -var-file="$(PACKER_VARS)" . | tee "packer-$(USER)-$(shell date +%Y%m%d-%H%M).log"
+
+clean-images:
+	gcloud compute images list \
+	  --project=europan-world \
+	  --no-standard-images \
+	  --filter="name~^baroboys-base-" \
+	  --sort-by="~creationTimestamp" \
+	  --format="value(name)" | tail -n +4 | \
+	  xargs -I {} gcloud compute images delete {} --project=europan-world --quiet
 
 # === Help ===
 .PHONY: help
