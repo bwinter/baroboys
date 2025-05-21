@@ -5,7 +5,7 @@ set -eux
 curl -fsSL "https://dl.winehq.org/wine-builds/winehq.key" \
   | gpg --dearmor -o "/usr/share/keyrings/winehq.gpg"
 
-# Add the repo for Bookworm or Bullseye
+# Add the repo for Bookworm
 echo "deb [signed-by=/usr/share/keyrings/winehq.gpg] https://dl.winehq.org/wine-builds/debian bookworm main" \
   > "/etc/apt/sources.list.d/winehq.list"
 
