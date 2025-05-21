@@ -13,4 +13,4 @@ echo "deb [signed-by=/usr/share/keyrings/steam.gpg] https://repo.steampowered.co
 echo steam steam/question select "I AGREE" | debconf-set-selections
 echo steam steam/license note "" | debconf-set-selections
 
-apt-get install -yq steamcmd libicu
+apt-get install -yq steamcmd libicu72
