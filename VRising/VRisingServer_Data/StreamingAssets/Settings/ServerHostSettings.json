@@ -3,6 +3,8 @@
   "Description": "Casual PvE for testing.",
   "Port": 9876,
   "QueryPort": 9877,
+  "Address": "",
+  "HideIPAddress": false,
   "MaxConnectedUsers": 40,
   "MaxConnectedAdmins": 4,
   "ServerFps": 30,
@@ -13,20 +15,38 @@
   "Secure": true,
   "ListOnSteam": true,
   "ListOnEOS": true,
+  "LanMode": false,
   "AutoSaveCount": 20,
   "AutoSaveInterval": 60,
   "AutoSaveSmartKeep": "10:2:1,60:0:1,120:0:1,240:0:1,1440:0:1,2880:0:1,43200:99:0",
   "CompressSaveFiles": true,
+  "ResetDaysInterval": 0,
+  "DayOfReset": "Any",
+  "SafeReconnectTime": 300,
+  "SafeReconnectSlots": 10,
   "GameSettingsPreset": "",
   "GameDifficultyPreset": "",
   "AdminOnlyDebugEvents": true,
   "DisableDebugEvents": false,
   "API": {
-    "Enabled": false
+    "Enabled": false,
+    "BindAddress": "*",
+    "BindPort": 9090,
+    "BasePath": "/",
+    "AccessList": "",
+    "PrometheusDelay": 30
   },
   "Rcon": {
     "Enabled": true,
+    "BindAddress": "",
     "Port": 25575,
-    "Password": "Donalds"
+    "Password": "Donalds",
+    "TimeoutSeconds": 300,
+    "MaxPasswordTries": 99,
+    "BanMinutes": 0,
+    "SendAuthImmediately": true,
+    "MaxConnectionsPerIp": 20,
+    "MaxConnections": 20,
+    "ExperimentalCommandsEnabled": false
   }
 }
