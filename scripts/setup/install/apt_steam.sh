@@ -1,7 +1,11 @@
 #! /bin/bash
 set -eux
 
-curl "https://repo.steampowered.com/steam-archive-keyring.gpg" | tee "/usr/share/keyrings/steampowered.gpg"
+# Add Steam key
+curl "https://repo.steampowered.com/steam-archive-keyring.gpg" \
+  | gpg --dearmor -o "/usr/share/keyrings/steampowered.gpg"
+
+# Add the repo for Bookworm or Bullseye
 echo "deb [arch=i386,amd64 signed-by=/usr/share/keyrings/steampowered.gpg] http://repo.steampowered.com/steam/ stable steam" \
   | tee "/etc/apt/sources.list.d/steampowered-repo.list"
 
