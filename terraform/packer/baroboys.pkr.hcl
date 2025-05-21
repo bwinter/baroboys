@@ -37,16 +37,6 @@ build {
   sources = ["source.googlecompute.baroboys-base"]
 
   provisioner "file" {
-    source      = "${path.root}/../../scripts/systemd/bootstrap.service"
-    destination = "/tmp/bootstrap.service"
-  }
-
-  provisioner "file" {
-    source      = "${path.root}/../../scripts/systemd/teardown.service"
-    destination = "/tmp/teardown.service"
-  }
-
-  provisioner "file" {
     source      = "${path.root}/../../scripts/setup/clone_repo.sh"
     destination = "/tmp/clone_repo.sh"
   }
@@ -58,8 +48,8 @@ build {
       "sudo chmod +x /tmp/clone_repo.sh",
       "sudo /tmp/clone_repo.sh",
 
-      "sudo mv /tmp/bootstrap.service /etc/systemd/system/bootstrap.service",
-      "sudo mv /tmp/teardown.service /etc/systemd/system/teardown.service",
+      "sudo cp /root/baroboys/scripts/systemd/bootstrap.service /etc/systemd/system/bootstrap.service",
+      "sudo cp /root/baroboys/scripts/systemd/teardown.service /etc/systemd/system/teardown.service",
       "sudo chmod 644 /etc/systemd/system/bootstrap.service",
       "sudo chmod 644 /etc/systemd/system/teardown.service",
       "sudo systemctl daemon-reexec",
