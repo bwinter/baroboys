@@ -22,7 +22,7 @@ source "googlecompute" "baroboys-base" {
 
   disk_size    = 20
   image_name   = "baroboys-base-{{timestamp}}"
-  image_family = var.base_image_family
+  image_family = var.custom_image_family
 
   ssh_username = "packer"
 
