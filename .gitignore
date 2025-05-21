@@ -289,3 +289,13 @@ VRising/tier0_s.dll
 VRising/tier0_s64.dll
 VRising/vstdlib_s.dll
 VRising/vstdlib_s64.dll
+
+# Ignore everything in VRising/Data
+VRising/Data/*
+
+# Allow specific files in the Settings subfolder
+!VRising/Data/Settings/
+!VRising/Data/Settings/ServerGameSettings.json
+!VRising/Data/Settings/ServerHostSettings.json
+!VRising/Data/Settings/adminlist.txt
+!VRising/Data/Settings/banlist.txt
