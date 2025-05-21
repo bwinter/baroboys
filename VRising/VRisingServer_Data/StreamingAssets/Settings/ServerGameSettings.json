@@ -1,19 +1,21 @@
 {
-  "GameDifficulty": 1,
-  "GameModeType": 1,
-  "CastleDamageMode": 0,
-  "SiegeWeaponHealth": 2,
-  "PlayerDamageMode": 0,
-  "CastleHeartDamageMode": 1,
-  "PvPProtectionMode": 3,
-  "DeathContainerPermission": 0,
-  "RelicSpawnType": 0,
+  "GameDifficulty": "Normal",
+  "GameModeType": "PvP",
+  "CastleDamageMode": "Never",
+  "SiegeWeaponHealth": "Normal",
+  "PlayerDamageMode": "Always",
+  "CastleHeartDamageMode": "CanBeDestroyedByPlayers",
+  "PvPProtectionMode": "Medium",
+  "DeathContainerPermission": "Anyone",
+  "RelicSpawnType": "Unique",
+  "SoulShard_DurabilityLossRate": 1.0,
   "CanLootEnemyContainers": true,
   "BloodBoundEquipment": true,
   "TeleportBoundItems": true,
   "BatBoundItems": false,
   "BatBoundShards": false,
   "AllowGlobalChat": true,
+  "AllWaypointsUnlocked": false,
   "FreeCastleRaid": false,
   "FreeCastleClaim": false,
   "FreeCastleDestroy": false,
@@ -23,29 +25,27 @@
   "InactivityKillSafeTimeAddition": 172800,
   "InactivityKillTimerMaxItemLevel": 84,
   "StartingProgressionLevel": 0,
-  "WeaponSlots": 8,
   "DisableDisconnectedDeadEnabled": true,
   "DisableDisconnectedDeadTimer": 60,
   "DisconnectedSunImmunityTime": 300.0,
   "InventoryStacksModifier": 1.0,
   "DropTableModifier_General": 1.0,
-  "DropTableModifier_Missions": 1.0,
   "DropTableModifier_StygianShards": 1.0,
-  "SoulShard_DurabilityLossRate": 1.0,
+  "DropTableModifier_Missions": 1.0,
   "MaterialYieldModifier_Global": 1.0,
   "BloodEssenceYieldModifier": 1.0,
   "JournalVBloodSourceUnitMaxDistance": 25.0,
   "PvPVampireRespawnModifier": 1.0,
   "CastleMinimumDistanceInFloors": 2,
   "ClanSize": 4,
-  "BloodDrainModifier": 0.5,
-  "DurabilityDrainModifier": 0.5,
+  "BloodDrainModifier": 1.0,
+  "DurabilityDrainModifier": 1.0,
   "GarlicAreaStrengthModifier": 1.0,
   "HolyAreaStrengthModifier": 1.0,
   "SilverStrengthModifier": 1.0,
   "SunDamageModifier": 1.0,
-  "CastleDecayRateModifier": 0.0,
-  "CastleBloodEssenceDrainModifier": 0.0,
+  "CastleDecayRateModifier": 1.0,
+  "CastleBloodEssenceDrainModifier": 1.0,
   "CastleSiegeTimer": 420.0,
   "CastleUnderAttackTimer": 60.0,
   "CastleRaidTimer": 600.0,
@@ -117,13 +117,33 @@
     "VerminNestLimit": 4,
     "PrisonCellLimit": 24,
     "HeartLimits": {
-      "Level1": { "FloorLimit": 50, "ServantLimit": 1, "HeightLimit": 3 },
-      "Level2": { "FloorLimit": 140, "ServantLimit": 3, "HeightLimit": 3 },
-      "Level3": { "FloorLimit": 240, "ServantLimit": 5, "HeightLimit": 3 },
-      "Level4": { "FloorLimit": 360, "ServantLimit": 7, "HeightLimit": 3 },
-      "Level5": { "FloorLimit": 550, "ServantLimit": 8, "HeightLimit": 3 }
+      "Level1": {
+        "FloorLimit": 50,
+        "ServantLimit": 1,
+        "HeightLimit": 3
+      },
+      "Level2": {
+        "FloorLimit": 140,
+        "ServantLimit": 3,
+        "HeightLimit": 3
+      },
+      "Level3": {
+        "FloorLimit": 240,
+        "ServantLimit": 5,
+        "HeightLimit": 3
+      },
+      "Level4": {
+        "FloorLimit": 360,
+        "ServantLimit": 7,
+        "HeightLimit": 3
+      },
+      "Level5": {
+        "FloorLimit": 550,
+        "ServantLimit": 8,
+        "HeightLimit": 3
+      }
     },
-    "CastleHeartLimitType": 0,
+    "CastleHeartLimitType": "User",
     "CastleLimit": 2,
     "NetherGateLimit": 1,
     "ThroneOfDarknessLimit": 1,
@@ -131,11 +151,31 @@
     "RoutingStationLimit": 10
   },
   "PlayerInteractionSettings": {
-    "TimeZone": 0,
-    "VSPlayerWeekdayTime": { "StartHour": 20, "StartMinute": 0, "EndHour": 22, "EndMinute": 0 },
-    "VSPlayerWeekendTime": { "StartHour": 20, "StartMinute": 0, "EndHour": 22, "EndMinute": 0 },
-    "VSCastleWeekdayTime": { "StartHour": 20, "StartMinute": 0, "EndHour": 22, "EndMinute": 0 },
-    "VSCastleWeekendTime": { "StartHour": 20, "StartMinute": 0, "EndHour": 22, "EndMinute": 0 }
+    "TimeZone": "Local",
+    "VSPlayerWeekdayTime": {
+      "StartHour": 20,
+      "StartMinute": 0,
+      "EndHour": 22,
+      "EndMinute": 0
+    },
+    "VSPlayerWeekendTime": {
+      "StartHour": 20,
+      "StartMinute": 0,
+      "EndHour": 22,
+      "EndMinute": 0
+    },
+    "VSCastleWeekdayTime": {
+      "StartHour": 20,
+      "StartMinute": 0,
+      "EndHour": 22,
+      "EndMinute": 0
+    },
+    "VSCastleWeekendTime": {
+      "StartHour": 20,
+      "StartMinute": 0,
+      "EndHour": 22,
+      "EndMinute": 0
+    }
   },
   "TraderModifiers": {
     "StockModifier": 1.0,
@@ -158,9 +198,21 @@
       "EndHour": 23,
       "EndMinute": 59
     },
-    "ScalingPlayers1": { "PointsModifier": 1.0, "DropModifier": 1.0 },
-    "ScalingPlayers2": { "PointsModifier": 0.5, "DropModifier": 0.5 },
-    "ScalingPlayers3": { "PointsModifier": 0.25, "DropModifier": 0.25 },
-    "ScalingPlayers4": { "PointsModifier": 0.25, "DropModifier": 0.25 }
+    "ScalingPlayers1": {
+      "PointsModifier": 1.0,
+      "DropModifier": 1.0
+    },
+    "ScalingPlayers2": {
+      "PointsModifier": 0.5,
+      "DropModifier": 0.5
+    },
+    "ScalingPlayers3": {
+      "PointsModifier": 0.25,
+      "DropModifier": 0.25
+    },
+    "ScalingPlayers4": {
+      "PointsModifier": 0.25,
+      "DropModifier": 0.25
+    }
   }
 }
