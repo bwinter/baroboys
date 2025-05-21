@@ -13,6 +13,18 @@ apt-get -yq update
 apt-get install -yq winehq-stable winetricks xvfb
 
 echo "🌀 Installing fonts..."
+
+runuser -l bwinter_sc81 -c '
+  set -x
+  echo $HOME
+  echo $USER
+  export WINETRICKS_GUI=none
+  env | sort
+  which winetricks
+  which wine
+  winetricks corefonts tahoma
+' 2>&1 | tee /tmp/winetricks_debug.log
+
 sudo -u bwinter_sc81 -- bash -c '
   set -x
   export HOME=/home/bwinter_sc81
@@ -24,4 +36,5 @@ sudo -u bwinter_sc81 -- bash -c '
     || echo "⚠️ winetricks timeout or failure"
   cat /tmp/xvfb.err.log || echo "⚠️ no xvfb log found"
 '
+
 echo "✅ Fonts install attempt complete."
