@@ -7,6 +7,9 @@ set -eux
   +app_update 1829350 validate \
   +quit
 
+echo 1829350 > "$HOME/baroboys/VRising/steam_appid.txt"
+
+
 # TODO: Restore save game
 # git checkout ...
 
