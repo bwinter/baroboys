@@ -1,34 +1,29 @@
 {
-  "Name": "Baroboys VRising (Dev Server)",
-  "Description": "Development test server. Expect resets.",
+  "Name": "V Rising Server",
+  "Description": "",
   "Port": 9876,
   "QueryPort": 9877,
   "MaxConnectedUsers": 40,
   "MaxConnectedAdmins": 4,
   "ServerFps": 30,
-  "LowerFPSWhenEmpty": true,
-  "LowerFPSWhenEmptyValue": 5,
-  "SaveName": "TestWorld-1",
-  "Password": "Donalds",
+  "SaveName": "world1",
+  "Password": "",
   "Secure": true,
-  "ListOnSteam": true,
-  "ListOnEOS": true,
-  "LanMode": false,
+  "ListOnSteam": false,
+  "ListOnEOS": false,
   "AutoSaveCount": 20,
   "AutoSaveInterval": 120,
-  "AutoSaveSmartKeep": "10:2:1,60:0:1,180:0:1,1440:0:1,52560000:99:0",
   "CompressSaveFiles": true,
   "GameSettingsPreset": "",
   "GameDifficultyPreset": "",
   "AdminOnlyDebugEvents": true,
   "DisableDebugEvents": false,
   "API": {
-    "Enabled": true,
-    "BindPort": 9090
+    "Enabled": false
   },
   "Rcon": {
-    "Enabled": true,
+    "Enabled": false,
     "Port": 25575,
-    "Password": "Donalds"
+    "Password": ""
   }
 }
