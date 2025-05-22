@@ -8,9 +8,8 @@ source "/root/baroboys/scripts/setup/install/apt_steam.sh"
 source "/root/baroboys/scripts/setup/install/apt_wine.sh"
 
 # Refresh repo, just in case.
-source "/root/baroboys/scripts/setup/clone_repo.sh"
+source "/root/baroboys/scripts/setup/install/repositories.sh"
 
-# Run user-specific setup
-source "/root/baroboys/scripts/setup/root/setup_user.sh"
+source "/root/baroboys/scripts/setup/install/services.sh"
 
 apt-get -yq autoremove
