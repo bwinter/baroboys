@@ -58,7 +58,7 @@ resource "google_compute_instance" "default" {
 
   advanced_machine_features {
     threads_per_core   = 1
-    visible_core_count = 2
+    visible_core_count = 1
   }
 
   metadata = {
@@ -93,6 +93,24 @@ resource "google_compute_firewall" "barotrauma_ports" {
 
   allow {
     protocol = "tcp"
+    ports = ["27015", "27016"]
+  }
+
+  direction = "INGRESS"
+  priority  = 1000
+
+  source_ranges = ["0.0.0.0/0"]
+
+  target_tags = ["barotrauma-server"]
+}
+
+
+resource "google_compute_firewall" "barotrauma_ports_udp" {
+  name    = "barotrauma-ports-udp"
+  network = "default"
+
+  allow {
+    protocol = "udp"
     ports = ["27015", "27016"]
   }
 
