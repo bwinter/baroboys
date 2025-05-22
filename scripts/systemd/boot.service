@@ -4,5 +4,5 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/root/baroboys/scripts/setup/root/setup_game.sh
+ExecStart=/root/baroboys/scripts/setup/boot.sh
 RemainAfterExit=yes

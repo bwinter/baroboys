@@ -3,10 +3,6 @@ set -eux
 
 echo "🎮 Setting up game mode: ${ACTIVE_GAME:-undefined}"
 
-# Refresh repos.
-source "/root/baroboys/scripts/setup/clone_repo.sh"
-source "/root/baroboys/scripts/setup/root/setup_user.sh"
-
 # Load active game mode from repo-local env file
 if [ -f "/root/baroboys/.envrc" ]; then
   source "/root/baroboys/.envrc"
