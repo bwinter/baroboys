@@ -1,10 +1,8 @@
 [Unit]
 Description=Baroboys Provisioning Setup
 After=network.target
-ConditionPathExists=!/var/lib/baroboys-bootstrap.done
 
 [Service]
 Type=oneshot
 ExecStart=/root/baroboys/scripts/setup/bootstrap.sh
-ExecStartPost=/bin/touch /var/lib/baroboys-bootstrap.done
 RemainAfterExit=yes
