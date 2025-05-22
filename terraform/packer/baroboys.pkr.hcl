@@ -49,8 +49,7 @@ build {
       "sudo apt-get install -yq git",
       "sudo chmod +x /tmp/clone_repo.sh",
       "sudo /tmp/clone_repo.sh",
-      "sudo /root/baroboys/scripts/setup/bootstrap.sh",
-      "sudo /root/baroboys/scripts/setup/install/services.sh"
+      "sudo /root/baroboys/scripts/setup/bootstrap.sh"
     ]
   }
 }
