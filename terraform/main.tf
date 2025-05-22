@@ -120,3 +120,20 @@ resource "google_compute_firewall" "vrising_ports" {
 
   target_tags = ["vrising-server"]
 }
+
+resource "google_compute_firewall" "vrising_ports_udp" {
+  name    = "vrising-ports-udp"
+  network = "default"
+
+  allow {
+    protocol = "udp"
+    ports    = ["9876", "9877"]
+  }
+
+  direction = "INGRESS"
+  priority  = 1000
+
+  source_ranges = ["0.0.0.0/0"]
+
+  target_tags = ["vrising-server"]
+}
