@@ -11,7 +11,10 @@ systemctl status xvfb.service
 
 # mcrcon -H 127.0.0.1 -P 25575 -p adminpassword
 # shutdown 1
-apt-get install mcrcon
+git clone https://github.com/Tiiffi/mcrcon.git /tmp/mcrcon
+cd /tmp/mcrcon
+make
+sudo mv mcrcon /usr/local/bin/
 
 # Run all game setup as the unprivileged user
 sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/setup/user/install_vrising.sh"
