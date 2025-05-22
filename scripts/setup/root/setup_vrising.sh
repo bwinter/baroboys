@@ -9,6 +9,9 @@ systemctl enable xvfb.service
 systemctl start xvfb.service
 systemctl status xvfb.service
 
+# Target binary
+MCRCON_BIN="/usr/local/bin/mcrcon"
+
 # Only install if missing or outdated
 if ! command -v mcrcon >/dev/null || ! "$MCRCON_BIN" -v 2>&1 | grep -qi 'mcrcon'; then
   echo "🔧 Installing mcrcon..."
