@@ -65,3 +65,10 @@ We can:
 * Trigger a save via `rcon`
 * Commit saves to Git
 * Hook into `ExecStop=` or `teardown.service`
+
+
+# REFS
+
+https://steamcommunity.com/app/1604030/discussions/0/4615641262430325784/
+https://vrising.fandom.com/wiki/V_Rising_Dedicated_Server#Server_Configuration
+https://github.com/StunlockStudios/vrising-dedicated-server-instructions
