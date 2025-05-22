@@ -1,8 +1,8 @@
 {
   "Name": "Donald's PvE Server",
   "Description": "Casual PvE for testing.",
-  "Port": 9876,
-  "QueryPort": 9877,
+  "Port": 27015,
+  "QueryPort": 27016,
   "Address": "",
   "HideIPAddress": false,
   "MaxConnectedUsers": 40,
