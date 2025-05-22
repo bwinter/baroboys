@@ -276,7 +276,6 @@ VRising/UnityCrashHandler64.exe
 VRising/UnityPlayer.dll
 VRising/VERSION
 VRising/VRisingServer.exe
-VRising/VRisingServer_Data/
 VRising/baselib.dll
 VRising/config/
 VRising/licenses.txt
@@ -290,12 +289,18 @@ VRising/tier0_s64.dll
 VRising/vstdlib_s.dll
 VRising/vstdlib_s64.dll
 
+# Ignore everything in VRising/VRisingServer_Data
+VRising/VRisingServer_Data/*
+
+# Allow specific files in the Settings subfolder
+!VRising/VRisingServer_Data/StreamingAssets/Settings
+!VRising/VRisingServer_Data/StreamingAssets/Settings/ServerGameSettings.json
+!VRising/VRisingServer_Data/StreamingAssets/Settings/ServerHostSettings.json
+
 # Ignore everything in VRising/Data
 VRising/Data/*
 
 # Allow specific files in the Settings subfolder
 !VRising/Data/Settings/
-!VRising/Data/Settings/ServerGameSettings.json
-!VRising/Data/Settings/ServerHostSettings.json
 !VRising/Data/Settings/adminlist.txt
 !VRising/Data/Settings/banlist.txt
