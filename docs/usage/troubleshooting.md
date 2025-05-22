@@ -74,3 +74,9 @@ sudo journalctl -u google-startup-scripts.service -e
 ```bash
 sudo systemctl status google-startup-scripts.service
 ```
+
+**Check steam Status:**
+
+```shell
+curl -s "https://api.steampowered.com/ISteamApps/GetServersAtAddress/v0001?addr=$(curl -s ifconfig.me)"
+```
