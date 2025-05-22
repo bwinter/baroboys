@@ -56,11 +56,6 @@ resource "google_compute_instance" "default" {
     environment = "dev"
   }
 
-  advanced_machine_features {
-    threads_per_core   = 1
-    visible_core_count = 1
-  }
-
   metadata = {
     startup-script   = "systemctl start boot.service"
     shutdown-script  = "systemctl start teardown.service"
