@@ -270,6 +270,7 @@ Barotrauma/steamclient.so
 Barotrauma/WorkshopMods/Installed
 
 # Ignore extracted V Rising binaries and runtime content
+VRising/steam_appid.txt
 VRising/GameAssembly.dll
 VRising/README.txt
 VRising/UnityCrashHandler64.exe
