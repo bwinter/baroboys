@@ -62,7 +62,7 @@ resource "google_compute_instance" "default" {
   }
 
   metadata = {
-    startup-script   = "systemctl start setup_game.service"
+    startup-script   = "systemctl start boot.service"
     shutdown-script  = "systemctl start teardown.service"
   }
 
