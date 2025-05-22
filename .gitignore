@@ -269,7 +269,7 @@ Barotrauma/steamapps/
 Barotrauma/steamclient.so
 Barotrauma/WorkshopMods/Installed
 
-# Ignore V Rising extracted binaries and runtime content
+# Ignore extracted V Rising binaries and runtime content
 VRising/GameAssembly.dll
 VRising/README.txt
 VRising/UnityCrashHandler64.exe
@@ -289,18 +289,16 @@ VRising/tier0_s64.dll
 VRising/vstdlib_s.dll
 VRising/vstdlib_s64.dll
 
-# Ignore everything in VRising/VRisingServer_Data
+# Ignore most of the Unity data folder, except settings
 VRising/VRisingServer_Data/*
-
-# Allow specific files in the Settings subfolder
-!VRising/VRisingServer_Data/StreamingAssets/Settings
+!VRising/VRisingServer_Data/StreamingAssets/Settings/
 !VRising/VRisingServer_Data/StreamingAssets/Settings/ServerGameSettings.json
 !VRising/VRisingServer_Data/StreamingAssets/Settings/ServerHostSettings.json
 
-# Ignore everything in VRising/Data
+# Ignore all of Data/, except persistent config and saves
 VRising/Data/*
-
-# Allow specific files in the Settings subfolder
 !VRising/Data/Settings/
 !VRising/Data/Settings/adminlist.txt
 !VRising/Data/Settings/banlist.txt
+!VRising/Data/Saves/
+!VRising/Data/Saves/**
