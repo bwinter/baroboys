@@ -80,6 +80,7 @@ build:
 		packer build -on-error=delete -var-file="$(PACKER_VARS)" . | tee "packer-$(USER)-$(shell date +%Y%m%d-%H%M).log"
 
 clean:
+	# Delete old custom images
 	gcloud compute images list \
 	  --project=europan-world \
 	  --no-standard-images \
@@ -87,6 +88,14 @@ clean:
 	  --sort-by="~creationTimestamp" \
 	  --format="value(name)" | tail -n +1 | \
 	  xargs -I {} gcloud compute images delete {} --project=europan-world --quiet
+
+	# Delete any leftover Packer-created disks
+	for zone in $$(gcloud compute disks list --filter="name~'packer-'" --format="value(name,zone)" | awk '{print $$2}' | sort -u); do \
+	  for disk in $$(gcloud compute disks list --filter="name~'packer-'" --format="value(name,zone)" | grep "$$zone" | awk '{print $$1}'); do \
+	    echo "🗑 Deleting disk $$disk in $$zone..."; \
+	    gcloud compute disks delete "$$disk" --zone="$$zone" --quiet; \
+	  done; \
+	done
 
 # === Help ===
 .PHONY: help
