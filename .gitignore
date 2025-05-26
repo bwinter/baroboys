@@ -303,3 +303,7 @@ VRising/Data/*
 !VRising/Data/Settings/banlist.txt
 !VRising/Data/Saves/
 !VRising/Data/Saves/**
+
+# Auto Generated
+terraform/packer/tmp/*
+terraform/packer/tmp/.secrets/*
