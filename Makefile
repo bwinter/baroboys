@@ -77,7 +77,8 @@ build:
 	# Build image
 	cd "$(PACKER_DIR)" && \
 		packer init "$(PACKER_TEMPLATE)" && \
-		packer build -on-error=delete -var-file="$(PACKER_VARS)" . | tee "packer-$(USER)-$(shell date +%Y%m%d-%H%M).log"
+		packer build -on-error=delete -var-file="$(PACKER_VARS)" . \
+		| tee "logs/packer-$(USER)-$(shell date +%Y%m%d-%H%M).log"
 
 clean:
 	# Delete old custom images
