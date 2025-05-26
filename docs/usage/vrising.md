@@ -64,7 +64,7 @@ We can:
 
 * Trigger a save via `rcon`
 * Commit saves to Git
-* Hook into `ExecStop=` or `teardown.service`
+* Hook into `ExecStop=` or `shutdown.service`
 
 
 # REFS
