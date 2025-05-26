@@ -3,17 +3,28 @@ set -eux
 
 cd "$HOME/baroboys"
 
-SAVE_PATHS=(
-  "VRising/Data/Saves/v4/TestWorld-1"
-)
+SAVE_DIR="VRising/Data/Saves/v4/TestWorld-1"
 
-for path in "${SAVE_PATHS[@]}"; do
-  if [ -d "$path" ]; then
-    git add "$path"
-  fi
+# Find the most recent save by numeric suffix
+latest=$(
+  find "$SAVE_DIR" -type f -name 'AutoSave_*.save.gz' \
+    -printf '%f\n' |                       # Extract just the filenames
+    sed -E 's/^AutoSave_([0-9]+)\.save\.gz$/\1/' |
+    grep -E '^[0-9]+$' |                   # Sanity: ensure numeric suffix
+    sort -n | tail -n1
+)
+latest_file="$SAVE_DIR/AutoSave_${latest}.save.gz"
+
+
+# Remove all other tracked AutoSaves from Git
+for tracked in $(git ls-files "$SAVE_DIR/AutoSave_*.save.gz"); do
+  [[ "$tracked" != "$latest_file" ]] && git rm --cached "$tracked"
 done
 
-# Sanity check before commit
+# Stage only the latest save
+git add "$latest_file"
+
+# Commit if anything changed
 if git status --porcelain | grep .; then
   git commit -m "Auto-save before shutdown $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
   git push origin main
