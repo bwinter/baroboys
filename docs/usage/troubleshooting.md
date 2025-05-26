@@ -1,27 +1,27 @@
-## ✅ Troubleshooting
+# ✅ **Troubleshooting the V Rising GCP Server**
 
-### 🧭 When to Use Each Diagnostic Tool
+## 🧭 **Which Tool to Use and When**
 
-| Tool                                                   | Scope                            | When to Use                                                             |
-| ------------------------------------------------------ | -------------------------------- | ----------------------------------------------------------------------- |
-| `gcloud compute instances get-serial-port-output`      | Serial console output (boot log) | VM won’t boot, startup script fails silently, or SSH is unreachable     |
-| `journalctl -u google-startup-scripts.service`         | Local systemd unit logs          | VM booted, but startup script failed partially or logged errors         |
-| `sudo systemctl status google-startup-scripts.service` | Startup script unit health       | Quick status check — did the unit run, is it active, why did it stop?   |
-| `gcloud logging read ...`                              | Cloud Logging (Stackdriver)      | View logs after boot or postmortem; requires OSConfig + logging enabled |
-| `gcloud compute ssh ...`                               | SSH shell                        | Use if the VM is up and reachable, for interactive debugging            |
+| Tool                                                   | Scope                         | When to Use                                                           |
+| ------------------------------------------------------ | ----------------------------- | --------------------------------------------------------------------- |
+| `gcloud compute instances get-serial-port-output`      | Serial console (boot)         | VM won’t boot, startup script fails silently, SSH not available       |
+| `journalctl -u google-startup-scripts.service`         | Startup script logs (systemd) | VM boots, but provisioning (e.g. boot.sh) fails or partially executes |
+| `sudo systemctl status google-startup-scripts.service` | Unit health summary           | Verify if startup unit ran, succeeded, or failed                      |
+| `gcloud logging read`                                  | Cloud Logging (optional)      | Postmortem debugging (if OSConfig + logging enabled)                  |
+| `gcloud compute ssh`                                   | Direct access                 | Live VM debugging (VRising, Git, system state, etc.)                  |
 
 ---
 
-### 🧰 Helpful Commands
+## 🔌 **VM Boot Diagnostics**
 
-#### 🪵 Boot-time logs (no SSH required):
+### 🪵 Serial console (no SSH required):
 
 ```bash
 gcloud compute instances get-serial-port-output europa \
   --zone=us-west1-b
 ```
 
-Optional extended logs:
+Optional full boot output:
 
 ```bash
 gcloud compute instances get-serial-port-output europa \
@@ -30,7 +30,7 @@ gcloud compute instances get-serial-port-output europa \
 
 ---
 
-#### 📖 Cloud Logging CLI (if enabled):
+### 📖 Cloud Logging (if enabled):
 
 ```bash
 gcloud logging read \
@@ -42,7 +42,9 @@ gcloud logging read \
 
 ---
 
-#### 🔐 SSH to VM (normal):
+## 🔐 **SSH Access**
+
+### Standard SSH:
 
 ```bash
 gcloud compute ssh bwinter_sc81@europa \
@@ -50,7 +52,7 @@ gcloud compute ssh bwinter_sc81@europa \
   --zone=us-west1-b
 ```
 
-#### 🔒 SSH with IAP (no external IP):
+### SSH via IAP (no external IP):
 
 ```bash
 gcloud compute ssh bwinter_sc81@europa \
@@ -61,22 +63,56 @@ gcloud compute ssh bwinter_sc81@europa \
 
 ---
 
-#### 🧪 Run these after SSHing into the VM:
+## 🧪 **Post-SSH System Diagnostics**
 
-**Startup script logs:**
+### Google startup script logs:
 
 ```bash
 sudo journalctl -u google-startup-scripts.service -e
 ```
 
-**Startup script status:**
+### Startup unit status:
 
 ```bash
 sudo systemctl status google-startup-scripts.service
 ```
 
-**Check steam Status:**
+---
 
-```shell
+## 🎮 **Game and Service Logs**
+
+### `vrising.service` logs (game lifecycle):
+
+```bash
+sudo journalctl -u vrising.service --since="-10min" --no-pager
+```
+
+### `teardown.service` logs (shutdown & save):
+
+```bash
+sudo journalctl -u teardown.service --since="-10min" --no-pager
+```
+
+### `boot.service` logs (game startup & provisioning):
+
+```bash
+sudo journalctl -u boot.service --since="-10min" --no-pager
+```
+
+---
+
+### 📜 VRising game log (in-game server events):
+
+```bash
+tail -n 200 /home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log
+```
+
+---
+
+## 🌐 **Steam Master Server Check**
+
+Ensure server is externally discoverable:
+
+```bash
 curl -s "https://api.steampowered.com/ISteamApps/GetServersAtAddress/v0001?addr=$(curl -s ifconfig.me)"
 ```
