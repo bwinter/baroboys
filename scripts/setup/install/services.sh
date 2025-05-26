@@ -7,3 +7,5 @@ chmod 644 "/etc/systemd/system/boot.service"
 chmod 644 "/etc/systemd/system/teardown.service"
 systemctl daemon-reexec
 systemctl daemon-reload
+systemctl enable boot.service
+systemctl enable teardown.service

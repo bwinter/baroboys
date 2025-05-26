@@ -2,8 +2,8 @@
 Description=Save & Commit Before Shutdown
 DefaultDependencies=no
 Before=shutdown.target halt.target reboot.target
-After=network.target
-Requires=network.target
+After=network-online.target
+Requires=network-online.target
 
 [Service]
 Type=oneshot
@@ -13,4 +13,4 @@ TimeoutStartSec=180
 RemainAfterExit=true
 
 [Install]
-WantedBy=halt.target reboot.target shutdown.target
+WantedBy=shutdown.target
