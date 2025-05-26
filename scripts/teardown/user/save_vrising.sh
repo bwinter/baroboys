@@ -11,7 +11,7 @@ mcrcon -H 127.0.0.1 -P 25575 -p Donalds \
   "shutdown 15 Auto-save before shutdown"
 
 # Wait to ensure shutdown message is handled
-sleep 60
+timeout 90 bash -c 'while pgrep -u bwinter_sc81 -f VRisingServer.exe >/dev/null; do sleep 1; done'
 
 # Find the most recent save by numeric suffix
 latest=$(
