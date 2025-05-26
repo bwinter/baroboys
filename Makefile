@@ -83,7 +83,7 @@ build:
 	# Build image
 	cd "$(PACKER_BUILD_DIR)" && \
 		packer init "$(PACKER_TEMPLATE)" && \
-		packer build -on-error=delete -var-file="$(PACKER_VARS)" . \
+		packer build -on-error=cleanup -var-file="$(PACKER_VARS)" . \
 		| tee "logs/packer-$(USER)-$(shell date +%Y%m%d-%H%M).log"
 
 clean:
