@@ -16,13 +16,10 @@ ExecStart=/usr/bin/wine \
   -serverName "Mc's Playground" \
   -saveName "TestWorld-1" \
   -logFile ./logs/VRisingServer.log
-
-# Don’t kill the process directly on stop; let teardown handle it
-KillMode=none
-ExecStop=/bin/systemctl start teardown.service
-
-TimeoutStopSec=120
-RemainAfterExit=false
+KillMode=control-group
+ExecStop=/bin/true
+ExecStopPost=/bin/systemctl start teardown.service
+TimeoutStopSec=300
 
 [Install]
 WantedBy=multi-user.target
