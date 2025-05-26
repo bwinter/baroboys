@@ -87,10 +87,10 @@ sudo systemctl status google-startup-scripts.service
 sudo journalctl -u vrising.service --since="-10min" --no-pager
 ```
 
-### `teardown.service` logs (shutdown & save):
+### `shutdown.service` logs (shutdown & save):
 
 ```bash
-sudo journalctl -u teardown.service --since="-10min" --no-pager
+sudo journalctl -u shutdown.service --since="-10min" --no-pager
 ```
 
 ### `boot.service` logs (game startup & provisioning):

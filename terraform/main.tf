@@ -57,8 +57,8 @@ resource "google_compute_instance" "default" {
   }
 
   metadata = {
-    startup-script   = "systemctl start boot.service"
-    shutdown-script  = "systemctl start teardown.service"
+    startup-script  = "systemctl start boot.service"
+    shutdown-script = "systemctl start shutdown.service"
   }
 
   boot_disk {
@@ -140,7 +140,7 @@ resource "google_compute_firewall" "vrising_ports_udp" {
 
   allow {
     protocol = "udp"
-    ports    = ["9876", "9877"]
+    ports = ["9876", "9877"]
   }
 
   direction = "INGRESS"

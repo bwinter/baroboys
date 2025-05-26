@@ -18,7 +18,7 @@ ExecStart=/usr/bin/wine \
   -logFile ./logs/VRisingServer.log
 KillMode=control-group
 ExecStop=/bin/true
-ExecStopPost=/bin/systemctl start teardown.service
+ExecStopPost=/bin/systemctl start shutdown.service
 TimeoutStopSec=300
 
 [Install]
