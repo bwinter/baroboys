@@ -26,3 +26,11 @@ resource "google_project_iam_member" "vm_runtime_secret_accessor" {
   role    = "roles/secretmanager.secretAccessor"
   member  = local.vm_runtime_sa
 }
+
+resource "google_secret_manager_secret_iam_member" "vm_runtime_github_deploy_access" {
+  project   = var.project
+  secret_id = "github-deploy-key"
+
+  role   = "roles/secretmanager.secretAccessor"
+  member = local.vm_runtime_sa
+}
