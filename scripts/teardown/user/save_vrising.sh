@@ -5,6 +5,14 @@ cd "$HOME/baroboys"
 
 SAVE_DIR="VRising/Data/Saves/v4/TestWorld-1"
 
+# Tell players and trigger autosave
+mcrcon -H 127.0.0.1 -P 25575 -p Donalds \
+  "announce Server is saving and shutting down..." \
+  "shutdown 15 Auto-save before shutdown"
+
+# Wait to ensure shutdown message is handled
+sleep 60
+
 # Find the most recent save by numeric suffix
 latest=$(
   find "$SAVE_DIR" -type f -name 'AutoSave_*.save.gz' \
