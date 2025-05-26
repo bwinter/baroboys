@@ -8,4 +8,3 @@ chmod 644 "/etc/systemd/system/shutdown.service"
 systemctl daemon-reexec
 systemctl daemon-reload
 systemctl enable boot.service
-systemctl enable shutdown.service
