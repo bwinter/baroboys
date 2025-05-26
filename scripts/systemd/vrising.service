@@ -6,19 +6,23 @@ After=network-online.target xvfb.service
 
 [Service]
 Environment=DISPLAY=:0
+WorkingDirectory=/home/bwinter_sc81/baroboys/VRising
+User=bwinter_sc81
+Group=bwinter_sc81
+
 ExecStart=/usr/bin/wine \
   VRisingServer.exe \
   -persistentDataPath ./Data \
   -serverName "Mc's Playground" \
   -saveName "TestWorld-1" \
   -logFile ./logs/VRisingServer.log
-ExecStop=/bin/kill -INT $MAINPID
-ExecStopPost=/bin/systemctl start teardown.service
+
+# Don’t kill the process directly on stop; let teardown handle it
+KillMode=none
+ExecStop=/bin/systemctl start teardown.service
+
 TimeoutStopSec=120
-KillMode=control-group
-WorkingDirectory=/home/bwinter_sc81/baroboys/VRising
-User=bwinter_sc81
-Group=bwinter_sc81
+RemainAfterExit=false
 
 [Install]
 WantedBy=multi-user.target
