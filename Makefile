@@ -86,7 +86,7 @@ clean:
 	  --no-standard-images \
 	  --filter="name~^baroboys-base-" \
 	  --sort-by="~creationTimestamp" \
-	  --format="value(name)" | tail -n +1 | \
+	  --format="value(name)" | tail -n +3 | \
 	  xargs -I {} gcloud compute images delete {} --project=europan-world --quiet
 
 	# Delete any leftover Packer-created disks
