@@ -37,7 +37,7 @@ build {
   sources = ["source.googlecompute.baroboys-base"]
 
   provisioner "file" {
-    source      = "${path.root}/../../scripts/setup/clone_repo.sh"
+    source      = "clone_repo.sh"
     destination = "/tmp/clone_repo.sh"
   }
 
