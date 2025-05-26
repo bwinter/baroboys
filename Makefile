@@ -7,12 +7,6 @@ USER = bwinter_sc81
 REMOTE_SAVE_SCRIPT = /home/$(USER)/baroboys/scripts/teardown/user/save_game.sh
 ACTIVE_GAME_FILE = .envrc
 
-PACKER_DIR := terraform/packer
-TF_VAR_FILE := terraform/terraform.tfvars
-TF_VAR_DEF_FILE := terraform/variables.tf
-PACKER_VARS := baroboys.pkrvars.hcl
-PACKER_VARDEFS := variables.pkr.hcl
-PACKER_TEMPLATE := baroboys.pkr.hcl
 
 .DEFAULT_GOAL := help
 
@@ -65,17 +59,29 @@ ssh-iap:
 
 # === Packer ===
 
+TF_VAR_FILE := terraform/terraform.tfvars
+TF_VAR_DEF_FILE := terraform/variables.tf
+
+PACKER_DIR := terraform/packer
+PACKER_BUILD_DIR := $(PACKER_DIR)/tmp
+PACKER_VARS := terraform.pkrvars.hcl
+PACKER_VAR_DEFS := variables.pkr.hcl
+PACKER_TEMPLATE := packer.pkr.hcl
+
 build:
-	mkdir -p "$(PACKER_DIR)/.secrets"
-	cp ".secrets/europan-world-terraform-key.json" "$(PACKER_DIR)/.secrets/"
+	mkdir -p "$(PACKER_BUILD_DIR)/.secrets"
+	cp ".secrets/europan-world-terraform-key.json" "$(PACKER_BUILD_DIR)/.secrets/"
+
+	mkdir -p "$(PACKER_BUILD_DIR)/logs/"
 
 	# Sync TF variables
-	mkdir -p "$(PACKER_DIR)"
-	cp -f "$(TF_VAR_FILE)" "$(PACKER_DIR)/$(PACKER_VARS)"
-	cp -f "$(TF_VAR_DEF_FILE)" "$(PACKER_DIR)/$(PACKER_VARDEFS)"
+	mkdir -p "$(PACKER_BUILD_DIR)/"
+	cp -f "$(PACKER_DIR)/$(PACKER_TEMPLATE)" "$(PACKER_BUILD_DIR)/$(PACKER_TEMPLATE)"
+	cp -f "$(TF_VAR_FILE)" "$(PACKER_BUILD_DIR)/$(PACKER_VARS)"
+	cp -f "$(TF_VAR_DEF_FILE)" "$(PACKER_BUILD_DIR)/$(PACKER_VAR_DEFS)"
 
 	# Build image
-	cd "$(PACKER_DIR)" && \
+	cd "$(PACKER_BUILD_DIR)" && \
 		packer init "$(PACKER_TEMPLATE)" && \
 		packer build -on-error=delete -var-file="$(PACKER_VARS)" . \
 		| tee "logs/packer-$(USER)-$(shell date +%Y%m%d-%H%M).log"
