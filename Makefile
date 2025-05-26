@@ -68,6 +68,9 @@ PACKER_VARS := terraform.pkrvars.hcl
 PACKER_VAR_DEFS := variables.pkr.hcl
 PACKER_TEMPLATE := packer.pkr.hcl
 
+BUILD_SCRIPT_DIR := scripts/setup
+BUILD_SCRIPT := clone_repo.sh
+
 build:
 	mkdir -p "$(PACKER_BUILD_DIR)/.secrets"
 	cp ".secrets/europan-world-terraform-key.json" "$(PACKER_BUILD_DIR)/.secrets/"
@@ -76,6 +79,7 @@ build:
 
 	# Sync TF variables
 	mkdir -p "$(PACKER_BUILD_DIR)/"
+	cp -f "$(BUILD_SCRIPT_DIR)/$(BUILD_SCRIPT)" "$(PACKER_BUILD_DIR)/$(BUILD_SCRIPT)"
 	cp -f "$(PACKER_DIR)/$(PACKER_TEMPLATE)" "$(PACKER_BUILD_DIR)/$(PACKER_TEMPLATE)"
 	cp -f "$(TF_VAR_FILE)" "$(PACKER_BUILD_DIR)/$(PACKER_VARS)"
 	cp -f "$(TF_VAR_DEF_FILE)" "$(PACKER_BUILD_DIR)/$(PACKER_VAR_DEFS)"
