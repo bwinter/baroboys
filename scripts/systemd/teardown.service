@@ -1,9 +1,12 @@
 [Unit]
 Description=Save & Commit Before Shutdown
 DefaultDependencies=no
-Before=shutdown.target halt.target reboot.target
-After=network-online.target
 Requires=network-online.target
+After=network-online.target
+
+Before=shutdown.target halt.target reboot.target
+Before=vrising.service
+PartOf=vrising.service
 
 [Service]
 Type=oneshot
