@@ -11,7 +11,10 @@ mcrcon -H 127.0.0.1 -P 25575 -p Donalds \
   "shutdown 15 Auto-save before shutdown"
 
 # Wait for shutdown to complete
-timeout 90 bash -c 'while pgrep -u bwinter_sc81 -f VRisingServer.exe >/dev/null; do sleep 1; done'
+if ! timeout 180 bash -c 'while pgrep -u bwinter_sc81 -f VRisingServer.exe >/dev/null; do sleep 1; done'; then
+  echo "⚠️ VRisingServer.exe did not exit in time. Logging debug info..."
+  ps -fu bwinter_sc81 | tee /tmp/vrising_stuck.log
+fi
 
 # Identify the most recent autosave file
 latest=$(
