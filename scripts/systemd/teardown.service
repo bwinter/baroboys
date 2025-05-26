@@ -4,9 +4,10 @@ DefaultDependencies=no
 Requires=network-online.target
 After=network-online.target
 
+# Block shutdown until we run
 Before=shutdown.target halt.target reboot.target
 Before=vrising.service
-PartOf=vrising.service
+Conflicts=vrising.service
 
 [Service]
 Type=oneshot
