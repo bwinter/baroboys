@@ -10,6 +10,7 @@ scripts/manual/save-decompressor/Barotrauma-Save-Decompressor.lnk
 
 # Directories
 terraform/.terraform/
+terraform/iam/.terraform/
 
 # This is where I keep my uncompressed save.
 # To recude chances of copying the wrong version we want to clean this up every time.
@@ -307,3 +308,6 @@ VRising/Data/*
 # Auto Generated
 terraform/packer/tmp/*
 terraform/packer/tmp/.secrets/*
+
+# Auto Generated
+terraform/iam/tmp/*
