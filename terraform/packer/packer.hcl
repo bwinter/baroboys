@@ -1,4 +1,4 @@
-# baroboys.pkr.hcl
+# packer.pkr.hcl
 
 packer {
   required_plugins {
