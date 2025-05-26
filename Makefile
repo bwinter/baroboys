@@ -7,12 +7,15 @@ USER = bwinter_sc81
 REMOTE_SAVE_SCRIPT = /home/$(USER)/baroboys/scripts/teardown/user/save_game.sh
 ACTIVE_GAME_FILE = .envrc
 
+TF_VAR_FILE := terraform/terraform.tfvars
+TF_VAR_DEF_FILE := terraform/variables.tf
 
 .DEFAULT_GOAL := help
 
 # === Terraform ===
 
 .PHONY: init apply destroy plan refresh
+
 init:
 	cd $(TF_DIR) && terraform init
 
@@ -27,6 +30,38 @@ destroy:
 
 refresh:
 	cd $(TF_DIR) && terraform refresh
+
+# === IAM ===
+IAM_TF_DIR := $(TF_DIR)/iam
+IAM_BUILD_DIR := $(IAM_TF_DIR)/tmp
+IAM_VARS := terraform.tfvars
+IAM_VAR_DEFS := variables.tf
+
+# Use default gcloud credentials instead of GOOGLE_APPLICATION_CREDENTIALS
+.PHONY: iam-apply iam-destroy
+
+iam-apply:
+	# Sync TF variables
+	mkdir -p "$(IAM_BUILD_DIR)/"
+	cp -f "$(IAM_TF_DIR)/iam_terraform_service_account.tf" "$(IAM_BUILD_DIR)/iam_terraform_service_account.tf"
+	cp -f "$(IAM_TF_DIR)/iam_vm_runtime.tf" "$(IAM_BUILD_DIR)/iam_vm_runtime.tf"
+	cp -f "$(IAM_TF_DIR)/iam_vrising_admins.tf" "$(IAM_BUILD_DIR)/iam_vrising_admins.tf"
+	cp -f "$(TF_VAR_FILE)" "$(IAM_BUILD_DIR)/$(IAM_VARS)"
+	cp -f "$(TF_VAR_DEF_FILE)" "$(IAM_BUILD_DIR)/$(IAM_VAR_DEFS)"
+
+	@echo "✅ Applying IAM changes using your GCP user credentials..."
+	cd $(IAM_BUILD_DIR) && \
+		unset GOOGLE_APPLICATION_CREDENTIALS && \
+		terraform init && \
+		terraform apply -var-file=$(IAM_VARS)
+
+iam-destroy:
+	@echo "🔥 Destroying IAM changes using your GCP user credentials..."
+	cd $(IAM_BUILD_DIR) && \
+		unset GOOGLE_APPLICATION_CREDENTIALS && \
+		terraform init && \
+		terraform destroy -var-file=$(IAM_VARS)
+
 
 # === Game Mode ===
 .PHONY: switch mode
@@ -58,9 +93,6 @@ ssh-iap:
 		--tunnel-through-iap
 
 # === Packer ===
-
-TF_VAR_FILE := terraform/terraform.tfvars
-TF_VAR_DEF_FILE := terraform/variables.tf
 
 PACKER_DIR := terraform/packer
 PACKER_BUILD_DIR := $(PACKER_DIR)/tmp
