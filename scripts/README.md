@@ -1,6 +1,6 @@
 # `scripts/` Directory Overview
 
-This directory contains all setup, control, and teardown logic for the Baroboys game server infrastructure.
+This directory contains all setup, control, and shutdown logic for the Baroboys game server infrastructure.
 
 ---
 
