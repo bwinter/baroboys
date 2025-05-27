@@ -6,9 +6,8 @@ cd "$HOME/baroboys"
 SAVE_DIR="VRising/Data/Saves/v4/TestWorld-1"
 
 # Notify and schedule shutdown (announce, then delay, then shutdown)
-if ! mcrcon -H 127.0.0.1 -P 25575 -p Donalds -w 2 \
-  "announce Server will shut down in 1 minute! Get to a safe place." \
-  "shutdown 1 Server will shut down in ~{t}m! Get to a safe place."; then
+if ! mcrcon -H 127.0.0.1 -P 25575 -p Donalds \
+          shutdown 1 "Server will shut down in ~{t}m! Get to a safe place."; then
   echo "⚠️ mcrcon failed to send shutdown commands"
 fi
 
