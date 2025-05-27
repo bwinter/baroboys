@@ -5,14 +5,17 @@ cd "$HOME/baroboys"
 
 SAVE_DIR="VRising/Data/Saves/v4/TestWorld-1"
 
-# Tell players and trigger autosave
-if ! mcrcon -H 127.0.0.1 -P 25575 -p Donalds \
+# Notify and schedule shutdown (announce, then delay, then shutdown)
+if ! mcrcon -H 127.0.0.1 -P 25575 -p Donalds -w 2 \
+  "announce Server will shut down in 1 minute! Get to a safe place." \
   "shutdown 1 Server will shut down in ~{t}m! Get to a safe place."; then
   echo "⚠️ mcrcon failed to send shutdown commands"
 fi
 
-# Wait for shutdown to complete
-if ! timeout 180 bash -c 'while pgrep -u bwinter_sc81 -f VRisingServer.exe >/dev/null; do sleep 1; done'; then
+# Wait for shutdown to complete (VRisingServer.exe should exit)
+if ! timeout 180 bash -c '
+  while pidof -x VRisingServer.exe >/dev/null; do sleep 1; done
+'; then
   echo "⚠️ VRisingServer.exe did not exit in time. Logging debug info..."
   ps -fu bwinter_sc81 | tee /tmp/vrising_stuck.log
 fi
