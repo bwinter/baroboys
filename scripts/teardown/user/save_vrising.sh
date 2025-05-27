@@ -6,9 +6,8 @@ cd "$HOME/baroboys"
 SAVE_DIR="VRising/Data/Saves/v4/TestWorld-1"
 
 # Tell players and trigger autosave
-if ! mcrcon -t 3000 -H 127.0.0.1 -P 25575 -p Donalds \
-  "announce Server is saving and shutting down..." \
-  "shutdown 15 Auto-save before shutdown"; then
+if ! mcrcon -H 127.0.0.1 -P 25575 -p Donalds \
+  "shutdown 1 Server will shut down in ~{t}m! Get to a safe place."; then
   echo "⚠️ mcrcon failed to send shutdown commands"
 fi
 
