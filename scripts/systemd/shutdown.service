@@ -7,7 +7,6 @@ After=network-online.target
 # This runs before system shutdown or vrising stop
 Before=shutdown.target halt.target reboot.target
 Before=vrising.service
-Conflicts=vrising.service
 
 [Service]
 Type=oneshot
