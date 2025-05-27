@@ -2,46 +2,33 @@
 
 ## ✅ What You Can Do
 
-* Start / Stop the server on Google Cloud
-* Use admin commands in-game (save, announce, etc.)
+* 🟢 Start / 🔴 Stop the server via Google Cloud
+* 🧙‍♂️ Use in-game admin commands (e.g., `shutdown`, which triggers a save)
 
 ---
 
-## 🔌 Start / Stop the Server
+## 🖥️ Start / Stop the Server
 
-👉 **Use this link:**
-[**Open the VM in Google Cloud**](https://console.cloud.google.com/compute/instancesDetail/zones/us-west1-b/instances/europa?project=europan-world)
+👉 [**Open the Server in Google Cloud Console**](https://console.cloud.google.com/compute/instancesDetail/zones/us-west1-b/instances/europa?project=europan-world)
 
-* 🟢 **Start** = Click "Start"
-* 🔴 **Stop** = Click "Stop" (auto-saves before shutdown)
+* 🟢 Click **Start** to boot the server
+* 🔴 Before stopping, run the save command below
+* Then click **Stop** to shut it down
 
 ---
 
-## 🧙‍♂️ In-Game Admin Access
+## 💾 Save Before Shutdown (In-Game)
 
-1. **Enable Console**:
-   In-game → Settings → General → Enable Console
+1. First time only, **enable the console**:
+   *Go to Settings → General → Enable Console*
 
-2. **Open Console**:
-   Press `~` (tilde key)
+2. Log into the server and press `~` to open the console
 
-3. **Login as Admin**:
+3. Type or paste the following:
 
    ```bash
    adminauth
+   shutdown 1
    ```
 
-You’re now an admin!
-
----
-
-## 🔁 Optional: Graceful Restart
-
-Send this via the admin console:
-
-```bash
-announce Server restarting in 60 seconds.
-shutdown 60 Restarting for maintenance
-```
-
-Then restart the server via the Google Cloud link.
+This triggers an **autosave and graceful shutdown** in 1 minute. After that, you can safely click **Stop** in the Cloud Console.
