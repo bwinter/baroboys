@@ -13,17 +13,16 @@ if ! mcrcon -H 127.0.0.1 -P 25575 -p Donalds \
 fi
 
 echo "⏳ Waiting ${SHUTDOWN_DELAY_MINUTES} minutes for V Rising to shut down and save..."
-sleep "$((SHUTDOWN_DELAY_MINUTES * 60))"
+sleep "$((SHUTDOWN_DELAY_MINUTES * 60 + 30))"
 
-# Wait for shutdown to complete
-if ! timeout 180 bash -c '
-  while pgrep -u bwinter_sc81 -f VRisingServer.exe >/dev/null; do
-    sleep 1
-  done
-'; then
+echo "🔃 Waiting for VRisingServer.exe to shut down..."
+
+if ! timeout 300 bash -c 'while ps -C VRisingServer.exe >/dev/null; do sleep 1; done'; then
   echo "⚠️ VRisingServer.exe did not exit in time. Logging debug info..."
-  ps -fu bwinter_sc81 | tee /tmp/vrising_stuck.log
+else
+  echo "✅ VRisingServer.exe exited cleanly"
 fi
+
 
 # Find latest autosave file
 latest_file=$(find "$SAVE_DIR" -type f -name 'AutoSave_*.save.gz' |
