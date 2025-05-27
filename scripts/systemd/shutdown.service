@@ -4,17 +4,17 @@ DefaultDependencies=no
 Requires=network-online.target
 After=network-online.target
 
-# Run before shutdown and before vrising fully stops
+# This runs before system shutdown or vrising stop
 Before=shutdown.target halt.target reboot.target
 Before=vrising.service
-PartOf=vrising.service
+Conflicts=vrising.service
 
 [Service]
 Type=oneshot
 Environment=HOME=/root
 ExecStart=/root/baroboys/scripts/teardown/shutdown.sh
-TimeoutStartSec=180
+TimeoutStartSec=300
 RemainAfterExit=true
 
 [Install]
-WantedBy=shutdown.target
+WantedBy=multi-user.target
