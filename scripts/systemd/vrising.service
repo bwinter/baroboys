@@ -1,8 +1,8 @@
 [Unit]
 Description=VRising Dedicated Server (baroboys)
 Wants=network-online.target
-Requires=xvfb.service
 After=network-online.target xvfb.service
+Requires=xvfb.service
 
 [Service]
 Environment=DISPLAY=:0
@@ -16,9 +16,9 @@ ExecStart=/usr/bin/wine \
   -serverName "Mc's Playground" \
   -saveName "TestWorld-1" \
   -logFile ./logs/VRisingServer.log
+
 KillMode=control-group
 ExecStop=/bin/true
-ExecStopPost=/bin/systemctl start shutdown.service
 TimeoutStopSec=300
 
 [Install]
