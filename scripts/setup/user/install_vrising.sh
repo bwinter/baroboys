@@ -16,5 +16,9 @@ git checkout -- \
   VRising/Data/Settings/adminlist.txt \
   VRising/Data/Settings/banlist.txt
 
+touch "/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log"
+chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log"
+chmod 644  "/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log"
+
 # Ensure EDITOR is set for future shell sessions
 grep -qxF 'export EDITOR=vim' "$HOME/.profile" || echo 'export EDITOR=vim' >> "$HOME/.profile"
