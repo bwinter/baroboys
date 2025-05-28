@@ -2,13 +2,13 @@
 
 ## 🧭 **Which Tool to Use and When**
 
-| Tool                                                   | Scope                         | When to Use                                                           |
-| ------------------------------------------------------ | ----------------------------- | --------------------------------------------------------------------- |
-| `gcloud compute instances get-serial-port-output`      | Serial console (boot)         | VM won’t boot, startup script fails silently, SSH not available       |
-| `journalctl -u google-startup-scripts.service`         | Startup script logs (systemd) | VM boots, but provisioning (e.g. boot.sh) fails or partially executes |
-| `sudo systemctl status google-startup-scripts.service` | Unit health summary           | Verify if startup unit ran, succeeded, or failed                      |
-| `gcloud logging read`                                  | Cloud Logging (optional)      | Postmortem debugging (if OSConfig + logging enabled)                  |
-| `gcloud compute ssh`                                   | Direct access                 | Live VM debugging (VRising, Git, system state, etc.)                  |
+| Tool                                                   | Scope                         | When to Use                                                              |
+| ------------------------------------------------------ | ----------------------------- |--------------------------------------------------------------------------|
+| `gcloud compute instances get-serial-port-output`      | Serial console (boot)         | VM won’t boot, startup script fails silently, SSH not available          |
+| `journalctl -u google-startup-scripts.service`         | Startup script logs (systemd) | VM boots, but provisioning (e.g. startup.sh) fails or partially executes |
+| `sudo systemctl status google-startup-scripts.service` | Unit health summary           | Verify if startup unit ran, succeeded, or failed                         |
+| `gcloud logging read`                                  | Cloud Logging (optional)      | Postmortem debugging (if OSConfig + logging enabled)                     |
+| `gcloud compute ssh`                                   | Direct access                 | Live VM debugging (VRising, Git, system state, etc.)                     |
 
 ---
 
@@ -93,10 +93,10 @@ sudo journalctl -u vrising.service --since="-10min" --no-pager
 sudo journalctl -u shutdown.service --since="-10min" --no-pager
 ```
 
-### `boot.service` logs (game startup & provisioning):
+### `startup.service` logs (game startup & provisioning):
 
 ```bash
-sudo journalctl -u boot.service --since="-10min" --no-pager
+sudo journalctl -u startup.service --since="-10min" --no-pager
 ```
 
 ---
