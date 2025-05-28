@@ -36,6 +36,12 @@
 
 5. V Rising Console Wiki: https://vrising.fandom.com/wiki/Console
 
+# 💾 Save
+
+```shell
+curl -u admin:yourpassword -X POST http://[SERVER_IP]:8080/trigger-save
+```
+
 # 📜 Logs
 
 1. [**Open server admin page in GCP**](https://console.cloud.google.com/compute/instancesDetail/zones/us-west1-b/instances/europa?project=europan-world)

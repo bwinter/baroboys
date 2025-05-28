@@ -1,0 +1,12 @@
+[Unit]
+Description=Baroboys Webhook Trigger Server
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/baroboys/webhook_server.py
+WorkingDirectory=/opt/baroboys
+Restart=on-failure
+User=root
+
+[Install]
+WantedBy=multi-user.target
