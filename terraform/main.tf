@@ -50,7 +50,7 @@ resource "google_compute_instance" "default" {
   name         = var.machine_name
   machine_type = var.machine_type
   zone         = var.zone
-  tags = ["barotrauma-server", "vrising-server"]
+  tags = ["barotrauma-server", "vrising-server", "nginx-server"]
   labels = {
     project     = "baroboys"
     environment = "dev"
@@ -149,4 +149,20 @@ resource "google_compute_firewall" "vrising_ports_udp" {
   source_ranges = ["0.0.0.0/0"]
 
   target_tags = ["vrising-server"]
+}
+
+resource "google_compute_firewall" "nginx_logs" {
+  name        = "nginx-logs"
+  network     = "default"
+  description = "Allow HTTP access to exposed Nginx logs on port 8080"
+
+  allow {
+    protocol = "tcp"
+    ports = ["8080"]
+  }
+
+  direction = "INGRESS"
+  priority  = 1000
+  source_ranges = ["0.0.0.0/0"]
+  target_tags = ["nginx-server"]
 }
