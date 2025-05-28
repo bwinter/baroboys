@@ -1,6 +1,7 @@
 #!/bin/bash
 set -eux
 
+mkdir -p "/home/bwinter_sc81/baroboys/VRising/logs/"
 touch "/home/bwinter_sc81/baroboys/VRising/logs/startup.log"
 chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/startup.log"
 chmod 644  "/home/bwinter_sc81/baroboys/VRising/logs/startup.log"

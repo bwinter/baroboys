@@ -16,21 +16,21 @@
 
         <!-- Save & Shutdown -->
         <div class="col-md-6">
-            <div class="card bg-secondary p-4 shadow">
+            <section class="card bg-secondary p-4 shadow">
                 <h2 class="h5">Save & Shutdown</h2>
-                <p class="text-light">This will save the game and gracefully shut down the server.</p>
+                <p>This will save the game and gracefully shut down the server.</p>
                 <form action="/trigger-shutdown" method="post"
                       onsubmit="return confirm('Are you sure you want to shutdown the server?');">
                     <button type="submit" class="btn btn-warning">🟠 Save & Shutdown</button>
                 </form>
-            </div>
+            </section>
         </div>
 
         <!-- Check Status -->
         <div class="col-md-6">
-            <div class="card bg-secondary p-4 shadow">
+            <section class="card bg-secondary p-4 shadow">
                 <h2 class="h5">Check Status</h2>
-                <p class="text-light">Auto-refreshes every 10 seconds.</p>
+                <p>Auto-refreshes every 10 seconds.</p>
                 <iframe
                         id="statusFrame"
                         src="/check-status?_ts=0"
@@ -43,21 +43,21 @@
                 <script>
                     const statusFrame = document.getElementById("statusFrame");
                     function refreshStatusFrame() {
-                        statusFrame.src = "/check-status?_ts=" + new Date().getTime();
+                        statusFrame.src = "/check-status?_ts=" + Date.now();
                     }
                     setInterval(refreshStatusFrame, 10000);
                 </script>
-            </div>
+            </section>
         </div>
 
         <!-- Logs Viewer -->
         <div class="col-12">
-            <div class="card bg-secondary p-4 shadow">
+            <section class="card bg-secondary p-4 shadow">
                 <h2 class="h5">View Logs</h2>
-                <p class="text-light">Select a log file to view the most recent entries:</p>
+                <p>Select a log file to view the most recent entries:</p>
 
-                <label for="logSelector" class="form-label text-light">Select log file:</label>
-                <select id="logSelector" class="form-select mb-3">
+                <label for="logSelector" class="form-label">Select log file:</label>
+                <select id="logSelector" class="form-select mb-3" aria-label="Log file selector">
                     <option value="VRisingServer.log">VRisingServer.log</option>
                     <option value="startup.log">startup.log</option>
                     <option value="shutdown.log">shutdown.log</option>
@@ -78,14 +78,15 @@
 
                     function refreshLogFrame() {
                         const selected = logSelector.value;
-                        logFrame.src = `/logs/tail/${selected}?_ts=` + new Date().getTime();
+                        logFrame.src = `/logs/tail/${selected}?_ts=` + Date.now();
                     }
 
                     logSelector.addEventListener("change", refreshLogFrame);
                     setInterval(refreshLogFrame, 5000);
                 </script>
-            </div>
+            </section>
         </div>
+
     </div>
 
     <footer class="mt-5 text-center text-muted">
