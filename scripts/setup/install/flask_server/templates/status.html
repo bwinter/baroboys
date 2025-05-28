@@ -3,12 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Status</title>
+    <style>
+        body {
+            background-color: #111;
+            color: #ccc;
+            font-family: monospace;
+            padding: 1em;
+        }
+        .timestamp {
+            color: #6cf;
+            font-size: 0.9em;
+            margin-bottom: 1em;
+            display: block;
+        }
+        pre {
+            white-space: pre-wrap;
+        }
+    </style>
 </head>
-<body style="background-color:#1e1e1e; color:white; font-family:monospace; padding:1rem;">
-<h1>🔍 System Status</h1>
-<p><strong>Uptime:</strong> {{ uptime }}</p>
-<h2>vrising.service</h2>
-<pre>{{ service_output }}</pre>
-<a href="/" style="color:lightblue;">⬅️ Back to Admin Panel</a>
+<body>
+<span class="timestamp">⏱ Refreshed: {{ timestamp }}</span>
+<pre>{{ status }}</pre>
 </body>
 </html>
