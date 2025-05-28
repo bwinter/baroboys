@@ -12,6 +12,8 @@ Before=vrising.service
 Type=oneshot
 Environment=HOME=/root
 ExecStart=/root/baroboys/scripts/teardown/shutdown.sh
+StandardOutput=append:/home/bwinter_sc81/baroboys/VRising/logs/shutdown.log
+StandardError=append:/home/bwinter_sc81/baroboys/VRising/logs/shutdown.log
 TimeoutStartSec=300
 RemainAfterExit=true
 
