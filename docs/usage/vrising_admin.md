@@ -23,7 +23,7 @@
 
 3. 🔴 To shut down, use the Admin Panel
 
-   * See [💾 Save & Shutdown](#💾-save--shutdown)
+   * See `💾 Save & Shutdown` section below
 
 ---
 
