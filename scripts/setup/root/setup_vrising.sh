@@ -42,8 +42,7 @@ sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/setup/user/install_
 install -m 644 "/root/baroboys/scripts/systemd/vrising.service" "/etc/systemd/system/"
 systemctl daemon-reexec
 systemctl daemon-reload
-# Disabling, I want the boot.service to make this happen by running this script.
-# systemctl enable vrising.service
+
 if [ "${ACTIVE_GAME:-}" = "vrising" ]; then
   echo "🎮 Starting V Rising server via systemd..."
   systemctl start vrising.service
