@@ -35,3 +35,26 @@
    ```
 
 5. V Rising Console Wiki: https://vrising.fandom.com/wiki/Console
+
+# 📜 Logs
+
+1. [**Open server admin page in GCP**](https://console.cloud.google.com/compute/instancesDetail/zones/us-west1-b/instances/europa?project=europan-world)
+2. Look for your VM's external IP
+3. Open the following URL in your browser (replace with actual IP):
+   - `http://[SERVER_EXTERNAL_IP]:8080/logs`
+   - Username: vrising
+   - Password: (normal password)
+
+---
+
+### 🔄 Update Log Access Password
+
+To change the log access password, run:
+
+```bash
+htpasswd -c temp_htpasswd vrising
+gcloud secrets versions add nginx-htpasswd \
+--data-file=temp_htpasswd
+```
+
+> 📝 `-c` overwrites the file. Omit `-c` if you're adding a new user to an existing file.
