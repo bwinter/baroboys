@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>404 – Not Found</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #111;
+            color: #ccc;
+            text-align: center;
+            padding: 5vh 2rem;
+            font-family: system-ui, sans-serif;
+        }
+        h1 {
+            font-size: 4rem;
+            color: #f88;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        code {
+            color: #6cf;
+        }
+        a {
+            color: #6cf;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<h1>404</h1>
+<p>🔍 The page you’re looking for doesn’t exist.</p>
+
+{% if path %}
+<p>You tried to access: <code>{{ path }}</code></p>
+{% endif %}
+{% if timestamp %}
+<p>🕒 Request time: <code>{{ timestamp }}</code></p>
+{% endif %}
+
+<p><a href="/">Return to Admin Panel</a></p>
+</body>
+</html>

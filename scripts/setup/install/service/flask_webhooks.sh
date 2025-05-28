@@ -1,33 +1,44 @@
 #!/bin/bash
 set -eux
 
+# Install Python and Flask if needed
 apt update
 apt install -y python3-pip
 
-# Only install Flask if missing
+# Only install Flask if not already available
 if ! python3 -c "import flask" &>/dev/null; then
   pip3 install flask
 fi
 
-# Install systemd unit
-cp "/root/baroboys/scripts/setup/install/scripts/systemd/baroboys-webhook.service" "/etc/systemd/system/"
+# Systemd unit installation
+cp "/root/baroboys/scripts/setup/install/scripts/systemd/baroboys-webhook.service" \
+   "/etc/systemd/system/baroboys-webhook.service"
 chmod 644 "/etc/systemd/system/baroboys-webhook.service"
 
-# Install Flask app
-cp "/root/baroboys/scripts/setup/install/flask_server/webhook_server.py" "/opt/baroboys/webhook_server.py"
+# Flask app source
+mkdir -p "/opt/baroboys"
+cp "/root/baroboys/scripts/setup/install/flask_server/webhook_server.py" \
+   "/opt/baroboys/webhook_server.py"
 chmod 755 "/opt/baroboys/webhook_server.py"
 
-# Install static files
+# Static HTML and assets
 mkdir -p "/opt/baroboys/static"
-cp "/root/baroboys/scripts/setup/install/flask_server/admin.html" "/opt/baroboys/static/admin.html"
-chmod 644 "/opt/baroboys/static/admin.html"
+cp "/root/baroboys/scripts/setup/install/flask_server/admin.html" \
+   "/opt/baroboys/static/admin.html"
+cp "/root/baroboys/scripts/setup/install/flask_server/favicon.ico" \
+   "/opt/baroboys/static/favicon.ico"
+echo -e "User-agent: *\nDisallow: /" > "/opt/baroboys/static/robots.txt"
+chmod 644 /opt/baroboys/static/*
 
-# Install templates
+# Jinja templates
 mkdir -p "/opt/baroboys/templates"
-cp "/root/baroboys/scripts/setup/install/flask_server/templates/status.html" "/opt/baroboys/templates/status.html"
-chmod 644 "/opt/baroboys/templates/status.html"
+cp "/root/baroboys/scripts/setup/install/flask_server/templates/status.html" \
+   "/opt/baroboys/templates/status.html"
+cp "/root/baroboys/scripts/setup/install/flask_server/templates/404.html" \
+   "/opt/baroboys/templates/404.html"
+chmod 644 /opt/baroboys/templates/*.html
 
-# Reload and start the service
+# Activate Flask service
 systemctl daemon-reload
 systemctl enable baroboys-webhook.service
 systemctl start baroboys-webhook.service
