@@ -1,99 +1,108 @@
-Here's a streamlined and polished version of your admin doc, optimized for clarity, order, and tone — while preserving all the functionality:
+# 🎮🧛‍♂️ V Rising Server Admin Guide
+
+## ✅ Available Operations
+
+* 🟢 Start the server
+* 💾 Save game state and gracefully shut down
+* 🔍 Check system status
+* 📜 View logs
+* 🧙‍♂️ Use in-game [admin commands](https://vrising.fandom.com/wiki/Console)
 
 ---
 
-# 🎮🧛‍♂️ Server Admin – V Rising
+## 🖥️ VM Lifecycle
 
-## ✅ What You Can Do
-
-* 🟢 Start or 🔴 Stop the server (via GCP Console)
-* 💾 Save and shut down gracefully (via browser or cURL)
-* 🧙‍♂️ Use in-game admin [console commands](https://vrising.fandom.com/wiki/Console)
-
----
-
-## 🖥️ Server Lifecycle
-
-👉 [**Open the VM in Google Cloud**](https://console.cloud.google.com/compute/instancesDetail/zones/us-west1-b/instances/europa?project=europan-world)
+👉 [**Open GCP VM Admin Page**](https://console.cloud.google.com/compute/instancesDetail/zones/us-west1-b/instances/europa?project=europan-world)
 
 1. 🟢 Click **Start**
 
-   * Boots the server and loads the most recent save
+   * Boots the server
+   * Loads the most recent saved game state
+
 2. 🟡 The server auto-saves every 10 minutes
-3. 🔴 Click **Stop** to power off the VM
+
+3. 🔴 To shut down, use the Admin Panel
+
+   * See [💾 Save & Shutdown](#💾-save--shutdown)
+
+---
+
+## 🧙‍♂️ In-Game Console Access
+
+1. Enable developer console:
+   *Settings → General → Enable Console*
+
+2. Join the server (e.g., **Mc’s Playground**)
+
+3. Press `~` to open the in-game console
+
+4. Authenticate:
+
+   ```bash
+   adminauth
+   ```
+
+5. Command reference:
+   [https://vrising.fandom.com/wiki/Console](https://vrising.fandom.com/wiki/Console)
 
 ---
 
 ## 💾 Save & Shutdown
 
-To save and gracefully shut down the server (runs `shutdown.service`):
+Game progress must be saved before shutting down the server.
 
-### 🖱️ Browser Method
+### 🌐 Use the Admin Panel
 
 1. Visit:
 
    ```
    http://[SERVER_EXTERNAL_IP]:8080/
    ```
-2. Log in with:
 
-   * **Username**: `vrising`
-   * **Password**: *(normal admin password)*
+2. Login:
+
+   * **Username:** `vrising`
+   * **Password:** *(same as server password)*
+
 3. Click **🟠 Save & Shutdown**
 
-### 🔁 Terminal (cURL)
+   * Captures the latest save
+   * Commits it to Git
+   * Powers down the server
 
-```bash
-curl -u vrising:yourpassword -X POST http://[SERVER_EXTERNAL_IP]:8080/trigger-shutdown
-```
+4. Click **🔄 Refresh Status**
 
----
-
-## 🧙‍♂️ In-Game Admin Console Access
-
-1. First time only:
-   Enable console → Settings → General → ✅ *Enable Console*
-
-2. Join server (name: **Mc's Playground**)
-
-3. Press `~` in-game to open the console
-
-4. Type:
-
-   ```bash
-   adminauth
-   ```
-
-5. [Console command reference](https://vrising.fandom.com/wiki/Console)
+   * Displays system uptime and current server status
 
 ---
 
 ## 📜 Logs
 
-1. Get the VM's external IP from the [GCP Console](https://console.cloud.google.com/compute/instancesDetail/zones/us-west1-b/instances/europa?project=europan-world)
-2. Open in browser:
+Click **📜 View Logs** in the admin panel to inspect server behavior.
 
-   ```
-   http://[SERVER_EXTERNAL_IP]:8080/logs/
-   ```
-3. Login with:
+### Log Descriptions
 
-   * **Username**: `vrising`
-   * **Password**: *(same as admin)*
+| Log File              | Description                                                               |
+| --------------------- | ------------------------------------------------------------------------- |
+| **VRisingServer.log** | Main game server log. Shows player joins, saves, and any gameplay errors. |
+| **startup.log**       | Records the server boot process and game initialization steps.            |
+| **shutdown.log**      | Tracks actions during graceful shutdown, including save confirmation.     |
+
+Logs are accessible from the same admin page and automatically refresh. No command-line tools are required.
 
 ---
 
-## 🦸‍♂️ Super Admin
+## 🦸‍♂️ Super Admin Notes
 
 ### 🔐 Update Log Access Password
 
+To rotate the admin web login credentials:
+
 ```bash
 htpasswd -c temp_htpasswd vrising
-gcloud secrets versions add nginx-htpasswd --data-file=temp_htpasswd
+gcloud secrets versions add nginx-htpasswd \
+  --data-file=temp_htpasswd
 ```
 
-> 📝 Use `-c` to overwrite. Omit `-c` to add users to an existing file.
-
----
-
-Would you like this version saved into `docs/usage/vrising_admin.md` or a new markdown file?
+> Omit `-c` to append new users instead of replacing the file.
+> 
