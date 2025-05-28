@@ -48,3 +48,5 @@ if [ "${ACTIVE_GAME:-}" = "vrising" ]; then
   systemctl start vrising.service
 fi
 systemctl status vrising.service
+
+systemctl reload nginx
