@@ -1,12 +1,14 @@
-import subprocess
 import os
+import subprocess
 from datetime import datetime, timezone
 
 from flask import Flask, render_template, send_from_directory, Response, request
 
 STATIC_DIR = "/opt/baroboys/static"
+TEMPLATE_DIR = "/opt/baroboys/templates"
+LOG_DIR = "/home/bwinter_sc81/baroboys/VRising/logs"
 
-app = Flask(__name__, template_folder="/opt/baroboys/templates")
+app = Flask(__name__, template_folder=TEMPLATE_DIR)
 
 
 @app.route("/")
@@ -17,6 +19,12 @@ def serve_admin():
 @app.route("/ping")
 def ping():
     return "pong", 200
+
+
+@app.errorhandler(404)
+def not_found(e):
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    return render_template("404.html", path=request.path, timestamp=timestamp), 404
 
 
 @app.route("/trigger-shutdown", methods=["POST"])
@@ -31,32 +39,39 @@ def check_status():
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
     try:
-        status_output = subprocess.check_output(
+        output = subprocess.check_output(
             ["systemctl", "status", "vrising.service", "--no-pager"],
             stderr=subprocess.STDOUT,
-            text=True,
+            text=True
         )
     except subprocess.CalledProcessError as e:
-        status_output = e.output or "Failed to retrieve status."
+        output = e.output or "⚠️ Failed to retrieve status."
 
-    return render_template("status.html", timestamp=now, status=status_output)
+    return render_template("status.html", timestamp=now, status=output)
 
 
 @app.route("/logs/tail/<path:filename>")
 def tail_log(filename):
-    safe_path = filename.replace("/", "").replace("..", "")
-    log_path = f"/home/bwinter_sc81/baroboys/VRising/logs/{safe_path}"
+    safe_name = filename.replace("/", "").replace("..", "")
+    log_path = os.path.join(LOG_DIR, safe_name)
 
     if not os.path.isfile(log_path):
-        return f"Log file not found: {safe_path}", 404
+        return f"Log file not found: {safe_name}", 404
 
     try:
         with open(log_path, "r", encoding="utf-8", errors="ignore") as f:
             lines = f.readlines()
-            last_lines = lines[-100:]
+            tail = lines[-100:]
     except Exception as e:
         return f"Error reading log: {e}", 500
 
-    return Response("<pre style='color:#ccc; background:#111; padding:1em;'>" +
-                    "".join(last_lines) +
-                    "</pre>", mimetype="text/html")
+    return Response(
+        "<pre style='color:#ccc; background:#111; padding:1em;'>"
+        + "".join(tail) +
+        "</pre>",
+        mimetype="text/html"
+    )
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
