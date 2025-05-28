@@ -4,7 +4,7 @@ set -eux
 # Refresh repo, just in case.
 source "/root/baroboys/scripts/setup/install/repositories.sh"
 
-# Refresh services incase updates occurred.
+# Refresh services in case updates occurred.
 source "/root/baroboys/scripts/setup/install/services.sh"
 
 # Setup the game
