@@ -1,7 +1,10 @@
 import subprocess
-from datetime import datetime, timezone, UTC
+import os
+from datetime import datetime, timezone
 
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory, Response, request
+
+STATIC_DIR = "/opt/baroboys/static"
 
 app = Flask(__name__, template_folder="/opt/baroboys/templates")
 
@@ -19,7 +22,7 @@ def ping():
 @app.route("/trigger-shutdown", methods=["POST"])
 def trigger_shutdown():
     subprocess.Popen(["systemctl", "start", "shutdown.service"])
-    now = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S UTC")
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
     return f"<h2>🟠 Shutdown triggered at {now}</h2>"
 
 
@@ -50,7 +53,7 @@ def tail_log(filename):
     try:
         with open(log_path, "r", encoding="utf-8", errors="ignore") as f:
             lines = f.readlines()
-            last_lines = lines[-100:]  # Adjust N here
+            last_lines = lines[-100:]
     except Exception as e:
         return f"Error reading log: {e}", 500
 
