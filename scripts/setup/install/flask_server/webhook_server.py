@@ -1,5 +1,5 @@
 import subprocess
-from datetime import datetime
+from datetime import datetime, UTC
 
 from flask import Flask, render_template
 
@@ -9,7 +9,7 @@ app = Flask(__name__, template_folder="/opt/baroboys/templates")
 @app.route("/trigger-shutdown", methods=["POST"])
 def trigger_shutdown():
     subprocess.Popen(["systemctl", "start", "shutdown.service"])
-    now = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+    now = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S UTC")
     return f"<h2>🟠 Shutdown triggered at {now}</h2>"
 
 
