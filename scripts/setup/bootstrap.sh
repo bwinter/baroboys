@@ -8,8 +8,6 @@ source "/root/baroboys/scripts/setup/install/apt_steam.sh"
 source "/root/baroboys/scripts/setup/install/apt_wine.sh"
 source "/root/baroboys/scripts/setup/install/apt_nginx.sh"
 
-source "/root/baroboys/scripts/setup/install/flask_webhook.sh"
-
 # Refresh repo, just in case.
 source "/root/baroboys/scripts/setup/install/repositories.sh"
 
