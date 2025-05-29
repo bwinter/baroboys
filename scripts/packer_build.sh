@@ -35,6 +35,6 @@ cp -f "terraform/variables.tf" "${BUILD_DIR}/${PACKER_VAR_DEFS_FILE}"
 # Build
 cd "${BUILD_DIR}"
 packer init .
-packer build -on-error=cleanup -var-file="${PACKER_VARS_FILE}" . | tee "${ABS_LOG_PATH}"
+packer build -on-error=cleanup -force -var-file="${PACKER_VARS_FILE}" . | tee "${ABS_LOG_PATH}"
 
 echo "✅ Log written to: ${ABS_LOG_PATH}"
