@@ -52,8 +52,6 @@ build {
       "sudo /root/baroboys/scripts/setup/install/apt_core.sh",
       "echo '🔧 Running apt_gcloud.sh'",
       "sudo /root/baroboys/scripts/setup/install/apt_gcloud.sh",
-      "echo '🔧 Running apt_nginx.sh'",
-      "sudo /root/baroboys/scripts/setup/install/apt_nginx.sh",
       "echo '🧹 Running autoremove'",
       "sudo apt-get -yq autoremove"
     ]
