@@ -6,9 +6,14 @@ from datetime import datetime, timezone
 
 from flask import Flask, render_template, send_from_directory, Response, request
 
-STATIC_DIR = "/opt/baroboys/static"
-TEMPLATE_DIR = "/opt/baroboys/templates"
-LOG_DIR = "/home/bwinter_sc81/baroboys/VRising/logs"
+if os.getenv("FLASK_ENV") == "development":
+    STATIC_DIR = "./static"
+    TEMPLATE_DIR = "./templates"
+    LOG_DIR = "./logs"
+else:
+    STATIC_DIR = "/opt/baroboys/static"
+    TEMPLATE_DIR = "/opt/baroboys/templates"
+    LOG_DIR = "/home/bwinter_sc81/baroboys/VRising/logs"
 
 app = Flask(__name__, template_folder=TEMPLATE_DIR)
 
