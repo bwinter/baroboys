@@ -103,24 +103,42 @@ PACKER_TEMPLATE := packer.pkr.hcl
 BUILD_SCRIPT_DIR := scripts/setup
 BUILD_SCRIPT := clone_repo.sh
 
-build:
+# === Packer (Layered, Ordered) ===
+
+PACKER_DIR := terraform/packer
+PACKER_BUILD_DIR := $(PACKER_DIR)/tmp
+PACKER_LOG_DIR := $(PACKER_BUILD_DIR)/logs
+PACKER_VARS := terraform.pkrvars.hcl
+PACKER_VAR_DEFS := variables.pkr.hcl
+PACKER_LAYERS := core steam game
+
+BUILD_SCRIPT_DIR := scripts/setup
+BUILD_SCRIPT := clone_repo.sh
+
+define packer-layer-target
+build-$(1):
 	mkdir -p "$(PACKER_BUILD_DIR)/.secrets"
 	cp ".secrets/europan-world-terraform-key.json" "$(PACKER_BUILD_DIR)/.secrets/"
 
-	mkdir -p "$(PACKER_BUILD_DIR)/logs/"
-
-	# Sync TF variables
+	mkdir -p "$(PACKER_LOG_DIR)"
 	mkdir -p "$(PACKER_BUILD_DIR)/"
+
+	# Sync variables and templates
 	cp -f "$(BUILD_SCRIPT_DIR)/$(BUILD_SCRIPT)" "$(PACKER_BUILD_DIR)/$(BUILD_SCRIPT)"
-	cp -f "$(PACKER_DIR)/$(PACKER_TEMPLATE)" "$(PACKER_BUILD_DIR)/$(PACKER_TEMPLATE)"
+	cp -f "$(PACKER_DIR)/packer-$(1).pkr.hcl" "$(PACKER_BUILD_DIR)/packer.pkr.hcl"
 	cp -f "$(TF_VAR_FILE)" "$(PACKER_BUILD_DIR)/$(PACKER_VARS)"
 	cp -f "$(TF_VAR_DEF_FILE)" "$(PACKER_BUILD_DIR)/$(PACKER_VAR_DEFS)"
 
-	# Build image
 	cd "$(PACKER_BUILD_DIR)" && \
-		packer init "$(PACKER_TEMPLATE)" && \
+		packer init . && \
 		packer build -on-error=cleanup -var-file="$(PACKER_VARS)" . \
-		| tee "logs/packer-$(USER)-$(shell date +%Y%m%d-%H%M).log"
+		| tee "$(PACKER_LOG_DIR)/packer-$(1)-$(USER)-$$(date +%Y%m%d-%H%M).log"
+endef
+
+$(foreach layer,$(PACKER_LAYERS),$(eval $(call packer-layer-target,$(layer))))
+
+.PHONY: build-all
+build-all: build-core build-steam build-game
 
 clean:
 	# Delete old custom images
@@ -158,5 +176,8 @@ help:
 	@echo "  make ssh            - SSH into VM"
 	@echo "  make ssh-iap        - SSH using IAP tunnel"
 	@echo ""
-	@echo "  make build          - Build Packer image"
+	@echo "  make build-core      - Build base image (core setup)"
+	@echo "  make build-steam     - Build Steam dependencies layer"
+	@echo "  make build-game      - Build game layer"
+	@echo "  make build-all       - Build all Packer image layers"
 	@echo "  make clean          - Clean Packer image"

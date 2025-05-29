@@ -36,8 +36,11 @@ build {
 
   provisioner "shell" {
     inline = [
+      "echo '🔧 Running repositories.sh'",
       "sudo /root/baroboys/scripts/setup/install/repositories.sh",
+      "echo '🔧 Running services.sh'",
       "sudo /root/baroboys/scripts/setup/install/services.sh",
+      "echo '🧹 Running autoremove'",
       "sudo apt-get -yq autoremove"
     ]
   }

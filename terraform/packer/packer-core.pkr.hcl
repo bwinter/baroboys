@@ -42,19 +42,20 @@ build {
 
   provisioner "shell" {
     inline = [
+      "echo '🔧 Updating APT and installing Git'",
       "sudo apt-get update",
       "sudo apt-get install -yq git",
+      "echo '🔧 Cloning Baroboys repo'",
       "sudo chmod +x /tmp/clone_repo.sh",
       "sudo /tmp/clone_repo.sh",
+      "echo '🔧 Running apt_core.sh'",
       "sudo /root/baroboys/scripts/setup/install/apt_core.sh",
+      "echo '🔧 Running apt_gcloud.sh'",
       "sudo /root/baroboys/scripts/setup/install/apt_gcloud.sh",
+      "echo '🔧 Running apt_nginx.sh'",
       "sudo /root/baroboys/scripts/setup/install/apt_nginx.sh",
+      "echo '🧹 Running autoremove'",
       "sudo apt-get -yq autoremove"
     ]
   }
 }
-
-
-
-
-

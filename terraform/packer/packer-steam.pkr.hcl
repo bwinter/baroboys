@@ -36,8 +36,11 @@ build {
 
   provisioner "shell" {
     inline = [
+      "echo '🔧 Running apt_wine.sh'",
       "sudo /root/baroboys/scripts/setup/install/apt_wine.sh",
+      "echo '🔧 Running apt_steam.sh'",
       "sudo /root/baroboys/scripts/setup/install/apt_steam.sh",
+      "echo '🧹 Running autoremove'",
       "sudo apt-get -yq autoremove"
     ]
   }
