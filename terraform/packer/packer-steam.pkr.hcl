@@ -34,8 +34,16 @@ build {
   name = "baroboys-steam-image"
   sources = ["source.googlecompute.baroboys-steam"]
 
+  provisioner "file" {
+    source      = "clone_repo.sh"
+    destination = "/tmp/clone_repo.sh"
+  }
+
   provisioner "shell" {
     inline = [
+      "echo '🔧 Cloning Baroboys repo'",
+      "sudo chmod +x /tmp/clone_repo.sh",
+      "sudo /tmp/clone_repo.sh",
       "echo '🔧 Running apt_wine.sh'",
       "sudo /root/baroboys/scripts/setup/install/apt_wine.sh",
       "echo '🔧 Running apt_steam.sh'",
