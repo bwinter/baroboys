@@ -19,7 +19,7 @@ chmod 755 "/opt/baroboys/webhook_server.py"
 # Static HTML and assets
 mkdir -p /opt/baroboys/static
 for file in admin.html favicon.ico robots.txt; do
-  cp "/root/baroboys/scripts/setup/install/flask_server/${file}" \
+  cp "/root/baroboys/scripts/setup/install/flask_server/static/${file}" \
      "/opt/baroboys/static/${file}"
 done
 chmod 644 /opt/baroboys/static/*
