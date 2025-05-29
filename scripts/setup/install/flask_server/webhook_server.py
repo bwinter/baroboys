@@ -59,11 +59,10 @@ def check_status():
             ["systemctl", "status", "vrising.service", "--no-pager"],
             stderr=subprocess.STDOUT,
             text=True
-        )
+        ).strip()
+        return f"⏱ Refreshed: {now}\n\n{output}", 200, {"Content-Type": "text/plain"}
     except Exception:
-        output = "⚠️ Failed to retrieve status."
-
-    return render_template("status.html", timestamp=now, status=output)
+        return f"⏱ Refreshed: {now}\n\n⚠️ Failed to retrieve status.", 200, {"Content-Type": "text/plain"}
 
 
 @app.route("/logs/tail/<path:filename>")
