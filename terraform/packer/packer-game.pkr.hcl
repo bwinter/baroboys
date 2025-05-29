@@ -36,8 +36,11 @@ build {
 
   provisioner "shell" {
     inline = [
+      "echo '🔧 Cloning Baroboys repo'",
+      "sudo chmod +x /tmp/clone_repo.sh",
+      "sudo /tmp/clone_repo.sh",
       "echo '🔧 Running repositories.sh'",
-      "sudo /root/baroboys/scripts/setup/install/repositories.sh",
+      "sudo /root/baroboys/scripts/setup/root/setup_user.sh",
       "echo '🔧 Running services.sh'",
       "sudo /root/baroboys/scripts/setup/install/services.sh",
       "echo '🔧 Running apt_nginx.sh'",
