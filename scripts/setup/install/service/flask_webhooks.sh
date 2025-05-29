@@ -6,7 +6,7 @@ apt update
 apt install -y python3-flask
 
 # Systemd unit installation
-cp "/root/baroboys/scripts/setup/systemd/baroboys-webhook.service" \
+cp "/root/baroboys/scripts/systemd/baroboys-webhook.service" \
    "/etc/systemd/system/baroboys-webhook.service"
 chmod 644 "/etc/systemd/system/baroboys-webhook.service"
 
