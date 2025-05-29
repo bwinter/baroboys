@@ -5,6 +5,7 @@
     <title>404 – Not Found</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <style>
         body {
             background-color: #111;
@@ -13,40 +14,72 @@
             padding: 5vh 2rem;
             font-family: system-ui, sans-serif;
         }
+
         h1 {
             font-size: 4rem;
             color: #f88;
             margin-bottom: 1rem;
         }
+
         p {
             font-size: 1.2rem;
             margin-bottom: 1rem;
         }
+
         code {
             color: #6cf;
+            background-color: #1c1c1c;
+            padding: 0.2em 0.4em;
+            border-radius: 0.3em;
         }
+
         a {
             color: #6cf;
             text-decoration: none;
             font-weight: 500;
+            display: inline-block;
+            margin-top: 0.5rem;
         }
+
         a:hover {
             text-decoration: underline;
+        }
+
+        .card {
+            background-color: #222;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 0 20px rgba(0,0,0,0.4);
+            display: inline-block;
+            max-width: 600px;
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 3rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-<h1>404</h1>
-<p>🔍 The page you’re looking for doesn’t exist.</p>
 
-{% if path %}
-<p>You tried to access: <code>{{ path }}</code></p>
-{% endif %}
-{% if timestamp %}
-<p>🕒 Request time: <code>{{ timestamp }}</code></p>
-{% endif %}
+<div class="card">
+    <h1>404</h1>
+    <p>🔍 The page you’re looking for doesn’t exist.</p>
 
-<p><a href="/">Return to Admin Panel</a></p>
-<p><a href="/directory">Explore the Site Directory</a></p>
+    {% if path %}
+    <p>You tried to access: <code>{{ path }}</code></p>
+    {% endif %}
+    {% if timestamp %}
+    <p>🕒 Request time: <code>{{ timestamp }}</code></p>
+    {% endif %}
+
+    <p><a href="/">🛠 Return to Admin Panel</a></p>
+    <p><a href="/directory">🧭 Explore the Site Directory</a></p>
+</div>
+
 </body>
 </html>
