@@ -8,6 +8,9 @@ scripts/manual/save-decompressor/Barotrauma-Save-Decompressor.lnk
 # logs
 *.log
 
+# Python virtual env
+.venv
+
 # Directories
 terraform/.terraform/
 terraform/iam/.terraform/
