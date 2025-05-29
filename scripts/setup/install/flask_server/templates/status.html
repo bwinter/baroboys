@@ -5,80 +5,13 @@
     <title>Status</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <style>
-        body {
-            background-color: #111;
-            color: #ccc;
-            font-family: monospace;
-            padding: 1.5em;
-            margin: 0;
-        }
-
-        .timestamp {
-            color: #6cf;
-            font-size: 0.95em;
-            margin-bottom: 1em;
-            display: block;
-        }
-
-        pre {
-            background-color: #1c1c1c;
-            border: 1px solid #333;
-            border-radius: 0.5em;
-            padding: 1em;
-            overflow-x: auto;
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
-
-        @media (max-width: 576px) {
-            body {
-                padding: 1em;
-            }
-
-            pre {
-                font-size: 0.9em;
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            body {
-                background-color: #fdfdfd;
-                color: #111;
-            }
-
-            h1, h2 {
-                color: #336;
-            }
-
-            .card, .directory-card, pre {
-                background-color: #f4f4f4;
-                color: #111;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            }
-
-            code {
-                background-color: #eee;
-                color: #004080;
-            }
-
-            a, .directory-link {
-                color: #06c;
-            }
-
-            a:hover, .directory-link:hover {
-                text-decoration: underline;
-            }
-
-            iframe {
-                background-color: #fff;
-                border: 1px solid #bbb;
-            }
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-<span class="timestamp">⏱ Refreshed: {{ timestamp }}</span>
-<pre>{{ status }}</pre>
+<body class="bg-body text-body p-4 font-monospace">
+
+<span class="d-block mb-3 text-info">⏱ Refreshed: {{ timestamp }}</span>
+
+<pre class="bg-body-secondary p-3 rounded border overflow-auto">{{ status }}</pre>
+
 </body>
 </html>
