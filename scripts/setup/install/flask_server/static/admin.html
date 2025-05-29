@@ -21,6 +21,11 @@
             transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
         }
 
+        .card:not(.refreshing):not(.shutting-down):not(.disconnected) {
+            border-color: #444 !important;
+            box-shadow: none !important;
+        }
+
         .card-header {
             background-color: #111 !important;
             border-bottom: 1px solid #444 !important;
@@ -51,13 +56,15 @@
             transition: color 0.5s ease-in-out;
         }
 
-        .log-output, pre, iframe {
+        .log-output, pre, .status-output {
             background-color: #000 !important;
             color: #ccc !important;
             padding: 1rem;
             border-radius: 0.5rem;
             white-space: pre-wrap;
             font-family: monospace;
+            height: 250px;
+            overflow-y: auto;
         }
 
         #shutdown-confirm {
@@ -98,7 +105,7 @@
                     <span id="status-offline-msg" class="text-warning small d-none">Server Offline</span>
                 </div>
                 <div class="card-body">
-                    <iframe class="w-100 border rounded" id="status-frame" src="/check-status" style="height: 250px;"></iframe>
+                    <div id="status-output" class="status-output">Loading status...</div>
                     <small class="text-muted d-block mt-2" id="status-refresh-label">
                         Auto-refreshes every 5 seconds.
                     </small>
@@ -140,7 +147,7 @@
     const select = document.getElementById('log-select');
     const logCard = document.getElementById('log-card');
     const statusCard = document.getElementById('status-card');
-    const statusFrame = document.getElementById('status-frame');
+    const statusOutput = document.getElementById('status-output');
     const shutdownForm = document.getElementById('shutdown-form');
     const shutdownCard = document.getElementById('shutdown-card');
     const shutdownConfirm = document.getElementById('shutdown-confirm');
@@ -162,41 +169,31 @@
         }
     }
 
-    select.addEventListener('change', loadLog);
-    window.addEventListener('load', loadLog);
-    setInterval(loadLog, 5000);
+    async function refreshStatus() {
+        try {
+            const res = await fetch('/check-status');
+            if (!res.ok) throw new Error("Status fetch failed");
+            const html = await res.text();
+            statusOutput.innerHTML = html;
+            statusOutput.scrollTop = statusOutput.scrollHeight;
 
-    function refreshStatus() {
-        if (!statusFrame) return;
+            [statusCard, shutdownCard, logCard].forEach(card => card.classList.remove('disconnected'));
+            offlineMsg.classList.add('d-none');
 
-        fetch('/check-status')
-            .then(res => {
-                if (!res.ok) throw new Error("Status fetch failed");
+            statusCard.classList.add('refreshing');
+            refreshLabel.classList.add('glow-text');
+            setTimeout(() => {
+                statusCard.classList.remove('refreshing');
+                refreshLabel.classList.remove('glow-text');
+            }, 1000);
 
-                // Server reachable
-                [statusCard, shutdownCard, logCard].forEach(card => card.classList.remove('disconnected'));
-                offlineMsg.classList.add('d-none');
-
-                // Reload iframe
-                statusCard.classList.add('refreshing');
-                refreshLabel.classList.add('glow-text');
-                statusFrame.onload = () => {
-                    setTimeout(() => {
-                        statusCard.classList.remove('refreshing');
-                        refreshLabel.classList.remove('glow-text');
-                    }, 1000);
-                };
-                statusFrame.src = statusFrame.src;
-            })
-            .catch(err => {
-                [statusCard, shutdownCard, logCard].forEach(card => card.classList.add('disconnected'));
-                offlineMsg.classList.remove('d-none');
-                console.error("Server unreachable:", err.message);
-            });
+        } catch (err) {
+            statusOutput.innerText = '⚠️ Server unreachable';
+            [statusCard, shutdownCard, logCard].forEach(card => card.classList.add('disconnected'));
+            offlineMsg.classList.remove('d-none');
+            console.error("Server unreachable:", err.message);
+        }
     }
-
-    setInterval(refreshStatus, 5000);
-    refreshStatus();
 
     shutdownForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -216,21 +213,27 @@
         }, interval);
 
         try {
-            const res = await fetch('/trigger-shutdown', { method: 'POST' });
+            const res = await fetch('/trigger-shutdown', {method: 'POST'});
             const data = await res.json();
 
             if (!data.status) throw new Error("Missing 'status' in server response");
 
-            if (!data.time) {
-                shutdownConfirm.innerText = `⚠️ ${data.status} (missing timestamp)`;
-            } else {
-                shutdownConfirm.innerText = `🟠 ${data.status} at ${data.time}`;
-            }
+            shutdownConfirm.innerText = data.time
+                ? `🟠 ${data.status} at ${data.time}`
+                : `⚠️ ${data.status} (missing timestamp)`;
 
         } catch (err) {
             shutdownConfirm.innerText = `⚠️ Shutdown request failed: ${err.message}`;
         }
     });
+
+    select.addEventListener('change', loadLog);
+    window.addEventListener('load', () => {
+        loadLog();
+        refreshStatus();
+    });
+    setInterval(loadLog, 5000);
+    setInterval(refreshStatus, 5000);
 </script>
 </body>
 </html>
