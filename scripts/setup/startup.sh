@@ -1,8 +1,9 @@
 #!/bin/bash
 set -eux
 
-# Refresh repo, just in case.
-source "/root/baroboys/scripts/setup/install/repositories.sh"
+# Refresh repos, just in case.
+source "/root/baroboys/scripts/setup/clone_repo.sh"
+source "/root/baroboys/scripts/setup/root/setup_user.sh"
 
 # Refresh services in case updates occurred.
 source "/root/baroboys/scripts/setup/install/services.sh"
