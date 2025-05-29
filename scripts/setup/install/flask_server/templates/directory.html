@@ -55,6 +55,41 @@
                 padding: 1rem;
             }
         }
+
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: #fdfdfd;
+                color: #111;
+            }
+
+            h1, h2 {
+                color: #336;
+            }
+
+            .card, .directory-card, pre {
+                background-color: #f4f4f4;
+                color: #111;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            code {
+                background-color: #eee;
+                color: #004080;
+            }
+
+            a, .directory-link {
+                color: #06c;
+            }
+
+            a:hover, .directory-link:hover {
+                text-decoration: underline;
+            }
+
+            iframe {
+                background-color: #fff;
+                border: 1px solid #bbb;
+            }
+        }
     </style>
 </head>
 <body>
