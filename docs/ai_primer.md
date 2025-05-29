@@ -82,7 +82,7 @@ This model minimizes rebuilds and allows rapid iteration or hotfixes by Git + re
   * `startup.log`
   * `shutdown.log`
 
-Nginx config is managed via `apt_nginx.sh`, and registered as a site via `/etc/nginx/sites-available/vrising-logs`.
+Nginx config is managed via `apt_nginx.sh`, and registered as a site via `/etc/nginx/sites-available/vrising-admin`.
 
 ---
 
