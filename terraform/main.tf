@@ -39,8 +39,8 @@ resource "random_id" "instance_id" {
   byte_length = 8
 }
 
-data "google_compute_image" "baroboys_base" {
-  family  = var.custom_image_family
+data "google_compute_image" "base_game_image" {
+  family  = var.base_game_image
   project = var.project
 }
 
@@ -63,7 +63,7 @@ resource "google_compute_instance" "default" {
 
   boot_disk {
     initialize_params {
-      image = data.google_compute_image.baroboys_base.self_link
+      image = data.google_compute_image.base_game_image.self_link
     }
   }
 
