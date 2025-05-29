@@ -173,8 +173,9 @@
         try {
             const res = await fetch('/check-status');
             if (!res.ok) throw new Error("Status fetch failed");
-            const html = await res.text();
-            statusOutput.innerHTML = html;
+
+            const text = await res.text();
+            statusOutput.innerText = text;
             statusOutput.scrollTop = statusOutput.scrollHeight;
 
             [statusCard, shutdownCard, logCard].forEach(card => card.classList.remove('disconnected'));
@@ -194,6 +195,7 @@
             console.error("Server unreachable:", err.message);
         }
     }
+
 
     shutdownForm.addEventListener('submit', async (e) => {
         e.preventDefault();
