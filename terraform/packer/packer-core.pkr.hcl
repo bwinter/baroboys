@@ -18,7 +18,7 @@ source "googlecompute" "baroboys-core" {
   scopes = ["https://www.googleapis.com/auth/cloud-platform"]
 
   source_image_family      = var.gcp_image_family
-  source_image_project_id  = var.gcp_image_project
+  source_image_project_id  = [var.gcp_image_project]
 
   disk_size    = 20
   image_name   = "baroboys-core-{{timestamp}}"
@@ -36,7 +36,7 @@ build {
   sources = ["source.googlecompute.baroboys-core"]
 
   provisioner "file" {
-    source      = "scripts/setup/clone_repo.sh"
+    source      = "clone_repo.sh"
     destination = "/tmp/clone_repo.sh"
   }
 

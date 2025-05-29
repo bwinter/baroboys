@@ -96,17 +96,6 @@ ssh-iap:
 
 PACKER_DIR := terraform/packer
 PACKER_BUILD_DIR := $(PACKER_DIR)/tmp
-PACKER_VARS := terraform.pkrvars.hcl
-PACKER_VAR_DEFS := variables.pkr.hcl
-PACKER_TEMPLATE := packer.pkr.hcl
-
-BUILD_SCRIPT_DIR := scripts/setup
-BUILD_SCRIPT := clone_repo.sh
-
-# === Packer (Layered, Ordered) ===
-
-PACKER_DIR := terraform/packer
-PACKER_BUILD_DIR := $(PACKER_DIR)/tmp
 PACKER_LOG_DIR := $(PACKER_BUILD_DIR)/logs
 PACKER_VARS := terraform.pkrvars.hcl
 PACKER_VAR_DEFS := variables.pkr.hcl
@@ -139,6 +128,7 @@ $(foreach layer,$(PACKER_LAYERS),$(eval $(call packer-layer-target,$(layer))))
 
 .PHONY: build-all
 build-all: build-core build-steam build-game
+
 
 clean:
 	# Delete old custom images
