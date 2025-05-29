@@ -43,23 +43,25 @@ def ping():
 
 @app.route("/trigger-shutdown", methods=["POST"])
 def trigger_shutdown():
-    subprocess.Popen(["systemctl", "start", "shutdown.service"])
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-    return f"<h2>🟠 Shutdown triggered at {now}</h2>"
+    try:
+        subprocess.Popen(["systemctl", "start", "shutdown.service"])
+        now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+        return {"status": "Shutdown triggered", "time": now}, 200
+    except Exception:
+        return {"status": "Shutdown Failed"}, 500
 
 
 @app.route("/check-status")
 def check_status():
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-
     try:
         output = subprocess.check_output(
             ["systemctl", "status", "vrising.service", "--no-pager"],
             stderr=subprocess.STDOUT,
             text=True
         )
-    except subprocess.CalledProcessError as e:
-        output = e.output or "⚠️ Failed to retrieve status."
+    except Exception:
+        output = "⚠️ Failed to retrieve status."
 
     return render_template("status.html", timestamp=now, status=output)
 

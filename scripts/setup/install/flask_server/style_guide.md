@@ -1,123 +1,105 @@
-# 🎨 Baroboys UI Style Guide
+# ✅ Baroboys Admin Panel – Style Guide (Cyborg Theme, Finalized)
 
-**Darkly Theme + Bootstrap 5.3**
-*Last updated: May 2025*
-
-This guide defines the visual language and layout rules for Baroboys’ Admin Interface using the Bootswatch “Darkly” theme and vanilla Bootstrap 5 utilities.
+This guide reflects the final visual system for the admin panel, optimized for Bootswatch **Cyborg**, with custom overrides for improved contrast and layout clarity.
 
 ---
 
-## 📄 Page Structure
+## 🎨 Theme Foundation
 
-| Area      | Class Example                    | Notes                       |
-| --------- | -------------------------------- | --------------------------- |
-| `body`    | `bg-dark text-light py-4`        | Universal base styling      |
-| Container | `<div class="container">`        | Wraps page content          |
-| Headings  | `text-info fw-bold mb-4`         | Consistent title color      |
-| Sections  | `.row.g-4 > .col-md-6/.col-lg-4` | Responsive card grid layout |
+| Element         | Class / Style                           | Notes                                 |
+| --------------- | --------------------------------------- | ------------------------------------- |
+| Page background | `html, body { background-color: #000 }` | Fully black — eliminates gray bleed   |
+| Cards           | `.card.bg-black` (via custom style)     | Use `#111` for darker contrast        |
+| Header color    | `.text-info` overridden to `#00bcd4`    | No purple — clear cool tone           |
+| Text muted      | `.text-muted` → `#999`                  | Adjusted for better contrast on black |
+
+**Container behavior:** use `.container`, or `.container-fluid` if edge-to-edge layout is needed.
 
 ---
 
-## 🧱 Cards
+## 🧱 Card Structure
 
-### ✅ General Rules
+Use native Bootstrap card markup for consistent layout and automatic header separators.
 
-* Use **`.card.bg-secondary.text-light.shadow-sm`** as the default card style.
-* Add `border-*` **only for meaning** (e.g. warning, success).
-* No custom backgrounds or inline styles unless absolutely needed (like fixed iframe height).
-
-### 💡 Example
+### 🔲 Markup Example
 
 ```html
-<div class="card bg-secondary text-light shadow-sm border-success">
+<div class="card border-warning">
   <div class="card-header fw-bold">
-    <i class="bi bi-bar-chart-line me-2"></i> Server Status
+    <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i> Graceful Shutdown
   </div>
-  <div class="card-body">
-    <iframe src="/check-status" class="w-100 rounded border" style="height: 250px;"></iframe>
+  <div class="card-body text-center">
+    <p class="small text-muted">Safely stop the VRising server.</p>
+    <button class="btn btn-outline-warning">Trigger Shutdown</button>
   </div>
 </div>
 ```
 
----
-
-## 🎯 Color Usage
-
-| Element     | Class Example                       | Use Case                     |
-| ----------- | ----------------------------------- | ---------------------------- |
-| Card Border | `border-warning` / `border-success` | For important state cues     |
-| Buttons     | `btn-outline-warning`               | Match the card color         |
-| Links       | `link-light` / `text-info`          | High-contrast on dark bg     |
-| `code` tags | `bg-dark text-light px-2`           | For inline technical content |
-
-Avoid `bg-*` or `text-*` directly on `.card-body` or `.card-header`.
+| Element        | Rule                                        |
+| -------------- | ------------------------------------------- |
+| `.card`        | Use `bg: #111`, border color (`border-*`)   |
+| `.card-header` | Required — adds a clean visual divider      |
+| `.card-body`   | Optional text centering for layout symmetry |
+| Buttons        | Use `btn-outline-*` for clean hierarchy     |
 
 ---
 
-## 🔗 Links
+## 🔗 Link & Button Styling
 
-* Use `link-light` inside dark cards
-* Use `text-info` for standalone links (e.g. return to panel)
-* Add icons before text using Bootstrap Icons or emoji
-  Example:
-
-  ```html
-  <a href="/" class="link-light"><i class="bi bi-tools me-2"></i>Admin Panel</a>
-  ```
+| Rule                    | Class                                    |
+| ----------------------- | ---------------------------------------- |
+| Header links            | `text-info`, but overridden to `#00bcd4` |
+| Internal action buttons | `btn btn-outline-*`                      |
+| Avoid `text-white`      | Let the theme/override handle contrast   |
 
 ---
 
-## 🧭 Icons
+## 🧪 Status + Logs Display
 
-| Icon Source | Use For       | Example                       |
-| ----------- | ------------- | ----------------------------- |
-| Bootstrap   | UI Components | `<i class="bi bi-save2"></i>` |
-| Emoji       | Navigation    | 🧭 🔧 🛠                      |
+| Component   | Style                                                   |
+| ----------- | ------------------------------------------------------- |
+| `iframe`    | `background: #000`, `color: #ccc`                       |
+| Logs area   | `.log-output` block styled with monospace font, dark bg |
+| Form labels | Use `.form-label` + `color: #bbb` override              |
 
-Icons go before text, with `.me-2` for spacing.
-
----
-
-## 🖥 Layout Grid
-
-| Screen Size | Layout            |
-| ----------- | ----------------- |
-| `md` & up   | 2–3 cards per row |
-| `sm` & down | Stack vertically  |
-
-Use `.row.g-4` with `.col-md-6`, `.col-lg-4` inside to maintain structure.
+Log viewer uses JS to dynamically load logs and inject HTML into the `#log-output` block.
 
 ---
 
-## 🧪 Special Components
+## 🧭 Responsive Layout
 
-### 🔄 Status Panel (`status.html`)
-
-* Use a monospace font on the page
-* Timestamp:
-
-  ```html
-  <p class="text-info">⏱ Refreshed: <code class="bg-dark text-light px-2 rounded">{{ timestamp }}</code></p>
-  ```
-* Status content:
-
-  ```html
-  <div class="bg-dark border rounded p-3 overflow-auto" style="white-space: pre-wrap;">{{ status }}</div>
-  ```
-
-### 🚫 404 Page
-
-* Full viewport centering using `vh-100` and `d-flex align-items-center justify-content-center`
-* Minimal layout in a card with clear return links
+| View Width | Card Layout                                    |
+| ---------- | ---------------------------------------------- |
+| `md`+      | Use `.col-md-4` / `.col-md-8` for side-by-side |
+| `sm`       | Cards stack vertically                         |
 
 ---
 
-## ✅ Summary Guidelines
+## 🧨 Summary of Visual Identity
 
-| ✅ Do                               | ❌ Avoid                                |
-| ---------------------------------- | -------------------------------------- |
-| Use `.bg-dark .text-light` on body | Avoid inline styles for colors         |
-| Use `.bg-secondary` for cards      | Avoid `bg-warning`/`bg-light` on cards |
-| Use `border-*` for meaning only    | Don’t color every card differently     |
-| Use Bootstrap icons consistently   | Don’t mix icon styles randomly         |
-| Use `.shadow-sm` for card depth    | Avoid flat designs on dark backgrounds |
+* 🎯 Deep black theme with dark-gray cards (`#111`)
+* ✨ Cool blue accents (title, icons) for clarity
+* 🧱 Structured cards with visual header/body separation
+* 🛠️ Focused on server control, clarity, and terminal legibility
+
+---
+
+# 🎨 Updated DALL·E Prompt: Admin Panel Dashboard (Cyborg Style)
+
+> “Design a modern, dark-mode admin panel for managing a multiplayer game server. This is a single-page dashboard, not a full website.
+>
+> The interface must support:
+>
+> * A graceful shutdown button (styled as a warning)
+> * A live server status area (like a terminal or iframe-style block)
+> * A log viewer with dropdown to switch logs and a scrollable output area
+>
+> Visual tone:
+>
+> * Inspired by the Bootswatch Cyborg theme
+> * Pure black background (`#000`), deep gray cards (`#111`)
+> * Clear borders and crisp text contrast
+> * Minimal layout, no bright colors or visual clutter
+> * Terminal and devops-inspired, clean icons and modern fonts
+>
+> Present as a clean web-based dashboard. Do not include layout hints or wireframes — let the UI components suggest structure naturally.”
