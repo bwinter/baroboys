@@ -40,6 +40,8 @@ build {
       "sudo /root/baroboys/scripts/setup/install/repositories.sh",
       "echo '🔧 Running services.sh'",
       "sudo /root/baroboys/scripts/setup/install/services.sh",
+      "echo '🔧 Running apt_nginx.sh'",
+      "sudo /root/baroboys/scripts/setup/install/apt_nginx.sh",
       "echo '🧹 Running autoremove'",
       "sudo apt-get -yq autoremove"
     ]
