@@ -1,58 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>🧭 Site Directory</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <title>🛡 Baroboys Directory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/darkly/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
-<body class="bg-body text-body p-4">
-
-<h1 class="text-center text-primary mb-4">🧭 Site Directory</h1>
-
+<body class="bg-dark text-light py-4">
 <div class="container">
-    <div class="bg-body-secondary rounded p-3 mb-4 shadow-sm">
-        <h2 class="h6 text-info-emphasis">🛠 Admin</h2>
-        <ul class="list-unstyled mb-0">
-            <li>🧭 <a href="/" class="text-decoration-none">Admin Panel</a></li>
-            <li>📂 <a href="/directory" class="text-decoration-none">Site Directory</a></li>
-            <li>📡 <a href="/ping" class="text-decoration-none">Health Check</a></li>
-        </ul>
-    </div>
+    <h1 class="text-info text-center fw-bold mb-5">
+        <i class="bi bi-shield-lock me-2"></i> Admin Directory
+    </h1>
 
-    <div class="bg-body-secondary rounded p-3 mb-4 shadow-sm">
-        <h2 class="h6 text-info-emphasis">🎮 Game Control</h2>
-        <ul class="list-unstyled mb-0">
-            <li>📊 <a href="/check-status" class="text-decoration-none">Live Server Status</a></li>
-            <li>🟠 <a href="/trigger-shutdown" class="text-decoration-none">Trigger Graceful Shutdown (POST)</a></li>
-        </ul>
-    </div>
+    <div class="row g-4">
+        <!-- Admin Links -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card bg-secondary text-light shadow-sm">
+                <div class="card-header fw-bold">
+                    <i class="bi bi-gear-fill me-2"></i> Admin
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="bi bi-shield-lock me-2"></i><a href="/" class="link-light">Admin Panel</a></li>
+                        <li><i class="bi bi-folder2-open me-2"></i><a href="/directory" class="link-light">Site Directory</a></li>
+                        <li><i class="bi bi-wifi me-2"></i><a href="/ping" class="link-light">Health Check</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-    <div class="bg-body-secondary rounded p-3 mb-4 shadow-sm">
-        <h2 class="h6 text-info-emphasis">🧾 Game Logs</h2>
-        <ul class="list-unstyled mb-0">
-            <li>📄 <a href="/logs/tail/VRisingServer.log" class="text-decoration-none">Tail VRisingServer.log</a></li>
-            <li>📄 <a href="/logs/tail/startup.log" class="text-decoration-none">Tail startup.log</a></li>
-            <li>📄 <a href="/logs/tail/shutdown.log" class="text-decoration-none">Tail shutdown.log</a></li>
-        </ul>
-    </div>
+        <!-- Game Control -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card bg-secondary text-light shadow-sm">
+                <div class="card-header fw-bold">
+                    <i class="bi bi-controller me-2"></i> Game Control
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="bi bi-bar-chart-line me-2"></i><a href="/check-status" class="link-light">Live Server Status</a></li>
+                        <li><i class="bi bi-power me-2"></i><a href="/trigger-shutdown" class="link-light">Trigger Graceful Shutdown</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-    <div class="bg-body-secondary rounded p-3 mb-4 shadow-sm">
-        <h2 class="h6 text-info-emphasis">🌀 System Logs</h2>
-        <ul class="list-unstyled mb-0">
-            <li>📜 <a href="/logs/webhook" class="text-decoration-none">Webhook Server Logs</a></li>
-            <li>📜 <a href="/logs/systemd/shutdown" class="text-decoration-none">Shutdown Service Logs</a></li>
-        </ul>
-    </div>
+        <!-- Game Logs -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card bg-secondary text-light shadow-sm">
+                <div class="card-header fw-bold">
+                    <i class="bi bi-clipboard-data me-2"></i> Game Logs
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="bi bi-file-earmark-text me-2"></i><a href="/logs/tail/VRisingServer.log" class="link-light">VRisingServer.log</a></li>
+                        <li><i class="bi bi-file-earmark-text me-2"></i><a href="/logs/tail/startup.log" class="link-light">startup.log</a></li>
+                        <li><i class="bi bi-file-earmark-text me-2"></i><a href="/logs/tail/shutdown.log" class="link-light">shutdown.log</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-    <div class="bg-body-secondary rounded p-3 mb-4 shadow-sm">
-        <h2 class="h6 text-info-emphasis">🌐 Nginx Logs</h2>
-        <ul class="list-unstyled mb-0">
-            <li>📘 <a href="/logs/nginx/access" class="text-decoration-none">Nginx Access Log</a></li>
-            <li>📕 <a href="/logs/nginx/error" class="text-decoration-none">Nginx Error Log</a></li>
-        </ul>
+        <!-- System Logs -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card bg-secondary text-light shadow-sm">
+                <div class="card-header fw-bold">
+                    <i class="bi bi-cpu me-2"></i> System Logs
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="bi bi-terminal me-2"></i><a href="/logs/webhook" class="link-light">Webhook Server Logs</a></li>
+                        <li><i class="bi bi-terminal me-2"></i><a href="/logs/systemd/shutdown" class="link-light">Shutdown Service Logs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nginx Logs -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card bg-secondary text-light shadow-sm">
+                <div class="card-header fw-bold">
+                    <i class="bi bi-globe2 me-2"></i> Nginx Logs
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="bi bi-journal-text me-2"></i><a href="/logs/nginx/access" class="link-light">Nginx Access Log</a></li>
+                        <li><i class="bi bi-exclamation-triangle me-2"></i><a href="/logs/nginx/error" class="link-light">Nginx Error Log</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
 </body>
 </html>
