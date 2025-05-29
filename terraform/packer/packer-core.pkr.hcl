@@ -1,0 +1,60 @@
+# === packer-core.pkr.hcl ===
+
+packer {
+  required_plugins {
+    googlecompute = {
+      version = ">= 1.1.9"
+      source  = "github.com/hashicorp/googlecompute"
+    }
+  }
+}
+
+source "googlecompute" "baroboys-core" {
+  project_id   = var.project
+  zone         = var.zone
+  machine_type = var.machine_type
+
+  service_account_email = var.service_account_email
+  scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+
+  source_image_family      = var.gcp_image_family
+  source_image_project_id  = var.gcp_image_project
+
+  disk_size    = 20
+  image_name   = "baroboys-core-{{timestamp}}"
+  image_family = "baroboys-core"
+
+  ssh_username = "packer"
+
+  image_labels = {
+    role = "baroboys-core"
+  }
+}
+
+build {
+  name    = "baroboys-core-image"
+  sources = ["source.googlecompute.baroboys-core"]
+
+  provisioner "file" {
+    source      = "scripts/setup/clone_repo.sh"
+    destination = "/tmp/clone_repo.sh"
+  }
+
+  provisioner "shell" {
+    inline = [
+      "sudo apt-get update",
+      "sudo apt-get install -yq git",
+      "sudo chmod +x /tmp/clone_repo.sh",
+      "sudo /tmp/clone_repo.sh",
+      "sudo /root/baroboys/scripts/setup/install/apt_core.sh",
+      "sudo /root/baroboys/scripts/setup/install/apt_gcloud.sh",
+      "sudo /root/baroboys/scripts/setup/install/apt_nginx.sh",
+      "sudo apt-get -yq autoremove"
+    ]
+  }
+}
+
+
+
+
+
