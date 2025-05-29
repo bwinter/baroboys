@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Site Directory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { background: #111; color: #ccc; font-family: sans-serif; padding: 2em; }
+        h1 { color: #6cf; }
+        ul { list-style: none; padding: 0; }
+        li { margin: 0.5em 0; }
+        a { color: #fff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<h1>🧭 Site Directory</h1>
+<ul>
+    {% for path, label in pages %}
+    <li><a href="{{ path }}">{{ label }}</a></li>
+    {% endfor %}
+</ul>
+</body>
+</html>
