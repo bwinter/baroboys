@@ -35,8 +35,6 @@ build {
   name = "baroboys-core-image"
   sources = ["source.googlecompute.baroboys-core"]
 
-  on_failure = "cleanup"
-
   provisioner "file" {
     source      = "clone_repo.sh"
     destination = "/tmp/clone_repo.sh"
