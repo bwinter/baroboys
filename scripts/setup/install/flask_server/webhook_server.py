@@ -1,4 +1,5 @@
 # webhook_server.py
+
 import os
 import subprocess
 from datetime import datetime, timezone
@@ -12,6 +13,19 @@ LOG_DIR = "/home/bwinter_sc81/baroboys/VRising/logs"
 app = Flask(__name__, template_folder=TEMPLATE_DIR)
 
 
+def tail_system_log(command: list[str], label: str):
+    try:
+        output = subprocess.check_output(command, text=True, stderr=subprocess.STDOUT)
+        lines = output.strip().splitlines()[-100:]
+        return Response(
+            f"<pre style='color:#ccc; background:#111; padding:1em;'>"
+            f"{label}\n\n" + "\n".join(lines) + "</pre>",
+            mimetype="text/html"
+        )
+    except Exception as e:
+        return f"Error reading {label}: {e}", 500
+
+
 @app.route("/")
 def serve_admin():
     return send_from_directory(STATIC_DIR, "admin.html")
@@ -20,12 +34,6 @@ def serve_admin():
 @app.route("/ping")
 def ping():
     return "pong", 200
-
-
-@app.errorhandler(404)
-def not_found(e):
-    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-    return render_template("404.html", path=request.path, timestamp=timestamp), 404
 
 
 @app.route("/trigger-shutdown", methods=["POST"])
@@ -74,6 +82,32 @@ def tail_log(filename):
     )
 
 
+@app.route("/logs/nginx/access")
+def log_nginx_access():
+    return tail_system_log(["tail", "-n", "100", "/var/log/nginx/access.log"], "Nginx Access Log")
+
+
+@app.route("/logs/nginx/error")
+def log_nginx_error():
+    return tail_system_log(["tail", "-n", "100", "/var/log/nginx/error.log"], "Nginx Error Log")
+
+
+@app.route("/logs/webhook")
+def log_webhook():
+    return tail_system_log(
+        ["journalctl", "-u", "baroboys-webhook.service", "--no-pager", "-n", "100"],
+        "Webhook Server Logs"
+    )
+
+
+@app.route("/logs/systemd/shutdown")
+def log_shutdown_service():
+    return tail_system_log(
+        ["journalctl", "-u", "shutdown.service", "--no-pager", "-n", "100"],
+        "Shutdown Service Logs"
+    )
+
+
 @app.route("/directory")
 def directory():
     pages = [
@@ -84,6 +118,10 @@ def directory():
         ("/logs/tail/VRisingServer.log", "Tail VRisingServer.log"),
         ("/logs/tail/startup.log", "Tail startup.log"),
         ("/logs/tail/shutdown.log", "Tail shutdown.log"),
+        ("/logs/nginx/access", "Nginx Access Log"),
+        ("/logs/nginx/error", "Nginx Error Log"),
+        ("/logs/webhook", "Webhook Server Logs"),
+        ("/logs/systemd/shutdown", "Shutdown Service Logs"),
         ("/ping", "Health Check"),
     ]
     return render_template("directory.html", pages=pages)
