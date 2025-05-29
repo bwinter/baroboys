@@ -1,8 +1,0 @@
-[Unit]
-Description=Baroboys Provisioning Setup
-After=network.target
-
-[Service]
-Type=oneshot
-ExecStart=/root/baroboys/scripts/setup/bootstrap.sh
-RemainAfterExit=yes

@@ -26,10 +26,7 @@ source "googlecompute" "baroboys-base" {
 
   ssh_username = "packer"
 
-  image_labels = {
-    source = "packer"
-    role   = "baroboys-base"
-  }
+  # pause_before_connect = "5m"  # 🟠 Uncomment for manual SSH debugging
 }
 
 build {
@@ -42,14 +39,73 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = [
-      "DEBIAN_FRONTEND=noninteractive"
-    ]
     inline = [
+      "echo '🔧 [STEP] Installing Git and Cloning Repo...'",
       "sudo apt-get install -yq git",
       "sudo chmod +x /tmp/clone_repo.sh",
       "sudo /tmp/clone_repo.sh",
-      "sudo /root/baroboys/scripts/setup/bootstrap.sh"
+      "test -d /root/baroboys && echo '✅ Repo cloned' || { echo '❌ Clone failed'; exit 1; }"
+    ]
+  }
+
+  provisioner "shell" {
+    inline = [
+      "echo '🔧 [STEP] apt_core.sh...'",
+      "sudo /root/baroboys/scripts/setup/install/apt_core.sh",
+      "command -v curl >/dev/null && echo '✅ curl found' || { echo '❌ curl missing'; exit 1; }"
+    ]
+  }
+
+  provisioner "shell" {
+    inline = [
+      "echo '🔧 [STEP] apt_gcloud.sh...'",
+      "sudo /root/baroboys/scripts/setup/install/apt_gcloud.sh",
+      "command -v gcloud >/dev/null && echo '✅ gcloud found' || { echo '❌ gcloud missing'; exit 1; }"
+    ]
+  }
+
+  provisioner "shell" {
+    inline = [
+      "echo '🔧 [STEP] apt_steam.sh...'",
+      "sudo /root/baroboys/scripts/setup/install/apt_steam.sh",
+      "command -v steamcmd >/dev/null && echo '✅ steamcmd found' || { echo '❌ steamcmd missing'; exit 1; }"
+    ]
+  }
+
+  provisioner "shell" {
+    inline = [
+      "echo '🔧 [STEP] apt_wine.sh...'",
+      "sudo /root/baroboys/scripts/setup/install/apt_wine.sh",
+      "wine --version && echo '✅ wine installed' || { echo '❌ wine missing'; exit 1; }"
+    ]
+  }
+
+  provisioner "shell" {
+    inline = [
+      "echo '🔧 [STEP] apt_nginx.sh...'",
+      "sudo /root/baroboys/scripts/setup/install/apt_nginx.sh",
+      "test -f /etc/nginx/sites-available/vrising-logs && echo '✅ nginx config installed' || { echo '❌ nginx setup failed'; exit 1; }"
+    ]
+  }
+
+  provisioner "shell" {
+    inline = [
+      "echo '🔧 [STEP] Re-syncing baroboys repo...'",
+      "sudo /root/baroboys/scripts/setup/install/repositories.sh"
+    ]
+  }
+
+  provisioner "shell" {
+    inline = [
+      "echo '🔧 [STEP] Installing systemd services...'",
+      "sudo /root/baroboys/scripts/setup/install/services.sh"
+    ]
+  }
+
+  provisioner "shell" {
+    inline = [
+      "echo '🧹 [STEP] Cleaning up...'",
+      "sudo apt-get -yq autoremove"
     ]
   }
 }
