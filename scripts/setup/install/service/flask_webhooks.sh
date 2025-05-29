@@ -1,14 +1,9 @@
 #!/bin/bash
 set -eux
 
-# Install Python and Flask if needed
+# Install system Python and Flask via apt (safe under Debian 12 policy)
 apt update
-apt install -y python3-pip
-
-# Only install Flask if not already available
-if ! python3 -c "import flask" &>/dev/null; then
-  pip3 install flask
-fi
+apt install -y python3-flask
 
 # Systemd unit installation
 cp "/root/baroboys/scripts/setup/install/scripts/systemd/baroboys-webhook.service" \
