@@ -37,6 +37,15 @@
             box-shadow: 0 0 12px 5px rgba(255, 165, 0, 0.7) !important;
         }
 
+        .card.disconnected {
+            border-color: #ffa500 !important;
+            box-shadow: 0 0 10px 4px rgba(255, 165, 0, 0.6) !important;
+        }
+
+        #status-offline-msg {
+            font-weight: bold;
+        }
+
         #status-refresh-label.glow-text {
             color: #00ff90 !important;
             transition: color 0.5s ease-in-out;
@@ -84,12 +93,12 @@
 
         <div class="col-md-8">
             <div class="card text-light shadow-sm border-success" id="status-card">
-                <div class="card-header fw-bold d-flex align-items-center">
-                    <i class="bi bi-bar-chart-line me-2"></i> Server Status
+                <div class="card-header fw-bold d-flex align-items-center justify-content-between">
+                    <span><i class="bi bi-bar-chart-line me-2"></i> Server Status</span>
+                    <span id="status-offline-msg" class="text-warning small d-none">Server Offline</span>
                 </div>
                 <div class="card-body">
-                    <iframe class="w-100 border rounded" id="status-frame" src="/check-status"
-                            style="height: 250px;"></iframe>
+                    <iframe class="w-100 border rounded" id="status-frame" src="/check-status" style="height: 250px;"></iframe>
                     <small class="text-muted d-block mt-2" id="status-refresh-label">
                         Auto-refreshes every 5 seconds.
                     </small>
@@ -136,6 +145,7 @@
     const shutdownCard = document.getElementById('shutdown-card');
     const shutdownConfirm = document.getElementById('shutdown-confirm');
     const refreshLabel = document.getElementById('status-refresh-label');
+    const offlineMsg = document.getElementById('status-offline-msg');
 
     async function loadLog() {
         logCard.classList.add('refreshing');
@@ -156,19 +166,37 @@
     window.addEventListener('load', loadLog);
     setInterval(loadLog, 5000);
 
-    setInterval(() => {
-        if (statusFrame) {
-            statusCard.classList.add('refreshing');
-            refreshLabel.classList.add('glow-text');
-            statusFrame.onload = () => {
-                setTimeout(() => {
-                    statusCard.classList.remove('refreshing');
-                    refreshLabel.classList.remove('glow-text');
-                }, 1000);
-            };
-            statusFrame.src = statusFrame.src;
-        }
-    }, 5000);
+    function refreshStatus() {
+        if (!statusFrame) return;
+
+        fetch('/check-status')
+            .then(res => {
+                if (!res.ok) throw new Error("Status fetch failed");
+
+                // Server reachable
+                [statusCard, shutdownCard, logCard].forEach(card => card.classList.remove('disconnected'));
+                offlineMsg.classList.add('d-none');
+
+                // Reload iframe
+                statusCard.classList.add('refreshing');
+                refreshLabel.classList.add('glow-text');
+                statusFrame.onload = () => {
+                    setTimeout(() => {
+                        statusCard.classList.remove('refreshing');
+                        refreshLabel.classList.remove('glow-text');
+                    }, 1000);
+                };
+                statusFrame.src = statusFrame.src;
+            })
+            .catch(err => {
+                [statusCard, shutdownCard, logCard].forEach(card => card.classList.add('disconnected'));
+                offlineMsg.classList.remove('d-none');
+                console.error("Server unreachable:", err.message);
+            });
+    }
+
+    setInterval(refreshStatus, 5000);
+    refreshStatus();
 
     shutdownForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -188,15 +216,13 @@
         }, interval);
 
         try {
-            const res = await fetch('/trigger-shutdown', {method: 'POST'});
+            const res = await fetch('/trigger-shutdown', { method: 'POST' });
             const data = await res.json();
 
-            if (!data.status) {
-                throw new Error("Missing 'status' in server response");
-            }
+            if (!data.status) throw new Error("Missing 'status' in server response");
 
             if (!data.time) {
-                shutdownConfirm.innerText = `⚠️ ${data.status} see logs`;
+                shutdownConfirm.innerText = `⚠️ ${data.status} (missing timestamp)`;
             } else {
                 shutdownConfirm.innerText = `🟠 ${data.status} at ${data.time}`;
             }
