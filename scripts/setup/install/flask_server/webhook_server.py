@@ -1,3 +1,4 @@
+# webhook_server.py
 import os
 import subprocess
 from datetime import datetime, timezone
@@ -71,6 +72,27 @@ def tail_log(filename):
         "</pre>",
         mimetype="text/html"
     )
+
+
+@app.route("/directory")
+def directory():
+    pages = [
+        ("/", "Admin Panel"),
+        ("/directory", "Site Directory"),
+        ("/check-status", "Live Server Status"),
+        ("/trigger-shutdown", "Trigger Graceful Shutdown (POST)"),
+        ("/logs/tail/VRisingServer.log", "Tail VRisingServer.log"),
+        ("/logs/tail/startup.log", "Tail startup.log"),
+        ("/logs/tail/shutdown.log", "Tail shutdown.log"),
+        ("/ping", "Health Check"),
+    ]
+    return render_template("directory.html", pages=pages)
+
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("404.html", path=request.path,
+                           timestamp=datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")), 404
 
 
 if __name__ == "__main__":
