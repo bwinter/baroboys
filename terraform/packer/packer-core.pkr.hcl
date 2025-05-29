@@ -21,8 +21,8 @@ source "googlecompute" "baroboys-core" {
   source_image_project_id  = [var.gcp_image_project]
 
   disk_size    = 20
-  image_name   = "baroboys-core-{{timestamp}}"
-  image_family = "baroboys-core"
+  image_name   = var.base_core_image
+  image_family = var.base_core_image
 
   ssh_username = "packer"
 

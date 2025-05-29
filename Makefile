@@ -72,8 +72,8 @@ mode:
 	@grep ACTIVE_GAME $(ACTIVE_GAME_FILE) | cut -d= -f2
 
 # === Save ===
-.PHONY: save
-save:
+.PHONY: save-and-shutdown
+save-and-shutdown:
 	gcloud compute ssh $(USER)@$(INSTANCE) \
 		--project=$(PROJECT) \
 		--zone=$(ZONE) \
@@ -94,80 +94,47 @@ ssh-iap:
 
 # === Packer ===
 
-PACKER_DIR := terraform/packer
-PACKER_BUILD_DIR := $(PACKER_DIR)/tmp
-PACKER_LOG_DIR := $(PACKER_BUILD_DIR)/logs
-PACKER_VARS := terraform.pkrvars.hcl
-PACKER_VAR_DEFS := variables.pkr.hcl
-PACKER_LAYERS := core steam game
+.PHONY: build-core build-steam build-game build-all
 
-BUILD_SCRIPT_DIR := scripts/setup
-BUILD_SCRIPT := clone_repo.sh
+build-core:
+	./scripts/packer_build.sh core
 
-define packer-layer-target
-build-$(1):
-	mkdir -p "$(PACKER_BUILD_DIR)/.secrets"
-	cp ".secrets/europan-world-terraform-key.json" "$(PACKER_BUILD_DIR)/.secrets/"
+build-steam:
+	./scripts/packer_build.sh steam
 
-	mkdir -p "$(PACKER_LOG_DIR)"
-	mkdir -p "$(PACKER_BUILD_DIR)/"
+build-game:
+	./scripts/packer_build.sh game
 
-	# Sync variables and templates
-	cp -f "$(BUILD_SCRIPT_DIR)/$(BUILD_SCRIPT)" "$(PACKER_BUILD_DIR)/$(BUILD_SCRIPT)"
-	cp -f "$(PACKER_DIR)/packer-$(1).pkr.hcl" "$(PACKER_BUILD_DIR)/packer.pkr.hcl"
-	cp -f "$(TF_VAR_FILE)" "$(PACKER_BUILD_DIR)/$(PACKER_VARS)"
-	cp -f "$(TF_VAR_DEF_FILE)" "$(PACKER_BUILD_DIR)/$(PACKER_VAR_DEFS)"
-
-	cd "$(PACKER_BUILD_DIR)" && \
-		packer init . && \
-		packer build -on-error=cleanup -var-file="$(PACKER_VARS)" . \
-		| tee "$(PACKER_LOG_DIR)/packer-$(1)-$(USER)-$$(date +%Y%m%d-%H%M).log"
-endef
-
-$(foreach layer,$(PACKER_LAYERS),$(eval $(call packer-layer-target,$(layer))))
-
-.PHONY: build-all
 build-all: build-core build-steam build-game
 
-
+.PHONY: clean
 clean:
-	# Delete old custom images
-	gcloud compute images list \
-	  --project=europan-world \
-	  --no-standard-images \
-	  --filter="name~^baroboys-base-" \
-	  --sort-by="~creationTimestamp" \
-	  --format="value(name)" | tail -n +3 | \
-	  xargs -I {} gcloud compute images delete {} --project=europan-world --quiet
-
-	# Delete any leftover Packer-created disks
-	for zone in $$(gcloud compute disks list --filter="name~'packer-'" --format="value(name,zone)" | awk '{print $$2}' | sort -u); do \
-	  for disk in $$(gcloud compute disks list --filter="name~'packer-'" --format="value(name,zone)" | grep "$$zone" | awk '{print $$1}'); do \
-	    echo "🗑 Deleting disk $$disk in $$zone..."; \
-	    gcloud compute disks delete "$$disk" --zone="$$zone" --quiet; \
-	  done; \
-	done
+	./scripts/gcp_review_and_cleanup.sh
 
 # === Help ===
 .PHONY: help
 help:
 	@echo "Common targets:"
-	@echo "  make init           - Initialize Terraform"
-	@echo "  make plan           - Show Terraform plan"
-	@echo "  make apply          - Apply Terraform (build VM)"
-	@echo "  make destroy        - Save + destroy VM"
-	@echo "  make refresh        - Refresh Terraform state"
 	@echo ""
-	@echo "  make switch         - Switch game mode (.envrc)"
-	@echo "  make mode           - Show current game mode"
+	@echo "Terraform:"
+	@echo "  make init                   - Initialize Terraform"
+	@echo "  make plan                   - Show Terraform plan"
+	@echo "  make apply                  - Apply Terraform (build VM)"
+	@echo "  make destroy                - Save + destroy VM"
+	@echo "  make refresh                - Refresh Terraform state"
 	@echo ""
-	@echo "  make save           - Save game state (via SSH)"
+	@echo "Game Mode:"
+	@echo "  make switch                 - Switch game mode (.envrc)"
+	@echo "  make mode                   - Show current game mode"
 	@echo ""
-	@echo "  make ssh            - SSH into VM"
-	@echo "  make ssh-iap        - SSH using IAP tunnel"
+	@echo "Control:"
+	@echo "  make save-and-shutdown      - Save game state by triggering shutdown"
+	@echo "  make ssh                    - SSH into VM"
+	@echo "  make ssh-iap                - SSH using IAP tunnel"
 	@echo ""
-	@echo "  make build-core      - Build base image (core setup)"
-	@echo "  make build-steam     - Build Steam dependencies layer"
-	@echo "  make build-game      - Build game layer"
-	@echo "  make build-all       - Build all Packer image layers"
-	@echo "  make clean          - Clean Packer image"
+	@echo "Packer Builds:"
+	@echo "  make build-core             - Build base image (core setup)"
+	@echo "  make build-steam            - Build Steam dependencies layer"
+	@echo "  make build-game             - Build game layer"
+	@echo "  make build-all              - Build all Packer image layers"
+	@echo "  make clean                  - Review usage and delete Packer images and disks"

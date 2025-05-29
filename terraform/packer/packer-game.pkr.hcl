@@ -20,8 +20,8 @@ source "googlecompute" "baroboys-game" {
   source_image = var.base_steam_image
 
   disk_size    = 20
-  image_name   = "baroboys-game-{{timestamp}}"
-  image_family = var.custom_image_family
+  image_name   = var.base_game_image
+  image_family = var.base_game_image
 
   ssh_username = "packer"
 

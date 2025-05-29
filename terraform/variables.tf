@@ -68,8 +68,20 @@ variable "gcp_image_project" {
   default     = "debian-cloud"
 }
 
-variable "custom_image_family" {
-  description = "Custom Image's Family"
+variable "base_core_image" {
+  description = "Core image used for the Steam layer"
   type        = string
-  default     = "baroboys-base"
+  default     = "baroboys-core"
+}
+
+variable "base_steam_image" {
+  description = "Steam image used for the Game layer"
+  type        = string
+  default     = "baroboys-steam"
+}
+
+variable "base_game_image" {
+  description = "Game image used for Terraform VM provisioning"
+  type        = string
+  default     = "baroboys-game"
 }
