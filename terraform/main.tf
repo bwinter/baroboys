@@ -1,31 +1,9 @@
 /**
- * Copyright 2018 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Baroboys Terraform Config – GCP VM + Firewall + Cleanup Hardened
+ * Author: Brendan / ChatGPT assisted
  */
 
-// Configure the Google Cloud provider
-provider "google" {
-  credentials = file("${path.module}/../.secrets/europan-world-terraform-key.json")
-  project = var.project
-  region  = var.region
-}
-
-// Optional: use GCS backend for shared Terraform state
-// Requires service account terraform@europan-world.iam.gserviceaccount.com
-// with role: Storage Object Admin (for GCS bucket access)
-// Commented out to avoid GCS storage costs during local-only use
-
+# Uncomment if remote state desired.
 # terraform {
 #   backend "gcs" {
 #     credentials = "./europan-world-terraform-key.json"
@@ -34,23 +12,49 @@ provider "google" {
 #   }
 # }
 
-// Terraform plugin for creating random ids
+// ─────────────────────────────────────────────────────────────────────────────
+// 🔐 Provider & Project Setup
+// ─────────────────────────────────────────────────────────────────────────────
+
+provider "google" {
+  credentials = file("${path.module}/../.secrets/europan-world-terraform-key.json")
+  project = var.project
+  region  = var.region
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 🔑 Random ID (if needed)
+// ─────────────────────────────────────────────────────────────────────────────
+
 resource "random_id" "instance_id" {
   byte_length = 8
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 📦 Image Source (from Packer build)
+// ─────────────────────────────────────────────────────────────────────────────
 
 data "google_compute_image" "base_game_image" {
   family  = var.base_game_image
   project = var.project
 }
 
-// A Single Compute Engine instance
+// ─────────────────────────────────────────────────────────────────────────────
+// 🖥️ Compute Engine VM
+// ─────────────────────────────────────────────────────────────────────────────
+
 resource "google_compute_instance" "default" {
   provider     = google
   name         = var.machine_name
   machine_type = var.machine_type
   zone         = var.zone
-  tags = ["barotrauma-server", "vrising-server", "nginx-server"]
+
+  tags = [
+    "barotrauma-server",
+    "vrising-server",
+    "nginx-server"
+  ]
+
   labels = {
     project     = "baroboys"
     environment = "dev"
@@ -62,6 +66,7 @@ resource "google_compute_instance" "default" {
   }
 
   boot_disk {
+    auto_delete = true  // ✅ ensures boot disk is deleted when VM is destroyed
     initialize_params {
       image = data.google_compute_image.base_game_image.self_link
     }
@@ -69,18 +74,24 @@ resource "google_compute_instance" "default" {
 
   network_interface {
     network = "default"
-
-    access_config {
-      // Include this section to give the VM an external ip address
-    }
+    access_config {}
+    // Ephemeral external IP
   }
 
   service_account {
-    // Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     email = var.service_account_email
     scopes = ["cloud-platform"]
   }
+
+  lifecycle {
+    prevent_destroy = false
+    ignore_changes = [metadata["startup-script"], metadata["shutdown-script"]]
+  }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 🔥 Firewall Rules – Barotrauma
+// ─────────────────────────────────────────────────────────────────────────────
 
 resource "google_compute_firewall" "barotrauma_ports" {
   name    = "barotrauma-ports"
@@ -99,7 +110,6 @@ resource "google_compute_firewall" "barotrauma_ports" {
   target_tags = ["barotrauma-server"]
 }
 
-
 resource "google_compute_firewall" "barotrauma_ports_udp" {
   name    = "barotrauma-ports-udp"
   network = "default"
@@ -116,6 +126,10 @@ resource "google_compute_firewall" "barotrauma_ports_udp" {
 
   target_tags = ["barotrauma-server"]
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 🔥 Firewall Rules – V Rising
+// ─────────────────────────────────────────────────────────────────────────────
 
 resource "google_compute_firewall" "vrising_ports" {
   name    = "vrising-ports"
@@ -150,6 +164,10 @@ resource "google_compute_firewall" "vrising_ports_udp" {
 
   target_tags = ["vrising-server"]
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 🌐 Firewall – Nginx Logs Port (8080)
+// ─────────────────────────────────────────────────────────────────────────────
 
 resource "google_compute_firewall" "nginx_logs" {
   name        = "nginx-logs"
