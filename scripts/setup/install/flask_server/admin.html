@@ -58,14 +58,24 @@
 
                 <label for="logSelector" class="form-label">Select log file:</label>
                 <select id="logSelector" class="form-select mb-3" aria-label="Log file selector">
-                    <option value="VRisingServer.log">VRisingServer.log</option>
-                    <option value="startup.log">startup.log</option>
-                    <option value="shutdown.log">shutdown.log</option>
+                    <optgroup label="🧾 Game Logs">
+                        <option value="VRisingServer.log">VRisingServer.log</option>
+                        <option value="startup.log">startup.log</option>
+                        <option value="shutdown.log">shutdown.log</option>
+                    </optgroup>
+                    <optgroup label="🌀 System Logs">
+                        <option value="/logs/webhook">Webhook Server</option>
+                        <option value="/logs/systemd/shutdown">Shutdown Service</option>
+                    </optgroup>
+                    <optgroup label="🌐 Nginx Logs">
+                        <option value="/logs/nginx/access">Nginx Access</option>
+                        <option value="/logs/nginx/error">Nginx Error</option>
+                    </optgroup>
                 </select>
 
                 <iframe
                         id="logFrame"
-                        src="/logs/tail/VRisingServer.log"
+                        src=""
                         width="100%"
                         height="400"
                         style="border:1px solid #ccc; border-radius:0.5rem; background-color:#111;"
@@ -78,8 +88,24 @@
 
                     function refreshLogFrame() {
                         const selected = logSelector.value;
-                        logFrame.src = `/logs/tail/${selected}?_ts=` + Date.now();
+                        const ts = Date.now();
+                        const url = selected.startsWith("/") ? selected : `/logs/tail/${selected}`;
+                        logFrame.src = url + "?_ts=" + ts;
+                        const newUrl = new URL(window.location);
+                        newUrl.searchParams.set("log", selected);
+                        history.replaceState(null, "", newUrl);
                     }
+
+                    // Restore selection from query param (e.g., ?log=shutdown.log)
+                    const params = new URLSearchParams(window.location.search);
+                    const initial = params.get("log") || "VRisingServer.log";
+                    for (let i = 0; i < logSelector.options.length; i++) {
+                        if (logSelector.options[i].value === initial) {
+                            logSelector.selectedIndex = i;
+                            break;
+                        }
+                    }
+                    refreshLogFrame();
 
                     logSelector.addEventListener("change", refreshLogFrame);
                     setInterval(refreshLogFrame, 5000);
