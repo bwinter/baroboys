@@ -2,23 +2,108 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Site Directory</title>
+    <title>🧭 Site Directory</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background: #111; color: #ccc; font-family: sans-serif; padding: 2em; }
-        h1 { color: #6cf; }
-        ul { list-style: none; padding: 0; }
-        li { margin: 0.5em 0; }
-        a { color: #fff; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        body {
+            background-color: #111;
+            color: #ccc;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: #6cf;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .directory-card {
+            background-color: #222;
+            border-radius: 0.5rem;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .directory-card h2 {
+            color: #9df;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .directory-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .directory-card li {
+            margin-bottom: 0.5rem;
+        }
+
+        .directory-link {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .directory-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
 <h1>🧭 Site Directory</h1>
-<ul>
-    {% for path, label in pages %}
-    <li><a href="{{ path }}">{{ label }}</a></li>
-    {% endfor %}
-</ul>
+
+<div class="container">
+
+    <div class="directory-card">
+        <h2>🛠 Admin</h2>
+        <ul>
+            <li>🧭 <a class="directory-link" href="/">Admin Panel</a></li>
+            <li>📂 <a class="directory-link" href="/directory">Site Directory</a></li>
+            <li>📡 <a class="directory-link" href="/ping">Health Check</a></li>
+        </ul>
+    </div>
+
+    <div class="directory-card">
+        <h2>🎮 Game Control</h2>
+        <ul>
+            <li>📊 <a class="directory-link" href="/check-status">Live Server Status</a></li>
+            <li>🟠 <a class="directory-link" href="/trigger-shutdown">Trigger Graceful Shutdown (POST)</a></li>
+        </ul>
+    </div>
+
+    <div class="directory-card">
+        <h2>🧾 Game Logs</h2>
+        <ul>
+            <li>📄 <a class="directory-link" href="/logs/tail/VRisingServer.log">Tail VRisingServer.log</a></li>
+            <li>📄 <a class="directory-link" href="/logs/tail/startup.log">Tail startup.log</a></li>
+            <li>📄 <a class="directory-link" href="/logs/tail/shutdown.log">Tail shutdown.log</a></li>
+        </ul>
+    </div>
+
+    <div class="directory-card">
+        <h2>🌀 System Logs</h2>
+        <ul>
+            <li>📜 <a class="directory-link" href="/logs/webhook">Webhook Server Logs</a></li>
+            <li>📜 <a class="directory-link" href="/logs/systemd/shutdown">Shutdown Service Logs</a></li>
+        </ul>
+    </div>
+
+    <div class="directory-card">
+        <h2>🌐 Nginx Logs</h2>
+        <ul>
+            <li>📘 <a class="directory-link" href="/logs/nginx/access">Nginx Access Log</a></li>
+            <li>📕 <a class="directory-link" href="/logs/nginx/error">Nginx Error Log</a></li>
+        </ul>
+    </div>
+
+</div>
 </body>
 </html>
