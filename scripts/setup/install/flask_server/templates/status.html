@@ -3,23 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Status</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <style>
         body {
             background-color: #111;
             color: #ccc;
             font-family: monospace;
-            padding: 1em;
+            padding: 1.5em;
+            margin: 0;
         }
+
         .timestamp {
             color: #6cf;
-            font-size: 0.9em;
+            font-size: 0.95em;
             margin-bottom: 1em;
             display: block;
         }
+
         pre {
+            background-color: #1c1c1c;
+            border: 1px solid #333;
+            border-radius: 0.5em;
+            padding: 1em;
+            overflow-x: auto;
             white-space: pre-wrap;
             word-break: break-word;
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding: 1em;
+            }
+
+            pre {
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
