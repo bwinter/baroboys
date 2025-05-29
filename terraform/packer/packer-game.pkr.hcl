@@ -44,7 +44,7 @@ build {
       "echo '🔧 Cloning Baroboys repo'",
       "sudo chmod +x /tmp/clone_repo.sh",
       "sudo /tmp/clone_repo.sh",
-      "echo '🔧 Running repositories.sh'",
+      "echo '🔧 Running setup_user.sh'",
       "sudo /root/baroboys/scripts/setup/root/setup_user.sh",
       "echo '🔧 Running services.sh'",
       "sudo /root/baroboys/scripts/setup/install/services.sh",
