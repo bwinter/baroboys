@@ -26,7 +26,7 @@ chmod 644 /opt/baroboys/static/*
 
 # Jinja templates
 mkdir -p /opt/baroboys/templates
-for file in 404.html status.html directory.html; do
+for file in 404.html directory.html; do
   cp "/root/baroboys/scripts/setup/install/flask_server/templates/${file}" \
      "/opt/baroboys/templates/${file}"
 done
