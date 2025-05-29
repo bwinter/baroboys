@@ -1,77 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Baroboys Admin Panel</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-</head>
-<body class="bg-body text-body p-3">
 
+    <!-- Bootstrap + Bootswatch Darkly + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/darkly/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        .log-output {
+            max-height: 400px;
+            overflow-y: auto;
+            background: #1c1c1c;
+            color: #ccc;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body class="bg-dark text-light py-4">
 <div class="container">
-    <h1 class="mb-4 text-center text-primary">🛠 Baroboys Admin Panel</h1>
+    <h1 class="text-info fw-bold mb-5">
+        <i class="bi bi-tools me-2"></i> Baroboys Admin Panel
+    </h1>
 
     <div class="row g-4">
-
         <!-- Save & Shutdown -->
         <div class="col-md-6">
-            <section class="card bg-body-secondary p-4 shadow-sm border-0">
-                <h2 class="h5">🟠 Save & Shutdown</h2>
-                <p>This will save the game and gracefully shut down the server.</p>
-                <form action="/trigger-shutdown" method="post"
-                      onsubmit="return confirm('Are you sure you want to shutdown the server?');">
-                    <button type="submit" class="btn btn-warning">Trigger Shutdown</button>
-                </form>
-            </section>
+            <div class="card bg-secondary text-light shadow-sm border-warning">
+                <div class="card-header fw-bold">
+                    <i class="bi bi-save2 me-2"></i> Save & Shutdown
+                </div>
+                <div class="card-body">
+                    <p class="mb-3">This will save the game and gracefully shut down the server.</p>
+                    <form method="POST" action="/trigger-shutdown">
+                        <button type="submit" class="btn btn-outline-warning w-100">
+                            <i class="bi bi-power"></i> Trigger Shutdown
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
 
-        <!-- Check Status -->
+        <!-- Server Status -->
         <div class="col-md-6">
-            <section class="card bg-body-secondary p-4 shadow-sm border-0">
-                <h2 class="h5">📊 Check Status</h2>
-                <p>Auto-refreshes every 10 seconds.</p>
-                <iframe id="statusFrame" class="w-100 rounded border" height="400" src="/check-status?_ts=0"></iframe>
-                <script>
-                    const statusFrame = document.getElementById("statusFrame");
-                    function refreshStatusFrame() {
-                        statusFrame.src = "/check-status?_ts=" + Date.now();
-                    }
-                    setInterval(refreshStatusFrame, 10000);
-                </script>
-            </section>
+            <div class="card bg-secondary text-light shadow-sm border-success">
+                <div class="card-header fw-bold">
+                    <i class="bi bi-bar-chart-line me-2"></i> Server Status
+                </div>
+                <div class="card-body">
+                    <iframe src="/check-status" class="w-100 rounded border" style="height: 250px;"></iframe>
+                    <small class="text-muted d-block mt-2">Auto-refreshes every 10 seconds.</small>
+                </div>
+            </div>
         </div>
 
-        <!-- Logs Viewer -->
+        <!-- Logs Section -->
         <div class="col-12">
-            <section class="card bg-body-secondary p-4 shadow-sm border-0">
-                <h2 class="h5">📄 View Logs</h2>
-                <p>Select a log file to view the most recent entries:</p>
-                <label for="logSelector" class="form-label">Select log file:</label>
-                <select id="logSelector" class="form-select mb-3">
-                    <option value="VRisingServer.log">VRisingServer.log</option>
-                    <option value="startup.log">startup.log</option>
-                    <option value="shutdown.log">shutdown.log</option>
-                </select>
-                <iframe id="logFrame" class="w-100 rounded border" height="400" src="/logs/tail/VRisingServer.log"></iframe>
-                <script>
-                    const logFrame = document.getElementById("logFrame");
-                    const logSelector = document.getElementById("logSelector");
-                    function refreshLogFrame() {
-                        logFrame.src = `/logs/tail/${logSelector.value}?_ts=` + Date.now();
-                    }
-                    logSelector.addEventListener("change", refreshLogFrame);
-                    setInterval(refreshLogFrame, 5000);
-                </script>
-            </section>
+            <div class="card bg-secondary text-light shadow-sm">
+                <div class="card-header fw-bold">
+                    <i class="bi bi-file-earmark-text me-2"></i> Logs
+                </div>
+                <div class="card-body">
+                    <form class="mb-3" id="log-form">
+                        <label for="log-select" class="form-label">Select log file:</label>
+                        <select class="form-select" id="log-select">
+                            <option value="VRisingServer.log">VRisingServer.log</option>
+                            <option value="startup.log">startup.log</option>
+                            <option value="shutdown.log">shutdown.log</option>
+                            <option value="nginx/access">nginx access log</option>
+                            <option value="nginx/error">nginx error log</option>
+                            <option value="webhook">webhook server log</option>
+                            <option value="systemd/shutdown">shutdown service log</option>
+                        </select>
+                    </form>
+                    <div id="log-output" class="log-output">Loading log...</div>
+                </div>
+            </div>
         </div>
-
     </div>
-
-    <footer class="mt-5 text-center text-muted">
-        <small>&copy; 2025 Baroboys Control System</small>
-    </footer>
 </div>
 
+<script>
+    const output = document.getElementById('log-output');
+    const select = document.getElementById('log-select');
+
+    async function loadLog() {
+        const val = select.value;
+        const url = val.endsWith('.log') ? `/logs/tail/${val}` : `/logs/${val}`;
+        try {
+            const res = await fetch(url);
+            const text = await res.text();
+            output.innerHTML = text;
+        } catch (e) {
+            output.innerText = `Failed to load ${val}: ${e}`;
+        }
+    }
+
+    select.addEventListener('change', loadLog);
+    window.addEventListener('load', loadLog);
+</script>
 </body>
 </html>
