@@ -5,19 +5,20 @@ REMOTE="bwinter_sc81@europa"
 ZONE="us-west1-b"
 PROJECT="europan-world"
 ROOT_REPO_PATH="/root/baroboys"
-SCRIPT_PATH="$ROOT_REPO_PATH/scripts/setup/install/service/flask_webhooks.sh"
-SERVICE="baroboys-webhook.service"
 
-echo "🚀 Updating Flask service on $REMOTE (as root)..."
+echo "🚀 Updating Flask + Nginx on $REMOTE..."
 
 gcloud compute ssh "$REMOTE" --zone "$ZONE" --project "$PROJECT" --command "
-  sudo bash -c '
-    set -eux
+  sudo bash -eux <<'EOF'
     cd $ROOT_REPO_PATH
     ./scripts/setup/clone_repo.sh || git pull
-    $SCRIPT_PATH
-    systemctl restart $SERVICE
-  '
+
+    ./scripts/setup/install/service/flask_webhooks.sh
+    systemctl restart baroboys-webhook.service
+
+    ./scripts/setup/install/apt_nginx.sh
+    nginx -t && systemctl reload nginx
+  EOF
 "
 
-echo "✅ Flask server updated and restarted."
+echo "✅ Flask and Nginx updated."
