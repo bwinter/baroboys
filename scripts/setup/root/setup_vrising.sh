@@ -43,6 +43,12 @@ install -m 644 "/root/baroboys/scripts/systemd/vrising.service" "/etc/systemd/sy
 install -m 644 "/root/baroboys/scripts/systemd/vrising-idle-check.service" "/etc/systemd/system/"
 install -m 644 "/root/baroboys/scripts/systemd/vrising-idle-check.timer" "/etc/systemd/system/"
 
+systemctl daemon-reexec
+systemctl daemon-reload
+systemctl enable vrising-idle-check.timer
+systemctl start vrising-idle-check.timer
+systemctl start vrising-idle-check.service
+
 mkdir -p "/home/bwinter_sc81/baroboys/VRising/logs/"
 chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/"
 chmod 700  "/home/bwinter_sc81/baroboys/VRising/logs/"
@@ -50,12 +56,6 @@ chmod 700  "/home/bwinter_sc81/baroboys/VRising/logs/"
 touch "/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log"
 chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log"
 chmod 644  "/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log"
-
-systemctl daemon-reexec
-systemctl daemon-reload
-systemctl enable vrising-idle-check.timer
-systemctl start vrising-idle-check.timer
-systemctl start vrising-idle-check.service
 
 if [ "${ACTIVE_GAME:-}" = "vrising" ]; then
   echo "🎮 Starting V Rising server via systemd..."
