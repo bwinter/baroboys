@@ -11,79 +11,60 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
 
     <style>
-        h1.text-info {
-            color: #00bcd4 !important;
-        }
-
         .card {
-            background-color: #111 !important;
-            border: 1px solid #444 !important;
-            transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
-        }
-
-        .card:not(.refreshing):not(.shutting-down):not(.disconnected) {
-            border-color: #444 !important;
-            box-shadow: none !important;
+            background-color: #111;
+            border: 1px solid #333;
         }
 
         .card-header {
-            background-color: #111 !important;
-            border-bottom: 1px solid #444 !important;
-            color: #ccc !important;
+            background-color: inherit;
+            border-bottom: 1px solid #333;
+            color: inherit;
         }
 
         .card.refreshing {
-            border-color: #00c17c !important;
-            box-shadow: 0 0 8px 3px rgba(0, 193, 124, 0.4) !important;
+            border-color: var(--bs-success) !important;
+            box-shadow: 0 0 8px 3px rgba(25, 135, 84, 0.4) !important;
         }
 
-        .card.shutting-down {
-            border-color: #ffa500 !important;
-            box-shadow: 0 0 12px 5px rgba(255, 165, 0, 0.7) !important;
-        }
-
+        .card.shutting-down,
         .card.disconnected {
-            border-color: #ffa500 !important;
-            box-shadow: 0 0 10px 4px rgba(255, 165, 0, 0.6) !important;
-        }
-
-        #status-offline-msg {
-            font-weight: bold;
+            border-color: var(--bs-warning) !important;
+            box-shadow: 0 0 12px 5px rgba(255, 193, 7, 0.6) !important;
         }
 
         #status-refresh-label.glow-text {
-            color: #00ff90 !important;
+            color: var(--bs-success) !important;
             transition: color 0.5s ease-in-out;
         }
 
-        .log-output, pre, .status-output {
-            background-color: #000 !important;
-            color: #ccc !important;
+        .log-output,
+        .status-output {
+            background-color: #000;
+            color: var(--bs-body-color);
             padding: 1rem;
             border-radius: 0.5rem;
             white-space: pre-wrap;
-            font-family: monospace;
+            font-family: var(--bs-font-monospace);
             height: 250px;
             overflow-y: auto;
         }
 
-        #shutdown-confirm {
-            margin-top: 0.75rem;
-            font-size: 0.875rem;
-            color: #ffa500;
+        body {
+            background-color: #000;
         }
     </style>
 </head>
 <body class="py-4">
 <div class="container">
-    <h1 class="text-info fw-bold text-center mb-5">
+    <h1 class="text-primary fw-bold text-center mb-5">
         <i class="bi bi-speedometer2 me-2"></i> Admin Dashboard
     </h1>
 
     <div class="row g-4 mb-4">
         <div class="col-md-4">
-            <div class="card text-light shadow-sm border-warning" id="shutdown-card">
-                <div class="card-header fw-bold">
+            <div class="card text-dark shadow-sm" id="shutdown-card">
+                <div class="card-header fw-semibold d-flex align-items-center">
                     <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i> Graceful Shutdown
                 </div>
                 <div class="card-body text-center">
@@ -93,16 +74,16 @@
                             <i class="bi bi-power me-2"></i> Trigger Shutdown
                         </button>
                     </form>
-                    <div id="shutdown-confirm"></div>
+                    <div id="shutdown-confirm" class="mt-3 small text-warning"></div>
                 </div>
             </div>
         </div>
 
         <div class="col-md-8">
-            <div class="card text-light shadow-sm border-success" id="status-card">
-                <div class="card-header fw-bold d-flex align-items-center justify-content-between">
-                    <span><i class="bi bi-bar-chart-line me-2"></i> Server Status</span>
-                    <span id="status-offline-msg" class="text-warning small d-none">Server Offline</span>
+            <div class="card text-dark shadow-sm" id="status-card">
+                <div class="card-header fw-semibold d-flex align-items-center justify-content-between">
+                    <span><i class="bi bi-bar-chart-line text-success me-2"></i> Server Status</span>
+                    <span id="status-offline-msg" class="text-warning small fw-semibold d-none">Server Offline</span>
                 </div>
                 <div class="card-body">
                     <div id="status-output" class="status-output">Loading status...</div>
@@ -114,13 +95,13 @@
         </div>
     </div>
 
-    <div class="card text-light shadow-sm border-secondary mb-3" id="log-card">
-        <div class="card-header fw-bold d-flex align-items-center">
-            <i class="bi bi-journal-text me-2"></i> Logs
+    <div class="card text-dark shadow-sm mb-3" id="log-card">
+        <div class="card-header fw-semibold d-flex align-items-center">
+            <i class="bi bi-journal-text text-info me-2"></i> Logs
         </div>
         <div class="card-body">
             <form class="mb-3" id="log-form">
-                <label class="form-label" for="log-select">Select log file:</label>
+                <label class="form-label text-muted" for="log-select">Select log file:</label>
                 <select class="form-select" id="log-select">
                     <option value="VRisingServer.log">VRisingServer.log</option>
                     <option value="startup.log">startup.log</option>
@@ -177,7 +158,6 @@
             statusOutput.textContent = text;
             statusOutput.scrollTop = statusOutput.scrollHeight;
 
-            // Green flash
             statusCard.classList.add('refreshing');
             refreshLabel.classList.add('glow-text');
             setTimeout(() => {
