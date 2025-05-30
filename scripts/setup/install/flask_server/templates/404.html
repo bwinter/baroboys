@@ -3,67 +3,32 @@
 <head>
     <meta charset="UTF-8"/>
     <title>404 – Page Not Found</title>
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
 
     <!-- Bootstrap + Cyborg -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/cyborg/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
-
-    <style>
-        html, body {
-            background-color: #000 !important;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        .code-block {
-            background-color: #000;
-            color: #ccc;
-            font-family: monospace;
-            padding: 0.5rem 1rem;
-            border-radius: 0.25rem;
-            display: inline-block;
-            margin-top: 0.25rem;
-        }
-
-        h1 {
-            color: #00bcd4;
-            font-size: 5rem;
-            font-weight: bold;
-        }
-
-        .subtitle {
-            font-size: 1.25rem;
-            color: #aaa;
-        }
-
-        .info-line {
-            color: #888;
-            font-size: 0.9rem;
-        }
-    </style>
 </head>
-<body class="d-flex align-items-center justify-content-center text-center py-5">
+<body class="bg-black text-dark d-flex align-items-center justify-content-center min-vh-100 text-center">
 
 <div class="container" style="max-width: 600px;">
-    <h1>404</h1>
-    <p class="subtitle mb-4">Page Not Found</p>
+    <h1 class="display-1 fw-bold text-primary">404</h1>
+    <p class="fs-5 text-muted mb-4">Page Not Found</p>
     <p class="text-muted">The page you are looking for does not exist.</p>
 
     {% if path %}
-    <p class="mt-3">
-        <span class="info-line">Attempted URL:</span><br>
-        <span class="code-block">{{ path }}</span>
+    <p class="mt-4">
+        <span class="d-block text-secondary small mb-1">Attempted URL:</span>
+        <code class="bg-black text-dark px-2 py-1 rounded font-monospace small d-inline-block">{{ path }}</code>
     </p>
     {% endif %}
 
     {% if timestamp %}
-    <p>
-        <span class="info-line">Request time:</span><br>
-        <span class="code-block">{{ timestamp }}</span>
+    <p class="mt-3">
+        <span class="d-block text-secondary small mb-1">Request time:</span>
+        <code class="bg-black text-dark px-2 py-1 rounded font-monospace small d-inline-block">{{ timestamp }}</code>
     </p>
     {% endif %}
 </div>
