@@ -11,6 +11,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
 
     <style>
+        /* Chrome, Edge, Safari */
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--bs-secondary);
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: var(--bs-dark);
+        }
+
+        /* Firefox */
+        * {
+            scrollbar-color: var(--bs-secondary) var(--bs-dark);
+        }
+
         .card.refreshing {
             border-color: var(--bs-success) !important;
             box-shadow: 0 0 8px 3px rgba(25, 135, 84, 0.4) !important;
@@ -86,7 +100,7 @@
         <div class="card-body">
             <form class="mb-3" id="log-form">
                 <label class="form-label text-muted" for="log-select">Select log file:</label>
-                <select class="form-select" id="log-select">
+                <select class="form-select bg-dark text-light border-secondary" id="log-select">
                     <option value="VRisingServer.log">VRisingServer.log</option>
                     <option value="startup.log">startup.log</option>
                     <option value="shutdown.log">shutdown.log</option>
