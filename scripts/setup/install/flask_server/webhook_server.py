@@ -9,7 +9,8 @@ from flask import Flask, render_template, send_from_directory, Response, request
 if os.getenv("FLASK_ENV") == "development":
     STATIC_DIR = "./static"
     TEMPLATE_DIR = "./templates"
-    LOG_DIR = "./logs"
+    LOG_DIR = "./dev/logs"
+    STATUS_PATH = "./dev/status/vrising.status"
 else:
     STATIC_DIR = "/opt/baroboys/static"
     TEMPLATE_DIR = "/opt/baroboys/templates"
@@ -54,6 +55,16 @@ def trigger_shutdown():
 @app.route("/check-status")
 def check_status():
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+
+    if os.getenv("FLASK_ENV") == "development":
+        try:
+            with open(STATUS_PATH, "r", encoding="utf-8", errors="ignore") as f:
+                content = f.read()
+            return f"⏱ Refreshed: {now}\n\n{content}", 200, {"Content-Type": "text/plain"}
+        except Exception as e:
+            error_message = f"⚠️ Failed to retrieve status file.\n\n{type(e).__name__}: {e}"
+            return f"⏱ Refreshed: {now}\n\n{error_message}", 200, {"Content-Type": "text/plain"}
+
     try:
         output = subprocess.check_output(
             ["systemctl", "status", "vrising.service", "--no-pager"],
@@ -61,8 +72,9 @@ def check_status():
             text=True
         ).strip()
         return f"⏱ Refreshed: {now}\n\n{output}", 200, {"Content-Type": "text/plain"}
-    except Exception:
-        return f"⏱ Refreshed: {now}\n\n⚠️ Failed to retrieve status.", 200, {"Content-Type": "text/plain"}
+    except Exception as e:
+        error_message = f"⚠️ Failed to run systemctl.\n\n{type(e).__name__}: {e}"
+        return f"⏱ Refreshed: {now}\n\n{error_message}", 200, {"Content-Type": "text/plain"}
 
 
 @app.route("/logs/tail/<path:filename>")
