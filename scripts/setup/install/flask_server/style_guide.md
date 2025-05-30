@@ -18,6 +18,32 @@ This guide reflects the finalized visual system for the admin panel, optimized f
 
 ---
 
+## 🎭 Understanding Semantic Inversion (Color Meaning vs Appearance)
+
+In Bootstrap’s dark themes (like Cyborg), semantic color names like `.text-info` or `.bg-success` **don’t guarantee a specific hue** like teal or green. Instead, Bootswatch redefines these internally for better **contrast and mood** in a dark UI.
+
+| Class           | Expected (Default Bootstrap) | Actual (Cyborg Theme)        |
+| --------------- | ---------------------------- | ---------------------------- |
+| `.text-info`    | Bright teal / cyan           | Pale blue-violet (`#5bc0de`) |
+| `.text-success` | Leaf green                   | Soft neon green              |
+| `.text-warning` | Golden amber                 | Slightly duller orange       |
+
+### 💡 Key Principle
+
+> **Don't assume semantic color names match expected hues**. If you want a *specific color*, define your own class (e.g. `.text-cyan`) instead of reusing a Bootstrap class.
+
+### 🎨 Custom Color Utility Example
+
+```css
+.text-cyan {
+  color: #00bcd4 !important;
+}
+```
+
+This avoids clashing with theme overrides and keeps your visual intent consistent, regardless of theme updates or context.
+
+---
+
 ## 🧱 Card Structure
 
 Use Bootstrap card layout with custom background and border overrides. Do **not** start with border colors — reserve those for state changes (e.g. `.refreshing`).
