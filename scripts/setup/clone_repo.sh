@@ -2,7 +2,6 @@
 set -euxo pipefail
 
 REPO_PATH="$HOME/baroboys"
-DEPLOY_KEY_SECRET="github-deploy-key"
 GIT_REMOTE="git@github.com:bwinter/baroboys.git"
 
 # --- SSH Setup ---
@@ -10,7 +9,7 @@ mkdir -p "$HOME/.ssh"
 chmod 700 "$HOME/.ssh"
 
 # Deploy key
-gcloud secrets versions access latest --secret="$DEPLOY_KEY_SECRET" --quiet > "$HOME/.ssh/id_ecdsa"
+gcloud secrets versions access latest --secret="github-deploy-key" --quiet > "$HOME/.ssh/id_ecdsa"
 chmod 600 "$HOME/.ssh/id_ecdsa"
 
 # GitHub known_hosts
