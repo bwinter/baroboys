@@ -87,7 +87,7 @@ iam-destroy:
 # =======================
 # 🎮 Game Mode
 # =======================
-.PHONY: switch mode reinstall-game
+.PHONY: switch mode refresh-game
 
 switch:
 	scripts/manual/switch_game.sh
@@ -95,8 +95,8 @@ switch:
 mode:
 	@grep ACTIVE_GAME $(ACTIVE_GAME_FILE) | cut -d= -f2
 
-reinstall-game:
-	scripts/setup/remote_reinstall_game.sh
+refresh-game:
+	scripts/setup/remote_refresh_game.sh
 
 
 # =======================
@@ -177,7 +177,7 @@ help:
 	@echo "🎮 Game Mode:"
 	@echo "  make switch                 - Switch game mode (.envrc)"
 	@echo "  make mode                   - Show current game mode"
-	@echo "  make reinstall-game         - Trigger remote reinstall of game"
+	@echo "  make refresh-game         - Trigger remote reinstall of game"
 	@echo ""
 	@echo "🧪 Control:"
 	@echo "  make save-and-shutdown      - Save game state by triggering shutdown"
