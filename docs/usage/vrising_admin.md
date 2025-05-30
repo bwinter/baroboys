@@ -72,9 +72,9 @@ Game progress must be saved before shutting down the server.
 
    ⚠️ **Note:** This save is immediate and separate from autosaves. It ensures the latest progress is committed before shutdown.
 
-4. Click **🔄 Refresh Status**
+4. When the server shuts down, the page will turn orange.
 
-   * Displays system uptime and current server status
+   * Can also watch `shutdown.log` 
 
 ---
 
@@ -92,13 +92,9 @@ Click **📜 View Logs** in the admin panel to inspect server behavior.
 
 Logs are accessible from the same admin page and automatically refresh. No command-line tools are required.
 
----
-
 ## 🦸‍♂️ Super Admin Notes
 
-### 🔐 Update Log Access Password
-
-To rotate the admin web login credentials:
+### 🔐 Rotate Admin Password
 
 ```bash
 htpasswd -c temp_htpasswd vrising  # Replace current credentials
@@ -108,21 +104,3 @@ gcloud secrets versions add nginx-htpasswd \
 # 🚨 Then SSH into the server and restart Nginx:
 sudo systemctl reload nginx
 ```
-
-> Omit `-c` to append new users instead of replacing the file.
-
-### 🧰 Optional: CLI Shutdown (Advanced)
-
-If you are SSH'd into the VM, you can trigger a graceful shutdown manually:
-
-```bash
-sudo /root/baroboys/scripts/teardown/shutdown.sh
-```
-
-This will:
-
-* Save the game
-* Commit to Git
-* Shut down the VM cleanly
-
----

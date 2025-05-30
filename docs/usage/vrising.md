@@ -58,13 +58,31 @@ sudo systemctl restart vrising.service
 
 ---
 
+> Omit `-c` to append new users instead of replacing the file.
+
+### 🧰 Optional: CLI Shutdown (Advanced)
+
+If you are SSH'd into the VM, you can trigger a graceful shutdown manually:
+
+```bash
+sudo /root/baroboys/scripts/teardown/shutdown.sh
+```
+
+This will:
+
+* Save the game
+* Commit to Git
+* Shut down the VM cleanly
+
+---
+
 ### 💾 Want to auto-save before restarting?
 
 We can:
 
-* Trigger a save via `rcon`
+* Trigger a save via `mcrcon`
 * Commit saves to Git
-* Hook into `ExecStop=` or `shutdown.service`
+* Hooked into `ExecStop=` or `shutdown.service`
 
 
 # REFS
