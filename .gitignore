@@ -37,6 +37,9 @@ terraform/packer/tmp/.secrets/*
 # Tooling
 scripts/manual/save-decompressor/Barotrauma-Save-Decompressor.lnk
 
+# Dev (basically temp dir)
+scripts/setup/install/flask_server/dev
+
 # Barofiles
 Barotrauma/Concentus_LICENSE
 Barotrauma/Content/
