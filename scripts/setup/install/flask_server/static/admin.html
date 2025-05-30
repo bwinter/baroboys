@@ -26,9 +26,20 @@
             color: var(--bs-success) !important;
             transition: color 0.5s ease-in-out;
         }
+
+        .terminal-block {
+            background-color: #000 !important;
+            color: var(--bs-body-color) !important;
+            font-family: monospace;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            height: 250px;
+        }
     </style>
 </head>
-<body class="bg-black text-dark py-4">
+<body class="bg-black py-4">
 <div class="container">
     <h1 class="text-primary fw-bold text-center mb-5">
         <i class="bi bi-speedometer2 me-2"></i> Admin Dashboard
@@ -37,7 +48,7 @@
     <div class="row g-4 mb-4">
         <div class="col-md-4">
             <div class="card shadow-sm border-secondary" id="shutdown-card">
-                <div class="card-header fw-semibold d-flex align-items-center border-bottom border-dark">
+                <div class="card-header fw-semibold d-flex align-items-center">
                     <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i> Graceful Shutdown
                 </div>
                 <div class="card-body text-center">
@@ -54,24 +65,22 @@
 
         <div class="col-md-8">
             <div class="card shadow-sm border-secondary" id="status-card">
-                <div class="card-header fw-semibold d-flex align-items-center justify-content-between border-bottom border-dark">
+                <div class="card-header fw-semibold d-flex align-items-center justify-content-between">
                     <span><i class="bi bi-bar-chart-line text-success me-2"></i> Server Status</span>
                     <span id="status-offline-msg" class="text-warning small fw-semibold d-none">Server Offline</span>
                 </div>
                 <div class="card-body">
-                    <div id="status-output" class="bg-black text-dark p-3 rounded font-monospace"
-                         style="height: 250px; overflow-y: auto; white-space: pre-wrap;">
-                        Loading status...
-                    </div>
-                    <small class="text-muted d-block mt-2" id="status-refresh-label">Auto-refreshing logs (every 5
-                        seconds)</small>
+                    <div id="status-output" class="terminal-block">Loading status...</div>
+                    <small class="text-muted d-block mt-2" id="status-refresh-label">
+                        Auto-refreshing logs (every 5 seconds)
+                    </small>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="card shadow-sm border-secondary mb-3" id="log-card">
-        <div class="card-header fw-semibold d-flex align-items-center border-bottom border-dark">
+        <div class="card-header fw-semibold d-flex align-items-center">
             <i class="bi bi-journal-text text-info me-2"></i> Logs
         </div>
         <div class="card-body">
@@ -87,10 +96,7 @@
                     <option value="systemd/shutdown">shutdown service log</option>
                 </select>
             </form>
-            <div id="log-output" class="bg-black text-dark p-3 rounded font-monospace"
-                 style="height: 250px; overflow-y: auto; white-space: pre-wrap;">
-                Loading log...
-            </div>
+            <div id="log-output" class="terminal-block">Loading log...</div>
         </div>
     </div>
 
@@ -119,8 +125,7 @@
         const url = val.endsWith('.log') ? `/logs/tail/${val}` : `/logs/${val}`;
         try {
             const res = await fetch(url);
-            const text = await res.text();
-            output.textContent = text;
+            output.textContent = await res.text();
             output.scrollTop = output.scrollHeight;
         } catch (e) {
             output.textContent = `Failed to load ${val}: ${e}`;
@@ -132,8 +137,7 @@
     async function refreshStatus() {
         try {
             const res = await fetch('/check-status');
-            const text = await res.text();
-            statusOutput.textContent = text;
+            statusOutput.textContent = await res.text();
             statusOutput.scrollTop = statusOutput.scrollHeight;
             statusCard.classList.add('refreshing');
             refreshLabel.classList.add('glow-text');
@@ -153,7 +157,7 @@
             if (!res.ok) throw new Error("Ping failed");
             [statusCard, shutdownCard, logCard].forEach(card => card.classList.remove('disconnected'));
             offlineMsg.classList.add('d-none');
-        } catch (e) {
+        } catch {
             [statusCard, shutdownCard, logCard].forEach(card => card.classList.add('disconnected'));
             offlineMsg.classList.remove('d-none');
         }
@@ -162,21 +166,17 @@
     shutdownForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         let pulseCount = 0;
-        const maxPulses = 10;
-        const interval = 300;
-        const pulseInterval = setInterval(() => {
+        const interval = setInterval(() => {
             shutdownCard.classList.toggle('shutting-down');
-            pulseCount++;
-            if (pulseCount >= maxPulses * 2) {
-                clearInterval(pulseInterval);
+            if (++pulseCount >= 20) {
+                clearInterval(interval);
                 shutdownCard.classList.remove('shutting-down');
                 shutdownConfirm.innerText = '';
             }
-        }, interval);
+        }, 300);
         try {
             const res = await fetch('/trigger-shutdown', {method: 'POST'});
             const data = await res.json();
-            if (!data.status) throw new Error("Missing 'status' in server response");
             shutdownConfirm.innerText = data.time
                 ? `🟠 ${data.status} at ${data.time}`
                 : `⚠️ ${data.status} (see logs for details)`;
