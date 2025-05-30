@@ -87,15 +87,15 @@ iam-destroy:
 # =======================
 # 🎮 Game Mode
 # =======================
-.PHONY: switch mode refresh-game
+.PHONY: game-switch game-mode game-refresh
 
-switch:
+game-switch:
 	scripts/manual/switch_game.sh
 
-mode:
+game-mode:
 	@grep ACTIVE_GAME $(ACTIVE_GAME_FILE) | cut -d= -f2
 
-refresh-game:
+game-refresh:
 	scripts/setup/remote_refresh_game.sh
 
 
@@ -175,9 +175,9 @@ help:
 	@echo "  make admin-logs             - Fetch logs from admin systemd service"
 	@echo ""
 	@echo "🎮 Game Mode:"
-	@echo "  make switch                 - Switch game mode (.envrc)"
-	@echo "  make mode                   - Show current game mode"
-	@echo "  make refresh-game           - Trigger remote reinstall of game"
+	@echo "  make game-switch            - Switch game game-mode (.envrc)"
+	@echo "  make game-mode              - Show current game game-mode"
+	@echo "  make game-refresh           - Trigger remote reinstall of game"
 	@echo ""
 	@echo "🧪 Control:"
 	@echo "  make save-and-shutdown      - Save game state by triggering shutdown"
