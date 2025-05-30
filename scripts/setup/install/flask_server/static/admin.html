@@ -187,6 +187,7 @@
     const shutdownConfirm = document.getElementById('shutdown-confirm');
     const refreshLabel = document.getElementById('status-refresh-label');
     const offlineMsg = document.getElementById('status-offline-msg');
+    const summaryCard = document.getElementById('summary-card');
 
     function blinkElement(cardElement, className, duration = 1000) {
         if (!cardElement) return;
@@ -226,10 +227,10 @@
         try {
             const res = await fetch('/api/ping');
             if (!res.ok) throw new Error("Ping failed");
-            [statusCard, shutdownCard, logCard].forEach(card => card.classList.remove('disconnected-orange'));
+            [statusCard, shutdownCard, logCard, summaryCard].forEach(card => card.classList.remove('disconnected-orange'));
             offlineMsg.classList.add('d-none');
         } catch {
-            [statusCard, shutdownCard, logCard].forEach(card => card.classList.add('disconnected-orange'));
+            [statusCard, shutdownCard, logCard, summaryCard].forEach(card => card.classList.add('disconnected-orange'));
             offlineMsg.classList.remove('d-none');
         }
     }
@@ -269,7 +270,6 @@
             const time = await timeRes.json();
             const shutdown = await shutdownRes.json();
             const settings = await settingsRes.json();
-            const summaryCard = document.getElementById('summary-card');
 
             document.getElementById("summary-players").innerText =
                 players.players ? players.players.length : "0";

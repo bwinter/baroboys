@@ -14,15 +14,15 @@ TF_VAR_DEF_FILE := terraform/variables.tf
 
 # === Flask ===
 
-.PHONY: flask-run-local flask-deploy flask-get-logs
+.PHONY: admin-local admin-deploy admin-logs
 
-flask-local:
+admin-local:
 	cd "$(dirname "$0")" && scripts/setup/install/flask_server/run_admin_server_local.sh
 
-flask-deploy:
+admin-deploy:
 	cd "$(dirname "$0")" && scripts/setup/install/flask_server/deploy_admin_server.sh
 
-flask-logs:
+admin-logs:
 	cd "$(dirname "$0")" && scripts/setup/install/flask_server/get_admin_server_logs.sh
 
 # === Terraform ===
@@ -137,9 +137,9 @@ help:
 	@echo "  make refresh                - Refresh Terraform state"
 	@echo ""
 	@echo "🐍 Flask Admin Panel:"
-	@echo "  make flask-run-local        - Run Flask admin server locally"
-	@echo "  make flask-deploy           - Deploy Flask server to GCP instance"
-	@echo "  make flask-get-logs         - Fetch logs from Flask systemd service"
+	@echo "  make admin-local        - Run Flask admin server locally"
+	@echo "  make admin-deploy           - Deploy Flask server to GCP instance"
+	@echo "  make admin-logs         - Fetch logs from Flask systemd service"
 	@echo ""
 	@echo "🎮 Game Mode:"
 	@echo "  make switch                 - Switch game mode (.envrc)"
