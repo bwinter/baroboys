@@ -102,10 +102,10 @@ def tail_log(name):
     try:
         if isinstance(cmd, str):
             with open(cmd, encoding="utf-8", errors="ignore") as f:
-                return Response("<pre>" + "".join(f.readlines()[-100:]) + "</pre>", mimetype="text/html")
+                return Response("".join(f.readlines()[-100:]), mimetype="text/html")
         else:
             out = subprocess.check_output(cmd, stderr=subprocess.STDOUT, text=True)
-            return Response("<pre>" + out + "</pre>", mimetype="text/html")
+            return Response(out, mimetype="text/html")
     except Exception as e:
         return f"Error loading log: {type(e).__name__}: {e}", 500
 
