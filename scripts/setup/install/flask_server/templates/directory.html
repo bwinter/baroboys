@@ -10,105 +10,88 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/cyborg/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
-    <style>
-        html, body {
-            background-color: #000 !important;
-            color: #ccc;
-        }
-
-        h1 {
-            color: #00bcd4;
-        }
-
-        .directory-section {
-            margin-bottom: 2rem;
-        }
-
-        .directory-section h5 {
-            border-bottom: 1px solid #444;
-            padding-bottom: 0.25rem;
-            margin-bottom: 1rem;
-            color: #ccc;
-            font-size: 1.25rem;
-        }
-
-        .directory-section ul {
-            list-style: none;
-            padding-left: 0;
-            margin: 0;
-        }
-
-        .directory-section li {
-            margin-bottom: 0.5rem;
-            font-family: monospace;
-        }
-
-        .directory-section a {
-            text-decoration: none;
-            color: #00bcd4;
-        }
-
-        .directory-section a:hover {
-            text-decoration: underline;
-        }
-
-        .path-label {
-            display: inline-block;
-            width: 280px;
-            color: #999;
-        }
-    </style>
 </head>
-<body class="py-5">
+<body class="py-5 text-dark bg-black">
 <div class="container">
-    <h1 class="mb-5 text-center"><i class="bi bi-diagram-3 me-2"></i> 🛡 Admin Directory</h1>
+    <h1 class="text-primary fw-bold text-center mb-5">
+        <i class="bi bi-diagram-3 me-2"></i> Admin Directory
+    </h1>
 
-    <div class="directory-section">
-        <h5>🛠 Admin</h5>
-        <ul>
-            <li><span class="path-label">/</span> <a href="/">Admin Panel</a></li>
-            <li><span class="path-label">/directory</span> <a href="/directory">Site Directory</a></li>
-            <li><span class="path-label">/ping</span> <a href="/ping">Health Check</a></li>
-        </ul>
-    </div>
-
-    <div class="directory-section">
-        <h5>🎮 Game Control</h5>
-        <ul>
-            <li><span class="path-label">/check-status</span> <a href="/check-status">Live Server Status</a></li>
-            <li><span class="path-label">/trigger-shutdown</span> <span class="text-muted">[POST] Trigger Graceful Shutdown</span>
+    <div class="mb-5">
+        <h5 class="fw-semibold text-dark border-bottom border-secondary pb-1 mb-3">🛠 Admin</h5>
+        <ul class="list-unstyled">
+            <li class="row font-monospace small mb-2">
+                <span class="col-sm-5 text-muted">/</span>
+                <span class="col-sm-7"><a href="/" class="text-info">Admin Panel</a></span>
+            </li>
+            <li class="row font-monospace small mb-2">
+                <span class="col-sm-5 text-muted">/directory</span>
+                <span class="col-sm-7"><a href="/directory" class="text-info">Site Directory</a></span>
+            </li>
+            <li class="row font-monospace small mb-2">
+                <span class="col-sm-5 text-muted">/ping</span>
+                <span class="col-sm-7"><a href="/ping" class="text-info">Health Check</a></span>
             </li>
         </ul>
     </div>
 
-    <div class="directory-section">
-        <h5>📄 Game Logs</h5>
-        <ul>
-            <li><span class="path-label">/logs/tail/VRisingServer.log</span> <a href="/logs/tail/VRisingServer.log">VRisingServer.log</a>
+    <div class="mb-5">
+        <h5 class="fw-semibold text-dark border-bottom border-secondary pb-1 mb-3">🎮 Game Control</h5>
+        <ul class="list-unstyled">
+            <li class="row font-monospace small mb-2">
+                <span class="col-sm-5 text-muted">/check-status</span>
+                <span class="col-sm-7"><a href="/check-status" class="text-info">Live Server Status</a></span>
             </li>
-            <li><span class="path-label">/logs/tail/startup.log</span> <a href="/logs/tail/startup.log">startup.log</a>
+            <li class="row font-monospace small mb-2">
+                <span class="col-sm-5 text-muted">/trigger-shutdown</span>
+                <span class="col-sm-7 text-muted">[POST] Trigger Graceful Shutdown</span>
             </li>
-            <li><span class="path-label">/logs/tail/shutdown.log</span> <a
-                    href="/logs/tail/shutdown.log">shutdown.log</a></li>
         </ul>
     </div>
 
-    <div class="directory-section">
-        <h5>🌀 System Logs</h5>
-        <ul>
-            <li><span class="path-label">/logs/webhook</span> <a href="/logs/webhook">Webhook Server Logs</a></li>
-            <li><span class="path-label">/logs/systemd/shutdown</span> <a href="/logs/systemd/shutdown">Shutdown Service
-                Logs</a></li>
+    <div class="mb-5">
+        <h5 class="fw-semibold text-dark border-bottom border-secondary pb-1 mb-3">📄 Game Logs</h5>
+        <ul class="list-unstyled">
+            <li class="row font-monospace small mb-2">
+                <span class="col-sm-5 text-muted">/logs/tail/VRisingServer.log</span>
+                <span class="col-sm-7"><a href="/logs/tail/VRisingServer.log" class="text-info">VRisingServer.log</a></span>
+            </li>
+            <li class="row font-monospace small mb-2">
+                <span class="col-sm-5 text-muted">/logs/tail/startup.log</span>
+                <span class="col-sm-7"><a href="/logs/tail/startup.log" class="text-info">startup.log</a></span>
+            </li>
+            <li class="row font-monospace small mb-2">
+                <span class="col-sm-5 text-muted">/logs/tail/shutdown.log</span>
+                <span class="col-sm-7"><a href="/logs/tail/shutdown.log" class="text-info">shutdown.log</a></span>
+            </li>
         </ul>
     </div>
 
-    <div class="directory-section">
-        <h5>🌐 Nginx Logs</h5>
-        <ul>
-            <li><span class="path-label">/logs/nginx/access</span> <a href="/logs/nginx/access">Nginx Access Log</a>
+    <div class="mb-5">
+        <h5 class="fw-semibold text-dark border-bottom border-secondary pb-1 mb-3">🌀 System Logs</h5>
+        <ul class="list-unstyled">
+            <li class="row font-monospace small mb-2">
+                <span class="col-sm-5 text-muted">/logs/webhook</span>
+                <span class="col-sm-7"><a href="/logs/webhook" class="text-info">Webhook Server Logs</a></span>
             </li>
-            <li><span class="path-label">/logs/nginx/error</span> <a href="/logs/nginx/error">Nginx Error Log</a></li>
+            <li class="row font-monospace small mb-2">
+                <span class="col-sm-5 text-muted">/logs/systemd/shutdown</span>
+                <span class="col-sm-7"><a href="/logs/systemd/shutdown" class="text-info">Shutdown Service Logs</a></span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mb-5">
+        <h5 class="fw-semibold text-dark border-bottom border-secondary pb-1 mb-3">🌐 Nginx Logs</h5>
+        <ul class="list-unstyled">
+            <li class="row font-monospace small mb-2">
+                <span class="col-sm-5 text-muted">/logs/nginx/access</span>
+                <span class="col-sm-7"><a href="/logs/nginx/access" class="text-info">Nginx Access Log</a></span>
+            </li>
+            <li class="row font-monospace small mb-2">
+                <span class="col-sm-5 text-muted">/logs/nginx/error</span>
+                <span class="col-sm-7"><a href="/logs/nginx/error" class="text-info">Nginx Error Log</a></span>
+            </li>
         </ul>
     </div>
 </div>
