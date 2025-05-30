@@ -41,6 +41,31 @@ else
   done
 fi
 
+# =================== Stopped VMs ===================
+
+echo -e "\n🖥️ Deleting all stopped VMs..."
+echo '```'
+gcloud compute instances list \
+  --project="$PROJECT" \
+  --filter="status=TERMINATED" \
+  --format="table[box](name, zone, status)" 2>&1
+echo '```'
+
+stopped_vms=$(gcloud compute instances list \
+  --project="$PROJECT" \
+  --filter="status=TERMINATED" \
+  --format="csv(name,zone)" 2>/dev/null || true)
+
+if [[ -n "$stopped_vms" ]]; then
+  { echo "$stopped_vms" | tail -n +2 || true; } | while IFS=',' read -r name zone; do
+    echo "🗑 Deleting stopped VM: $name in $zone"
+    gcloud compute instances delete "$name" --zone="$zone" --project="$PROJECT" --quiet || \
+      echo "❌ Failed to delete VM $name — skipping."
+  done
+else
+  echo "✅ No stopped VMs found."
+fi
+
 # =================== Disks ===================
 
 echo -e "\n📦 Looking for orphaned Packer-created disks..."
@@ -110,30 +135,6 @@ ip_csv=$(gcloud compute addresses list \
     echo "❌ Failed to release $name — skipping."
 done
 
-# =================== Stopped VMs ===================
-
-echo -e "\n🖥️ Deleting all stopped VMs..."
-echo '```'
-gcloud compute instances list \
-  --project="$PROJECT" \
-  --filter="status=TERMINATED" \
-  --format="table[box](name, zone, status)" 2>&1
-echo '```'
-
-stopped_vms=$(gcloud compute instances list \
-  --project="$PROJECT" \
-  --filter="status=TERMINATED" \
-  --format="csv(name,zone)" 2>/dev/null || true)
-
-if [[ -n "$stopped_vms" ]]; then
-  { echo "$stopped_vms" | tail -n +2 || true; } | while IFS=',' read -r name zone; do
-    echo "🗑 Deleting stopped VM: $name in $zone"
-    gcloud compute instances delete "$name" --zone="$zone" --project="$PROJECT" --quiet || \
-      echo "❌ Failed to delete VM $name — skipping."
-  done
-else
-  echo "✅ No stopped VMs found."
-fi
 
 # =================== Empty GCS Buckets ===================
 
