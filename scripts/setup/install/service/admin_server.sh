@@ -6,15 +6,15 @@ apt update
 apt install -y python3-flask
 
 # Systemd unit installation
-cp "/root/baroboys/scripts/systemd/baroboys-webhook.service" \
-   "/etc/systemd/system/baroboys-webhook.service"
-chmod 644 "/etc/systemd/system/baroboys-webhook.service"
+cp "/root/baroboys/scripts/systemd/admin-server.service" \
+   "/etc/systemd/system/admin-server.service"
+chmod 644 "/etc/systemd/system/admin-server.service"
 
 # Flask app source
 mkdir -p "/opt/baroboys"
-cp "/root/baroboys/scripts/setup/install/flask_server/webhook_server.py" \
-   "/opt/baroboys/webhook_server.py"
-chmod 755 "/opt/baroboys/webhook_server.py"
+cp "/root/baroboys/scripts/setup/install/flask_server/admin_server.py" \
+   "/opt/baroboys/admin_server.py"
+chmod 755 "/opt/baroboys/admin_server.py"
 
 # Static HTML and assets
 mkdir -p /opt/baroboys/static
@@ -25,7 +25,7 @@ done
 chmod 644 /opt/baroboys/static/*
 
 # Jinja templates
-mkdir -p /opt/baroboys/templates
+mkdir -p "/opt/baroboys/templates"
 for file in 404.html directory.html; do
   cp "/root/baroboys/scripts/setup/install/flask_server/templates/${file}" \
      "/opt/baroboys/templates/${file}"
@@ -34,5 +34,5 @@ chmod 644 /opt/baroboys/templates/*.html
 
 # Activate Flask service
 systemctl daemon-reload
-systemctl enable baroboys-webhook.service
-systemctl start baroboys-webhook.service
+systemctl enable admin-server.service
+systemctl start admin-server.service

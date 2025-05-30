@@ -14,8 +14,8 @@ gcloud compute ssh "$REMOTE" \
   --command "sudo bash -euxc ' \
     cd $ROOT_REPO_PATH && \
     ./scripts/setup/clone_repo.sh || git pull && \
-    ./scripts/setup/install/service/flask_webhooks.sh && \
-    systemctl restart baroboys-webhook.service && \
+    ./scripts/setup/install/service/admin_server.sh && \
+    systemctl restart admin-server.service && \
     ./scripts/setup/install/apt_nginx.sh && \
     nginx -t && systemctl reload nginx \
   '"

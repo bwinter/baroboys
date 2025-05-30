@@ -25,19 +25,43 @@
             scrollbar-color: var(--bs-secondary) var(--bs-dark);
         }
 
-        .card.refreshing {
+        /* Base refresh effect shared by all states */
+        .card.refreshing-green,
+        .card.refreshing-blue,
+        .card.shutting-down,
+        .card.disconnected-orange {
+            border-radius: var(--bs-border-radius-sm);
+            opacity: 0.9;
+            filter: brightness(1.1);
+            transition: color 0.5s ease-in-out,
+            box-shadow 0.5s ease-in-out,
+            border-color 0.5s ease-in-out;
+        }
+
+        /* Specific state styles */
+        .card.refreshing-green {
             border-color: var(--bs-success) !important;
-            box-shadow: 0 0 8px 3px rgba(25, 135, 84, 0.4) !important;
+            box-shadow: 0 0 4px 2px var(--bs-success),
+            0 0 12px 4px var(--bs-success);
+        }
+
+        .card.refreshing-blue {
+            border-color: var(--bs-primary) !important;
+            box-shadow: 0 0 4px 2px var(--bs-primary),
+            0 0 12px 4px var(--bs-primary);
         }
 
         .card.shutting-down,
-        .card.disconnected {
+        .card.disconnected-orange {
             border-color: var(--bs-warning) !important;
-            box-shadow: 0 0 12px 5px rgba(255, 193, 7, 0.6) !important;
+            box-shadow: 0 0 4px 2px var(--bs-warning),
+            0 0 12px 4px var(--bs-warning);
         }
 
+        /* Label glow */
         #status-refresh-label.glow-text {
             color: var(--bs-success) !important;
+            opacity: 0.9;
             transition: color 0.5s ease-in-out;
         }
 
@@ -49,7 +73,7 @@
             border-radius: 0.375rem;
             overflow-y: auto;
             white-space: pre-wrap;
-            height: 250px;
+            height: 300px;
         }
     </style>
 </head>
@@ -75,6 +99,31 @@
                     <div id="shutdown-confirm" class="mt-3 small text-warning"></div>
                 </div>
             </div>
+            <div class="card shadow-sm border-secondary mt-3" id="summary-card">
+                <div class="card-header fw-semibold d-flex align-items-center">
+                    <i class="bi bi-info-circle-fill text-primary me-2"></i> Server Summary
+                </div>
+                <div class="card-body p-3">
+                    <ul class="list-unstyled mb-0 small">
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-person-fill text-muted me-2"></i>Players</span>
+                            <span id="summary-players" class="text-muted">–</span>
+                        </li>
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-clock-fill text-muted me-2"></i>Game Time</span>
+                            <span id="summary-time" class="text-muted">–</span>
+                        </li>
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-power text-muted me-2"></i>Shutdown</span>
+                            <span id="summary-shutdown" class="text-muted">–</span>
+                        </li>
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-gear-fill text-muted me-2"></i>Mode</span>
+                            <span id="summary-mode" class="text-muted">–</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-8">
@@ -86,13 +135,13 @@
                     <div class="d-flex align-items-center gap-2">
                         <span id="status-offline-msg"
                               class="text-warning small fw-semibold d-none">Server Offline</span>
-                        <button id="toggle-status-refresh" class="btn btn-sm btn-outline-dark">⏸ Pause Status</button>
+                        <button title="Toggle auto-refresh" id="toggle-status-refresh" class="btn btn-sm btn-outline-dark">⏸ Pause Status</button>
                     </div>
                 </div>
                 <div class="card-body">
                     <div id="status-output" class="terminal-block">Loading status...</div>
                     <small class="text-muted d-block mt-2" id="status-refresh-label">
-                        Auto-refreshing logs (every 5 seconds)
+                        Auto-refreshing status (every 5 seconds)
                     </small>
                 </div>
             </div>
@@ -102,19 +151,18 @@
     <div class="card shadow-sm border-secondary mb-3" id="log-card">
         <div class="card-header fw-semibold d-flex align-items-center justify-content-between">
             <span><i class="bi bi-journal-text text-info me-2"></i> Logs</span>
-            <button id="toggle-log-refresh" class="btn btn-sm btn-outline-dark">⏸ Pause Logs</button>
+            <button title="Toggle auto-refresh" id="toggle-log-refresh" class="btn btn-sm btn-outline-dark">⏸ Pause Logs</button>
         </div>
         <div class="card-body">
             <div class="mb-3" id="log-form">
-            <label class="form-label text-muted" for="log-select">Select log file:</label>
+                <label class="form-label text-muted" for="log-select">Select log file:</label>
                 <select class="form-select bg-dark text-light border-secondary" id="log-select">
                     <option value="VRisingServer.log">VRisingServer.log</option>
                     <option value="startup.log">startup.log</option>
                     <option value="shutdown.log">shutdown.log</option>
-                    <option value="nginx/access">nginx access log</option>
-                    <option value="nginx/error">nginx error log</option>
-                    <option value="webhook">webhook server log</option>
-                    <option value="systemd/shutdown">shutdown service log</option>
+                    <option value="admin_server.log">admin server log</option>
+                    <option value="nginx_access">nginx access log</option>
+                    <option value="nginx_error">nginx error log</option>
                 </select>
             </div>
             <div id="log-output" class="terminal-block">Loading log...</div>
@@ -140,32 +188,34 @@
     const refreshLabel = document.getElementById('status-refresh-label');
     const offlineMsg = document.getElementById('status-offline-msg');
 
+    function blinkElement(cardElement, className, duration = 1000) {
+        if (!cardElement) return;
+        cardElement.classList.add(className);
+        setTimeout(() => {
+            cardElement.classList.remove(className);
+        }, duration);
+    }
+
     async function loadLog() {
-        logCard.classList.add('refreshing');
+        blinkElement(logCard, 'refreshing-green');
         const val = select.value;
-        const url = val.endsWith('.log') ? `/logs/tail/${val}` : `/logs/${val}`;
+        const url = `/api/logs/${val}`;
         try {
             const res = await fetch(url);
             output.textContent = await res.text();
             output.scrollTop = output.scrollHeight;
         } catch (e) {
             output.textContent = `Failed to load ${val}: ${e}`;
-        } finally {
-            setTimeout(() => logCard.classList.remove('refreshing'), 1000);
         }
     }
 
     async function refreshStatus() {
         try {
-            const res = await fetch('/check-status');
+            const res = await fetch('/api/check-status');
             statusOutput.textContent = await res.text();
             statusOutput.scrollTop = statusOutput.scrollHeight;
-            statusCard.classList.add('refreshing');
-            refreshLabel.classList.add('glow-text');
-            setTimeout(() => {
-                statusCard.classList.remove('refreshing');
-                refreshLabel.classList.remove('glow-text');
-            }, 1000);
+            blinkElement(statusCard, 'refreshing-green');
+            blinkElement(refreshLabel, 'glow-text');
         } catch (err) {
             statusOutput.textContent = '⚠️ Failed to fetch status';
             console.error("Status error:", err.message);
@@ -174,12 +224,12 @@
 
     async function checkHeartbeat() {
         try {
-            const res = await fetch('/ping');
+            const res = await fetch('/api/ping');
             if (!res.ok) throw new Error("Ping failed");
-            [statusCard, shutdownCard, logCard].forEach(card => card.classList.remove('disconnected'));
+            [statusCard, shutdownCard, logCard].forEach(card => card.classList.remove('disconnected-orange'));
             offlineMsg.classList.add('d-none');
         } catch {
-            [statusCard, shutdownCard, logCard].forEach(card => card.classList.add('disconnected'));
+            [statusCard, shutdownCard, logCard].forEach(card => card.classList.add('disconnected-orange'));
             offlineMsg.classList.remove('d-none');
         }
     }
@@ -196,7 +246,7 @@
             }
         }, 300);
         try {
-            const res = await fetch('/trigger-shutdown', {method: 'POST'});
+            const res = await fetch('/api/trigger-shutdown', {method: 'POST'});
             const data = await res.json();
             shutdownConfirm.innerText = data.time
                 ? `🟠 ${data.status} at ${data.time}`
@@ -206,6 +256,41 @@
         }
     });
 
+    async function refreshSummary() {
+        try {
+            const [playersRes, timeRes, shutdownRes, settingsRes] = await Promise.all([
+                fetch("/api/players"),
+                fetch("/api/time"),
+                fetch("/api/shutdown"),
+                fetch("/api/settings")
+            ]);
+
+            const players = await playersRes.json();
+            const time = await timeRes.json();
+            const shutdown = await shutdownRes.json();
+            const settings = await settingsRes.json();
+            const summaryCard = document.getElementById('summary-card');
+
+            document.getElementById("summary-players").innerText =
+                players.players ? players.players.length : "0";
+            document.getElementById("summary-time").innerText =
+                time.time || "Unavailable";
+            document.getElementById("summary-shutdown").innerText =
+                shutdown.scheduled ? `In ${shutdown.in_minutes} min` : "Not scheduled";
+            document.getElementById("summary-mode").innerText =
+                settings.GameModeType || "Unknown";
+
+            blinkElement(summaryCard, "refreshing-blue");
+        } catch (e) {
+            console.warn("Summary fetch failed:", e);
+            document.getElementById("summary-players").innerText = "–";
+            document.getElementById("summary-time").innerText = "–";
+            document.getElementById("summary-shutdown").innerText = "–";
+            document.getElementById("summary-mode").innerText = "–";
+        }
+    }
+
+    // 🔁 Refresh settings
     let logAutoRefreshEnabled = true;
     let statusAutoRefreshEnabled = true;
 
@@ -222,21 +307,22 @@
         toggleStatusBtn.innerHTML = statusAutoRefreshEnabled ? '⏸ Pause Status' : '▶ Resume Status';
     });
 
+    // 🔁 Event bindings
     select.addEventListener('change', loadLog);
     window.addEventListener('load', () => {
         loadLog();
         refreshStatus();
         checkHeartbeat();
+        refreshSummary();
     });
     setInterval(() => {
         if (logAutoRefreshEnabled) loadLog();
     }, 5000);
-
     setInterval(() => {
         if (statusAutoRefreshEnabled) refreshStatus();
     }, 5000);
-
-    setInterval(checkHeartbeat, 5000); // Heartbeat is always active
+    setInterval(checkHeartbeat, 5000);
+    setInterval(refreshSummary, 10000);
 </script>
 </body>
 </html>

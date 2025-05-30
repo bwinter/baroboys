@@ -1,0 +1,3 @@
+2025/05/30 13:04:58 [error] 4120#4120: *32 open() "/usr/share/nginx/html/admin" failed (2: No such file or directory), client: 127.0.0.1, server: _, request: "GET /admin HTTP/1.1", host: "localhost:8080"
+2025/05/30 13:05:01 [notice] 4120#4120: signal process started
+2025/05/30 13:05:02 [warn] 4120#4120: duplicate MIME type "text/html" in /etc/nginx/nginx.conf:38
