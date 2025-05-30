@@ -33,85 +33,25 @@
         <i class="bi bi-diagram-3 me-2"></i> Admin Directory
     </h1>
 
+    {% for section in sections %}
     <div class="directory-section">
-        <h5 class="fw-semibold text-dark">🛠 Admin</h5>
+        <h5 class="fw-semibold text-dark">{{ section.icon }} {{ section.title }}</h5>
         <ul class="list-unstyled">
+            {% for path, label, method in section.links %}
             <li class="row small mb-2 directory-link">
-                <span class="col-sm-5 text-muted">/</span>
-                <span class="col-sm-7"><a href="/" class="text-info">Admin Panel</a></span>
+                <span class="col-sm-5 text-muted">{{ path }}</span>
+                <span class="col-sm-7">
+                    {% if method == "GET" %}
+                        <a href="{{ path }}" class="text-info">{{ label }}</a>
+                    {% else %}
+                        <span class="text-muted">[{{ method }}] {{ label }}</span>
+                    {% endif %}
+                </span>
             </li>
-            <li class="row small mb-2 directory-link">
-                <span class="col-sm-5 text-muted">/directory</span>
-                <span class="col-sm-7"><a href="/directory" class="text-info">Site Directory</a></span>
-            </li>
-            <li class="row small mb-2 directory-link">
-                <span class="col-sm-5 text-muted">/ping</span>
-                <span class="col-sm-7"><a href="/ping" class="text-info">Health Check</a></span>
-            </li>
+            {% endfor %}
         </ul>
     </div>
-
-    <div class="directory-section">
-        <h5 class="fw-semibold text-dark">🎮 Game Control</h5>
-        <ul class="list-unstyled">
-            <li class="row small mb-2 directory-link">
-                <span class="col-sm-5 text-muted">/check-status</span>
-                <span class="col-sm-7"><a href="/check-status" class="text-info">Live Server Status</a></span>
-            </li>
-            <li class="row small mb-2 directory-link">
-                <span class="col-sm-5 text-muted">/trigger-shutdown</span>
-                <span class="col-sm-7 text-muted">[POST] Trigger Graceful Shutdown</span>
-            </li>
-        </ul>
-    </div>
-
-    <div class="directory-section">
-        <h5 class="fw-semibold text-dark">📄 Game Logs</h5>
-        <ul class="list-unstyled">
-            <li class="row small mb-2 directory-link">
-                <span class="col-sm-5 text-muted">/logs/tail/VRisingServer.log</span>
-                <span class="col-sm-7"><a href="/logs/tail/VRisingServer.log"
-                                          class="text-info">VRisingServer.log</a></span>
-            </li>
-            <li class="row small mb-2 directory-link">
-                <span class="col-sm-5 text-muted">/logs/tail/startup.log</span>
-                <span class="col-sm-7"><a href="/logs/tail/startup.log" class="text-info">startup.log</a></span>
-            </li>
-            <li class="row small mb-2 directory-link">
-                <span class="col-sm-5 text-muted">/logs/tail/shutdown.log</span>
-                <span class="col-sm-7"><a href="/logs/tail/shutdown.log" class="text-info">shutdown.log</a></span>
-            </li>
-        </ul>
-    </div>
-
-    <div class="directory-section">
-        <h5 class="fw-semibold text-dark">🌀 System Logs</h5>
-        <ul class="list-unstyled">
-            <li class="row small mb-2 directory-link">
-                <span class="col-sm-5 text-muted">/logs/webhook</span>
-                <span class="col-sm-7"><a href="/logs/webhook" class="text-info">Webhook Server Logs</a></span>
-            </li>
-            <li class="row small mb-2 directory-link">
-                <span class="col-sm-5 text-muted">/logs/systemd/shutdown</span>
-                <span class="col-sm-7"><a href="/logs/systemd/shutdown"
-                                          class="text-info">Shutdown Service Logs</a></span>
-            </li>
-        </ul>
-    </div>
-
-    <div class="directory-section">
-        <h5 class="fw-semibold text-dark">🌐 Nginx Logs</h5>
-        <ul class="list-unstyled">
-            <li class="row small mb-2 directory-link">
-                <span class="col-sm-5 text-muted">/logs/nginx/access</span>
-                <span class="col-sm-7"><a href="/logs/nginx/access" class="text-info">Nginx Access Log</a></span>
-            </li>
-            <li class="row small mb-2 directory-link">
-                <span class="col-sm-5 text-muted">/logs/nginx/error</span>
-                <span class="col-sm-7"><a href="/logs/nginx/error" class="text-info">Nginx Error Log</a></span>
-            </li>
-        </ul>
-    </div>
+    {% endfor %}
 </div>
 </body>
 </html>
