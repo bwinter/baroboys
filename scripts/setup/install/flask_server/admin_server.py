@@ -84,6 +84,7 @@ def tail_log(name):
         "VRisingServer.log": os.path.join(LOG_DIR, "VRisingServer.log"),
         "startup.log": os.path.join(LOG_DIR, "startup.log"),
         "shutdown.log": os.path.join(LOG_DIR, "shutdown.log"),
+        "vrising_idle_check.log": os.path.join(LOG_DIR, "vrising_idle_check.log"),
         "admin_server.log": os.path.join(LOG_DIR, "admin_server.log"),
         "nginx_access": ["tail", "-n", "100", "/var/log/nginx/access.log"],
         "nginx_error": ["tail", "-n", "100", "/var/log/nginx/error.log"],
@@ -190,9 +191,10 @@ def directory():
             "icon": "📄",
             "title": "Game Logs",
             "links": [
-                ("/api/logs/VRisingServer.log", "VRising Server Logs", "GET"),
+                ("/api/logs/VRisingServer.log", "V Rising Server Logs", "GET"),
                 ("/api/logs/startup.log", "VM Startup Logs", "GET"),
                 ("/api/logs/shutdown.log", "VM Shutdown Logs", "GET"),
+                ("/api/logs/vrising_idle_check.log", "V Rising Idle Check Logs", "GET"),
             ]
         },
         {
