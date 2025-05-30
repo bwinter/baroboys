@@ -18,15 +18,15 @@ TF_VAR_DEF_FILE  := terraform/variables.tf
 # =======================
 # 🐍 Flask Admin Panel
 # =======================
-.PHONY: run-admin-local deploy-admin-remote get-admin-remote-logs
+.PHONY: admin-local admin-refresh admin-logs
 
-run-admin-local:
+admin-local:
 	scripts/setup/install/flask_server/run_admin_server_local.sh
 
-deploy-admin-remote:
+admin-refresh:
 	scripts/setup/install/flask_server/deploy_admin_server.sh
 
-get-admin-remote-logs:
+admin-logs:
 	scripts/setup/install/flask_server/get_admin_server_logs.sh
 
 
@@ -170,14 +170,14 @@ help:
 	@echo "  make refresh                - Refresh Terraform state"
 	@echo ""
 	@echo "🐍 Flask Admin Panel:"
-	@echo "  make run-admin-local        - Run admin server locally"
-	@echo "  make deploy-admin-remote    - Deploy admin server to remote env"
-	@echo "  make get-admin-remote-logs  - Fetch logs from admin systemd service"
+	@echo "  make admin-local            - Run admin server locally"
+	@echo "  make admin-refresh          - Deploy admin server to remote env"
+	@echo "  make admin-logs             - Fetch logs from admin systemd service"
 	@echo ""
 	@echo "🎮 Game Mode:"
 	@echo "  make switch                 - Switch game mode (.envrc)"
 	@echo "  make mode                   - Show current game mode"
-	@echo "  make refresh-game         - Trigger remote reinstall of game"
+	@echo "  make refresh-game           - Trigger remote reinstall of game"
 	@echo ""
 	@echo "🧪 Control:"
 	@echo "  make save-and-shutdown      - Save game state by triggering shutdown"
