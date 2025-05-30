@@ -80,8 +80,14 @@
         <div class="col-md-8">
             <div class="card shadow-sm border-secondary" id="status-card">
                 <div class="card-header fw-semibold d-flex align-items-center justify-content-between">
-                    <span><i class="bi bi-bar-chart-line text-success me-2"></i> Server Status</span>
-                    <span id="status-offline-msg" class="text-warning small fw-semibold d-none">Server Offline</span>
+                    <span>
+                        <i class="bi bi-bar-chart-line text-success me-2"></i> Server Status
+                    </span>
+                    <div class="d-flex align-items-center gap-2">
+                        <span id="status-offline-msg"
+                              class="text-warning small fw-semibold d-none">Server Offline</span>
+                        <button id="toggle-status-refresh" class="btn btn-sm btn-outline-dark">⏸ Pause Status</button>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div id="status-output" class="terminal-block">Loading status...</div>
@@ -94,12 +100,13 @@
     </div>
 
     <div class="card shadow-sm border-secondary mb-3" id="log-card">
-        <div class="card-header fw-semibold d-flex align-items-center">
-            <i class="bi bi-journal-text text-info me-2"></i> Logs
+        <div class="card-header fw-semibold d-flex align-items-center justify-content-between">
+            <span><i class="bi bi-journal-text text-info me-2"></i> Logs</span>
+            <button id="toggle-log-refresh" class="btn btn-sm btn-outline-dark">⏸ Pause Logs</button>
         </div>
         <div class="card-body">
-            <form class="mb-3" id="log-form">
-                <label class="form-label text-muted" for="log-select">Select log file:</label>
+            <div class="mb-3" id="log-form">
+            <label class="form-label text-muted" for="log-select">Select log file:</label>
                 <select class="form-select bg-dark text-light border-secondary" id="log-select">
                     <option value="VRisingServer.log">VRisingServer.log</option>
                     <option value="startup.log">startup.log</option>
@@ -109,7 +116,7 @@
                     <option value="webhook">webhook server log</option>
                     <option value="systemd/shutdown">shutdown service log</option>
                 </select>
-            </form>
+            </div>
             <div id="log-output" class="terminal-block">Loading log...</div>
         </div>
     </div>
@@ -199,15 +206,37 @@
         }
     });
 
+    let logAutoRefreshEnabled = true;
+    let statusAutoRefreshEnabled = true;
+
+    const toggleLogBtn = document.getElementById('toggle-log-refresh');
+    const toggleStatusBtn = document.getElementById('toggle-status-refresh');
+
+    toggleLogBtn.addEventListener('click', () => {
+        logAutoRefreshEnabled = !logAutoRefreshEnabled;
+        toggleLogBtn.innerHTML = logAutoRefreshEnabled ? '⏸ Pause Logs' : '▶ Resume Logs';
+    });
+
+    toggleStatusBtn.addEventListener('click', () => {
+        statusAutoRefreshEnabled = !statusAutoRefreshEnabled;
+        toggleStatusBtn.innerHTML = statusAutoRefreshEnabled ? '⏸ Pause Status' : '▶ Resume Status';
+    });
+
     select.addEventListener('change', loadLog);
     window.addEventListener('load', () => {
         loadLog();
         refreshStatus();
         checkHeartbeat();
     });
-    setInterval(loadLog, 5000);
-    setInterval(refreshStatus, 5000);
-    setInterval(checkHeartbeat, 5000);
+    setInterval(() => {
+        if (logAutoRefreshEnabled) loadLog();
+    }, 5000);
+
+    setInterval(() => {
+        if (statusAutoRefreshEnabled) refreshStatus();
+    }, 5000);
+
+    setInterval(checkHeartbeat, 5000); // Heartbeat is always active
 </script>
 </body>
 </html>
