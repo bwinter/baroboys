@@ -1,0 +1,15 @@
+[Unit]
+Description=Shutdown V Rising if Idle
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=bwinter_sc81
+Group=bwinter_sc81
+WorkingDirectory=/home/bwinter_sc81/baroboys
+ExecStart=/home/bwinter_sc81/baroboys/scripts/teardown/user/idle_shutdown_if_empty.sh
+
+# Recommended for clean logs and runtime detection
+StandardOutput=journal
+StandardError=journal
