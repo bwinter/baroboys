@@ -27,7 +27,7 @@ journalctl -u vrising.service -f
 To gracefully restart the server with visible player warnings:
 
 ```bash
-mcrcon -H 127.0.0.1 -P 25575 -p Donalds \
+mcrcon -H 127.0.0.1 -P 25575 -p <PW> \
   "announce Server restarting in 60 seconds." \
   "announcerestart 1" \
   "shutdown 60 Restarting for maintenance"
@@ -46,7 +46,7 @@ This will:
 For fast testing, you can skip the warning:
 
 ```bash
-mcrcon -H 127.0.0.1 -P 25575 -p Donalds \
+mcrcon -H 127.0.0.1 -P 25575 -p <PW> \
   "shutdown 5 Immediate restart"
 ```
 
