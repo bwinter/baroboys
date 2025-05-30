@@ -92,6 +92,8 @@ Click **📜 View Logs** in the admin panel to inspect server behavior.
 
 Logs are accessible from the same admin page and automatically refresh. No command-line tools are required.
 
+---
+
 ## 🦸‍♂️ Super Admin Notes
 
 ### 🔐 Rotate Admin Password
