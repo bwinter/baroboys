@@ -1,9 +1,15 @@
+# System
+.DS_Store
 .idea
-.secrets/
+
+# Secrets
+*secret*
 .secrets/europan-world-terraform-key.json
-id_ecdsa
-id_ecdsa.pub
-scripts/manual/save-decompressor/Barotrauma-Save-Decompressor.lnk
+
+# Keys
+*id_ecdsa*
+*id_ecdsa.pub*
+*.pem
 
 # logs
 *.log
@@ -11,28 +17,25 @@ scripts/manual/save-decompressor/Barotrauma-Save-Decompressor.lnk
 # Python virtual env
 .venv
 
-# Directories
-terraform/.terraform/
-terraform/iam/.terraform/
-
 # This is where I keep my uncompressed save.
 # To recude chances of copying the wrong version we want to clean this up every time.
 Barotrauma/Multiplayer/Baroboys
 
-# SSH Keys
-*.pem
-
-# Backup files
-*.bak
-
-# Ignored Terraform files
-*.tfstate*
-
-# Ignore Mac .DS_Store files
-.DS_Store
-
-# Packer
+# Ignored Terraform / Packer files
 .packer.d
+*.tfstate*
+terraform/.terraform/
+terraform/iam/.terraform/
+terraform/iam/tmp/*
+terraform/packer/tmp/*
+terraform/packer/tmp/.secrets/*
+
+# ===================================
+#               GAME DATA
+# ===================================
+
+# Tooling
+scripts/manual/save-decompressor/Barotrauma-Save-Decompressor.lnk
 
 # Barofiles
 Barotrauma/Concentus_LICENSE
@@ -307,10 +310,3 @@ VRising/Data/*
 !VRising/Data/Settings/banlist.txt
 !VRising/Data/Saves/
 !VRising/Data/Saves/**
-
-# Auto Generated
-terraform/packer/tmp/*
-terraform/packer/tmp/.secrets/*
-
-# Auto Generated
-terraform/iam/tmp/*
