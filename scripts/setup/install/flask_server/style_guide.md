@@ -1,38 +1,40 @@
 # ✅ Baroboys Admin Panel – Style Guide (Cyborg Theme, Finalized)
 
-This guide reflects the finalized visual system for the admin panel, optimized for Bootswatch **Cyborg**, with Bootstrap-native class usage and minimal, purpose-driven overrides.
+This guide reflects the **final visual system for the admin panel**, built on Bootswatch **Cyborg**, using native Bootstrap classes with minimal, focused overrides.
+
+> 🧠 **Note:** This guide is meant to support the visual direction already in place — not to enforce new rules or override working styles. If the existing admin dashboard uses a class or color, **assume it's intentional** unless documented otherwise.
 
 ---
 
 ## 🎨 Theme Foundation
 
-| Element         | Class / Style                               | Notes                                                  |
-| --------------- | ------------------------------------------- | ------------------------------------------------------ |
-| Page background | `html, body { background-color: #000; }`    | Pure black canvas — no gray bleed from the theme       |
-| Cards           | `.card` with `background-color: #111`       | Deep gray — subtle lift from the background            |
-| Header text     | `.text-dark`                                | Brightest available text — optimized for dark surfaces |
-| Muted text      | `.text-muted`                               | Used sparingly for low-emphasis labels and hints       |
-| Body text       | Use `.text-dark` on all normal card content | Ensures consistent legibility on black and near-black  |
+| Element         | Class / Style                             | Notes                                                 |
+| --------------- | ----------------------------------------- | ----------------------------------------------------- |
+| Page background | `html, body { background-color: #000; }`  | Pure black canvas — no gray bleed from the theme      |
+| Cards           | `.card` with `background-color: #111`     | Deep gray — subtle lift from the background           |
+| Header text     | `.text-dark`                              | Brightest text color on a dark surface                |
+| Muted text      | `.text-muted`                             | Used sparingly for labels, descriptions, or help text |
+| Body text       | Use `.text-dark` for all readable content | Provides consistency and high legibility              |
 
-**Container behavior:** use `.container` for standard spacing or `.container-fluid` for edge-to-edge layouts.
+**Container usage:** use `.container` for standard width, or `.container-fluid` if edge-to-edge is required.
 
 ---
 
-## 🎭 Understanding Semantic Inversion (Color Meaning vs Appearance)
+## 🎭 Semantic Inversion: Color Name ≠ Color Meaning
 
-In Bootstrap’s dark themes (like Cyborg), semantic color names like `.text-info` or `.bg-success` **don’t guarantee a specific hue** like teal or green. Instead, Bootswatch redefines these internally for better **contrast and mood** in a dark UI.
+In Bootstrap's dark themes like **Cyborg**, semantic color names (`.text-info`, `.bg-success`, etc.) may appear **very different** from their default Bootstrap colors. This is intentional for better contrast and theme balance.
 
-| Class           | Expected (Default Bootstrap) | Actual (Cyborg Theme)        |
-| --------------- | ---------------------------- | ---------------------------- |
-| `.text-info`    | Bright teal / cyan           | Pale blue-violet (`#5bc0de`) |
-| `.text-success` | Leaf green                   | Soft neon green              |
-| `.text-warning` | Golden amber                 | Slightly duller orange       |
+| Class           | Default Bootstrap Look | Actual in Cyborg      |
+| --------------- | ---------------------- | --------------------- |
+| `.text-info`    | Teal / cyan            | Pale blue-violet      |
+| `.text-success` | Leaf green             | Vibrant neon green    |
+| `.text-warning` | Gold amber             | Slightly muted orange |
 
-### 💡 Key Principle
+### 🔑 Key Principle
 
-> **Don't assume semantic color names match expected hues**. If you want a *specific color*, define your own class (e.g. `.text-cyan`) instead of reusing a Bootstrap class.
+> Don't assume `.text-info` = teal. When you want **a specific hue**, define a custom utility class instead of relying on Bootstrap semantics.
 
-### 🎨 Custom Color Utility Example
+### 🎨 Example
 
 ```css
 .text-cyan {
@@ -40,108 +42,111 @@ In Bootstrap’s dark themes (like Cyborg), semantic color names like `.text-inf
 }
 ```
 
-This avoids clashing with theme overrides and keeps your visual intent consistent, regardless of theme updates or context.
+Use this for titles, links, or labels where you want **that exact hue**, independent of the theme’s idea of “info.”
 
 ---
 
 ## 🧱 Card Structure
 
-Use Bootstrap card layout with custom background and border overrides. Do **not** start with border colors — reserve those for state changes (e.g. `.refreshing`).
+Use Bootstrap cards as-is, with `#111` backgrounds and default borders **unless a dynamic state is present**.
 
-### 🔲 Markup Example
+✅ **Note**: Using `border-secondary` or other border colors for visual structure is acceptable in **static content** (like logs, status), **but state-driven color borders should take priority** when active.
+
+### 🔲 Card Example
 
 ```html
-<div class="card text-dark shadow-sm">
+<div class="card text-light shadow-sm border-warning" id="shutdown-card">
   <div class="card-header fw-semibold text-dark d-flex align-items-center">
     <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i> Graceful Shutdown
   </div>
   <div class="card-body text-center">
-    <p class="small text-muted">Safely stop the VRising server.</p>
+    <p class="small text-muted">Safely save and stop the VRising server.</p>
     <button class="btn btn-outline-warning">Trigger Shutdown</button>
   </div>
 </div>
 ```
 
-| Element        | Rule                                                      |
-| -------------- | --------------------------------------------------------- |
-| `.card`        | `#111` background, subtle border (`#333`)                 |
-| `.card-header` | Same background as body, uses `.text-dark`                |
-| `.card-body`   | Default text is `.text-dark`, with muted labels as needed |
-| `.btn`         | Use `btn-outline-*` only for semantic hierarchy           |
+| Element        | Rule                                                               |
+| -------------- | ------------------------------------------------------------------ |
+| `.card`        | `#111` background; may include `border-*` for static grouping      |
+| `.card-header` | Inherits card background; uses `.text-dark` for clarity            |
+| `.card-body`   | Main content styled with `.text-dark`; use `.text-muted` for hints |
+| Borders        | Use `border-*` **only** when needed for layout or state signaling  |
+
+---
+
+## 💡 Status Blocks & Terminal Panels
+
+| Component        | Style                                                       |
+| ---------------- | ----------------------------------------------------------- |
+| `.log-output`    | Dark background (`#000`), monospace font, padded block      |
+| `.status-output` | Same as logs — visually mirrors terminal output             |
+| `.form-label`    | Use `.text-muted` to reduce contrast without hiding info    |
+| `.text-dark`     | Use for all output text unless deliberately signaling state |
+
+For reuse, define:
+
+```css
+.terminal-block {
+  background-color: #000 !important;
+  color: var(--bs-body-color) !important;
+  font-family: monospace;
+  padding: 1rem;
+  border-radius: 0.375rem;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+```
+
+---
+
+## 🚥 State Styling (Dynamic)
+
+Apply these **via JavaScript** to indicate real-time changes. They visually override any base border or shadow styles.
+
+| State         | Class                 | Description                               |
+| ------------- | --------------------- | ----------------------------------------- |
+| Refreshing    | `.card.refreshing`    | Glowing green border                      |
+| Shutting down | `.card.shutting-down` | Pulsing orange glow                       |
+| Disconnected  | `.card.disconnected`  | Static orange border for offline states   |
+| Glow effect   | `.glow-text`          | Highlight text momentarily during refresh |
+
+These states override any default or `.border-*` classes. They exist purely for feedback and can be animated or timed.
+
+---
+
+## 🧭 Responsive Layout Guidelines
+
+| Viewport        | Card Layout                          |
+| --------------- | ------------------------------------ |
+| `md`+           | Use `.row .col-md-4` and `.col-md-8` |
+| `< md`          | Stack all content vertically         |
+| Terminal height | Fixed to `250px` for consistency     |
 
 ---
 
 ## 🔗 Link & Button Styling
 
-| Rule                           | Class                                                   |
-| ------------------------------ | ------------------------------------------------------- |
-| Navigation/Actions             | Use `.text-dark` unless purposefully colored            |
-| Subtle links (e.g. footer nav) | `.text-muted` or `.text-info` if context allows         |
-| Action buttons                 | `btn-outline-*` (no solid buttons)                      |
-| Avoid `text-white`             | Theme will handle correct contrast through `.text-dark` |
+| Use case                | Style                                                  |
+| ----------------------- | ------------------------------------------------------ |
+| Primary actions         | `.btn-outline-*` only — never solid                    |
+| Navigational text links | `.text-info`, `.text-muted`, or `.text-cyan`           |
+| Avoid                   | `.text-white` — contrast handled by theme              |
+| Consistent icons        | Bootstrap Icons with color for intent (not decoration) |
 
 ---
 
-## 🧪 Status + Logs Display
+## 🧨 Visual Identity Summary
 
-| Component        | Style                                                                 |
-| ---------------- | --------------------------------------------------------------------- |
-| `.log-output`    | `background: #000`, `color: var(--bs-body-color)`                     |
-| `.status-output` | Same as log output — terminal-style block                             |
-| Labels           | Use `.form-label.text-muted`                                          |
-| Headers          | Use `.text-dark` to align with rest of layout                         |
-| Icons            | Use color (`text-warning`, `text-success`) sparingly, for signal only |
-
----
-
-## 💬 State Indicator Styles (Dynamic, JS-Driven)
-
-| State         | Applied Class         | Notes                                           |
-| ------------- | --------------------- | ----------------------------------------------- |
-| Refreshing    | `.card.refreshing`    | Green border + glow via `.border-success` style |
-| Shutting down | `.card.shutting-down` | Orange pulse with `.border-warning` glow        |
-| Disconnected  | `.card.disconnected`  | Orange border, matches "attention not danger"   |
-| Glow effect   | `.glow-text`          | Used only on status label during refresh cycle  |
+* 🎯 Jet black base (`#000`) with deep gray cards (`#111`)
+* 📦 Static borders allowed **only when structurally helpful**
+* ✳️ `.text-dark` as primary text color for full clarity
+* 🎛️ Icons are subtle, purposeful, and always paired with text
+* 🖥️ Logs/status areas styled as black terminal windows
+* 🔁 Real-time states override border and glow dynamically
 
 ---
 
-## 🧭 Responsive Layout
+## 🧠 Design Intent Reminder
 
-| View Width | Layout Guidance                                      |
-| ---------- | ---------------------------------------------------- |
-| `md`+      | Use `.col-md-4` / `.col-md-8` for side-by-side cards |
-| `< md`     | Stack all cards vertically for simplicity            |
-
----
-
-## 🧨 Summary of Visual Identity
-
-* 🎯 **Void-black** base with dark-gray cards (`#111`)
-* 🧵 **No pre-colored borders** — borders used only to show state
-* ✳️ Brightest readable text via `.text-dark`
-* 🧠 Minimal use of icons for color emphasis, not decoration
-* 💬 Cards = black boxes with just enough definition and hierarchy
-* 🛠️ All status + logs presented with terminal-inspired styling
-
----
-
-# 🎨 Updated DALL·E Prompt: Admin Panel Dashboard (Cyborg Style)
-
-> “Design a modern, dark-mode admin panel for managing a multiplayer game server. This is a single-page dashboard, not a full website.
->
-> The interface must support:
->
-> * A graceful shutdown button (styled as a warning)
-> * A live server status area (like a terminal or iframe-style block)
-> * A log viewer with dropdown to switch logs and a scrollable output area
->
-> Visual tone:
->
-> * Inspired by the Bootswatch Cyborg theme
-> * Pure black background (`#000`), deep gray cards (`#111`)
-> * Crisp `.text-dark` contrast used for all readable content
-> * No pre-colored borders — state changes apply color dynamically
-> * Minimal layout, no bright colors or visual clutter
-> * Terminal and devops-inspired, clean icons and modern fonts
->
-> Present as a clean web-based dashboard. Do not include layout hints or wireframes — let the UI components suggest structure naturally.”
+This dashboard reflects a **developer-friendly**, clean, minimalist admin experience. Every style exists to support clarity, not decoration. Avoid visual clutter, preserve whitespace, and **trust Cyborg + Bootstrap defaults unless there's a clear need to override.**
