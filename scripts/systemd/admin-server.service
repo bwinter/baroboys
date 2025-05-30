@@ -1,0 +1,14 @@
+[Unit]
+Description=Admin Server
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/baroboys/admin_server.py
+StandardOutput=append:/home/bwinter_sc81/baroboys/VRising/logs/admin_server.log
+StandardError=append:/home/bwinter_sc81/baroboys/VRising/logs/admin_server.log
+WorkingDirectory=/opt/baroboys
+Restart=on-failure
+User=root
+
+[Install]
+WantedBy=multi-user.target

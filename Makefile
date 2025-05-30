@@ -12,6 +12,19 @@ TF_VAR_DEF_FILE := terraform/variables.tf
 
 .DEFAULT_GOAL := help
 
+# === Flask ===
+
+.PHONY: flask-run-local flask-deploy flask-get-logs
+
+flask-local:
+	cd "$(dirname "$0")" && scripts/setup/install/flask_server/run_admin_server_local.sh
+
+flask-deploy:
+	cd "$(dirname "$0")" && scripts/setup/install/flask_server/deploy_admin_server.sh
+
+flask-logs:
+	cd "$(dirname "$0")" && scripts/setup/install/flask_server/get_admin_server_logs.sh
+
 # === Terraform ===
 
 .PHONY: init apply destroy plan refresh
@@ -114,27 +127,33 @@ clean:
 # === Help ===
 .PHONY: help
 help:
-	@echo "Common targets:"
+	@echo "🛠️  Common targets:"
 	@echo ""
-	@echo "Terraform:"
+	@echo "🌍 Terraform:"
 	@echo "  make init                   - Initialize Terraform"
 	@echo "  make plan                   - Show Terraform plan"
 	@echo "  make apply                  - Apply Terraform (build VM)"
 	@echo "  make destroy                - Save + destroy VM"
 	@echo "  make refresh                - Refresh Terraform state"
 	@echo ""
-	@echo "Game Mode:"
+	@echo "🐍 Flask Admin Panel:"
+	@echo "  make flask-run-local        - Run Flask admin server locally"
+	@echo "  make flask-deploy           - Deploy Flask server to GCP instance"
+	@echo "  make flask-get-logs         - Fetch logs from Flask systemd service"
+	@echo ""
+	@echo "🎮 Game Mode:"
 	@echo "  make switch                 - Switch game mode (.envrc)"
 	@echo "  make mode                   - Show current game mode"
 	@echo ""
-	@echo "Control:"
+	@echo "🧪 Control:"
 	@echo "  make save-and-shutdown      - Save game state by triggering shutdown"
 	@echo "  make ssh                    - SSH into VM"
 	@echo "  make ssh-iap                - SSH using IAP tunnel"
 	@echo ""
-	@echo "Packer Builds:"
+	@echo "📦 Packer Builds:"
 	@echo "  make build-core             - Build base image (core setup)"
 	@echo "  make build-steam            - Build Steam dependencies layer"
 	@echo "  make build-game             - Build game layer"
 	@echo "  make build-all              - Build all Packer image layers"
 	@echo "  make clean                  - Review usage and delete Packer images and disks"
+
