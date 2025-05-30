@@ -29,7 +29,7 @@ def get_server_password():
 
 def mcrcon_cmd(cmd):
     return subprocess.run(
-        ["/usr/bin/mcrcon", "-H", "127.0.0.1", "-P", "25575", "-p", get_server_password(), cmd],
+        ["mcrcon", "-H", "127.0.0.1", "-P", "25575", "-p", get_server_password(), cmd],
         capture_output=True, text=True, timeout=5
     ).stdout.strip()
 
