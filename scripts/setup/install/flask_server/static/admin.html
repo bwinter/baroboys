@@ -161,9 +161,10 @@
         try {
             const res = await fetch(url);
             const text = await res.text();
-            output.innerHTML = text;
+            output.textContent = text;
+            output.scrollTop = output.scrollHeight;
         } catch (e) {
-            output.innerText = `Failed to load ${val}: ${e}`;
+            output.textContent = `Failed to load ${val}: ${e}`;
         } finally {
             setTimeout(() => logCard.classList.remove('refreshing'), 1000);
         }
@@ -172,30 +173,34 @@
     async function refreshStatus() {
         try {
             const res = await fetch('/check-status');
-            if (!res.ok) throw new Error("Status fetch failed");
-
             const text = await res.text();
-            statusOutput.innerText = text;
+            statusOutput.textContent = text;
             statusOutput.scrollTop = statusOutput.scrollHeight;
 
-            [statusCard, shutdownCard, logCard].forEach(card => card.classList.remove('disconnected'));
-            offlineMsg.classList.add('d-none');
-
+            // Green flash
             statusCard.classList.add('refreshing');
             refreshLabel.classList.add('glow-text');
             setTimeout(() => {
                 statusCard.classList.remove('refreshing');
                 refreshLabel.classList.remove('glow-text');
             }, 1000);
-
         } catch (err) {
-            statusOutput.innerText = '⚠️ Server unreachable';
-            [statusCard, shutdownCard, logCard].forEach(card => card.classList.add('disconnected'));
-            offlineMsg.classList.remove('d-none');
-            console.error("Server unreachable:", err.message);
+            statusOutput.textContent = '⚠️ Failed to fetch status';
+            console.error("Status error:", err.message);
         }
     }
 
+    async function checkHeartbeat() {
+        try {
+            const res = await fetch('/ping');
+            if (!res.ok) throw new Error("Ping failed");
+            [statusCard, shutdownCard, logCard].forEach(card => card.classList.remove('disconnected'));
+            offlineMsg.classList.add('d-none');
+        } catch (e) {
+            [statusCard, shutdownCard, logCard].forEach(card => card.classList.add('disconnected'));
+            offlineMsg.classList.remove('d-none');
+        }
+    }
 
     shutdownForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -233,9 +238,12 @@
     window.addEventListener('load', () => {
         loadLog();
         refreshStatus();
+        checkHeartbeat();
     });
+
     setInterval(loadLog, 5000);
     setInterval(refreshStatus, 5000);
+    setInterval(checkHeartbeat, 5000);
 </script>
 </body>
 </html>
