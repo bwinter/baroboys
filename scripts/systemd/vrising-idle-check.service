@@ -8,7 +8,9 @@ Type=oneshot
 User=bwinter_sc81
 Group=bwinter_sc81
 WorkingDirectory=/home/bwinter_sc81/baroboys
-ExecStart=/home/bwinter_sc81/baroboys/scripts/teardown/user/idle_shutdown_if_empty.sh
+ExecStart=/home/bwinter_sc81/baroboys/scripts/teardown/user/vrising_idle_check.sh
+StandardOutput=append:/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log
+StandardError=append:/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log
 
 # Recommended for clean logs and runtime detection
 StandardOutput=journal
