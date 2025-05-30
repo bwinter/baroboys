@@ -4,8 +4,7 @@ set -eux
 apt update
 apt install -y nginx apache2-utils
 
-gcloud secrets versions access latest --secret=nginx-htpasswd \
-  > "/etc/nginx/.htpasswd"
+gcloud secrets versions access latest --secret="nginx-htpasswd" --quiet > "/etc/nginx/.htpasswd"
 chmod 644 "/etc/nginx/.htpasswd"
 
 
