@@ -1,33 +1,39 @@
-# === Config ===
-TF_DIR = terraform
-PROJECT = europan-world
-ZONE = us-west1-b
-INSTANCE = europa
-USER = bwinter_sc81
-REMOTE_SAVE_SCRIPT = /home/$(USER)/baroboys/scripts/teardown/user/save_game.sh
-ACTIVE_GAME_FILE = .envrc
+# =======================
+# 📦 Config
+# =======================
+TF_DIR           := terraform
+PROJECT          := europan-world
+ZONE             := us-west1-b
+INSTANCE         := europa
+USER             := bwinter_sc81
+REMOTE_SAVE_SCRIPT := /home/$(USER)/baroboys/scripts/teardown/user/save_game.sh
+ACTIVE_GAME_FILE := .envrc
 
-TF_VAR_FILE := terraform/terraform.tfvars
-TF_VAR_DEF_FILE := terraform/variables.tf
+TF_VAR_FILE      := terraform/terraform.tfvars
+TF_VAR_DEF_FILE  := terraform/variables.tf
 
 .DEFAULT_GOAL := help
 
-# === Flask ===
 
-.PHONY: run-admin-local deploy-admin-remotes
+# =======================
+# 🐍 Flask Admin Panel
+# =======================
+.PHONY: run-admin-local deploy-admin-remote get-admin-remote-logs
 
 run-admin-local:
-	cd "$(dirname "$0")" && scripts/setup/install/flask_server/run_admin_server_local.sh
+	scripts/setup/install/flask_server/run_admin_server_local.sh
 
 deploy-admin-remote:
-	cd "$(dirname "$0")" && scripts/setup/install/flask_server/deploy_admin_server.sh
+	scripts/setup/install/flask_server/deploy_admin_server.sh
 
 get-admin-remote-logs:
-	cd "$(dirname "$0")" && scripts/setup/install/flask_server/get_admin_server_logs.sh
+	scripts/setup/install/flask_server/get_admin_server_logs.sh
 
-# === Terraform ===
 
-.PHONY: init apply destroy plan refresh
+# =======================
+# 🌍 Terraform
+# =======================
+.PHONY: init plan apply destroy refresh
 
 init:
 	cd $(TF_DIR) && terraform init
@@ -44,56 +50,72 @@ destroy:
 refresh:
 	cd $(TF_DIR) && terraform refresh
 
-# === IAM ===
-IAM_TF_DIR := $(TF_DIR)/iam
-IAM_BUILD_DIR := $(IAM_TF_DIR)/tmp
-IAM_VARS := terraform.tfvars
-IAM_VAR_DEFS := variables.tf
 
-# Use default gcloud credentials instead of GOOGLE_APPLICATION_CREDENTIALS
+# =======================
+# 🔐 IAM (Service Accounts)
+# =======================
+IAM_TF_DIR     := $(TF_DIR)/iam
+IAM_BUILD_DIR  := $(IAM_TF_DIR)/tmp
+IAM_VARS       := terraform.tfvars
+IAM_VAR_DEFS   := variables.tf
+
 .PHONY: iam-apply iam-destroy
 
 iam-apply:
-	# Sync TF variables
+	@echo "📤 Syncing IAM Terraform files..."
 	mkdir -p "$(IAM_BUILD_DIR)/"
-	cp -f "$(IAM_TF_DIR)/iam_terraform_service_account.tf" "$(IAM_BUILD_DIR)/iam_terraform_service_account.tf"
-	cp -f "$(IAM_TF_DIR)/iam_vm_runtime.tf" "$(IAM_BUILD_DIR)/iam_vm_runtime.tf"
-	cp -f "$(IAM_TF_DIR)/iam_vrising_admins.tf" "$(IAM_BUILD_DIR)/iam_vrising_admins.tf"
+	cp -f "$(IAM_TF_DIR)/iam_terraform_service_account.tf" "$(IAM_BUILD_DIR)/"
+	cp -f "$(IAM_TF_DIR)/iam_vm_runtime.tf" "$(IAM_BUILD_DIR)/"
+	cp -f "$(IAM_TF_DIR)/iam_vrising_admins.tf" "$(IAM_BUILD_DIR)/"
 	cp -f "$(TF_VAR_FILE)" "$(IAM_BUILD_DIR)/$(IAM_VARS)"
 	cp -f "$(TF_VAR_DEF_FILE)" "$(IAM_BUILD_DIR)/$(IAM_VAR_DEFS)"
 
-	@echo "✅ Applying IAM changes using your GCP user credentials..."
+	@echo "✅ Applying IAM using GCP user credentials..."
 	cd $(IAM_BUILD_DIR) && \
 		unset GOOGLE_APPLICATION_CREDENTIALS && \
 		terraform init && \
 		terraform apply -var-file=$(IAM_VARS)
 
 iam-destroy:
-	@echo "🔥 Destroying IAM changes using your GCP user credentials..."
+	@echo "🔥 Destroying IAM with GCP user credentials..."
 	cd $(IAM_BUILD_DIR) && \
 		unset GOOGLE_APPLICATION_CREDENTIALS && \
 		terraform init && \
 		terraform destroy -var-file=$(IAM_VARS)
 
 
-# === Game Mode ===
-.PHONY: switch mode
+# =======================
+# 🎮 Game Mode
+# =======================
+.PHONY: switch mode reinstall-game
+
 switch:
-	./scripts/manual/switch_game.sh
+	scripts/manual/switch_game.sh
 
 mode:
 	@grep ACTIVE_GAME $(ACTIVE_GAME_FILE) | cut -d= -f2
 
-# === Save ===
+reinstall-game:
+	scripts/setup/remote_reinstall_game.sh
+
+
+# =======================
+# 💾 Save + Shutdown
+# =======================
 .PHONY: save-and-shutdown
+
 save-and-shutdown:
 	gcloud compute ssh $(USER)@$(INSTANCE) \
 		--project=$(PROJECT) \
 		--zone=$(ZONE) \
 		--command="$(REMOTE_SAVE_SCRIPT)"
 
-# === SSH ===
+
+# =======================
+# 🔐 SSH Access
+# =======================
 .PHONY: ssh ssh-iap
+
 ssh:
 	gcloud compute ssh $(USER)@$(INSTANCE) \
 		--project=$(PROJECT) \
@@ -105,27 +127,38 @@ ssh-iap:
 		--zone=$(ZONE) \
 		--tunnel-through-iap
 
-# === Packer ===
 
+# =======================
+# 🧱 Packer Builds
+# =======================
 .PHONY: build-core build-steam build-game build-all
 
 build-core:
-	./scripts/packer_build.sh core
+	scripts/packer_build.sh core
 
 build-steam:
-	./scripts/packer_build.sh steam
+	scripts/packer_build.sh steam
 
 build-game:
-	./scripts/packer_build.sh game
+	scripts/packer_build.sh game
 
 build-all: build-core build-steam build-game
 
-.PHONY: clean
-clean:
-	./scripts/gcp_review_and_cleanup.sh
 
-# === Help ===
+# =======================
+# 🧹 Cleanup
+# =======================
+.PHONY: clean
+
+clean:
+	scripts/gcp_review_and_cleanup.sh
+
+
+# =======================
+# 🆘 Help
+# =======================
 .PHONY: help
+
 help:
 	@echo "🛠️  Common targets:"
 	@echo ""
@@ -144,6 +177,7 @@ help:
 	@echo "🎮 Game Mode:"
 	@echo "  make switch                 - Switch game mode (.envrc)"
 	@echo "  make mode                   - Show current game mode"
+	@echo "  make reinstall-game         - Trigger remote reinstall of game"
 	@echo ""
 	@echo "🧪 Control:"
 	@echo "  make save-and-shutdown      - Save game state by triggering shutdown"
@@ -156,4 +190,3 @@ help:
 	@echo "  make build-game             - Build game layer"
 	@echo "  make build-all              - Build all Packer image layers"
 	@echo "  make clean                  - Review usage and delete Packer images and disks"
-
