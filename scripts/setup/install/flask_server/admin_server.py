@@ -140,7 +140,12 @@ def api_players():
 def api_time():
     if ENV == "development":
         return {"time": "Day 14, 12:34 PM"}
-    print(f"Help: {mcrcon_cmd("help").strip()}")
+
+    cmd = "help"
+    result = mcrcon_cmd(cmd).strip()
+    print(f"🛰️ RCON command: {cmd}", flush=True)
+    print(f"📥 stdout: {result.stdout.strip()}", flush=True)
+    print(f"⚠️ stderr: {result.stderr.strip()}", flush=True)
     output = mcrcon_cmd("GetTime").strip()
     try:
         return {"time": output}
