@@ -50,6 +50,12 @@ build {
       "/usr/bin/sudo /root/baroboys/scripts/setup/install/apt_wine.sh",
       "echo '🔧 Running apt_steam.sh'",
       "/usr/bin/sudo /root/baroboys/scripts/setup/install/apt_steam.sh",
+      # Refreshes & Enables Startup Service (Want to install self to ensure refresh occurs after restart.)
+      "echo '🔧 Install startup.service'",
+      "/usr/bin/sudo /root/baroboys/scripts/setup/install/service/startup.sh",
+      # Refreshes & Enables & Starts Admin Server (Startup Admin Server immediately.)
+      "echo '🔧 Install shutdown.service'",
+      "/usr/bin/sudo /root/baroboys/scripts/setup/install/service/shutdown.sh",
       "echo '🧹 Running autoremove'",
       "/usr/bin/sudo apt-get -yq autoremove"
     ]

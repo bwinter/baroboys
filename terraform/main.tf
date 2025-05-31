@@ -61,8 +61,8 @@ resource "google_compute_instance" "default" {
   }
 
   metadata = {
-    startup-script  = "/usr/bin/bash /root/baroboys/scripts/setup/startup.sh"
-    shutdown-script = "/usr/bin/bash /root/baroboys/scripts/teardown/shutdown.sh"
+    startup-script  = "systemctl start startup.service"
+    shutdown-script = "systemctl start shutdown.service"
   }
 
   boot_disk {
