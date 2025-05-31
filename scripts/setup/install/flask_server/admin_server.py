@@ -177,7 +177,7 @@ def api_shutdown():
             "raw": "Server shutdown scheduled in 8 minutes"
         }
     try:
-        mcrcon_cmd("announce hello")
+        raw = mcrcon_cmd("announce hello")
         print(f"📄 Raw GetShutdown output:\n{raw}")
         match = re.search(r"in (\d+) minutes", raw)
         return {
