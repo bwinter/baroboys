@@ -13,11 +13,7 @@ gcloud compute ssh "$REMOTE" \
   --project "$PROJECT" \
   --command "/usr/bin/sudo bash -euxc ' \
     cd $ROOT_REPO_PATH && \
-    ./scripts/setup/util/refresh_repo.sh || git pull && \
-    ./scripts/setup/install/service/admin_server.sh && \
-    systemctl restart admin-server.service && \
-    ./scripts/setup/install/apt_nginx.sh && \
-    nginx -t && systemctl reload nginx \
+    ./scripts/setup/root/startup.sh
   '"
 
 echo "✅ Flask and Nginx updated."
