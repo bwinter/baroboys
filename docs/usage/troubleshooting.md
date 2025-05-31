@@ -87,16 +87,16 @@ gcloud compute ssh bwinter_sc81@europa \
 /usr/bin/sudo journalctl -u vrising.service --since="-10min" --no-pager
 ```
 
-### `shutdown.service` logs (shutdown & save):
+### `vm-shutdown.service` logs (shutdown & save):
 
 ```bash
-/usr/bin/sudo journalctl -u shutdown.service --since="-10min" --no-pager
+/usr/bin/sudo journalctl -u vm-shutdown.service --since="-10min" --no-pager
 ```
 
-### `startup.service` logs (game startup & provisioning):
+### `vm-startup.service` logs (game startup & provisioning):
 
 ```bash
-/usr/bin/sudo journalctl -u startup.service --since="-10min" --no-pager
+/usr/bin/sudo journalctl -u vm-startup.service --since="-10min" --no-pager
 ```
 
 ---

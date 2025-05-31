@@ -58,7 +58,7 @@ This model minimizes rebuilds and allows rapid iteration or hotfixes by Git + re
 
 ```
 📣 In-game: "Server shutting down in 60s"
-🧠 shutdown.service triggered (Before=halt.target)
+🧠 vm-shutdown.service triggered (Before=halt.target)
 📂 save_game.sh → setup_vrising.sh (or setup_barotrauma.sh)
 🔗 Git commit: "Autosave @ 2025-05-28 05:21 UTC"
 🚁 Pushed upstream
@@ -94,13 +94,13 @@ Baroboys will eventually support automatic shutdown of idle game servers. Option
 * **Resource-aware**: Use CPU/network/memory thresholds over time
 * **Time-aware**: Shutdown after N minutes without save activity or inbound connections
 
-These will integrate with the existing Git-backed `shutdown.service` and will respect per-game shutdown protocols.
+These will integrate with the existing Git-backed `vm-shutdown.service` and will respect per-game shutdown protocols.
 
 ---
 
 ## 🔺 Teardown Pipeline Summary
 
-1. `shutdown.service` runs *before* VM halts
+1. `vm-shutdown.service` runs *before* VM halts
 2. Executes `/root/baroboys/scripts/teardown/shutdown.sh`
 3. Calls `save_game.sh` (game-aware)
 4. Delegates to `setup_<game>.sh` for teardown
