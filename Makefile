@@ -16,7 +16,7 @@ TF_VAR_DEF_FILE  := terraform/variables.tf
 
 dev: admin-refresh game-refresh
 
-refresh: terraform-refresh
+refresh: terraform-apply
 
 destroy: terraform-destroy
 
@@ -46,7 +46,7 @@ terraform-init:
 terraform-plan:
 	cd $(TF_DIR) && terraform plan
 
-terraform-refresh:
+terraform-apply:
 	cd $(TF_DIR) && terraform apply
 
 terraform-destroy:
