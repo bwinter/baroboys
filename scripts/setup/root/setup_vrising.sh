@@ -40,13 +40,15 @@ fi
 
 # Register and start the idleness monitor.
 install -m 644 "/root/baroboys/scripts/systemd/vrising.service" "/etc/systemd/system/"
-install -m 644 "/root/baroboys/scripts/systemd/vrising-idle-check.service" "/etc/systemd/system/"
-install -m 644 "/root/baroboys/scripts/systemd/vrising-idle-check.timer" "/etc/systemd/system/"
+
+# TODO: Disabled till mcrcon is working.
+# install -m 644 "/root/baroboys/scripts/systemd/vrising-idle-check.service" "/etc/systemd/system/"
+# install -m 644 "/root/baroboys/scripts/systemd/vrising-idle-check.timer" "/etc/systemd/system/"
 
 systemctl daemon-reexec
 systemctl daemon-reload
-systemctl enable vrising-idle-check.timer
-systemctl start vrising-idle-check.timer
+# systemctl enable vrising-idle-check.timer
+# systemctl start vrising-idle-check.timer
 
 # Give Admin Server access to logs.
 
