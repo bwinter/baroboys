@@ -39,7 +39,7 @@ def mcrcon_cmd(cmd):
                 "-H", "127.0.0.1",
                 "-P", "25575",
                 "-p", get_server_password(),
-                "-t", "-r",
+                "-r",
             ] + cmd_parts,
             capture_output=True,
             text=True,
@@ -47,6 +47,7 @@ def mcrcon_cmd(cmd):
             check=True
         )
         print(f"🛰️ RCON command: {' '.join(cmd_parts)}")
+        print(f"🛰️ RCON pwd: {get_server_password()}")
         if result.stdout.strip():
             print(f"📥 stdout: {result.stdout.strip()}")
         if result.stderr.strip():
@@ -145,7 +146,7 @@ def api_players():
     if ENV == "development":
         return {"players": ["Alice", "Bob", "Charlie"]}
     try:
-        raw = mcrcon_cmd("ListUsers")
+        raw = mcrcon_cmd("announce hello")
         print(f"📄 Raw ListUsers output:\n{raw}")
         lines = raw.splitlines()
         players = [l.split()[0] for l in lines if "@" in l and not l.startswith("No players")]
@@ -156,7 +157,7 @@ def api_players():
 
 @app.route("/api/time")
 def api_time():
-    result = mcrcon_cmd("GetTime")
+    result = mcrcon_cmd("announce hello")
     print(f"📄 Raw GetTime output:\n{result}")
     if result:
         return {"time": result.strip()}
@@ -173,7 +174,7 @@ def api_shutdown():
             "raw": "Server shutdown scheduled in 8 minutes"
         }
     try:
-        raw = mcrcon_cmd("GetShutdown")
+        raw = mcrcon_cmd("announce hello")
         print(f"📄 Raw GetShutdown output:\n{raw}")
         match = re.search(r"in (\d+) minutes", raw)
         return {
@@ -194,7 +195,7 @@ def api_settings():
             "BloodBoundEquipment": "false"
         }
     try:
-        raw = mcrcon_cmd("ServerSettings")
+        raw = mcrcon_cmd("announce hello")
         print(f"📄 Raw ServerSettings output:\n{raw}")
         lines = raw.splitlines()
         return {k.strip(): v.strip() for line in lines if "=" in line for k, v in [line.split("=", 1)]}
