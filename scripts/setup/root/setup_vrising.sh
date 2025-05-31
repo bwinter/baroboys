@@ -86,8 +86,16 @@ else
 
     exit 1
   fi
+
+  # Confirm it actually became active
+  if ! systemctl is-active --quiet vrising.service; then
+    echo "❌ vrising.service is not active after restart" >&2
+    systemctl status --no-pager --full vrising.service || true
+    exit 3
+  fi
 fi
 
+# Last-ditch check
 if systemctl is-failed --quiet vrising.service; then
   echo "❌ vrising.service is in a failed state" >&2
   systemctl status --no-pager --full vrising.service || true
@@ -95,3 +103,4 @@ if systemctl is-failed --quiet vrising.service; then
 fi
 
 echo "✅ vrising.service is now active."
+
