@@ -1,5 +1,5 @@
 [Unit]
-Description=Check if V Rising is idle every 30 minutes
+Description=Check if V Rising is idle every 5 minutes
 
 [Timer]
 OnBootSec=5min
