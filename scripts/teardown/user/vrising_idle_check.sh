@@ -4,9 +4,18 @@ set -eu
 IDLE_FLAG="/tmp/server_idle_since.flag"
 COOLDOWN_MINUTES=30
 
-SERVER_PASS="$(gcloud secrets versions access latest --secret="server-password")"
+SERVER_PASS="$(gcloud secrets versions access latest --secret="server-password" || true)"
+if [[ -z "$SERVER_PASS" ]]; then
+  echo "❌ Server password missing or empty" >&2
+  exit 1
+fi
 
-PLAYERS_ONLINE=$(mcrcon -H 127.0.0.1 -P 25575 -p "$SERVER_PASS" "listusers" | grep -v "no players connected" | grep -E "[0-9]+ players connected" || true)
+PLAYERS_ONLINE=$(
+  mcrcon -H 127.0.0.1 -P 25575 -p "$SERVER_PASS" "listusers" 2>/dev/null \
+    | grep -v "no players connected" \
+    | grep -E "[0-9]+ players connected" \
+    || true
+)
 
 if [[ -n "$PLAYERS_ONLINE" ]]; then
   rm -f "$IDLE_FLAG"
@@ -26,5 +35,3 @@ else
     fi
   fi
 fi
-
-exit 0
