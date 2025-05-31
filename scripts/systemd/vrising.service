@@ -11,17 +11,17 @@ WorkingDirectory=/home/bwinter_sc81/baroboys/VRising
 User=bwinter_sc81
 Group=bwinter_sc81
 
+# Warn if already running, but always exit 0
 ExecStartPre=/usr/bin/bash -c 'if pgrep -f VRisingServer.exe; then echo "🟡 Already running"; fi; exit 0'
 
-ExecStart=/usr/bin/wine \
-  VRisingServer.exe \
-  -persistentDataPath ./Data \
-  -serverName "Mc's Playground" \
-  -saveName "TestWorld-1" \
-  -logFile ./logs/VRisingServer.log
+# Use wrapper to detect intentional shutdown
+ExecStart=/home/bwinter_sc81/baroboys/scripts/wrappers/vrising_launcher.sh
 
-ExecStopPre=/home/bwinter_sc81/baroboys/scripts/teardown/user/save_game.sh
+# No longer needed if wrapper handles exit logic, but harmless to keep
 ExecStop=/usr/bin/pkill -f VRisingServer.exe
+
+# Optional: avoid noisy crash logs if intentionally shutting down
+SuccessExitStatus=0
 
 StandardOutput=append:/home/bwinter_sc81/baroboys/VRising/logs/vrising.log
 StandardError=append:/home/bwinter_sc81/baroboys/VRising/logs/vrising.log
