@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=oneshot
 Environment=HOME=/root
-ExecStart=/root/baroboys/scripts/setup/startup.sh
+ExecStart=/usr/bin/bash /root/baroboys/scripts/setup/startup.sh
 StandardOutput=append:/home/bwinter_sc81/baroboys/VRising/logs/startup.log
 StandardError=append:/home/bwinter_sc81/baroboys/VRising/logs/startup.log
 RemainAfterExit=yes

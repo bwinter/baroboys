@@ -10,5 +10,5 @@ LOG_LINES=200
 echo "📡 Fetching logs for $SERVICE from $REMOTE..."
 
 gcloud compute ssh "$REMOTE" --zone "$ZONE" --project "$PROJECT" --command "
-  sudo journalctl -u $SERVICE --no-pager -n $LOG_LINES
+  /usr/bin/sudo journalctl -u $SERVICE --no-pager -n $LOG_LINES
 "

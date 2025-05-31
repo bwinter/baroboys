@@ -75,13 +75,7 @@ variable "base_core_image" {
 }
 
 variable "base_steam_image" {
-  description = "Steam image used for the Game layer"
+  description = "Steam image used for the Services layer"
   type        = string
   default     = "baroboys-steam"
-}
-
-variable "base_game_image" {
-  description = "Game image used for Terraform VM provisioning"
-  type        = string
-  default     = "baroboys-game"
 }

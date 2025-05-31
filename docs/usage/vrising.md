@@ -5,13 +5,13 @@
 To gracefully restart the server through systemd:
 
 ```bash
-sudo systemctl restart vrising.service
+/usr/bin/sudo systemctl restart vrising.service
 ```
 
 #### ✅ Check server status:
 
 ```bash
-sudo systemctl status vrising.service
+/usr/bin/sudo systemctl status vrising.service
 ```
 
 #### 📜 Tail live logs:
@@ -53,7 +53,7 @@ mcrcon -H 127.0.0.1 -P 25575 -p <PW> \
 Then restart the systemd unit:
 
 ```bash
-sudo systemctl restart vrising.service
+/usr/bin/sudo systemctl restart vrising.service
 ```
 
 ---
@@ -65,7 +65,7 @@ sudo systemctl restart vrising.service
 If you are SSH'd into the VM, you can trigger a graceful shutdown manually:
 
 ```bash
-sudo /root/baroboys/scripts/teardown/shutdown.sh
+/usr/bin/sudo /root/baroboys/scripts/teardown/shutdown.sh
 ```
 
 This will:

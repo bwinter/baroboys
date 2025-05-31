@@ -36,24 +36,26 @@ build {
   sources = ["source.googlecompute.baroboys-core"]
 
   provisioner "file" {
-    source      = "clone_repo.sh"
+    source      = "refresh_repo.sh"
     destination = "/tmp/clone_repo.sh"
   }
 
   provisioner "shell" {
     inline = [
       "echo '🔧 Updating APT and installing Git'",
-      "sudo apt-get update",
-      "sudo apt-get install -yq git",
+      "/usr/bin/sudo apt-get update",
+      "/usr/bin/sudo apt-get install -yq git",
       "echo '🔧 Cloning Baroboys repo'",
-      "sudo chmod +x /tmp/clone_repo.sh",
-      "sudo /tmp/clone_repo.sh",
+      "/usr/bin/sudo chmod +x /tmp/clone_repo.sh",
+      "/usr/bin/sudo /tmp/clone_repo.sh",
+      "echo '🔧 Running setup_user.sh'",
+      "/usr/bin/sudo /root/baroboys/scripts/setup/root/setup_user.sh",
       "echo '🔧 Running apt_core.sh'",
-      "sudo /root/baroboys/scripts/setup/install/apt_core.sh",
+      "/usr/bin/sudo /root/baroboys/scripts/setup/install/apt_core.sh",
       "echo '🔧 Running apt_gcloud.sh'",
-      "sudo /root/baroboys/scripts/setup/install/apt_gcloud.sh",
+      "/usr/bin/sudo /root/baroboys/scripts/setup/install/apt_gcloud.sh",
       "echo '🧹 Running autoremove'",
-      "sudo apt-get -yq autoremove"
+      "/usr/bin/sudo apt-get -yq autoremove"
     ]
   }
 }
