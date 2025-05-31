@@ -11,7 +11,7 @@ WorkingDirectory=/home/bwinter_sc81/baroboys/VRising
 User=bwinter_sc81
 Group=bwinter_sc81
 
-ExecStartPre=/usr/bin/bash -c 'pgrep -f VRisingServer.exe && exit 1 || exit 0'
+ExecStartPre=/usr/bin/bash -c 'if pgrep -f VRisingServer.exe; then echo "🟡 Already running"; fi; exit 0'
 
 ExecStart=/usr/bin/wine \
   VRisingServer.exe \
