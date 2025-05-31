@@ -17,11 +17,11 @@ if ! command -v mcrcon >/dev/null || ! "$MCRCON_BIN" -v 2>&1 | grep -qi 'mcrcon'
   echo "🔧 Installing mcrcon..."
 
   # Clean any prior partial install
-  rm -rf /tmp/mcrcon
+  rm -rf "/tmp/mcrcon"
 
   # Clone and build
-  git clone https://github.com/Tiiffi/mcrcon.git /tmp/mcrcon
-  cd /tmp/mcrcon
+  git clone "https://github.com/Tiiffi/mcrcon.git" "/tmp/mcrcon"
+  cd "/tmp/mcrcon"
   make
 
   # Install if not already identical
