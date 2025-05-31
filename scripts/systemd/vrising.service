@@ -11,12 +11,12 @@ WorkingDirectory=/home/bwinter_sc81/baroboys/VRising
 User=bwinter_sc81
 Group=bwinter_sc81
 
-ExecStartPre=/usr/bin/bash -c '! pgrep -f VRisingServer.exe'
+ExecStartPre=/usr/bin/bash -c 'pgrep -f VRisingServer.exe && exit 1 || exit 0'
 
 ExecStart=/usr/bin/wine \
   VRisingServer.exe \
   -persistentDataPath ./Data \
-  -serverName "Mc's Playground" \
+  -serverName "Mc\'s Playground" \
   -saveName "TestWorld-1" \
   -logFile ./logs/VRisingServer.log
 
