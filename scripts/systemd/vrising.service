@@ -28,3 +28,4 @@ StandardError=append:/home/bwinter_sc81/baroboys/VRising/logs/vrising.log
 KillMode=control-group
 TimeoutStopSec=300
 Restart=on-failure
+SuccessExitStatus=0
