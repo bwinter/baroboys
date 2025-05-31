@@ -78,7 +78,7 @@ def ping():
 @app.route("/api/trigger-shutdown", methods=["POST"])
 def trigger_shutdown():
     try:
-        subprocess.Popen(["systemctl", "start", "shutdown.service"])
+        subprocess.Popen(["systemctl", "start", "vm-shutdown.service"])
         now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
         return {"status": "Shutdown triggered", "time": now}, 200
     except Exception as e:
