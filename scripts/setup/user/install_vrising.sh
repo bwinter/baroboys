@@ -23,8 +23,14 @@ git checkout -- \
   "VRising/Data/Settings/adminlist.txt" \
   "VRising/Data/Settings/banlist.txt"
 
-jq --arg pass "$RCON_PASSWORD" '.Password = $pass' -i "$HOST_JSON"
-jq --arg pass "$RCON_PASSWORD" '.Rcon.Password = $pass' -i "$HOST_JSON"
+inject() {
+  local file="$1"
+  jq --arg pass "$RCON_PASSWORD" '.Rcon.Password = $pass' "$file" > "$file.tmp"
+  mv "$file.tmp" "$file"
+}
+
+inject "$HOST_JSON"
+inject "$GAME_JSON"
 
 mkdir -p "/home/bwinter_sc81/baroboys/VRising/logs"
 chmod o+rx "/home/bwinter_sc81"
