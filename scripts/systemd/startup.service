@@ -8,7 +8,6 @@ Environment=HOME=/root
 ExecStart=/usr/bin/bash /root/baroboys/scripts/setup/startup.sh
 StandardOutput=append:/home/bwinter_sc81/baroboys/VRising/logs/startup.log
 StandardError=append:/home/bwinter_sc81/baroboys/VRising/logs/startup.log
-RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target

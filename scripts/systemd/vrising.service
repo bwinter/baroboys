@@ -1,5 +1,5 @@
 [Unit]
-Description=VRising Dedicated Server (baroboys)
+Description=V Rising Dedicated Server (Baroboys)
 Wants=network-online.target
 After=network-online.target xvfb.service
 Requires=xvfb.service
@@ -17,7 +17,7 @@ ExecStart=/usr/bin/wine \
   -saveName "TestWorld-1" \
   -logFile ./logs/VRisingServer.log
 
+ExecStop=/usr/bin/pkill -f VRisingServer.exe
 KillMode=control-group
 ExecStop=/bin/true
 TimeoutStopSec=300
-RemainAfterExit=yes
