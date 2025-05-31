@@ -28,10 +28,18 @@ def get_server_password():
 
 
 def mcrcon_cmd(cmd):
-    return subprocess.run(
+    result = subprocess.run(
         ["mcrcon", "-H", "127.0.0.1", "-P", "25575", "-p", get_server_password(), cmd],
         capture_output=True, text=True, timeout=5
-    ).stdout.strip()
+    )
+
+    print(f"🛰️ RCON command: {cmd}")
+    print(f"📥 stdout: {result.stdout.strip()}")
+    print(f"⚠️ stderr: {result.stderr.strip()}")
+
+    result.check_returncode()  # Raises if exit code != 0
+    return result.stdout.strip()
+
 
 
 @app.route("/")
@@ -141,6 +149,7 @@ def api_shutdown():
             "raw": "Server shutdown scheduled in 8 minutes"
         }
     try:
+        raw = mcrcon_cmd("help")
         raw = mcrcon_cmd("GetShutdown")
         match = re.search(r"in (\d+) minutes", raw)
         return {
