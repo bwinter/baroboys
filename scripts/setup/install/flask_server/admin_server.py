@@ -28,18 +28,24 @@ def get_server_password():
 
 
 def mcrcon_cmd(cmd):
-    result = subprocess.run(
-        ["mcrcon", "-H", "127.0.0.1", "-P", "25575", "-p", get_server_password(), cmd],
-        capture_output=True, text=True, timeout=5
-    )
+    try:
+        result = subprocess.run(
+            ["mcrcon", "-H", "127.0.0.1", "-P", "25575", "-p", get_server_password(), cmd],
+            capture_output=True, text=True, timeout=5
+        )
 
-    print(f"🛰️ RCON command: {cmd}")
-    print(f"📥 stdout: {result.stdout.strip()}")
-    print(f"⚠️ stderr: {result.stderr.strip()}")
+        print(f"🛰️ RCON command: {cmd}")
+        print(f"📥 stdout: {result.stdout.strip()}")
+        print(f"⚠️ stderr: {result.stderr.strip()}")
 
-    result.check_returncode()  # Raises if exit code != 0
-    return result.stdout.strip()
-
+        result.check_returncode()
+        return result.stdout.strip()
+    except subprocess.CalledProcessError as e:
+        return f"RCON Error: {e.stderr.strip()}"
+    except subprocess.TimeoutExpired:
+        return "RCON Timeout"
+    except Exception as e:
+        return f"RCON Exception: {type(e).__name__}: {e}"
 
 
 @app.route("/")
@@ -59,7 +65,7 @@ def trigger_shutdown():
         now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
         return {"status": "Shutdown triggered", "time": now}, 200
     except Exception as e:
-        return {"status": f"Shutdown Failed: {e}"}, 500
+        return {"status": f"Shutdown Failed: {type(e).__name__}: {e}"}, 500
 
 
 @app.route("/api/check-status")
@@ -134,8 +140,10 @@ def api_players():
 def api_time():
     if ENV == "development":
         return {"time": "Day 14, 12:34 PM"}
+    print(f"Help: {mcrcon_cmd("help").strip()}")
+    output = mcrcon_cmd("GetTime").strip()
     try:
-        return {"time": mcrcon_cmd("GetTime").strip()}
+        return {"time": output}
     except Exception as e:
         return {"error": f"Failed to fetch time: {type(e).__name__}: {e}"}, 500
 
@@ -149,7 +157,6 @@ def api_shutdown():
             "raw": "Server shutdown scheduled in 8 minutes"
         }
     try:
-        raw = mcrcon_cmd("help")
         raw = mcrcon_cmd("GetShutdown")
         match = re.search(r"in (\d+) minutes", raw)
         return {
