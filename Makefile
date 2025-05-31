@@ -14,7 +14,7 @@ TF_VAR_DEF_FILE  := terraform/variables.tf
 
 .DEFAULT_GOAL := help
 
-dev: admin-refresh game-refresh
+dev: admin-refresh vm-refresh
 
 refresh: terraform-apply
 
@@ -92,16 +92,16 @@ iam-destroy:
 # =======================
 # 🎮 Game
 # =======================
-.PHONY: game-switch game-mode game-refresh
+.PHONY: vm-switch vm-mode vm-refresh
 
-game-switch:
+vm-switch:
 	scripts/manual/switch_game.sh
 
-game-mode:
+vm-mode:
 	@grep ACTIVE_GAME $(ACTIVE_GAME_FILE) | cut -d= -f2
 
-game-refresh:
-	scripts/setup/remote_refresh_game.sh
+vm-refresh:
+	scripts/setup/remote_refresh.sh
 
 
 # =======================
@@ -180,9 +180,9 @@ help:
 	@echo "  make admin-logs             - Fetch logs from admin systemd service"
 	@echo ""
 	@echo "🎮 Game Mode:"
-	@echo "  make game-switch            - Switch game game-mode (.envrc)"
-	@echo "  make game-mode              - Show current game game-mode"
-	@echo "  make game-refresh           - Trigger remote reinstall of game"
+	@echo "  make vm-switch            - Switch game vm-mode (.envrc)"
+	@echo "  make vm-mode              - Show current game vm-mode"
+	@echo "  make vm-refresh           - Trigger remote reinstall of game"
 	@echo ""
 	@echo "🧪 Control:"
 	@echo "  make save-and-shutdown      - Save game state by triggering shutdown"
