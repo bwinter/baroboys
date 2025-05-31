@@ -95,20 +95,36 @@ def check_status():
         try:
             with open(os.path.join(STATUS_DIR, "vrising.status"), "r", encoding="utf-8") as f:
                 content = f.read().strip()
-            return f"⏱ Refreshed: {now}\n\n{content}", 200, {"Content-Type": "text/plain"}
+            return Response(f"⏱ Refreshed: {now}\n\n{content}", mimetype="text/plain")
         except Exception as e:
-            return f"⏱ Refreshed: {now}\n\n⚠️ Dev status file error: {type(e).__name__}: {e}", 200, {
-                "Content-Type": "text/plain"}
+            return Response(
+                f"⏱ Refreshed: {now}\n\n⚠️ Dev status file error: {type(e).__name__}: {e}",
+                mimetype="text/plain"
+            )
 
-    # Production: live systemctl
     try:
-        output = subprocess.check_output(
-            ["systemctl", "status", "vrising.service", "--no-pager"],
-            stderr=subprocess.STDOUT, text=True
-        ).strip()
-        return f"⏱ Refreshed: {now}\n\n{output}", 200, {"Content-Type": "text/plain"}
+        result = subprocess.run(
+            ["systemctl", "is-active", "vrising.service"],
+            capture_output=True, text=True
+        )
+        status = result.stdout.strip()
+
+        readable_status = {
+            "active": "🟢 V Rising is running",
+            "inactive": "🔴 V Rising is stopped",
+            "failed": "❌ V Rising failed",
+            "activating": "⏳ V Rising is starting up",
+            "deactivating": "⚠️ V Rising is shutting down",
+            "unknown": "❓ V Rising status unknown",
+        }.get(status, f"❓ Unexpected status: {status}")
+
+        return Response(f"⏱ Refreshed: {now}\n\n{readable_status}", mimetype="text/plain")
+
     except Exception as e:
-        return f"⏱ Refreshed: {now}\n\n⚠️ {type(e).__name__}: {e}", 200, {"Content-Type": "text/plain"}
+        return Response(
+            f"⏱ Refreshed: {now}\n\n⚠️ {type(e).__name__}: {e}",
+            mimetype="text/plain"
+        )
 
 
 @app.route("/api/logs/<name>")
