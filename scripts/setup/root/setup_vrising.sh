@@ -47,7 +47,6 @@ systemctl daemon-reexec
 systemctl daemon-reload
 systemctl enable vrising-idle-check.timer
 systemctl start vrising-idle-check.timer
-systemctl start vrising-idle-check.service
 
 # Give Admin Server access to logs.
 
