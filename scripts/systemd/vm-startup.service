@@ -6,7 +6,6 @@ After=network.target
 Type=oneshot
 Environment=HOME=/root
 ExecStart=/usr/bin/bash /root/baroboys/scripts/setup/startup.sh
-ExecStartPost=/bin/systemctl start vrising.service
 StandardOutput=append:/home/bwinter_sc81/baroboys/VRising/logs/startup.log
 StandardError=append:/home/bwinter_sc81/baroboys/VRising/logs/startup.log
 
