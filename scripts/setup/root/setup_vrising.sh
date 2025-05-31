@@ -26,8 +26,8 @@ if ! command -v mcrcon >/dev/null || ! "$MCRCON_BIN" -v 2>&1 | grep -qi 'mcrcon'
 
   # Install if not already identical
   if ! cmp -s ./mcrcon "$MCRCON_BIN"; then
-    sudo mv ./mcrcon "$MCRCON_BIN"
-    sudo chmod +x "$MCRCON_BIN"
+    /usr/bin/sudo mv ./mcrcon "$MCRCON_BIN"
+    /usr/bin/sudo chmod +x "$MCRCON_BIN"
   fi
 
   echo "✅ mcrcon installed to $MCRCON_BIN"
@@ -36,9 +36,9 @@ else
 fi
 
 # Run all game setup as the unprivileged user
-sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/setup/user/install_vrising.sh"
+/usr/bin/sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/setup/user/install_vrising.sh"
 
-# Register and start the systemd service
+# Register and start the idleness monitor.
 install -m 644 "/root/baroboys/scripts/systemd/vrising.service" "/etc/systemd/system/"
 install -m 644 "/root/baroboys/scripts/systemd/vrising-idle-check.service" "/etc/systemd/system/"
 install -m 644 "/root/baroboys/scripts/systemd/vrising-idle-check.timer" "/etc/systemd/system/"
@@ -48,6 +48,8 @@ systemctl daemon-reload
 systemctl enable vrising-idle-check.timer
 systemctl start vrising-idle-check.timer
 systemctl start vrising-idle-check.service
+
+# Give Admin Server access to logs.
 
 mkdir -p "/home/bwinter_sc81/baroboys/VRising/logs/"
 chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/"

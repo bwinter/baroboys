@@ -6,7 +6,7 @@
 | ------------------------------------------------------ | ----------------------------- |--------------------------------------------------------------------------|
 | `gcloud compute instances get-serial-port-output`      | Serial console (boot)         | VM won’t boot, startup script fails silently, SSH not available          |
 | `journalctl -u google-startup-scripts.service`         | Startup script logs (systemd) | VM boots, but provisioning (e.g. startup.sh) fails or partially executes |
-| `sudo systemctl status google-startup-scripts.service` | Unit health summary           | Verify if startup unit ran, succeeded, or failed                         |
+| `/usr/bin/sudo systemctl status google-startup-scripts.service` | Unit health summary           | Verify if startup unit ran, succeeded, or failed                         |
 | `gcloud logging read`                                  | Cloud Logging (optional)      | Postmortem debugging (if OSConfig + logging enabled)                     |
 | `gcloud compute ssh`                                   | Direct access                 | Live VM debugging (VRising, Git, system state, etc.)                     |
 
@@ -68,13 +68,13 @@ gcloud compute ssh bwinter_sc81@europa \
 ### Google startup script logs:
 
 ```bash
-sudo journalctl -u google-startup-scripts.service -e
+/usr/bin/sudo journalctl -u google-startup-scripts.service -e
 ```
 
 ### Startup unit status:
 
 ```bash
-sudo systemctl status google-startup-scripts.service
+/usr/bin/sudo systemctl status google-startup-scripts.service
 ```
 
 ---
@@ -84,19 +84,19 @@ sudo systemctl status google-startup-scripts.service
 ### `vrising.service` logs (game lifecycle):
 
 ```bash
-sudo journalctl -u vrising.service --since="-10min" --no-pager
+/usr/bin/sudo journalctl -u vrising.service --since="-10min" --no-pager
 ```
 
 ### `shutdown.service` logs (shutdown & save):
 
 ```bash
-sudo journalctl -u shutdown.service --since="-10min" --no-pager
+/usr/bin/sudo journalctl -u shutdown.service --since="-10min" --no-pager
 ```
 
 ### `startup.service` logs (game startup & provisioning):
 
 ```bash
-sudo journalctl -u startup.service --since="-10min" --no-pager
+/usr/bin/sudo journalctl -u startup.service --since="-10min" --no-pager
 ```
 
 ---

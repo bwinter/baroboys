@@ -10,7 +10,7 @@ WorkingDirectory=/home/bwinter_sc81/baroboys/VRising
 User=bwinter_sc81
 Group=bwinter_sc81
 
-ExecStart=/usr/bin/wine \
+ExecStart=/usr/bin/bash /usr/bin/wine \
   VRisingServer.exe \
   -persistentDataPath ./Data \
   -serverName "Mc's Playground" \
@@ -20,6 +20,4 @@ ExecStart=/usr/bin/wine \
 KillMode=control-group
 ExecStop=/bin/true
 TimeoutStopSec=300
-
-[Install]
-WantedBy=multi-user.target
+RemainAfterExit=yes

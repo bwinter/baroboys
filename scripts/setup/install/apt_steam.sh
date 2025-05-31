@@ -14,3 +14,5 @@ echo steam steam/question select "I AGREE" | debconf-set-selections
 echo steam steam/license note "" | debconf-set-selections
 
 apt-get install -yq steamcmd libicu72
+
+sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/setup/user/patch_steam.sh"

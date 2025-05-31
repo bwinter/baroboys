@@ -17,7 +17,7 @@ cp "/root/baroboys/scripts/setup/install/flask_server/admin_server.py" \
 chmod 755 "/opt/baroboys/admin_server.py"
 
 # Static HTML and assets
-mkdir -p /opt/baroboys/static
+mkdir -p "/opt/baroboys/static"
 for file in admin.html favicon.ico robots.txt; do
   cp "/root/baroboys/scripts/setup/install/flask_server/static/${file}" \
      "/opt/baroboys/static/${file}"
@@ -32,7 +32,7 @@ for file in 404.html directory.html; do
 done
 chmod 644 /opt/baroboys/templates/*.html
 
-# Activate Flask service
+# Activate Admin Server
 systemctl daemon-reload
 systemctl enable admin-server.service
 systemctl start admin-server.service
