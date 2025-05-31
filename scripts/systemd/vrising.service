@@ -5,10 +5,13 @@ After=network-online.target xvfb.service
 Requires=xvfb.service
 
 [Service]
+Type=simple
 Environment=DISPLAY=:0
 WorkingDirectory=/home/bwinter_sc81/baroboys/VRising
 User=bwinter_sc81
 Group=bwinter_sc81
+
+ExecStartPre=/usr/bin/bash -c '! pgrep -f VRisingServer.exe'
 
 ExecStart=/usr/bin/wine \
   VRisingServer.exe \
@@ -17,7 +20,9 @@ ExecStart=/usr/bin/wine \
   -saveName "TestWorld-1" \
   -logFile ./logs/VRisingServer.log
 
+ExecStopPre=/usr/bin/sudo -u bwinter_sc81 /home/bwinter_sc81/baroboys/scripts/teardown/user/save_game.sh
 ExecStop=/usr/bin/pkill -f VRisingServer.exe
+
 KillMode=control-group
-ExecStop=/bin/true
 TimeoutStopSec=300
+Restart=on-failure
