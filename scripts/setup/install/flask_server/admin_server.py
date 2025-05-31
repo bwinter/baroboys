@@ -30,21 +30,33 @@ def get_server_password():
 def mcrcon_cmd(cmd):
     try:
         result = subprocess.run(
-            ["mcrcon", "-H", "127.0.0.1", "-P", "25575", "-p", get_server_password(), cmd],
-            capture_output=True, text=True, timeout=5, check=True
+            [
+                "mcrcon",
+                "-H", "127.0.0.1",
+                "-P", "25575",
+                "-p", get_server_password(),
+                "-r", "-t",  # Required flags
+                cmd
+            ],
+            capture_output=True,
+            text=True,
+            timeout=5,
+            check=True
         )
         print(f"🛰️ RCON command: {cmd}")
-        print(f"📥 stdout: {result.stdout.strip()}")
-        print(f"⚠️ stderr: {result.stderr.strip()}")
-        return result
+        if result.stdout.strip():
+            print(f"📥 stdout: {result.stdout.strip()}")
+        if result.stderr.strip():
+            print(f"⚠️ stderr: {result.stderr.strip()}")
+        return result.stdout  # ✅ Return only the actual command output
     except subprocess.CalledProcessError as e:
-        print(f"RCON Error: {e.stderr.strip()}")
-        return e
+        print(f"❌ RCON command failed (exit {e.returncode}): {e.stderr.strip()}")
+        return None
     except subprocess.TimeoutExpired:
-        print("RCON Timeout")
+        print("⏳ RCON command timed out")
         return None
     except Exception as e:
-        print(f"RCON Exception: {type(e).__name__}: {e}")
+        print(f"💥 RCON unexpected error: {type(e).__name__}: {e}")
         return None
 
 
@@ -129,7 +141,9 @@ def api_players():
     if ENV == "development":
         return {"players": ["Alice", "Bob", "Charlie"]}
     try:
-        lines = mcrcon_cmd("ListUsers").splitlines()
+        raw = mcrcon_cmd("ListUsers")
+        print(f"📄 Raw ListUsers output:\n{raw}")
+        lines = raw.splitlines()
         players = [l.split()[0] for l in lines if "@" in l and not l.startswith("No players")]
         return {"players": players}
     except Exception as e:
@@ -139,8 +153,9 @@ def api_players():
 @app.route("/api/time")
 def api_time():
     result = mcrcon_cmd("GetTime")
-    if result and result.stdout:
-        return {"time": result.stdout.strip()}
+    print(f"📄 Raw GetTime output:\n{result}")
+    if result:
+        return {"time": result.strip()}
     else:
         return {"error": "Failed to fetch time"}, 500
 
@@ -155,6 +170,7 @@ def api_shutdown():
         }
     try:
         raw = mcrcon_cmd("GetShutdown")
+        print(f"📄 Raw GetShutdown output:\n{raw}")
         match = re.search(r"in (\d+) minutes", raw)
         return {
             "scheduled": "in" in raw.lower(),
@@ -174,7 +190,9 @@ def api_settings():
             "BloodBoundEquipment": "false"
         }
     try:
-        lines = mcrcon_cmd("ServerSettings").splitlines()
+        raw = mcrcon_cmd("ServerSettings")
+        print(f"📄 Raw ServerSettings output:\n{raw}")
+        lines = raw.splitlines()
         return {k.strip(): v.strip() for line in lines if "=" in line for k, v in [line.split("=", 1)]}
     except Exception as e:
         return {"error": f"Fetch failed: {type(e).__name__}: {e}"}, 500
