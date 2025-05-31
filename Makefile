@@ -175,7 +175,7 @@ help:
 	@echo "  make refresh                - Refresh Terraform state"
 	@echo ""
 	@echo "🐍 Flask Admin Panel:"
-	@echo "  make admin-local              - Run admin server locally"
+	@echo "  make admin-local            - Run admin server locally"
 	@echo "  make admin-refresh          - Deploy admin server to remote env"
 	@echo "  make admin-logs             - Fetch logs from admin systemd service"
 	@echo ""
