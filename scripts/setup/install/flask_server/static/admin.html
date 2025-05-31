@@ -315,7 +315,7 @@
         loadLog();
         refreshStatus();
         checkHeartbeat();
-        refreshSummary();
+        // refreshSummary();
     });
     setInterval(() => {
         if (logAutoRefreshEnabled) loadLog();
@@ -324,7 +324,7 @@
         if (statusAutoRefreshEnabled) refreshStatus();
     }, 5000);
     setInterval(checkHeartbeat, 5000);
-    setInterval(refreshSummary, 10000);
+    // setInterval(refreshSummary, 10000);
 </script>
 </body>
 </html>

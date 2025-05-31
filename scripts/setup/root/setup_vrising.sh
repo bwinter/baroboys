@@ -38,7 +38,6 @@ fi
 # Run all game setup as the unprivileged user
 /usr/bin/sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/setup/user/install_vrising.sh"
 
-# Register and start the idleness monitor.
 install -m 644 "/root/baroboys/scripts/systemd/vrising.service" "/etc/systemd/system/"
 
 # TODO: Disabled till mcrcon is working.
