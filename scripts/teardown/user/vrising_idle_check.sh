@@ -10,12 +10,14 @@ if [[ -z "$SERVER_PASS" ]]; then
   exit 1
 fi
 
-PLAYERS_ONLINE=$(
-  mcrcon -H 127.0.0.1 -P 25575 -p "$SERVER_PASS" "listusers" 2>/dev/null \
-    | grep -v "no players connected" \
-    | grep -E "[0-9]+ players connected" \
-    || true
-)
+# TODO: where are the actual mcrcon params. So werid.
+#PLAYERS_ONLINE=$(
+#  mcrcon -H 127.0.0.1 -P 25575 -p "$SERVER_PASS" "listusers" 2>/dev/null \
+#    | grep -v "no players connected" \
+#    | grep -E "[0-9]+ players connected" \
+#    || true
+#)
+PLAYERS_ONLINE=0
 
 if [[ -n "$PLAYERS_ONLINE" ]]; then
   rm -f "$IDLE_FLAG"
