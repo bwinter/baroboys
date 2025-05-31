@@ -3,7 +3,7 @@ Description=Xvfb headless X framebuffer for Wine
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/bash /usr/bin/Xvfb :0 -screen 0 1024x768x16
+ExecStart=/usr/bin/Xvfb :0 -screen 0 1024x768x16
 User=bwinter_sc81
 Group=bwinter_sc81
 RemainAfterExit=yes
