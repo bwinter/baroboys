@@ -32,6 +32,14 @@ for file in 404.html directory.html; do
 done
 chmod 644 /opt/baroboys/templates/*.html
 
+mkdir -p "/home/bwinter_sc81/baroboys/VRising/logs/"
+chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/"
+chmod 700  "/home/bwinter_sc81/baroboys/VRising/logs/"
+
+touch "/home/bwinter_sc81/baroboys/VRising/logs/admin_server.log"
+chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/admin_server.log"
+chmod 644  "/home/bwinter_sc81/baroboys/VRising/logs/admin_server.log"
+
 # Activate Admin Server
 systemctl daemon-reload
 systemctl enable admin-server.service
