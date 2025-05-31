@@ -15,7 +15,7 @@ Group=bwinter_sc81
 ExecStartPre=/usr/bin/bash -c 'if pgrep -f VRisingServer.exe; then echo "🟡 Already running"; fi; exit 0'
 
 # Use wrapper to detect intentional shutdown
-ExecStart=/home/bwinter_sc81/baroboys/scripts/wrappers/vrising_launcher.sh
+ExecStart=/home/bwinter_sc81/baroboys/scripts/setup/install/service/vrising_launcher.sh
 
 # No longer needed if wrapper handles exit logic, but harmless to keep
 ExecStop=/usr/bin/pkill -f VRisingServer.exe
