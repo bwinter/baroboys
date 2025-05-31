@@ -37,6 +37,7 @@ chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/"
 chmod 700  "/home/bwinter_sc81/baroboys/VRising/logs/"
 
 touch "/home/bwinter_sc81/baroboys/VRising/logs/admin_server.log"
+printf "\n==== %s ====\n" "$(date +%Y%m%d-%H%M)" >> "/home/bwinter_sc81/baroboys/VRising/logs/admin_server.log"
 chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/admin_server.log"
 chmod 644  "/home/bwinter_sc81/baroboys/VRising/logs/admin_server.log"
 

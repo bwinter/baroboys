@@ -36,6 +36,7 @@ chmod o+rx "/home/bwinter_sc81/baroboys/VRising"
 chmod o+rx "/home/bwinter_sc81/baroboys/VRising/logs"
 
 touch "/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log"
+printf "\n==== %s ====\n" "$(date +%Y%m%d-%H%M)" >> "/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log"
 chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log"
 chmod 644  "/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log"
 
