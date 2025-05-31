@@ -55,10 +55,12 @@ chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/"
 chmod 700  "/home/bwinter_sc81/baroboys/VRising/logs/"
 
 touch "/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log"
+printf "\n==== %s ====\n" "$(date +%Y%m%d-%H%M)" >> "/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log"
 chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log"
 chmod 644  "/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log"
 
 touch "/home/bwinter_sc81/baroboys/VRising/logs/vrising.log"
+printf "\n==== %s ====\n" "$(date +%Y%m%d-%H%M)" >> "/home/bwinter_sc81/baroboys/VRising/logs/vrising.log"
 chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/vrising.log"
 chmod 644  "/home/bwinter_sc81/baroboys/VRising/logs/vrising.log"
 
