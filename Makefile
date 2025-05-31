@@ -14,6 +14,11 @@ TF_VAR_DEF_FILE  := terraform/variables.tf
 
 .DEFAULT_GOAL := help
 
+*dev: admin-refresh game-refresh
+
+*refresh: build-all terraform-refresh admin-refresh game-refresh
+
+*destroy: terraform-destroy clean
 
 # =======================
 # 🐍 Flask Admin Panel
@@ -35,20 +40,20 @@ admin-logs:
 # =======================
 .PHONY: init plan apply destroy refresh
 
-init:
+terraform-init:
 	cd $(TF_DIR) && terraform init
 
-plan:
+terraform-plan:
 	cd $(TF_DIR) && terraform plan
 
-apply:
+terraform-refresh:
 	cd $(TF_DIR) && terraform apply
 
-destroy:
+terraform-destroy:
 	cd $(TF_DIR) && terraform destroy
 
-refresh:
-	cd $(TF_DIR) && terraform refresh
+#terraform-refresh:
+#	cd $(TF_DIR) && terraform refresh
 
 
 # =======================
@@ -85,7 +90,7 @@ iam-destroy:
 
 
 # =======================
-# 🎮 Game Mode
+# 🎮 Game
 # =======================
 .PHONY: game-switch game-mode game-refresh
 
@@ -161,6 +166,9 @@ clean:
 
 help:
 	@echo "🛠️  Common targets:"
+	@echo "🌍 Full:"
+	@echo "  make destroy                - Initialize Terraform"
+	@echo "  make refresh                - Show Terraform plan"
 	@echo ""
 	@echo "🌍 Terraform:"
 	@echo "  make init                   - Initialize Terraform"
@@ -170,7 +178,7 @@ help:
 	@echo "  make refresh                - Refresh Terraform state"
 	@echo ""
 	@echo "🐍 Flask Admin Panel:"
-	@echo "  make admin-local            - Run admin server locally"
+	@echo "  make admin-local              - Run admin server locally"
 	@echo "  make admin-refresh          - Deploy admin server to remote env"
 	@echo "  make admin-logs             - Fetch logs from admin systemd service"
 	@echo ""
