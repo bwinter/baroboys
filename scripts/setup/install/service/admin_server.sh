@@ -43,4 +43,4 @@ chmod 644  "/home/bwinter_sc81/baroboys/VRising/logs/admin_server.log"
 # Activate Admin Server
 systemctl daemon-reload
 systemctl enable admin-server.service
-systemctl start admin-server.service
+systemctl restart admin-server.service
