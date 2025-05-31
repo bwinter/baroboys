@@ -144,10 +144,7 @@ build-core:
 build-steam:
 	scripts/packer_build.sh steam
 
-build-game:
-	scripts/packer_build.sh game
-
-build-all: build-core build-steam build-game
+build-all: build-core build-steam
 
 
 # =======================
@@ -195,6 +192,5 @@ help:
 	@echo "📦 Packer Builds:"
 	@echo "  make build-core             - Build base image (core setup)"
 	@echo "  make build-steam            - Build Steam dependencies layer"
-	@echo "  make build-game             - Build game layer"
 	@echo "  make build-all              - Build all Packer image layers"
 	@echo "  make clean                  - Review usage and delete Packer images and disks"
