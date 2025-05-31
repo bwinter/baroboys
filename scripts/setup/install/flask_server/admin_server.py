@@ -143,9 +143,8 @@ def api_time():
 
     cmd = "help"
     result = mcrcon_cmd(cmd).strip()
-    print(f"🛰️ RCON command: {cmd}", flush=True)
-    print(f"📥 stdout: {result.stdout.strip()}", flush=True)
-    print(f"⚠️ stderr: {result.stderr.strip()}", flush=True)
+    print(f"🛰️ RCON command: GetTime", flush=True)
+    print(f"📥 stdout: {result.strip()}", flush=True)
     output = mcrcon_cmd("GetTime").strip()
     try:
         return {"time": output}
