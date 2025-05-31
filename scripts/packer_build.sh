@@ -27,7 +27,7 @@ cp ".secrets/europan-world-terraform-key.json" "${BUILD_DIR}/.secrets/"
 
 mkdir -p "${LOG_DIR}"
 
-cp -f "${SCRIPT_DIR}/clone_repo.sh" "${BUILD_DIR}/clone_repo.sh"
+cp -f "${SCRIPT_DIR}/util/refresh_repo.sh" "${BUILD_DIR}/refresh_repo.sh"
 cp -f "${PACKER_DIR}/${PACKER_TEMPLATE_FILE}" "${BUILD_DIR}/packer.pkr.hcl"
 cp -f "terraform/terraform.tfvars" "${BUILD_DIR}/${PACKER_VARS_FILE}"
 cp -f "terraform/variables.tf" "${BUILD_DIR}/${PACKER_VAR_DEFS_FILE}"

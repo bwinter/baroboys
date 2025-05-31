@@ -104,5 +104,5 @@ gcloud secrets versions add nginx-htpasswd \
   --data-file=temp_htpasswd
 
 # 🚨 Then SSH into the server and restart Nginx:
-sudo systemctl reload nginx
+/usr/bin/sudo systemctl reload nginx
 ```

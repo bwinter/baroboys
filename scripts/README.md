@@ -10,7 +10,7 @@ This directory contains all setup, control, and shutdown logic for the Baroboys 
 - Scripts are designed to be idempotent and safe to re-run
 - Game-specific logic lives under clearly isolated paths
 - Root scripts are only run directly or from Terraform startup hooks
-- User scripts are invoked with `sudo -u bwinter_sc81` for correct context
+- User scripts are invoked with `/usr/bin/sudo -u bwinter_sc81` for correct context
 
 ---
 
@@ -28,9 +28,9 @@ Per-tool installation scripts for global dependencies:
 
 ### 🧑‍💻 `setup/user/`
 
-User-context setup scripts (run via `sudo -u bwinter_sc81`):
+User-context setup scripts (run via `/usr/bin/sudo -u bwinter_sc81`):
 
-- `clone_repo.sh`: Git clone logic
+- `util/refresh_repo.sh`: Git clone logic
 - `install_*.sh`: Game-specific userland setup
 - `patch_steam.sh`: Optional Steam configuration tweaks
 
@@ -38,7 +38,7 @@ User-context setup scripts (run via `sudo -u bwinter_sc81`):
 
 Root-context setup scripts (called directly during provisioning):
 
-- `clone_repo.sh`: Git clone logic for root
+- `util/refresh_repo.sh`: Git clone logic for root
 - `patch_steam.sh`, `start_xvfb.sh`: Supporting utilities
 - `setup_game.sh`: Dispatches game-specific setup based on `$ACTIVE_GAME`
 - `setup_*.sh`: Game-specific service setup (systemd, files, symlinks)

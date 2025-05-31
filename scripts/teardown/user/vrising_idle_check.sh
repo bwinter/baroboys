@@ -21,7 +21,7 @@ else
 
   if (( IDLE_DURATION >= COOLDOWN_MINUTES )); then
     echo "Server has been idle for $IDLE_DURATION minutes, shutting down."
-    if ! sudo systemctl start shutdown.service; then
+    if ! /usr/bin/sudo systemctl start shutdown.service; then
       echo "⚠️  Failed to start shutdown.service" >&2
     fi
   fi

@@ -11,7 +11,7 @@ echo "🚀 Updating Game on $REMOTE..."
 gcloud compute ssh "$REMOTE" \
   --zone "$ZONE" \
   --project "$PROJECT" \
-  --command "sudo bash -euxc ' \
+  --command "/usr/bin/sudo bash -euxc ' \
     cd $ROOT_REPO_PATH && \
     ./scripts/setup/startup.sh
   '"

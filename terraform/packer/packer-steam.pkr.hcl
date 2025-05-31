@@ -35,21 +35,23 @@ build {
   sources = ["source.googlecompute.baroboys-steam"]
 
   provisioner "file" {
-    source      = "clone_repo.sh"
+    source      = "refresh_repo.sh"
     destination = "/tmp/clone_repo.sh"
   }
 
   provisioner "shell" {
     inline = [
       "echo '🔧 Cloning Baroboys repo'",
-      "sudo chmod +x /tmp/clone_repo.sh",
-      "sudo /tmp/clone_repo.sh",
+      "/usr/bin/sudo chmod +x /tmp/clone_repo.sh",
+      "/usr/bin/sudo /tmp/clone_repo.sh",
+      "echo '🔧 Running setup_user.sh'",
+      "/usr/bin/sudo /root/baroboys/scripts/setup/root/setup_user.sh",
       "echo '🔧 Running apt_wine.sh'",
-      "sudo /root/baroboys/scripts/setup/install/apt_wine.sh",
+      "/usr/bin/sudo /root/baroboys/scripts/setup/install/apt_wine.sh",
       "echo '🔧 Running apt_steam.sh'",
-      "sudo /root/baroboys/scripts/setup/install/apt_steam.sh",
+      "/usr/bin/sudo /root/baroboys/scripts/setup/install/apt_steam.sh",
       "echo '🧹 Running autoremove'",
-      "sudo apt-get -yq autoremove"
+      "/usr/bin/sudo apt-get -yq autoremove"
     ]
   }
 }

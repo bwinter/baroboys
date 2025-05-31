@@ -34,8 +34,8 @@ resource "random_id" "instance_id" {
 // 📦 Image Source (from Packer build)
 // ─────────────────────────────────────────────────────────────────────────────
 
-data "google_compute_image" "base_game_image" {
-  family  = var.base_game_image
+data "google_compute_image" "base_service_image" {
+  family  = var.base_service_image
   project = var.project
 }
 
@@ -61,14 +61,14 @@ resource "google_compute_instance" "default" {
   }
 
   metadata = {
-    startup-script  = "systemctl start startup.service"
-    shutdown-script = "systemctl start shutdown.service"
+    startup-script  = "/usr/bin/bash /root/baroboys/scripts/setup/startup.sh"
+    shutdown-script = "/usr/bin/bash /root/baroboys/scripts/teardown/shutdown.sh"
   }
 
   boot_disk {
     auto_delete = true  // ✅ ensures boot disk is deleted when VM is destroyed
     initialize_params {
-      image = data.google_compute_image.base_game_image.self_link
+      image = data.google_compute_image.base_service_image.self_link
     }
   }
 

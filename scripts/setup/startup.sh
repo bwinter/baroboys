@@ -1,12 +1,20 @@
 #!/bin/bash
 set -eux
 
-# Refresh repos, just in case.
-source "/root/baroboys/scripts/setup/clone_repo.sh"
-source "/root/baroboys/scripts/setup/root/setup_user.sh"
+# Refreshes Repositories.
+source "/root/baroboys/scripts/setup/root/setup_users.sh"
 
-# Refresh services in case updates occurred.
-source "/root/baroboys/scripts/setup/install/services.sh"
+# Refreshes Shutdown Service (Want to use latest lave logic.)
+source "/root/baroboys/scripts/setup/install/service/shutdown.sh"
 
-# Setup the game
+# Refreshes & Enables Startup Service (Want to install self to ensure refresh occurs after restart.)
+source "/root/baroboys/scripts/setup/install/service/startup.sh"
+
+# Refreshes & Enables & Starts Admin Server (Startup Admin Server immediately.)
+source "/root/baroboys/scripts/setup/install/service/admin_server.sh"
+
+# Refreshes Nginx & config (Get latest Admin Server routes.)
+source "/root/baroboys/scripts/setup/install/apt_nginx.sh"
+
+# Refreshes game (Dependencies refreshed, game updated & started.)
 source "/root/baroboys/scripts/setup/root/setup_game.sh"
