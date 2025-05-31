@@ -4,9 +4,6 @@ DefaultDependencies=no
 Requires=network-online.target
 After=network-online.target
 
-# Wait for vrising service to terminate.
-Before=vrising.service
-
 [Service]
 Type=oneshot
 Environment=HOME=/root
@@ -14,5 +11,4 @@ ExecStart=/usr/bin/bash /root/baroboys/scripts/teardown/shutdown.sh
 ExecStopPost=/usr/bin/systemctl poweroff
 StandardOutput=append:/home/bwinter_sc81/baroboys/VRising/logs/shutdown.log
 StandardError=append:/home/bwinter_sc81/baroboys/VRising/logs/shutdown.log
-RemainAfterExit=yes
 TimeoutStartSec=300
