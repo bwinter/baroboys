@@ -20,7 +20,7 @@ ExecStart=/usr/bin/wine \
   -saveName "TestWorld-1" \
   -logFile ./logs/VRisingServer.log
 
-ExecStopPre=/usr/bin/sudo -u bwinter_sc81 /home/bwinter_sc81/baroboys/scripts/teardown/user/save_game.sh
+ExecStopPre=/home/bwinter_sc81/baroboys/scripts/teardown/user/save_game.sh
 ExecStop=/usr/bin/pkill -f VRisingServer.exe
 
 KillMode=control-group
