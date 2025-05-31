@@ -3,6 +3,7 @@ Description=Admin Server
 After=network.target
 
 [Service]
+Environment=PYTHONUNBUFFERED=1
 ExecStart=/usr/bin/python3 /opt/baroboys/admin_server.py
 StandardOutput=append:/home/bwinter_sc81/baroboys/VRising/logs/admin_server.log
 StandardError=append:/home/bwinter_sc81/baroboys/VRising/logs/admin_server.log
