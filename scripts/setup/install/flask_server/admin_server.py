@@ -26,8 +26,12 @@ def get_server_password():
         capture_output=True, text=True, check=True
     ).stdout.strip()
 
-
 def mcrcon_cmd(cmd):
+    if isinstance(cmd, str):
+        cmd_parts = cmd.strip().split()
+    else:
+        cmd_parts = list(cmd)  # Allow already-split list input
+
     try:
         result = subprocess.run(
             [
@@ -35,20 +39,20 @@ def mcrcon_cmd(cmd):
                 "-H", "127.0.0.1",
                 "-P", "25575",
                 "-p", get_server_password(),
-                "-r", "-t",  # Required flags
-                cmd
-            ],
+                "-t", "-r",
+            ] + cmd_parts,
             capture_output=True,
             text=True,
             timeout=5,
             check=True
         )
-        print(f"🛰️ RCON command: {cmd}")
+        print(f"🛰️ RCON command: {' '.join(cmd_parts)}")
         if result.stdout.strip():
             print(f"📥 stdout: {result.stdout.strip()}")
         if result.stderr.strip():
             print(f"⚠️ stderr: {result.stderr.strip()}")
-        return result.stdout  # ✅ Return only the actual command output
+        print(f"📄 Raw RCON output:\n{result.stdout}")
+        return result.stdout.strip()
     except subprocess.CalledProcessError as e:
         print(f"❌ RCON command failed (exit {e.returncode}): {e.stderr.strip()}")
         return None
