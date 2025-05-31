@@ -14,11 +14,11 @@ TF_VAR_DEF_FILE  := terraform/variables.tf
 
 .DEFAULT_GOAL := help
 
-*dev: admin-refresh game-refresh
+dev: admin-refresh game-refresh
 
-*refresh: build-all terraform-refresh admin-refresh game-refresh
+refresh: terraform-refresh
 
-*destroy: terraform-destroy clean
+destroy: terraform-destroy
 
 # =======================
 # 🐍 Flask Admin Panel
