@@ -1,20 +1,20 @@
 #!/bin/bash
 set -eux
 
-# Refreshes Repositories.
-source "/root/baroboys/scripts/setup/root/setup_users.sh"
+echo "Starting setup_users.sh"
+source "/root/baroboys/scripts/setup/root/setup_users.sh" || exit 11
 
-# Refreshes Nginx & config (Get latest Admin Server routes.)
-source "/root/baroboys/scripts/setup/install/apt_nginx.sh"
+echo "Starting apt_nginx.sh"
+source "/root/baroboys/scripts/setup/install/apt_nginx.sh" || exit 12
 
-# Refreshes & Enables & Starts Admin Server (Startup Admin Server immediately.)
-source "/root/baroboys/scripts/setup/install/service/admin_server.sh"
+echo "Starting admin_server.sh"
+source "/root/baroboys/scripts/setup/install/service/admin_server.sh" || exit 13
 
-# Refreshes Shutdown Service (Want to use latest lave logic.)
-source "/root/baroboys/scripts/setup/install/service/shutdown.sh"
+echo "Starting shutdown.sh"
+source "/root/baroboys/scripts/setup/install/service/shutdown.sh" || exit 14
 
-# Refreshes & Enables Startup Service (Want to install self to ensure refresh occurs after restart.)
-source "/root/baroboys/scripts/setup/install/service/startup.sh"
+echo "Starting startup.sh (self)"
+source "/root/baroboys/scripts/setup/install/service/startup.sh" || exit 15
 
-# Refreshes game (Dependencies refreshed, game updated & started.)
-source "/root/baroboys/scripts/setup/root/setup_game.sh"
+echo "Starting setup_game.sh"
+source "/root/baroboys/scripts/setup/root/setup_game.sh" || exit 16
