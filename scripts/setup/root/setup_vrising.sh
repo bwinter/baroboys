@@ -58,8 +58,27 @@ touch "/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log"
 chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log"
 chmod 644  "/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log"
 
-if [ "${ACTIVE_GAME:-}" = "vrising" ]; then
-  echo "🎮 Starting V Rising server via systemd..."
-  systemctl start vrising.service
+touch "/home/bwinter_sc81/baroboys/VRising/logs/vrising.log"
+chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/vrising.log"
+chmod 644  "/home/bwinter_sc81/baroboys/VRising/logs/vrising.log"
+
+echo "🎮 Ensuring V Rising server is running via systemd..."
+
+if systemctl is-active --quiet vrising.service; then
+  echo "✅ vrising.service is already running, skipping restart."
+else
+  echo "🔁 vrising.service not active — restarting..."
+  if ! systemctl restart vrising.service; then
+    echo "❌ Failed to restart vrising.service" >&2
+    exit 1
+  fi
 fi
-systemctl status vrising.service
+
+# Confirm it's not in a failed state post-restart
+if systemctl is-failed --quiet vrising.service; then
+  echo "❌ vrising.service is in a failed state" >&2
+  systemctl status --no-pager --full vrising.service || true
+  exit 2
+fi
+
+echo "✅ vrising.service is now active."
