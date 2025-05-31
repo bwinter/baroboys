@@ -11,8 +11,7 @@ WorkingDirectory=/home/bwinter_sc81/baroboys/VRising
 User=bwinter_sc81
 Group=bwinter_sc81
 
-# Warn if already running, but always exit 0
-ExecStartPre=/usr/bin/bash -c 'if pgrep -f VRisingServer.exe; then echo "🟡 Already running"; fi; exit 0'
+ExecStartPost=/usr/bin/bash -c 'echo "✅ vrising.service launched at $(date)" >> /home/bwinter_sc81/baroboys/VRising/logs/vrising.log'
 
 # Use wrapper to detect intentional shutdown
 ExecStart=/home/bwinter_sc81/baroboys/scripts/setup/install/service/vrising_launcher.sh
