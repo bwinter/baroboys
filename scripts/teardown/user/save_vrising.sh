@@ -8,7 +8,7 @@ SAVE_DIR="VRising/Data/Saves/v4/TestWorld-1"
 
 SERVER_PASS="$(gcloud secrets versions access latest --secret="server-password")"
 
-touch /tmp/vrising_intentional_shutdown
+touch "/tmp/vrising_intentional_shutdown"
 
 # Tell players and trigger autosave
 if ! mcrcon -H 127.0.0.1 -P 25575 -p "$SERVER_PASS" \
