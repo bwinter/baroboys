@@ -2,7 +2,7 @@
 set -eu
 
 IDLE_FLAG="/tmp/server_idle_since.flag"
-COOLDOWN_MINUTES=3
+COOLDOWN_MINUTES=30
 
 SERVER_PASS="$(gcloud secrets versions access latest --secret="server-password")"
 
