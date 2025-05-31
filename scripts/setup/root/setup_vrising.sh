@@ -68,13 +68,24 @@ if systemctl is-active --quiet vrising.service; then
   echo "✅ vrising.service is already running, skipping restart."
 else
   echo "🔁 vrising.service not active — restarting..."
+
+  echo "🧪 Checking if VRisingServer.exe is still running before restart:"
+  pgrep -a -f VRisingServer.exe || echo "🔍 No existing VRisingServer.exe found."
+
+  echo "🔁 Restarting vrising.service..."
   if ! systemctl restart vrising.service; then
     echo "❌ Failed to restart vrising.service" >&2
+
+    echo "📋 Recent journal output:"
+    journalctl -xeu vrising.service --no-pager -n 20 || true
+
+    echo "📋 Current service status:"
+    systemctl status --no-pager --full vrising.service || true
+
     exit 1
   fi
 fi
 
-# Confirm it's not in a failed state post-restart
 if systemctl is-failed --quiet vrising.service; then
   echo "❌ vrising.service is in a failed state" >&2
   systemctl status --no-pager --full vrising.service || true
