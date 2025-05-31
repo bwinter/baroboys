@@ -31,21 +31,21 @@ def mcrcon_cmd(cmd):
     try:
         result = subprocess.run(
             ["mcrcon", "-H", "127.0.0.1", "-P", "25575", "-p", get_server_password(), cmd],
-            capture_output=True, text=True, timeout=5
+            capture_output=True, text=True, timeout=5, check=True
         )
-
         print(f"🛰️ RCON command: {cmd}")
         print(f"📥 stdout: {result.stdout.strip()}")
         print(f"⚠️ stderr: {result.stderr.strip()}")
-
-        result.check_returncode()
-        return result.stdout.strip()
+        return result
     except subprocess.CalledProcessError as e:
-        return f"RCON Error: {e.stderr.strip()}"
+        print(f"RCON Error: {e.stderr.strip()}")
+        return e
     except subprocess.TimeoutExpired:
-        return "RCON Timeout"
+        print("RCON Timeout")
+        return None
     except Exception as e:
-        return f"RCON Exception: {type(e).__name__}: {e}"
+        print(f"RCON Exception: {type(e).__name__}: {e}")
+        return None
 
 
 @app.route("/")
@@ -138,18 +138,11 @@ def api_players():
 
 @app.route("/api/time")
 def api_time():
-    if ENV == "development":
-        return {"time": "Day 14, 12:34 PM"}
-
-    cmd = "help"
-    result = mcrcon_cmd(cmd).strip()
-    print(f"🛰️ RCON command: GetTime", flush=True)
-    print(f"📥 stdout: {result.strip()}", flush=True)
-    output = mcrcon_cmd("GetTime").strip()
-    try:
-        return {"time": output}
-    except Exception as e:
-        return {"error": f"Failed to fetch time: {type(e).__name__}: {e}"}, 500
+    result = mcrcon_cmd("GetTime")
+    if result and result.stdout:
+        return {"time": result.stdout.strip()}
+    else:
+        return {"error": "Failed to fetch time"}, 500
 
 
 @app.route("/api/shutdown")
