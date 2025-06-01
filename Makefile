@@ -14,7 +14,7 @@ TF_VAR_DEF_FILE  := terraform/variables.tf
 
 .DEFAULT_GOAL := help
 
-dev: admin-refresh vm-refresh
+dev: vm-refresh
 
 refresh: terraform-apply
 
@@ -23,13 +23,10 @@ destroy: terraform-destroy
 # =======================
 # 🐍 Flask Admin Panel
 # =======================
-.PHONY: admin-local admin-refresh admin-logs
+.PHONY: admin-local admin-logs
 
 admin-local:
 	scripts/setup/install/flask_server/run_admin_server_local.sh
-
-admin-refresh:
-	scripts/setup/install/flask_server/deploy_admin_server.sh
 
 admin-logs:
 	scripts/setup/install/flask_server/get_admin_server_logs.sh
