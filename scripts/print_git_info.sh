@@ -1,61 +1,76 @@
 #!/bin/bash
 set -euo pipefail
 
-REPO_PATH="${1:-$PWD}"
-cd "$REPO_PATH"
+# Usage: ./print_git_info.sh [path/to/repo]
+# Defaults to current directory if none provided.
 
+REPO_PATH="${1:-$PWD}"
 echo "🔍 Analyzing Git repo at: $REPO_PATH"
 echo
 
-# ---- Largest blobs ----
+cd "$REPO_PATH"
+
+# -------------------------
+# 1. Top 10 Largest Blobs
+# -------------------------
 echo "📦 Largest blobs (top 10):"
-BLOBS=$(git rev-list --objects --all | \
-  git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize)' | \
-  awk '$1 == "blob" { print $2, $3 }' | \
-  sort -k2 -n -r)
-
-JOINED=$(git rev-list --objects --all)
-COUNT=0
-echo "$BLOBS" | while read -r SHA SIZE; do
-  FILE=$(echo "$JOINED" | grep "$SHA" | cut -d' ' -f2-)
-  [[ -n "$FILE" ]] && echo "  $(numfmt --to=iec $SIZE)  $FILE"
-  COUNT=$((COUNT+1))
-  [[ $COUNT -ge 10 ]] && break
-done
+git rev-list --objects --all \
+  | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize)' \
+  | awk '$1=="blob" { print $2, $3 }' \
+  | sort -k2 -n -r \
+  | head -n 10 \
+  | while read -r SHA SIZE; do
+      FILE=$(git rev-list --objects --all | grep "^$SHA " | cut -d' ' -f2- | head -n 1)
+      printf "  %8s  %s\n" "$(numfmt --to=iec "$SIZE")" "$FILE"
+    done \
+  || echo "  (no blob objects found)"
 echo
 
-# ---- File types by blob size ----
-echo "📁 File types by blob size (top 10):"
-git rev-list --objects --all | \
-  git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize)' | \
-  awk '$1 == "blob" { print $2, $3 }' | \
-  join -j1 - <(git rev-list --objects --all | sort) | \
-  awk -F. '{ if (NF>1) print $NF }' | \
-  sort | uniq -c | sort -k1 -n -r | head -n 10 | \
-  awk '{ printf "  %4d .%s\n", $1, $2 }' || echo "  (no extensions found)"
+# --------------------------------------------
+# 2. File Extensions by Total Blob Count
+# --------------------------------------------
+echo "📁 File types by blob count (top 10):"
+git rev-list --objects --all \
+  | git cat-file --batch-check='%(objecttype) %(objectname)' \
+  | awk '$1=="blob" { print $2 }' \
+  | while read -r SHA; do
+      git rev-list --objects --all \
+        | grep "^$SHA " | cut -d' ' -f2- \
+        | awk -F. 'NF>1 { print tolower($NF) }'
+    done \
+  | sort | uniq -c | sort -k1 -n -r \
+  | head -n 10 \
+  | awk '{ printf "  %4d .%s\n", $1, $2 }' \
+  || echo "  (no file extensions detected)"
 echo
 
-# ---- Historical .save and .ogg files ----
+# -----------------------------------------------------
+# 3. Historical .save and .ogg Matches (deduplicated)
+# -----------------------------------------------------
 echo "🎯 Looking for historical *.save and *.ogg entries:"
-MATCHES=$(git rev-list --all | xargs git grep -I --name-only -e '.save' -e '.ogg' 2>/dev/null || true)
+HITS=$(git rev-list --all \
+  | xargs -n1 git ls-tree -r --name-only 2>/dev/null \
+  | grep -E '\.save$|\.ogg$' || true)
 
-if [[ -n "$MATCHES" ]]; then
-  SORTED=$(echo "$MATCHES" | sort | uniq -c | sort -k1 -n -r)
-  TOP_MATCHES=$(echo "$SORTED" | head -n 15)
-  TOTAL_MATCHES=$(echo "$SORTED" | wc -l)
-
-  echo "$TOP_MATCHES" | awk '{ printf "  %4d %s\n", $1, $2 }'
+if [[ -n "$HITS" ]]; then
+  echo "$HITS" \
+    | sort | uniq -c | sort -k1 -n -r \
+    | awk '{ printf "  %4d %s\n", $1, $2 }' \
+    | head -n 15
+  TOTAL_MATCHES=$(echo "$HITS" | sort | uniq | wc -l)
   if [[ "$TOTAL_MATCHES" -gt 15 ]]; then
-    echo "  ... and $((TOTAL_MATCHES - 15)) more."
+    echo "  ... and $((TOTAL_MATCHES - 15)) more paths"
   fi
 else
   echo "  ❌ No matching .save or .ogg files found in history."
 fi
 echo
 
-# ---- Summary ----
+# -----------------
+# 4. Repo Summary
+# -----------------
 REPO_SIZE=$(du -sh .git | cut -f1)
-OBJ_COUNT=$(git count-objects -vH | grep 'count:' | awk '{print $2}')
+OBJ_COUNT=$(git count-objects -vH | grep '^count:' | awk '{print $2}')
 echo "📊 Summary:"
 echo "- Repo size on disk: $REPO_SIZE"
-echo "- Total objects: $OBJ_COUNT"
+echo "- Total loose + packed objects: $OBJ_COUNT"
