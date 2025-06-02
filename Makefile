@@ -6,7 +6,7 @@ PROJECT          := europan-world
 ZONE             := us-west1-b
 INSTANCE         := europa
 USER             := bwinter_sc81
-REMOTE_SAVE_SCRIPT := /home/$(USER)/baroboys/scripts/teardown/user/save_game.sh
+REMOTE_SAVE_SCRIPT := sudo systemctl start vm-shutdown.service
 ACTIVE_GAME_FILE := .envrc
 
 TF_VAR_FILE      := terraform/terraform.tfvars
