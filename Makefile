@@ -155,15 +155,18 @@ clean:
 # Git Cleanup Targets
 
 clean-git-print-info:
-	@echo "🔍 Running Git info print-git analysis..."
+	echo "🔍 Running Git info print-git analysis..."
 	./scripts/print_git_info.sh .
 
 clean-git-bfg:
-	@echo "🧹 Running BFG history cleanup..."
+	echo "🧹 Running BFG history cleanup..."
 	./scripts/bfg_cleanup.sh .
 
+clan-git-post:
+	echo "🔍 BFG post-cleanup analysis suggestions..."
+	./scripts/bfg_post_cleanup.sh
+
 clean-git: clean-git-print-info clean-git-bfg clean-git-print-info
-	@echo "✅ Git cleanup completed via clean-git target."
 
 
 # =======================

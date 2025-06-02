@@ -21,7 +21,7 @@ MATCHED_PATHS=$(echo "$ALL_PATHS" | grep -E '\.ogg$|AutoSave_.*\.save\.gz$' || t
 # Handle empty case
 if [[ -z "$MATCHED_PATHS" ]]; then
   echo "⚠️  No matching blobs found (.ogg or AutoSave_*.save.gz)"
-  > "$DELETABLE_LIST"
+  : > "$DELETABLE_LIST"
   exit 0
 fi
 
