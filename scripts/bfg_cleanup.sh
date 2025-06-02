@@ -2,7 +2,7 @@
 set -euo pipefail
 
 REPO_PATH="${1:-$HOME/Desktop/Baroboys}"
-WORKDIR=$(mktemp -d /tmp/bfg-cleanup.XXXXXX)
+WORKDIR="/tmp/bfg-cleanup"
 ORIG_LIST="/tmp/deletable-blobs.txt"
 BFG_VERSION="1.14.0"
 BFG_JAR="${WORKDIR}/bfg-${BFG_VERSION}.jar"
@@ -19,9 +19,13 @@ if [[ ! -f "$ORIG_LIST" || ! -s "$ORIG_LIST" ]]; then
   exit 1
 fi
 
-# Clone bare mirror
-echo "📥 Cloning bare mirror → $WORKDIR/baroboys-bfg-clean.git"
-git clone --mirror "$REPO_PATH" "$WORKDIR/baroboys-bfg-clean.git" &> /dev/null
+# Clone or reuse repo mirror
+if [[ -d "$WORKDIR/baroboys-bfg-clean.git" ]]; then
+  echo "♻️  Reusing existing mirror at $WORKDIR/baroboys-bfg-clean.git"
+else
+  echo "📥 Cloning bare mirror → $WORKDIR/baroboys-bfg-clean.git"
+  git clone --mirror "$REPO_PATH" "$WORKDIR/baroboys-bfg-clean.git" &> /dev/null
+fi
 
 # Download BFG if needed
 if [[ ! -f "$BFG_JAR" ]]; then
@@ -29,26 +33,34 @@ if [[ ! -f "$BFG_JAR" ]]; then
   curl -sSL "$BFG_URL" -o "$BFG_JAR"
 fi
 
-# Build unique filename list (BFG uses basenames only)
+# Build unique filename list
 echo "🔎 Building basename list from $ORIG_LIST..."
 mapfile -t FILENAMES < <(xargs -n1 basename < "$ORIG_LIST" | sort -u)
 
-TOTAL_FILES=${#FILENAMES[@]}
-echo "📂 Found $TOTAL_FILES unique basenames to delete:"
+TOTAL=${#FILENAMES[@]}
+echo "📂 Found $TOTAL unique basenames to delete:"
 printf "     • %s\n" "${FILENAMES[@]:0:10}"
-[[ $TOTAL_FILES -gt 10 ]] && echo "     ... and $((TOTAL_FILES - 10)) more"
+[[ $TOTAL -gt 10 ]] && echo "     ... and $((TOTAL - 10)) more"
 
-# Switch to clean repo
 cd "$WORKDIR/baroboys-bfg-clean.git"
 
 SUCCESS=0
 FAIL=0
+CURRENT=0
 
 echo -e "\n🌀 Starting BFG cleanup loop..."
-for ((i = 0; i < TOTAL_FILES; i++)); do
-  FILENAME="${FILENAMES[i]}"
-  printf "🔸 [%4d / %4d] Attempting: %s\n" "$((i + 1))" "$TOTAL_FILES" "$FILENAME"
-  java -jar "$BFG_JAR" --delete-files "$FILENAME" > "$LOGDIR/${FILENAME//[^a-zA-Z0-9]/_}.log" 2>&1 || true
+for FILENAME in "${FILENAMES[@]}"; do
+  ((CURRENT++))
+  SAFE_NAME="${FILENAME//[^a-zA-Z0-9]/_}"
+  LOG_PATH="$LOGDIR/${SAFE_NAME}.log"
+
+  if [[ -f "$LOG_PATH" ]]; then
+    echo "[$CURRENT/$TOTAL] ⏭️  Skipping (already processed): $FILENAME"
+    continue
+  fi
+
+  echo "[$CURRENT/$TOTAL] 🔸 Attempting: $FILENAME"
+  java -jar "$BFG_JAR" --delete-files "$FILENAME" > "$LOG_PATH" 2>&1 || true
 
   if git rev-list --all | xargs -n1 -I{} git ls-tree -r --name-only {} | grep -Fxq "$FILENAME"; then
     echo "   ⚠️  Still present: $FILENAME"
