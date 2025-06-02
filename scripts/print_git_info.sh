@@ -5,10 +5,10 @@ set -euo pipefail
 # Defaults to current directory if none provided.
 
 REPO_PATH="${1:-$PWD}"
+cd "$REPO_PATH"
+
 echo "🔍 Analyzing Git repo at: $REPO_PATH"
 echo
-
-cd "$REPO_PATH"
 
 # -------------------------
 # 1. Top 10 Largest Blobs
@@ -45,29 +45,52 @@ git rev-list --objects --all \
 echo
 
 # -----------------------------------------------------
-# 3. Historical .save and .ogg Matches (deduplicated)
+# 3. Historical *.save and *.ogg Matches (deduplicated)
 # -----------------------------------------------------
 echo "🎯 Looking for historical *.save and *.ogg entries:"
-HITS=$(git rev-list --all \
+HIST_MATCHES=$(git rev-list --all \
   | xargs -n1 git ls-tree -r --name-only 2>/dev/null \
-  | grep -E '\.save$|\.ogg$' || true)
+  | grep -E '\.save$|\.ogg$' | sort -u || true)
 
-if [[ -n "$HITS" ]]; then
-  echo "$HITS" \
+if [[ -n "$HIST_MATCHES" ]]; then
+  echo "$HIST_MATCHES" \
+    | xargs -n1 basename \
     | sort | uniq -c | sort -k1 -n -r \
-    | awk '{ printf "  %4d %s\n", $1, $2 }' \
-    | head -n 15
-  TOTAL_MATCHES=$(echo "$HITS" | sort | uniq | wc -l)
-  if [[ "$TOTAL_MATCHES" -gt 15 ]]; then
-    echo "  ... and $((TOTAL_MATCHES - 15)) more paths"
+    | head -n 15 \
+    | awk '{ printf "  %4d %s\n", $1, $2 }'
+  TOTAL=$(echo "$HIST_MATCHES" | wc -l)
+  if [[ "$TOTAL" -gt 15 ]]; then
+    echo "  ... and $((TOTAL - 15)) more paths"
   fi
 else
   echo "  ❌ No matching .save or .ogg files found in history."
 fi
 echo
 
+# --------------------------------------------------------
+# 4. Files in history matching *.ogg or *.save, but not HEAD
+# --------------------------------------------------------
+echo "🧨 Matching files not in HEAD (safe to delete):"
+HEAD_MATCHES=$(git ls-tree -r HEAD --name-only | grep -E '\.save$|\.ogg$' | sort -u || true)
+
+comm -23 \
+  <(printf "%s\n" $HIST_MATCHES) \
+  <(printf "%s\n" $HEAD_MATCHES) > /tmp/deletable-blobs.txt
+
+if [[ -s /tmp/deletable-blobs.txt ]]; then
+  head -n 15 /tmp/deletable-blobs.txt | awk '{ print "  " $0 }'
+  COUNT=$(wc -l < /tmp/deletable-blobs.txt)
+  if [[ "$COUNT" -gt 15 ]]; then
+    echo "  ... and $((COUNT - 15)) more paths"
+  fi
+else
+  echo "  ✅ No deletable matching files found (HEAD still contains them all)"
+fi
+echo "💾 Saved list to /tmp/deletable-blobs.txt"
+echo
+
 # -----------------
-# 4. Repo Summary
+# 5. Repo Summary
 # -----------------
 REPO_SIZE=$(du -sh .git | cut -f1)
 OBJ_COUNT=$(git count-objects -vH | grep '^count:' | awk '{print $2}')
