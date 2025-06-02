@@ -152,6 +152,19 @@ build-all: build-core build-steam
 clean:
 	scripts/gcp_review_and_cleanup.sh
 
+# Git Cleanup Targets
+
+clean-git-print-info:
+	@echo "🔍 Running Git info print-git analysis..."
+	./scripts/print_git_info.sh .
+
+clean-git-bfg:
+	@echo "🧹 Running BFG history cleanup..."
+	./scripts/bfg_cleanup.sh .
+
+clean-git: clean-git-print-info clean-git-bfg clean-git-print-info
+	@echo "✅ Git cleanup completed via clean-git target."
+
 
 # =======================
 # 🆘 Help
