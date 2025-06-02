@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Ling" steamworkshopid="2823478194" corepackage="false" modversion="1.0.13" gameversion="0.18.15.2" installtime="1664767984" expectedhash="E5FE124DE502C66B3E248EC1F6864589">
-  <Submarine file="%ModDir%/Ling.sub" />
-</contentpackage>

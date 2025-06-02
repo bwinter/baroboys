@@ -1,48 +1,59 @@
 #!/bin/bash
-set -euxo pipefail
+set -euo pipefail
 
 echo "🧹 Starting BFG history cleanup..."
 
-# ---- Config ----
-TARGET_REPO_PATH="${1:-baroboys-bfg-clean}"   # You can pass a path as $1
-SOURCE_REPO_PATH="$(pwd)"                     # Current repo assumed to be source
-BFG_JAR_URL="https://repo1.maven.org/maven2/com/madgag/bfg/1.14.0/bfg-1.14.0.jar"
-BFG_JAR="bfg.jar"
+# Config
+REPO_SOURCE="${1:-$HOME/Desktop/Baroboys}"  # Default if not passed
+TARGET_DIR="/tmp/bfg-cleanup"
+CLONE_NAME="baroboys-bfg-clean.git"
+CLEANED_REPO="$TARGET_DIR/$CLONE_NAME"
+BFG_VERSION="1.14.0"
+BFG_URL="https://repo1.maven.org/maven2/com/madgag/bfg/$BFG_VERSION/bfg-$BFG_VERSION.jar"
+BFG_JAR="$TARGET_DIR/bfg-$BFG_VERSION.jar"
+REPORT_FILE="bfg-report.log"
+PATTERNS_TO_DELETE="*.save,*.ogg"
 
-# ---- Setup ----
-mkdir -p /tmp/bfg-cleanup
-cd /tmp/bfg-cleanup
+# Clean up old runs
+if [[ -d "$TARGET_DIR" ]]; then
+  echo "♻️  Cleaning previous workspace at $TARGET_DIR..."
+  rm -rf "$TARGET_DIR"
+fi
+mkdir -p "$TARGET_DIR"
+cd "$TARGET_DIR"
 
-echo "📥 Cloning bare mirror..."
-git clone --mirror "$SOURCE_REPO_PATH" "$TARGET_REPO_PATH.git"
-cd "$TARGET_REPO_PATH.git"
+# Clone bare repo
+echo "📥 Cloning bare mirror of repo..."
+git clone --mirror "$REPO_SOURCE" "$CLONE_NAME"
+cd "$CLONE_NAME"
 
-if [ ! -f "$BFG_JAR" ]; then
-  echo "📥 Downloading BFG..."
-  curl -L "$BFG_JAR_URL" -o "$BFG_JAR"
+# Download BFG
+echo "⬇️ Downloading BFG v$BFG_VERSION..."
+curl -sSL "$BFG_URL" -o "$BFG_JAR"
+
+# Run BFG
+echo "🔍 Simulating cleanup using temp clone..."
+java -jar "$BFG_JAR" --delete-files "$PATTERNS_TO_DELETE"
+
+# Preview report
+if [[ -f "$REPORT_FILE" ]]; then
+  echo "📝 Report summary:"
+  grep -E '^file ' "$REPORT_FILE" | tee /dev/tty | wc -l | xargs echo "🔎 Files to be deleted:"
+  echo
+else
+  echo "⚠️  No report found. Did BFG run correctly?"
+  exit 1
 fi
 
-# ---- Define patterns to delete ----
-echo "🗂️ Writing .bfg-repo-cleanup-files.txt"
-tee bfg-patterns.txt > /dev/null <<EOF
-VRising/Data/Saves/
-Barotrauma/WorkshopMods/Installed/
-*.save
-*.ogg
-EOF
+# Confirm cleanup
+read -r -p "⚠️  Proceed with reflog expire + GC on cleaned repo? (yes/no): " CONFIRM
+if [[ "$CONFIRM" == "yes" ]]; then
+  echo "🧼 Expiring reflogs and running GC..."
+  git reflog expire --expire=now --all
+  git gc --prune=now --aggressive
 
-# ---- Run BFG ----
-echo "🚀 Running BFG to delete matching files from history..."
-java -jar "$BFG_JAR" --delete-files-from-history bfg-patterns.txt
-
-# ---- Cleanup Git objects and rebuild history ----
-echo "🧼 Expiring reflog and running aggressive GC..."
-git reflog expire --expire=now --all
-git gc --prune=now --aggressive
-
-echo "✅ Cleanup complete. Repo is now in: /tmp/bfg-cleanup/$TARGET_REPO_PATH.git"
-echo "📝 You can inspect and push this repo using:"
-echo "    cd /tmp/bfg-cleanup/$TARGET_REPO_PATH.git"
-echo "    git remote set-url origin <your-remote-url>"
-echo "    git push --force"
-
+  echo "✅ Cleanup complete. Cleaned mirror is here:"
+  echo "$CLEANED_REPO"
+else
+  echo "❌ Aborting after preview. No destructive actions taken."
+fi

@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="SIN Beacon Stations" steamworkshopid="2605405713" corepackage="false" modversion="1.0.2" gameversion="0.20.16.1" installtime="1673881173" expectedhash="29A3C8AAE27F9768CD4E03F5E1924F26">
-  <BeaconStation file="%ModDir%/SIN_Hydro_Beacon_Station.sub" />
-  <BeaconStation file="%ModDir%/SIN_Medusa_Beacon_Station.sub" />
-  <BeaconStation file="%ModDir%/SIN_Mole_Beacon_Station.sub" />
-  <BeaconStation file="%ModDir%/SIN_Shipyard_Beacon_Station.sub" />
-  <BeaconStation file="%ModDir%/SIN_Spire_Beacon_Station.sub" />
-</contentpackage>

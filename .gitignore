@@ -248,7 +248,8 @@ Barotrauma/System.Xml.dll
 Barotrauma/System.dll
 Barotrauma/TempMods_Upload/
 Barotrauma/WindowsBase.dll
-Barotrauma/WorkshopMods/WorkshopMods
+Barotrauma/WorkshopMods
+Barotrauma/WorkshopMods/Installed
 Barotrauma/XNATypes.dll
 Barotrauma/XNATypes.pdb
 Barotrauma/changelog.txt
@@ -277,7 +278,7 @@ Barotrauma/mscorlib.dll
 Barotrauma/netstandard.dll
 Barotrauma/steamapps/
 Barotrauma/steamclient.so
-Barotrauma/WorkshopMods/Installed
+
 
 # Ignore these because they get the password eventually.
 VRising/*ServerHostSettings.json

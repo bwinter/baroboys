@@ -1,72 +1,61 @@
 #!/bin/bash
-set -euxo pipefail
+set -euo pipefail
 
-echo "🧹 Starting BFG history cleanup..."
+REPO_PATH="${1:-$PWD}"
+cd "$REPO_PATH"
 
-# ---- Config ----
-REPO_SOURCE="${1:-$PWD}"                       # Path to repo (defaults to current)
-TARGET_DIR="/tmp/bfg-cleanup"                  # Temp output dir
-CLONE_NAME="baroboys-bfg-clean.git"
-BFG_VERSION="1.15.0"
-BFG_URL="https://repo1.maven.org/maven2/com/madgag/bfg/${BFG_VERSION}/bfg-${BFG_VERSION}.jar"
-BFG_JAR="${TARGET_DIR}/bfg.jar"
-
-# ---- Setup clean working area ----
-rm -rf "$TARGET_DIR"
-mkdir -p "$TARGET_DIR"
-cd "$TARGET_DIR"
-
-# ---- Clone mirror ----
-echo "📦 Cloning bare mirror of repo..."
-git clone --mirror "$REPO_SOURCE" "$CLONE_NAME"
-cd "$CLONE_NAME"
-
-# ---- Download BFG (latest) ----
-if [ ! -f "$BFG_JAR" ]; then
-  echo "⬇️ Downloading BFG v${BFG_VERSION}..."
-  curl -L "$BFG_URL" -o "$BFG_JAR"
-fi
-
-# ---- Run dry run ----
-echo "🧪 Running BFG dry run to preview deletions..."
-java -jar "$BFG_JAR" \
-  --delete-files '*.save' \
-  --delete-files '*.ogg' \
-  --dry-run > ../bfg-preview.log
-
-echo "📊 Summary of deletions:"
-grep '^file ' ../bfg-preview.log | sort -k3 -n -r | head -n 10 || echo "No files matched."
-
-TOTAL=$(grep -c '^file ' ../bfg-preview.log || true)
-echo "🗃️ Total blobs matching patterns: $TOTAL"
-
-if [[ "$TOTAL" -eq 0 ]]; then
-  echo "✅ Nothing to clean. Exiting."
-  exit 0
-fi
-
-# ---- Ask for confirmation ----
+echo "🔍 Analyzing Git repo at: $REPO_PATH"
 echo
-read -p "❓ Proceed with permanent deletion and rewrite? (yes/no): " CONFIRM
-if [[ "$CONFIRM" != "yes" ]]; then
-  echo "❌ Aborted by user."
-  exit 1
-fi
 
-# ---- Real cleanup ----
-echo "🚀 Running BFG for real..."
-java -jar "$BFG_JAR" \
-  --delete-files '*.save' \
-  --delete-files '*.ogg'
+# ---- Largest blobs ----
+echo "📦 Largest blobs (top 10):"
+BLOBS=$(git rev-list --objects --all | \
+  git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize)' | \
+  awk '$1 == "blob" { print $2, $3 }' | \
+  sort -k2 -n -r)
 
-# ---- Garbage collection ----
-git reflog expire --expire=now --all
-git gc --prune=now --aggressive
-
+JOINED=$(git rev-list --objects --all)
+COUNT=0
+echo "$BLOBS" | while read -r SHA SIZE; do
+  FILE=$(echo "$JOINED" | grep "$SHA" | cut -d' ' -f2-)
+  [[ -n "$FILE" ]] && echo "  $(numfmt --to=iec $SIZE)  $FILE"
+  COUNT=$((COUNT+1))
+  [[ $COUNT -ge 10 ]] && break
+done
 echo
-echo "✅ Rewrite complete!"
-echo "📁 Clean repo: $TARGET_DIR/$CLONE_NAME"
-echo "🔁 You can inspect, then:"
-echo "    cd $TARGET_DIR/$CLONE_NAME"
-echo "    git remote set-url origin <your-remote-url>"
-echo "    git push --force"
+
+# ---- File types by blob size ----
+echo "📁 File types by blob size (top 10):"
+git rev-list --objects --all | \
+  git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize)' | \
+  awk '$1 == "blob" { print $2, $3 }' | \
+  join -j1 - <(git rev-list --objects --all | sort) | \
+  awk -F. '{ if (NF>1) print $NF }' | \
+  sort | uniq -c | sort -k1 -n -r | head -n 10 | \
+  awk '{ printf "  %4d .%s\n", $1, $2 }' || echo "  (no extensions found)"
+echo
+
+# ---- Historical .save and .ogg files ----
+echo "🎯 Looking for historical *.save and *.ogg entries:"
+MATCHES=$(git rev-list --all | xargs git grep -I --name-only -e '.save' -e '.ogg' 2>/dev/null || true)
+
+if [[ -n "$MATCHES" ]]; then
+  SORTED=$(echo "$MATCHES" | sort | uniq -c | sort -k1 -n -r)
+  TOP_MATCHES=$(echo "$SORTED" | head -n 15)
+  TOTAL_MATCHES=$(echo "$SORTED" | wc -l)
+
+  echo "$TOP_MATCHES" | awk '{ printf "  %4d %s\n", $1, $2 }'
+  if [[ "$TOTAL_MATCHES" -gt 15 ]]; then
+    echo "  ... and $((TOTAL_MATCHES - 15)) more."
+  fi
+else
+  echo "  ❌ No matching .save or .ogg files found in history."
+fi
+echo
+
+# ---- Summary ----
+REPO_SIZE=$(du -sh .git | cut -f1)
+OBJ_COUNT=$(git count-objects -vH | grep 'count:' | awk '{print $2}')
+echo "📊 Summary:"
+echo "- Repo size on disk: $REPO_SIZE"
+echo "- Total objects: $OBJ_COUNT"

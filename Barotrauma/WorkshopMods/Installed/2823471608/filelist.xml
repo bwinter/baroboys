@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="DagonLing Blueprint" steamworkshopid="2823471608" corepackage="false" modversion="1.0.9" gameversion="0.18.15.2" installtime="1664768902" expectedhash="627586D0C4CA3B9F5029D524118F19B2">
-  <Item file="%ModDir%/Content/Items/blueprint.xml" />
-</contentpackage>
