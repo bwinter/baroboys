@@ -22,19 +22,22 @@ if [ -d "$REPO_PATH/.git" ]; then
   cd "$REPO_PATH"
 
   # Stash any uncommitted work (autosaves, local testing, etc.)
-  git stash push --include-untracked --quiet || echo "Nothing to stash"
+  git stash push --include-untracked --quiet || echo "🟡 Nothing to stash"
 
   # Rebase for clean logs, fallback to merge if needed
-  if ! git pull --rebase; then
+  echo "🔄 Pulling latest from main branch..."
+  if ! git pull --rebase 2>&1 | tee /dev/stderr; then
     echo "⚠️ Rebase failed, trying fallback merge..."
-    git pull --no-rebase
+    git pull --no-rebase 2>&1 | tee /dev/stderr
   fi
+
 
   # Restore any stashed work
   git stash pop --quiet || echo "No stash to pop"
 else
-  echo "📦 Cloning repo fresh..."
-  git clone "$GIT_REMOTE" "$REPO_PATH"
+  echo "📦 Cloning repo fresh from $GIT_REMOTE into $REPO_PATH..."
+  GIT_SSH_COMMAND="ssh -i $HOME/.ssh/id_ecdsa -o IdentitiesOnly=yes" \
+    git clone --progress --verbose "$GIT_REMOTE" "$REPO_PATH" 2>&1 | tee /dev/stderr
 fi
 
 # --- Git Config ---
