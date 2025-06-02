@@ -1,86 +1,70 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 
-# Usage: ./bfg_cleanup.sh [path/to/repo]
 REPO_PATH="${1:-$HOME/Desktop/Baroboys}"
-WORKDIR="/tmp/bfg-cleanup"
+WORKDIR=$(mktemp -d /tmp/bfg-cleanup.XXXXXX)
 ORIG_LIST="/tmp/deletable-blobs.txt"
 BFG_VERSION="1.14.0"
-BFG_URL="https://repo1.maven.org/maven2/com/madgag/bfg/$BFG_VERSION/bfg-$BFG_VERSION.jar"
-BFG_JAR="$WORKDIR/bfg-$BFG_VERSION.jar"
+BFG_JAR="${WORKDIR}/bfg-${BFG_VERSION}.jar"
+BFG_URL="https://repo1.maven.org/maven2/com/madgag/bfg/${BFG_VERSION}/bfg-${BFG_VERSION}.jar"
+LOGDIR="${WORKDIR}/logs"
 
-echo "🧹 Starting resilient BFG history cleanup..."
+mkdir -p "$LOGDIR"
 
-# 1. Validate blob list
-if [[ ! -f "$ORIG_LIST" ]] || [[ ! -s "$ORIG_LIST" ]]; then
+echo "🧹 Starting BFG cleanup in $WORKDIR..."
+
+# Validate deletable list
+if [[ ! -f "$ORIG_LIST" || ! -s "$ORIG_LIST" ]]; then
   echo "❌ Error: $ORIG_LIST missing or empty."
-  echo "🧠 Run ./scripts/print_git_info.sh $REPO_PATH first."
   exit 1
 fi
 
-# 2. Prepare workspace
-echo "♻️  Cleaning workspace at $WORKDIR ..."
-rm -rf "$WORKDIR"
-mkdir -p "$WORKDIR"
-
-# 3. Clone mirror
-echo "📥 Cloning bare mirror of '$REPO_PATH' → $WORKDIR/baroboys-bfg-clean.git"
+# Clone bare mirror
+echo "📥 Cloning bare mirror → $WORKDIR/baroboys-bfg-clean.git"
 git clone --mirror "$REPO_PATH" "$WORKDIR/baroboys-bfg-clean.git" &> /dev/null
 
-# 4. Download BFG if needed
+# Download BFG if needed
 if [[ ! -f "$BFG_JAR" ]]; then
   echo "⬇️ Downloading BFG v$BFG_VERSION..."
   curl -sSL "$BFG_URL" -o "$BFG_JAR"
 fi
 
-# 5. Build unique filename list
-echo "🔎 Reducing $ORIG_LIST → filenames only…"
-FILENAMES=($(cat "$ORIG_LIST" | xargs -n1 basename | sort -u))
+# Build unique filename list (BFG uses basenames only)
+echo "🔎 Building basename list from $ORIG_LIST..."
+mapfile -t FILENAMES < <(xargs -n1 basename < "$ORIG_LIST" | sort -u)
 
-echo "📂 Found ${#FILENAMES[@]} unique filenames to attempt deletion:"
+echo "📂 Found ${#FILENAMES[@]} unique basenames to delete:"
 printf "     • %s\n" "${FILENAMES[@]:0:10}"
-if [[ ${#FILENAMES[@]} -gt 10 ]]; then echo "     ... and $((${#FILENAMES[@]} - 10)) more"; fi
+[[ ${#FILENAMES[@]} -gt 10 ]] && echo "     ... and $((${#FILENAMES[@]} - 10)) more"
 
-# 6. Per-file loop
-echo -e "\n🌀 Starting per-file BFG cleanup loop..."
-
+# Switch to clean repo
 cd "$WORKDIR/baroboys-bfg-clean.git"
-SUCCESS_COUNT=0
-FAILURE_COUNT=0
 
+SUCCESS=0
+FAIL=0
+
+echo -e "\n🌀 Starting BFG cleanup loop..."
 for FILENAME in "${FILENAMES[@]}"; do
-  echo "🔸 Attempting BFG cleanup for: $FILENAME"
+  echo "🔸 Attempting: $FILENAME"
+  java -jar "$BFG_JAR" --delete-files "$FILENAME" > "$LOGDIR/${FILENAME//[^a-zA-Z0-9]/_}.log" 2>&1 || true
 
-  # Run BFG on this one file
-  java -jar "$BFG_JAR" --delete-files "$FILENAME" &> "$WORKDIR/bfg-tmp.log" || true
-
-  # Post-clean HEAD presence check
-  STILL_PRESENT=$(git log -p --all -- "$FILENAME" | grep -q "$FILENAME" && echo "yes" || echo "no")
-
-  if [[ "$STILL_PRESENT" == "no" ]]; then
-    echo "   ✅ Removed from history: $FILENAME"
-    ((SUCCESS_COUNT++))
+  if git rev-list --all | xargs -n1 -I{} git ls-tree -r --name-only {} | grep -Fxq "$FILENAME"; then
+    echo "   ⚠️  Still present: $FILENAME"
+    ((FAIL++)) || true
   else
-    echo "   ⚠️  Still present in HEAD/history: $FILENAME"
-    ((FAILURE_COUNT++))
+    echo "   ✅ Removed: $FILENAME"
+    ((SUCCESS++)) || true
   fi
 done
 
-# 7. Reflog + GC
-echo -e "\n🧼 Expiring reflogs and performing aggressive GC in the mirror…"
+echo -e "\n🧼 Final GC..."
 git reflog expire --expire=now --all
 git gc --prune=now --aggressive
 
-# 8. Summary
-echo -e "\n✅ History cleanup complete!"
-echo "   ✔️ Successes: $SUCCESS_COUNT"
-echo "   ❌ Failures:  $FAILURE_COUNT"
-echo
-echo "📁 Cleaned bare repo: $WORKDIR/baroboys-bfg-clean.git"
-echo "🔍 To inspect the cleaned repo, run:"
-echo "    ./scripts/print_git_info.sh $WORKDIR/baroboys-bfg-clean.git"
-echo
-echo "🚩 To overwrite your origin, run:"
-echo "    cd $WORKDIR/baroboys-bfg-clean.git"
-echo "    git remote set-url origin <your-remote-url>"
-echo "    git push --force"
+echo -e "\n✅ Cleanup finished!"
+echo "   ✔️ Success: $SUCCESS"
+echo "   ❌ Failed:  $FAIL"
+echo "📁 Repo at: $WORKDIR/baroboys-bfg-clean.git"
+echo "🔍 Inspect:  ./scripts/print_git_info.sh $WORKDIR/baroboys-bfg-clean.git"
+
+exit 0
