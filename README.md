@@ -84,6 +84,11 @@ direnv allow .
 make build
 ```
 
+* This installs a bunch of dependencies
+* GCP monitoring
+* Steam, Wine, Xvfb and their dependencies
+* Some helpful command line tools. e.g. curl, wget etc
+
 ---
 
 ### 4. Apply Terraform to create your VM and configure the server
@@ -93,7 +98,7 @@ make apply
 ```
 
 * This boots a VM
-* Installs Wine, SteamCMD, Xvfb
+* Updates repos and games
 * Clones this repo for both `root` and `bwinter_sc81`
 * Installs and configures the selected game
 * Registers a `systemd` service for the game
