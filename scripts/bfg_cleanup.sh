@@ -2,75 +2,89 @@
 set -euo pipefail
 
 # Usage: ./bfg_cleanup.sh [path/to/repo]
-# Defaults to ~/Desktop/Baroboys if none provided.
+REPO_PATH="${1:-$HOME/Desktop/Baroboys}"
+WORKDIR="/tmp/bfg-cleanup"
+ORIG_LIST="/tmp/deletable-blobs.txt"
+BFG_VERSION="1.14.0"
+BFG_URL="https://repo1.maven.org/maven2/com/madgag/bfg/$BFG_VERSION/bfg-$BFG_VERSION.jar"
+BFG_JAR="$WORKDIR/bfg-$BFG_VERSION.jar"
+REPORT_FILE="bfg-report.log"
 
 echo "🧹 Starting BFG history cleanup..."
 
-# ---- Config ----
-REPO_SOURCE="${1:-$HOME/Desktop/Baroboys}"
-TARGET_DIR="/tmp/bfg-cleanup"
-CLONE_NAME="baroboys-bfg-clean.git"
-CLEANED_REPO="$TARGET_DIR/$CLONE_NAME"
-BFG_VERSION="1.14.0"
-BFG_URL="https://repo1.maven.org/maven2/com/madgag/bfg/$BFG_VERSION/bfg-$BFG_VERSION.jar"
-BFG_JAR="$TARGET_DIR/bfg-$BFG_VERSION.jar"
-PATTERNS_TO_DELETE="*.save,*.ogg"
-REPORT_FILE="bfg-report.log"
-
-# ---- Convert to absolute path so `git clone --mirror` sees it ----
-REPO_ABS="$(cd "$REPO_SOURCE" && pwd)"
-
-# ---- Clean any existing workspace ----
-if [[ -d "$TARGET_DIR" ]]; then
-  echo "♻️  Cleaning previous workspace at $TARGET_DIR..."
-  rm -rf "$TARGET_DIR"
+# 1) Verify the deletable‐blobs list exists and is non‐empty
+if [[ ! -f "$ORIG_LIST" ]] || [[ ! -s "$ORIG_LIST" ]]; then
+  echo "❌ Error: $ORIG_LIST missing or empty."
+  echo "🧠 Run ./scripts/print_git_info.sh $REPO_PATH first."
+  exit 1
 fi
-mkdir -p "$TARGET_DIR"
-cd "$TARGET_DIR"
 
-# ---- Clone bare mirror from the absolute path ----
-echo "📥 Cloning bare mirror of repo ($REPO_ABS) ..."
-git clone --mirror "$REPO_ABS" "$CLONE_NAME"
-cd "$CLONE_NAME"
+# 2) Prepare workspace
+echo "♻️  Cleaning any previous workspace at $WORKDIR ..."
+rm -rf "$WORKDIR"
+mkdir -p "$WORKDIR"
 
-# ---- Download BFG if it isn’t already there ----
+# 3) Clone a bare mirror
+echo "📥 Cloning bare mirror of '$REPO_PATH' → $WORKDIR/baroboys-bfg-clean.git"
+git clone --mirror "$REPO_PATH" "$WORKDIR/baroboys-bfg-clean.git" &> /dev/null
+
+# 4) Download BFG if not already present
 if [[ ! -f "$BFG_JAR" ]]; then
   echo "⬇️ Downloading BFG v$BFG_VERSION..."
   curl -sSL "$BFG_URL" -o "$BFG_JAR"
 fi
 
-# ---- Run BFG to delete all *.save and *.ogg blobs from history ----
-echo "🚀 Running BFG cleanup (removing patterns: $PATTERNS_TO_DELETE)..."
-java -jar "$BFG_JAR" --delete-files "$PATTERNS_TO_DELETE"
+# 5) Strip each path down to its filename and build a comma list
+echo "🔎 Reducing $ORIG_LIST → filenames only…"
+FILENAMES=$(cat "$ORIG_LIST" \
+  | xargs -n1 basename \
+  | sort -u \
+  | paste -sd, -)
 
-# ---- Print BFG report ----
-if [[ -f "$REPORT_FILE" ]]; then
-  MATCHED_COUNT=$(grep -c '^file ' "$REPORT_FILE" || true)
+COUNT=$(echo "$FILENAMES" | tr ',' '\n' | wc -l | tr -d ' ')
+echo "🚀 Running BFG cleanup on $COUNT unique filenames…"
+echo "   Preview of first 10 filenames:"
+echo "$FILENAMES" | tr ',' '\n' | head -n 10 | awk '{ print "     •", $0 }'
+if [[ "$COUNT" -gt 10 ]]; then echo "     ... and $((COUNT-10)) more"; fi
+
+# 6) Execute BFG inside the bare clone
+(
+  cd "$WORKDIR/baroboys-bfg-clean.git"
+  java -jar "$BFG_JAR" --delete-files "$FILENAMES"
+)
+
+# 7) Check for BFG’s report
+if [[ -f "$WORKDIR/baroboys-bfg-clean.git/$REPORT_FILE" ]]; then
+  MATCHED=$(grep -c '^file ' "$WORKDIR/baroboys-bfg-clean.git/$REPORT_FILE" || true)
   echo
-  echo "📝 Deleted blob entries: $MATCHED_COUNT"
-  echo "🗒️ Top 10 deleted paths:"
-  grep -E '^file ' "$REPORT_FILE" \
+  echo "📝 BFG deleted $MATCHED blob entries."
+  echo "🗒️ Top 10 deleted paths (in history):"
+  grep -E '^file ' "$WORKDIR/baroboys-bfg-clean.git/$REPORT_FILE" \
     | sort -k3 -n -r \
     | head -n 10 \
-    | awk '{ printf "  %s\n", $3 }'
+    | awk '{ print "   •", $3 }'
 else
   echo
-  echo "⚠️  No BFG report found. Something went wrong."
+  echo "⚠️  No BFG report found—cleanup may have failed."
   exit 1
 fi
 
-# ---- Cleanup Git objects (expire reflogs + GC) ----
+# 8) Expire reflogs & run aggressive GC on the bare repo
 echo
-echo "🧼 Expiring reflogs and performing aggressive GC..."
+echo "🧼 Expiring reflogs and performing aggressive GC in the mirror…"
+cd "$WORKDIR/baroboys-bfg-clean.git"
 git reflog expire --expire=now --all
 git gc --prune=now --aggressive
 
+# 9) Success message
 echo
 echo "✅ History rewrite complete!"
-echo "📁 Cleaned repo is at:"
-echo "    $CLEANED_REPO"
+echo "📁 Cleaned bare repo: $WORKDIR/baroboys-bfg-clean.git"
 echo
-echo "📝 To inspect or push your cleaned repo, run:"
-echo "    cd $CLEANED_REPO"
+echo "🔍 To inspect the cleaned repo, you can run:"
+echo "    ./scripts/print_git_info.sh $WORKDIR/baroboys-bfg-clean.git"
+echo
+echo "🚩 To overwrite your origin, run:"
+echo "    cd $WORKDIR/baroboys-bfg-clean.git"
 echo "    git remote set-url origin <your-remote-url>"
 echo "    git push --force"
