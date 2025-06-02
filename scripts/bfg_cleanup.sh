@@ -33,9 +33,10 @@ fi
 echo "🔎 Building basename list from $ORIG_LIST..."
 mapfile -t FILENAMES < <(xargs -n1 basename < "$ORIG_LIST" | sort -u)
 
-echo "📂 Found ${#FILENAMES[@]} unique basenames to delete:"
+TOTAL_FILES=${#FILENAMES[@]}
+echo "📂 Found $TOTAL_FILES unique basenames to delete:"
 printf "     • %s\n" "${FILENAMES[@]:0:10}"
-[[ ${#FILENAMES[@]} -gt 10 ]] && echo "     ... and $((${#FILENAMES[@]} - 10)) more"
+[[ $TOTAL_FILES -gt 10 ]] && echo "     ... and $((TOTAL_FILES - 10)) more"
 
 # Switch to clean repo
 cd "$WORKDIR/baroboys-bfg-clean.git"
@@ -44,8 +45,9 @@ SUCCESS=0
 FAIL=0
 
 echo -e "\n🌀 Starting BFG cleanup loop..."
-for FILENAME in "${FILENAMES[@]}"; do
-  echo "🔸 Attempting: $FILENAME"
+for ((i = 0; i < TOTAL_FILES; i++)); do
+  FILENAME="${FILENAMES[i]}"
+  printf "🔸 [%4d / %4d] Attempting: %s\n" "$((i + 1))" "$TOTAL_FILES" "$FILENAME"
   java -jar "$BFG_JAR" --delete-files "$FILENAME" > "$LOGDIR/${FILENAME//[^a-zA-Z0-9]/_}.log" 2>&1 || true
 
   if git rev-list --all | xargs -n1 -I{} git ls-tree -r --name-only {} | grep -Fxq "$FILENAME"; then
