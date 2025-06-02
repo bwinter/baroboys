@@ -11,7 +11,7 @@ Tech tl;dr is basically: Terraform and Bash.
 - Terraform
     ```shell
     brew tap hashicorp/tap
-    brew install hashicorp/tap/packer
+    brew install hashicorp/tap/terraform
     ```
 - Packer
     ```shell
