@@ -133,7 +133,7 @@ ssh-iap:
 # =======================
 # 🧱 Packer Builds
 # =======================
-.PHONY: build-core build-steam build-game build-all
+.PHONY: build-core build-steam build-all
 
 build-core:
 	scripts/packer_build.sh core
