@@ -1,37 +1,47 @@
 #!/bin/bash
 set -eux
 
-echo "🛰️  [OPS AGENT] Starting Google Cloud Ops Agent setup..."
+echo "📦 [install-ops-agent] Starting installation of Google Cloud CLI and Ops Agent..."
 
-# ---------------------------------------------------------------------
-# 🔑 Step 1: Trust GCP APT Keyring
-echo "🔑 [OPS AGENT] Installing GCP APT key..."
+# Install the Google Cloud SDK APT key
 curl -fsSL "https://packages.cloud.google.com/apt/doc/apt-key.gpg" \
   | gpg --dearmor -o "/usr/share/keyrings/cloud.google.gpg"
 
-# ---------------------------------------------------------------------
-# 📦 Step 2: Add cloud-sdk APT repo (for gcloud CLI)
-echo "📦 [OPS AGENT] Adding cloud-sdk APT repo..."
+# Add the Cloud SDK repository (Bookworm)
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" \
-  | tee "/etc/apt/sources.list.d/google-cloud-sdk.list"
+  | tee /etc/apt/sources.list.d/google-cloud-sdk.list
 
-# ---------------------------------------------------------------------
-# 📥 Step 3: Install gcloud CLI early (for potential later diagnostics)
-echo "📥 [OPS AGENT] Installing google-cloud-cli..."
-apt-get update -yq
+# Install the CLI (optional but safe to include)
+apt-get update
 apt-get install -yq google-cloud-cli
 
-# ---------------------------------------------------------------------
-# 📥 Step 4: Add repo + install the Ops Agent (canonical install path)
-echo "🚀 [OPS AGENT] Downloading and running Google’s installer..."
-curl -sSO "https://dl.google.com/cloudagents/add-google-cloud-ops-agent-repo.sh"
+echo "📦 [install-ops-agent] Installing Ops Agent repo + agent..."
+
+# Download and run Google’s official install script
+curl -sSO https://dl.google.com/cloudagents/add-google-cloud-ops-agent-repo.sh
 bash add-google-cloud-ops-agent-repo.sh --also-install
 
-# ---------------------------------------------------------------------
-# ✅ Step 5: Confirm status for fast debugging
-echo "🔍 [OPS AGENT] Verifying agent services..."
-systemctl is-active --quiet google-cloud-ops-agent.service && echo "✅ Agent meta-service active"
-systemctl is-active --quiet google-cloud-ops-agent-opentelemetry-collector.service && echo "✅ Collector active"
-systemctl is-active --quiet google-cloud-ops-agent-fluent-bit.service && echo "✅ Logging agent active (if enabled)"
+echo "🛠️ [install-ops-agent] Writing minimal config.yaml to enable collector..."
 
-echo "🎉 [OPS AGENT] Installation and config complete."
+# Ensure collector runs by explicitly configuring it
+sudo tee /etc/google-cloud-ops-agent/config.yaml > /dev/null <<EOF
+metrics:
+  receivers:
+    hostmetrics:
+      type: hostmetrics
+      collection_interval: 60s
+      scrapers:
+        cpu:
+        memory:
+        disk:
+        network:
+  service:
+    pipelines:
+      default_pipeline:
+        receivers: [hostmetrics]
+EOF
+
+echo "🚀 [install-ops-agent] Restarting agent to pick up new config..."
+sudo systemctl restart google-cloud-ops-agent
+
+echo "✅ [install-ops-agent] Google Ops Agent installation complete."
