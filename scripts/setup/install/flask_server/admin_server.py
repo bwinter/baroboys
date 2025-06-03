@@ -80,11 +80,26 @@ def ping():
 @app.route("/trigger-shutdown", methods=["POST"])
 def trigger_shutdown():
     try:
-        subprocess.Popen(["systemctl", "start", "vm-shutdown.service"])
         now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-        return {"status": "Shutdown triggered", "time": now}, 200
+
+        if ENV == "development":
+            print("🔧 [Dev Mode] Mock shutdown triggered.")
+            return {
+                "status": "[Dev Mode] Shutdown triggered",
+                "time": now,
+                "note": "This is mock data. No actual shutdown occurred."
+            }, 200
+
+        subprocess.Popen(["systemctl", "start", "vm-shutdown.service"])
+        return {
+            "status": "Shutdown triggered",
+            "time": now
+        }, 200
+
     except Exception as e:
-        return {"status": f"Shutdown Failed: {type(e).__name__}: {e}"}, 500
+        return {
+            "status": f"Shutdown Failed: {type(e).__name__}: {e}"
+        }, 500
 
 
 @app.route("/logs/<name>")
@@ -124,7 +139,6 @@ def tail_log(name):
 def api_settings():
     import os
     import json
-
 
     if ENV == "development":
         base_path = "/home/bwinter/Desktop/Baroboys/VRising/VRisingServer_Data/StreamingAssets/Settings"
