@@ -99,31 +99,31 @@
                     <div id="shutdown-confirm" class="mt-3 small text-warning"></div>
                 </div>
             </div>
-<!--            <div class="card shadow-sm border-secondary mt-3" id="summary-card">-->
-<!--                <div class="card-header fw-semibold d-flex align-items-center">-->
-<!--                    <i class="bi bi-info-circle-fill text-primary me-2"></i> Server Summary-->
-<!--                </div>-->
-<!--                <div class="card-body p-3">-->
-<!--                    <ul class="list-unstyled mb-0 small">-->
-<!--                        <li class="d-flex justify-content-between align-items-center py-1">-->
-<!--                            <span><i class="bi bi-person-fill text-muted me-2"></i>Players</span>-->
-<!--                            <span id="summary-players" class="text-muted">–</span>-->
-<!--                        </li>-->
-<!--                        <li class="d-flex justify-content-between align-items-center py-1">-->
-<!--                            <span><i class="bi bi-clock-fill text-muted me-2"></i>Game Time</span>-->
-<!--                            <span id="summary-time" class="text-muted">–</span>-->
-<!--                        </li>-->
-<!--                        <li class="d-flex justify-content-between align-items-center py-1">-->
-<!--                            <span><i class="bi bi-power text-muted me-2"></i>Shutdown</span>-->
-<!--                            <span id="summary-shutdown" class="text-muted">–</span>-->
-<!--                        </li>-->
-<!--                        <li class="d-flex justify-content-between align-items-center py-1">-->
-<!--                            <span><i class="bi bi-gear-fill text-muted me-2"></i>Mode</span>-->
-<!--                            <span id="summary-mode" class="text-muted">–</span>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="card shadow-sm border-secondary mt-3" id="summary-card">
+                <div class="card-header fw-semibold d-flex align-items-center">
+                    <i class="bi bi-info-circle-fill text-primary me-2"></i> Server Summary
+                </div>
+                <div class="card-body p-3">
+                    <ul class="list-unstyled mb-0 small">
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-person-fill text-muted me-2"></i>Players</span>
+                            <span id="summary-players" class="text-muted">–</span>
+                        </li>
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-clock-fill text-muted me-2"></i>Game Time</span>
+                            <span id="summary-time" class="text-muted">–</span>
+                        </li>
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-power text-muted me-2"></i>Shutdown</span>
+                            <span id="summary-shutdown" class="text-muted">–</span>
+                        </li>
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-gear-fill text-muted me-2"></i>Mode</span>
+                            <span id="summary-mode" class="text-muted">–</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-8">
@@ -135,7 +135,10 @@
                     <div class="d-flex align-items-center gap-2">
                         <span id="status-offline-msg"
                               class="text-warning small fw-semibold d-none">Server Offline</span>
-                        <button title="Toggle auto-refresh" id="toggle-status-refresh" class="btn btn-sm btn-outline-dark">⏸ Pause Status</button>
+                        <button title="Toggle auto-refresh" id="toggle-status-refresh"
+                                class="btn btn-sm btn-outline-dark">
+                            <i class="bi bi-pause me-1"></i> Pause Status
+                        </button>
                     </div>
                 </div>
                 <div class="card-body">
@@ -151,7 +154,9 @@
     <div class="card shadow-sm border-secondary mb-3" id="log-card">
         <div class="card-header fw-semibold d-flex align-items-center justify-content-between">
             <span><i class="bi bi-journal-text text-info me-2"></i> Logs</span>
-            <button title="Toggle auto-refresh" id="toggle-log-refresh" class="btn btn-sm btn-outline-dark">⏸ Pause Logs</button>
+            <button title="Toggle auto-refresh" id="toggle-log-refresh" class="btn btn-sm btn-outline-dark">
+                <i class="bi bi-pause me-1"></i> Pause Logs
+            </button>
         </div>
         <div class="card-body">
             <div class="mb-3" id="log-form">
@@ -214,8 +219,9 @@
 
     async function refreshStatus() {
         try {
-            const res = await fetch('/api/check-status');
-            statusOutput.textContent = await res.text();
+            const res = await fetch('/api/idle-status');
+            const data = await res.json();
+            statusOutput.textContent = JSON.stringify(data, null, 2);
             statusOutput.scrollTop = statusOutput.scrollHeight;
             blinkElement(statusCard, 'refreshing-green');
             blinkElement(refreshLabel, 'glow-text');
@@ -261,27 +267,16 @@
 
     async function refreshSummary() {
         try {
-            const [playersRes, timeRes, shutdownRes, settingsRes] = await Promise.all([
-                fetch("/api/players"),
-                fetch("/api/time"),
-                fetch("/api/shutdown"),
-                fetch("/api/settings")
-            ]);
-
-            const players = await playersRes.json();
-            const time = await timeRes.json();
-            const shutdown = await shutdownRes.json();
-            const settings = await settingsRes.json();
-
+            const res = await fetch('/api/idle-status');
+            const status = await res.json();
             document.getElementById("summary-players").innerText =
-                players.players ? players.players.length : "0";
+                status.players?.length || "0";
             document.getElementById("summary-time").innerText =
-                time.time || "Unavailable";
+                status.time || "Unknown";
             document.getElementById("summary-shutdown").innerText =
-                shutdown.scheduled ? `In ${shutdown.in_minutes} min` : "Not scheduled";
+                status.shutdown?.scheduled ? `In ${status.shutdown.in_minutes} min` : "Not scheduled";
             document.getElementById("summary-mode").innerText =
-                settings.GameModeType || "Unknown";
-
+                status.settings?.GameModeType || "Unknown";
             blinkElement(summaryCard, "refreshing-blue");
         } catch (e) {
             console.warn("Summary fetch failed:", e);
@@ -301,12 +296,16 @@
 
     toggleLogBtn.addEventListener('click', () => {
         logAutoRefreshEnabled = !logAutoRefreshEnabled;
-        toggleLogBtn.innerHTML = logAutoRefreshEnabled ? '⏸ Pause Logs' : '▶ Resume Logs';
+        toggleLogBtn.innerHTML = logAutoRefreshEnabled
+            ? '<i class="bi bi-pause me-1"></i> Pause Logs'
+            : '<i class="bi bi-play me-1"></i> Resume Logs';
     });
 
     toggleStatusBtn.addEventListener('click', () => {
         statusAutoRefreshEnabled = !statusAutoRefreshEnabled;
-        toggleStatusBtn.innerHTML = statusAutoRefreshEnabled ? '⏸ Pause Status' : '▶ Resume Status';
+        toggleStatusBtn.innerHTML = statusAutoRefreshEnabled
+            ? '<i class="bi bi-pause me-1"></i> Pause Status'
+            : '<i class="bi bi-play me-1"></i> Resume Status';
     });
 
     // 🔁 Event bindings
@@ -315,7 +314,7 @@
         loadLog();
         refreshStatus();
         checkHeartbeat();
-        // refreshSummary();
+        refreshSummary();
     });
     setInterval(() => {
         if (logAutoRefreshEnabled) loadLog();
@@ -324,7 +323,7 @@
         if (statusAutoRefreshEnabled) refreshStatus();
     }, 5000);
     setInterval(checkHeartbeat, 5000);
-    // setInterval(refreshSummary, 10000);
+    setInterval(refreshSummary, 10000);
 </script>
 </body>
 </html>
