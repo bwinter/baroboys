@@ -26,18 +26,17 @@ if [ -d "$REPO_PATH/.git" ]; then
 
   # Rebase for clean logs, fallback to merge if needed
   echo "🔄 Pulling latest from main branch..."
-  if ! git pull --rebase 2>&1 | tee /dev/stderr; then
+  if ! git pull --rebase; then
     echo "⚠️ Rebase failed, trying fallback merge..."
-    git pull --no-rebase 2>&1 | tee /dev/stderr
+    git pull --no-rebase
   fi
-
 
   # Restore any stashed work
   git stash pop --quiet || echo "No stash to pop"
 else
   echo "📦 Cloning repo fresh from $GIT_REMOTE into $REPO_PATH..."
   GIT_SSH_COMMAND="ssh -i $HOME/.ssh/id_ecdsa -o IdentitiesOnly=yes" \
-    git clone --progress --verbose "$GIT_REMOTE" "$REPO_PATH" 2>&1 | tee /dev/stderr
+    git clone --progress --verbose "$GIT_REMOTE" "$REPO_PATH"
 fi
 
 # --- Git Config ---
