@@ -14,22 +14,28 @@ See `scripts/save-decompressor`
 
 This is helpful when iterating as you can have your sub updates show up in your repo for an easy git commit.
 
-  Link Local Mods
+Link Local Mods
+
   ```shell
   rm -fr '/Users/bwinter/Library/Application Support/Steam/steamapps/common/Barotrauma/Barotrauma.app/Contents/MacOS/LocalMods'
   ln -s '/Users/bwinter/Desktop/Baroboys/Barotrauma/LocalMods/' '/Users/bwinter/Library/Application Support/Steam/steamapps/common/Barotrauma/Barotrauma.app/Contents/MacOS'
   ```
-  Link Remote Mods
+
+Link Remote Mods
+
   ```shell
   rm '/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/'
   ln -s '/Users/bwinter/Desktop/Baroboys/Barotrauma/WorkshopMods/' '/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma'
   ```
-  Link Multiplayer Games
+
+Link Multiplayer Games
+
   ```shell
   rm '/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/Multiplayer/'
   ln -s '/Users/bwinter/Desktop/Baroboys/Barotrauma/Multiplayer/' '/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma'
   ```
 
 - Important Locations
-    - Local Install: `/Users/bwinter/Library/Application Support/Steam/steamapps/common/Barotrauma/Barotrauma.app/Contents/MacOS`
+    - Local Install:
+      `/Users/bwinter/Library/Application Support/Steam/steamapps/common/Barotrauma/Barotrauma.app/Contents/MacOS`
     - Multiplayer & Community Mods: `/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma`
