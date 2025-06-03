@@ -1,56 +1,54 @@
 #!/bin/bash
 set -euo pipefail
 
+# === CONFIGURATION ===
+STATIC_NGINX="/opt/baroboys/static"
+STATUS_JSON="$STATIC_NGINX/status.json"
 IDLE_FLAG="/tmp/server_idle_since.flag"
-STATUS_JSON="/tmp/status.json"
 COOLDOWN_MINUTES=30
-CPU_THRESHOLD=15.0  # Idle if below this %
+CPU_THRESHOLD=15.0  # Example idle CPU threshold
+STATUS_SOURCE="idle_checker"
 
-# Get current CPU usage for the game process (adjust name per game)
-CPU_USAGE=$(ps -C VRisingServer.exe -o %cpu= | awk '{ total += $1 } END { printf "%.1f", total }')
-NOW_EPOCH=$(date +%s)
-NOW_ISO=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
 
-# Initialize status values
-IDLE_MINUTES=0
-SHUTDOWN_TRIGGERED=false
-STATUS="active"
+# === METRICS ===
+CPU_PERCENT=$(top -bn1 | grep "Cpu(s)" | awk '{print 100 - $8}')
+UPTIME_MINUTES=$(awk '{print int($1 / 60)}' /proc/uptime)
+NOW_UNIX=$(date +%s)
+NOW_ISO=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-if (( $(echo "$CPU_USAGE > $CPU_THRESHOLD" | bc -l) )); then
-  echo "🟢 CPU is active (${CPU_USAGE}%), clearing idle flag"
+# === IDLE TRACKING ===
+if (( $(echo "$CPU_PERCENT > $CPU_THRESHOLD" | bc -l) )); then
+  # Server is active → clear idle flag
   rm -f "$IDLE_FLAG"
+  IDLE_DURATION=0
 else
-  echo "🟡 CPU is low (${CPU_USAGE}%), may be idle"
+  # Server is idle
   if [[ ! -f "$IDLE_FLAG" ]]; then
-    echo "$NOW_EPOCH" > "$IDLE_FLAG"
-    echo "📌 Idle state started at $NOW_EPOCH"
+    echo "$NOW_UNIX" > "$IDLE_FLAG"
   fi
-
   IDLE_SINCE=$(cat "$IDLE_FLAG")
-  IDLE_MINUTES=$(( (NOW_EPOCH - IDLE_SINCE) / 60 ))
-  STATUS="idle"
-
-  if (( IDLE_MINUTES >= COOLDOWN_MINUTES )); then
-    echo "🔴 Server idle for $IDLE_MINUTES min, triggering shutdown"
-    STATUS="shutdown"
-    SHUTDOWN_TRIGGERED=true
-    if ! /usr/bin/sudo systemctl start vm-shutdown.service; then
-      echo "❌ Failed to start vm-shutdown.service" >&2
-    fi
-  else
-    echo "⏳ Idle duration: ${IDLE_MINUTES} min (waiting for $COOLDOWN_MINUTES)"
-  fi
+  IDLE_DURATION=$(( (NOW_UNIX - IDLE_SINCE) / 60 ))
 fi
 
-# Write JSON status snapshot
+# === WRITE STATUS.JSON ===
 cat <<EOF > "$STATUS_JSON"
 {
-  "timestamp": "$NOW_ISO",
-  "cpu_percent": $CPU_USAGE,
-  "idle_minutes": $IDLE_MINUTES,
-  "idle_threshold": $COOLDOWN_MINUTES,
-  "shutdown_scheduled": $SHUTDOWN_TRIGGERED,
-  "game": "vrising",
-  "status": "$STATUS"
+  "timestamp_utc": "$NOW_ISO",
+  "source": "$STATUS_SOURCE",
+  "uptime_duration_minutes": $UPTIME_MINUTES,
+  "cpu_percent": $CPU_PERCENT,
+  "idle_duration_minutes": $IDLE_DURATION,
+  "players": {
+    "count": null,
+    "list": []
+  }
 }
 EOF
+
+# === SHUTDOWN TRIGGER ===
+if (( IDLE_DURATION >= COOLDOWN_MINUTES )); then
+  echo "🕒 Idle for $IDLE_DURATION minutes. Triggering shutdown..."
+  if ! /usr/bin/sudo systemctl start shutdown.service; then
+    echo "⚠️  Failed to start shutdown.service" >&2
+  fi
+fi

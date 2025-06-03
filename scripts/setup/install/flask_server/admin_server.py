@@ -7,10 +7,11 @@ from flask import Flask, render_template, send_from_directory, Response, request
 
 # Environment-aware paths
 ENV = os.getenv("FLASK_ENV", "production")
-STATIC_DIR = "./static" if ENV == "development" else "/opt/baroboys/static"
-TEMPLATE_DIR = "./templates" if ENV == "development" else "/opt/baroboys/templates"
-LOG_DIR = "./dev/logs" if ENV == "development" else "/home/bwinter_sc81/baroboys/VRising/logs"
-STATUS_DIR = "./dev/status" if ENV == "development" else "/dev/null"
+THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_DIR = os.path.join(THIS_DIR, "static") if ENV == "development" else "/opt/baroboys/static"
+TEMPLATE_DIR = os.path.join(THIS_DIR, "templates") if ENV == "development" else "/opt/baroboys/templates"
+LOG_DIR = os.path.join(THIS_DIR, "dev/logs") if ENV == "development" else "/home/bwinter_sc81/baroboys/VRising/logs"
+STATUS_DIR = os.path.join(THIS_DIR, "dev/status") if ENV == "development" else "/dev/null"
 
 if ENV == "development":
     print("🧪 Flask running in development mode – using stubbed logs.")
@@ -71,12 +72,12 @@ def serve_admin():
     return send_from_directory(STATIC_DIR, "admin.html")
 
 
-@app.route("/api/ping")
+@app.route("/ping")
 def ping():
     return "pong", 200
 
 
-@app.route("/api/trigger-shutdown", methods=["POST"])
+@app.route("/trigger-shutdown", methods=["POST"])
 def trigger_shutdown():
     try:
         subprocess.Popen(["systemctl", "start", "vm-shutdown.service"])
@@ -86,7 +87,7 @@ def trigger_shutdown():
         return {"status": f"Shutdown Failed: {type(e).__name__}: {e}"}, 500
 
 
-@app.route("/api/logs/<name>")
+@app.route("/logs/<name>")
 def tail_log(name):
     log_map = {
         "VRisingServer.log": os.path.join(LOG_DIR, "VRisingServer.log"),
@@ -119,12 +120,17 @@ def tail_log(name):
         return f"Error loading log: {type(e).__name__}: {e}", 500
 
 
-@app.route("/api/settings")
+@app.route("/settings")
 def api_settings():
     import os
     import json
 
-    base_path = "/home/bwinter_sc81/baroboys/VRising/VRisingServer_Data/StreamingAssets/Settings"
+
+    if ENV == "development":
+        base_path = "/home/bwinter/Desktop/Baroboys/VRising/VRisingServer_Data/StreamingAssets/Settings"
+    else:
+        base_path = "/home/bwinter_sc81/baroboys/VRising/VRisingServer_Data/StreamingAssets/Settings"
+
     game_settings_path = os.path.join(base_path, "ServerGameSettings.json")
     host_settings_path = os.path.join(base_path, "ServerHostSettings.json")
 
@@ -139,31 +145,6 @@ def api_settings():
         }
     except Exception as e:
         return {"error": f"Settings fetch failed: {type(e).__name__}: {e}"}, 500
-
-
-@app.route("/api/idle-status")
-def api_idle_status():
-    import json
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-
-    if ENV == "development":
-        try:
-            with open(os.path.join(STATUS_DIR, "status.json"), "r", encoding="utf-8") as f:
-                dev_blob = json.load(f)
-            dev_blob["_dev_mode"] = True
-            dev_blob["_refreshed"] = now
-            return dev_blob
-        except Exception as e:
-            return {
-                "error": f"Dev status fallback failed: {type(e).__name__}: {e}",
-                "timestamp": now
-            }, 500
-
-    try:
-        with open("/tmp/status.json", "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception as e:
-        return {"error": f"Status unavailable: {type(e).__name__}: {e}"}, 500
 
 
 @app.route("/directory")
@@ -182,7 +163,7 @@ def directory():
             "icon": "🎮",
             "title": "Game Control",
             "links": [
-                ("/api/idle-status", "Structured Server Status", "GET"),
+                ("/status.json", "Structured Server Status", "GET"),
                 ("/api/trigger-shutdown", "Trigger Graceful Shutdown", "POST"),
             ]
         },
