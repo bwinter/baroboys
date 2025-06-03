@@ -3,7 +3,8 @@ import subprocess
 from datetime import datetime, timezone
 from functools import lru_cache
 
-from flask import Flask, render_template, send_from_directory, Response, request
+import json
+from flask import Flask, render_template, send_from_directory, Response, request, send_file
 
 # Environment-aware paths
 ENV = os.getenv("FLASK_ENV", "production")
@@ -102,12 +103,10 @@ def check_status():
             )
 
     try:
-        result = subprocess.run(
-            ["systemctl", "is-active", "vrising.service"],
-            capture_output=True, text=True
-        )
-        status = result.stdout.strip()
+        with open("/tmp/status.json", "r", encoding="utf-8") as f:
+            status_blob = json.load(f)
 
+        state = status_blob.get("state", "unknown")
         readable_status = {
             "active": "🟢 V Rising is running",
             "inactive": "🔴 V Rising is stopped",
@@ -115,7 +114,7 @@ def check_status():
             "activating": "⏳ V Rising is starting up",
             "deactivating": "⚠️ V Rising is shutting down",
             "unknown": "❓ V Rising status unknown",
-        }.get(status, f"❓ Unexpected status: {status}")
+        }.get(state, f"❓ Unexpected status: {state}")
 
         return Response(f"⏱ Refreshed: {now}\n\n{readable_status}", mimetype="text/plain")
 
@@ -165,16 +164,14 @@ def api_settings():
     import json
 
     base_path = "/home/bwinter_sc81/baroboys/VRising/VRisingServer_Data/StreamingAssets/Settings"
-
     game_settings_path = os.path.join(base_path, "ServerGameSettings.json")
     host_settings_path = os.path.join(base_path, "ServerHostSettings.json")
 
     try:
-        with open(game_settings_path) as f:
+        with open(game_settings_path, encoding="utf-8") as f:
             game_settings = json.load(f)
-        with open(host_settings_path) as f:
+        with open(host_settings_path, encoding="utf-8") as f:
             host_settings = json.load(f)
-
         return {
             "game_settings": game_settings,
             "host_settings": host_settings
@@ -183,10 +180,27 @@ def api_settings():
         return {"error": f"Settings fetch failed: {type(e).__name__}: {e}"}, 500
 
 
-@app.route("/api/status")
-def api_status():
+@app.route("/api/idle-status")
+def api_idle_status():
+    import json
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+
+    if ENV == "development":
+        try:
+            with open(os.path.join(STATUS_DIR, "status.json"), "r", encoding="utf-8") as f:
+                dev_blob = json.load(f)
+            dev_blob["_dev_mode"] = True
+            dev_blob["_refreshed"] = now
+            return dev_blob
+        except Exception as e:
+            return {
+                "error": f"Dev status fallback failed: {type(e).__name__}: {e}",
+                "timestamp": now
+            }, 500
+
     try:
-        return send_file("/tmp/status.json", mimetype="application/json")
+        with open("/tmp/status.json", "r", encoding="utf-8") as f:
+            return json.load(f)
     except Exception as e:
         return {"error": f"Status unavailable: {type(e).__name__}: {e}"}, 500
 
@@ -226,7 +240,7 @@ def directory():
             "icon": "🌀",
             "title": "System Logs",
             "links": [
-                ("/api/logs/admin", "Admin Server Logs", "GET"),
+                ("/api/logs/admin_server.log", "Admin Server Logs", "GET"),
             ]
         },
         {
