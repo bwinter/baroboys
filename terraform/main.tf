@@ -52,7 +52,7 @@ resource "google_compute_instance" "default" {
   tags = [
     "barotrauma-server",
     "vrising-server",
-    "nginx-server"
+    "admin-server"
   ]
 
   labels = {
@@ -170,13 +170,13 @@ resource "google_compute_firewall" "vrising_ports_udp" {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 🌐 Firewall – Nginx Logs Port (8080)
+// 🌐 Firewall – Admin Server Port (8080)
 // ─────────────────────────────────────────────────────────────────────────────
 
-resource "google_compute_firewall" "nginx_logs" {
-  name        = "nginx-logs"
+resource "google_compute_firewall" "admin_server" {
+  name        = "admin-server"
   network     = "default"
-  description = "Allow HTTP access to exposed Nginx logs on port 8080"
+  description = "Allow HTTP access to exposed Admin server on port 8080"
 
   allow {
     protocol = "tcp"
@@ -186,5 +186,5 @@ resource "google_compute_firewall" "nginx_logs" {
   direction = "INGRESS"
   priority  = 1000
   source_ranges = ["0.0.0.0/0"]
-  target_tags = ["nginx-server"]
+  target_tags = ["admin-server"]
 }
