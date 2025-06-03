@@ -3,7 +3,6 @@ import subprocess
 from datetime import datetime, timezone
 from functools import lru_cache
 
-import json
 from flask import Flask, render_template, send_from_directory, Response, request, send_file
 
 # Environment-aware paths
@@ -85,44 +84,6 @@ def trigger_shutdown():
         return {"status": "Shutdown triggered", "time": now}, 200
     except Exception as e:
         return {"status": f"Shutdown Failed: {type(e).__name__}: {e}"}, 500
-
-
-@app.route("/api/check-status")
-def check_status():
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-
-    if ENV == "development":
-        try:
-            with open(os.path.join(STATUS_DIR, "vrising.status"), "r", encoding="utf-8") as f:
-                content = f.read().strip()
-            return Response(f"⏱ Refreshed: {now}\n\n{content}", mimetype="text/plain")
-        except Exception as e:
-            return Response(
-                f"⏱ Refreshed: {now}\n\n⚠️ Dev status file error: {type(e).__name__}: {e}",
-                mimetype="text/plain"
-            )
-
-    try:
-        with open("/tmp/status.json", "r", encoding="utf-8") as f:
-            status_blob = json.load(f)
-
-        state = status_blob.get("state", "unknown")
-        readable_status = {
-            "active": "🟢 V Rising is running",
-            "inactive": "🔴 V Rising is stopped",
-            "failed": "❌ V Rising failed",
-            "activating": "⏳ V Rising is starting up",
-            "deactivating": "⚠️ V Rising is shutting down",
-            "unknown": "❓ V Rising status unknown",
-        }.get(state, f"❓ Unexpected status: {state}")
-
-        return Response(f"⏱ Refreshed: {now}\n\n{readable_status}", mimetype="text/plain")
-
-    except Exception as e:
-        return Response(
-            f"⏱ Refreshed: {now}\n\n⚠️ {type(e).__name__}: {e}",
-            mimetype="text/plain"
-        )
 
 
 @app.route("/api/logs/<name>")
@@ -221,7 +182,7 @@ def directory():
             "icon": "🎮",
             "title": "Game Control",
             "links": [
-                ("/api/check-status", "Live Server Status", "GET"),
+                ("/api/idle-status", "Structured Server Status", "GET"),
                 ("/api/trigger-shutdown", "Trigger Graceful Shutdown", "POST"),
             ]
         },
