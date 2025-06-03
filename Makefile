@@ -162,7 +162,7 @@ clean-git-bfg:
 	echo "🧹 Running BFG history cleanup..."
 	./scripts/bfg_cleanup.sh .
 
-clan-git-post:
+clean-git-post:
 	echo "🔍 BFG post-cleanup analysis suggestions..."
 	./scripts/bfg_post_cleanup.sh
 

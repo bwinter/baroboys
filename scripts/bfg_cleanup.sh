@@ -45,7 +45,7 @@ printf "     • %s\n" "${FILENAMES[@]:0:10}"
 cd "$WORKDIR/baroboys-bfg-clean.git"
 
 CURRENT=0
-set -x
+
 echo -e "\n🌀 Starting BFG cleanup loop..."
 for FILENAME in "${FILENAMES[@]}"; do
   ((CURRENT+=1))
@@ -60,7 +60,7 @@ for FILENAME in "${FILENAMES[@]}"; do
   echo "[$CURRENT/$TOTAL] 🔸 Attempting: $FILENAME"
   java -jar "$BFG_JAR" --delete-files "$FILENAME" > "$LOG_PATH" 2>&1 || true
 done
-set +x
+
 echo -e "\n🧼 Final GC..."
 git reflog expire --expire=now --all
 git gc --prune=now --aggressive
