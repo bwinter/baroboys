@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_PATH="${1:-$HOME/Desktop/Baroboys}"
+REPO_PATH="$HOME/Desktop/Baroboys"
 WORKDIR="/tmp/bfg-cleanup"
 ORIG_LIST="/tmp/deletable-blobs.txt"
 BFG_VERSION="1.14.0"
@@ -23,8 +23,8 @@ fi
 if [[ -d "$WORKDIR/baroboys-bfg-clean.git" ]]; then
   echo "♻️  Reusing existing mirror at $WORKDIR/baroboys-bfg-clean.git"
 else
-  echo "📥 Cloning bare mirror → $WORKDIR/baroboys-bfg-clean.git"
-  git clone --mirror "$REPO_PATH" "$WORKDIR/baroboys-bfg-clean.git" &> /dev/null
+  echo "📥 Cloning bare → $WORKDIR/baroboys-bfg-clean.git"
+  git clone --bare "$REPO_PATH" "$WORKDIR/baroboys-bfg-clean.git" &> /dev/null
 fi
 
 # Download BFG if needed
