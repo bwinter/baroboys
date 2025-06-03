@@ -24,6 +24,7 @@ apt-get install -yq google-cloud-cli
 # ---------------------------------------------------------------------
 # 📜 Step 4: Write config BEFORE agent install
 echo "🛠️  [OPS AGENT] Writing /etc/google-cloud-ops-agent/config.yaml..."
+mkdir -p /etc/google-cloud-ops-agent
 tee /etc/google-cloud-ops-agent/config.yaml > /dev/null <<EOF
 metrics:
   receivers:
