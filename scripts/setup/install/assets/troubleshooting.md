@@ -108,4 +108,5 @@ http://<your-ip>:8080/logs    ❌
 
 ---
 
-> ℹ️ Once fixed, log files like `VRisingServer.log`, `startup.log`, and `shutdown.log` will be browsable via web browser with Basic Auth.
+> ℹ️ Once fixed, log files like `VRisingServer.log`, `startup.log`, and `shutdown.log` will be browsable via web browser
+> with Basic Auth.

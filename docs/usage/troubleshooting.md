@@ -2,13 +2,13 @@
 
 ## 🧭 **Which Tool to Use and When**
 
-| Tool                                                   | Scope                         | When to Use                                                              |
-| ------------------------------------------------------ | ----------------------------- |--------------------------------------------------------------------------|
-| `gcloud compute instances get-serial-port-output`      | Serial console (boot)         | VM won’t boot, startup script fails silently, SSH not available          |
-| `journalctl -u google-startup-scripts.service`         | Startup script logs (systemd) | VM boots, but provisioning (e.g. startup.sh) fails or partially executes |
+| Tool                                                            | Scope                         | When to Use                                                              |
+|-----------------------------------------------------------------|-------------------------------|--------------------------------------------------------------------------|
+| `gcloud compute instances get-serial-port-output`               | Serial console (boot)         | VM won’t boot, startup script fails silently, SSH not available          |
+| `journalctl -u google-startup-scripts.service`                  | Startup script logs (systemd) | VM boots, but provisioning (e.g. startup.sh) fails or partially executes |
 | `/usr/bin/sudo systemctl status google-startup-scripts.service` | Unit health summary           | Verify if startup unit ran, succeeded, or failed                         |
-| `gcloud logging read`                                  | Cloud Logging (optional)      | Postmortem debugging (if OSConfig + logging enabled)                     |
-| `gcloud compute ssh`                                   | Direct access                 | Live VM debugging (VRising, Git, system state, etc.)                     |
+| `gcloud logging read`                                           | Cloud Logging (optional)      | Postmortem debugging (if OSConfig + logging enabled)                     |
+| `gcloud compute ssh`                                            | Direct access                 | Live VM debugging (VRising, Git, system state, etc.)                     |
 
 ---
 

@@ -1,14 +1,19 @@
 # 🧠 Baroboys AI Primer: Vision & Meta-Goals
 
-Baroboys is a modular game server orchestration platform—part DevOps playground, part narrative simulation. It blends repeatable infrastructure with expressive automation, letting each server behave like a system with memory, lifecycle, and recovery.
+Baroboys is a modular game server orchestration platform—part DevOps playground, part narrative simulation. It blends
+repeatable infrastructure with expressive automation, letting each server behave like a system with memory, lifecycle,
+and recovery.
 
-The system supports multiple games (e.g. *V Rising*, *Barotrauma*) under a unified orchestration layer. It uses Terraform to provision GCP VMs, Packer to bake layered images, and systemd + shell scripts to coordinate startup, shutdown, and state capture—like a playable cluster node.
+The system supports multiple games (e.g. *V Rising*, *Barotrauma*) under a unified orchestration layer. It uses
+Terraform to provision GCP VMs, Packer to bake layered images, and systemd + shell scripts to coordinate startup,
+shutdown, and state capture—like a playable cluster node.
 
 ---
 
 ## 🌌 Operating Philosophy
 
-Baroboys treats servers like vessels: composable, inspectable, and resilient. A game world isn't just launched—it spins up with a boot history, commits its memory to Git, and sleeps gracefully when commanded.
+Baroboys treats servers like vessels: composable, inspectable, and resilient. A game world isn't just launched—it spins
+up with a boot history, commits its memory to Git, and sleeps gracefully when commanded.
 
 You don't babysit it; you steer it.
 
@@ -16,7 +21,8 @@ You don't babysit it; you steer it.
 
 ## ♻️ Game-Aware Modularity
 
-Game-specific behavior is governed by an `.envrc` flag: `ACTIVE_GAME=vrising` (or `barotrauma`). A shared dispatcher (`save_game.sh`) uses this to invoke the correct setup/teardown script:
+Game-specific behavior is governed by an `.envrc` flag: `ACTIVE_GAME=vrising` (or `barotrauma`). A shared dispatcher (
+`save_game.sh`) uses this to invoke the correct setup/teardown script:
 
 * `setup_vrising.sh` launches Wine + xvfb, installs or updates the game, links configs, and starts `vrising.service`
 * `setup_barotrauma.sh` installs game assets and links save/config paths to expected Steam locations
@@ -35,7 +41,8 @@ Each game world defines its own startup parameters, save behavior, and logging f
 Baroboys uses Packer to build layered GCE images:
 
 * **Core image**: Common runtime tools (Wine, SteamCMD, xvfb, shell orchestration, systemd services)
-* **Game layer**: Runtime setup scripts run at VM start to pull configs, install or update binaries, and register services
+* **Game layer**: Runtime setup scripts run at VM start to pull configs, install or update binaries, and register
+  services
 
 This model minimizes rebuilds and allows rapid iteration or hotfixes by Git + restart.
 
@@ -78,9 +85,9 @@ This model minimizes rebuilds and allows rapid iteration or hotfixes by Git + re
 * Log directory: `/home/bwinter_sc81/baroboys/VRising/logs/`
 * Typical logs:
 
-  * `VRisingServer.log`
-  * `startup.log`
-  * `shutdown.log`
+    * `VRisingServer.log`
+    * `startup.log`
+    * `shutdown.log`
 
 Nginx config is managed via `apt_nginx.sh`, and registered as a site via `/etc/nginx/sites-available/vrising-admin`.
 

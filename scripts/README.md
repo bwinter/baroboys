@@ -65,8 +65,10 @@ Utilities for manual operation, debugging, local overrides, or service account b
 
 ### GCP Service Account Bootstrapping
 
-* `gcp/bootstrap_terraform_sa.sh` — Creates the `terraform@` service account and grants it provisioning roles (e.g., Compute, IAM)
-* `gcp/bootstrap_vm_sa.sh` — Creates the `vm-runtime@` service account and grants it runtime roles (e.g., Secret Manager, Logging)
+* `gcp/bootstrap_terraform_sa.sh` — Creates the `terraform@` service account and grants it provisioning roles (e.g.,
+  Compute, IAM)
+* `gcp/bootstrap_vm_sa.sh` — Creates the `vm-runtime@` service account and grants it runtime roles (e.g., Secret
+  Manager, Logging)
 
 ---
 
