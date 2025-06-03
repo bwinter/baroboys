@@ -21,7 +21,7 @@ bash add-google-cloud-ops-agent-repo.sh --also-install
 
 echo "🛠️ [install-ops-agent] Writing trimmed config.yaml (system metrics + journald)..."
 
-tee /etc/google-cloud-ops-agent/config.yaml > /dev/null <<EOF
+cat <<EOF > /etc/google-cloud-ops-agent/config.yaml
 metrics:
   receivers:
     hostmetrics:
@@ -51,5 +51,8 @@ EOF
 
 echo "🚀 [install-ops-agent] Restarting Ops Agent..."
 systemctl restart google-cloud-ops-agent
+
+systemctl status google-cloud-ops-agent.service
+journalctl -xeu google-cloud-ops-agent.service
 
 echo "✅ [install-ops-agent] Agent installed and configured."
