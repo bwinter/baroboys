@@ -66,11 +66,15 @@ resource "google_compute_instance" "default" {
   }
 
   boot_disk {
-    auto_delete = true  // ✅ ensures boot disk is deleted when VM is destroyed
+    auto_delete = true
     initialize_params {
       image = data.google_compute_image.base_steam_image.self_link
+      type  = "pd-ssd"    # changed from default
+      size  = 20          # minimal but safe
     }
   }
+
+  min_cpu_platform = "Intel Sapphire Rapids"
 
   network_interface {
     network = "default"
