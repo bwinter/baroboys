@@ -1,6 +1,6 @@
 # List of users allowed to administer VMs
 variable "vrising_operators" {
-  type    = list(string)
+  type = list(string)
   default = [
     "nilsen.j.k@gmail.com"
   ]

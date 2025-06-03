@@ -1,4 +1,3 @@
-
 locals {
   vm_runtime_sa = "serviceAccount:vm-runtime@${var.project}.iam.gserviceaccount.com"
 }
