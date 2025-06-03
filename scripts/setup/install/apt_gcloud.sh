@@ -21,7 +21,10 @@ bash add-google-cloud-ops-agent-repo.sh --also-install
 
 echo "🛠️ [install-ops-agent] Writing trimmed config.yaml (system metrics + journald)..."
 
-cat <<EOF > /etc/google-cloud-ops-agent/config.yaml
+CONFIG_PATH="/etc/google-cloud-ops-agent/config.yaml"
+
+# Write config with full tee output and verify
+cat <<EOF | tee "$CONFIG_PATH"
 metrics:
   receivers:
     hostmetrics:
@@ -49,10 +52,24 @@ logging:
         receivers: [journald]
 EOF
 
-echo "🚀 [install-ops-agent] Restarting Ops Agent..."
-systemctl restart google-cloud-ops-agent
+echo "📄 [install-ops-agent] Final contents of $CONFIG_PATH:"
+cat "$CONFIG_PATH"
 
-systemctl status google-cloud-ops-agent.service
-journalctl -xeu google-cloud-ops-agent.service
+echo "🚀 [install-ops-agent] Attempting to restart Ops Agent..."
+if ! systemctl restart google-cloud-ops-agent 2>&1 | tee /tmp/ops_agent_restart.log; then
+    echo "❌ [install-ops-agent] Restart failed! Capturing diagnostics..."
 
-echo "✅ [install-ops-agent] Agent installed and configured."
+    echo "📋 systemctl status:"
+    systemctl status google-cloud-ops-agent --no-pager || true
+
+    echo "📋 journalctl -xeu:"
+    journalctl -xeu google-cloud-ops-agent --no-pager || true
+
+    echo "📂 Dumping log output captured during restart:"
+    cat /tmp/ops_agent_restart.log
+
+    echo "🛑 [install-ops-agent] Aborting script due to Ops Agent failure"
+    exit 1
+else
+    echo "✅ [install-ops-agent] Ops Agent restarted successfully."
+fi
