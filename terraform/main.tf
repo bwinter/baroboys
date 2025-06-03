@@ -69,7 +69,7 @@ resource "google_compute_instance" "default" {
     auto_delete = true
     initialize_params {
       image = data.google_compute_image.base_steam_image.self_link
-      type  = "pd-ssd"    # changed from default
+      type = "pd-ssd"    # changed from default
       size  = 20          # minimal but safe
     }
   }
