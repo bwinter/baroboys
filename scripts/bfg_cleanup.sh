@@ -44,8 +44,6 @@ printf "     • %s\n" "${FILENAMES[@]:0:10}"
 
 cd "$WORKDIR/baroboys-bfg-clean.git"
 
-SUCCESS=0
-FAIL=0
 CURRENT=0
 set -x
 echo -e "\n🌀 Starting BFG cleanup loop..."
@@ -61,14 +59,6 @@ for FILENAME in "${FILENAMES[@]}"; do
 
   echo "[$CURRENT/$TOTAL] 🔸 Attempting: $FILENAME"
   java -jar "$BFG_JAR" --delete-files "$FILENAME" > "$LOG_PATH" 2>&1 || true
-
-  if git rev-list --all | xargs -n1 -I{} git ls-tree -r --name-only {} | grep -Fxq "$FILENAME"; then
-    echo "   ⚠️  Still present: $FILENAME"
-    ((FAIL+=1))
-  else
-    echo "   ✅ Removed: $FILENAME"
-    ((SUCCESS+=1))
-  fi
 done
 set +x
 echo -e "\n🧼 Final GC..."
@@ -76,8 +66,6 @@ git reflog expire --expire=now --all
 git gc --prune=now --aggressive
 
 echo -e "\n✅ Cleanup finished!"
-echo "   ✔️ Success: $SUCCESS"
-echo "   ❌ Failed:  $FAIL"
 echo "📁 Repo at: $WORKDIR/baroboys-bfg-clean.git"
 echo "🔍 Inspect:  ./scripts/print_git_info.sh $WORKDIR/baroboys-bfg-clean.git"
 
