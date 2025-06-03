@@ -16,7 +16,7 @@ TF_VAR_DEF_FILE  := terraform/variables.tf
 
 dev: vm-refresh
 
-refresh: terraform-apply
+apply: terraform-apply
 
 destroy: terraform-destroy
 
@@ -35,7 +35,7 @@ admin-logs:
 # =======================
 # 🌍 Terraform
 # =======================
-.PHONY: init plan apply destroy refresh
+.PHONY: terraform-init terraform-plan terraform-apply terraform-destroy
 
 terraform-init:
 	cd $(TF_DIR) && terraform init
