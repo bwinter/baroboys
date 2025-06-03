@@ -1,3 +1,4 @@
+<!-- 🧱 Unified Admin Dashboard – Cleaned and Consolidated -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
 
     <style>
-        /* Chrome, Edge, Safari */
         ::-webkit-scrollbar-thumb {
             background-color: var(--bs-secondary);
         }
@@ -20,12 +20,10 @@
             background-color: var(--bs-dark);
         }
 
-        /* Firefox */
         * {
             scrollbar-color: var(--bs-secondary) var(--bs-dark);
         }
 
-        /* Base refresh effect shared by all states */
         .card.refreshing-green,
         .card.refreshing-blue,
         .card.shutting-down,
@@ -38,27 +36,22 @@
             border-color 0.5s ease-in-out;
         }
 
-        /* Specific state styles */
         .card.refreshing-green {
             border-color: var(--bs-success) !important;
-            box-shadow: 0 0 4px 2px var(--bs-success),
-            0 0 12px 4px var(--bs-success);
+            box-shadow: 0 0 4px 2px var(--bs-success), 0 0 12px 4px var(--bs-success);
         }
 
         .card.refreshing-blue {
             border-color: var(--bs-primary) !important;
-            box-shadow: 0 0 4px 2px var(--bs-primary),
-            0 0 12px 4px var(--bs-primary);
+            box-shadow: 0 0 4px 2px var(--bs-primary), 0 0 12px 4px var(--bs-primary);
         }
 
         .card.shutting-down,
         .card.disconnected-orange {
             border-color: var(--bs-warning) !important;
-            box-shadow: 0 0 4px 2px var(--bs-warning),
-            0 0 12px 4px var(--bs-warning);
+            box-shadow: 0 0 4px 2px var(--bs-warning), 0 0 12px 4px var(--bs-warning);
         }
 
-        /* Label glow */
         #status-refresh-label.glow-text {
             color: var(--bs-success) !important;
             opacity: 0.9;
@@ -99,6 +92,7 @@
                     <div id="shutdown-confirm" class="mt-3 small text-warning"></div>
                 </div>
             </div>
+
             <div class="card shadow-sm border-secondary mt-3" id="summary-card">
                 <div class="card-header fw-semibold d-flex align-items-center">
                     <i class="bi bi-info-circle-fill text-primary me-2"></i> Server Summary
@@ -112,6 +106,18 @@
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-clock-fill text-muted me-2"></i>Game Time</span>
                             <span id="summary-time" class="text-muted">–</span>
+                        </li>
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-cpu-fill text-muted me-2"></i>CPU Usage</span>
+                            <span id="summary-cpu" class="text-muted">–</span>
+                        </li>
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-hourglass-split text-muted me-2"></i>Idle Duration</span>
+                            <span id="summary-idle-minutes" class="text-muted">–</span>
+                        </li>
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-calendar-check-fill text-muted me-2"></i>Idle Since</span>
+                            <span id="summary-idle-since" class="text-muted">–</span>
                         </li>
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-power text-muted me-2"></i>Shutdown</span>
@@ -130,7 +136,7 @@
             <div class="card shadow-sm border-secondary" id="status-card">
                 <div class="card-header fw-semibold d-flex align-items-center justify-content-between">
                     <span>
-                        <i class="bi bi-bar-chart-line text-success me-2"></i> Server Status
+                        <i class="bi bi-bar-chart-line text-success me-2"></i> Server Raw Status
                     </span>
                     <div class="d-flex align-items-center gap-2">
                         <span id="status-offline-msg"
@@ -142,10 +148,11 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div id="status-output" class="terminal-block">Loading status...</div>
+                    <div id="status-output" class="terminal-block">No status loaded yet.</div>
                     <small class="text-muted d-block mt-2" id="status-refresh-label">
                         Auto-refreshing status (every 5 seconds)
                     </small>
+                    <small class="text-light opacity-75" id="summary-refresh-timestamp"></small>
                 </div>
             </div>
         </div>
@@ -177,70 +184,88 @@
     </div>
 
     <div class="text-end mt-4">
-        <a class="text-info small text-decoration-none" href="/directory">
+        <a class="text-info small text-decoration-none" href="/api/directory">
             <i class="bi bi-diagram-3 me-1"></i> View Full Site Directory
         </a>
     </div>
 </div>
 
 <script>
-    const output = document.getElementById('log-output');
-    const select = document.getElementById('log-select');
     const logCard = document.getElementById('log-card');
     const statusCard = document.getElementById('status-card');
-    const statusOutput = document.getElementById('status-output');
-    const shutdownForm = document.getElementById('shutdown-form');
+    const summaryCard = document.getElementById('summary-card');
     const shutdownCard = document.getElementById('shutdown-card');
-    const shutdownConfirm = document.getElementById('shutdown-confirm');
     const refreshLabel = document.getElementById('status-refresh-label');
     const offlineMsg = document.getElementById('status-offline-msg');
-    const summaryCard = document.getElementById('summary-card');
+    const shutdownConfirm = document.getElementById('shutdown-confirm');
+    const output = document.getElementById('log-output');
+    const select = document.getElementById('log-select');
+    const shutdownForm = document.getElementById('shutdown-form');
+    const statusOutput = document.getElementById('status-output');
+    const summaryPlayers = document.getElementById("summary-players");
+    const summaryTime = document.getElementById("summary-time");
+    const summaryShutdown = document.getElementById("summary-shutdown");
+    const summaryMode = document.getElementById("summary-mode");
+    const summaryCPU = document.getElementById("summary-cpu");
+    const summaryIdleMinutes = document.getElementById("summary-idle-minutes");
+    const summaryIdleSince = document.getElementById("summary-idle-since");
+    const refreshTimestamp = document.getElementById("summary-refresh-timestamp");
 
-    function blinkElement(cardElement, className, duration = 1000) {
-        if (!cardElement) return;
-        cardElement.classList.add(className);
-        setTimeout(() => {
-            cardElement.classList.remove(className);
-        }, duration);
+    function blinkElement(el, className, duration = 1000) {
+        el.classList.add(className);
+        setTimeout(() => el.classList.remove(className), duration);
     }
 
     async function loadLog() {
         blinkElement(logCard, 'refreshing-green');
         const val = select.value;
-        const url = `/api/logs/${val}`;
-        try {
-            const res = await fetch(url);
-            output.textContent = await res.text();
-            output.scrollTop = output.scrollHeight;
-        } catch (e) {
-            output.textContent = `Failed to load ${val}: ${e}`;
-        }
+        const res = await fetch(`/api/logs/${val}`);
+        output.textContent = await res.text();
+        output.scrollTop = output.scrollHeight;
     }
 
     async function refreshStatus() {
         try {
-            const res = await fetch('/api/idle-status');
-            const data = await res.json();
-            statusOutput.textContent = JSON.stringify(data, null, 2);
-            statusOutput.scrollTop = statusOutput.scrollHeight;
-            blinkElement(statusCard, 'refreshing-green');
-            blinkElement(refreshLabel, 'glow-text');
+            const res = await fetch('/status.json');
+            const text = await res.text();
+
+            try {
+                const data = JSON.parse(text);
+
+                summaryPlayers.innerText = data.players?.length || "0";
+                summaryTime.innerText = data.time || "Unknown";
+                summaryShutdown.innerText = data.shutdown?.scheduled
+                    ? `In ${data.shutdown.in_minutes} min`
+                    : "Not scheduled";
+                summaryMode.innerText = data.settings?.GameModeType || "Unknown";
+                summaryCPU.innerText = data.cpu_percent?.toFixed(1) ?? "–";
+                summaryIdleMinutes.innerText = data.idle_minutes ?? "–";
+                summaryIdleSince.innerText = data.idle_since ?? "–";
+                refreshTimestamp.textContent = new Date().toLocaleString();
+
+                statusOutput.textContent = JSON.stringify(data, null, 2);
+            } catch (parseErr) {
+                statusOutput.textContent = `⚠️ Failed to parse JSON:\n\n${text}`;
+            }
         } catch (err) {
-            statusOutput.textContent = '⚠️ Failed to fetch status';
-            console.error("Status error:", err.message);
+            statusOutput.textContent = `⚠️ Status fetch error:\n\n${err.message}`;
         }
+
+        statusOutput.scrollTop = statusOutput.scrollHeight;
+        blinkElement(summaryCard, 'refreshing-blue');
+        blinkElement(statusCard, 'refreshing-green');
+        blinkElement(refreshLabel, 'glow-text');
     }
 
     async function checkHeartbeat() {
-        try {
-            const res = await fetch('/api/ping');
-            if (!res.ok) throw new Error("Ping failed");
-            [statusCard, shutdownCard, logCard, summaryCard].forEach(card => card.classList.remove('disconnected-orange'));
-            offlineMsg.classList.add('d-none');
-        } catch {
-            [statusCard, shutdownCard, logCard, summaryCard].forEach(card => card.classList.add('disconnected-orange'));
-            offlineMsg.classList.remove('d-none');
-        }
+        const res = await fetch('/api/ping');
+        if (!res.ok) throw new Error("Ping failed");
+
+        statusCard.classList.remove('disconnected-orange');
+        shutdownCard.classList.remove('disconnected-orange');
+        logCard.classList.remove('disconnected-orange');
+        summaryCard.classList.remove('disconnected-orange');
+        offlineMsg.classList.add('d-none');
     }
 
     shutdownForm.addEventListener('submit', async (e) => {
@@ -254,68 +279,35 @@
                 shutdownConfirm.innerText = '';
             }
         }, 300);
-        try {
-            const res = await fetch('/api/trigger-shutdown', {method: 'POST'});
-            const data = await res.json();
-            shutdownConfirm.innerText = data.time
-                ? `🟠 ${data.status} at ${data.time}`
-                : `⚠️ ${data.status} (see logs for details)`;
-        } catch (err) {
-            shutdownConfirm.innerText = `⚠️ Shutdown request failed: ${err.message}`;
-        }
+        const res = await fetch('/api/trigger-shutdown', {method: 'POST'});
+        const data = await res.json();
+        shutdownConfirm.innerText = data.time
+            ? `🟠 ${data.status} at ${data.time}`
+            : `⚠️ ${data.status} (see logs for details)`;
     });
 
-    async function refreshSummary() {
-        try {
-            const res = await fetch('/api/idle-status');
-            const status = await res.json();
-            document.getElementById("summary-players").innerText =
-                status.players?.length || "0";
-            document.getElementById("summary-time").innerText =
-                status.time || "Unknown";
-            document.getElementById("summary-shutdown").innerText =
-                status.shutdown?.scheduled ? `In ${status.shutdown.in_minutes} min` : "Not scheduled";
-            document.getElementById("summary-mode").innerText =
-                status.settings?.GameModeType || "Unknown";
-            blinkElement(summaryCard, "refreshing-blue");
-        } catch (e) {
-            console.warn("Summary fetch failed:", e);
-            document.getElementById("summary-players").innerText = "–";
-            document.getElementById("summary-time").innerText = "–";
-            document.getElementById("summary-shutdown").innerText = "–";
-            document.getElementById("summary-mode").innerText = "–";
-        }
-    }
-
-    // 🔁 Refresh settings
     let logAutoRefreshEnabled = true;
     let statusAutoRefreshEnabled = true;
 
-    const toggleLogBtn = document.getElementById('toggle-log-refresh');
-    const toggleStatusBtn = document.getElementById('toggle-status-refresh');
-
-    toggleLogBtn.addEventListener('click', () => {
+    document.getElementById('toggle-log-refresh').addEventListener('click', () => {
         logAutoRefreshEnabled = !logAutoRefreshEnabled;
-        toggleLogBtn.innerHTML = logAutoRefreshEnabled
-            ? '<i class="bi bi-pause me-1"></i> Pause Logs'
-            : '<i class="bi bi-play me-1"></i> Resume Logs';
+        document.getElementById('toggle-log-refresh').innerHTML =
+            logAutoRefreshEnabled ? '<i class="bi bi-pause me-1"></i> Pause Logs' : '<i class="bi bi-play me-1"></i> Resume Logs';
     });
 
-    toggleStatusBtn.addEventListener('click', () => {
+    document.getElementById('toggle-status-refresh').addEventListener('click', () => {
         statusAutoRefreshEnabled = !statusAutoRefreshEnabled;
-        toggleStatusBtn.innerHTML = statusAutoRefreshEnabled
-            ? '<i class="bi bi-pause me-1"></i> Pause Status'
-            : '<i class="bi bi-play me-1"></i> Resume Status';
+        document.getElementById('toggle-status-refresh').innerHTML =
+            statusAutoRefreshEnabled ? '<i class="bi bi-pause me-1"></i> Pause Status' : '<i class="bi bi-play me-1"></i> Resume Status';
     });
 
-    // 🔁 Event bindings
     select.addEventListener('change', loadLog);
     window.addEventListener('load', () => {
         loadLog();
         refreshStatus();
         checkHeartbeat();
-        refreshSummary();
     });
+
     setInterval(() => {
         if (logAutoRefreshEnabled) loadLog();
     }, 5000);
@@ -323,7 +315,6 @@
         if (statusAutoRefreshEnabled) refreshStatus();
     }, 5000);
     setInterval(checkHeartbeat, 5000);
-    setInterval(refreshSummary, 10000);
 </script>
 </body>
 </html>
