@@ -47,10 +47,10 @@ cd "$WORKDIR/baroboys-bfg-clean.git"
 SUCCESS=0
 FAIL=0
 CURRENT=0
-
+set -x
 echo -e "\n🌀 Starting BFG cleanup loop..."
 for FILENAME in "${FILENAMES[@]}"; do
-  ((CURRENT++))
+  ((CURRENT+=1))
   SAFE_NAME="${FILENAME//[^a-zA-Z0-9]/_}"
   LOG_PATH="$LOGDIR/${SAFE_NAME}.log"
 
@@ -64,13 +64,13 @@ for FILENAME in "${FILENAMES[@]}"; do
 
   if git rev-list --all | xargs -n1 -I{} git ls-tree -r --name-only {} | grep -Fxq "$FILENAME"; then
     echo "   ⚠️  Still present: $FILENAME"
-    ((FAIL++)) || true
+    ((FAIL+=1))
   else
     echo "   ✅ Removed: $FILENAME"
-    ((SUCCESS++)) || true
+    ((SUCCESS+=1))
   fi
 done
-
+set +x
 echo -e "\n🧼 Final GC..."
 git reflog expire --expire=now --all
 git gc --prune=now --aggressive
