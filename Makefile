@@ -133,7 +133,7 @@ ssh-iap:
 # =======================
 # 🧱 Packer Builds
 # =======================
-.PHONY: build-core build-steam build-all
+.PHONY: build-core build-steam build
 
 build-core:
 	scripts/packer_build.sh core
@@ -141,7 +141,7 @@ build-core:
 build-steam:
 	scripts/packer_build.sh steam
 
-build-all: build-core build-steam
+build: build-core build-steam
 
 
 # =======================
@@ -180,14 +180,14 @@ help:
 	@echo "🛠️  Common targets:"
 	@echo "🌍 Full:"
 	@echo "  make destroy                - Initialize Terraform"
-	@echo "  make refresh                - Show Terraform plan"
+	@echo "  make apply                  - Show Terraform plan"
 	@echo ""
 	@echo "🌍 Terraform:"
-	@echo "  make init                   - Initialize Terraform"
-	@echo "  make plan                   - Show Terraform plan"
-	@echo "  make apply                  - Apply Terraform (build VM)"
-	@echo "  make destroy                - Save + destroy VM"
-	@echo "  make refresh                - Refresh Terraform state"
+	@echo "  make terraform-init         - Initialize Terraform"
+	@echo "  make terraform-plan         - Show Terraform plan"
+	@echo "  make terraform-apply        - Apply Terraform (build VM)"
+	@echo "  make terraform-destroy      - Save + destroy VM"
+	@echo "  make terraform-refresh      - Refresh Terraform state"
 	@echo ""
 	@echo "🐍 Flask Admin Panel:"
 	@echo "  make admin-local            - Run admin server locally"
@@ -195,9 +195,9 @@ help:
 	@echo "  make admin-logs             - Fetch logs from admin systemd service"
 	@echo ""
 	@echo "🎮 Game Mode:"
-	@echo "  make vm-switch            - Switch game vm-mode (.envrc)"
-	@echo "  make vm-mode              - Show current game vm-mode"
-	@echo "  make vm-refresh           - Trigger remote reinstall of game"
+	@echo "  make vm-switch              - Switch game vm-mode (.envrc)"
+	@echo "  make vm-mode                - Show current game vm-mode"
+	@echo "  make vm-refresh             - Trigger remote reinstall of game"
 	@echo ""
 	@echo "🧪 Control:"
 	@echo "  make save-and-shutdown      - Save game state by triggering shutdown"
@@ -207,5 +207,5 @@ help:
 	@echo "📦 Packer Builds:"
 	@echo "  make build-core             - Build base image (core setup)"
 	@echo "  make build-steam            - Build Steam dependencies layer"
-	@echo "  make build-all              - Build all Packer image layers"
+	@echo "  make build                  - Build all Packer image layers"
 	@echo "  make clean                  - Review usage and delete Packer images and disks"
