@@ -1,5 +1,4 @@
 import os
-import re
 import subprocess
 from datetime import datetime, timezone
 from functools import lru_cache
@@ -160,66 +159,36 @@ def tail_log(name):
         return f"Error loading log: {type(e).__name__}: {e}", 500
 
 
-@app.route("/api/players")
-def api_players():
-    if ENV == "development":
-        return {"players": ["Alice", "Bob", "Charlie"]}
-    try:
-        raw = mcrcon_cmd("announce hello")
-        print(f"📄 Raw ListUsers output:\n{raw}")
-        lines = raw.splitlines()
-        players = [l.split()[0] for l in lines if "@" in l and not l.startswith("No players")]
-        return {"players": players}
-    except Exception as e:
-        return {"error": f"Fetch failed: {type(e).__name__}: {e}"}, 500
-
-
-@app.route("/api/time")
-def api_time():
-    result = mcrcon_cmd("announce hello")
-    print(f"📄 Raw GetTime output:\n{result}")
-    if result:
-        return {"time": result.strip()}
-    else:
-        return {"error": "Failed to fetch time"}, 500
-
-
-@app.route("/api/shutdown")
-def api_shutdown():
-    if ENV == "development":
-        return {
-            "scheduled": True,
-            "in_minutes": 8,
-            "raw": "Server shutdown scheduled in 8 minutes"
-        }
-    try:
-        raw = mcrcon_cmd("announce hello")
-        print(f"📄 Raw GetShutdown output:\n{raw}")
-        match = re.search(r"in (\d+) minutes", raw)
-        return {
-            "scheduled": "in" in raw.lower(),
-            "in_minutes": int(match.group(1)) if match else None,
-            "raw": raw.strip()
-        }
-    except Exception as e:
-        return {"error": f"Failed to fetch shutdown info: {type(e).__name__}: {e}"}, 500
-
-
 @app.route("/api/settings")
 def api_settings():
-    if ENV == "development":
-        return {
-            "GameModeType": "PvE",
-            "AllowGlobalChat": "true",
-            "BloodBoundEquipment": "false"
-        }
+    import os
+    import json
+
+    base_path = "/home/bwinter_sc81/baroboys/VRising/VRisingServer_Data/StreamingAssets/Settings"
+
+    game_settings_path = os.path.join(base_path, "ServerGameSettings.json")
+    host_settings_path = os.path.join(base_path, "ServerHostSettings.json")
+
     try:
-        raw = mcrcon_cmd("announce hello")
-        print(f"📄 Raw ServerSettings output:\n{raw}")
-        lines = raw.splitlines()
-        return {k.strip(): v.strip() for line in lines if "=" in line for k, v in [line.split("=", 1)]}
+        with open(game_settings_path) as f:
+            game_settings = json.load(f)
+        with open(host_settings_path) as f:
+            host_settings = json.load(f)
+
+        return {
+            "game_settings": game_settings,
+            "host_settings": host_settings
+        }
     except Exception as e:
-        return {"error": f"Fetch failed: {type(e).__name__}: {e}"}, 500
+        return {"error": f"Settings fetch failed: {type(e).__name__}: {e}"}, 500
+
+
+@app.route("/api/status")
+def api_status():
+    try:
+        return send_file("/tmp/status.json", mimetype="application/json")
+    except Exception as e:
+        return {"error": f"Status unavailable: {type(e).__name__}: {e}"}, 500
 
 
 @app.route("/directory")
