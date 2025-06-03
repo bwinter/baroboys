@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Admin Dashboard</title>
 
     <!-- Bootstrap + Cyborg Theme -->
@@ -89,7 +89,7 @@
                             <i class="bi bi-power me-2"></i> Trigger Shutdown
                         </button>
                     </form>
-                    <div id="shutdown-confirm" class="mt-3 small text-warning"></div>
+                    <div class="mt-3 small text-warning" id="shutdown-confirm"></div>
                 </div>
             </div>
 
@@ -101,31 +101,31 @@
                     <ul class="list-unstyled mb-0 small">
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-person-fill text-muted me-2"></i>Players</span>
-                            <span id="summary-players" class="text-muted">–</span>
+                            <span class="text-muted" id="summary-players">–</span>
                         </li>
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-clock-fill text-muted me-2"></i>Game Time</span>
-                            <span id="summary-time" class="text-muted">–</span>
+                            <span class="text-muted" id="summary-time">–</span>
                         </li>
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-cpu-fill text-muted me-2"></i>CPU Usage</span>
-                            <span id="summary-cpu" class="text-muted">–</span>
+                            <span class="text-muted" id="summary-cpu">–</span>
                         </li>
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-hourglass-split text-muted me-2"></i>Idle Duration</span>
-                            <span id="summary-idle-minutes" class="text-muted">–</span>
+                            <span class="text-muted" id="summary-idle-minutes">–</span>
                         </li>
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-calendar-check-fill text-muted me-2"></i>Idle Since</span>
-                            <span id="summary-idle-since" class="text-muted">–</span>
+                            <span class="text-muted" id="summary-idle-since">–</span>
                         </li>
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-power text-muted me-2"></i>Shutdown</span>
-                            <span id="summary-shutdown" class="text-muted">–</span>
+                            <span class="text-muted" id="summary-shutdown">–</span>
                         </li>
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-gear-fill text-muted me-2"></i>Mode</span>
-                            <span id="summary-mode" class="text-muted">–</span>
+                            <span class="text-muted" id="summary-mode">–</span>
                         </li>
                     </ul>
                 </div>
@@ -139,16 +139,16 @@
                         <i class="bi bi-bar-chart-line text-success me-2"></i> Server Raw Status
                     </span>
                     <div class="d-flex align-items-center gap-2">
-                        <span id="status-offline-msg"
-                              class="text-warning small fw-semibold d-none">Server Offline</span>
-                        <button title="Toggle auto-refresh" id="toggle-status-refresh"
-                                class="btn btn-sm btn-outline-dark">
+                        <span class="text-warning small fw-semibold d-none"
+                              id="status-offline-msg">Server Offline</span>
+                        <button class="btn btn-sm btn-outline-dark" id="toggle-status-refresh"
+                                title="Toggle auto-refresh">
                             <i class="bi bi-pause me-1"></i> Pause Status
                         </button>
                     </div>
                 </div>
                 <div class="card-body">
-                    <div id="status-output" class="terminal-block">No status loaded yet.</div>
+                    <div class="terminal-block" id="status-output">No status loaded yet.</div>
                     <small class="text-muted d-block mt-2" id="status-refresh-label">
                         Auto-refreshing status (every 5 seconds)
                     </small>
@@ -161,7 +161,7 @@
     <div class="card shadow-sm border-secondary mb-3" id="log-card">
         <div class="card-header fw-semibold d-flex align-items-center justify-content-between">
             <span><i class="bi bi-journal-text text-info me-2"></i> Logs</span>
-            <button title="Toggle auto-refresh" id="toggle-log-refresh" class="btn btn-sm btn-outline-dark">
+            <button class="btn btn-sm btn-outline-dark" id="toggle-log-refresh" title="Toggle auto-refresh">
                 <i class="bi bi-pause me-1"></i> Pause Logs
             </button>
         </div>
@@ -179,7 +179,7 @@
                     <option value="nginx_error">nginx error log</option>
                 </select>
             </div>
-            <div id="log-output" class="terminal-block">Loading log...</div>
+            <div class="terminal-block" id="log-output">Loading log...</div>
         </div>
     </div>
 
