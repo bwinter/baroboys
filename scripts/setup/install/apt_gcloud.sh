@@ -22,34 +22,13 @@ apt-get update -yq
 apt-get install -yq google-cloud-cli
 
 # ---------------------------------------------------------------------
-# 📜 Step 4: Write config BEFORE agent install
-echo "🛠️  [OPS AGENT] Writing /etc/google-cloud-ops-agent/config.yaml..."
-mkdir -p /etc/google-cloud-ops-agent
-tee /etc/google-cloud-ops-agent/config.yaml > /dev/null <<EOF
-metrics:
-  receivers:
-    hostmetrics:
-      type: hostmetrics
-      collection_interval: 60s
-      scrapers:
-        cpu:
-        memory:
-        disk:
-        network:
-  service:
-    pipelines:
-      default_pipeline:
-        receivers: [hostmetrics]
-EOF
-
-# ---------------------------------------------------------------------
-# 📥 Step 5: Add repo + install the Ops Agent (canonical install path)
+# 📥 Step 4: Add repo + install the Ops Agent (canonical install path)
 echo "🚀 [OPS AGENT] Downloading and running Google’s installer..."
 curl -sSO "https://dl.google.com/cloudagents/add-google-cloud-ops-agent-repo.sh"
 bash add-google-cloud-ops-agent-repo.sh --also-install
 
 # ---------------------------------------------------------------------
-# ✅ Final: Confirm status for fast debugging
+# ✅ Step 5: Confirm status for fast debugging
 echo "🔍 [OPS AGENT] Verifying agent services..."
 systemctl is-active --quiet google-cloud-ops-agent.service && echo "✅ Agent meta-service active"
 systemctl is-active --quiet google-cloud-ops-agent-opentelemetry-collector.service && echo "✅ Collector active"
