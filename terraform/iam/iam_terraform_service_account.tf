@@ -1,5 +1,11 @@
+resource "google_service_account" "terraform" {
+  account_id   = "terraform"
+  display_name = "Terraform Service Account"
+  project      = var.project
+}
+
 locals {
-  terraform_sa_member = "serviceAccount:terraform@${var.project}.iam.gserviceaccount.com"
+  terraform_sa_member = "serviceAccount:${google_service_account.terraform.email}"
 }
 
 resource "google_project_iam_member" "terraform_compute_admin" {

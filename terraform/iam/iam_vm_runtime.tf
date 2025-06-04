@@ -1,5 +1,11 @@
+resource "google_service_account" "vm_runtime" {
+  account_id   = "vm-runtime"
+  display_name = "VM Runtime Service Account"
+  project      = var.project
+}
+
 locals {
-  vm_runtime_sa = "serviceAccount:vm-runtime@${var.project}.iam.gserviceaccount.com"
+  vm_runtime_sa = "serviceAccount:${google_service_account.vm_runtime.email}"
 }
 
 resource "google_project_iam_member" "vm_runtime_log_writer" {
