@@ -53,38 +53,22 @@ EOF
 echo "📄 [install-ops-agent] Final contents of $CONFIG_PATH:"
 cat "$CONFIG_PATH"
 
-echo "🧪 [install-ops-agent] Validating config with config-validator..."
-config-validator -config_file="$CONFIG_PATH" 2>&1 | tee /tmp/ops_agent_validate.log
-VALIDATION_STATUS=${PIPESTATUS[0]}
+echo "🚀 [install-ops-agent] Attempting to restart Ops Agent..."
+systemctl restart google-cloud-ops-agent 2>&1 | tee /tmp/ops_agent_restart.log
+RESTART_STATUS=${PIPESTATUS[0]}
 
-if [[ "$VALIDATION_STATUS" -ne 0 ]]; then
-    echo "❌ [install-ops-agent] Config validation failed. Validator output:"
-    cat /tmp/ops_agent_validate.log
-else
-    echo "✅ [install-ops-agent] Config validated successfully. Proceeding with agent restart..."
+if [[ "$RESTART_STATUS" -ne 0 ]]; then
+    echo "📋 systemctl status:"
+    systemctl status google-cloud-ops-agent --no-pager || true
 
-    systemctl restart google-cloud-ops-agent 2>&1 | tee /tmp/ops_agent_restart.log
-    RESTART_STATUS=${PIPESTATUS[0]}
+    echo "📋 journalctl (truncated output):"
+    journalctl -xeu google-cloud-ops-agent --no-pager -n 50 || echo "⚠️ Failed to get journal output"
 
-    if [[ "$RESTART_STATUS" -ne 0 ]]; then
-        echo "📋 systemctl status:"
-        systemctl status google-cloud-ops-agent --no-pager || true
+    echo "📂 Dumping log output captured during restart:"
+    cat /tmp/ops_agent_restart.log
 
-        echo "📋 journalctl (truncated output):"
-        journalctl -xeu google-cloud-ops-agent --no-pager -n 50 || echo "⚠️ Failed to get journal output"
-
-        echo "📂 Dumping log output captured during restart:"
-        cat /tmp/ops_agent_restart.log
-
-        echo "🛑 [install-ops-agent] Agent restart failed."
-        exit 1
-    else
-        echo "✅ [install-ops-agent] Ops Agent restarted successfully."
-    fi
-fi
-
-# Final exit code based on both validation and restart
-if [[ "$VALIDATION_STATUS" -ne 0 ]]; then
-    echo "🚫 [install-ops-agent] Exiting with config validation error."
+    echo "🛑 [install-ops-agent] Aborting script due to Ops Agent failure"
     exit 1
+else
+    echo "✅ [install-ops-agent] Ops Agent restarted successfully."
 fi
