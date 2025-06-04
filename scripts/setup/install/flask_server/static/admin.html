@@ -99,21 +99,11 @@
                 </div>
                 <div class="card-body p-3">
                     <ul class="list-unstyled mb-0 small">
-                        <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-person-fill text-muted me-2"></i>Players</span>
-                            <span class="text-muted" id="summary-players">–</span>
-                        </li>
-                        <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-clock-fill text-muted me-2"></i>Game Time</span>
-                            <span class="text-muted" id="summary-time">–</span>
-                        </li>
+
+                        <!-- === System Metrics === -->
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-cpu-fill text-muted me-2"></i>CPU Usage</span>
                             <span class="text-muted" id="summary-cpu">–</span>
-                        </li>
-                        <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-hourglass-split text-muted me-2"></i>Idle Duration</span>
-                            <span class="text-muted" id="summary-idle-minutes">–</span>
                         </li>
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-speedometer2 text-muted me-2"></i>Load (1min)</span>
@@ -123,22 +113,39 @@
                             <span><i class="bi bi-memory text-muted me-2"></i>Free RAM</span>
                             <span class="text-muted" id="summary-ram">–</span>
                         </li>
+
+                        <!-- === Server State === -->
                         <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-activity text-muted me-2"></i>VRising PID(s)</span>
-                            <span class="text-muted" id="summary-pid">–</span>
+                            <span><i class="bi bi-hourglass-split text-muted me-2"></i>Idle Duration</span>
+                            <span class="text-muted" id="summary-idle-minutes">–</span>
                         </li>
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-calendar-check-fill text-muted me-2"></i>Idle Since</span>
                             <span class="text-muted" id="summary-idle-since">–</span>
                         </li>
                         <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-gear-fill text-muted me-2"></i>Mode</span>
+                            <span class="text-muted" id="summary-mode">–</span>
+                        </li>
+                        <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-power text-muted me-2"></i>Shutdown</span>
                             <span class="text-muted" id="summary-shutdown">–</span>
                         </li>
                         <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-gear-fill text-muted me-2"></i>Mode</span>
-                            <span class="text-muted" id="summary-mode">–</span>
+                            <span><i class="bi bi-activity text-muted me-2"></i>VRising PID(s)</span>
+                            <span class="text-muted" id="summary-pid">–</span>
                         </li>
+
+                        <!-- === Player State === -->
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-person-fill text-muted me-2"></i>Players</span>
+                            <span class="text-muted" id="summary-players">–</span>
+                        </li>
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-clock-fill text-muted me-2"></i>Game Time</span>
+                            <span class="text-muted" id="summary-time">–</span>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -203,27 +210,38 @@
 </div>
 
 <script>
+    // === Card Containers ===
     const logCard = document.getElementById('log-card');
+    const shutdownCard = document.getElementById('shutdown-card');
     const statusCard = document.getElementById('status-card');
     const summaryCard = document.getElementById('summary-card');
-    const shutdownCard = document.getElementById('shutdown-card');
-    const refreshLabel = document.getElementById('status-refresh-label');
-    const offlineMsg = document.getElementById('status-offline-msg');
-    const shutdownConfirm = document.getElementById('shutdown-confirm');
+
+    // === Log Section ===
     const output = document.getElementById('log-output');
     const select = document.getElementById('log-select');
+
+    // === Shutdown Section ===
     const shutdownForm = document.getElementById('shutdown-form');
+    const shutdownConfirm = document.getElementById('shutdown-confirm');
+
+    // === Status Section ===
     const statusOutput = document.getElementById('status-output');
-    const summaryPlayers = document.getElementById("summary-players");
-    const summaryTime = document.getElementById("summary-time");
-    const summaryMode = document.getElementById("summary-mode");
-    const summaryCPU = document.getElementById("summary-cpu");
-    const summaryLoad = document.getElementById("summary-load");
-    const summaryRAM = document.getElementById("summary-ram");
-    const summaryPID = document.getElementById("summary-pid");
-    const summaryIdleMinutes = document.getElementById("summary-idle-minutes");
-    const summaryIdleSince = document.getElementById("summary-idle-since");
-    const refreshTimestamp = document.getElementById("summary-refresh-timestamp");
+    const refreshLabel = document.getElementById('status-refresh-label');
+    const offlineMsg = document.getElementById('status-offline-msg');
+
+    // === Summary Fields ===
+    const summaryCPU = document.getElementById('summary-cpu');
+    const summaryIdleMinutes = document.getElementById('summary-idle-minutes');
+    const summaryIdleSince = document.getElementById('summary-idle-since');
+    const summaryLoad = document.getElementById('summary-load');
+    const summaryMode = document.getElementById('summary-mode');
+    const summaryPID = document.getElementById('summary-pid');
+    const summaryPlayers = document.getElementById('summary-players');
+    const summaryRAM = document.getElementById('summary-ram');
+    const summaryTime = document.getElementById('summary-time');
+
+    // === Metadata Footer ===
+    const refreshTimestamp = document.getElementById('summary-refresh-timestamp');
 
     function blinkElement(el, className, duration = 1000) {
         el.classList.add(className);
@@ -246,6 +264,7 @@
             try {
                 const data = JSON.parse(text);
 
+                // === Summary Panel Fields ===
                 summaryPlayers.innerText = data.players?.length || "0";
                 summaryTime.innerText = data.time || "Unknown";
                 summaryMode.innerText = data.settings?.game_settings?.GameModeType || "Unknown";
@@ -253,12 +272,17 @@
                 summaryIdleMinutes.innerText = data.idle_duration_minutes ?? "–";
                 summaryIdleSince.innerText = data.idle_since ?? "–";
                 summaryLoad.innerText = data.load_average_1min ?? "–";
-                summaryRAM.innerText = data.memory_free_mb ? `${data.memory_free_mb} MB` : "–";
+                summaryRAM.innerText = data.memory_free_mb
+                    ? `${data.memory_free_mb} MB`
+                    : "–";
                 summaryPID.innerText = Array.isArray(data.vrising_pids)
                     ? data.vrising_pids.join(", ")
                     : "–";
+
+                // === Metadata Footer ===
                 refreshTimestamp.textContent = `Updated ${data.timestamp_utc ?? "unknown"} by ${data.source ?? "unknown"}`;
 
+                // === Full JSON View ===
                 statusOutput.textContent = JSON.stringify(data, null, 2);
             } catch (parseErr) {
                 statusOutput.textContent = `⚠️ Failed to parse JSON:\n\n${text}`;
@@ -267,11 +291,13 @@
             statusOutput.textContent = `⚠️ Status fetch error:\n\n${err.message}`;
         }
 
+        // === Visual Feedback ===
         statusOutput.scrollTop = statusOutput.scrollHeight;
         blinkElement(summaryCard, 'refreshing-blue');
         blinkElement(statusCard, 'refreshing-green');
         blinkElement(refreshLabel, 'glow-text');
     }
+
 
     async function checkHeartbeat() {
         const res = await fetch('/api/ping');
