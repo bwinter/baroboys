@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>404 – Page Not Found</title>
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
 
     <!-- Bootstrap + Cyborg -->
@@ -31,21 +31,30 @@
         <p class="fs-5 text-muted mb-3">Page Not Found</p>
         <p class="text-muted mb-4">The page you are looking for does not exist.</p>
 
-        {% if path %}
-        <div class="mt-4">
+        <div class="mt-4" id="attempted-url-block" style="display: none;">
             <div class="text-secondary small mb-1">Attempted URL:</div>
-            <code class="terminal-inline">{{ path }}</code>
+            <code class="terminal-inline" id="attempted-url"></code>
         </div>
-        {% endif %}
 
-        {% if timestamp %}
-        <div class="mt-3">
+        <div class="mt-3" id="timestamp-block" style="display: none;">
             <div class="text-secondary small mb-1">Request time:</div>
-            <code class="terminal-inline">{{ timestamp }}</code>
+            <code class="terminal-inline" id="timestamp"></code>
         </div>
-        {% endif %}
     </div>
 </div>
+
+<script>
+    const url = window.location.pathname + window.location.search + window.location.hash;
+    const ts = new Date().toISOString().replace("T", " ").replace("Z", " UTC");
+
+    if (url && url !== "/404.html") {
+        document.getElementById("attempted-url").textContent = url;
+        document.getElementById("attempted-url-block").style.display = "block";
+    }
+
+    document.getElementById("timestamp").textContent = ts;
+    document.getElementById("timestamp-block").style.display = "block";
+</script>
 
 </body>
 </html>
