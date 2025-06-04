@@ -14,12 +14,16 @@ source "googlecompute" "baroboys-steam" {
   zone         = var.zone
   machine_type = var.machine_type
 
+  disk_size = 20
+  disk_type = "pd-ssd"
+
+  min_cpu_platform      = "Intel Cascade Lake"
   service_account_email = var.service_account_email
   scopes = ["https://www.googleapis.com/auth/cloud-platform"]
 
   source_image = var.base_core_image
+  source_image_project_id = [var.gcp_image_project]
 
-  disk_size    = 20
   image_name   = var.base_steam_image
   image_family = var.base_steam_image
 
