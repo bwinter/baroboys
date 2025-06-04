@@ -41,19 +41,34 @@ sudo cp "$TEMPLATE_SOURCE/"* "$TEMPLATE_DEST/"
 # === Dummy status.json ===
 echo "📄 Creating dummy status.json at $STATUS_JSON..."
 NOW_ISO="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+IDLE_SINCE="$(date -u -d '-45 minutes' +"%Y-%m-%dT%H:%M:%SZ")"
 sudo tee "$STATUS_JSON" >/dev/null <<EOF
 {
   "timestamp_utc": "$NOW_ISO",
   "source": "local_test",
   "uptime_duration_minutes": 123,
   "cpu_percent": 9.1,
+  "load_average_1min": 0.42,
+  "memory_free_mb": 3892,
   "idle_duration_minutes": 45,
-  "players": { "count": 1, "list": ["TestPlayer"] },
-  "shutdown": { "scheduled": false },
-  "settings": { "GameModeType": "PvE" },
+  "idle_since": "$IDLE_SINCE",
+  "vrising_pids": [12345],
+  "players": {
+    "count": 1,
+    "list": ["TestPlayer"]
+  },
+  "shutdown": {
+    "scheduled": false
+  },
+  "settings": {
+    "game_settings": {
+      "GameModeType": "PvE"
+    }
+  },
   "time": "Day 12 - 04:30"
 }
 EOF
+
 
 sudo chown -R "$(whoami)" "$STATIC_DEST" "$TEMPLATE_DEST"
 sudo find "$STATIC_DEST" "$TEMPLATE_DEST" -type f -exec chmod 644 {} +
