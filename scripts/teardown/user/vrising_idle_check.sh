@@ -1,8 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-sudo apt update && sudo apt install -y sysstat
-
 # === CONFIGURATION ===
 STATIC_NGINX="/opt/baroboys/static"
 STATUS_JSON="$STATIC_NGINX/status.json"
