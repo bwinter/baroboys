@@ -54,14 +54,15 @@ echo "📄 [install-ops-agent] Final contents of $CONFIG_PATH:"
 cat "$CONFIG_PATH"
 
 echo "🚀 [install-ops-agent] Attempting to restart Ops Agent..."
-if ! systemctl restart google-cloud-ops-agent 2>&1 | tee /tmp/ops_agent_restart.log; then
-    echo "❌ [install-ops-agent] Restart failed! Capturing diagnostics..."
+systemctl restart google-cloud-ops-agent 2>&1 | tee /tmp/ops_agent_restart.log
+STATUS=${PIPESTATUS[0]}
 
+if [[ "$STATUS" -ne 0 ]]; then
     echo "📋 systemctl status:"
     systemctl status google-cloud-ops-agent --no-pager || true
 
-    echo "📋 journalctl -xeu:"
-    journalctl -xeu google-cloud-ops-agent --no-pager || true
+    echo "📋 journalctl (truncated output):"
+    journalctl -xeu google-cloud-ops-agent --no-pager -n 50 || echo "⚠️ Failed to get journal output"
 
     echo "📂 Dumping log output captured during restart:"
     cat /tmp/ops_agent_restart.log
