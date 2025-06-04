@@ -7,7 +7,6 @@ sudo apt update && sudo apt install -y sysstat
 STATIC_NGINX="/opt/baroboys/static"
 STATUS_JSON="$STATIC_NGINX/status.json"
 IDLE_FLAG="/tmp/server_idle_since.flag"
-INTENTIONAL_FLAG="/tmp/vrising_intentional_shutdown"
 COOLDOWN_MINUTES=30
 CPU_THRESHOLD=15.0
 STATUS_SOURCE="idle_checker"
@@ -46,7 +45,7 @@ else
 fi
 
 # === WRITE STATUS.JSON ===
-cat <<EOF > "$STATUS_JSON"
+sudo tee "$STATUS_JSON" > /dev/null <<EOF
 {
   "timestamp_utc": "$NOW_ISO",
   "source": "$STATUS_SOURCE",
