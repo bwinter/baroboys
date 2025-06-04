@@ -7,7 +7,6 @@ STATUS_JSON="$STATIC_NGINX/status.json"
 IDLE_FLAG="/tmp/server_idle_since.flag"
 COOLDOWN_MINUTES=30
 CPU_THRESHOLD=15.0
-STATUS_SOURCE="idle_checker"
 
 # === DEPENDENCY CHECK ===
 command -v mpstat >/dev/null 2>&1 || { echo >&2 "mpstat not found. Install with: sudo apt install sysstat"; exit 1; }
@@ -48,7 +47,6 @@ fi
 sudo tee "$STATUS_JSON" > /dev/null <<EOF
 {
   "timestamp_utc": "$NOW_ISO",
-  "source": "$STATUS_SOURCE",
   "cpu_percent": $CPU_PERCENT,
   "idle_flag_set": $IDLE_FLAG_SET,
   "idle_duration_minutes": $IDLE_DURATION,
