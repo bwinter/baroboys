@@ -43,7 +43,7 @@ metrics:
 logging:
   receivers:
     journald:
-      type: journald
+      type: systemd_journald
   service:
     pipelines:
       default_pipeline:
@@ -52,6 +52,12 @@ EOF
 
 echo "📄 [install-ops-agent] Final contents of $CONFIG_PATH:"
 cat "$CONFIG_PATH"
+
+echo "🧪 [install-ops-agent] Validating config with config-validator..."
+if ! /opt/google-cloud-ops-agent/bin/config-validator -config_file="$CONFIG_PATH"; then
+    echo "❌ [install-ops-agent] Config validation failed. Aborting."
+    exit 1
+fi
 
 echo "🚀 [install-ops-agent] Attempting to restart Ops Agent..."
 systemctl restart google-cloud-ops-agent 2>&1 | tee /tmp/ops_agent_restart.log
