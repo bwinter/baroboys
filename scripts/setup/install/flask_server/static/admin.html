@@ -116,6 +116,18 @@
                             <span class="text-muted" id="summary-idle-minutes">–</span>
                         </li>
                         <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-speedometer2 text-muted me-2"></i>Load (1min)</span>
+                            <span class="text-muted" id="summary-load">–</span>
+                        </li>
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-memory text-muted me-2"></i>Free RAM</span>
+                            <span class="text-muted" id="summary-ram">–</span>
+                        </li>
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-activity text-muted me-2"></i>VRising PID(s)</span>
+                            <span class="text-muted" id="summary-pid">–</span>
+                        </li>
+                        <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-calendar-check-fill text-muted me-2"></i>Idle Since</span>
                             <span class="text-muted" id="summary-idle-since">–</span>
                         </li>
@@ -204,9 +216,11 @@
     const statusOutput = document.getElementById('status-output');
     const summaryPlayers = document.getElementById("summary-players");
     const summaryTime = document.getElementById("summary-time");
-    const summaryShutdown = document.getElementById("summary-shutdown");
     const summaryMode = document.getElementById("summary-mode");
     const summaryCPU = document.getElementById("summary-cpu");
+    const summaryLoad = document.getElementById("summary-load");
+    const summaryRAM = document.getElementById("summary-ram");
+    const summaryPID = document.getElementById("summary-pid");
     const summaryIdleMinutes = document.getElementById("summary-idle-minutes");
     const summaryIdleSince = document.getElementById("summary-idle-since");
     const refreshTimestamp = document.getElementById("summary-refresh-timestamp");
@@ -234,14 +248,16 @@
 
                 summaryPlayers.innerText = data.players?.length || "0";
                 summaryTime.innerText = data.time || "Unknown";
-                summaryShutdown.innerText = data.shutdown?.scheduled
-                    ? `In ${data.shutdown.in_minutes} min`
-                    : "Not scheduled";
-                summaryMode.innerText = data.settings?.GameModeType || "Unknown";
+                summaryMode.innerText = data.settings?.game_settings?.GameModeType || "Unknown";
                 summaryCPU.innerText = data.cpu_percent?.toFixed(1) ?? "–";
-                summaryIdleMinutes.innerText = data.idle_minutes ?? "–";
+                summaryIdleMinutes.innerText = data.idle_duration_minutes ?? "–";
                 summaryIdleSince.innerText = data.idle_since ?? "–";
-                refreshTimestamp.textContent = new Date().toLocaleString();
+                summaryLoad.innerText = data.load_average_1min ?? "–";
+                summaryRAM.innerText = data.memory_free_mb ? `${data.memory_free_mb} MB` : "–";
+                summaryPID.innerText = Array.isArray(data.vrising_pids)
+                    ? data.vrising_pids.join(", ")
+                    : "–";
+                refreshTimestamp.textContent = `Updated ${data.timestamp_utc ?? "unknown"} by ${data.source ?? "unknown"}`;
 
                 statusOutput.textContent = JSON.stringify(data, null, 2);
             } catch (parseErr) {
