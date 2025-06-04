@@ -50,7 +50,7 @@ sudo tee "$STATUS_JSON" > /dev/null <<EOF
   "cpu_percent": $CPU_PERCENT,
   "idle_flag_set": $IDLE_FLAG_SET,
   "idle_duration_minutes": $IDLE_DURATION,
-  "idle_since": $IDLE_SINCE_ISO,
+  "idle_since": "$IDLE_SINCE_ISO",
   "vrising_pids": $VRISING_PIDS,
   "players": {
     "count": null,
