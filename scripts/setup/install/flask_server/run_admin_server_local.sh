@@ -18,19 +18,25 @@ NGINX_LOG_DIR="/var/log/nginx"
 NGINX_RUN_DIR="/var/run"
 NGINX_CONFIG_SOURCE="$REPO_ROOT/scripts/setup/install/assets/nginx.conf"
 
-# === Kill Flask if running ===
-if lsof -i :5000 >/dev/null 2>&1; then
-  echo "🛑 Port 5000 in use — killing existing Flask process..."
-  kill "$(lsof -ti tcp:5000)" || true
-  sleep 1
-fi
+# Function to clean up on SIGINT
+cleanup() {
+  # === Kill Flask if running ===
+  if lsof -i :5000 >/dev/null 2>&1; then
+    echo "🛑 Port 5000 in use — killing existing Flask process..."
+    kill "$(lsof -ti tcp:5000)" || true
+  fi
 
-# === Kill nginx if running ===
-if lsof -i :8080 >/dev/null 2>&1; then
-  echo "🛑 Port 8080 in use — killing existing nginx process..."
-  sudo nginx -s stop || sudo pkill -f nginx || true
-  sleep 1
-fi
+  # === Kill nginx if running ===
+  if lsof -i :8080 >/dev/null 2>&1; then
+    echo "🛑 Port 8080 in use — killing existing nginx process..."
+    sudo nginx -s stop || sudo pkill -f nginx || true
+  fi
+
+  echo "Cleanup Success."
+}
+
+# Call cleanup to ensure clean state
+cleanup
 
 # === Sync static/template files ===
 echo "📦 Syncing static + template files to /opt/baroboys..."
@@ -91,6 +97,9 @@ FLASK_PID=$!
 echo "🌐 Starting nginx manually..."
 sudo nginx
 
+# Set up trap
+trap cleanup SIGINT
+
 # === Status ===
 echo -e "\n✅ Admin panel running at:"
 echo "   Flask:  http://localhost:5000"
@@ -99,3 +108,5 @@ echo "   Ctrl+C to stop..."
 
 # === Wait ===
 wait "$FLASK_PID"
+
+echo -e "\n✅ Done"
