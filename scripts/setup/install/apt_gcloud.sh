@@ -54,7 +54,7 @@ echo "📄 [install-ops-agent] Final contents of $CONFIG_PATH:"
 cat "$CONFIG_PATH"
 
 echo "🧪 [install-ops-agent] Validating config with config-validator..."
-/opt/google-cloud-ops-agent/bin/config-validator -config_file="$CONFIG_PATH" 2>&1 | tee /tmp/ops_agent_validate.log
+config-validator -config_file="$CONFIG_PATH" 2>&1 | tee /tmp/ops_agent_validate.log
 VALIDATION_STATUS=${PIPESTATUS[0]}
 
 if [[ "$VALIDATION_STATUS" -ne 0 ]]; then
