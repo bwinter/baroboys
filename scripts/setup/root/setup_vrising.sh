@@ -39,15 +39,13 @@ fi
 /usr/bin/sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/setup/user/install_vrising.sh"
 
 install -m 644 "/root/baroboys/scripts/systemd/vrising.service" "/etc/systemd/system/"
-
-# TODO: Disabled till mcrcon is working.
-# install -m 644 "/root/baroboys/scripts/systemd/vrising-idle-check.service" "/etc/systemd/system/"
-# install -m 644 "/root/baroboys/scripts/systemd/vrising-idle-check.timer" "/etc/systemd/system/"
+install -m 644 "/root/baroboys/scripts/systemd/vrising-idle-check.service" "/etc/systemd/system/"
+install -m 644 "/root/baroboys/scripts/systemd/vrising-idle-check.timer" "/etc/systemd/system/"
 
 systemctl daemon-reexec
 systemctl daemon-reload
-# systemctl enable vrising-idle-check.timer
-# systemctl start vrising-idle-check.timer
+systemctl enable vrising-idle-check.timer
+systemctl start vrising-idle-check.timer
 
 # Give Admin Server access to logs.
 
@@ -55,10 +53,10 @@ mkdir -p "/home/bwinter_sc81/baroboys/VRising/logs/"
 chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/"
 chmod 700  "/home/bwinter_sc81/baroboys/VRising/logs/"
 
-# touch "/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log"
-# printf "\n==== %s ====\n" "$(date +%Y%m%d-%H%M)" >> "/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log"
-# chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log"
-# chmod 644  "/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log"
+touch "/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log"
+printf "\n==== %s ====\n" "$(date +%Y%m%d-%H%M)" >> "/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log"
+chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log"
+chmod 644  "/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log"
 
 touch "/home/bwinter_sc81/baroboys/VRising/logs/vrising.log"
 printf "\n==== %s ====\n" "$(date +%Y%m%d-%H%M)" >> "/home/bwinter_sc81/baroboys/VRising/logs/vrising.log"
