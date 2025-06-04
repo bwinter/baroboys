@@ -54,8 +54,9 @@ echo "📄 [install-ops-agent] Final contents of $CONFIG_PATH:"
 cat "$CONFIG_PATH"
 
 echo "🧪 [install-ops-agent] Validating config with config-validator..."
-if ! /opt/google-cloud-ops-agent/bin/config-validator -config_file="$CONFIG_PATH"; then
-    echo "❌ [install-ops-agent] Config validation failed. Aborting."
+if ! /opt/google-cloud-ops-agent/bin/config-validator -config_file="$CONFIG_PATH" 2>&1 | tee /tmp/ops_agent_validate.log; then
+    echo "❌ [install-ops-agent] Config validation failed. Output was:"
+    cat /tmp/ops_agent_validate.log
     exit 1
 fi
 
