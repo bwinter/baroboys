@@ -17,7 +17,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 provider "google" {
-  //credentials = file("${path.module}/../.secrets/europan-world-terraform-key.json")
+  credentials = file("${path.module}/../.secrets/europan-world-terraform-key.json")
   project = var.project
   region  = var.region
 }
