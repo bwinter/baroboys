@@ -23,22 +23,22 @@ echo "🛠️ [install-ops-agent] Writing trimmed config.yaml (system metrics + 
 
 CONFIG_PATH="/etc/google-cloud-ops-agent/config.yaml"
 
-# Write config with full tee output and verify
 cat <<EOF | tee "$CONFIG_PATH"
 metrics:
   receivers:
     hostmetrics:
       type: hostmetrics
       collection_interval: 60s
-      scrapers:
-        cpu:
-        memory:
-        disk:
-        network:
+  processors:
+    metrics_filter:
+      type: exclude_metrics
+      metrics_pattern: []
   service:
     pipelines:
       default_pipeline:
         receivers: [hostmetrics]
+        processors: [metrics_filter]
+        exporters: [google_cloud_monitoring]
 
 logging:
   receivers:
@@ -48,6 +48,7 @@ logging:
     pipelines:
       default_pipeline:
         receivers: [journald]
+        exporters: [google_cloud_logging]
 EOF
 
 echo "📄 [install-ops-agent] Final contents of $CONFIG_PATH:"
