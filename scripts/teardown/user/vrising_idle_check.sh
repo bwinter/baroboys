@@ -26,6 +26,7 @@ VRISING_PIDS=$(pgrep -f VRisingServer.exe | jq -R . | jq -s . || echo "[]")
 # === IDLE TRACKING ===
 IDLE_FLAG_SET=false
 IDLE_DURATION=0
+IDLE_SINCE_ISO=""
 
 if awk "BEGIN {exit !($CPU_PERCENT > $CPU_THRESHOLD)}"; then
   echo "💡 CPU usage at ${CPU_PERCENT}%. Above threshold → active."
@@ -38,6 +39,7 @@ else
   else
     IDLE_SINCE=$(cat "$IDLE_FLAG")
     IDLE_DURATION=$(( (NOW_UNIX - IDLE_SINCE) / 60 ))
+    IDLE_SINCE_ISO=$(date -u -d "@$IDLE_SINCE" +"%Y-%m-%dT%H:%M:%SZ")
     echo "💤 CPU below threshold. Idle duration: $IDLE_DURATION minutes"
   fi
 fi
@@ -50,6 +52,7 @@ sudo tee "$STATUS_JSON" > /dev/null <<EOF
   "cpu_percent": $CPU_PERCENT,
   "idle_flag_set": $IDLE_FLAG_SET,
   "idle_duration_minutes": $IDLE_DURATION,
+  "idle_since": $IDLE_SINCE_ISO,
   "vrising_pids": $VRISING_PIDS,
   "players": {
     "count": null,
