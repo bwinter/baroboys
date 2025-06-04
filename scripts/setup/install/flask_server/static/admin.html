@@ -256,6 +256,17 @@
         output.scrollTop = output.scrollHeight;
     }
 
+    async function loadServerSettings() {
+        try {
+            const res = await fetch('/api/settings');
+            const json = await res.json();
+            summaryMode.innerText = json.GameModeType ?? json.game_settings?.GameModeType ?? "Unknown";
+        } catch (err) {
+            console.warn("⚠️ Failed to load server settings:", err);
+            summaryMode.innerText = "Unavailable";
+        }
+    }
+
     async function refreshStatus() {
         try {
             const res = await fetch('/status.json');
@@ -267,7 +278,6 @@
                 // === Summary Panel Fields ===
                 summaryPlayers.innerText = data.players?.length || "0";
                 summaryTime.innerText = data.time || "Unknown";
-                summaryMode.innerText = data.settings?.game_settings?.GameModeType || "Unknown";
                 summaryCPU.innerText = data.cpu_percent?.toFixed(1) ?? "–";
                 summaryIdleMinutes.innerText = data.idle_duration_minutes ?? "–";
                 summaryIdleSince.innerText = data.idle_since ?? "–";
@@ -348,6 +358,7 @@
         loadLog();
         refreshStatus();
         checkHeartbeat();
+        loadServerSettings();
     });
 
     setInterval(() => {
