@@ -34,8 +34,7 @@ metrics:
         cpu:
         memory:
         disk:
-        network
-
+        network:
   service:
     pipelines:
       default_pipeline:
@@ -45,7 +44,6 @@ logging:
   receivers:
     journald:
       type: journald
-
   service:
     pipelines:
       default_pipeline:
