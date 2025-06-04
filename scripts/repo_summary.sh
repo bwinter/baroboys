@@ -21,11 +21,11 @@ add_section() {
 add_section "nginx.conf" \
   "scripts/setup/install/assets/nginx.conf"
 
-add_section "Debian nginx installer" \
-  "scripts/setup/install/apt_nginx.sh"
-
 add_section "Admin server" \
   "scripts/setup/install/flask_server/admin_server.py"
 
 add_section "Admin.html" \
   "scripts/setup/install/flask_server/static/admin.html"
+
+add_section "Debian nginx installer" \
+  "scripts/setup/install/apt_nginx.sh"
