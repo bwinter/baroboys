@@ -141,7 +141,7 @@ def api_settings():
     import json
 
     if ENV == "development":
-        base_path = "/home/bwinter/Desktop/Baroboys/VRising/VRisingServer_Data/StreamingAssets/Settings"
+        base_path = "/Users/bwinter/Desktop/Baroboys/VRising/VRisingServer_Data/StreamingAssets/Settings"
     else:
         base_path = "/home/bwinter_sc81/baroboys/VRising/VRisingServer_Data/StreamingAssets/Settings"
 
