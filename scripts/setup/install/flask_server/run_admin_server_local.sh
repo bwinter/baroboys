@@ -16,7 +16,7 @@ HTPASSWD_DEST="/etc/nginx/.htpasswd"
 STATUS_JSON="$STATIC_DEST/status.json"
 NGINX_LOG_DIR="/var/log/nginx"
 NGINX_RUN_DIR="/var/run"
-NGINX_CONFIG_SOURCE="$REPO_ROOT/scripts/setup/install/assets/nginx.config"
+NGINX_CONFIG_SOURCE="$REPO_ROOT/scripts/setup/install/assets/nginx.conf"
 
 # === Kill Flask if running ===
 if lsof -i :5000 >/dev/null 2>&1; then
