@@ -18,17 +18,14 @@ add_section() {
   fi
 }
 
-add_section "Admin.html" \
-  "scripts/setup/install/flask_server/static/admin.html"
-
-add_section "Admin server" \
-  "scripts/setup/install/flask_server/admin_server.py"
+add_section "nginx.conf" \
+  "scripts/setup/install/assets/nginx.conf"
 
 add_section "Debian nginx installer" \
   "scripts/setup/install/apt_nginx.sh"
 
-add_section "nginx.config" \
-  "scripts/setup/install/assets/nginx.config"
+add_section "Admin server" \
+  "scripts/setup/install/flask_server/admin_server.py"
 
-add_section "Admin server local installer (includes nginx install)" \
-  "scripts/setup/install/flask_server/run_admin_server_local.sh"
+add_section "Admin.html" \
+  "scripts/setup/install/flask_server/static/admin.html"
