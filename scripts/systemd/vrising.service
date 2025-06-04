@@ -12,20 +12,15 @@ User=bwinter_sc81
 Group=bwinter_sc81
 
 ExecStartPost=/usr/bin/bash -c 'echo "✅ vrising.service launched at $(date)" >> /home/bwinter_sc81/baroboys/VRising/logs/vrising.log'
-
-# Use wrapper to detect intentional shutdown
 ExecStart=/home/bwinter_sc81/baroboys/scripts/setup/install/service/vrising_launcher.sh
+ExecStopPost=/usr/bin/bash -c 'echo "🛑 vrising.service finished shutdown at $(date)" >> /home/bwinter_sc81/baroboys/VRising/logs/vrising.log'
 
-# No longer needed if wrapper handles exit logic, but harmless to keep
-ExecStop=/usr/bin/pkill -f VRisingServer.exe
-
-# Optional: avoid noisy crash logs if intentionally shutting down
+SuccessExitStatus=0
+KillMode=control-group
+TimeoutStopSec=60
 SuccessExitStatus=0
 
 StandardOutput=append:/home/bwinter_sc81/baroboys/VRising/logs/vrising.log
 StandardError=append:/home/bwinter_sc81/baroboys/VRising/logs/vrising.log
 
-KillMode=control-group
-TimeoutStopSec=300
 Restart=on-failure
-SuccessExitStatus=0
