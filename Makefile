@@ -78,12 +78,17 @@ iam-apply:
 		terraform init && \
 		terraform apply -var-file=$(IAM_VARS)
 
+	gcloud iam service-accounts keys create .secrets/europan-world-terraform-key.json \
+	  --iam-account=terraform@europan-world.iam.gserviceaccount.com
+
 iam-destroy:
 	@echo "🔥 Destroying IAM with GCP user credentials..."
 	cd $(IAM_BUILD_DIR) && \
 		unset GOOGLE_APPLICATION_CREDENTIALS && \
 		terraform init && \
 		terraform destroy -var-file=$(IAM_VARS)
+
+	rm .secrets/europan-world-terraform-key.json
 
 
 # =======================
