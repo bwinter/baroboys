@@ -17,18 +17,18 @@ echo "🌀 Installing fonts..."
 # Initialize Wine prefix (once!)
 /usr/bin/sudo -u bwinter_sc81 -- bash -c '
   echo "🔧 Initializing wine prefix..."
-  export HOME=/home/bwinter_sc81
+  export WINEARCH=win64
+  export WINEPREFIX=/home/bwinter_sc81/.wine64
   wineboot -i
 '
 
 # Run winetricks under xvfb
-/usr/bin/sudo -u bwinter_sc81 -- bash -c '
+sudo -u bwinter_sc81 -- bash -c '
   echo "🔧 Installing corefonts and tahoma via winetricks..."
-  export HOME=/home/bwinter_sc81
+  export WINEPREFIX=/home/bwinter_sc81/.wine64
   export WINETRICKS_GUI=none
   xvfb-run --auto-servernum --server-args="-screen 0 1024x768x24" \
-    winetricks --unattended corefonts tahoma \
-    || echo "⚠️ winetricks failed"
+    winetricks --unattended corefonts tahoma || echo "⚠️ winetricks failed"
 '
 
 echo "✅ Fonts install attempt complete."
