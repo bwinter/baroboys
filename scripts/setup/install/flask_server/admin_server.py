@@ -211,12 +211,6 @@ def directory():
     return render_template("directory.html", sections=sections)
 
 
-@app.errorhandler(404)
-def not_found(e):
-    return render_template("404.html", path=request.path,
-                           timestamp=datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")), 404
-
-
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
 
