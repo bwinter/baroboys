@@ -1,6 +1,6 @@
 {
-  "Name": "Donald's PvE Server",
-  "Description": "Casual PvE for testing.",
+  "Name": "Mc's Playground",
+  "Description": "A persistent PvE world for friends: fast-paced, low-grind, high-fang. Designed for long nights, creative castles, and cooperative conquest.",
   "Port": 27015,
   "QueryPort": 27016,
   "Address": "",
