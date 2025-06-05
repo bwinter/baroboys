@@ -29,7 +29,7 @@ echo "🌀 Installing fonts..."
   echo "🔧 Initializing wine prefix..."
   export WINEARCH=win64
   export WINEPREFIX=/home/bwinter_sc81/.wine64
-  wineboot -i
+  /opt/wine-stable/bin/wine64 wineboot
 '
 
 # Run winetricks under xvfb
