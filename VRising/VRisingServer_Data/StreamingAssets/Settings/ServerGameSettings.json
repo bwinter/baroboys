@@ -6,7 +6,7 @@
   "PlayerDamageMode": "Never",
   "CastleHeartDamageMode": "CanBeDestroyedOnlyWhenDecaying",
   "PvPProtectionMode": "None",
-  "DeathContainerPermission": "Anyone",
+  "DeathContainerPermission": "ClanMembers",
   "RelicSpawnType": "Unique",
   "SoulShard_DurabilityLossRate": 0.5,
   "CanLootEnemyContainers": false,
