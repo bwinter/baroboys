@@ -10,9 +10,9 @@ echo "deb [signed-by=/usr/share/keyrings/winehq.gpg] https://dl.winehq.org/wine-
   > "/etc/apt/sources.list.d/winehq.list"
 
 sudo dpkg --add-architecture amd64
-sudo apt-get update
+sudo apt-get -yq update
 
-sudo apt install \
+sudo apt -yq install \
   winehq-stable:amd64 \
   wine-stable:amd64 \
   wine-stable-amd64 \
@@ -20,7 +20,7 @@ sudo apt install \
   winetricks \
   xvfb
 
-sudo apt purge wine32 wine:i386 wine-stable-i386 || true
+sudo apt -yq purge wine32 wine:i386 wine-stable-i386 || true
 
 echo "🌀 Installing fonts..."
 
