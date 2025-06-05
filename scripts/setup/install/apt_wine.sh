@@ -9,8 +9,18 @@ curl -fsSL "https://dl.winehq.org/wine-builds/winehq.key" \
 echo "deb [signed-by=/usr/share/keyrings/winehq.gpg] https://dl.winehq.org/wine-builds/debian bookworm main" \
   > "/etc/apt/sources.list.d/winehq.list"
 
-apt-get -yq update
-apt-get install -yq winehq-stable winetricks xvfb
+sudo dpkg --add-architecture amd64
+sudo apt-get update
+
+sudo apt install \
+  winehq-stable:amd64 \
+  wine-stable:amd64 \
+  wine-stable-amd64 \
+  wine64 \
+  winetricks \
+  xvfb
+
+sudo apt purge wine32 wine:i386 wine-stable-i386 || true
 
 echo "🌀 Installing fonts..."
 
@@ -25,6 +35,7 @@ echo "🌀 Installing fonts..."
 # Run winetricks under xvfb
 sudo -u bwinter_sc81 -- bash -c '
   echo "🔧 Installing corefonts and tahoma via winetricks..."
+  export WINEARCH=win64
   export WINEPREFIX=/home/bwinter_sc81/.wine64
   export WINETRICKS_GUI=none
   xvfb-run --auto-servernum --server-args="-screen 0 1024x768x24" \
