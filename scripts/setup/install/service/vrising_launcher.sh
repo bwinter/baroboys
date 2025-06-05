@@ -16,8 +16,9 @@ if [[ -f "$INTENTIONAL_FLAG" ]]; then
 fi
 
 # Start the game process and capture its exit code
+export WINEARCH=win64
 export WINEPREFIX=/home/bwinter_sc81/.wine64
-/usr/bin/wine VRisingServer.exe \
+/opt/wine-stable/bin/wine64 VRisingServer.exe \
   -persistentDataPath ./Data \
   -serverName "Mc's Playground" \
   -saveName "TestWorld-1" \
