@@ -110,7 +110,7 @@
     "MovementSpeedModifier": 1.0
   },
   "CastleStatModifiers_Global": {
-    "TickPeriod": 30.0,
+    "TickPeriod": 10.0,
     "SafetyBoxLimit": 1,
     "EyeStructuresLimit": 1,
     "TombLimit": 12,
