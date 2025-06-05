@@ -128,11 +128,30 @@ else
   echo "Using default WINEPREFIX (~/.wine). If VRising runs in a custom prefix, set WINEPREFIX before running this script."
 fi
 
+if [[ -d "${WINEPREFIX:-$HOME/.wine}/drive_c" ]]; then
+  echo -n "Wine prefix architecture: "
+  if [[ -f "${WINEPREFIX:-$HOME/.wine}/system.reg" ]]; then
+    if grep -q 'winearch"="win64' "${WINEPREFIX:-$HOME/.wine}/system.reg"; then
+      echo "64-bit (win64)"
+    else
+      echo "32-bit (likely)"
+    fi
+  fi
+fi
+
 echo -e "\n## Process Checks"
 # 4. Check if VRising server is running
 VRisingPIDs=$(pgrep -f -i "VRisingServer.exe")
 if [[ -n "$VRisingPIDs" ]]; then
   echo "VRising server appears to be RUNNING (PID(s): $VRisingPIDs). Gathering info..."
+
+  declare -A VRisingCmdlines
+  for pid in $VRisingPIDs; do
+    if [[ -r "/proc/$pid/cmdline" ]]; then
+      VRisingCmdlines["$pid"]="$(tr '\0' ' ' < "/proc/$pid/cmdline")"
+    fi
+  done
+
   # Loop through each VRising-related PID found
   for pid in $VRisingPIDs; do
     # Basic process info
@@ -184,18 +203,19 @@ fi
 # 5. Verify VRisingServer.exe is 64-bit using 'file' (if path is known)
 VR_EXE_PATH=""
 if [[ -n "$VRisingPIDs" ]]; then
-  # Try to deduce path from running process (if we had one before it stopped)
-  # Check command line for a path
   for pid in $VRisingPIDs; do
-    cmdline=$(tr '\0' ' ' < /proc/$pid/cmdline 2>/dev/null)
-    if [[ "$cmdline" == *VRisingServer.exe* ]]; then
-      # Find a Linux path to the .exe in the command line (if present)
-      VR_EXE_PATH=$(grep -aoE '/.*VRisingServer.exe' <<< "$cmdline" | head -1)
-      if [[ -n "$VR_EXE_PATH" && -f "$VR_EXE_PATH" ]]; then
-        break
+    # Safely read cmdline
+    if [[ -r "/proc/$pid/cmdline" ]]; then
+      cmdline=$(tr '\0' ' ' < "/proc/$pid/cmdline")
+      if [[ "$cmdline" == *VRisingServer.exe* ]]; then
+        VR_EXE_PATH=$(grep -aoE '/.*VRisingServer.exe' <<< "$cmdline" | head -1)
+        if [[ -n "$VR_EXE_PATH" && -f "$VR_EXE_PATH" ]]; then
+          break
+        fi
       fi
     fi
-    # If not found via cmdline, try the working directory
+
+    # Fallback: check working directory
     if [[ -z "$VR_EXE_PATH" && -L "/proc/$pid/cwd" ]]; then
       cwd=$(readlink -f "/proc/$pid/cwd")
       if [[ -f "$cwd/VRisingServer.exe" ]]; then
@@ -232,37 +252,37 @@ fi
 
 # 6. Compile and run a test program to allocate ~6GB in Wine
 echo -e "\n## Memory Allocation Test (VirtualAlloc ~6GB)"
-TEST_C="/tmp/alloc_6GB_test.c"
-TEST_EXE="/tmp/alloc_6GB_test.exe"
-cat > "$TEST_C" << 'EOF'
+MINGW_TOOL="x86_64-w64-mingw32-gcc"
+TEST_C="/tmp/alloc_test.c"
+TEST_EXE="/tmp/alloc_test.exe"
+
+# Write C test file
+cat > "$TEST_C" <<'EOF'
 #include <windows.h>
 #include <stdio.h>
-
 int main() {
-    SIZE_T allocSize = (SIZE_T)6 * 1024 * 1024 * 1024;  // ~6 GB
-    void *p = VirtualAlloc(NULL, allocSize, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
-    if (p == NULL) {
-        DWORD err = GetLastError();
-        printf("VirtualAlloc FAILED for ~6GB allocation, error code %lu\n", err);
-        return 1;
-    } else {
-        printf("VirtualAlloc succeeded: allocated ~6GB at address %p\n", p);
-        // Free the memory before exiting
+    SIZE_T size = 6LL * 1024 * 1024 * 1024; // 6GB
+    void *p = VirtualAlloc(NULL, size, MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
+    if (p) {
+        printf("✅ Successfully allocated %lld bytes (~6GB)\n", (long long)size);
         VirtualFree(p, 0, MEM_RELEASE);
         return 0;
+    } else {
+        printf("❌ Allocation failed\n");
+        return 1;
     }
 }
 EOF
 
-if ! command -v $MINGW_TOOL &>/dev/null; then
+# Compile and run
+if ! command -v "$MINGW_TOOL" &>/dev/null; then
   echo "MinGW-w64 compiler ($MINGW_TOOL) not found, skipping compilation of test program."
 else
   echo "Compiling 64-bit Windows test program (using MinGW-w64)..."
-  $MINGW_TOOL -O2 -static -o "$TEST_EXE" "$TEST_C" 2>&1
+  "$MINGW_TOOL" -O2 -static -o "$TEST_EXE" "$TEST_C" 2>&1
   if [[ -f "$TEST_EXE" ]]; then
     echo "Running memory allocation test under Wine..."
-    # Use Wine with overrides to suppress Mono/Gecko install and debug output
-    WINEDLLOVERRIDES="mscoree,mshtml=" WINEDEBUG=-all wine "$TEST_EXE"
+    env XDG_RUNTIME_DIR=/tmp WINEDLLOVERRIDES="mscoree,mshtml=" WINEDEBUG=-all wine "$TEST_EXE"
     test_exit=$?
     if [[ $test_exit -ne 0 ]]; then
       echo "Test program exited with code $test_exit (a non-zero code likely indicates the allocation failed or an error occurred)."
