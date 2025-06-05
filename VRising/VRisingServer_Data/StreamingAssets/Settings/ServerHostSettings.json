@@ -5,7 +5,7 @@
   "QueryPort": 27016,
   "Address": "",
   "HideIPAddress": false,
-  "MaxConnectedUsers": 40,
+  "MaxConnectedUsers": 4,
   "MaxConnectedAdmins": 4,
   "ServerFps": 30,
   "LowerFPSWhenEmpty": true,
