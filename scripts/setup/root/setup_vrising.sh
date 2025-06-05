@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eux
 
-apt update && sudo apt install -y sysstat
+apt update && sudo apt install -y sysstat gzip
 
 # Start xvfb
 install -m 644 "/root/baroboys/scripts/systemd/xvfb.service" "/etc/systemd/system/"

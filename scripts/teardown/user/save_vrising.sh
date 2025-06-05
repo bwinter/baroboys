@@ -28,19 +28,30 @@ else
 fi
 
 
-# Find latest autosave file
-latest_file=$(find "$SAVE_DIR" -type f -name 'AutoSave_*.save.gz' |
-  sed -E 's/.*AutoSave_([0-9]+)\.save\.gz/\1 \0/' |
+# === Compress latest autosave ===
+latest_file=$(find "$SAVE_DIR" -type f -name 'AutoSave_*.save' |
+  sed -E 's/.*AutoSave_([0-9]+)\.save/\1 \0/' |
   sort -n | tail -n1 | cut -d' ' -f2)
 
-# Clean other tracked autosaves
+if [[ -z "$latest_file" ]]; then
+  echo "❌ No uncompressed .save file found"
+  exit 1
+fi
+
+echo "🗜 Compressing latest autosave: $latest_file"
+gzip -f "$latest_file"
+gzipped_file="${latest_file}.gz"
+
+# === Clean up Git tracking for older autosaves ===
 for tracked in $(git ls-files "$SAVE_DIR/AutoSave_*.save.gz"); do
-  [[ "$tracked" != "$latest_file" ]] && git rm --cached "$tracked"
+  [[ "$tracked" != "$gzipped_file" ]] && git rm --cached "$tracked"
 done
 
-# Add latest file and commit
-git add "$latest_file"
+# === Commit latest autosave ===
+git add "$gzipped_file"
 git commit -m "Auto-save before shutdown $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "Nothing to commit"
+
+
 
 # Stash local state, pull, and push
 git stash push --include-untracked --quiet || echo "Nothing to stash"
