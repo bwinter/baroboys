@@ -29,12 +29,14 @@ echo "🌀 Installing fonts..."
   echo "🔧 Initializing wine prefix..."
   export WINEARCH=win64
   export WINEPREFIX=/home/bwinter_sc81/.wine64
+  export WINESERVER=/opt/wine-stable/bin/wineserver
   /opt/wine-stable/bin/wine64 wineboot
 '
 
 # Run winetricks under xvfb
 sudo -u bwinter_sc81 -- bash -c '
   echo "🔧 Installing corefonts and tahoma via winetricks..."
+  export WINE=/opt/wine-stable/bin/wine64
   export WINEARCH=win64
   export WINEPREFIX=/home/bwinter_sc81/.wine64
   export WINETRICKS_GUI=none
