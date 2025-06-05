@@ -27,7 +27,7 @@
   "StartingProgressionLevel": 0,
   "DisableDisconnectedDeadEnabled": true,
   "DisableDisconnectedDeadTimer": 60,
-  "DisconnectedSunImmunityTime": 300.0,
+  "DisconnectedSunImmunityTime": 600.0,
   "InventoryStacksModifier": 5.0,
   "DropTableModifier_General": 1.0,
   "DropTableModifier_StygianShards": 1.0,
