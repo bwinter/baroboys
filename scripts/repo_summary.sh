@@ -5,27 +5,20 @@ echo "# 🧱 Baroboys Admin UI + Status Logic"
 echo "Generated: $(date -u)"
 
 add_section() {
-  local label="$1"
-  local path="$2"
+  local path="$1"
   if [[ -f "$path" ]]; then
-    echo -e "\n\n# === $label ($path) ==="
+    echo -e "\n\n# === ($path) ==="
     echo '```bash'
     cat "$path"
     echo '```'
   else
-    echo -e "\n\n# === $label ($path) ==="
+    echo -e "\n\n# === ($path) ==="
     echo "**Missing file**"
   fi
 }
 
-add_section "nginx.conf" \
-  "scripts/setup/install/assets/nginx.conf"
+add_section \
+  "VRising/VRisingServer_Data/StreamingAssets/Settings/ServerHostSettings.json"
 
-add_section "Admin server" \
-  "scripts/setup/install/flask_server/admin_server.py"
-
-add_section "Admin.html" \
-  "scripts/setup/install/flask_server/static/admin.html"
-
-add_section "Debian nginx installer" \
-  "scripts/setup/install/apt_nginx.sh"
+add_section \
+  "VRising/VRisingServer_Data/StreamingAssets/Settings/ServerGameSettings.json"
