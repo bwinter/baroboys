@@ -16,6 +16,7 @@
 
 # Python virtual env
 .venv
+__pycache__/
 
 # This is where I keep my uncompressed save.
 # To recude chances of copying the wrong version we want to clean this up every time.
