@@ -44,7 +44,7 @@
   "HolyAreaStrengthModifier": 0.8,
   "SilverStrengthModifier": 1.0,
   "SunDamageModifier": 0.75,
-  "CastleDecayRateModifier": 0.5,
+  "CastleDecayRateModifier": 2.0,
   "CastleBloodEssenceDrainModifier": 0.5,
   "CastleSiegeTimer": 420.0,
   "CastleUnderAttackTimer": 60.0,
