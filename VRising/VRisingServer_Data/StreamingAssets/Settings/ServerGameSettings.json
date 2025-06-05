@@ -63,7 +63,7 @@
   "RefinementRateModifier": 2.0,
   "ResearchTimeModifier": 0.5,
   "DismantleResourceModifier": 1.0,
-  "ServantConvertRateModifier": 2.0,
+  "ServantConvertRateModifier": 1.0,
   "RepairCostModifier": 0.5,
   "Death_DurabilityFactorLoss": 0.05,
   "Death_DurabilityLossFactorAsResources": 0.0,
