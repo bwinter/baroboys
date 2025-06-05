@@ -7,7 +7,7 @@
   "HideIPAddress": false,
   "MaxConnectedUsers": 4,
   "MaxConnectedAdmins": 4,
-  "ServerFps": 30,
+  "ServerFps": 40,
   "LowerFPSWhenEmpty": true,
   "LowerFPSWhenEmptyValue": 5,
   "SaveName": "TestWorld-1",
