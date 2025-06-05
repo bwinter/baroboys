@@ -65,7 +65,7 @@
   "DismantleResourceModifier": 1.0,
   "ServantConvertRateModifier": 1.0,
   "RepairCostModifier": 0.6,
-  "Death_DurabilityFactorLoss": 0.25,
+  "Death_DurabilityFactorLoss": 0.1,
   "Death_DurabilityLossFactorAsResources": 0.0,
   "StarterEquipmentId": 0,
   "StarterResourcesId": 0,
