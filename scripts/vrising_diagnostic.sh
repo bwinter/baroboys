@@ -85,7 +85,7 @@ else
         else
           human_limit=$(awk "BEGIN {printf \"%.2f GB\", $limit/1024/1024/1024}")
           echo "memory.limit_in_bytes = $limit (~$human_limit)"
-        }
+        fi
       else
         echo "memory.limit_in_bytes = $limit"
       fi
