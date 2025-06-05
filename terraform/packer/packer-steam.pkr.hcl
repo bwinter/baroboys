@@ -22,7 +22,6 @@ source "googlecompute" "baroboys-steam" {
   scopes = ["https://www.googleapis.com/auth/cloud-platform"]
 
   source_image = var.base_core_image
-  source_image_project_id = [var.gcp_image_project]
 
   image_name   = var.base_steam_image
   image_family = var.base_steam_image
