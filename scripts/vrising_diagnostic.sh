@@ -3,6 +3,43 @@
 # This script gathers system info and runs tests to diagnose a ~4GB memory cap issue under Wine.
 # Run as root (or with sudo) for best results, and ensure the VRising server is not running (or be ready to stop it when prompted).
 
+log() { echo -e "\033[1;34m🔍 $*\033[0m"; }
+
+WINE_BIN="$(readlink -f "$(which wine)")"
+WINE_LOADER="$(readlink -f /proc/$(pgrep -f VRisingServer.exe | head -n1)/exe)"
+WINE_PREFIX="${WINEPREFIX:-$HOME/.wine}"
+
+log "Wine binary in use: $WINE_BIN"
+log "Wine preloader in use: $WINE_LOADER"
+log "Wine prefix: $WINE_PREFIX"
+
+if [[ "$WINE_LOADER" =~ wine-preloader$ ]]; then
+  echo "⚠️  Wine is running with 32-bit preloader!"
+else
+  echo "✅ Wine is using 64-bit preloader"
+fi
+
+if [[ -d "$WINE_PREFIX/drive_c/windows/syswow64" ]]; then
+  echo "⚠️  Wine prefix contains syswow64 → likely 32-bit or WOW64 mixed mode"
+else
+  echo "✅ Wine prefix lacks syswow64 → likely pure 64-bit"
+fi
+
+# Confirm Windows architecture inside Wine
+wine64 reg query "HKLM\\System\\CurrentControlSet\\Control\\Session Manager\\Environment" | grep PROCESSOR_ARCHITECTURE || echo "⚠️  Could not read processor architecture"
+
+log "Wine binary: $(readlink -f $(which wine))"
+log "Wine preloader: $(readlink -f /proc/$(pgrep -f VRisingServer.exe | head -n1)/exe)"
+log "Wine prefix: ${WINEPREFIX:-$HOME/.wine}"
+
+if [[ "$(readlink -f /proc/$(pgrep -f VRisingServer.exe | head -n1)/exe)" =~ wine-preloader$ ]]; then
+  echo "⚠️ Wine is running in 32-bit mode!"
+else
+  echo "✅ Wine is 64-bit"
+fi
+
+[[ -e "$WINEPREFIX/drive_c/windows/syswow64/kernel32.dll" ]] && echo "⚠️ syswow64 found — likely 32-bit or WOW64 mixed mode"
+
 # 1. Ensure required tools are installed (smem, gdb, file, gcc, mingw-w64, etc.)
 REQUIRED_TOOLS=("smem" "gdb" "file" "gcc")
 MINGW_TOOL="x86_64-w64-mingw32-gcc"  # Check presence of MinGW-w64 cross-compiler
