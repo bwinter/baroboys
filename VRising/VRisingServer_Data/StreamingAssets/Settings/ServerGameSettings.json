@@ -15,7 +15,7 @@
   "BatBoundItems": false,
   "BatBoundShards": false,
   "AllowGlobalChat": true,
-  "AllWaypointsUnlocked": true,
+  "AllWaypointsUnlocked": false,
   "FreeCastleRaid": false,
   "FreeCastleClaim": false,
   "FreeCastleDestroy": false,
