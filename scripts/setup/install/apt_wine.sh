@@ -22,6 +22,17 @@ sudo apt -yq install \
 
 sudo apt -yq purge wine32 wine:i386 wine-stable-i386 || true
 
+ls -l /opt/wine-stable/bin/wineserver
+file /opt/wine-stable/bin/wineserver
+
+ldd /opt/wine-stable/bin/wine64
+ldd /opt/wine-stable/bin/wineserver
+
+/opt/wine-stable/bin/wineserver -v
+
+ls -l /opt/wine-stable/bin | grep wine
+find /opt/wine-stable/share/wine/ -name '*.nls'
+
 echo "🌀 Installing fonts..."
 
 # Initialize Wine prefix (once!)
