@@ -3,6 +3,7 @@ set -eux
 
 # Fetch the RCON password from GCP Secret Manager
 SERVER_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)"
+export SERVER_PASSWORD
 
 # Paths
 HOST_JSON="VRising/VRisingServer_Data/StreamingAssets/Settings/ServerHostSettings.json"
@@ -23,10 +24,7 @@ git checkout -- \
   "VRising/Data/Settings/adminlist.txt" \
   "VRising/Data/Settings/banlist.txt"
 
-jq --arg pass "$SERVER_PASSWORD" '.Password = $pass' "$GAME_JSON" > "$GAME_JSON.tmp"
-mv "$GAME_JSON.tmp" "$GAME_JSON"
-
-jq --arg pass "$SERVER_PASSWORD" '.Rcon.Password = $pass' "$HOST_JSON" > "$HOST_JSON.tmp"
+envsubst < "$HOST_JSON" > "$HOST_JSON.tmp"
 mv "$HOST_JSON.tmp" "$HOST_JSON"
 
 mkdir -p "/home/bwinter_sc81/baroboys/VRising/logs"
