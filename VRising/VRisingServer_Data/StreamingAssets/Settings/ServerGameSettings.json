@@ -28,7 +28,7 @@
   "DisableDisconnectedDeadEnabled": true,
   "DisableDisconnectedDeadTimer": 60,
   "DisconnectedSunImmunityTime": 600.0,
-  "InventoryStacksModifier": 3.5,
+  "InventoryStacksModifier": 5.0,
   "DropTableModifier_General": 1.0,
   "DropTableModifier_StygianShards": 1.0,
   "DropTableModifier_Missions": 1.0,
