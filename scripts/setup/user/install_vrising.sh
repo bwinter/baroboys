@@ -27,11 +27,13 @@ git checkout -- \
 envsubst < "$HOST_JSON" > "$HOST_JSON.tmp"
 mv "$HOST_JSON.tmp" "$HOST_JSON"
 
-mkdir -p "/home/bwinter_sc81/baroboys/VRising/logs"
-chmod o+rx "/home/bwinter_sc81"
-chmod o+rx "/home/bwinter_sc81/baroboys"
-chmod o+rx "/home/bwinter_sc81/baroboys/VRising"
-chmod o+rx "/home/bwinter_sc81/baroboys/VRising/logs"
+# Ensure log paths are readable
+mkdir -p "$VRISING_DIR/logs"
+chmod o+rx "$HOME" "$HOME/baroboys" "$VRISING_DIR" "$VRISING_DIR/logs"
+touch "$VRISING_DIR/logs/VRisingServer.log"
+printf "\n==== %s ====\n" "$(date +%Y%m%d-%H%M)" >> "$VRISING_DIR/logs/VRisingServer.log"
+chown bwinter_sc81:bwinter_sc81 "$VRISING_DIR/logs/VRisingServer.log"
+chmod 644 "$VRISING_DIR/logs/VRisingServer.log"
 
 touch "/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log"
 printf "\n==== %s ====\n" "$(date +%Y%m%d-%H%M)" >> "/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log"
