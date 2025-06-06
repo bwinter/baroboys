@@ -35,8 +35,13 @@ lscpu | grep -E 'Model name|Architecture|CPU\(s\):|Thread'
 
 # ========== CGroup Limits ==========
 echo -e "\n${COLOR_BLUE}🧠 CGroup Memory Limits${COLOR_RESET}"
-for f in memory.max memory.swap.max memory.high memory.current; do
-  [[ -f "/sys/fs/cgroup/$f" ]] && echo "$f: $(cat /sys/fs/cgroup/$f)"
+for file in memory.max memory.swap.max memory.high memory.current; do
+  path="/sys/fs/cgroup/$file"
+  if [[ -f "$path" ]]; then
+    echo "$file: $(cat "$path")"
+  else
+    echo "${COLOR_YELLOW}⚠️ $file not found at expected path: $path${COLOR_RESET}"
+  fi
 done
 
 # ========== Wine Binary Architecture ==========
@@ -56,7 +61,10 @@ for bin in wine wine64 wineserver; do
   fi
 
   TYPE_LINE=$(file "$BIN_REAL" 2>/dev/null || true)
-  TYPE=$(echo "$TYPE_LINE" | grep -Eo '64-bit|32-bit')
+  TYPE=""
+  if [[ -n "$TYPE_LINE" ]]; then
+    TYPE=$(echo "$TYPE_LINE" | grep -Eo '64-bit|32-bit' || true)
+  fi
 
   echo "🔎 $bin -> $BIN_REAL: ${TYPE:-Unknown}"
 
