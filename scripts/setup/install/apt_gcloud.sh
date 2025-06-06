@@ -10,7 +10,7 @@ curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg \
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" \
   | tee /etc/apt/sources.list.d/google-cloud-sdk.list
 
-apt-get update
+apt-get update -yq
 apt-get install -yq google-cloud-cli
 
 echo "📦 [install-ops-agent] Installing Ops Agent..."
