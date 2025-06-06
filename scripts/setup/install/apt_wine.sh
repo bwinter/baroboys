@@ -20,7 +20,8 @@ sudo apt -yq install \
 echo "🌀 Installing fonts..."
 
 # Initialize Wine prefix (once!)
-sudo -u bwinter_sc81 -- bash -eux '
+sudo -u bwinter_sc81 -- bash -c '
+  set -eux
   echo "🔧 Starting full debug trace for wineboot"
 
   # UID info and TMPDIR
@@ -62,7 +63,7 @@ sudo -u bwinter_sc81 -- bash -eux '
   ls -la /tmp/.wine-$(id -u) || echo "❌ No wineserver dir found"
   ls -la /tmp
 
-  echo "📄 Debug log captured at $DEBUG_LOG"
+  echo "✅ Debug trace complete."
 '
 
 # Run winetricks under xvfb
