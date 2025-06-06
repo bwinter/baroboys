@@ -50,28 +50,36 @@ for bin in wine wine64 wineserver; do
   BIN_PATH=$(command -v "$bin" 2>/dev/null || true)
 
   if [[ -z "$BIN_PATH" ]]; then
-    echo "${COLOR_YELLOW}⚠️ $bin not found in PATH — skipping${COLOR_RESET}"
+    echo "${COLOR_YELLOW}⚠️ $bin not found in PATH — check if the correct Wine package is installed${COLOR_RESET}"
     continue
   fi
 
   BIN_REAL=$(realpath "$BIN_PATH" 2>/dev/null || echo "")
   echo "🔎 $bin -> $BIN_REAL"
 
-  if [[ ! -x "$BIN_REAL" ]]; then
-    echo "${COLOR_YELLOW}⚠️ $bin exists but is not executable${COLOR_RESET}"
+  if [[ ! -e "$BIN_REAL" ]]; then
+    echo "${COLOR_RED}❗ Resolved path does not exist — something is broken in Wine install${COLOR_RESET}"
     continue
   fi
 
-  TYPE_LINE=$(file "$BIN_REAL" 2>/dev/null || true)
+  if [[ ! -x "$BIN_REAL" ]]; then
+    echo "${COLOR_YELLOW}⚠️ Path exists but is not executable: $BIN_REAL${COLOR_RESET}"
+    continue
+  fi
+
+  # Check binary type
+  TYPE_LINE=$(file "$BIN_REAL" 2>/dev/null || echo "unable to read")
   TYPE=$(echo "$TYPE_LINE" | grep -Eo '64-bit|32-bit')
 
-  echo "    file output: $TYPE_LINE"
-  echo "    parsed type: ${TYPE:-Unknown}"
-
   if [[ -z "$TYPE" ]]; then
-    echo "${COLOR_YELLOW}⚠️ could not determine architecture for $bin — may be a wrapper script${COLOR_RESET}"
-  elif [[ "$TYPE" != "64-bit" ]]; then
-    echo "${COLOR_RED}❗ $bin is not 64-bit — may prevent VRising from using full memory space${COLOR_RESET}"
+    echo "${COLOR_YELLOW}⚠️ could not determine architecture — possibly a wrapper or script:${COLOR_RESET}"
+    echo "    file output: $TYPE_LINE"
+  else
+    echo "    file output: $TYPE_LINE"
+    echo "    parsed type: $TYPE"
+    if [[ "$TYPE" != "64-bit" ]]; then
+      echo "${COLOR_RED}❗ $bin is not 64-bit — may prevent VRising from using full memory space${COLOR_RESET}"
+    fi
   fi
 done
 
