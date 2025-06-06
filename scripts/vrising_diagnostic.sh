@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euxo pipefail
+set -euo pipefail
 
 # ========== Color Handling ==========
 COLOR_RESET=$(tput sgr0 || echo "")
@@ -10,6 +10,9 @@ COLOR_BLUE=$(tput setaf 4 || echo "")
 COLOR_BOLD=$(tput bold || echo "")
 
 # ========== Setup ==========
+sudo apt update
+sudo apt install gcc-mingw-w64-x86-64
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ALLOC_TEST_SOURCE="${SCRIPT_DIR}/alloc_test.c"
 LOG_FILE="/tmp/vrising_env_diagnostics.log"
