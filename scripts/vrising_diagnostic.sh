@@ -11,7 +11,7 @@ COLOR_BOLD=$(tput bold || echo "")
 
 # ========== Setup ==========
 sudo apt update
-sudo apt install gcc-mingw-w64-x86-64
+sudo apt install -y gcc-mingw-w64-x86-64
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ALLOC_TEST_SOURCE="${SCRIPT_DIR}/alloc_test.c"
@@ -43,8 +43,8 @@ done
 echo -e "\n${COLOR_BLUE}🧩 Wine Binary Architecture Check${COLOR_RESET}"
 for bin in wine wine64 wineserver; do
   if command -v "$bin" &>/dev/null; then
-    echo -n "🔎 $bin: "
-    file "$(command -v "$bin")" | grep -Eo '64-bit|32-bit' || echo "Unknown"
+    BIN_PATH=$(realpath "$(command -v "$bin")")
+    echo "🔎 $bin -> $BIN_PATH: $(file "$BIN_PATH" | grep -Eo '64-bit|32-bit' || echo "Unknown")"
   else
     echo "${COLOR_YELLOW}⚠️ $bin not found${COLOR_RESET}"
   fi
@@ -58,9 +58,13 @@ wine --version || echo "${COLOR_YELLOW}⚠️ wine failed to report version${COL
 echo -e "\n${COLOR_BLUE}📁 Wine Prefix Info${COLOR_RESET}"
 WINEPREFIX="${WINEPREFIX:-$HOME/.wine}"
 echo "WINEPREFIX = $WINEPREFIX"
-[[ -d "$WINEPREFIX" ]] || echo "${COLOR_YELLOW}⚠️ WINEPREFIX not found${COLOR_RESET}"
-[[ -f "$WINEPREFIX/system.reg" ]] || echo "${COLOR_YELLOW}⚠️ system.reg not found${COLOR_RESET}"
-grep -i 'winearch' "$WINEPREFIX/system.reg" || echo "${COLOR_YELLOW}⚠️ 'winearch' not found in system.reg${COLOR_RESET}"
+
+if [[ ! -d "$WINEPREFIX" ]]; then
+  echo "${COLOR_YELLOW}⚠️ WINEPREFIX not found. It will be auto-created by Wine.${COLOR_RESET}"
+else
+  [[ -f "$WINEPREFIX/system.reg" ]] || echo "${COLOR_YELLOW}⚠️ system.reg not found${COLOR_RESET}"
+  grep -i 'winearch' "$WINEPREFIX/system.reg" || echo "${COLOR_YELLOW}⚠️ 'winearch' not found in system.reg${COLOR_RESET}" || true
+fi
 
 # ========== VRising Process ==========
 echo -e "\n${COLOR_BLUE}🚀 Checking VRising Process Info${COLOR_RESET}"
@@ -75,7 +79,7 @@ if [[ -n "$VRISING_PID" ]]; then
   VRISING_BITNESS=$(file "$EXE_PATH" | grep -Eo '64-bit|32-bit' || echo "unknown")
   echo "🧬 Binary Architecture: $VRISING_BITNESS"
 
-  echo -e "\n📊 Top 20 Memory Mappings:"
+  echo -e "\n📊 Top Memory Mapping:"
   FIRST_LINE=$(head -n 1 "/proc/$VRISING_PID/maps")
   VRISING_TOP_ADDR=$(echo "$FIRST_LINE" | cut -d'-' -f1)
   echo "$FIRST_LINE"
@@ -95,16 +99,15 @@ if [[ -n "$VRISING_PID" ]]; then
   BIN_COUNT=0
   MATCH_COUNT=0
 
-  grep -E 'wine|\.dll' "/proc/$VRISING_PID/maps" | while read -r line; do
+  while read -r line; do
     bin=$(echo "$line" | awk '{print $6}')
-    echo "🔍 Scanning: $bin"
     [[ -z "$bin" || ! -f "$bin" ]] && continue
-    BIN_COUNT=$((BIN_COUNT + 1))
+    ((BIN_COUNT++))
     if file "$bin" | grep -q "32-bit"; then
       echo -e "${COLOR_RED}❗ 32-bit binary loaded: $bin${COLOR_RESET}"
-      MATCH_COUNT=$((MATCH_COUNT + 1))
+      ((MATCH_COUNT++))
     fi
-  done
+  done < <(grep -E 'wine|\.dll' "/proc/$VRISING_PID/maps")
 
   echo -e "\n🧮 Summary:"
   echo "   Total binaries scanned: $BIN_COUNT"
@@ -132,7 +135,7 @@ TEST_DIR=$(mktemp -d)
 cp "$ALLOC_TEST_SOURCE" "$TEST_DIR/"
 cd "$TEST_DIR"
 x86_64-w64-mingw32-gcc alloc_test.c -o alloc_test.exe
-ALLOC_OUTPUT=$(WINEPREFIX="$WINEPREFIX" wine ./alloc_test.exe 2>&1 || true)
+ALLOC_OUTPUT=$(WINEDEBUG=-all WINEPREFIX="$WINEPREFIX" wine64 ./alloc_test.exe 2>&1 || true)
 echo "$ALLOC_OUTPUT"
 cd /
 rm -rf "$TEST_DIR"
@@ -141,10 +144,10 @@ rm -rf "$TEST_DIR"
 echo -e "\n${COLOR_BLUE}📊 FINAL VERDICT${COLOR_RESET}"
 echo "VRising binary:          $VRISING_BITNESS"
 echo "Top memory mapping:      $VRISING_TOP_ADDR"
-echo "Wine:                    $(file "$(command -v wine)" | grep -Eo '64-bit|32-bit' || echo "Unknown")"
-echo "Wineserver:              $(file "$(command -v wineserver)" | grep -Eo '64-bit|32-bit' || echo "Unknown")"
+echo "Wine:                    $(realpath "$(command -v wine)" 2>/dev/null || echo "Unknown")"
+echo "Wineserver:              $(realpath "$(command -v wineserver)" 2>/dev/null || echo "Unknown")"
 
-if echo "$ALLOC_OUTPUT" | grep -q "✅ VirtualAlloc succeeded"; then
+if echo "$ALLOC_OUTPUT" | grep -q "VirtualAlloc.*succeeded"; then
   echo "${COLOR_GREEN}🧠 Allocation Test Passed${COLOR_RESET}"
 else
   echo "${COLOR_RED}❌ Allocation Test Failed${COLOR_RESET}"

@@ -17,13 +17,14 @@ int main() {
         default: printf("Other (%u)\n", sysInfo.wProcessorArchitecture);
     }
 
-    printf("📏 sizeof(void*) = %lu\n", sizeof(void*));
+    printf("📏 sizeof(void*) = %lu\n\n", sizeof(void*));
 
     // 2. VirtualAlloc test (6GB)
     SIZE_T size = 6ULL * 1024 * 1024 * 1024;
     void* mem = VirtualAlloc(NULL, size, MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
     if (mem == NULL) {
-        printf("❌ VirtualAlloc of 6GB failed\n");
+        DWORD err = GetLastError();
+        printf("❌ VirtualAlloc of 6GB failed (error code %lu)\n", err);
         return 1;
     } else {
         printf("✅ VirtualAlloc of 6GB succeeded\n");
