@@ -25,7 +25,6 @@ echo "🌀 Installing fonts..."
   echo "🔧 Initializing wine prefix..."
   export WINEARCH=win64
   export WINEPREFIX=/home/bwinter_sc81/.wine64
-  export WINESERVER=/opt/wine-stable/bin/wineserver
   /opt/wine-stable/bin/wine64 wineboot
 '
 
