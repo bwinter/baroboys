@@ -24,8 +24,6 @@ sudo -u bwinter_sc81 -- bash -eux <<'EOF' | tee /tmp/wine_debug_log.txt
   echo "🔧 Manual wineserver experiment (Packer-compatible)"
 
   # Sanity checks
-  which wine64 || echo "⚠️ wine64 not found in PATH"
-  which wineserver || echo "⚠️ wineserver not found in PATH"
   dpkg -L wine-stable-amd64 | grep wineserver
 
   # UID info and TMPDIR
