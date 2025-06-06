@@ -36,11 +36,11 @@ lscpu | grep -E 'Model name|Architecture|CPU\(s\):|Thread'
 # ========== CGroup Limits ==========
 echo -e "\n${COLOR_BLUE}🧠 CGroup Memory Limits${COLOR_RESET}"
 for file in memory.max memory.swap.max memory.high memory.current; do
-  path="/sys/fs/cgroup/$file"
-  if [[ -f "$path" ]]; then
+  path=$(find /sys/fs/cgroup -type f -name "$file" 2>/dev/null | head -n1)
+  if [[ -n "$path" && -f "$path" ]]; then
     echo "$file: $(cat "$path")"
   else
-    echo "${COLOR_YELLOW}⚠️ $file not found at expected path: $path${COLOR_RESET}"
+    echo "${COLOR_YELLOW}⚠️ $file not found in any known cgroup path${COLOR_RESET}"
   fi
 done
 
@@ -55,25 +55,26 @@ for bin in wine wine64 wineserver; do
   fi
 
   BIN_REAL=$(realpath "$BIN_PATH" 2>/dev/null || echo "")
-  if [[ -z "$BIN_REAL" || ! -x "$BIN_REAL" ]]; then
-    echo "${COLOR_YELLOW}⚠️ $bin exists at $BIN_PATH but is not executable${COLOR_RESET}"
+  echo "🔎 $bin -> $BIN_REAL"
+
+  if [[ ! -x "$BIN_REAL" ]]; then
+    echo "${COLOR_YELLOW}⚠️ $bin exists but is not executable${COLOR_RESET}"
     continue
   fi
 
   TYPE_LINE=$(file "$BIN_REAL" 2>/dev/null || true)
-  TYPE=""
-  if [[ -n "$TYPE_LINE" ]]; then
-    TYPE=$(echo "$TYPE_LINE" | grep -Eo '64-bit|32-bit' || true)
-  fi
+  TYPE=$(echo "$TYPE_LINE" | grep -Eo '64-bit|32-bit')
 
-  echo "🔎 $bin -> $BIN_REAL: ${TYPE:-Unknown}"
+  echo "    file output: $TYPE_LINE"
+  echo "    parsed type: ${TYPE:-Unknown}"
 
   if [[ -z "$TYPE" ]]; then
-    echo "${COLOR_YELLOW}⚠️ could not determine architecture for $bin — inspect manually${COLOR_RESET}"
+    echo "${COLOR_YELLOW}⚠️ could not determine architecture for $bin — may be a wrapper script${COLOR_RESET}"
   elif [[ "$TYPE" != "64-bit" ]]; then
     echo "${COLOR_RED}❗ $bin is not 64-bit — may prevent VRising from using full memory space${COLOR_RESET}"
   fi
 done
+
 
 
 # ========== Wine Version ==========
