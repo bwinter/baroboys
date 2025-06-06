@@ -102,46 +102,25 @@ if [[ -n "$VRISING_PID" ]]; then
 
   echo -e "\n📜 Memory Map Snapshot (looking for 32-bit lib contamination):"
 
-  total_lines=0
-  skipped_missing=0
-  skipped_unreadable=0
-  scanned_files=0
-  found_32bit=0
+  set -x  # Start tracing this block
+  BIN_COUNT=0
+  MATCH_COUNT=0
 
   while read -r line; do
-    ((total_lines++))
     bin=$(echo "$line" | awk '{print $6}')
-
-    if [[ -z "$bin" ]]; then
-      ((skipped_missing++))
-      continue
+    echo "🔍 Scanning: $bin" >&1
+    [[ -z "$bin" || ! -f "$bin" ]] && continue
+    ((BIN_COUNT++))
+    if file "$bin" | grep -q "32-bit"; then
+      echo -e "${COLOR_RED}❗ 32-bit binary loaded: $bin${COLOR_RESET}"
+      ((MATCH_COUNT++))
     fi
-
-    if [[ ! -r "$bin" ]]; then
-      ((skipped_unreadable++))
-      continue
-    fi
-
-    ((scanned_files++))
-    if file "$bin" 2>/dev/null | grep -q "32-bit"; then
-      ((found_32bit++))
-      echo "${COLOR_RED}❗ 32-bit binary loaded: $bin${COLOR_RESET}"
-    fi
+    sync
   done < <(grep -E 'wine|\.dll' "/proc/$VRISING_PID/maps")
 
-  # Final summary
-  echo -e "\n🧾 ${COLOR_BOLD}Contamination Scan Summary:${COLOR_RESET}"
-  echo "🔢 Total matching lines:       $total_lines"
-  echo "🚫 Skipped (missing path):     $skipped_missing"
-  echo "🚫 Skipped (unreadable path):  $skipped_unreadable"
-  echo "🔍 Scanned with 'file':        $scanned_files"
-  echo -n "❗ Found 32-bit binaries:      "
-  if [[ "$found_32bit" -gt 0 ]]; then
-    echo "${COLOR_RED}$found_32bit${COLOR_RESET}"
-  else
-    echo "${COLOR_GREEN}0${COLOR_RESET}"
-  fi
+  set +x  # End trace
 
+  echo "🧮 Scanned $BIN_COUNT binaries, found $MATCH_COUNT 32-bit entries."
 
   echo -e "\n📊 Total Resident Set Size (from smaps):"
   awk '/^Rss:/ { total += $2 } END { printf "Total: %.2f MB\n", total / 1024 }' "/proc/$VRISING_PID/smaps"
