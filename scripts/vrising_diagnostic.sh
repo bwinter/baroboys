@@ -108,7 +108,7 @@ if [[ -n "$VRISING_PID" ]]; then
   scanned_files=0
   found_32bit=0
 
-  grep -E 'wine|\.dll' "/proc/$VRISING_PID/maps" | while read -r line; do
+  while read -r line; do
     ((total_lines++))
     bin=$(echo "$line" | awk '{print $6}')
 
@@ -127,7 +127,7 @@ if [[ -n "$VRISING_PID" ]]; then
       ((found_32bit++))
       echo "${COLOR_RED}❗ 32-bit binary loaded: $bin${COLOR_RESET}"
     fi
-  done
+  done < <(grep -E 'wine|\.dll' "/proc/$VRISING_PID/maps")
 
   # Final summary
   echo -e "\n🧾 ${COLOR_BOLD}Contamination Scan Summary:${COLOR_RESET}"
@@ -141,6 +141,7 @@ if [[ -n "$VRISING_PID" ]]; then
   else
     echo "${COLOR_GREEN}0${COLOR_RESET}"
   fi
+
 
   echo -e "\n📊 Total Resident Set Size (from smaps):"
   awk '/^Rss:/ { total += $2 } END { printf "Total: %.2f MB\n", total / 1024 }' "/proc/$VRISING_PID/smaps"
