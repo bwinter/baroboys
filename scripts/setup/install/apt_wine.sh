@@ -17,6 +17,10 @@ sudo apt -yq install \
   winetricks \
   xvfb
 
+which wine64
+which wineserver
+dpkg -L wine-stable-amd64 | grep wineserver
+
 echo "🌀 Installing fonts..."
 
 # Initialize Wine prefix (once!)
