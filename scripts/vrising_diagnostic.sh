@@ -46,7 +46,7 @@ done
 
 # ========== Wine Binary Architecture ==========
 echo -e "\n${COLOR_BLUE}🧩 Wine Binary Architecture Check${COLOR_RESET}"
-for bin in wine wine64 wineserver; do
+for bin in wine wineserver; do
   BIN_PATH=$(command -v "$bin" 2>/dev/null || true)
 
   if [[ -z "$BIN_PATH" ]]; then
