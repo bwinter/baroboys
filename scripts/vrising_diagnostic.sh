@@ -96,22 +96,16 @@ if [[ -n "$VRISING_PID" ]]; then
   echo "📈 Highest mapped address: $MAX_ADDR"
 
   echo -e "\n📜 Memory Map Snapshot (looking for 32-bit libs)"
-  BIN_COUNT=0
-  MATCH_COUNT=0
 
-  while read -r line; do
+  grep -E 'wine|\.dll' "/proc/$VRISING_PID/maps" | while read -r line; do
     bin=$(echo "$line" | awk '{print $6}')
-    [[ -z "$bin" || ! -f "$bin" ]] && continue
-    ((BIN_COUNT++))
-    if file "$bin" | grep -q "32-bit"; then
-      echo -e "${COLOR_RED}❗ 32-bit binary loaded: $bin${COLOR_RESET}"
-      ((MATCH_COUNT++))
+    echo "🔍 Scanning: $bin"
+    if [[ -n "$bin" && -f "$bin" ]]; then
+      if file "$bin" | grep -q "32-bit"; then
+        echo -e "${COLOR_RED}❗ 32-bit binary loaded: $bin${COLOR_RESET}"
+      fi
     fi
-  done < <(grep -E 'wine|\.dll' "/proc/$VRISING_PID/maps")
-
-  echo -e "\n🧮 Summary:"
-  echo "   Total binaries scanned: $BIN_COUNT"
-  echo "   32-bit matches found:   $MATCH_COUNT"
+  done
 
   echo -e "\n📊 Total RSS (from smaps)"
   RSS_KB=$(awk '/^Rss:/ { sum += $2 } END { print sum }' "/proc/$VRISING_PID/smaps")
@@ -135,7 +129,7 @@ TEST_DIR=$(mktemp -d)
 cp "$ALLOC_TEST_SOURCE" "$TEST_DIR/"
 cd "$TEST_DIR"
 x86_64-w64-mingw32-gcc alloc_test.c -o alloc_test.exe
-ALLOC_OUTPUT=$(WINEDEBUG=-all WINEPREFIX="$WINEPREFIX" wine64 ./alloc_test.exe 2>&1 || true)
+ALLOC_OUTPUT=$(WINEDEBUG=-all WINEPREFIX="$WINEPREFIX" wine ./alloc_test.exe 2>&1 || true)
 echo "$ALLOC_OUTPUT"
 cd /
 rm -rf "$TEST_DIR"
