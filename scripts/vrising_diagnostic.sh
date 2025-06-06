@@ -67,15 +67,11 @@ for bin in wine wine64 wineserver; do
     continue
   fi
 
-  if TYPE_LINE=$(file "$BIN_REAL" 2>/dev/null); then
-    TYPE=$(echo "$TYPE_LINE" | grep -Eo '64-bit|32-bit')
-  else
-    TYPE_LINE="(unreadable or error)"
-    TYPE=""
-  fi
+  TYPE_LINE=$(file "$BIN_REAL" 2>/dev/null || echo "unreadable")
+  TYPE=$(echo "$TYPE_LINE" | grep -Eo '64-bit|32-bit' || true)
 
   if [[ -z "$TYPE" ]]; then
-    echo "${COLOR_YELLOW}⚠️ could not determine architecture — possibly a wrapper or script:${COLOR_RESET}"
+    echo "${COLOR_YELLOW}⚠️ could not determine architecture — possibly a shell wrapper or script${COLOR_RESET}"
     echo "    file output: $TYPE_LINE"
   else
     echo "    file output: $TYPE_LINE"
@@ -85,6 +81,7 @@ for bin in wine wine64 wineserver; do
     fi
   fi
 done
+
 
 # ========== Wine Version ==========
 echo -e "\n${COLOR_BLUE}🍷 Wine Version${COLOR_RESET}"
