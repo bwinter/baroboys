@@ -13,8 +13,6 @@ sudo dpkg --add-architecture amd64
 sudo apt-get -yq update
 
 sudo apt -yq install \
-  winehq-stable:amd64 \
-  wine-stable:amd64 \
   wine-stable-amd64 \
   wine64 \
   winetricks \
@@ -42,5 +40,17 @@ sudo -u bwinter_sc81 -- bash -c '
     winetricks --unattended corefonts tahoma || echo "⚠️ winetricks failed"
 '
 
-sudo apt -yq purge wine32 wine:i386 wine-stable-i386 || true
+# --- Selective Cleanup ---
+
+# Purge only the 32-bit and helper stuff
+sudo apt -yq purge --auto-remove \
+  wine32 \
+  wine-stable-i386 \
+  winetricks || true
+
+# Reinstall 64-bit only (minimal deps)
+sudo apt -yq --no-install-recommends install \
+  wine64 \
+  wine-stable-amd64
+
 echo "✅ Fonts install attempt complete."
