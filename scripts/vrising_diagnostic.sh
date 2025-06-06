@@ -19,7 +19,7 @@ free -h
 ulimit -a
 
 echo -e "\n🔧 CPU Info"
-lscpu | grep -E 'Model name|Architecture|CPU\(s\):|Thread'
+lscpu | grep -E 'Model name|Architecture|CPU\\(s\\):|Thread'
 
 # ========== CGROUPS AND MEMORY LIMITS ==========
 echo -e "\n🧠 CGroup Memory Limits"
@@ -65,6 +65,7 @@ fi
 echo -e "\n🚀 Checking VRising Process Info"
 VRISING_PID=$(pgrep -f VRisingServer.exe | head -n1 || true)
 VRISING_BITNESS="unknown"
+VRISING_TOP_ADDR="unknown"
 
 if [[ -n "$VRISING_PID" ]]; then
   echo "✅ VRisingServer.exe is running with PID $VRISING_PID"
@@ -73,11 +74,21 @@ if [[ -n "$VRISING_PID" ]]; then
   echo "🧵 Executable Path: $VRISING_EXE_PATH"
 
   echo -n "🧬 Binary Architecture: "
-  echo -e "\n📊 Top 20 Memory Mappings (check address space):"
-  head -n 20 "/proc/$VRISING_PID/maps"
-
   file "$VRISING_EXE_PATH" | grep -Eo '64-bit|32-bit' || echo "Unknown"
   VRISING_BITNESS=$(file "$VRISING_EXE_PATH" | grep -Eo '64-bit|32-bit' || echo "unknown")
+
+  echo -e "\n📊 Top 20 Memory Mappings (check address space):"
+  TOP_LINE=$(head -n 1 "/proc/$VRISING_PID/maps")
+  TOP_ADDR=$(echo "$TOP_LINE" | cut -d'-' -f1)
+  VRISING_TOP_ADDR="$TOP_ADDR"
+  echo "$TOP_LINE"
+
+  printf "🧠 Top memory address: %s " "$TOP_ADDR"
+  if [[ "$TOP_ADDR" =~ ^[0-7][0-9a-f]{7,}$ ]]; then
+    echo "✅ (high memory region, likely 64-bit)"
+  else
+    echo "❌ (low memory region, suspicious)"
+  fi
 
   echo -e "\n📜 Memory Map Snapshot (looking for 32-bit lib contamination):"
   grep -E 'wine|\.dll' "/proc/$VRISING_PID/maps" | while read -r line; do
@@ -99,17 +110,27 @@ echo "📦 Compiling alloc_test.exe"
 x86_64-w64-mingw32-gcc alloc_test.c -o alloc_test.exe
 
 echo "🚀 Running alloc_test.exe under Wine"
-WINEPREFIX="$WINEPREFIX" wine ./alloc_test.exe || echo "⚠️ alloc_test.exe reported failure"
+ALLOC_RESULT=$(WINEPREFIX="$WINEPREFIX" wine ./alloc_test.exe 2>&1 || true)
+echo "$ALLOC_RESULT"
 
 cd /
 rm -rf "$TEST_DIR"
 
 # ========== SUMMARY ==========
-echo -e "\n🧾 SUMMARY"
+echo -e "\n📊 FINAL VERDICT"
 
-[[ "$VRISING_BITNESS" == "64-bit" ]] && echo "✅ VRising is running as a 64-bit process" || echo "❌ VRising is NOT running as 64-bit"
+printf "%-30s %s\n" "VRising binary:" "$VRISING_BITNESS"
+printf "%-30s %s\n" "Top memory mapping:" "$VRISING_TOP_ADDR"
+printf "%-30s " "Wine binary:"
+file "$(command -v wine)" | grep -q "64-bit" && echo "✅ 64-bit" || echo "❌ Not 64-bit"
 
-echo -n "🧠 Wine binary: "; file "$(command -v wine)" | grep -q "64-bit" && echo "✅ 64-bit" || echo "❌ Not 64-bit"
-echo -n "🧠 Wineserver: "; command -v wineserver &>/dev/null && file "$(command -v wineserver)" | grep -q "64-bit" && echo "✅ 64-bit" || echo "❌ Not 64-bit"
+printf "%-30s " "Wineserver:"
+command -v wineserver &>/dev/null && file "$(command -v wineserver)" | grep -q "64-bit" && echo "✅ 64-bit" || echo "❌ Not 64-bit"
 
-echo -e "\n✅ Diagnostics complete — review log at: $LOG_FILE"
+if echo "$ALLOC_RESULT" | grep -q "✅ VirtualAlloc succeeded"; then
+  echo "🧠 Memory allocation test: ✅ Passed"
+else
+  echo "🧠 Memory allocation test: ❌ Failed"
+fi
+
+echo -e "\n🗂️ Diagnostics log saved to: $LOG_FILE"
