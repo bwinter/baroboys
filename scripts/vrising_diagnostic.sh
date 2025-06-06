@@ -31,15 +31,15 @@ done
 # ========== WINE CONFIG ==========
 
 echo -e "\n🍷 Wine Binary Info"
-command -v wine64 || echo "⚠️ wine64 not found"
-file "$(which wine64)" || true
-readelf -h "$(which wine64)" | grep 'Class\|Machine' || true
+command -v wine || echo "⚠️ wine not found"
+file "$(which wine)" || true
+readelf -h "$(which wine)" | grep 'Class\|Machine' || true
 
 echo -e "\n🍷 Wine Version"
-wine64 --version || echo "⚠️ wine64 failed to report version"
+wine --version || echo "⚠️ wine failed to report version"
 
 echo -e "\n🍷 Wine Prefix Info"
-WINEPREFIX="${WINEPREFIX:-$HOME/.wine64}"
+WINEPREFIX="${WINEPREFIX:-$HOME/.wine}"
 echo "WINEPREFIX = $WINEPREFIX"
 [[ -d "$WINEPREFIX" ]] || echo "⚠️ WINEPREFIX not found"
 
@@ -89,7 +89,7 @@ int main() {
 EOF
 
 x86_64-w64-mingw32-gcc alloc_test.c -o alloc_test.exe
-WINEPREFIX="$WINEPREFIX" wine64 ./alloc_test.exe || echo "⚠️ Wine allocation test failed"
+WINEPREFIX="$WINEPREFIX" wine ./alloc_test.exe || echo "⚠️ Wine allocation test failed"
 cd -
 rm -rf "$TEST_DIR"
 
