@@ -13,7 +13,8 @@ sudo dpkg --add-architecture amd64
 sudo apt-get -yq update
 
 sudo apt -yq install \
-  wine-stable-amd64 \
+  wine-stable \
+  winetricks \
   xvfb
 
 # Show version of wine64
