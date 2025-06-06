@@ -43,10 +43,14 @@ done
 echo -e "\n${COLOR_BLUE}🧩 Wine Binary Architecture Check${COLOR_RESET}"
 for bin in wine wine64 wineserver; do
   if command -v "$bin" &>/dev/null; then
-    BIN_PATH=$(realpath "$(command -v "$bin")")
-    echo "🔎 $bin -> $BIN_PATH: $(file "$BIN_PATH" | grep -Eo '64-bit|32-bit' || echo "Unknown")"
+    BIN_PATH=$(readlink -f "$(command -v "$bin")")
+    TYPE=$(file "$BIN_PATH" | grep -Eo '64-bit|32-bit' || echo "Unknown")
+    echo "🔎 $bin -> $BIN_PATH: $TYPE"
+    if [[ "$TYPE" != "64-bit" ]]; then
+      echo "${COLOR_RED}❗ $bin is not 64-bit — may prevent VRising from using full memory space${COLOR_RESET}"
+    fi
   else
-    echo "${COLOR_YELLOW}⚠️ $bin not found${COLOR_RESET}"
+    echo "${COLOR_RED}❗ $bin not found — full 64-bit Wine may not be available${COLOR_RESET}"
   fi
 done
 
@@ -63,7 +67,7 @@ if [[ ! -d "$WINEPREFIX" ]]; then
   echo "${COLOR_YELLOW}⚠️ WINEPREFIX not found. It will be auto-created by Wine.${COLOR_RESET}"
 else
   [[ -f "$WINEPREFIX/system.reg" ]] || echo "${COLOR_YELLOW}⚠️ system.reg not found${COLOR_RESET}"
-  grep -i 'winearch' "$WINEPREFIX/system.reg" || echo "${COLOR_YELLOW}⚠️ 'winearch' not found in system.reg${COLOR_RESET}" || true
+  grep -i 'winearch' "$WINEPREFIX/system.reg" || echo "${COLOR_YELLOW}⚠️ 'winearch' not found in system.reg — not necessarily a problem${COLOR_RESET}" || true
 fi
 
 # ========== VRising Process ==========
@@ -88,7 +92,7 @@ if [[ -n "$VRISING_PID" ]]; then
   if [[ "$VRISING_TOP_ADDR" =~ ^[0-7][0-9a-f]{7,}$ ]]; then
     echo "${COLOR_GREEN}✅ likely 64-bit${COLOR_RESET}"
   else
-    echo "${COLOR_RED}❌ low memory region${COLOR_RESET}"
+    echo "${COLOR_RED}❌ low memory region — unusual for 64-bit mode${COLOR_RESET}"
   fi
 
   echo -e "\n📐 Memory Map Range Analysis"
@@ -96,16 +100,17 @@ if [[ -n "$VRISING_PID" ]]; then
   echo "📈 Highest mapped address: $MAX_ADDR"
 
   echo -e "\n📜 Memory Map Snapshot (looking for 32-bit libs)"
-
-  grep -E 'wine|\.dll' "/proc/$VRISING_PID/maps" | while read -r line; do
-    bin=$(echo "$line" | awk '{print $6}')
+  FOUND_32=0
+  grep -E 'wine|\.dll' "/proc/$VRISING_PID/maps" | awk '{print $6}' | sort -u | while read -r bin; do
     echo "🔍 Scanning: $bin"
     if [[ -n "$bin" && -f "$bin" ]]; then
       if file "$bin" | grep -q "32-bit"; then
         echo -e "${COLOR_RED}❗ 32-bit binary loaded: $bin${COLOR_RESET}"
+        FOUND_32=$(expr "$FOUND_32" + 1)
       fi
     fi
   done
+  echo "🔬 Total 32-bit artifacts found: $FOUND_32"
 
   echo -e "\n📊 Total RSS (from smaps)"
   RSS_KB=$(awk '/^Rss:/ { sum += $2 } END { print sum }' "/proc/$VRISING_PID/smaps")
@@ -120,7 +125,7 @@ if [[ -n "$VRISING_PID" ]]; then
     echo "${COLOR_RED}❗ Low memory use, may not be allocating freely${COLOR_RESET}"
   fi
 else
-  echo "${COLOR_YELLOW}⚠️ VRisingServer.exe not running${COLOR_RESET}"
+  echo "${COLOR_YELLOW}⚠️ VRisingServer.exe not running — skipping process checks${COLOR_RESET}"
 fi
 
 # ========== In-Process Alloc Test ==========
@@ -134,6 +139,8 @@ echo "$ALLOC_OUTPUT"
 cd /
 rm -rf "$TEST_DIR"
 
+ALLOC_OK=$(echo "$ALLOC_OUTPUT" | grep -c "VirtualAlloc of 6GB succeeded")
+
 # ========== Final Verdict ==========
 echo -e "\n${COLOR_BLUE}📊 FINAL VERDICT${COLOR_RESET}"
 echo "VRising binary:          $VRISING_BITNESS"
@@ -141,10 +148,10 @@ echo "Top memory mapping:      $VRISING_TOP_ADDR"
 echo "Wine:                    $(realpath "$(command -v wine)" 2>/dev/null || echo "Unknown")"
 echo "Wineserver:              $(realpath "$(command -v wineserver)" 2>/dev/null || echo "Unknown")"
 
-if echo "$ALLOC_OUTPUT" | grep -q "VirtualAlloc.*succeeded"; then
-  echo "${COLOR_GREEN}🧠 Allocation Test Passed${COLOR_RESET}"
+if [[ "$ALLOC_OK" -gt 0 ]]; then
+  echo "${COLOR_GREEN}🧠 Allocation Test Passed — 64-bit heap available${COLOR_RESET}"
 else
-  echo "${COLOR_RED}❌ Allocation Test Failed${COLOR_RESET}"
+  echo "${COLOR_RED}❌ Allocation Test Failed — in-process 64-bit alloc may be blocked${COLOR_RESET}"
 fi
 
 echo -e "\n🗂️ Log saved to: $LOG_FILE"
