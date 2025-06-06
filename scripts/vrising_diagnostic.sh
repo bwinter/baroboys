@@ -42,15 +42,16 @@ done
 # ========== Wine Binary Architecture ==========
 echo -e "\n${COLOR_BLUE}🧩 Wine Binary Architecture Check${COLOR_RESET}"
 for bin in wine wine64 wineserver; do
-  if command -v "$bin" &>/dev/null; then
-    BIN_PATH=$(readlink -f "$(command -v "$bin")")
+  BIN_PATH=$(command -v "$bin" || true)
+  if [[ -n "$BIN_PATH" && -x "$BIN_PATH" ]]; then
+    BIN_PATH=$(realpath "$BIN_PATH")
     TYPE=$(file "$BIN_PATH" | grep -Eo '64-bit|32-bit' || echo "Unknown")
     echo "🔎 $bin -> $BIN_PATH: $TYPE"
     if [[ "$TYPE" != "64-bit" ]]; then
       echo "${COLOR_RED}❗ $bin is not 64-bit — may prevent VRising from using full memory space${COLOR_RESET}"
     fi
   else
-    echo "${COLOR_RED}❗ $bin not found — full 64-bit Wine may not be available${COLOR_RESET}"
+    echo "${COLOR_YELLOW}⚠️ $bin not found in PATH — check Wine installation path${COLOR_RESET}"
   fi
 done
 
@@ -88,11 +89,14 @@ if [[ -n "$VRISING_PID" ]]; then
   VRISING_TOP_ADDR=$(echo "$FIRST_LINE" | cut -d'-' -f1)
   echo "$FIRST_LINE"
 
+  ADDR_HEX=$(echo "$VRISING_TOP_ADDR" | tr 'a-f' 'A-F' | sed 's/^0X//')
+  ADDR_DEC=$(printf "%u\n" 0x$ADDR_HEX 2>/dev/null || echo "0")
+
   echo -n "🧠 Top memory address: $VRISING_TOP_ADDR "
-  if [[ "$VRISING_TOP_ADDR" =~ ^[0-7][0-9a-f]{7,}$ ]]; then
-    echo "${COLOR_GREEN}✅ likely 64-bit${COLOR_RESET}"
+  if [ "$ADDR_DEC" -gt 4294967295 ]; then
+    echo "${COLOR_GREEN}✅ exceeds 0xFFFFFFFF — confirms 64-bit address space${COLOR_RESET}"
   else
-    echo "${COLOR_RED}❌ low memory region — unusual for 64-bit mode${COLOR_RESET}"
+    echo "${COLOR_RED}❌ under 0xFFFFFFFF — may indicate 32-bit environment${COLOR_RESET}"
   fi
 
   echo -e "\n📐 Memory Map Range Analysis"
