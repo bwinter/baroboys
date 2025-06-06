@@ -23,6 +23,7 @@ sudo apt -yq install \
   winetricks
 
 export WINE=/opt/wine-stable/bin/wine64
+export WINESERVER=/opt/wine-stable/bin/wineserver
 
 echo "🔧 Installing corefonts and tahoma via winetricks..."
 xvfb-run --auto-servernum --server-args="-screen 0 1024x768x24" \
