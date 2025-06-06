@@ -14,7 +14,6 @@ sudo apt-get -yq update
 
 sudo apt -yq install \
   wine-stable-amd64 \
-  wine64 \
   winetricks \
   xvfb
 
@@ -43,13 +42,6 @@ sudo -u bwinter_sc81 -- bash -c '
 
 # Purge only the 32-bit and helper stuff
 sudo apt -yq purge --auto-remove \
-  wine32 \
-  wine-stable-i386 \
   winetricks || true
-
-# Reinstall 64-bit only (minimal deps)
-sudo apt -yq --no-install-recommends install \
-  wine64 \
-  wine-stable-amd64
 
 echo "✅ Fonts install attempt complete."
