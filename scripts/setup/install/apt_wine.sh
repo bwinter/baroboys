@@ -54,7 +54,6 @@ sudo -u bwinter_sc81 -- bash -eux <<'EOF' | tee /tmp/wine_debug_log.txt
   # Set wine env
   export WINEARCH=win64
   export WINEPREFIX=/home/bwinter_sc81/.wine64
-  export WINEDEBUG=+server,+wineserver,+file,+pid,+timestamp
 
   # Prep log files
   mkdir -p /tmp/wine-debug
@@ -66,10 +65,10 @@ sudo -u bwinter_sc81 -- bash -eux <<'EOF' | tee /tmp/wine_debug_log.txt
   rm -rf /tmp/.wine-$(id -u)
 
   # Start wineserver in background
-  echo "🚀 Starting wineserver..."
-  /usr/bin/wineserver -f -d 2>&1 | tee "$WS_LOG" &
-  WS_PID=$!
-  echo "🧪 wineserver PID: $WS_PID"
+  #echo "🚀 Starting wineserver..."
+  #/usr/bin/wineserver -f -d 2>&1 | tee "$WS_LOG" &
+  #WS_PID=$!
+  #echo "🧪 wineserver PID: $WS_PID"
 
   # Wait a bit to ensure wineserver starts up
   sleep 2
