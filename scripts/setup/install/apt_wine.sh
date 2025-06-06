@@ -21,8 +21,7 @@ echo "🌀 Installing fonts..."
 
 # Initialize Wine prefix (once!)
 sudo -u bwinter_sc81 -- bash -eux <<'EOF' | tee /tmp/wine_debug_log.txt
-  set -eux
-  echo "🔧 Starting full debug trace for wineboot"
+  echo "🔧 Manual wineserver experiment (Packer-compatible)"
 
   # UID info and TMPDIR
   echo "🧪 UID: $(id -u)"
@@ -57,8 +56,35 @@ sudo -u bwinter_sc81 -- bash -eux <<'EOF' | tee /tmp/wine_debug_log.txt
   export WINEPREFIX=/home/bwinter_sc81/.wine64
   export WINEDEBUG=+server,+wineserver,+file,+pid,+timestamp
 
+  # Prep log files
+  mkdir -p /tmp/wine-debug
+  WS_LOG=/tmp/wine-debug/wineserver.log
+  WB_LOG=/tmp/wine-debug/wineboot.log
+
+  # Kill any old wineserver
+  /opt/wine-stable/bin/wineserver -k || true
+  rm -rf /tmp/.wine-$(id -u)
+
+  # Start wineserver in background
+  echo "🚀 Starting wineserver..."
+  /opt/wine-stable/bin/wineserver -f -d 2>&1 | tee "$WS_LOG" &
+  WS_PID=$!
+  echo "🧪 wineserver PID: $WS_PID"
+
+  # Wait a bit to ensure wineserver starts up
+  sleep 2
+
   # Launch wineboot
-  /opt/wine-stable/bin/wine64 wineboot
+  /opt/wine-stable/bin/wine64 wineboot 2>&1 | tee "$WB_LOG" || echo "⚠️ wineboot failed"
+
+  # Shutdown wineserver
+  echo "🛑 Killing wineserver..."
+  kill "$WS_PID" || true
+  wait "$WS_PID" || true
+
+  echo "📄 Logs saved to:"
+  echo "  - $WS_LOG"
+  echo "  - $WB_LOG"
 
   # Snapshot /tmp again
   echo "📂 /tmp contents post-wineboot:"
