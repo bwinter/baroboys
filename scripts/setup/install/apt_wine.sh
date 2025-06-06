@@ -29,13 +29,9 @@ sudo -u bwinter_sc81 -- bash -eux <<'EOF' | tee /tmp/wine_debug_log.txt
   echo "🧪 XDG_RUNTIME_DIR: ${XDG_RUNTIME_DIR:-"(unset)"}"
   echo "🧪 HOME: $HOME"
 
-  # Show wine binary paths
-  echo "📂 /opt/wine-stable/bin contents:"
-  ls -l /opt/wine-stable/bin || echo "⚠️ Missing wine bin dir"
-
   # Show version of wine64
   echo "ℹ️ wine64 version info:"
-  /opt/wine-stable/bin/wine64 --version || echo "⚠️ wine64 not working"
+  /usr/bin/wine64 --version || echo "⚠️ wine64 not working"
 
   # Show environment
   echo "🔧 Environment snapshot:"
@@ -62,12 +58,12 @@ sudo -u bwinter_sc81 -- bash -eux <<'EOF' | tee /tmp/wine_debug_log.txt
   WB_LOG=/tmp/wine-debug/wineboot.log
 
   # Kill any old wineserver
-  /opt/wine-stable/bin/wineserver -k || true
+  /usr/bin/wineserver -k || true
   rm -rf /tmp/.wine-$(id -u)
 
   # Start wineserver in background
   echo "🚀 Starting wineserver..."
-  /opt/wine-stable/bin/wineserver -f -d 2>&1 | tee "$WS_LOG" &
+  /usr/bin/wineserver -f -d 2>&1 | tee "$WS_LOG" &
   WS_PID=$!
   echo "🧪 wineserver PID: $WS_PID"
 
@@ -75,7 +71,7 @@ sudo -u bwinter_sc81 -- bash -eux <<'EOF' | tee /tmp/wine_debug_log.txt
   sleep 2
 
   # Launch wineboot
-  /opt/wine-stable/bin/wine64 wineboot 2>&1 | tee "$WB_LOG" || echo "⚠️ wineboot failed"
+  /usr/bin/wine64 wineboot 2>&1 | tee "$WB_LOG" || echo "⚠️ wineboot failed"
 
   # Shutdown wineserver
   echo "🛑 Killing wineserver..."
@@ -97,7 +93,7 @@ EOF
 # Run winetricks under xvfb
 sudo -u bwinter_sc81 -- bash -c '
   echo "🔧 Installing corefonts and tahoma via winetricks..."
-  export WINE=/opt/wine-stable/bin/wine64
+  export WINE=/usr/bin/wine64
   export WINEARCH=win64
   export WINEPREFIX=/home/bwinter_sc81/.wine64
   export WINETRICKS_GUI=none
