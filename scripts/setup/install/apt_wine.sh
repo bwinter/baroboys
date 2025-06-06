@@ -19,7 +19,7 @@ sudo apt -yq install \
 
 # Sanity checks
 ls -la /usr/bin/
-file /usr/bin/wine64
+file /usr/bin/wine
 
 echo "🌀 Installing fonts..."
 
@@ -34,8 +34,8 @@ sudo -u bwinter_sc81 -- bash -eux <<'EOF' | tee /tmp/wine_debug_log.txt
   echo "🧪 HOME: $HOME"
 
   # Show version of wine64
-  echo "ℹ️ wine64 version info:"
-  /usr/bin/wine64 --version || echo "⚠️ wine64 not working"
+  echo "ℹ️ wine version info:"
+  /usr/bin/wine --version || echo "⚠️ wine64 not working"
 
   # Show environment
   echo "🔧 Environment snapshot:"
@@ -75,7 +75,7 @@ sudo -u bwinter_sc81 -- bash -eux <<'EOF' | tee /tmp/wine_debug_log.txt
   sleep 2
 
   # Launch wineboot
-  /usr/bin/wine64 wineboot 2>&1 | tee "$WB_LOG" || echo "⚠️ wineboot failed"
+  /usr/bin/wine wineboot 2>&1 | tee "$WB_LOG" || echo "⚠️ wineboot failed"
 
   # Shutdown wineserver
   echo "🛑 Killing wineserver..."
@@ -97,7 +97,7 @@ EOF
 # Run winetricks under xvfb
 sudo -u bwinter_sc81 -- bash -c '
   echo "🔧 Installing corefonts and tahoma via winetricks..."
-  export WINE=/usr/bin/wine64
+  export WINE=/usr/bin/wine
   export WINEARCH=win64
   export WINEPREFIX=/home/bwinter_sc81/.wine64
   export WINETRICKS_GUI=none
