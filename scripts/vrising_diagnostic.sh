@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -euxo pipefail
 
 # ========== Color Handling ==========
 COLOR_RESET=$(tput sgr0 || echo "")
@@ -32,41 +32,32 @@ lscpu | grep -E 'Model name|Architecture|CPU\(s\):|Thread'
 
 # ========== CGroup Limits ==========
 echo -e "\n${COLOR_BLUE}🧠 CGroup Memory Limits${COLOR_RESET}"
-for file in memory.max memory.swap.max memory.high memory.current; do
-  path="/sys/fs/cgroup/$file"
-  [[ -f "$path" ]] && echo "$file: $(cat $path)"
+for f in memory.max memory.swap.max memory.high memory.current; do
+  [[ -f "/sys/fs/cgroup/$f" ]] && echo "$f: $(cat /sys/fs/cgroup/$f)"
 done
 
 # ========== Wine Binary Architecture ==========
 echo -e "\n${COLOR_BLUE}🧩 Wine Binary Architecture Check${COLOR_RESET}"
-check_binary_arch() {
-  local bin="$1"
+for bin in wine wine64 wineserver; do
   if command -v "$bin" &>/dev/null; then
     echo -n "🔎 $bin: "
     file "$(command -v "$bin")" | grep -Eo '64-bit|32-bit' || echo "Unknown"
   else
     echo "${COLOR_YELLOW}⚠️ $bin not found${COLOR_RESET}"
   fi
-}
-check_binary_arch wine
-check_binary_arch wine64
-check_binary_arch wineserver
+done
 
 # ========== Wine Version ==========
 echo -e "\n${COLOR_BLUE}🍷 Wine Version${COLOR_RESET}"
 wine --version || echo "${COLOR_YELLOW}⚠️ wine failed to report version${COLOR_RESET}"
 
-# ========== Wine Prefix ==========
+# ========== Wine Prefix Info ==========
 echo -e "\n${COLOR_BLUE}📁 Wine Prefix Info${COLOR_RESET}"
 WINEPREFIX="${WINEPREFIX:-$HOME/.wine}"
 echo "WINEPREFIX = $WINEPREFIX"
 [[ -d "$WINEPREFIX" ]] || echo "${COLOR_YELLOW}⚠️ WINEPREFIX not found${COLOR_RESET}"
-
-if [[ -f "$WINEPREFIX/system.reg" ]]; then
-  grep -i 'winearch' "$WINEPREFIX/system.reg" || echo "${COLOR_YELLOW}⚠️ 'winearch' not found in system.reg${COLOR_RESET}"
-else
-  echo "${COLOR_YELLOW}⚠️ system.reg not found in $WINEPREFIX${COLOR_RESET}"
-fi
+[[ -f "$WINEPREFIX/system.reg" ]] || echo "${COLOR_YELLOW}⚠️ system.reg not found${COLOR_RESET}"
+grep -i 'winearch' "$WINEPREFIX/system.reg" || echo "${COLOR_YELLOW}⚠️ 'winearch' not found in system.reg${COLOR_RESET}"
 
 # ========== VRising Process ==========
 echo -e "\n${COLOR_BLUE}🚀 Checking VRising Process Info${COLOR_RESET}"
@@ -76,120 +67,84 @@ VRISING_TOP_ADDR="unknown"
 
 if [[ -n "$VRISING_PID" ]]; then
   echo "✅ VRisingServer.exe is running with PID $VRISING_PID"
-  VRISING_EXE_PATH=$(readlink -f "/proc/$VRISING_PID/exe")
-  echo "🧵 Executable Path: $VRISING_EXE_PATH"
+  EXE_PATH=$(readlink -f "/proc/$VRISING_PID/exe")
+  echo "🧵 Executable Path: $EXE_PATH"
+  VRISING_BITNESS=$(file "$EXE_PATH" | grep -Eo '64-bit|32-bit' || echo "unknown")
+  echo "🧬 Binary Architecture: $VRISING_BITNESS"
 
-  echo -n "🧬 Binary Architecture: "
-  file "$VRISING_EXE_PATH" | grep -Eo '64-bit|32-bit' || echo "Unknown"
-  VRISING_BITNESS=$(file "$VRISING_EXE_PATH" | grep -Eo '64-bit|32-bit' || echo "unknown")
+  echo -e "\n📊 Top 20 Memory Mappings:"
+  FIRST_LINE=$(head -n 1 "/proc/$VRISING_PID/maps")
+  VRISING_TOP_ADDR=$(echo "$FIRST_LINE" | cut -d'-' -f1)
+  echo "$FIRST_LINE"
 
-  echo -e "\n📊 Top 20 Memory Mappings (check address space):"
-  TOP_LINE=$(head -n 1 "/proc/$VRISING_PID/maps")
-  TOP_ADDR=$(echo "$TOP_LINE" | cut -d'-' -f1)
-  VRISING_TOP_ADDR="$TOP_ADDR"
-  echo "$TOP_LINE"
-
-  printf "🧠 Top memory address: %s " "$TOP_ADDR"
-  if [[ "$TOP_ADDR" =~ ^[0-7][0-9a-f]{7,}$ ]]; then
-    echo "${COLOR_GREEN}✅ (high memory region, likely 64-bit)${COLOR_RESET}"
+  echo -n "🧠 Top memory address: $VRISING_TOP_ADDR "
+  if [[ "$VRISING_TOP_ADDR" =~ ^[0-7][0-9a-f]{7,}$ ]]; then
+    echo "${COLOR_GREEN}✅ likely 64-bit${COLOR_RESET}"
   else
-    echo "${COLOR_RED}❌ (low memory region, suspicious)${COLOR_RESET}"
+    echo "${COLOR_RED}❌ low memory region${COLOR_RESET}"
   fi
 
-  echo -e "\n📐 Full VRising Memory Map Range Analysis"
-  MAX_ADDR=$(awk '{print $1}' "/proc/$VRISING_PID/maps" | cut -d'-' -f2 | sort -n | tail -n1)
+  echo -e "\n📐 Memory Map Range Analysis"
+  MAX_ADDR=$(awk '{print $1}' "/proc/$VRISING_PID/maps" | cut -d'-' -f2 | sort | tail -n1)
   echo "📈 Highest mapped address: $MAX_ADDR"
 
-  echo -e "\n📜 Memory Map Snapshot (looking for 32-bit lib contamination):"
-
-  set -x  # Start tracing this block
+  echo -e "\n📜 Memory Map Snapshot (looking for 32-bit libs)"
   BIN_COUNT=0
   MATCH_COUNT=0
 
-  while read -r line; do
+  grep -E 'wine|\.dll' "/proc/$VRISING_PID/maps" | while read -r line; do
     bin=$(echo "$line" | awk '{print $6}')
-    echo "🔍 Scanning: $bin" >&1
+    echo "🔍 Scanning: $bin"
     [[ -z "$bin" || ! -f "$bin" ]] && continue
-    ((BIN_COUNT++))
+    BIN_COUNT=$((BIN_COUNT + 1))
     if file "$bin" | grep -q "32-bit"; then
       echo -e "${COLOR_RED}❗ 32-bit binary loaded: $bin${COLOR_RESET}"
-      ((MATCH_COUNT++))
+      MATCH_COUNT=$((MATCH_COUNT + 1))
     fi
-    sync
-  done < <(grep -E 'wine|\.dll' "/proc/$VRISING_PID/maps")
+  done
 
-  set +x  # End trace
+  echo -e "\n🧮 Summary:"
+  echo "   Total binaries scanned: $BIN_COUNT"
+  echo "   32-bit matches found:   $MATCH_COUNT"
 
-  echo "🧮 Scanned $BIN_COUNT binaries, found $MATCH_COUNT 32-bit entries."
+  echo -e "\n📊 Total RSS (from smaps)"
+  RSS_KB=$(awk '/^Rss:/ { sum += $2 } END { print sum }' "/proc/$VRISING_PID/smaps")
+  RSS_MB=$(awk "BEGIN { printf \"%.2f\", $RSS_KB / 1024 }")
+  echo "📦 Resident Set Size: ${RSS_MB} MB"
 
-  echo -e "\n📊 Total Resident Set Size (from smaps):"
-  awk '/^Rss:/ { total += $2 } END { printf "Total: %.2f MB\n", total / 1024 }' "/proc/$VRISING_PID/smaps"
-
-  # === Summary verdict on actual memory usage ===
-  echo -e "\n${COLOR_BLUE}📈 Memory Usage Summary${COLOR_RESET}"
-  VRISING_RSS_KB=$(awk '/^Rss:/ { total += $2 } END { print total }' "/proc/$VRISING_PID/smaps")
-  VRISING_RSS_MB=$(awk "BEGIN { printf \"%.2f\", $VRISING_RSS_KB / 1024 }")
-
-  echo "📦 Resident Set Size: ${VRISING_RSS_MB} MB"
-
-  if (( VRISING_RSS_KB > 4 * 1024 * 1024 )); then
-    echo "${COLOR_GREEN}✅ Exceeds 4GB — 64-bit memory fully engaged${COLOR_RESET}"
-  elif (( VRISING_RSS_KB > 2 * 1024 * 1024 )); then
-    echo "${COLOR_YELLOW}⚠️ Moderate usage — game not memory-capped, but hasn't crossed 4GB yet${COLOR_RESET}"
+  if (( RSS_KB > 4 * 1024 * 1024 )); then
+    echo "${COLOR_GREEN}✅ Over 4GB — 64-bit memory usage confirmed${COLOR_RESET}"
+  elif (( RSS_KB > 2 * 1024 * 1024 )); then
+    echo "${COLOR_YELLOW}⚠️ Moderate memory use, not yet at ceiling${COLOR_RESET}"
   else
-    echo "${COLOR_RED}❗ Low usage — no sign of large memory mapping yet${COLOR_RESET}"
+    echo "${COLOR_RED}❗ Low memory use, may not be allocating freely${COLOR_RESET}"
   fi
 else
-  echo "${COLOR_YELLOW}⚠️ VRisingServer.exe is not currently running${COLOR_RESET}"
+  echo "${COLOR_YELLOW}⚠️ VRisingServer.exe not running${COLOR_RESET}"
 fi
 
 # ========== In-Process Alloc Test ==========
-echo -e "\n${COLOR_BLUE}🧪 In-Wine Architecture & Memory Sanity Test${COLOR_RESET}"
+echo -e "\n${COLOR_BLUE}🧪 In-Wine Allocation Test${COLOR_RESET}"
 TEST_DIR=$(mktemp -d)
 cp "$ALLOC_TEST_SOURCE" "$TEST_DIR/"
 cd "$TEST_DIR"
-
-echo "📦 Compiling alloc_test.exe"
 x86_64-w64-mingw32-gcc alloc_test.c -o alloc_test.exe
-
-echo "🚀 Running alloc_test.exe under Wine"
-ALLOC_RESULT=$(WINEPREFIX="$WINEPREFIX" wine ./alloc_test.exe 2>&1 || true)
-echo "$ALLOC_RESULT"
-
+ALLOC_OUTPUT=$(WINEPREFIX="$WINEPREFIX" wine ./alloc_test.exe 2>&1 || true)
+echo "$ALLOC_OUTPUT"
 cd /
 rm -rf "$TEST_DIR"
 
-# ========== Summary ==========
+# ========== Final Verdict ==========
 echo -e "\n${COLOR_BLUE}📊 FINAL VERDICT${COLOR_RESET}"
-STATUS_SUMMARY=()
+echo "VRising binary:          $VRISING_BITNESS"
+echo "Top memory mapping:      $VRISING_TOP_ADDR"
+echo "Wine:                    $(file "$(command -v wine)" | grep -Eo '64-bit|32-bit' || echo "Unknown")"
+echo "Wineserver:              $(file "$(command -v wineserver)" | grep -Eo '64-bit|32-bit' || echo "Unknown")"
 
-printf "%-30s %s\n" "VRising binary:" "$VRISING_BITNESS"
-[[ "$VRISING_BITNESS" == "64-bit" ]] || STATUS_SUMMARY+=("VRising not 64-bit")
-
-printf "%-30s %s\n" "Top memory mapping:" "$VRISING_TOP_ADDR"
-if [[ "$VRISING_TOP_ADDR" =~ ^[0-7][0-9a-f]{7,}$ ]]; then :; else
-  STATUS_SUMMARY+=("Top memory address too low")
-fi
-
-printf "%-30s " "Wine binary:"
-file "$(command -v wine)" | grep -q "64-bit" && echo "${COLOR_GREEN}✅ 64-bit${COLOR_RESET}" || { echo "${COLOR_RED}❌ Not 64-bit${COLOR_RESET}"; STATUS_SUMMARY+=("wine not 64-bit"); }
-
-printf "%-30s " "Wineserver:"
-command -v wineserver &>/dev/null && file "$(command -v wineserver)" | grep -q "64-bit" && echo "${COLOR_GREEN}✅ 64-bit${COLOR_RESET}" || { echo "${COLOR_RED}❌ Not 64-bit${COLOR_RESET}"; STATUS_SUMMARY+=("wineserver not 64-bit"); }
-
-if echo "$ALLOC_RESULT" | grep -q "✅ VirtualAlloc succeeded"; then
-  echo "🧠 Memory allocation test: ${COLOR_GREEN}✅ Passed${COLOR_RESET}"
+if echo "$ALLOC_OUTPUT" | grep -q "✅ VirtualAlloc succeeded"; then
+  echo "${COLOR_GREEN}🧠 Allocation Test Passed${COLOR_RESET}"
 else
-  echo "🧠 Memory allocation test: ${COLOR_RED}❌ Failed${COLOR_RESET}"
-  STATUS_SUMMARY+=("alloc test failed")
+  echo "${COLOR_RED}❌ Allocation Test Failed${COLOR_RESET}"
 fi
 
-echo -e "\n🗂️ Diagnostics log saved to: $LOG_FILE"
-
-# ========== One-Liner ==========
-echo -e "\n${COLOR_BOLD}🎯 One-Liner Summary:${COLOR_RESET}"
-if [[ "${#STATUS_SUMMARY[@]}" -eq 0 ]]; then
-  echo "${COLOR_GREEN}ALL CHECKS PASSED ✅${COLOR_RESET}"
-else
-  echo "${COLOR_RED}ISSUES DETECTED ⚠️ — ${STATUS_SUMMARY[*]}${COLOR_RESET}"
-fi
+echo -e "\n🗂️ Log saved to: $LOG_FILE"
