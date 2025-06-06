@@ -96,11 +96,34 @@ if [[ -n "$VRISING_PID" ]]; then
     echo "${COLOR_RED}❌ (low memory region, suspicious)${COLOR_RESET}"
   fi
 
+  echo -e "\n📐 Full VRising Memory Map Range Analysis"
+  MAX_ADDR=$(awk '{print $1}' "/proc/$VRISING_PID/maps" | cut -d'-' -f2 | sort -n | tail -n1)
+  echo "📈 Highest mapped address: $MAX_ADDR"
+
   echo -e "\n📜 Memory Map Snapshot (looking for 32-bit lib contamination):"
   grep -E 'wine|\.dll' "/proc/$VRISING_PID/maps" | while read -r line; do
     bin=$(echo "$line" | awk '{print $6}')
-    [[ -f "$bin" ]] && file "$bin" | grep -q "32-bit" && echo "${COLOR_RED}❗ 32-bit binary loaded: $bin${COLOR_RESET}"
+    [[ -z "$bin" || ! -f "$bin" ]] && continue
+    file "$bin" | grep -q "32-bit" && echo "${COLOR_RED}❗ 32-bit binary loaded: $bin${COLOR_RESET}"
   done
+
+  echo -e "\n📊 Total Resident Set Size (from smaps):"
+  awk '/^Rss:/ { total += $2 } END { printf "Total: %.2f MB\n", total / 1024 }' "/proc/$VRISING_PID/smaps"
+
+  # === Summary verdict on actual memory usage ===
+  echo -e "\n${COLOR_BLUE}📈 Memory Usage Summary${COLOR_RESET}"
+  VRISING_RSS_KB=$(awk '/^Rss:/ { total += $2 } END { print total }' "/proc/$VRISING_PID/smaps")
+  VRISING_RSS_MB=$(awk "BEGIN { printf \"%.2f\", $VRISING_RSS_KB / 1024 }")
+
+  echo "📦 Resident Set Size: ${VRISING_RSS_MB} MB"
+
+  if (( VRISING_RSS_KB > 4 * 1024 * 1024 )); then
+    echo "${COLOR_GREEN}✅ Exceeds 4GB — 64-bit memory fully engaged${COLOR_RESET}"
+  elif (( VRISING_RSS_KB > 2 * 1024 * 1024 )); then
+    echo "${COLOR_YELLOW}⚠️ Moderate usage — game not memory-capped, but hasn't crossed 4GB yet${COLOR_RESET}"
+  else
+    echo "${COLOR_RED}❗ Low usage — no sign of large memory mapping yet${COLOR_RESET}"
+  fi
 else
   echo "${COLOR_YELLOW}⚠️ VRisingServer.exe is not currently running${COLOR_RESET}"
 fi
