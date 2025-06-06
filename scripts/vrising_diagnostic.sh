@@ -73,6 +73,9 @@ if [[ -n "$VRISING_PID" ]]; then
   echo "🧵 Executable Path: $VRISING_EXE_PATH"
 
   echo -n "🧬 Binary Architecture: "
+  echo -e "\n📊 Top 20 Memory Mappings (check address space):"
+  head -n 20 "/proc/$VRISING_PID/maps"
+
   file "$VRISING_EXE_PATH" | grep -Eo '64-bit|32-bit' || echo "Unknown"
   VRISING_BITNESS=$(file "$VRISING_EXE_PATH" | grep -Eo '64-bit|32-bit' || echo "unknown")
 
