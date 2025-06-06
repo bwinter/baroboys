@@ -24,7 +24,7 @@ echo "🌀 Installing fonts..."
   echo "🔧 Initializing wine prefix..."
   export WINEARCH=win64
   export WINEPREFIX=/home/bwinter_sc81/.wine64
-  /opt/wine-stable/bin/wine64 wineboot
+  WINEDEBUG=+server /opt/wine-stable/bin/wine64 wineboot
 '
 
 # Run winetricks under xvfb
@@ -43,5 +43,7 @@ sudo -u bwinter_sc81 -- bash -c '
 # Purge only the 32-bit and helper stuff
 sudo apt -yq purge --auto-remove \
   winetricks || true
+
+dpkg --list | grep ':i386'
 
 echo "✅ Fonts install attempt complete."
