@@ -21,10 +21,16 @@ echo "🌀 Installing fonts..."
 
 # Initialize Wine prefix (once!)
 /usr/bin/sudo -u bwinter_sc81 -- bash -c '
+  echo "🧪 UID is: $(id -u)"
+  echo "🧪 TMPDIR: $TMPDIR"
+  echo "🧪 XDG_RUNTIME_DIR: $XDG_RUNTIME_DIR"
+  echo "🧪 Expected wineserver dir: /tmp/.wine-$(id -u)/"
+
   echo "🔧 Initializing wine prefix..."
   export WINEARCH=win64
   export WINEPREFIX=/home/bwinter_sc81/.wine64
-  WINEDEBUG=+server /opt/wine-stable/bin/wine64 wineboot
+  export WINEDEBUG=+server,+wineserver,+file,+pid,+timestamp
+  /opt/wine-stable/bin/wine64 wineboot
 '
 
 # Run winetricks under xvfb
