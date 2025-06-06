@@ -20,7 +20,7 @@ sudo apt -yq install \
 echo "🌀 Installing fonts..."
 
 # Initialize Wine prefix (once!)
-sudo -u bwinter_sc81 -- bash -c '
+sudo -u bwinter_sc81 -- bash -eux <<'EOF' | tee /tmp/wine_debug_log.txt
   set -eux
   echo "🔧 Starting full debug trace for wineboot"
 
@@ -66,7 +66,7 @@ sudo -u bwinter_sc81 -- bash -c '
   ls -la /tmp
 
   echo "✅ Debug trace complete."
-'
+EOF
 
 # Run winetricks under xvfb
 sudo -u bwinter_sc81 -- bash -c '
