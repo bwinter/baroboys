@@ -42,6 +42,8 @@ sudo -u bwinter_sc81 -- bash -c '
   echo "🔧 Environment snapshot:"
   env | grep -E "WINE|XDG|TMP|HOME" || true
 
+  ls -la /tmp
+
   # Clean up any previous temp dirs
   rm -rf /tmp/.wine-$(id -u)
 
