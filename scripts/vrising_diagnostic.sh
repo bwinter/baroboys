@@ -42,18 +42,31 @@ done
 # ========== Wine Binary Architecture ==========
 echo -e "\n${COLOR_BLUE}🧩 Wine Binary Architecture Check${COLOR_RESET}"
 for bin in wine wine64 wineserver; do
-  BIN_PATH=$(command -v "$bin" || true)
-  if [[ -n "$BIN_PATH" && -x "$BIN_PATH" ]]; then
-    BIN_PATH=$(realpath "$BIN_PATH")
-    TYPE=$(file "$BIN_PATH" | grep -Eo '64-bit|32-bit' || echo "Unknown")
-    echo "🔎 $bin -> $BIN_PATH: $TYPE"
-    if [[ "$TYPE" != "64-bit" ]]; then
-      echo "${COLOR_RED}❗ $bin is not 64-bit — may prevent VRising from using full memory space${COLOR_RESET}"
-    fi
-  else
-    echo "${COLOR_YELLOW}⚠️ $bin not found in PATH — check Wine installation path${COLOR_RESET}"
+  BIN_PATH=$(command -v "$bin" 2>/dev/null || true)
+
+  if [[ -z "$BIN_PATH" ]]; then
+    echo "${COLOR_YELLOW}⚠️ $bin not found in PATH — skipping${COLOR_RESET}"
+    continue
+  fi
+
+  BIN_REAL=$(realpath "$BIN_PATH" 2>/dev/null || echo "")
+  if [[ -z "$BIN_REAL" || ! -x "$BIN_REAL" ]]; then
+    echo "${COLOR_YELLOW}⚠️ $bin exists at $BIN_PATH but is not executable${COLOR_RESET}"
+    continue
+  fi
+
+  TYPE_LINE=$(file "$BIN_REAL" 2>/dev/null || true)
+  TYPE=$(echo "$TYPE_LINE" | grep -Eo '64-bit|32-bit')
+
+  echo "🔎 $bin -> $BIN_REAL: ${TYPE:-Unknown}"
+
+  if [[ -z "$TYPE" ]]; then
+    echo "${COLOR_YELLOW}⚠️ could not determine architecture for $bin — inspect manually${COLOR_RESET}"
+  elif [[ "$TYPE" != "64-bit" ]]; then
+    echo "${COLOR_RED}❗ $bin is not 64-bit — may prevent VRising from using full memory space${COLOR_RESET}"
   fi
 done
+
 
 # ========== Wine Version ==========
 echo -e "\n${COLOR_BLUE}🍷 Wine Version${COLOR_RESET}"
@@ -84,19 +97,20 @@ if [[ -n "$VRISING_PID" ]]; then
   VRISING_BITNESS=$(file "$EXE_PATH" | grep -Eo '64-bit|32-bit' || echo "unknown")
   echo "🧬 Binary Architecture: $VRISING_BITNESS"
 
-  echo -e "\n📊 Top Memory Mapping:"
-  FIRST_LINE=$(head -n 1 "/proc/$VRISING_PID/maps")
-  VRISING_TOP_ADDR=$(echo "$FIRST_LINE" | cut -d'-' -f1)
-  echo "$FIRST_LINE"
+  echo -e "\n📊 Memory Mapping Range Overview:"
+  VRISING_TOP_ADDR=$(awk '{print $1}' "/proc/$VRISING_PID/maps" | cut -d'-' -f1 | sort | tail -n1)
+  echo "🔍 Highest mapping base address: $VRISING_TOP_ADDR"
 
-  ADDR_HEX=$(echo "$VRISING_TOP_ADDR" | tr 'a-f' 'A-F' | sed 's/^0X//')
-  ADDR_DEC=$(printf "%u\n" 0x$ADDR_HEX 2>/dev/null || echo "0")
-
-  echo -n "🧠 Top memory address: $VRISING_TOP_ADDR "
-  if [ "$ADDR_DEC" -gt 4294967295 ]; then
-    echo "${COLOR_GREEN}✅ exceeds 0xFFFFFFFF — confirms 64-bit address space${COLOR_RESET}"
+  if [[ "$VRISING_TOP_ADDR" =~ ^[0-9a-fA-F]+$ ]]; then
+    ADDR_DEC=$(printf "%u\n" 0x$VRISING_TOP_ADDR 2>/dev/null || echo "0")
+    echo -n "🧠 Address interpreted as decimal: $ADDR_DEC — "
+    if [[ "$ADDR_DEC" -gt 4294967295 ]]; then
+      echo "${COLOR_GREEN}✅ exceeds 0xFFFFFFFF — confirms 64-bit address space${COLOR_RESET}"
+    else
+      echo "${COLOR_RED}❌ under 0xFFFFFFFF — may indicate 32-bit environment${COLOR_RESET}"
+    fi
   else
-    echo "${COLOR_RED}❌ under 0xFFFFFFFF — may indicate 32-bit environment${COLOR_RESET}"
+    echo "${COLOR_YELLOW}⚠️ could not parse top memory address — malformed value${COLOR_RESET}"
   fi
 
   echo -e "\n📐 Memory Map Range Analysis"
