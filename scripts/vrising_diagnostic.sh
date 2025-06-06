@@ -101,11 +101,46 @@ if [[ -n "$VRISING_PID" ]]; then
   echo "📈 Highest mapped address: $MAX_ADDR"
 
   echo -e "\n📜 Memory Map Snapshot (looking for 32-bit lib contamination):"
+
+  total_lines=0
+  skipped_missing=0
+  skipped_unreadable=0
+  scanned_files=0
+  found_32bit=0
+
   grep -E 'wine|\.dll' "/proc/$VRISING_PID/maps" | while read -r line; do
+    ((total_lines++))
     bin=$(echo "$line" | awk '{print $6}')
-    [[ -z "$bin" || ! -f "$bin" ]] && continue
-    file "$bin" | grep -q "32-bit" && echo "${COLOR_RED}❗ 32-bit binary loaded: $bin${COLOR_RESET}"
+
+    if [[ -z "$bin" ]]; then
+      ((skipped_missing++))
+      continue
+    fi
+
+    if [[ ! -r "$bin" ]]; then
+      ((skipped_unreadable++))
+      continue
+    fi
+
+    ((scanned_files++))
+    if file "$bin" 2>/dev/null | grep -q "32-bit"; then
+      ((found_32bit++))
+      echo "${COLOR_RED}❗ 32-bit binary loaded: $bin${COLOR_RESET}"
+    fi
   done
+
+  # Final summary
+  echo -e "\n🧾 ${COLOR_BOLD}Contamination Scan Summary:${COLOR_RESET}"
+  echo "🔢 Total matching lines:       $total_lines"
+  echo "🚫 Skipped (missing path):     $skipped_missing"
+  echo "🚫 Skipped (unreadable path):  $skipped_unreadable"
+  echo "🔍 Scanned with 'file':        $scanned_files"
+  echo -n "❗ Found 32-bit binaries:      "
+  if [[ "$found_32bit" -gt 0 ]]; then
+    echo "${COLOR_RED}$found_32bit${COLOR_RESET}"
+  else
+    echo "${COLOR_GREEN}0${COLOR_RESET}"
+  fi
 
   echo -e "\n📊 Total Resident Set Size (from smaps):"
   awk '/^Rss:/ { total += $2 } END { printf "Total: %.2f MB\n", total / 1024 }' "/proc/$VRISING_PID/smaps"
