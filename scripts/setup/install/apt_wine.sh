@@ -17,14 +17,15 @@ sudo apt -yq install \
   winetricks \
   xvfb
 
+# Sanity checks
+ls -la /usr/bin/
+file /usr/bin/wine64
+
 echo "🌀 Installing fonts..."
 
 # Initialize Wine prefix (once!)
 sudo -u bwinter_sc81 -- bash -eux <<'EOF' | tee /tmp/wine_debug_log.txt
   echo "🔧 Manual wineserver experiment (Packer-compatible)"
-
-  # Sanity checks
-  dpkg -L wine-stable-amd64 | grep wineserver
 
   # UID info and TMPDIR
   echo "🧪 UID: $(id -u)"
