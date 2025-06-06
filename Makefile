@@ -3,7 +3,7 @@
 # =======================
 TF_DIR           := terraform
 PROJECT          := europan-world
-ZONE             := us-west1-b
+ZONE             := us-west1-c
 INSTANCE         := europa
 USER             := bwinter_sc81
 REMOTE_SAVE_SCRIPT := sudo systemctl start vm-shutdown.service
