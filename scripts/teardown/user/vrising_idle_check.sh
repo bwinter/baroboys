@@ -6,7 +6,7 @@ STATIC_NGINX="/opt/baroboys/static"
 STATUS_JSON="$STATIC_NGINX/status.json"
 IDLE_FLAG="/tmp/server_idle_since.flag"
 COOLDOWN_MINUTES=30
-CPU_THRESHOLD=10.0
+CPU_THRESHOLD=8.0
 
 # === DEPENDENCY CHECK ===
 command -v mpstat >/dev/null 2>&1 || { echo >&2 "mpstat not found. Install with: sudo apt install sysstat"; exit 1; }
