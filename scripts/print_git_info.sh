@@ -25,7 +25,7 @@ cd "$WORKDIR/baroboys-bfg-clean.git"
 ALL_PATHS=$(git rev-list --objects --all | awk '{print $2}' | sort -u)
 
 # Match only Barotrauma and V Rising file types
-MATCHED_PATHS=$(echo "$ALL_PATHS" | grep -E '\.ogg$|AutoSave_.*\.save\.gz$' || true)
+MATCHED_PATHS=$(echo "$ALL_PATHS" | grep -E '\.ogg$|AutoSave_.*\.save\.gz$|\.dll$|\.xml$|\.config$|\.ini$|\.cfg$|\.json$|\.version$' || true)
 
 # Handle empty case
 if [[ -z "$MATCHED_PATHS" ]]; then
