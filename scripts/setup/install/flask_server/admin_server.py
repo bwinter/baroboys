@@ -111,8 +111,8 @@ def tail_log(name):
         "vrising.log": os.path.join(LOG_DIR, "vrising.log"),
         "vrising_idle_check.log": os.path.join(LOG_DIR, "vrising_idle_check.log"),
         "admin_server.log": os.path.join(LOG_DIR, "admin_server.log"),
-        "nginx_access": ["tail", "-n", "100", "/var/log/nginx/access.log"],
-        "nginx_error": ["tail", "-n", "100", "/var/log/nginx/error.log"],
+        "nginx_access": ["tail", "-n", "500", "/var/log/nginx/access.log"],
+        "nginx_error": ["tail", "-n", "500", "/var/log/nginx/error.log"],
     }
 
     if ENV == "development":
@@ -127,7 +127,7 @@ def tail_log(name):
     try:
         if isinstance(cmd, str):
             with open(cmd, encoding="utf-8", errors="ignore") as f:
-                return Response("".join(f.readlines()[-100:]), mimetype="text/html")
+                return Response("".join(f.readlines()[-500:]), mimetype="text/html")
         else:
             out = subprocess.check_output(cmd, stderr=subprocess.STDOUT, text=True)
             return Response(out, mimetype="text/html")
