@@ -13,15 +13,25 @@ GAME_JSON="$VRISING_DIR/VRisingServer_Data/StreamingAssets/Settings/ServerGameSe
 
 # Ensure save is uncompressed
 cd "$SAVE_DIR"
-if ! compgen -G "AutoSave_*.save" > /dev/null; then
-  echo "🗜 No .save found, attempting to decompress most recent .save.gz..."
-  latest_gz=$(find . -name 'AutoSave_*.save.gz' | sed -E 's/.*AutoSave_([0-9]+)\.save\.gz/\1 \0/' | sort -n | tail -n1 | cut -d' ' -f2)
-  if [[ -n "$latest_gz" ]]; then
-    gunzip -kf "$latest_gz"
-    echo "✅ Decompressed: $latest_gz"
-  else
-    echo "⚠️ No compressed autosaves found to restore!"
-  fi
+
+# Find the latest uncompressed save (if any)
+latest_save=$(find . -name 'AutoSave_*.save' | sed -E 's/.*AutoSave_([0-9]+)\.save/\1 \0/' | sort -n | tail -n1)
+save_num=$(cut -d' ' -f1 <<< "$latest_save")
+save_file=$(cut -d' ' -f2 <<< "$latest_save")
+
+# Find the latest compressed save
+latest_gz=$(find . -name 'AutoSave_*.save.gz' | sed -E 's/.*AutoSave_([0-9]+)\.save\.gz/\1 \0/' | sort -n | tail -n1)
+gz_num=$(cut -d' ' -f1 <<< "$latest_gz")
+gz_file=$(cut -d' ' -f2 <<< "$latest_gz")
+
+# Decide if we need to decompress
+if [[ -z "$gz_file" ]]; then
+  echo "⚠️ No compressed autosaves found."
+elif [[ -z "$save_file" || "$gz_num" -gt "$save_num" ]]; then
+  echo "🗜 Decompressing newer autosave: $gz_file"
+  gunzip -kf "$gz_file"
+else
+  echo "✅ Latest .save is up-to-date or newer than .gz"
 fi
 
 # Update game files via SteamCMD
