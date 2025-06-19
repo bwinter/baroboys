@@ -39,7 +39,7 @@ if [[ -z "$latest_file" ]]; then
 fi
 
 echo "🗜 Compressing latest autosave: $latest_file"
-gzip -f "$latest_file"
+gzip -kf "$latest_file"
 gzipped_file="${latest_file}.gz"
 
 # === Clean up Git tracking for older autosaves ===
