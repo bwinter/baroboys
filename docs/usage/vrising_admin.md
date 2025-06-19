@@ -13,7 +13,7 @@
 ## 🖥️ VM Lifecycle
 
 👉 [**Open GCP VM Admin Page
-**](https://console.cloud.google.com/compute/instancesDetail/zones/us-west1-b/instances/europa?project=europan-world)
+**](https://console.cloud.google.com/compute/instancesDetail/zones/us-west1-c/instances/europa?project=europan-world)
 
 1. 🟢 Click **Start**
 

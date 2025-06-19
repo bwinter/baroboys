@@ -2,7 +2,7 @@
 set -euo pipefail
 
 REMOTE="bwinter_sc81@europa"
-ZONE="us-west1-b"
+ZONE="us-west1-c"
 PROJECT="europan-world"
 ROOT_REPO_PATH="/root/baroboys"
 
