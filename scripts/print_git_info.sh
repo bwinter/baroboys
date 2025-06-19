@@ -44,4 +44,4 @@ echo "📝 Sample entries:"
 echo "$MATCHED_PATHS" | head -n 10
 [[ "$COUNT" -gt 10 ]] && echo "     ... and $((COUNT - 10)) more"
 
-echo "🟢 Script complete. Terminal will stay open."
+echo "🟢 Script complete."
