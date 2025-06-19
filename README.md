@@ -128,7 +128,7 @@ make destroy
 
 | Goal              | Command                                                                    |
 |-------------------|----------------------------------------------------------------------------|
-| View startup logs | `gcloud compute instances get-serial-port-output europa --zone=us-west1-b` |
+| View startup logs | `gcloud compute instances get-serial-port-output europa --zone=us-west1-c` |
 | View systemd logs | `journalctl -u google-startup-scripts.service -e`                          |
 | Debug save        | `journalctl -u barotrauma.service -e` or check Git commit logs             |
 

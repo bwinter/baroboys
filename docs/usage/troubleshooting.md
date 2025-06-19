@@ -18,14 +18,14 @@
 
 ```bash
 gcloud compute instances get-serial-port-output europa \
-  --zone=us-west1-b
+  --zone=us-west1-c
 ```
 
 Optional full boot output:
 
 ```bash
 gcloud compute instances get-serial-port-output europa \
-  --zone=us-west1-b --port=1
+  --zone=us-west1-c --port=1
 ```
 
 ---
@@ -49,7 +49,7 @@ gcloud logging read \
 ```bash
 gcloud compute ssh bwinter_sc81@europa \
   --project=europan-world \
-  --zone=us-west1-b
+  --zone=us-west1-c
 ```
 
 ### SSH via IAP (no external IP):
@@ -57,7 +57,7 @@ gcloud compute ssh bwinter_sc81@europa \
 ```bash
 gcloud compute ssh bwinter_sc81@europa \
   --project=europan-world \
-  --zone=us-west1-b \
+  --zone=us-west1-c \
   --tunnel-through-iap
 ```
 

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 REMOTE="bwinter_sc81@europa"
-ZONE="us-west1-b"
+ZONE="us-west1-c"
 PROJECT="europan-world"
 SERVICE="admin-server.service"
 LOG_LINES=200
