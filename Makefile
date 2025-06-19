@@ -181,35 +181,53 @@ clean-git: clean-git-print-info clean-git-bfg
 # =======================
 .PHONY: help
 
+.PHONY: help
+
 help:
-	@echo "🛠️  Common targets:"
-	@echo "🌍 Full:"
-	@echo "  make destroy                - Initialize Terraform"
-	@echo "  make apply                  - Show Terraform plan"
+	@echo "🛠️  Common Targets:"
+	@echo "  make apply                  - Alias for terraform-apply"
+	@echo "  make destroy                - Alias for terraform-destroy"
 	@echo ""
+
 	@echo "🌍 Terraform:"
 	@echo "  make terraform-init         - Initialize Terraform"
 	@echo "  make terraform-plan         - Show Terraform plan"
 	@echo "  make terraform-apply        - Apply Terraform (build VM)"
-	@echo "  make terraform-destroy      - Save + destroy VM"
+	@echo "  make terraform-destroy      - Destroy infrastructure"
 	@echo "  make terraform-refresh      - Refresh Terraform state"
 	@echo ""
+
+	@echo "🔐 IAM:"
+	@echo "  make iam-apply              - Build and apply IAM service accounts"
+	@echo "  make iam-destroy            - Destroy IAM service accounts and keys"
+	@echo ""
+
 	@echo "🐍 Flask Admin Panel:"
 	@echo "  make admin-local            - Run admin server locally"
 	@echo "  make admin-logs             - Fetch logs from admin systemd service"
 	@echo ""
+
 	@echo "🎮 Game Mode:"
 	@echo "  make vm-switch              - Switch game vm-mode (.envrc)"
 	@echo "  make vm-mode                - Show current game vm-mode"
 	@echo "  make vm-refresh             - Trigger remote reinstall of game"
 	@echo ""
+
 	@echo "🧪 Control:"
 	@echo "  make save-and-shutdown      - Save game state by triggering shutdown"
 	@echo "  make ssh                    - SSH into VM"
 	@echo "  make ssh-iap                - SSH using IAP tunnel"
 	@echo ""
+
 	@echo "📦 Packer Builds:"
 	@echo "  make build-core             - Build base image (core setup)"
 	@echo "  make build-steam            - Build Steam dependencies layer"
 	@echo "  make build                  - Build all Packer image layers"
 	@echo "  make clean                  - Review usage and delete Packer images and disks"
+	@echo ""
+
+	@echo "🧹 Git History Cleanup:"
+	@echo "  make clean-git              - Run full BFG-based Git cleanup flow"
+	@echo "  make clean-git-print-info   - Print repo file info and size stats"
+	@echo "  make clean-git-bfg          - Run BFG repo history cleaner"
+	@echo "  make clean-git-post         - Run post-BFG cleanup suggestions"
