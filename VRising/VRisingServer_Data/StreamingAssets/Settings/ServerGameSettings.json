@@ -73,6 +73,7 @@
   "UnlockedAchievements": [],
   "UnlockedResearchs": [],
   "GameTimeModifiers": {
+    "DayDurationInSeconds": 1080.0,
     "BloodMoonFrequency_Min": 1,
     "BloodMoonFrequency_Max": 1
   },
