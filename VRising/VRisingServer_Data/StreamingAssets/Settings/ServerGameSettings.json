@@ -32,8 +32,8 @@
   "DropTableModifier_General": 1.0,
   "DropTableModifier_StygianShards": 1.0,
   "DropTableModifier_Missions": 1.0,
-  "MaterialYieldModifier_Global": 2.25,
-  "BloodEssenceYieldModifier": 2.0,
+  "MaterialYieldModifier_Global": 1.55,
+  "BloodEssenceYieldModifier": 1.65,
   "JournalVBloodSourceUnitMaxDistance": 25.0,
   "PvPVampireRespawnModifier": 1.0,
   "CastleMinimumDistanceInFloors": 1,
@@ -57,11 +57,11 @@
   "ShowSiegeWeaponMapIcon": true,
   "BuildCostModifier": 0.6,
   "RecipeCostModifier": 0.65,
-  "CraftRateModifier": 3.5,
-  "ResearchCostModifier": 0.5,
+  "CraftRateModifier": 1.5,
+  "ResearchCostModifier": 0.65,
   "RefinementCostModifier": 0.75,
-  "RefinementRateModifier": 2.5,
-  "ResearchTimeModifier": 0.5,
+  "RefinementRateModifier": 1.5,
+  "ResearchTimeModifier": 0.65,
   "DismantleResourceModifier": 1.0,
   "ServantConvertRateModifier": 1.0,
   "RepairCostModifier": 0.6,
@@ -75,7 +75,12 @@
   "GameTimeModifiers": {
     "DayDurationInSeconds": 3600.0,
     "DayStartHour": 11,
-    "DayEndHour": 15
+    "DayStartMinute": 0,
+    "DayEndHour": 15,
+    "DayEndMinute": 0,
+    "BloodMoonFrequency_Min": 3,
+    "BloodMoonFrequency_Max": 5,
+    "BloodMoonBuff": 0.35
   },
   "VampireStatModifiers": {
     "MaxHealthModifier": 1.0,
@@ -139,8 +144,8 @@
       }
     },
     "CastleHeartLimitType": "User",
-    "CastleLimit": 3,
-    "NetherGateLimit": 1,
+    "CastleLimit": 5,
+    "NetherGateLimit": 3,
     "ThroneOfDarknessLimit": 1,
     "ArenaStationLimit": 5,
     "RoutingStationLimit": 10
