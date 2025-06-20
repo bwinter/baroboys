@@ -73,13 +73,8 @@
   "UnlockedAchievements": [],
   "UnlockedResearchs": [],
   "GameTimeModifiers": {
-    "DayStartHour": 11,
-    "DayStartMinute": 0,
-    "DayEndHour": 15,
-    "DayEndMinute": 0,
     "BloodMoonFrequency_Min": 1,
-    "BloodMoonFrequency_Max": 1,
-    "BloodMoonBuff": 0.35
+    "BloodMoonFrequency_Max": 1
   },
   "VampireStatModifiers": {
     "MaxHealthModifier": 1.0,
