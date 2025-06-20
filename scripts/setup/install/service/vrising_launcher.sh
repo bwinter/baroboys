@@ -20,8 +20,6 @@ export WINEARCH=win64
 export WINEPREFIX=/home/bwinter_sc81/.wine64
 /opt/wine-stable/bin/wine64 VRisingServer.exe \
   -persistentDataPath ./Data \
-  -serverName "Mc's Playground" \
-  -saveName "TestWorld-1" \
   -logFile ./logs/VRisingServer.log
 
 exit_code=$?
