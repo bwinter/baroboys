@@ -78,8 +78,8 @@
     "DayStartMinute": 0,
     "DayEndHour": 15,
     "DayEndMinute": 0,
-    "BloodMoonFrequency_Min": 3,
-    "BloodMoonFrequency_Max": 5,
+    "BloodMoonFrequency_Min": 2,
+    "BloodMoonFrequency_Max": 3,
     "BloodMoonBuff": 0.2
   },
   "VampireStatModifiers": {
