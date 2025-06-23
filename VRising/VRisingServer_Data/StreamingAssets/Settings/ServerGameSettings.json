@@ -73,7 +73,7 @@
   "UnlockedAchievements": [],
   "UnlockedResearchs": [],
   "GameTimeModifiers": {
-    "DayDurationInSeconds": 2400,
+    "DayDurationInSeconds": 1080,
     "DayStartHour": 11,
     "DayStartMinute": 0,
     "DayEndHour": 15,
