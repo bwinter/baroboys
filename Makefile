@@ -49,8 +49,8 @@ terraform-apply:
 terraform-destroy:
 	cd $(TF_DIR) && terraform destroy
 
-#terraform-refresh:
-#	cd $(TF_DIR) && terraform refresh
+terraform-refresh:
+	cd $(TF_DIR) && terraform refresh
 
 
 # =======================
