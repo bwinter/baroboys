@@ -23,7 +23,7 @@ confirm() {
 }
 
 step() {
-  echo -e "\n🔹 $1"
+  printf "\n🔹 %s\n" "$1"
 }
 
 ### 1️⃣ Checks ###

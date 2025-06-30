@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Sea Lab" modversion="1.0.8" corepackage="False" gameversion="1.1.19.3">
+    <Submarine file="%ModDir%/Sea Lab.sub"/>
+    <BeaconStation file="%ModDir%/Sea Lab.sub"/>
+</contentpackage>

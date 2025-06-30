@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Thaddeus Pole ERV" modversion="1.0.1" corepackage="False" gameversion="1.0.13.2">
+    <Submarine file="%ModDir%/Thaddeus Pole ERV.sub"/>
+</contentpackage>

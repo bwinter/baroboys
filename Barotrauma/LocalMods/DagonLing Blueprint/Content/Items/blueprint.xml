@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+    <OpDeco name="DagonLing Blueprint" identifier="DagonLing Blueprint" allowattachitems="true" width="410" height="146"
+            scale="0.5" category="Decorative">
+        <Sprite texture="blueprint.png" sourcerect="0,0,410,146"/>
+    </OpDeco>
+</Items>

@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Graduated Circuits" modversion="1.0.0" corepackage="False" gameversion="1.0.7.0">
+    <ItemAssembly file="%ModDir%/Graduated Circuits.xml"/>
+</contentpackage>

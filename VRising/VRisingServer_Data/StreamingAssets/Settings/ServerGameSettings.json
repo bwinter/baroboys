@@ -1,0 +1,218 @@
+{
+  "GameDifficulty": 1,
+  "GameModeType": 0,
+  "CastleDamageMode": 0,
+  "SiegeWeaponHealth": 1,
+  "PlayerDamageMode": 0,
+  "CastleHeartDamageMode": 0,
+  "PvPProtectionMode": 0,
+  "DeathContainerPermission": 0,
+  "RelicSpawnType": 0,
+  "SoulShard_DurabilityLossRate": 0.5,
+  "CanLootEnemyContainers": false,
+  "BloodBoundEquipment": true,
+  "TeleportBoundItems": false,
+  "BatBoundItems": false,
+  "BatBoundShards": false,
+  "AllowGlobalChat": true,
+  "AllWaypointsUnlocked": false,
+  "FreeCastleRaid": false,
+  "FreeCastleClaim": false,
+  "FreeCastleDestroy": false,
+  "InactivityKillEnabled": false,
+  "InactivityKillTimeMin": 3600,
+  "InactivityKillTimeMax": 604800,
+  "InactivityKillSafeTimeAddition": 172800,
+  "InactivityKillTimerMaxItemLevel": 84,
+  "StartingProgressionLevel": 0,
+  "DisableDisconnectedDeadEnabled": true,
+  "DisableDisconnectedDeadTimer": 60,
+  "DisconnectedSunImmunityTime": 600.0,
+  "InventoryStacksModifier": 5.0,
+  "DropTableModifier_General": 1.0,
+  "DropTableModifier_StygianShards": 1.0,
+  "DropTableModifier_Missions": 1.0,
+  "MaterialYieldModifier_Global": 1.55,
+  "BloodEssenceYieldModifier": 1.65,
+  "JournalVBloodSourceUnitMaxDistance": 25.0,
+  "PvPVampireRespawnModifier": 1.0,
+  "CastleMinimumDistanceInFloors": 1,
+  "ClanSize": 4,
+  "BloodDrainModifier": 0.5,
+  "DurabilityDrainModifier": 0.5,
+  "GarlicAreaStrengthModifier": 0.8,
+  "HolyAreaStrengthModifier": 0.8,
+  "SilverStrengthModifier": 1.0,
+  "SunDamageModifier": 0.75,
+  "CastleDecayRateModifier": 0.0,
+  "CastleBloodEssenceDrainModifier": 0.5,
+  "CastleSiegeTimer": 420.0,
+  "CastleUnderAttackTimer": 60.0,
+  "CastleRaidTimer": 600.0,
+  "CastleRaidProtectionTime": 1800.0,
+  "CastleExposedFreeClaimTimer": 300.0,
+  "CastleRelocationCooldown": 10800.0,
+  "CastleRelocationEnabled": true,
+  "AnnounceSiegeWeaponSpawn": true,
+  "ShowSiegeWeaponMapIcon": true,
+  "BuildCostModifier": 0.6,
+  "RecipeCostModifier": 0.65,
+  "CraftRateModifier": 1.5,
+  "ResearchCostModifier": 0.65,
+  "RefinementCostModifier": 0.75,
+  "RefinementRateModifier": 1.5,
+  "ResearchTimeModifier": 0.65,
+  "DismantleResourceModifier": 1.0,
+  "ServantConvertRateModifier": 1.0,
+  "RepairCostModifier": 0.6,
+  "Death_DurabilityFactorLoss": 0.1,
+  "Death_DurabilityLossFactorAsResources": 0.0,
+  "StarterEquipmentId": 0,
+  "StarterResourcesId": 0,
+  "VBloodUnitSettings": [],
+  "UnlockedAchievements": [],
+  "UnlockedResearchs": [],
+  "GameTimeModifiers": {
+    "DayDurationInSeconds": 1080,
+    "DayStartHour": 11,
+    "DayStartMinute": 0,
+    "DayEndHour": 15,
+    "DayEndMinute": 0,
+    "BloodMoonFrequency_Min": 1,
+    "BloodMoonFrequency_Max": 1,
+    "BloodMoonBuff": 0.2
+  },
+  "VampireStatModifiers": {
+    "MaxHealthModifier": 1.0,
+    "PhysicalPowerModifier": 1.0,
+    "SpellPowerModifier": 1.0,
+    "ResourcePowerModifier": 1.0,
+    "SiegePowerModifier": 1.0,
+    "DamageReceivedModifier": 1.0,
+    "ReviveCancelDelay": 5.0
+  },
+  "UnitStatModifiers_Global": {
+    "MaxHealthModifier": 1.0,
+    "PowerModifier": 1.0,
+    "LevelIncrease": 0
+  },
+  "UnitStatModifiers_VBlood": {
+    "MaxHealthModifier": 1.0,
+    "PowerModifier": 1.0,
+    "LevelIncrease": 0
+  },
+  "EquipmentStatModifiers_Global": {
+    "MaxHealthModifier": 1.0,
+    "ResourceYieldModifier": 1.0,
+    "PhysicalPowerModifier": 1.0,
+    "SpellPowerModifier": 1.0,
+    "SiegePowerModifier": 1.0,
+    "MovementSpeedModifier": 1.0
+  },
+  "CastleStatModifiers_Global": {
+    "TickPeriod": 7.5,
+    "SafetyBoxLimit": 1,
+    "EyeStructuresLimit": 1,
+    "TombLimit": 12,
+    "VerminNestLimit": 4,
+    "PrisonCellLimit": 24,
+    "HeartLimits": {
+      "Level1": {
+        "FloorLimit": 50,
+        "ServantLimit": 1,
+        "HeightLimit": 3
+      },
+      "Level2": {
+        "FloorLimit": 140,
+        "ServantLimit": 3,
+        "HeightLimit": 3
+      },
+      "Level3": {
+        "FloorLimit": 240,
+        "ServantLimit": 5,
+        "HeightLimit": 4
+      },
+      "Level4": {
+        "FloorLimit": 360,
+        "ServantLimit": 7,
+        "HeightLimit": 4
+      },
+      "Level5": {
+        "FloorLimit": 550,
+        "ServantLimit": 10,
+        "HeightLimit": 5
+      }
+    },
+    "CastleHeartLimitType": "User",
+    "CastleLimit": 5,
+    "NetherGateLimit": 3,
+    "ThroneOfDarknessLimit": 1,
+    "ArenaStationLimit": 5,
+    "RoutingStationLimit": 10
+  },
+  "PlayerInteractionSettings": {
+    "TimeZone": "Local",
+    "VSPlayerWeekdayTime": {
+      "StartHour": 20,
+      "StartMinute": 0,
+      "EndHour": 22,
+      "EndMinute": 0
+    },
+    "VSPlayerWeekendTime": {
+      "StartHour": 20,
+      "StartMinute": 0,
+      "EndHour": 22,
+      "EndMinute": 0
+    },
+    "VSCastleWeekdayTime": {
+      "StartHour": 20,
+      "StartMinute": 0,
+      "EndHour": 22,
+      "EndMinute": 0
+    },
+    "VSCastleWeekendTime": {
+      "StartHour": 20,
+      "StartMinute": 0,
+      "EndHour": 22,
+      "EndMinute": 0
+    }
+  },
+  "TraderModifiers": {
+    "StockModifier": 1.0,
+    "PriceModifier": 1.0,
+    "RestockTimerModifier": 1.0
+  },
+  "WarEventGameSettings": {
+    "Interval": 1,
+    "MajorDuration": 1,
+    "MinorDuration": 1,
+    "WeekdayTime": {
+      "StartHour": 0,
+      "StartMinute": 0,
+      "EndHour": 23,
+      "EndMinute": 59
+    },
+    "WeekendTime": {
+      "StartHour": 0,
+      "StartMinute": 0,
+      "EndHour": 23,
+      "EndMinute": 59
+    },
+    "ScalingPlayers1": {
+      "PointsModifier": 1.0,
+      "DropModifier": 1.0
+    },
+    "ScalingPlayers2": {
+      "PointsModifier": 0.5,
+      "DropModifier": 0.5
+    },
+    "ScalingPlayers3": {
+      "PointsModifier": 0.25,
+      "DropModifier": 0.25
+    },
+    "ScalingPlayers4": {
+      "PointsModifier": 0.25,
+      "DropModifier": 0.25
+    }
+  }
+}

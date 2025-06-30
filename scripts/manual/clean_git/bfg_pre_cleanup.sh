@@ -16,7 +16,7 @@ DELETABLE_LIST="/tmp/deletable-blobs.txt"
 
 ### Helpers ###
 step() {
-  echo -e "\n🔹 $1"
+  printf "\n🔹 %s\n" "$1"
 }
 
 ### Checks ###

@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Graduated Battery" modversion="1.0.0" corepackage="False" gameversion="0.19.14.0">
+    <ItemAssembly file="%ModDir%/Graduated Battery.xml"/>
+</contentpackage>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Ling" modversion="1.0.19" corepackage="False" steamworkshopid="2823478194"
+                gameversion="0.20.16.1">
+    <Submarine file="%ModDir%/Ling2.sub"/>
+    <Submarine file="%ModDir%/Ling.sub"/>
+</contentpackage>

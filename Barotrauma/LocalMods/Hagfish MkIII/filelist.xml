@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Hagfish" modversion="1.0.35" corepackage="False" gameversion="1.0.21.0">
+    <Item file="%ModDir%/Items/captnfish.xml"/>
+    <Submarine file="%ModDir%/Hagfish.sub"/>
+</contentpackage>

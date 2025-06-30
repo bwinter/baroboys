@@ -20,7 +20,7 @@ BFG_URL="https://repo1.maven.org/maven2/com/madgag/bfg/${BFG_VERSION}/bfg-${BFG_
 
 ### Helpers ###
 step() {
-  echo -e "\n🔹 $1"
+  printf "\n🔹 %s\n" "$1"
 }
 
 ### 1️⃣ Validate working tree ###
