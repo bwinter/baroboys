@@ -1,44 +1,57 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Ensure required commands exist
-command -v git >/dev/null || { echo "❌ 'git' not found"; exit 1; }
+########################################
+# BFG Pre-Cleanup Script
+# 1️⃣ Ensures clean, fresh bare mirror
+# 2️⃣ Scans Git history for unwanted blobs
+# 3️⃣ Saves deletable list for BFG step
+########################################
 
+### CONFIG ###
 REPO_PATH="$HOME/Desktop/Baroboys"
 WORKDIR="/tmp/bfg-cleanup"
+MIRROR_REPO="$WORKDIR/baroboys-bfg-clean.git"
 DELETABLE_LIST="/tmp/deletable-blobs.txt"
 
-echo "🔍 Running Git history scan for Barotrauma and V Rising blob types..."
-echo "📁 Target repo: $WORKDIR/baroboys-bfg-clean.git"
+### Helpers ###
+step() {
+  echo -e "\n🔹 $1"
+}
 
-# Clone repo mirror
-echo "📥 Creating fresh bare mirror for cleanup..."
-rm -rf "$WORKDIR/baroboys-bfg-clean.git"
-git clone --bare "$REPO_PATH" "$WORKDIR/baroboys-bfg-clean.git"
+### Checks ###
+command -v git >/dev/null || { echo "❌ 'git' not found in PATH."; exit 1; }
 
-cd "$WORKDIR/baroboys-bfg-clean.git"
+step "🗂️ Starting BFG pre-cleanup scan..."
+echo "📁 Working repo: $REPO_PATH"
+echo "📁 Bare mirror:  $MIRROR_REPO"
 
-# Get all blob paths in history (deduplicated)
+### 1️⃣ Create fresh bare mirror ###
+step "1️⃣ Creating fresh bare mirror"
+rm -rf "$MIRROR_REPO"
+git clone --bare "$REPO_PATH" "$MIRROR_REPO"
+
+### 2️⃣ Scan Git history ###
+step "2️⃣ Scanning Git history for matching blobs"
+cd "$MIRROR_REPO"
+
 ALL_PATHS=$(git rev-list --objects --all | awk '{print $2}' | sort -u)
-
-# Match only Barotrauma and V Rising file types
 MATCHED_PATHS=$(echo "$ALL_PATHS" | grep -E '\.ogg$|AutoSave_.*\.save\.gz$|\.dll$|\.xml$|\.config$|\.ini$|\.cfg$|\.json$|\.version$' || true)
 
-# Handle empty case
 if [[ -z "$MATCHED_PATHS" ]]; then
   echo "✅ Repo appears clean — no blobs to purge."
   : > "$DELETABLE_LIST"
   exit 0
 fi
 
-# Save to file
 echo "$MATCHED_PATHS" > "$DELETABLE_LIST"
 
-# Report
-COUNT=$(printf "%d" "$(echo "$MATCHED_PATHS" | wc -l)")
-echo "📄 Wrote $(printf "%5d" "$COUNT") matching file paths to: $DELETABLE_LIST"
-echo "📝 Sample entries:"
+### 3️⃣ Report ###
+COUNT=$(echo "$MATCHED_PATHS" | wc -l | tr -d ' ')
+echo "📄 Found $COUNT matching file paths."
+echo "📝 Sample:"
 echo "$MATCHED_PATHS" | head -n 10
 [[ "$COUNT" -gt 10 ]] && echo "     ... and $((COUNT - 10)) more"
 
-echo "🟢 Script complete."
+echo "✅ Deletable list written to: $DELETABLE_LIST"
+echo "🟢 Pre-cleanup complete. Run bfg_cleanup.sh next."
