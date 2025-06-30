@@ -48,7 +48,9 @@ if [[ ! -f "$ORIG_LIST" || ! -s "$ORIG_LIST" ]]; then
   echo "❌ Deletable list $ORIG_LIST missing or empty."
   exit 1
 fi
-echo "ℹ️  Using deletable list last modified: $(stat -c %y "$ORIG_LIST")"
+
+MODIFIED=$(stat -f "%Sm" -t "%Y-%m-%d %H:%M:%S" "$ORIG_LIST")
+  echo "ℹ️  Using deletable list last modified: $MODIFIED"
 
 ### 3️⃣ Verify mirror freshness ###
 step "3️⃣ Checking bare mirror freshness"
