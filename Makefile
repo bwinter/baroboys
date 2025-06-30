@@ -160,7 +160,7 @@ clean:
 # Git Cleanup Targets
 
 clean-git-print-info:
-	echo "🔍 Running Git info print-git analysis..."
+	echo "🔍 Assessing repo for cleanup options..."
 	./scripts/print_git_info.sh
 
 clean-git-bfg:
@@ -168,11 +168,11 @@ clean-git-bfg:
 	./scripts/bfg_cleanup.sh
 
 clean-git-post:
-	echo "🔍 BFG post-cleanup analysis suggestions..."
+	echo "🔍 BFG post-cleanup actions..."
 	./scripts/bfg_post_cleanup.sh
 
 clean-git: clean-git-print-info clean-git-bfg
-	echo "🔍 Running Git info print-git analysis..."
+	echo "🔍 Generating clean git repo..."
 	./scripts/print_git_info.sh
 
 
