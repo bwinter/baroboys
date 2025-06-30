@@ -9,6 +9,23 @@ BFG_JAR="${WORKDIR}/bfg-${BFG_VERSION}.jar"
 BFG_URL="https://repo1.maven.org/maven2/com/madgag/bfg/${BFG_VERSION}/bfg-${BFG_VERSION}.jar"
 LOGDIR="${WORKDIR}/logs"
 
+# Check for uncommitted changes in your local working copy
+cd "$REPO_PATH"
+if [[ -n "$(git status --porcelain)" ]]; then
+  echo "❌ Your working tree is dirty! Please commit or stash changes before cleanup."
+  exit 1
+fi
+
+# Optional: check that local main matches remote main
+LOCAL_HASH=$(git rev-parse main)
+REMOTE_HASH=$(git rev-parse origin/main)
+if [[ "$LOCAL_HASH" != "$REMOTE_HASH" ]]; then
+  echo "⚠️ Warning: Your local main is not in sync with origin/main."
+  echo "   Consider 'git pull' before running BFG."
+  read -rp "Continue anyway? [y/N]: " answer
+  [[ "$answer" =~ ^[Yy]$ ]] || exit 1
+fi
+
 mkdir -p "$LOGDIR"
 
 echo "🧹 Starting BFG cleanup in $WORKDIR..."
