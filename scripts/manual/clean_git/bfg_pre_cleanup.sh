@@ -11,13 +11,10 @@ DELETABLE_LIST="/tmp/deletable-blobs.txt"
 echo "🔍 Running Git history scan for Barotrauma and V Rising blob types..."
 echo "📁 Target repo: $WORKDIR/baroboys-bfg-clean.git"
 
-# Clone or reuse repo mirror
-if [[ -d "$WORKDIR/baroboys-bfg-clean.git" ]]; then
-  echo "♻️  Reusing existing mirror at $WORKDIR/baroboys-bfg-clean.git"
-else
-  echo "📥 Cloning bare → $WORKDIR/baroboys-bfg-clean.git"
-  git clone --bare "$REPO_PATH" "$WORKDIR/baroboys-bfg-clean.git" &> /dev/null
-fi
+# Clone repo mirror
+echo "📥 Creating fresh bare mirror for cleanup..."
+rm -rf "$WORKDIR/baroboys-bfg-clean.git"
+git clone --bare "$REPO_PATH" "$WORKDIR/baroboys-bfg-clean.git"
 
 cd "$WORKDIR/baroboys-bfg-clean.git"
 

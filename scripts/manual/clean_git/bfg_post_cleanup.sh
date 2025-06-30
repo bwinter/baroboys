@@ -2,8 +2,8 @@
 set -euo pipefail
 
 ### CONFIG ###
-CLEANUP_DIR="/tmp/bfg-cleanup"
-CLEANED_REPO="$CLEANUP_DIR/baroboys-bfg-clean.git"
+WORKDIR="/tmp/bfg-cleanup"
+CLEANED_REPO="$WORKDIR/baroboys-bfg-clean.git"
 PREVIEW_CLONE="$HOME/Desktop/Baroboys-preview"
 ORIGINAL_REPO="$HOME/Desktop/Baroboys"
 BACKUP_REPO="$HOME/Desktop/Baroboys-backup"
@@ -21,9 +21,10 @@ step() {
 
 ### Checks ###
 if [[ ! -d "$CLEANED_REPO" ]]; then
-  echo "❌ Cleaned bare repo not found: $CLEANED_REPO"
+  echo "❌ Bare mirror missing. Run bfg_pre_cleanup.sh first."
   exit 1
 fi
+echo "♻️  Using existing mirror at $CLEANED_REPO"
 
 echo "🧼 Starting BFG post-cleanup workflow..."
 echo "📁 Cleaned repo: $CLEANED_REPO"

@@ -35,13 +35,22 @@ if [[ ! -f "$ORIG_LIST" || ! -s "$ORIG_LIST" ]]; then
   echo "❌ Error: $ORIG_LIST missing or empty."
   exit 1
 fi
+echo "ℹ️  Using deletable list last modified: $(stat -c %y "$ORIG_LIST")"
 
-# Clone or reuse repo mirror
-if [[ -d "$WORKDIR/baroboys-bfg-clean.git" ]]; then
-  echo "♻️  Reusing existing mirror at $WORKDIR/baroboys-bfg-clean.git"
-else
-  echo "📥 Cloning bare → $WORKDIR/baroboys-bfg-clean.git"
-  git clone --bare "$REPO_PATH" "$WORKDIR/baroboys-bfg-clean.git" &> /dev/null
+# Reuse repo mirror
+if [[ ! -d "$WORKDIR/baroboys-bfg-clean.git" ]]; then
+  echo "❌ Bare mirror missing. Run bfg_pre_cleanup.sh first."
+  exit 1
+fi
+echo "♻️  Using existing mirror at $WORKDIR/baroboys-bfg-clean.git"
+
+LATEST_HASH=$(git -C "$REPO_PATH" rev-parse main)
+MIRROR_HASH=$(git -C "$WORKDIR/baroboys-bfg-clean.git" rev-parse main)
+
+if [[ "$LATEST_HASH" != "$MIRROR_HASH" ]]; then
+  echo "⚠️  Warning: Local repo has new commits since mirror was cloned!"
+  echo "   Re-run pre_cleanup.sh to refresh the mirror."
+  exit 1
 fi
 
 # Download BFG if needed
