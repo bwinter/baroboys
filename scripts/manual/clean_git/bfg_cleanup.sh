@@ -84,6 +84,5 @@ git gc --prune=now --aggressive
 
 echo -e "\n✅ Cleanup finished!"
 echo "📁 Repo at: $WORKDIR/baroboys-bfg-clean.git"
-echo "🔍 Inspect:  ./scripts/print_git_info.sh $WORKDIR/baroboys-bfg-clean.git"
 
 exit 0

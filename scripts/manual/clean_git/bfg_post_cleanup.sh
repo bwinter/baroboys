@@ -85,7 +85,7 @@ git remote add origin "$REMOTE_URL"
 
 if confirm "   Push cleaned history to remote? This will overwrite remote history!"; then
   git push --mirror origin
-  echo "✅ Cleaned history pushed to remote!"
+  echo "✅ Remote history is now rewritten — double-check your new working clone!"
 else
   echo "⏭️  Skipping push to remote."
 fi

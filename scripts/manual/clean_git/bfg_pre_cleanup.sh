@@ -29,7 +29,7 @@ MATCHED_PATHS=$(echo "$ALL_PATHS" | grep -E '\.ogg$|AutoSave_.*\.save\.gz$|\.dll
 
 # Handle empty case
 if [[ -z "$MATCHED_PATHS" ]]; then
-  echo "⚠️  No matching blobs found (.ogg or AutoSave_*.save.gz)"
+  echo "✅ Repo appears clean — no blobs to purge."
   : > "$DELETABLE_LIST"
   exit 0
 fi
