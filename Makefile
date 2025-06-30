@@ -161,15 +161,15 @@ clean:
 
 clean-git-print-info:
 	echo "🔍 [print_git_info] Scanning for large blobs and writing deletable list..."
-	./scripts/print_git_info.sh
+	./scripts/manual/clean_git/bfg_pre_cleanup.sh
 
 clean-git-bfg:
 	echo "🧹 [bfg_cleanup] Running BFG history rewrite using deletable list..."
-	./scripts/bfg_cleanup.sh
+	./scripts/manual/clean_git/bfg_cleanup.sh
 
 clean-git-post:
 	echo "✅ [bfg_post_cleanup] Cloning preview, diffing, pushing cleaned history..."
-	./scripts/bfg_post_cleanup.sh
+	./scripts/manual/clean_git/bfg_post_cleanup.sh
 
 clean-git: clean-git-print-info clean-git-bfg clean-git-post
 	echo "🎉 [clean-git] Repo fully cleaned, reviewed, and remote history overwritten (if confirmed)."
