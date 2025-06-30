@@ -1,4 +1,0 @@
-127.0.0.1 - - [30/May/2025:13:05:21 +0000] "GET /api/ping HTTP/1.1" 200 5 "-" "curl/7.88.1"
-127.0.0.1 - - [30/May/2025:13:05:22 +0000] "GET /api/logs/webhook HTTP/1.1" 200 1420 "-" "Mozilla/5.0"
-127.0.0.1 - - [30/May/2025:13:05:23 +0000] "POST /api/trigger-shutdown HTTP/1.1" 200 38 "-" "axios/1.6.2"
-127.0.0.1 - - [30/May/2025:13:05:26 +0000] "GET /directory HTTP/1.1" 200 2934 "-" "Mozilla/5.0"

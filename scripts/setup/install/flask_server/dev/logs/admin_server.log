@@ -1,5 +1,0 @@
-May 30 13:05:10 localhost python3[1092]: [INFO] Flask server started on port 5000
-May 30 13:05:12 localhost python3[1092]: [INFO] /api/ping responded in 1ms
-May 30 13:05:13 localhost python3[1092]: [INFO] /api/check-status returned 200
-May 30 13:05:15 localhost python3[1092]: [WARNING] /api/shutdown: failed to parse shutdown time
-May 30 13:05:18 localhost python3[1092]: [INFO] /api/settings returned 24 settings
