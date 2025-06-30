@@ -158,8 +158,9 @@ clean:
 	scripts/gcp_review_and_cleanup.sh
 
 # Git Cleanup Targets
+.PHONY: clean-git-pre clean-git-bfg clean-git-post clean-git
 
-clean-git-print-info:
+clean-git-pre:
 	echo "🔍 [print_git_info] Scanning for large blobs and writing deletable list..."
 	./scripts/manual/clean_git/bfg_pre_cleanup.sh
 
@@ -171,7 +172,7 @@ clean-git-post:
 	echo "✅ [bfg_post_cleanup] Cloning preview, diffing, pushing cleaned history..."
 	./scripts/manual/clean_git/bfg_post_cleanup.sh
 
-clean-git: clean-git-print-info clean-git-bfg clean-git-post
+clean-git: clean-git-pre clean-git-bfg clean-git-post
 	echo "🎉 [clean-git] Repo fully cleaned, reviewed, and remote history overwritten (if confirmed)."
 
 
@@ -226,7 +227,7 @@ help:
 	@echo ""
 
 	@echo "🧹 Git History Cleanup:"
-	@echo "  make clean-git              - Run full BFG-based Git cleanup flow"
-	@echo "  make clean-git-print-info   - Print repo file info and size stats"
-	@echo "  make clean-git-bfg          - Run BFG repo history cleaner"
-	@echo "  make clean-git-post         - Run post-BFG cleanup suggestions"
+	@echo "  make clean-git-pre          - Scan repo history and write deletable blobs list"
+	@echo "  make clean-git-bfg          - Rewrite repo history using BFG with the deletable list"
+	@echo "  make clean-git-post         - Preview, diff, and optionally push cleaned history"
+	@echo "  make clean-git              - Full pipeline: pre-check → BFG → post-cleanup workflow"
