@@ -1,0 +1,242 @@
+{
+  // ===================================
+  // === CORE GAMEPLAY & PVP SETTINGS ===
+  // ===================================
+
+  "GameDifficulty": 1,                    // int: 0-2 | 0=Relaxed, 1=Normal, 2=Brutal
+  "GameModeType": 0,                      // int: 0-1 | 0=PvE, 1=PvP
+  "PlayerDamageMode": 0,                  // int: 0-1 | 0=Always, 1=TimeRestricted
+  "PvPProtectionMode": 0,                 // int: 0-4 | 0=Disabled, 1=VeryShort, 2=Short, 3=Medium, 4=Long
+  "DeathContainerPermission": 0,          // int: 0-2 | 0=Anyone, 1=ClanMembers, 2=OnlySelf
+  "RelicSpawnType": 0,                    // int: 0-1 | 0=Unique, 1=Plentiful
+
+  // ====================================
+  // === CLAN, CHAT & QOL TOGGLES ===
+  // ====================================
+
+  "ClanSize": 4,                          // int: 1-50
+  "AllowGlobalChat": true,                // bool
+  "AllWaypointsUnlocked": false,          // bool
+  "CanLootEnemyContainers": false,        // bool
+  "TeleportBoundItems": false,            // bool
+  "BatBoundItems": false,                 // bool
+  "BatBoundShards": false,                // bool
+
+  // ========================================
+  // === RESOURCE YIELDS & PROGRESSION ===
+  // ========================================
+
+  "InventoryStacksModifier": 5.0,         // float: 0.25-3.0
+  "MaterialYieldModifier_Global": 1.55,   // float: 0.25-3.0
+  "BloodEssenceYieldModifier": 1.65,      // float: 0.25-3.0
+  "DropTableModifier_General": 1.0,       // float: 0.25-3.0
+  "DropTableModifier_StygianShards": 1.0, // float: 0.25-3.0
+  "DropTableModifier_Missions": 1.0,      // float: 0.25-3.0
+
+  "BuildCostModifier": 0.6,               // float: 0.0-3.0
+  "RecipeCostModifier": 0.65,             // float: 0.0-3.0
+  "CraftRateModifier": 1.5,               // float: 0.25-6.0
+  "ResearchCostModifier": 0.65,           // float: 0.0-3.0
+  "ResearchTimeModifier": 0.65,           // float: 0.0-3.0
+  "RefinementCostModifier": 0.75,         // float: 0.0-3.0
+  "RefinementRateModifier": 1.3,          // float: 0.25-6.0 | Lower = slower, more refineries needed
+  "RepairCostModifier": 0.6,              // float: 0.0-3.0
+  "DismantleResourceModifier": 1.0,       // float: 0.0-1.0
+  "ServantConvertRateModifier": 1.0,      // float: 0.25-6.0
+
+  // ========================================
+  // === GAME TIME & BLOOD MOON SETTINGS ===
+  // ========================================
+
+  "GameTimeModifiers": {
+    "DayDurationInSeconds": 1080,          // int: 60-86400
+    "DayStartHour": 11,                    // int: 0-23
+    "DayStartMinute": 0,                   // int: 0-59
+    "DayEndHour": 15,                      // int: 0-23
+    "DayEndMinute": 0,                     // int: 0-59
+    "BloodMoonFrequency_Min": 2,           // int: 1-255 | min in-game days
+    "BloodMoonFrequency_Max": 3,           // int: 1-255 | max in-game days
+    "BloodMoonBuff": 0.2                   // float: 0.0-1.0+
+  },
+
+  // ====================================
+  // === CASTLE STRUCTURE LIMITS ===
+  // ====================================
+
+  "CastleStatModifiers_Global": {
+    "TickPeriod": 7.5,                     // float: 0.1-600 sec
+    "SafetyBoxLimit": 1,                   // int: 0-255
+    "EyeStructuresLimit": 1,               // int: 0-255
+    "TombLimit": 12,                       // int: 0-255
+    "VerminNestLimit": 4,                  // int: 0-255
+    "PrisonCellLimit": 24,                 // int: 0-255
+    "CastleHeartLimitType": "User",        // enum: "User" or "Clan"
+    "CastleLimit": 5,                      // int: 0-255
+    "NetherGateLimit": 3,                  // int: 0-255
+    "ThroneOfDarknessLimit": 1,            // int: 0-255
+    "ArenaStationLimit": 5,                // int: 0-255
+    "RoutingStationLimit": 10,             // int: 0-255
+
+    "HeartLimits": {
+      "Level1": { "FloorLimit": 50, "ServantLimit": 1, "HeightLimit": 3 }, // int: typical 1+
+      "Level2": { "FloorLimit": 140, "ServantLimit": 3, "HeightLimit": 3 },
+      "Level3": { "FloorLimit": 240, "ServantLimit": 5, "HeightLimit": 4 },
+      "Level4": { "FloorLimit": 360, "ServantLimit": 7, "HeightLimit": 4 },
+      "Level5": { "FloorLimit": 550, "ServantLimit": 10, "HeightLimit": 5 }
+    }
+  },
+
+  // ===================================
+  // === ENVIRONMENT & SURVIVAL ===
+  // ===================================
+
+  "GarlicAreaStrengthModifier": 1.0,       // float: 0.0-3.0
+  "HolyAreaStrengthModifier": 1.0,         // float: 0.0-3.0
+  "SilverStrengthModifier": 1.0,           // float: 0.0-3.0
+  "SunDamageModifier": 1.0,                // float: 0.0-3.0
+  "BloodDrainModifier": 0.75,              // float: 0.0-3.0 | passive vampire blood drain
+  "CastleDecayRateModifier": 0.0,          // float: 0.0-3.0
+  "CastleBloodEssenceDrainModifier": 0.8,  // float: 0.0-3.0
+
+  // ====================================
+  // === CASTLE OWNERSHIP & SIEGE RULES ===
+  // ====================================
+
+  "CastleRelocationEnabled": true,         // bool
+  "CastleRelocationCooldown": 0,           // int: sec | 0 = no cooldown
+
+  "CastleDamageMode": 0,                   // int: 0=Never, 1=Always, 2=TimeRestricted
+  "CastleHeartDamageMode": 0,              // int: same options
+  "SiegeWeaponHealth": 1,                  // int: 0-8 | 0=VeryLow .. 8=Max
+  "FreeCastleRaid": false,                 // bool
+  "FreeCastleClaim": false,                // bool
+  "FreeCastleDestroy": false,              // bool
+  "CastleSiegeTimer": 420,                 // int: 60-1800 sec
+  "CastleUnderAttackTimer": 60,            // int: 0-60 sec
+  "CastleRaidTimer": 600,                  // int: 60-3600 sec
+  "CastleRaidProtectionTime": 1800,        // int: 0-604800 sec
+  "CastleExposedFreeClaimTimer": 300,      // int: 0-3600 sec
+  "AnnounceSiegeWeaponSpawn": true,        // bool
+  "ShowSiegeWeaponMapIcon": true,          // bool
+
+  // ======================================
+  // === TRADE MODIFIERS ===
+  // ======================================
+
+  "TraderModifiers": {
+    "StockModifier": 1.0,                  // float: 0.25-10.0
+    "PriceModifier": 1.0,                  // float: 0.25-10.0
+    "RestockTimerModifier": 1.0            // float: 0.25-10.0
+  },
+
+  // ======================================
+  // === DURABILITY & DEATH MECHANICS ===
+  // ======================================
+
+  "BloodBoundEquipment": true,                  // bool | keep equipped gear on death
+  "Death_DurabilityFactorLoss": 0.1,            // float: 0.0-1.0 | % durability lost on death
+  "Death_DurabilityLossFactorAsResources": 0.0, // float: 0.0-1.0 | % lost durability dropped as resources
+  "DurabilityDrainModifier": 0.5,               // float: 0.0-3.0 | gear wear rate
+
+  // ======================================
+  // === INACTIVITY & DISCONNECTION ===
+  // ======================================
+
+  "InactivityKillEnabled": false,          // bool
+  "InactivityKillTimeMin": 3600,           // int: sec
+  "InactivityKillTimeMax": 604800,         // int: sec
+  "InactivityKillSafeTimeAddition": 172800,// int: sec
+  "InactivityKillTimerMaxItemLevel": 84,   // int: 0-255
+  "DisableDisconnectedDeadEnabled": true,  // bool
+  "DisableDisconnectedDeadTimer": 60,      // int: sec
+  "DisconnectedSunImmunityTime": 600,      // int: 0-3600 sec
+
+  // ====================================
+  // === STAT MODIFIERS ===
+  // ====================================
+
+  "VampireStatModifiers": {
+    "MaxHealthModifier": 1.0,              // float: 0.01-10.0
+    "PhysicalPowerModifier": 1.0,          // float: 0.01-10.0
+    "SpellPowerModifier": 1.0,             // float: 0.01-10.0
+    "ResourcePowerModifier": 1.0,          // float: 0.01-10.0
+    "SiegePowerModifier": 1.0,             // float: 0.01-10.0
+    "DamageReceivedModifier": 1.0,         // float: 0.01-10.0
+    "ReviveCancelDelay": 5                 // int: sec
+  },
+
+  "UnitStatModifiers_Global": {
+    "MaxHealthModifier": 1.0,              // float: 0.01-10.0
+    "PowerModifier": 1.0,                  // float: 0.01-10.0
+    "LevelIncrease": 0                     // int: 0-100
+  },
+
+  "UnitStatModifiers_VBlood": {
+    "MaxHealthModifier": 1.0,              // float: 0.01-10.0
+    "PowerModifier": 1.0,                  // float: 0.01-10.0
+    "LevelIncrease": 0                     // int: 0-100
+  },
+
+  "EquipmentStatModifiers_Global": {
+    "MaxHealthModifier": 1.0,              // float: 0.01-10.0
+    "ResourceYieldModifier": 1.0,          // float: 0.01-10.0
+    "PhysicalPowerModifier": 1.0,          // float: 0.01-10.0
+    "SpellPowerModifier": 1.0,             // float: 0.01-10.0
+    "SiegePowerModifier": 1.0,             // float: 0.01-10.0
+    "MovementSpeedModifier": 1.0           // float: unused
+  },
+
+  // =========================================
+  // === PLAYER INTERACTION TIME WINDOWS ===
+  // =========================================
+
+  "PlayerInteractionSettings": {
+    "TimeZone": "Local",
+    "VSPlayerWeekdayTime": {
+      "StartHour": 20, "StartMinute": 0, "EndHour": 22, "EndMinute": 0
+    },
+    "VSPlayerWeekendTime": {
+      "StartHour": 20, "StartMinute": 0, "EndHour": 22, "EndMinute": 0
+    },
+    "VSCastleWeekdayTime": {
+      "StartHour": 20, "StartMinute": 0, "EndHour": 22, "EndMinute": 0
+    },
+    "VSCastleWeekendTime": {
+      "StartHour": 20, "StartMinute": 0, "EndHour": 22, "EndMinute": 0
+    }
+  },
+
+  // ===================================
+  // === WAR EVENT SETTINGS ===
+  // ===================================
+
+  "WarEventGameSettings": {
+    "Interval": 1,                        // int: enum preset
+    "MajorDuration": 1,                   // int: enum preset
+    "MinorDuration": 1,                   // int: enum preset
+    "WeekdayTime": {
+      "StartHour": 0, "StartMinute": 0, "EndHour": 23, "EndMinute": 59
+    },
+    "WeekendTime": {
+      "StartHour": 0, "StartMinute": 0, "EndHour": 23, "EndMinute": 59
+    },
+    "ScalingPlayers1": { "PointsModifier": 1.0, "DropModifier": 1.0 },
+    "ScalingPlayers2": { "PointsModifier": 0.5, "DropModifier": 0.5 },
+    "ScalingPlayers3": { "PointsModifier": 0.25, "DropModifier": 0.25 },
+    "ScalingPlayers4": { "PointsModifier": 0.25, "DropModifier": 0.25 }
+  },
+
+  // ========================================
+  // === MISC & ADVANCED OVERRIDES ===
+  // ========================================
+
+  "StartingProgressionLevel": 0,            // int: 0-255
+  "StarterEquipmentId": 0,                  // int: see IDs
+  "StarterResourcesId": 0,                  // int: see IDs
+  "JournalVBloodSourceUnitMaxDistance": 25, // int
+  "PvPVampireRespawnModifier": 1.0,         // float: 0.0-3.0
+  "CastleMinimumDistanceInFloors": 1,       // int: unused
+  "VBloodUnitSettings": [],                 // list
+  "UnlockedAchievements": [],               // list
+  "UnlockedResearchs": []                   // list
+}
