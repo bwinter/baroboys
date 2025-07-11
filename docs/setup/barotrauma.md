@@ -17,8 +17,8 @@ This is helpful when iterating as you can have your sub updates show up in your 
 Link Local Mods
 
   ```shell
-  rm -fr '/Users/bwinter/Library/Application Support/Steam/steamapps/common/Barotrauma/Barotrauma.app/Contents/MacOS/LocalMods'
-  ln -s '/Users/bwinter/Desktop/Baroboys/Barotrauma/LocalMods/' '/Users/bwinter/Library/Application Support/Steam/steamapps/common/Barotrauma/Barotrauma.app/Contents/MacOS'
+  rm '/Users/bwinter/Library/Application Support/Steam/steamapps/common/Barotrauma/Barotrauma.app/Contents/MacOS/LocalMods'
+  ln -s '/Users/bwinter/Desktop/Baroboys/Barotrauma/LocalMods/' '/Users/bwinter/Library/Application Support/Steam/steamapps/common/Barotrauma/Barotrauma.app/Contents/MacOS/'
   ```
 
 Link Remote Mods
