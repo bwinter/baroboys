@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <contentpackage name="DagonLing Blueprint" modversion="1.0.10" corepackage="False" steamworkshopid="2823471608"
-                gameversion="0.18.15.2">
+                gameversion="1.7.7.0">
     <Item file="%ModDir%/Content/Items/blueprint.xml"/>
 </contentpackage>
