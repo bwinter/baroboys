@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Dagon Disected" modversion="1.0.20" corepackage="False" gameversion="1.9.8.0">
-  <Submarine file="%ModDir%/Dagon Disected.sub" />
+<contentpackage name="Dagon Dissected" modversion="1.0.21" corepackage="False" gameversion="1.9.8.0">
+  <Submarine file="%ModDir%/Dagon Dissected.sub" />
 </contentpackage>
