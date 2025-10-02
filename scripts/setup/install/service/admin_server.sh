@@ -12,14 +12,14 @@ chmod 644 "/etc/systemd/system/admin-server.service"
 
 # Flask app source
 mkdir -p "/opt/baroboys"
-cp "/root/baroboys/scripts/setup/install/flask_server/admin_server.py" \
+cp "/root/baroboys/scripts/server/admin/admin_server.py" \
    "/opt/baroboys/admin_server.py"
 chmod 755 "/opt/baroboys/admin_server.py"
 
 # Static HTML and assets
 mkdir -p "/opt/baroboys/static"
 for file in admin.html favicon.ico robots.txt; do
-  cp "/root/baroboys/scripts/setup/install/flask_server/static/${file}" \
+  cp "/root/baroboys/scripts/server/admin/static/${file}" \
      "/opt/baroboys/static/${file}"
 done
 chmod 644 /opt/baroboys/static/*
@@ -27,7 +27,7 @@ chmod 644 /opt/baroboys/static/*
 # Jinja templates
 mkdir -p "/opt/baroboys/templates"
 for file in 404.html directory.html; do
-  cp "/root/baroboys/scripts/setup/install/flask_server/templates/${file}" \
+  cp "/root/baroboys/scripts/server/admin/templates/${file}" \
      "/opt/baroboys/templates/${file}"
 done
 chmod 644 /opt/baroboys/templates/*.html

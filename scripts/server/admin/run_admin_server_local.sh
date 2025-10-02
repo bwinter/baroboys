@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# scripts/setup/install/flask_server/run_admin_server_local.sh
+# scripts/server/admin/run_admin_server_local.sh
 
 set -euo pipefail
 

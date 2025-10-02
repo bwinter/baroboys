@@ -26,10 +26,10 @@ destroy: terraform-destroy
 .PHONY: admin-local admin-logs
 
 admin-local:
-	scripts/setup/install/flask_server/run_admin_server_local.sh
+	scripts/server/admin/run_admin_server_local.sh
 
 admin-logs:
-	scripts/setup/install/flask_server/get_admin_server_logs.sh
+	scripts/server/admin/get_admin_server_logs.sh
 
 
 # =======================
