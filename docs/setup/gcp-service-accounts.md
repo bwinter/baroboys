@@ -27,7 +27,7 @@ Then run the following bootstrap scripts:
 Creates `terraform@...` and assigns roles needed for infrastructure provisioning.
 
 ```bash
-bash scripts/manual/gcp/bootstrap_terraform_sa.sh
+bash scripts/tools/gcp/bootstrap_terraform_sa.sh
 ```
 
 This script assigns:
@@ -43,7 +43,7 @@ This script assigns:
 Creates `vm-runtime@...` and assigns roles needed for VM runtime operations.
 
 ```bash
-bash scripts/manual/gcp/bootstrap_vm_sa.sh
+bash scripts/tools/gcp/bootstrap_vm_sa.sh
 ```
 
 This script assigns:

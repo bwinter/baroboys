@@ -36,7 +36,7 @@ terraform/packer/tmp/.secrets/*
 # ===================================
 
 # Tooling
-scripts/manual/save-decompressor/Barotrauma-Save-Decompressor.lnk
+scripts/tools/save-decompressor/Barotrauma-Save-Decompressor.lnk
 
 # Dev (basically temp dir)
 scripts/server/admin/dev/*

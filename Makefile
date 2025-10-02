@@ -97,7 +97,7 @@ iam-destroy:
 .PHONY: vm-switch vm-mode vm-refresh
 
 vm-switch:
-	scripts/manual/switch_game.sh
+	scripts/tools/manual/switch_game.sh
 
 vm-mode:
 	@grep ACTIVE_GAME $(ACTIVE_GAME_FILE) | cut -d= -f2
@@ -162,15 +162,15 @@ clean:
 
 clean-git-pre:
 	echo "🔍 [print_git_info] Scanning for large blobs and writing deletable list..."
-	./scripts/manual/clean_git/bfg_pre_cleanup.sh
+	./scripts/tools/clean_git/bfg_pre_cleanup.sh
 
 clean-git-bfg:
 	echo "🧹 [bfg_cleanup] Running BFG history rewrite using deletable list..."
-	./scripts/manual/clean_git/bfg_cleanup.sh
+	./scripts/tools/clean_git/bfg_cleanup.sh
 
 clean-git-post:
 	echo "✅ [bfg_post_cleanup] Cloning preview, diffing, pushing cleaned history..."
-	./scripts/manual/clean_git/bfg_post_cleanup.sh
+	./scripts/tools/clean_git/bfg_post_cleanup.sh
 
 clean-git: clean-git-pre clean-git-bfg clean-git-post
 	echo "🎉 [clean-git] Repo fully cleaned, reviewed, and remote history overwritten (if confirmed)."

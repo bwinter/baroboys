@@ -53,7 +53,7 @@ Systemd unit files used to launch games and headless dependencies:
 
 ---
 
-## 🧭 `manual/`
+## 🧭 `tools/`
 
 Utilities for manual operation, debugging, local overrides, or service account bootstrapping.
 
