@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Clown Art" modversion="1.0.0" corepackage="False">
+    <Item file="%ModDir%/Content/Items/clown_art.xml"/>
+</contentpackage>

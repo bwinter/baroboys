@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+    <OpDeco name="Abstract Clown Art" identifier="Clown Art Abstract" allowattachitems="true" width="256" height="256" scale="0.5" category="Decorative">
+        <Sprite texture="Abstract.png" sourcerect="0,0,256,256"/>
+    </OpDeco>
+    <OpDeco name="Angelic Clown Art" identifier="Clown Art Angelic" allowattachitems="true" width="256" height="256" scale="0.5" category="Decorative">
+        <Sprite texture="Angelic.png" sourcerect="0,0,256,256"/>
+    </OpDeco>
+    <OpDeco name="Portrait Clown Art" identifier="Clown Art Portrait" allowattachitems="true" width="256" height="256" scale="0.5" category="Decorative">
+        <Sprite texture="Portrait.png" sourcerect="0,0,256,256"/>
+    </OpDeco>
+</Items>
