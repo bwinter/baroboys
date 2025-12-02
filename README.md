@@ -163,7 +163,7 @@ make destroy
 This project is licensed under
 the [Polyform Small Business License](https://polyformproject.org/licenses/small-business/1.0.0/).
 
-- ✅ Free for personal, educational, and small business use (under $1M revenue)
+- ✅ Free for personal, educational use
 - ❌ Commercial use by larger companies requires a commercial license
 
 If you’re a business above the size threshold and would like to use this project, please contact me
