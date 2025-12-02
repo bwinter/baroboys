@@ -1,1 +1,1 @@
-Intended to be run by root / owner user to create initial service accounts.
+Intended to be run by GCP Project owner to create initial service accounts. See `tools` scripts.

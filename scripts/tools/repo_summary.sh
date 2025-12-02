@@ -1,7 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
-echo "# 🧱 Baroboys Admin UI + Status Logic"
+echo "# 🧱 Print contents of some repo files."
+echo "This file is designed to be edited to change the files printed."
+echo "The goal is to make a large blob that can be shared with ChatGPT."
 echo "Generated: $(date -u)"
 
 add_section() {
