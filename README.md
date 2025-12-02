@@ -167,4 +167,4 @@ the [Polyform Small Business License](https://polyformproject.org/licenses/small
 - ❌ Commercial use by larger companies requires a commercial license
 
 If you’re a business above the size threshold and would like to use this project, please contact me
-at [your-email@example.com].
+at [bwinter.sc81@gmail.com].
