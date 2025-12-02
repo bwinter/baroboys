@@ -32,14 +32,14 @@ for file in 404.html directory.html; do
 done
 chmod 644 /opt/baroboys/templates/*.html
 
-mkdir -p "/home/bwinter_sc81/baroboys/VRising/logs/"
-chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/"
-chmod 700  "/home/bwinter_sc81/baroboys/VRising/logs/"
+mkdir -p "/var/log/baroboys/"
+chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/"
+chmod 700  "/var/log/baroboys/"
 
-touch "/home/bwinter_sc81/baroboys/VRising/logs/admin_server.log"
-printf "\n==== %s ====\n" "$(date +%Y%m%d-%H%M)" >> "/home/bwinter_sc81/baroboys/VRising/logs/admin_server.log"
-chown bwinter_sc81:bwinter_sc81  "/home/bwinter_sc81/baroboys/VRising/logs/admin_server.log"
-chmod 644  "/home/bwinter_sc81/baroboys/VRising/logs/admin_server.log"
+touch "/var/log/baroboys/admin_server.log"
+printf "\n==== %s ====\n" "$(date +%Y%m%d-%H%M)" >> "/var/log/baroboys/admin_server.log"
+chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/admin_server.log"
+chmod 644  "/var/log/baroboys/admin_server.log"
 
 # Activate Admin Server
 systemctl daemon-reload

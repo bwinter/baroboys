@@ -6,8 +6,8 @@ After=network.target
 Environment=PYTHONUNBUFFERED=1
 ExecStart=/usr/bin/python3 /opt/baroboys/admin_server.py
 WorkingDirectory=/opt/baroboys
-StandardOutput=append:/home/bwinter_sc81/baroboys/VRising/logs/admin_server.log
-StandardError=append:/home/bwinter_sc81/baroboys/VRising/logs/admin_server.log
+StandardOutput=append:/var/log/baroboys/admin_server.log
+StandardError=append:/var/log/baroboys/admin_server.log
 Restart=on-failure
 RestartSec=5
 User=root

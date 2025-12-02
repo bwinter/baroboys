@@ -9,5 +9,5 @@ User=bwinter_sc81
 Group=bwinter_sc81
 WorkingDirectory=/home/bwinter_sc81/baroboys
 ExecStart=/usr/bin/bash /home/bwinter_sc81/baroboys/scripts/teardown/user/vrising_idle_check.sh
-StandardOutput=append:/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log
-StandardError=append:/home/bwinter_sc81/baroboys/VRising/logs/vrising_idle_check.log
+StandardOutput=append:/var/log/baroboys/vrising_idle_check.log
+StandardError=append:/var/log/baroboys/vrising_idle_check.log

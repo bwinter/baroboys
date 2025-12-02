@@ -9,6 +9,6 @@ Type=oneshot
 Environment=HOME=/root
 ExecStart=/usr/bin/bash /root/baroboys/scripts/teardown/shutdown.sh
 ExecStopPost=/usr/bin/systemctl poweroff
-StandardOutput=append:/home/bwinter_sc81/baroboys/VRising/logs/shutdown.log
-StandardError=append:/home/bwinter_sc81/baroboys/VRising/logs/shutdown.log
+StandardOutput=append:/var/log/baroboys/vm-shutdown.log
+StandardError=append:/var/log/baroboys/vm-shutdown.log
 TimeoutStartSec=300

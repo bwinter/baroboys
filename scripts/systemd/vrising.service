@@ -11,16 +11,16 @@ WorkingDirectory=/home/bwinter_sc81/baroboys/VRising
 User=bwinter_sc81
 Group=bwinter_sc81
 
-ExecStartPost=/usr/bin/bash -c 'echo "✅ vrising.service launched at $(date)" >> /home/bwinter_sc81/baroboys/VRising/logs/vrising.log'
+ExecStartPost=/usr/bin/bash -c 'echo "✅ vrising.service launched at $(date)" >> /var/log/baroboys/vrising.log'
 ExecStart=/home/bwinter_sc81/baroboys/scripts/setup/install/service/vrising_launcher.sh
-ExecStopPost=/usr/bin/bash -c 'echo "🛑 vrising.service finished shutdown at $(date)" >> /home/bwinter_sc81/baroboys/VRising/logs/vrising.log'
+ExecStopPost=/usr/bin/bash -c 'echo "🛑 vrising.service finished shutdown at $(date)" >> /var/log/baroboys/vrising.log'
 
 SuccessExitStatus=0
 KillMode=control-group
 TimeoutStopSec=60
 SuccessExitStatus=0
 
-StandardOutput=append:/home/bwinter_sc81/baroboys/VRising/logs/vrising.log
-StandardError=append:/home/bwinter_sc81/baroboys/VRising/logs/vrising.log
+StandardOutput=append:/var/log/baroboys/vrising.log
+StandardError=append:/var/log/baroboys/vrising.log
 
 Restart=on-failure

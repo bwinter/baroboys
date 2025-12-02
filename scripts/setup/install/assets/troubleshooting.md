@@ -96,7 +96,7 @@ http://<your-ip>:8080/logs/
 If you get a `403 Forbidden`, fix log dir permissions:
 
 ```bash
-/usr/bin/sudo chmod -R o+r /home/bwinter_sc81/baroboys/VRising/logs
+/usr/bin/sudo chmod -R o+r /var/log/baroboys
 ```
 
 If you get a `404`, ensure the trailing slash is present:

@@ -10,7 +10,7 @@ ENV = os.getenv("FLASK_ENV", "production")
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(THIS_DIR, "static") if ENV == "development" else "/opt/baroboys/static"
 TEMPLATE_DIR = os.path.join(THIS_DIR, "templates") if ENV == "development" else "/opt/baroboys/templates"
-LOG_DIR = os.path.join(THIS_DIR, "dev/logs") if ENV == "development" else "/home/bwinter_sc81/baroboys/VRising/logs"
+LOG_DIR = os.path.join(THIS_DIR, "dev/logs") if ENV == "development" else "/var/log/baroboys"
 STATUS_DIR = os.path.join(THIS_DIR, "dev/status") if ENV == "development" else "/dev/null"
 
 if ENV == "development":
