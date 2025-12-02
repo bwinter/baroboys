@@ -6,7 +6,7 @@ Use VirtualBox to get Windows
 
 Setting up file paths:
 
-![VirtualBox Disk Setup](assets/VirtualBox%20Disk%20Setup.png)
+![VirtualBox Disk Setup](VirtualBox%20Shared%20Folders.png)
 
 See `scripts/save-decompressor`
 
