@@ -53,10 +53,9 @@ build {
       "/usr/bin/sudo /root/baroboys/scripts/setup/install/apt_wine.sh",
       "echo '🔧 Running apt_steam.sh'",
       "/usr/bin/sudo /root/baroboys/scripts/setup/install/apt_steam.sh",
-      # Refreshes & Enables Startup Service (Want to install self to ensure refresh occurs after restart.)
+      # Refreshes & Enables Startup Service (Installs self to ensure refresh and startup also occurs after restart.)
       "echo '🔧 Install vm-startup.service'",
       "/usr/bin/sudo /root/baroboys/scripts/setup/install/service/startup.sh",
-      # Refreshes & Enables & Starts Admin Server (Startup Admin Server immediately.)
       "echo '🔧 Install vm-shutdown.service'",
       "/usr/bin/sudo /root/baroboys/scripts/setup/install/service/shutdown.sh",
       "echo '🧹 Running autoremove'",
