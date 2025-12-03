@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
-# scripts/server/admin/run_admin_server_local.sh
+# admin/run_admin_server_local.sh
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "$SCRIPT_DIR/../../../.." && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+ADMIN_DIR="$(cd "$REPO_ROOT/admin" && pwd)"
 
 # === Shared paths (mirroring prod) ===
-STATIC_SOURCE="$SCRIPT_DIR/static"
-TEMPLATE_SOURCE="$SCRIPT_DIR/templates"
+STATIC_SOURCE="$ADMIN_DIR/static"
+TEMPLATE_SOURCE="$ADMIN_DIR/templates"
 STATIC_DEST="/opt/baroboys/static"
 TEMPLATE_DEST="/opt/baroboys/templates"
 NGINX_CONF_MAIN="/usr/local/etc/nginx/nginx.conf"
@@ -90,7 +91,7 @@ sudo truncate -s 0 "$NGINX_LOG_DIR/error.log" || true
 
 # === Start Flask ===
 echo "🚀 Starting Flask admin server..."
-FLASK_ENV=development python3 "$SCRIPT_DIR/admin_server.py" &
+FLASK_ENV=development python3 "$ADMIN_DIR/admin_server.py" &
 FLASK_PID=$!
 
 # === Start nginx (manual) ===

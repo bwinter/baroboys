@@ -1,3 +1,4 @@
+*NOTE*: This is an old snapshot to test dev env UI.
 ● vrising.service - V Rising Dedicated Server
      Loaded: loaded (/etc/systemd/system/vrising.service; enabled; vendor preset: enabled)
      Active: active (running) since Wed 2025-05-28 20:13:32 UTC; 2h 14min ago

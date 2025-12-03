@@ -19,12 +19,12 @@ fi
 echo "⏳ Waiting ${SHUTDOWN_DELAY_MINUTES} minutes for V Rising to shut down and save..."
 sleep "$((SHUTDOWN_DELAY_MINUTES * 60 + 30))"
 
-echo "🔃 Waiting for VRisingServer.exe to shut down..."
+echo "🔃 Monitoring VRisingServer.exe status..."
 
 if ! timeout 300 bash -c 'while ps -C VRisingServer.exe >/dev/null; do sleep 1; done'; then
-  echo "⚠️ VRisingServer.exe did not exit in time. Logging debug info..."
+  echo "⚠️ VRisingServer.exe did not exit in time."
 else
-  echo "✅ VRisingServer.exe exited cleanly"
+  echo "✅ VRisingServer.exe exited cleanly."
 fi
 
 

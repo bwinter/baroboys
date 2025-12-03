@@ -26,10 +26,10 @@ destroy: terraform-destroy
 .PHONY: admin-local admin-logs
 
 admin-local:
-	scripts/server/admin/run_admin_server_local.sh
+	scripts/tools/admin/run_admin_server_local.sh
 
 admin-logs:
-	scripts/server/admin/get_admin_server_logs.sh
+	scripts/tools/admin/get_admin_server_logs.sh
 
 
 # =======================
@@ -97,13 +97,13 @@ iam-destroy:
 .PHONY: vm-switch vm-mode vm-refresh
 
 vm-switch:
-	scripts/tools/manual/switch_game.sh
+	scripts/tools/switch_game.sh
 
 vm-mode:
 	@grep ACTIVE_GAME $(ACTIVE_GAME_FILE) | cut -d= -f2
 
 vm-refresh:
-	scripts/setup/remote_refresh.sh
+	scripts/tools/remote_refresh.sh
 
 
 # =======================
@@ -141,10 +141,10 @@ ssh-iap:
 .PHONY: build-core build-steam build
 
 build-core:
-	scripts/packer_build.sh core
+	scripts/tools/packer_build.sh core
 
 build-steam:
-	scripts/packer_build.sh steam
+	scripts/tools/packer_build.sh steam
 
 build: build-core build-steam
 
@@ -155,7 +155,7 @@ build: build-core build-steam
 .PHONY: clean
 
 clean:
-	scripts/gcp_review_and_cleanup.sh
+	scripts/tools/gcp/review_and_cleanup.sh
 
 # Git Cleanup Targets
 .PHONY: clean-git-pre clean-git-bfg clean-git-post clean-git
