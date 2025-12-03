@@ -1,3 +1,7 @@
+# NOTE THIS NO LONGER WORKS DUE TO MAC OS FENCING!
+
+Works on Windows but requires different commands.
+
 # Developers (Mac OS)
 
 ### Getting submarine out of the save file
