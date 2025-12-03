@@ -13,7 +13,7 @@ gcloud compute ssh "$REMOTE" \
   --project "$PROJECT" \
   --command "/usr/bin/sudo bash -euxc ' \
     cd $ROOT_REPO_PATH && \
-    ./scripts/setup/startup.sh
+    ./scripts/services/vm-setup/startup.sh
   '"
 
 echo "✅ Game updated."

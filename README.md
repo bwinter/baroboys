@@ -22,7 +22,7 @@ Tech tl;dr is basically: Terraform and Bash.
     ```shell
     curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-457.0.0-darwin-arm.tar.gz
     tar -xvzf google-cloud-cli-457.0.0-darwin-arm.tar.gz
-    ./google-cloud-sdk/install.sh
+    ./google-cloud-sdk/setup.sh
     ```
 - A valid GCP project (e.g., `europan-world`)
 - GitHub account (for deploy keys)

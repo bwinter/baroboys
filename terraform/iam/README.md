@@ -1,1 +1,0 @@
-Intended to be run by GCP Project owner to create initial service accounts. See `tools` scripts.

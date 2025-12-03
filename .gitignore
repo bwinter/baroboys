@@ -26,10 +26,10 @@ Barotrauma/Multiplayer/Baroboys
 .packer.d
 *.tfstate*
 terraform/.terraform/
-terraform/iam/.terraform/
-terraform/iam/tmp/*
-terraform/packer/tmp/*
-terraform/packer/tmp/.secrets/*
+iam/.terraform/
+iam/tmp/*
+packer/tmp/*
+packer/tmp/.secrets/*
 
 # ===================================
 #               GAME DATA
@@ -39,7 +39,7 @@ terraform/packer/tmp/.secrets/*
 scripts/tools/barotrauma/Barotrauma-Save-Decompressor.lnk
 
 # Dev (basically temp dir)
-admin/dev/*
+scripts/services/admin_server/src/dev/*
 
 # Barofiles
 Barotrauma/Concentus_LICENSE

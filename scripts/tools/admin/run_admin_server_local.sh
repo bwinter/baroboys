@@ -17,7 +17,7 @@ HTPASSWD_DEST="/etc/nginx/.htpasswd"
 STATUS_JSON="$STATIC_DEST/status.json"
 NGINX_LOG_DIR="/var/log/nginx"
 NGINX_RUN_DIR="/var/run"
-NGINX_CONFIG_SOURCE="$REPO_ROOT/scripts/setup/install/assets/nginx.conf"
+NGINX_CONFIG_SOURCE="$REPO_ROOT/scripts/services/nginx/assets/nginx.conf"
 
 # Function to clean up on SIGINT
 cleanup() {

@@ -43,7 +43,7 @@ Then restart your shell or `source ~/.zshrc`.
 
    ```bash
    tar -xvzf google-cloud-sdk-*.tar.gz
-   ./google-cloud-sdk/install.sh
+   ./google-cloud-sdk/setup.sh
    ```
 
 3. Restart your shell, or source:

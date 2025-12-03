@@ -56,7 +56,7 @@ terraform-refresh:
 # =======================
 # 🔐 IAM (Service Accounts)
 # =======================
-IAM_TF_DIR     := $(TF_DIR)/iam
+IAM_TF_DIR     := iam
 IAM_BUILD_DIR  := $(IAM_TF_DIR)/tmp
 IAM_VARS       := terraform.tfvars
 IAM_VAR_DEFS   := variables.tf
@@ -141,10 +141,10 @@ ssh-iap:
 .PHONY: build-core build-steam build
 
 build-core:
-	scripts/tools/packer_build.sh core
+	packer/packer_build.sh core
 
 build-steam:
-	scripts/tools/packer_build.sh steam
+	packer/packer_build.sh steam
 
 build: build-core build-steam
 
