@@ -1,11 +1,11 @@
 [Unit]
-Description=Check if V Rising is idle every 5 minutes
+Description=Every 5 minutes, check if server is idle.
 
 [Timer]
 OnBootSec=5min
 OnUnitActiveSec=5min
 Persistent=true
-Unit=vrising-idle-check.service
+Unit=idle-check.service
 
 [Install]
 WantedBy=timers.target

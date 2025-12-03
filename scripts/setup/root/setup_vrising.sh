@@ -41,24 +41,15 @@ fi
 /usr/bin/sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/setup/user/install_vrising.sh"
 
 install -m 644 "/root/baroboys/scripts/systemd/vrising.service" "/etc/systemd/system/"
-install -m 644 "/root/baroboys/scripts/systemd/vrising-idle-check.service" "/etc/systemd/system/"
-install -m 644 "/root/baroboys/scripts/systemd/vrising-idle-check.timer" "/etc/systemd/system/"
 
 systemctl daemon-reexec
 systemctl daemon-reload
-systemctl enable vrising-idle-check.timer
-systemctl start vrising-idle-check.timer
 
 # Give Admin Server access to logs.
 
 mkdir -p "/var/log/baroboys/"
 chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/"
 chmod 700  "/var/log/baroboys/"
-
-touch "/var/log/baroboys/vrising_idle_check.log"
-printf "\n==== %s ====\n" "$(date +%Y%m%d-%H%M)" >> "/var/log/baroboys/vrising_idle_check.log"
-chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/vrising_idle_check.log"
-chmod 644  "/var/log/baroboys/vrising_idle_check.log"
 
 touch "/var/log/baroboys/vrising.log"
 printf "\n==== %s ====\n" "$(date +%Y%m%d-%H%M)" >> "/var/log/baroboys/vrising.log"

@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
+# Run this remotely to get a diagnostic of VRising dependencies.
+
 # ========== Color Handling ==========
 COLOR_RESET=$(tput sgr0 || echo "")
 COLOR_GREEN=$(tput setaf 2 || echo "")

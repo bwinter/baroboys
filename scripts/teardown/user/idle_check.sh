@@ -19,9 +19,6 @@ NOW_ISO=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 CPU_IDLE=$(mpstat 1 1 | awk '/Average:/ {print $NF}')
 CPU_PERCENT=$(awk "BEGIN {print 100 - $CPU_IDLE}")
 
-# === VRising PIDs ===
-VRISING_PIDS=$(pgrep -f VRisingServer.exe | jq -R . | jq -s . || echo "[]")
-
 # === IDLE TRACKING ===
 IDLE_FLAG_SET=false
 IDLE_DURATION=0
@@ -51,7 +48,6 @@ sudo tee "$STATUS_JSON" > /dev/null <<EOF
   "idle_flag_set": $IDLE_FLAG_SET,
   "idle_duration_minutes": $IDLE_DURATION,
   "idle_since": "$IDLE_SINCE_ISO",
-  "vrising_pids": $VRISING_PIDS,
   "players": {
     "count": null,
     "list": []

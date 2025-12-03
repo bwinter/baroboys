@@ -131,10 +131,6 @@
                             <span><i class="bi bi-power text-muted me-2"></i>Shutdown</span>
                             <span class="text-muted" id="summary-shutdown">–</span>
                         </li>
-                        <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-activity text-muted me-2"></i>VRising PID(s)</span>
-                            <span class="text-muted" id="summary-pid">–</span>
-                        </li>
 
                         <!-- === Player State === -->
                         <li class="d-flex justify-content-between align-items-center py-1">
@@ -192,7 +188,7 @@
                     <option value="startup.log">startup.log</option>
                     <option value="shutdown.log">shutdown.log</option>
                     <option value="vrising.log">vrising.log</option>
-                    <option value="vrising_idle_check.log">vrising_idle_check.log</option>
+                    <option value="idle_check.log">idle_check.log</option>
                     <option value="admin_server.log">admin server log</option>
                     <option value="nginx_access">nginx access log</option>
                     <option value="nginx_error">nginx error log</option>
@@ -235,7 +231,6 @@
     const summaryIdleSince = document.getElementById('summary-idle-since');
     const summaryLoad = document.getElementById('summary-load');
     const summaryMode = document.getElementById('summary-mode');
-    const summaryPID = document.getElementById('summary-pid');
     const summaryPlayers = document.getElementById('summary-players');
     const summaryRAM = document.getElementById('summary-ram');
     const summaryTime = document.getElementById('summary-time');
@@ -284,9 +279,6 @@
                 summaryLoad.innerText = data.load_average_1min ?? "–";
                 summaryRAM.innerText = data.memory_free_mb
                     ? `${data.memory_free_mb} MB`
-                    : "–";
-                summaryPID.innerText = Array.isArray(data.vrising_pids)
-                    ? data.vrising_pids.join(", ")
                     : "–";
 
                 // === Metadata Footer ===

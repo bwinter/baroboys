@@ -109,7 +109,7 @@ def tail_log(name):
         "startup.log": os.path.join(LOG_DIR, "startup.log"),
         "shutdown.log": os.path.join(LOG_DIR, "shutdown.log"),
         "vrising.log": os.path.join(LOG_DIR, "vrising.log"),
-        "vrising_idle_check.log": os.path.join(LOG_DIR, "vrising_idle_check.log"),
+        "idle_check.log": os.path.join(LOG_DIR, "idle_check.log"),
         "admin_server.log": os.path.join(LOG_DIR, "admin_server.log"),
         "nginx_access": ["tail", "-n", "500", "/var/log/nginx/access.log"],
         "nginx_error": ["tail", "-n", "500", "/var/log/nginx/error.log"],
@@ -189,7 +189,7 @@ def directory():
                 ("/api/logs/startup.log", "VM Startup Logs", "GET"),
                 ("/api/logs/shutdown.log", "VM Shutdown Logs", "GET"),
                 ("/api/logs/vrising.log", "V Rising Service Logs", "GET"),
-                ("/api/logs/vrising_idle_check.log", "V Rising Idle Check Logs", "GET"),
+                ("/api/logs/idle_check.log", "Idle Check Logs", "GET"),
             ]
         },
         {

@@ -56,7 +56,6 @@ sudo tee "$STATUS_JSON" >/dev/null <<EOF
   "idle_flag_set": true,
   "idle_duration_minutes": 45,
   "idle_since": "$IDLE_SINCE_ISO",
-  "vrising_pids": [55555],
   "players": {
     "count": null,
     "list": []
