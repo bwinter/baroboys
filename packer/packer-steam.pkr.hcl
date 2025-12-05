@@ -51,6 +51,8 @@ build {
       "/usr/bin/sudo /root/baroboys/scripts/utils/setup_users.sh",
       "echo '🔧 Running apt_wine.sh'",
       "/usr/bin/sudo /root/baroboys/scripts/dependencies/wine/apt_wine.sh",
+      "echo '🔧 Running apt_nginx.sh'",
+      "/usr/bin/sudo /root/baroboys/scripts/dependencies/nginx/apt_nginx.sh",
       "echo '🔧 Running apt_steam.sh'",
       "/usr/bin/sudo /root/baroboys/scripts/dependecies/steam/apt_steam.sh",
       # Refreshes & Enables Startup Service (Installs self to ensure refresh and startup also occurs after restart.)

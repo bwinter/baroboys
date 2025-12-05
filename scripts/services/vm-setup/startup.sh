@@ -4,8 +4,8 @@ set -eux
 echo "Starting setup_users.sh"
 source "/root/baroboys/scripts/utils/setup_users.sh" || exit 11
 
-echo "Starting apt_nginx.sh"
-source "/root/baroboys/scripts/services/nginx/apt_nginx.sh" || exit 12
+echo "Initialize Ningx"
+source "/root/baroboys/scripts/services/nginx/setup.sh" || exit 12
 
 echo "Initialize Admin Server Service"
 source "/root/baroboys/scripts/services/admin_server/setup.sh" || exit 13

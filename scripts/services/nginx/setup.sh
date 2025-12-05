@@ -1,10 +1,6 @@
 #!/bin/bash
 set -euxo pipefail
 
-echo "🔧 [nginx] Installing nginx and apache2-utils..."
-apt update
-apt install -y nginx apache2-utils
-
 echo "🔐 [nginx] Fetching .htpasswd from GCP secrets..."
 gcloud secrets versions access latest --secret="nginx-htpasswd" --quiet > "/etc/nginx/.htpasswd"
 chmod 644 "/etc/nginx/.htpasswd"
