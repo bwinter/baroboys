@@ -138,18 +138,21 @@ ssh-iap:
 # =======================
 # 🧱 Packer Builds
 # =======================
-.PHONY: build-core build-steam build-game build
+.PHONY: build-core build-admin build-barotrauma build-vrising build
 
 build-core:
 	packer/packer_build.sh core
 
-build-steam:
-	packer/packer_build.sh steam
+build-admin:
+	packer/packer_build.sh admin
 
-build-game:
-	packer/packer_build.sh game
+build-barotrauma:
+	packer/packer_build.sh barotrauma
 
-build: build-core build-steam build-game
+build-vrising:
+	packer/packer_build.sh vrising
+
+build: build-core build-admin build-barotrauma build-vrising
 
 
 # =======================
