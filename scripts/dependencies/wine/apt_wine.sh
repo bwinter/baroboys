@@ -14,8 +14,7 @@ sudo apt-get -yq update
 
 sudo apt -yq install \
   wine-stable \
-  winetricks \
-  xvfb
+  winetricks
 
 # Show version of wine64
 echo "ℹ️ wine version info:"

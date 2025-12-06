@@ -56,7 +56,13 @@ build {
       "echo '🔧 Install Wine'",
       "/usr/bin/sudo /root/baroboys/scripts/dependencies/wine/apt_wine.sh",
 
-      "echo '🔧 Install latest version of Xvfb'",
+      "echo '🔧 Install Xvfb'",
+      "/usr/bin/sudo /root/baroboys/scripts/dependencies/xvfb/apt_xvfb.sh",
+
+      "echo '🔧 Setup Wine'",
+      "/usr/bin/sudo /root/baroboys/scripts/services/wine/src/setup.sh",
+
+      "echo '🔧 Setup Xvfb'",
       "/usr/bin/sudo /root/baroboys/scripts/services/xvfb/setup.sh",
 
       "echo '🔧 Install latest version of V Rising'",
