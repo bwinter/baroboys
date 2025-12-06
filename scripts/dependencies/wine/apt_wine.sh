@@ -22,6 +22,6 @@ echo "ℹ️ wine version info:"
 /opt/wine-stable/bin/wine64 --version || echo "⚠️ wine64 not working"
 
 # Initialize Wine prefix (once!)
-sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/setup/user/setup_wine.sh"
+sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/dependencies/wine/src/setup_wine.sh"
 
 echo "✅ Fonts install attempt complete."

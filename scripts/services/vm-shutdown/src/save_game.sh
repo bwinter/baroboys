@@ -6,12 +6,14 @@ if [ -f "$HOME/baroboys/.envrc" ]; then
   source "$HOME/baroboys/.envrc"
 fi
 
+echo "🎮 Shut down: ${ACTIVE_GAME:-undefined}"
+
 case "${ACTIVE_GAME:-}" in
   vrising)
-    "$HOME/baroboys/scripts/services/vrising/save.sh"
+    source "$HOME/baroboys/scripts/services/vrising/save.sh"
     ;;
   barotrauma)
-    "$HOME/baroboys/scripts/services/barotrauma/save.sh"
+    source "$HOME/baroboys/scripts/services/barotrauma/save.sh"
     ;;
   *)
     echo "ACTIVE_GAME not set or unrecognized: ${ACTIVE_GAME:-unset}" >&2

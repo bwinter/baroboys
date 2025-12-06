@@ -17,4 +17,4 @@ echo "Starting startup.sh (self)"
 source "/root/baroboys/scripts/services/vm-startup/setup.sh" || exit 15
 
 echo "Starting setup_game.sh"
-source "/root/baroboys/scripts/services/vm-startup/setup_game.sh" || exit 16
+source "/root/baroboys/scripts/services/vm-startup/src/setup_game.sh" || exit 16

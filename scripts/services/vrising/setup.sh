@@ -6,7 +6,7 @@ apt update && sudo apt install -y sysstat gzip
 source "/root/baroboys/scripts/dependencies/mcrcon/install.sh"
 
 # Run all game setup as the unprivileged user
-/usr/bin/sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/setup/user/install_vrising.sh"
+/usr/bin/sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/services/vrising/install.sh"
 
 install -m 644 "/root/baroboys/scripts/systemd/vrising.service" "/etc/systemd/system/"
 

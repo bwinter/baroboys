@@ -8,6 +8,6 @@ Type=oneshot
 User=bwinter_sc81
 Group=bwinter_sc81
 WorkingDirectory=/home/bwinter_sc81/baroboys
-ExecStart=/usr/bin/bash /home/bwinter_sc81/baroboys/scripts/services/idle_check/idle_check.sh
+ExecStart=/usr/bin/bash /home/bwinter_sc81/baroboys/scripts/services/idle_check/src/idle_check.sh
 StandardOutput=append:/var/log/baroboys/idle_check.log
 StandardError=append:/var/log/baroboys/idle_check.log

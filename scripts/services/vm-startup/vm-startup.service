@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=oneshot
 Environment=HOME=/root
-ExecStart=/usr/bin/bash /root/baroboys/scripts/services/vm-startup/startup.sh
+ExecStart=/usr/bin/bash /root/baroboys/scripts/services/vm-startup/src/startup.sh
 StandardOutput=append:/var/log/baroboys/vm-startup.log
 StandardError=append:/var/log/baroboys/vm-startup.log
 
