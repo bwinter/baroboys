@@ -2,7 +2,7 @@
 set -eux
 
 echo "Ensuring Barotrauma is setup"
-/usr/bin/sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/services/barotrauma/refresh.sh"
+/usr/bin/sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/services/barotrauma/src/refresh.sh"
 
 # Give Admin Server access to logs.
 mkdir -p "/var/log/baroboys/"
