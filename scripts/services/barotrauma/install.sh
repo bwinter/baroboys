@@ -1,16 +1,30 @@
 #!/bin/bash
 set -eux
 
-/usr/games/steamcmd +force_install_dir "$HOME/baroboys/Barotrauma" \
-  +login anonymous +app_update 1026340 validate +quit
+# Fetch the RCON password from GCP Secret Manager
+SERVER_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)"
+export SERVER_PASSWORD
 
+# Paths
+BAROTRAUMA_DIR="${HOME}/baroboys/Barotrauma"
+CLIENT_PERMISSIONS_XML="$BAROTRAUMA_DIR/Data/clientpermissions.xml"
+SERVER_SETTINGS_XML="$BAROTRAUMA_DIR/serversettings.xml"
+
+/usr/games/steamcmd \
+  +force_install_dir "$BAROTRAUMA_DIR" \
+  +login anonymous \
+  +app_update 1026340 validate \
+  +quit
+
+# Restore canonical server configs
 cd "$HOME/baroboys"
-git checkout -- './Barotrauma/Data/clientpermissions.xml'
-git checkout -- './Barotrauma/serversettings.xml'
+git checkout -- \
+  "$CLIENT_PERMISSIONS_XML" \
+  "$SERVER_SETTINGS_XML"
+
+envsubst < "$SERVER_SETTINGS_XML" > "$SERVER_SETTINGS_XML.tmp"
+mv "$SERVER_SETTINGS_XML.tmp" "$SERVER_SETTINGS_XML"
 
 mkdir -p "$HOME/.local/share/Daedalic Entertainment GmbH/Barotrauma/"
 ln -sf "$HOME/baroboys/Barotrauma/Multiplayer" "$HOME/.local/share/Daedalic Entertainment GmbH/Barotrauma/Multiplayer"
 ln -sf "$HOME/baroboys/Barotrauma/WorkshopMods" "$HOME/.local/share/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods"
-
-# Ensure EDITOR is set for future shell sessions
-grep -qxF 'export EDITOR=vim' "$HOME/.profile" || echo 'export EDITOR=vim' >> "$HOME/.profile"
