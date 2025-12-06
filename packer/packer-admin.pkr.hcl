@@ -57,7 +57,7 @@ build {
       "/usr/bin/sudo /root/baroboys/scripts/dependencies/nginx/apt_nginx.sh",
 
       "echo '🔧 Install Steam'",
-      "/usr/bin/sudo /root/baroboys/scripts/dependecies/steam/apt_steam.sh",
+      "/usr/bin/sudo /root/baroboys/scripts/dependencies/steam/apt_steam.sh",
 
       "echo '🔧 Install latest version of admin'",
       "/usr/bin/sudo /root/baroboys/scripts/services/admin_server/setup.sh",
