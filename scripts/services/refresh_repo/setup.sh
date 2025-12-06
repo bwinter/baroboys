@@ -12,9 +12,9 @@ chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/refresh_users_startup.log"
 chmod 644  "/var/log/baroboys/refresh_users_startup.log"
 
 # Unit installation
-install -m 644 '/root/baroboys/scripts/services/admin_server/refresh-repo-setup.service' \
+install -m 644 '/root/baroboys/scripts/services/refresh_repo/refresh-repo-setup.service' \
   '/etc/systemd/system/'
-install -m 644 '/root/baroboys/scripts/services/admin_server/refresh-repo-startup.service' \
+install -m 644 '/root/baroboys/scripts/services/refresh_repo/refresh-repo-startup.service' \
   '/etc/systemd/system/'
 
 systemctl daemon-reload

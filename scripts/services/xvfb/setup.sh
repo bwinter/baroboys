@@ -12,9 +12,9 @@ chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/xvfb_startup.log"
 chmod 644  "/var/log/baroboys/xvfb_startup.log"
 
 # Start xvfb-startup
-install -m 644 "/root/baroboys/scripts/systemd/xvfb-setup.service" \
+install -m 644 "/root/baroboys/scripts/services/xvfb/xvfb-setup.service" \
   "/etc/systemd/system/"
-install -m 644 "/root/baroboys/scripts/systemd/xvfb-startup.service" \
+install -m 644 "/root/baroboys/scripts/services/xvfb/xvfb-startup.service" \
   "/etc/systemd/system/"
 
 # Unit installation
