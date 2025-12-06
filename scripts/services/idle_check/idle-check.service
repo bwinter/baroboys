@@ -1,13 +1,21 @@
 [Unit]
 Description=Shutdown if Idle
 Wants=network-online.target
-After=network-online.target
+After=network-online.target idle-check-setup.service
+Requires=idle-check-setup.service
 
 [Service]
 Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/home/bwinter_sc81
 User=bwinter_sc81
 Group=bwinter_sc81
-WorkingDirectory=/home/bwinter_sc81/baroboys
-ExecStart=/usr/bin/bash /home/bwinter_sc81/baroboys/scripts/services/idle_check/src/idle_check.sh
+
+ExecStart=/home/bwinter_sc81/baroboys/scripts/services/idle_check/src/idle_check.sh
+
+SuccessExitStatus=0
+KillMode=control-group
+TimeoutStartSec=60
+
 StandardOutput=append:/var/log/baroboys/idle_check.log
 StandardError=append:/var/log/baroboys/idle_check.log

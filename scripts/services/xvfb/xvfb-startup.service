@@ -1,0 +1,22 @@
+[Unit]
+Description=Xvfb Startup
+Requires=xvfb-setup.service
+
+[Service]
+Type=simple
+Restart=always
+WorkingDirectory=/home/bwinter_sc81
+User=bwinter_sc81
+Group=bwinter_sc81
+
+ExecStart=/usr/bin/Xvfb :0 -screen 0 1024x768x16
+
+SuccessExitStatus=0
+KillMode=control-group
+TimeoutStopSec=60
+
+StandardOutput=append:/var/log/baroboys/xvfb_startup.log
+StandardError=append:/var/log/baroboys/xvfb_startup.log
+
+[Install]
+WantedBy=multi-user.target

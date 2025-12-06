@@ -1,9 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-cd "/home/bwinter_sc81/baroboys/Barotrauma"
-
-LOG_FILE="./logs/barotrauma_wrapper.log"
+LOG_FILE="/var/log/baroboys/barotrauma.log"
 INTENTIONAL_FLAG="/tmp/barotrauma_intentional_shutdown"
 
 echo "🚀 Barotrauma launcher started at $(date)" >> "$LOG_FILE"

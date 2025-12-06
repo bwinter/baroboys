@@ -1,9 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-cd "/home/bwinter_sc81/baroboys/VRising"
-
-LOG_FILE="./logs/vrising_wrapper.log"
+LOG_FILE="/var/log/baroboys/vrising.log"
 INTENTIONAL_FLAG="/tmp/vrising_intentional_shutdown"
 
 echo "🚀 VRising launcher started at $(date)" >> "$LOG_FILE"

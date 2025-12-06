@@ -1,0 +1,23 @@
+[Unit]
+Description=Admin Server Startup
+Requires=admin-server-setup.service
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=5
+WorkingDirectory=/opt/baroboys
+User=root
+
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /opt/baroboys/admin_server.py
+
+SuccessExitStatus=0
+KillMode=control-group
+TimeoutStopSec=60
+
+StandardOutput=append:/var/log/baroboys/admin_server_startup.log
+StandardError=append:/var/log/baroboys/admin_server_startup.log
+
+[Install]
+WantedBy=multi-user.target

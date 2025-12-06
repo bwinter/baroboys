@@ -61,8 +61,8 @@ resource "google_compute_instance" "default" {
   }
 
   metadata = {
-    startup-script  = "systemctl start vm-startup.service"
-    shutdown-script = "systemctl start vm-shutdown.service"
+    startup-script  = "systemctl start game-startup.service"
+    shutdown-script = "systemctl start game-shutdown.service"
   }
 
   boot_disk {

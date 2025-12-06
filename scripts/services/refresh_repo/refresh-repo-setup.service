@@ -1,0 +1,21 @@
+[Unit]
+Description=Refresh Repo Setup
+Requires=network-online.target refresh-repo-startup.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+Environment=HOME=/root
+User=root
+
+ExecStart=/root/baroboys/scripts/services/refresh_repo/setup.sh
+
+SuccessExitStatus=0
+KillMode=control-group
+TimeoutStartSec=300
+
+StandardOutput=append:/var/log/baroboys/refresh_repo_setup.log
+StandardError=append:/var/log/baroboys/refresh_repo_setup.log
+
+[Install]
+WantedBy=multi-user.target

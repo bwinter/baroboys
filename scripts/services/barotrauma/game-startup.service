@@ -1,0 +1,24 @@
+[Unit]
+Description=Barotrauma Startup
+Requires=game-setup.service
+
+[Service]
+Type=simple
+Restart=on-failure
+WorkingDirectory=/home/bwinter_sc81/baroboys/Barotrauma
+User=bwinter_sc81
+Group=bwinter_sc81
+
+ExecStart=/home/bwinter_sc81/baroboys/scripts/services/barotrauma/startup.sh
+ExecStartPost=/usr/bin/bash -c 'echo "✅ barotrauma.service launched at $(date)" >> /var/log/baroboys/barotrauma_startup.log'
+ExecStopPost=/usr/bin/bash -c 'echo "🛑 barotrauma.service finished shutdown at $(date)" >> /var/log/baroboys/barotrauma_startup.log'
+
+SuccessExitStatus=0
+KillMode=control-group
+TimeoutStopSec=60
+
+StandardOutput=append:/var/log/baroboys/barotrauma_startup.log
+StandardError=append:/var/log/baroboys/barotrauma_startup.log
+
+[Install]
+WantedBy=multi-user.target

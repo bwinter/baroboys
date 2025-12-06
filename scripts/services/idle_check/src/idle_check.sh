@@ -60,8 +60,8 @@ echo "📤 Wrote status to $STATUS_JSON"
 # === SHUTDOWN TRIGGER ===
 if (( IDLE_DURATION >= COOLDOWN_MINUTES )); then
   echo "🕒 Idle for $IDLE_DURATION minutes. Triggering shutdown..."
-  if ! /usr/bin/sudo systemctl start vm-shutdown.service; then
-    echo "⚠️  Failed to start vm-shutdown.service" >&2
+  if ! /usr/bin/sudo systemctl start shutdown.service; then
+    echo "⚠️  Failed to start shutdown.service" >&2
   fi
 else
   echo "⏳ No shutdown triggered. Cooldown not yet reached ($IDLE_DURATION / $COOLDOWN_MINUTES min)"

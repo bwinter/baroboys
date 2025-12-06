@@ -1,12 +1,12 @@
 #!/bin/bash
 set -eux
 
-SCRIPT_DIR="/root/baroboys/scripts"
+SCRIPT_DIR="/root/baroboys/scripts/services/refresh_repo"
 
 # Refresh root
-source "$SCRIPT_DIR/utils/refresh_repo.sh"
+source "$SCRIPT_DIR/src/refresh_repo.sh"
 
-cp "$SCRIPT_DIR/utils/refresh_repo.sh" "/tmp/refresh_repo.sh"
+cp "$SCRIPT_DIR/src/refresh_repo.sh" "/tmp/refresh_repo.sh"
 chown bwinter_sc81:bwinter_sc81 "/tmp/refresh_repo.sh"
 chmod 755  "/tmp/refresh_repo.sh"
 

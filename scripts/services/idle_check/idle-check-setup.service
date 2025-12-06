@@ -1,0 +1,22 @@
+[Unit]
+Description=Idle Check Setup
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=HOME=/root
+User=root
+
+ExecStart=/root/baroboys/scripts/services/idle_check/setup.sh
+
+SuccessExitStatus=0
+KillMode=control-group
+TimeoutStartSec=300
+
+StandardOutput=append:/var/log/baroboys/admin_server_setup.log
+StandardError=append:/var/log/baroboys/admin_server_setup.log
+
+[Install]
+WantedBy=multi-user.target

@@ -5,7 +5,7 @@ cd "$HOME/baroboys"
 
 touch "/tmp/barotrauma_intentional_shutdown"
 
-# Tell players and trigger autosave
+# TODO: find a save shutdown.
 pkill DedicatedServer
 
 echo "🔃 Monitoring DedicatedServer status..."

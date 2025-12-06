@@ -1,12 +1,23 @@
 #!/bin/bash
 set -eux
 
-# Start xvfb
-install -m 644 "/root/baroboys/scripts/systemd/xvfb.service" "/etc/systemd/system/"
+# Give Admin Server access to logs.
+mkdir -p "/var/log/baroboys/"
+chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/"
+chmod 700  "/var/log/baroboys/"
 
-systemctl daemon-reexec
+touch "/var/log/baroboys/xvfb_startup.log"
+printf "\n==== %s ====\n" "$(date +%Y%m%d-%H%M)" >> "/var/log/baroboys/xvfb_startup.log"
+chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/xvfb_startup.log"
+chmod 644  "/var/log/baroboys/xvfb_startup.log"
+
+# Start xvfb-startup
+install -m 644 "/root/baroboys/scripts/systemd/xvfb-setup.service" \
+  "/etc/systemd/system/"
+install -m 644 "/root/baroboys/scripts/systemd/xvfb-startup.service" \
+  "/etc/systemd/system/"
+
+# Unit installation
 systemctl daemon-reload
-
-systemctl enable xvfb.service
-systemctl start xvfb.service
-systemctl status xvfb.service
+systemctl enable xvfb-setup.service
+systemctl enable xvfb-startup.service

@@ -7,7 +7,7 @@ chmod 644 "/etc/nginx/.htpasswd"
 chown root:root "/etc/nginx/.htpasswd"
 
 # === Full nginx.conf replacement mode ===
-CUSTOM_CONF="/root/baroboys/scripts/services/nginx/assets/nginx.conf"
+CUSTOM_CONF="/root/baroboys/scripts/dependencies/nginx/assets/nginx.conf"
 TARGET_CONF="/etc/nginx/nginx.conf"
 
 echo "📄 [nginx] Looking for custom nginx.conf at: $CUSTOM_CONF"

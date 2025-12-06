@@ -4,7 +4,6 @@ set -euo pipefail
 REMOTE="bwinter_sc81@europa"
 ZONE="us-west1-c"
 PROJECT="europan-world"
-ROOT_REPO_PATH="/root/baroboys"
 
 echo "🚀 Updating Game on $REMOTE..."
 
@@ -12,8 +11,7 @@ gcloud compute ssh "$REMOTE" \
   --zone "$ZONE" \
   --project "$PROJECT" \
   --command "/usr/bin/sudo bash -euxc ' \
-    cd $ROOT_REPO_PATH && \
-    ./scripts/services/vm-startup/startup.sh
+    systemctl restart game-startup.service
   '"
 
 echo "✅ Game updated."

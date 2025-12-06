@@ -90,7 +90,7 @@ def trigger_shutdown():
                 "note": "This is mock data. No actual shutdown occurred."
             }, 200
 
-        subprocess.Popen(["systemctl", "start", "vm-shutdown.service"])
+        subprocess.Popen(["systemctl", "start", "game-shutdown.service"]) # TODO: ????
         return {
             "status": "Shutdown triggered",
             "time": now
@@ -105,14 +105,19 @@ def trigger_shutdown():
 @app.route("/logs/<name>")
 def tail_log(name):
     log_map = {
-        "VRisingServer.log": os.path.join(LOG_DIR, "VRisingServer.log"),
-        "startup.log": os.path.join(LOG_DIR, "startup.log"),
-        "shutdown.log": os.path.join(LOG_DIR, "shutdown.log"),
-        "vrising.log": os.path.join(LOG_DIR, "vrising.log"),
+        "barotrauma_startup.log": os.path.join(LOG_DIR, "barotrauma_startup.log"),
+        "barotrauma_shutdown.log": os.path.join(LOG_DIR, "barotrauma_shutdown.log"),
+        "vrising_startup.log": os.path.join(LOG_DIR, "vrising_startup.log"),
+        "vrising_shutdown.log": os.path.join(LOG_DIR, "vrising_shutdown.log"),
+        "admin_server_startup.log": os.path.join(LOG_DIR, "admin_server_startup.log"),
+        "refresh_users.log": os.path.join(LOG_DIR, "refresh_users_startup.log"),
+        "xvfb.log": os.path.join(LOG_DIR, "xvfb_startup.log"),
         "idle_check.log": os.path.join(LOG_DIR, "idle_check.log"),
-        "admin_server.log": os.path.join(LOG_DIR, "admin_server.log"),
         "nginx_access": ["tail", "-n", "500", "/var/log/nginx/access.log"],
         "nginx_error": ["tail", "-n", "500", "/var/log/nginx/error.log"],
+        "barotrauma.log": os.path.join(LOG_DIR, "barotrauma.log"),
+        "vrising.log": os.path.join(LOG_DIR, "vrising.log"),
+        "VRisingServer.log": os.path.join(LOG_DIR, "VRisingServer.log"),
     }
 
     if ENV == "development":
@@ -135,6 +140,7 @@ def tail_log(name):
         return f"Error loading log: {type(e).__name__}: {e}", 500
 
 
+# TODO: Figure out what to do with this and Barotrauma
 @app.route("/settings")
 def api_settings():
     import os
@@ -185,18 +191,18 @@ def directory():
             "icon": "📄",
             "title": "Game Logs",
             "links": [
-                ("/api/logs/VRisingServer.log", "V Rising Server Logs", "GET"),
-                ("/api/logs/startup.log", "VM Startup Logs", "GET"),
-                ("/api/logs/shutdown.log", "VM Shutdown Logs", "GET"),
-                ("/api/logs/vrising.log", "V Rising Service Logs", "GET"),
+                ("/api/logs/game_startup.log", "VM Startup Logs", "GET"),
+                ("/api/logs/game_shutdown.log", "VM Shutdown Logs", "GET"),
                 ("/api/logs/idle_check.log", "Idle Check Logs", "GET"),
+                ("/api/logs/vrising.log", "V Rising Service Logs", "GET"),
+                ("/api/logs/VRisingServer.log", "V Rising Server Logs", "GET"),
             ]
         },
         {
             "icon": "🌀",
             "title": "System Logs",
             "links": [
-                ("/api/logs/admin_server.log", "Admin Server Logs", "GET"),
+                ("/api/logs/admin_server_startup.log", "Admin Server Logs", "GET"),
             ]
         },
         {
