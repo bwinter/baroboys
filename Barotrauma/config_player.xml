@@ -60,57 +60,6 @@
         <corepackage
                 path="Content/ContentPackages/Vanilla.xml"/>
         <regularpackages>
-            <!--Real Sonar (New Update)-->
-            <package
-                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2936760984/filelist.xml"/>
-            <!--Creatures of the Depth-->
-            <package
-                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2909716869/filelist.xml"/>
-            <!--Enhanced Armaments DynamicEuropa Patch-->
-            <package
-                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/3036805935/filelist.xml"/>
-            <!--DynamicEuropa - COL Compatibility Patch-->
-            <package
-                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2984452754/filelist.xml"/>
-            <!--DynamicEuropa - Frith's Biomes Compatibility Patch-->
-            <package
-                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2911529819/filelist.xml"/>
-            <!--SFB with DE-->
-            <package
-                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2907491279/filelist.xml"/>
-            <!--Frith's Biomes-->
-            <package
-                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2020332046/filelist.xml"/>
-            <!--DynamicEuropa-->
-            <package
-                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2532991202/filelist.xml"/>
-            <!--Enhanced Armaments-->
-            <package
-                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2764968387/filelist.xml"/>
-            <!--Combat Overhaul Legacy-->
-            <package
-                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/3028141718/filelist.xml"/>
-            <!--Stations from beyond-->
-            <package
-                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2585543390/filelist.xml"/>
-            <!--Shipwrecks Extended-->
-            <package
-                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2095211492/filelist.xml"/>
-            <!--Beacons Extended-->
-            <package
-                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2389600483/filelist.xml"/>
-            <!--Timid's Beacon Stations-->
-            <package
-                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2323680225/filelist.xml"/>
-            <!--ADV Beacon Stations-->
-            <package
-                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2544952900/filelist.xml"/>
-            <!--SIN Beacon Stations-->
-            <package
-                    path="/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed/2605405713/filelist.xml"/>
-            <!--Hagfish-->
-            <package
-                    path="LocalMods/Hagfish MkIII/filelist.xml"/>
         </regularpackages>
     </contentpackages>
 </config>
