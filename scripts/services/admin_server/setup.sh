@@ -16,7 +16,7 @@ chmod 755 "/opt/baroboys/admin_server.py"
 
 # Static HTML and assets
 mkdir -p "/opt/baroboys/static"
-for file in admin.html favicon.ico robots.txt; do
+for file in 404.html admin.html favicon.ico robots.txt; do
   cp "/root/baroboys/scripts/services/admin_server/src/static/${file}" \
      "/opt/baroboys/static/${file}"
 done
@@ -24,7 +24,7 @@ chmod 644 /opt/baroboys/static/*
 
 # Jinja templates
 mkdir -p "/opt/baroboys/templates"
-for file in 404.html directory.html; do
+for file in directory.html; do
   cp "/root/baroboys/scripts/services/admin_server/src/templates/${file}" \
      "/opt/baroboys/templates/${file}"
 done
