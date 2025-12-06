@@ -50,9 +50,8 @@ build {
       "/usr/bin/sudo /tmp/clone_repo.sh",
 
       "echo '🔧 Ensure both users have latest copy of repo'",
-      "/usr/bin/sudo install -m 644 '/root/baroboys/scripts/services/refresh_repo/refresh-repo-setup.service' '/etc/systemd/system/'",
-      "/usr/bin/sudo systemctl start --wait refresh-repo-setup.service",
-      "/usr/bin/sudo systemctl start --wait refresh-repo-startup.service",
+      "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/setup.sh",
+      "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/startup.sh",
 
       "echo '🔧 Install Nginx'",
       "/usr/bin/sudo /root/baroboys/scripts/dependencies/nginx/apt_nginx.sh",
@@ -61,12 +60,10 @@ build {
       "/usr/bin/sudo /root/baroboys/scripts/dependecies/steam/apt_steam.sh",
 
       "echo '🔧 Install latest version of admin'",
-      "/usr/bin/sudo install -m 644 '/root/baroboys/scripts/services/admin_server/admin-server-setup.service' '/etc/systemd/system/'",
-      "/usr/bin/sudo systemctl start --wait admin-server-setup.service",
+      "/usr/bin/sudo /root/baroboys/scripts/services/admin_server/setup.sh",
 
       "echo '🔧 Install latest version of idle check service'",
-      "/usr/bin/sudo install -m 644 '/root/baroboys/scripts/services/idle_check/idle-check-setup.service' '/etc/systemd/system/'",
-      "/usr/bin/sudo systemctl start --wait idle-check-setup.service",
+      "/usr/bin/sudo /root/baroboys/scripts/services/idle_check/setup.sh",
 
       "echo '🧹 Running autoremove'",
       "/usr/bin/sudo apt-get -yq autoremove"

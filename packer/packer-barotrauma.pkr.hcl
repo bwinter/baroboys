@@ -50,13 +50,11 @@ build {
       "/usr/bin/sudo /tmp/clone_repo.sh",
 
       "echo '🔧 Ensure both users have latest copy of repo'",
-      "/usr/bin/sudo install -m 644 '/root/baroboys/scripts/services/refresh_repo/refresh-repo-setup.service' '/etc/systemd/system/'",
-      "/usr/bin/sudo systemctl start --wait refresh-repo-setup.service",
-      "/usr/bin/sudo systemctl start --wait refresh-repo-startup.service",
+      "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/setup.sh",
+      "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/startup.sh",
 
       "echo '🔧 Install latest version of Barotrauma'",
-      "/usr/bin/sudo install -m 644 '/root/baroboys/scripts/services/barotrauma/game-setup.service' '/etc/systemd/system/'",
-      "/usr/bin/sudo systemctl start --wait game-setup.service",
+      "/usr/bin/sudo /root/baroboys/scripts/services/barotrauma/setup.sh",
 
       "echo '🧹 Running autoremove'",
       "/usr/bin/sudo apt-get -yq autoremove"
