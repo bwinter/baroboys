@@ -1,6 +1,6 @@
 [Unit]
 Description=Refresh Repo Setup
-Requires=network-online.target refresh-repo-startup.service
+Requires=network-online.target
 
 [Service]
 Type=oneshot

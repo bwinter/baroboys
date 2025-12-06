@@ -56,6 +56,7 @@ build {
       "echo '🔧 Ensure both users have latest copy of repo'",
       "/usr/bin/sudo install -m 644 '/root/baroboys/scripts/services/refresh_repo/refresh-repo-setup.service' '/etc/systemd/system/'",
       "/usr/bin/sudo systemctl start --wait refresh-repo-setup.service",
+      "tail -f /var/log/baroboys/refresh_repo_setup.log",
       "/usr/bin/sudo systemctl start --wait refresh-repo-startup.service",
 
       "echo '🔧 Running apt_core.sh'",

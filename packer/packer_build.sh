@@ -12,7 +12,7 @@ TIMESTAMP="$(date +%Y%m%d-%H%M)"
 # Paths
 BUILD_DIR="packer/tmp"
 LOG_DIR="${BUILD_DIR}/logs"
-SCRIPT_DIR="scripts/services/refresh_repos"
+SCRIPT_DIR="scripts/services/refresh_repo"
 PACKER_DIR="packer"
 
 PACKER_VARS_FILE="terraform.pkrvars.hcl"

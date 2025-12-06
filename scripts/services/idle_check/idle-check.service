@@ -1,7 +1,5 @@
 [Unit]
 Description=Shutdown if Idle
-Wants=network-online.target
-After=network-online.target idle-check-setup.service
 Requires=idle-check-setup.service
 
 [Service]
