@@ -3,7 +3,21 @@ set -eux
 
 cd "$HOME/baroboys"
 
-git add ./Barotrauma/Data ./Barotrauma/Multiplayer ./Barotrauma/serversettings.xml ./Barotrauma/config_player.xml
+touch "/tmp/barotrauma_intentional_shutdown"
+
+# Tell players and trigger autosave
+pkill DedicatedServer
+
+echo "🔃 Monitoring DedicatedServer status..."
+
+if ! timeout 300 bash -c 'while ps -C DedicatedServer >/dev/null; do sleep 1; done'; then
+  echo "⚠️ DedicatedServer did not exit in time."
+else
+  echo "✅ DedicatedServer exited cleanly."
+fi
+
+# === Commit latest autosave ===
+git add ./Barotrauma/Multiplayer
 git commit -m "Auto-save before shutdown $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "Nothing to commit"
 
 # Stash local state, pull, and push
