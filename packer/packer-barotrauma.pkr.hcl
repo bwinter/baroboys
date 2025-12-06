@@ -53,7 +53,7 @@ build {
       "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/setup.sh",
       "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/startup.sh",
 
-      "echo '🔧 Install latest version of Barotrauma'",
+      "echo '🔧 Install Barotrauma'",
       "/usr/bin/sudo /root/baroboys/scripts/services/barotrauma/setup.sh",
 
       "echo '🧹 Running autoremove'",

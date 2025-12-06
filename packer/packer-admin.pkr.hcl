@@ -59,10 +59,10 @@ build {
       "echo '🔧 Install Steam'",
       "/usr/bin/sudo /root/baroboys/scripts/dependencies/steam/apt_steam.sh",
 
-      "echo '🔧 Install latest version of admin'",
+      "echo '🔧 Install Admin Server'",
       "/usr/bin/sudo /root/baroboys/scripts/services/admin_server/setup.sh",
 
-      "echo '🔧 Install latest version of idle check service'",
+      "echo '🔧 Install idle check service'",
       "/usr/bin/sudo /root/baroboys/scripts/services/idle_check/setup.sh",
 
       "echo '🧹 Running autoremove'",

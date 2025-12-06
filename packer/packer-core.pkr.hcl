@@ -57,10 +57,10 @@ build {
       "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/setup.sh",
       "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/startup.sh",
 
-      "echo '🔧 Running apt_core.sh'",
+      "echo '🔧 Update linux'",
       "/usr/bin/sudo /root/baroboys/scripts/dependencies/apt_core/apt_core.sh",
 
-      "echo '🔧 Running apt_gcloud.sh'",
+      "echo '🔧 Update gcloud'",
       "/usr/bin/sudo /root/baroboys/scripts/dependencies/gcloud/apt_gcloud.sh",
 
       "echo '🧹 Running autoremove'",
