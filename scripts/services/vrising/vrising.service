@@ -12,7 +12,7 @@ User=bwinter_sc81
 Group=bwinter_sc81
 
 ExecStartPost=/usr/bin/bash -c 'echo "✅ vrising.service launched at $(date)" >> /var/log/baroboys/vrising.log'
-ExecStart=/home/bwinter_sc81/baroboys/scripts/setup/install/service/vrising_launcher.sh
+ExecStart=/home/bwinter_sc81/baroboys/scripts/services/vrising_launcher.sh
 ExecStopPost=/usr/bin/bash -c 'echo "🛑 vrising.service finished shutdown at $(date)" >> /var/log/baroboys/vrising.log'
 
 SuccessExitStatus=0
