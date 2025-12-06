@@ -1,0 +1,26 @@
+[Unit]
+Description=Barotrauma Dedicated Server (Baroboys)
+Wants=network-online.target
+After=network-online.target xvfb.service
+Requires=xvfb.service
+
+[Service]
+Type=simple
+Environment=DISPLAY=:0
+WorkingDirectory=/home/bwinter_sc81/baroboys/Barotrauma
+User=bwinter_sc81
+Group=bwinter_sc81
+
+ExecStartPost=/usr/bin/bash -c 'echo "✅ barotrauma.service launched at $(date)" >> /var/log/baroboys/barotrauma.log'
+ExecStart=/home/bwinter_sc81/baroboys/scripts/services/barotrauma/barotrauma_launcher.sh
+ExecStopPost=/usr/bin/bash -c 'echo "🛑 barotrauma.service finished shutdown at $(date)" >> /var/log/baroboys/barotrauma.log'
+
+SuccessExitStatus=0
+KillMode=control-group
+TimeoutStopSec=60
+SuccessExitStatus=0
+
+StandardOutput=append:/var/log/baroboys/barotrauma.log
+StandardError=append:/var/log/baroboys/barotrauma.log
+
+Restart=on-failure
