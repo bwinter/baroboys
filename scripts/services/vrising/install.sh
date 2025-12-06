@@ -60,6 +60,3 @@ touch "$VRISING_DIR/logs/VRisingServer.log"
 printf "\n==== %s ====\n" "$(date +%Y%m%d-%H%M)" >> "$VRISING_DIR/logs/VRisingServer.log"
 chown bwinter_sc81:bwinter_sc81 "$VRISING_DIR/logs/VRisingServer.log"
 chmod 644 "$VRISING_DIR/logs/VRisingServer.log"
-
-# Ensure EDITOR is set for shell sessions
-grep -qxF 'export EDITOR=vim' "$HOME/.profile" || echo 'export EDITOR=vim' >> "$HOME/.profile"
