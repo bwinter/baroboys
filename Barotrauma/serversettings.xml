@@ -3,7 +3,7 @@
         name="Hex"
         port="27015"
         queryport="27016"
-        password="Max"
+        password="${SERVER_PASSWORD}"
         enableupnp="false"
         autorestart="false"
         LevelDifficulty="30"
