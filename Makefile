@@ -138,7 +138,7 @@ ssh-iap:
 # =======================
 # 🧱 Packer Builds
 # =======================
-.PHONY: build-core build-steam build
+.PHONY: build-core build-steam build-game build
 
 build-core:
 	packer/packer_build.sh core
@@ -146,7 +146,10 @@ build-core:
 build-steam:
 	packer/packer_build.sh steam
 
-build: build-core build-steam
+build-game:
+	packer/packer_build.sh game
+
+build: build-core build-steam build-game
 
 
 # =======================
