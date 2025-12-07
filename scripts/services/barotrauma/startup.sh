@@ -14,7 +14,7 @@ if [[ -f "$INTENTIONAL_FLAG" ]]; then
 fi
 
 # Start the game process and capture its exit code
-DedicatedServer
+./DedicatedServer
 
 exit_code=$?
 
