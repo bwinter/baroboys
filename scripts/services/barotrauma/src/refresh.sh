@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eux
+set -eu
 
 # Fetch the RCON password from GCP Secret Manager
 SERVER_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)"
