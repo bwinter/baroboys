@@ -5,7 +5,7 @@ cd "$HOME/baroboys"
 
 touch "/tmp/barotrauma_intentional_shutdown"
 
-# TODO: find a save shutdown.
+# TODO: find a safe shutdown.
 pkill DedicatedServer
 
 echo "🔃 Monitoring DedicatedServer status..."

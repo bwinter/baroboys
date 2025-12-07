@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -euox pipefail
 
 LOG_FILE="/var/log/baroboys/barotrauma.log"
 INTENTIONAL_FLAG="/tmp/barotrauma_intentional_shutdown"

@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -euox pipefail
 
 LOG_FILE="/var/log/baroboys/vrising.log"
 INTENTIONAL_FLAG="/tmp/vrising_intentional_shutdown"
