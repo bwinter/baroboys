@@ -191,9 +191,12 @@ def directory():
             "icon": "📄",
             "title": "Game Logs",
             "links": [
-                ("/api/logs/game_startup.log", "VM Startup Logs", "GET"),
-                ("/api/logs/game_shutdown.log", "VM Shutdown Logs", "GET"),
+                ("/api/logs/barotrauma_startup.log", "VM Startup Logs", "GET"),
+                ("/api/logs/barotrauma_shutdown.log", "VM Shutdown Logs", "GET"),
+                ("/api/logs/vrising_startup.log", "VM Startup Logs", "GET"),
+                ("/api/logs/vrising_shutdown.log", "VM Shutdown Logs", "GET"),
                 ("/api/logs/idle_check.log", "Idle Check Logs", "GET"),
+                ("/api/logs/barotrauma.log", "V Rising Service Logs", "GET"),
                 ("/api/logs/vrising.log", "V Rising Service Logs", "GET"),
                 ("/api/logs/VRisingServer.log", "V Rising Server Logs", "GET"),
             ]
