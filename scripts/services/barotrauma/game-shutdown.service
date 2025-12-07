@@ -9,7 +9,7 @@ WorkingDirectory=/home/bwinter_sc81
 User=bwinter_sc81
 Group=bwinter_sc81
 
-ExecStart=/root/baroboys/scripts/services/barotrauma/shutdown.sh
+ExecStart=/home/bwinter_sc81/baroboys/scripts/services/barotrauma/shutdown.sh
 ExecStopPost=/usr/bin/systemctl poweroff
 
 SuccessExitStatus=0

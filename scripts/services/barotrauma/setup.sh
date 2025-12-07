@@ -14,6 +14,11 @@ printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "/var/log/baroboys/bar
 chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/barotrauma_startup.log"
 chmod 644  "/var/log/baroboys/barotrauma_startup.log"
 
+touch "/var/log/baroboys/barotrauma_shutdown.log"
+printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "/var/log/baroboys/barotrauma_shutdown.log"
+chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/barotrauma_shutdown.log"
+chmod 644  "/var/log/baroboys/barotrauma_shutdown.log"
+
 # Unit installation
 install -m 644 "/root/baroboys/scripts/services/barotrauma/game-setup.service" \
   "/etc/systemd/system/"

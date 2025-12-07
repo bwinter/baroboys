@@ -17,6 +17,12 @@ printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "/var/log/baroboys/vri
 chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/vrising_startup.log"
 chmod 644  "/var/log/baroboys/vrising_startup.log"
 
+touch "/var/log/baroboys/vrising_shutdown.log"
+printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "/var/log/baroboys/vrising_shutdown.log"
+chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/vrising_shutdown.log"
+chmod 644  "/var/log/baroboys/vrising_shutdown.log"
+
+
 # Unit installation
 install -m 644 "/root/baroboys/scripts/services/vrising/game-setup.service" \
   "/etc/systemd/system/"
