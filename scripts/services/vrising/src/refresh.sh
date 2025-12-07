@@ -58,6 +58,6 @@ mkdir -p "$VRISING_DIR/logs"
 chmod o+rx "$HOME" "$HOME/baroboys" "$VRISING_DIR" "$VRISING_DIR/logs"
 touch "$VRISING_DIR/logs/VRisingServer.log"
 
-printf "\n==== %s ====\n" "$(date +%Y%m%d-%H%M)" >> "$VRISING_DIR/logs/VRisingServer.log"
+printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "$VRISING_DIR/logs/VRisingServer.log"
 chown bwinter_sc81:bwinter_sc81 "$VRISING_DIR/logs/VRisingServer.log"
 chmod 644 "$VRISING_DIR/logs/VRisingServer.log"

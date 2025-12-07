@@ -7,7 +7,7 @@ if [[ -z "$1" ]]; then
 fi
 
 LAYER="$1"
-TIMESTAMP="$(date +%Y%m%d-%H%M)"
+TIMESTAMP="$(date +%Y/%m/%d-%H:%M:%S)"
 
 # Paths
 BUILD_DIR="packer/tmp"

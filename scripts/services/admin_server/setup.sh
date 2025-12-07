@@ -36,7 +36,7 @@ chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/"
 chmod 700  "/var/log/baroboys/"
 
 touch "/var/log/baroboys/admin_server_startup.log"
-printf "\n==== %s ====\n" "$(date +%Y%m%d-%H%M)" >> "/var/log/baroboys/admin_server_startup.log"
+printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "/var/log/baroboys/admin_server_startup.log"
 chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/admin_server_startup.log"
 chmod 644  "/var/log/baroboys/admin_server_startup.log"
 

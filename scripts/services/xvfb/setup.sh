@@ -7,7 +7,7 @@ chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/"
 chmod 700  "/var/log/baroboys/"
 
 touch "/var/log/baroboys/xvfb_startup.log"
-printf "\n==== %s ====\n" "$(date +%Y%m%d-%H%M)" >> "/var/log/baroboys/xvfb_startup.log"
+printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "/var/log/baroboys/xvfb_startup.log"
 chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/xvfb_startup.log"
 chmod 644  "/var/log/baroboys/xvfb_startup.log"
 
