@@ -5,7 +5,7 @@ Requires=network-online.target refresh-repo-startup.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-WorkingDirectory=HOME=/root
+WorkingDirectory=/root
 User=root
 
 ExecStart=/root/baroboys/scripts/services/vrising/setup.sh

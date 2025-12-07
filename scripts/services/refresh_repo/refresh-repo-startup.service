@@ -5,7 +5,7 @@ Requires=refresh-repo-setup.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-Environment=HOME=/root
+WorkingDirectory=/root
 User=root
 
 ExecStart=/root/baroboys/scripts/services/refresh_repo/startup.sh
