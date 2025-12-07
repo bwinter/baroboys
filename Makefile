@@ -6,7 +6,7 @@ PROJECT          := europan-world
 ZONE             := us-west1-c
 INSTANCE         := europa
 USER             := bwinter_sc81
-REMOTE_SAVE_SCRIPT := sudo systemctl start vm-shutdown.service
+REMOTE_SAVE_SCRIPT := sudo systemctl start game-shutdown.service
 ACTIVE_GAME_FILE := .envrc
 
 TF_VAR_FILE      := terraform/terraform.tfvars
