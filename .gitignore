@@ -280,6 +280,23 @@ Barotrauma/netstandard.dll
 Barotrauma/steamapps/
 Barotrauma/steamclient.so
 
+Barotrauma/BarotraumaCore.dll
+Barotrauma/BarotraumaCore.pdb
+Barotrauma/Concentus.NetStandard.dll
+Barotrauma/Concentus.NetStandard.pdb
+Barotrauma/Data/languageoptions.xml
+Barotrauma/Data/permissionpresets_player.xml
+Barotrauma/EosInterface.Implementation.Linux.deps.json
+Barotrauma/EosInterface.Implementation.Linux.dll
+Barotrauma/EosInterface.Implementation.Linux.pdb
+Barotrauma/EosInterface.dll
+Barotrauma/EosInterface.pdb
+Barotrauma/System.Formats.Tar.dll
+Barotrauma/System.Runtime.InteropServices.JavaScript.dll
+Barotrauma/System.Security.Cryptography.dll
+Barotrauma/libEOSSDK-Linux-Shipping.so
+Barotrauma/libclrgc.so
+Barotrauma/libsteamwebrtc.so
 
 # Ignore these because they get the password eventually.
 VRising/*ServerHostSettings.json
