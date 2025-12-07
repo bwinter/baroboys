@@ -34,8 +34,8 @@ resource "random_id" "instance_id" {
 // 📦 Image Source (from Packer build)
 // ─────────────────────────────────────────────────────────────────────────────
 
-data "google_compute_image" "base_steam_image" {
-  family  = var.base_steam_image
+data "google_compute_image" "base_barotrauma_image" {
+  family  = var.base_barotrauma_image
   project = var.project
 }
 
@@ -68,7 +68,7 @@ resource "google_compute_instance" "default" {
   boot_disk {
     auto_delete = true
     initialize_params {
-      image = data.google_compute_image.base_steam_image.self_link
+      image = data.google_compute_image.base_barotrauma_image.self_link
       type = "pd-ssd"    # changed from default
       size  = 20          # minimal but safe
     }
