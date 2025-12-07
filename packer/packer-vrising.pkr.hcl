@@ -60,7 +60,7 @@ build {
       "/usr/bin/sudo /root/baroboys/scripts/dependencies/xvfb/apt_xvfb.sh",
 
       "echo '🔧 Setup Wine'",
-      "/usr/bin/sudo /root/baroboys/scripts/services/wine/src/setup.sh",
+      "/usr/bin/sudo /root/baroboys/scripts/dependencies/wine/src/setup.sh",
 
       "echo '🔧 Setup Xvfb'",
       "/usr/bin/sudo /root/baroboys/scripts/services/xvfb/setup.sh",
