@@ -251,8 +251,10 @@
                 summaryCPU.innerText = `${data.cpu_percent?.toFixed(1) ?? "Unknown"}%`;
                 summaryRAM.innerText = `${data.mem_percent?.toFixed(1) ?? "Unknown"}%`;
                 summaryIdleFlagSet.innerText = data.idle_flag_set ?? "false";
-                summaryIdleSince.innerText = data.idle_since ?? "n/a";
-                summaryIdleMinutes.innerText = `${data.idle_duration_minutes} min` ?? "n/a";
+                summaryIdleSince.innerText =   data.idle_since === "" || data.idle_since == null
+                    ? "n/a"
+                    : data.idle_since;
+                summaryIdleMinutes.innerText = `${data.idle_duration_minutes} min`;
 
                 // === Metadata Footer ===
                 refreshTimestamp.innerText = `Last update: ${data.timestamp_utc ?? "unknown"}`;
