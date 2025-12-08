@@ -108,11 +108,11 @@
                         <!-- === System Metrics === -->
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-cpu-fill text-muted me-2"></i>CPU Usage</span>
-                            <span class="text-muted" id="summary-cpu">–</span>%
+                            <span class="text-muted" id="summary-cpu">–</span>
                         </li>
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-memory text-muted me-2"></i>Free RAM</span>
-                            <span class="text-muted" id="summary-ram">–</span>%
+                            <span class="text-muted" id="summary-ram">–</span>
                         </li>
 
                         <!-- === Server State === -->
@@ -126,7 +126,7 @@
                         </li>
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-hourglass-split text-muted me-2"></i>Idle Duration</span>
-                            <span class="text-muted" id="summary-idle-minutes">–</span> min
+                            <span class="text-muted" id="summary-idle-minutes">–</span>
                         </li>
                     </ul>
                 </div>
@@ -248,11 +248,11 @@
 
                 // === Summary Panel Fields ===
                 summaryTime.innerText = data.timestamp_utc || "Unknown";
-                summaryCPU.innerText = data.cpu_percent?.toFixed(1) ?? "Unknown";
-                summaryRAM.innerText = data.mem_percent?.toFixed(1) ?? "Unknown";
+                summaryCPU.innerText = `${data.cpu_percent?.toFixed(1) ?? "Unknown"}%`;
+                summaryRAM.innerText = `${data.mem_percent?.toFixed(1) ?? "Unknown"}%`;
                 summaryIdleFlagSet.innerText = data.idle_flag_set ?? "false";
                 summaryIdleSince.innerText = data.idle_since ?? "n/a";
-                summaryIdleMinutes.innerText = data.idle_duration_minutes ?? "n/a";
+                summaryIdleMinutes.innerText = `${data.idle_duration_minutes} min` ?? "n/a";
 
                 // === Metadata Footer ===
                 refreshTimestamp.innerText = `Updated ${data.timestamp_utc ?? "unknown"} by ${data.source ?? "unknown"}`;
