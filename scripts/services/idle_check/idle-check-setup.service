@@ -14,8 +14,8 @@ SuccessExitStatus=0
 KillMode=control-group
 TimeoutStartSec=300
 
-StandardOutput=append:/var/log/baroboys/admin_server_setup.log
-StandardError=append:/var/log/baroboys/admin_server_setup.log
+StandardOutput=append:/var/log/baroboys/idle_check_setup.log
+StandardError=append:/var/log/baroboys/idle_check_setup.log
 
 [Install]
 WantedBy=multi-user.target
