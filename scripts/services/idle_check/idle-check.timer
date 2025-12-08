@@ -8,4 +8,5 @@ Persistent=true
 Unit=idle-check.service
 
 [Install]
+WantedBy=multi-user.target
 WantedBy=timers.target
