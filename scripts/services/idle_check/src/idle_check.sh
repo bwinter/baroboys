@@ -19,6 +19,12 @@ NOW_ISO=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 CPU_IDLE=$(mpstat 1 1 | awk '/Average:/ {print $NF}')
 CPU_PERCENT=$(awk "BEGIN {print 100 - $CPU_IDLE}")
 
+# === MEMORY USAGE ===
+MEM_USED=$(free | awk '/Mem:/ {print $3}')
+MEM_TOTAL=$(free | awk '/Mem:/ {print $2}')
+MEM_PERCENT=$(awk -v used="$MEM_USED" -v total="$MEM_TOTAL" \
+    'BEGIN { printf("%.2f", (used/total) * 100) }')
+
 # === IDLE TRACKING ===
 IDLE_FLAG_SET=false
 IDLE_DURATION=0
@@ -45,13 +51,10 @@ sudo tee "$STATUS_JSON" > /dev/null <<EOF
 {
   "timestamp_utc": "$NOW_ISO",
   "cpu_percent": $CPU_PERCENT,
+  "mem_percent": $MEM_PERCENT,
   "idle_flag_set": $IDLE_FLAG_SET,
-  "idle_duration_minutes": $IDLE_DURATION,
   "idle_since": "$IDLE_SINCE_ISO",
-  "players": {
-    "count": null,
-    "list": []
-  }
+  "idle_duration_minutes": $IDLE_DURATION
 }
 EOF
 

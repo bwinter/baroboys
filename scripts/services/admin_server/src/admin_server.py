@@ -3,7 +3,7 @@ import subprocess
 from datetime import datetime, timezone
 from functools import lru_cache
 
-from flask import Flask, render_template, send_from_directory, Response, request, send_file
+from flask import Flask, render_template, send_from_directory, Response
 
 # Environment-aware paths
 ENV = os.getenv("FLASK_ENV", "production")
@@ -90,7 +90,7 @@ def trigger_shutdown():
                 "note": "This is mock data. No actual shutdown occurred."
             }, 200
 
-        subprocess.Popen(["systemctl", "start", "game-shutdown.service"]) # TODO: ????
+        subprocess.Popen(["systemctl", "start", "game-shutdown.service"])
         return {
             "status": "Shutdown triggered",
             "time": now
@@ -138,33 +138,6 @@ def tail_log(name):
             return Response(out, mimetype="text/html")
     except Exception as e:
         return f"Error loading log: {type(e).__name__}: {e}", 500
-
-
-# TODO: Figure out what to do with this and Barotrauma
-@app.route("/settings")
-def api_settings():
-    import os
-    import json
-
-    if ENV == "development":
-        base_path = "/VRising/VRisingServer_Data/StreamingAssets/Settings"
-    else:
-        base_path = "/home/bwinter_sc81/baroboys/VRising/VRisingServer_Data/StreamingAssets/Settings"
-
-    game_settings_path = os.path.join(base_path, "ServerGameSettings.json")
-    host_settings_path = os.path.join(base_path, "ServerHostSettings.json")
-
-    try:
-        with open(game_settings_path, encoding="utf-8") as f:
-            game_settings = json.load(f)
-        with open(host_settings_path, encoding="utf-8") as f:
-            host_settings = json.load(f)
-        return {
-            "game_settings": game_settings,
-            "host_settings": host_settings
-        }
-    except Exception as e:
-        return {"error": f"Settings fetch failed: {type(e).__name__}: {e}"}, 500
 
 
 @app.route("/directory")

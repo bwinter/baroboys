@@ -80,10 +80,10 @@
         <div class="col-md-4">
             <div class="card shadow-sm border-secondary" id="shutdown-card">
                 <div class="card-header fw-semibold d-flex align-items-center">
-                    <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i> Graceful Shutdown
+                    <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i> Shutdown
                 </div>
                 <div class="card-body text-center">
-                    <p class="small text-muted mb-4">Safely save and stop the VRising server.</p>
+                    <p class="small text-muted mb-4">Shutdown the game server.</p>
                     <form id="shutdown-form">
                         <button class="btn btn-outline-warning" type="submit">
                             <i class="bi bi-power me-2"></i> Trigger Shutdown
@@ -100,14 +100,15 @@
                 <div class="card-body p-3">
                     <ul class="list-unstyled mb-0 small">
 
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-clock-fill text-muted me-2"></i>Game Time</span>
+                            <span class="text-muted" id="summary-time">–</span>
+                        </li>
+
                         <!-- === System Metrics === -->
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-cpu-fill text-muted me-2"></i>CPU Usage</span>
                             <span class="text-muted" id="summary-cpu">–</span>
-                        </li>
-                        <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-speedometer2 text-muted me-2"></i>Load (1min)</span>
-                            <span class="text-muted" id="summary-load">–</span>
                         </li>
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-memory text-muted me-2"></i>Free RAM</span>
@@ -116,32 +117,17 @@
 
                         <!-- === Server State === -->
                         <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-hourglass-split text-muted me-2"></i>Idle Duration</span>
-                            <span class="text-muted" id="summary-idle-minutes">–</span>
+                            <span><i class="bi bi-calendar-check-fill text-muted me-2"></i>Idle Set</span>
+                            <span class="text-muted" id="summary-idle-flag-set">–</span>
                         </li>
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-calendar-check-fill text-muted me-2"></i>Idle Since</span>
                             <span class="text-muted" id="summary-idle-since">–</span>
                         </li>
                         <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-gear-fill text-muted me-2"></i>Mode</span>
-                            <span class="text-muted" id="summary-mode">–</span>
+                            <span><i class="bi bi-hourglass-split text-muted me-2"></i>Idle Duration</span>
+                            <span class="text-muted" id="summary-idle-minutes">–</span>
                         </li>
-                        <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-power text-muted me-2"></i>Shutdown</span>
-                            <span class="text-muted" id="summary-shutdown">–</span>
-                        </li>
-
-                        <!-- === Player State === -->
-                        <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-person-fill text-muted me-2"></i>Players</span>
-                            <span class="text-muted" id="summary-players">–</span>
-                        </li>
-                        <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-clock-fill text-muted me-2"></i>Game Time</span>
-                            <span class="text-muted" id="summary-time">–</span>
-                        </li>
-
                     </ul>
                 </div>
             </div>
@@ -167,7 +153,7 @@
                     <small class="text-muted d-block mt-2" id="status-refresh-label">
                         Auto-refreshing status (every 5 seconds)
                     </small>
-                    <small class="text-light opacity-75" id="summary-refresh-timestamp"></small>
+                    <small class="text-muted d-block mt-2" id="summary-refresh-timestamp"></small>
                 </div>
             </div>
         </div>
@@ -229,14 +215,12 @@
     const offlineMsg = document.getElementById('status-offline-msg');
 
     // === Summary Fields ===
-    const summaryCPU = document.getElementById('summary-cpu');
-    const summaryIdleMinutes = document.getElementById('summary-idle-minutes');
-    const summaryIdleSince = document.getElementById('summary-idle-since');
-    const summaryLoad = document.getElementById('summary-load');
-    const summaryMode = document.getElementById('summary-mode');
-    const summaryPlayers = document.getElementById('summary-players');
-    const summaryRAM = document.getElementById('summary-ram');
     const summaryTime = document.getElementById('summary-time');
+    const summaryCPU = document.getElementById('summary-cpu');
+    const summaryRAM = document.getElementById('summary-ram');
+    const summaryIdleFlagSet = document.getElementById('summary-idle-flag-set');
+    const summaryIdleSince = document.getElementById('summary-idle-since');
+    const summaryIdleMinutes = document.getElementById('summary-idle-minutes');
 
     // === Metadata Footer ===
     const refreshTimestamp = document.getElementById('summary-refresh-timestamp');
@@ -254,17 +238,6 @@
         output.scrollTop = output.scrollHeight;
     }
 
-    async function loadServerSettings() {
-        try {
-            const res = await fetch('/api/settings');
-            const json = await res.json();
-            summaryMode.innerText = json.GameModeType ?? json.game_settings?.GameModeType ?? "Unknown";
-        } catch (err) {
-            console.warn("⚠️ Failed to load server settings:", err);
-            summaryMode.innerText = "Unavailable";
-        }
-    }
-
     async function refreshStatus() {
         try {
             const res = await fetch('/status.json');
@@ -274,15 +247,12 @@
                 const data = JSON.parse(text);
 
                 // === Summary Panel Fields ===
-                summaryPlayers.innerText = data.players?.length || "0";
-                summaryTime.innerText = data.time || "Unknown";
-                summaryCPU.innerText = data.cpu_percent?.toFixed(1) ?? "–";
-                summaryIdleMinutes.innerText = data.idle_duration_minutes ?? "–";
-                summaryIdleSince.innerText = data.idle_since ?? "–";
-                summaryLoad.innerText = data.load_average_1min ?? "–";
-                summaryRAM.innerText = data.memory_free_mb
-                    ? `${data.memory_free_mb} MB`
-                    : "–";
+                summaryTime.innerText = data.timestamp_utc || "Unknown";
+                summaryCPU.innerText = data.cpu_percent?.toFixed(1) ?? "Unknown";
+                summaryRAM.innerText = data.mem_percent?.toFixed(1) ?? "Unknown";
+                summaryIdleFlagSet.innerText = data.idle_flag_set ?? "false";
+                summaryIdleSince.innerText = data.idle_since ?? "n/a";
+                summaryIdleMinutes.innerText = data.idle_duration_minutes ?? "n/a";
 
                 // === Metadata Footer ===
                 refreshTimestamp.textContent = `Updated ${data.timestamp_utc ?? "unknown"} by ${data.source ?? "unknown"}`;
@@ -353,7 +323,6 @@
         loadLog();
         refreshStatus();
         checkHeartbeat();
-        loadServerSettings();
     });
 
     setInterval(() => {
