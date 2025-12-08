@@ -4,7 +4,6 @@ Requires=idle-check-setup.service
 
 [Service]
 Type=oneshot
-RemainAfterExit=yes
 WorkingDirectory=/home/bwinter_sc81
 User=bwinter_sc81
 Group=bwinter_sc81
