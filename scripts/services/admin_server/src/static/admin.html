@@ -255,7 +255,7 @@
                 summaryIdleMinutes.innerText = data.idle_duration_minutes ?? "n/a";
 
                 // === Metadata Footer ===
-                refreshTimestamp.textContent = `Updated ${data.timestamp_utc ?? "unknown"} by ${data.source ?? "unknown"}`;
+                refreshTimestamp.innerText = `Updated ${data.timestamp_utc ?? "unknown"} by ${data.source ?? "unknown"}`;
 
                 // === Full JSON View ===
                 statusOutput.textContent = JSON.stringify(data, null, 2);
