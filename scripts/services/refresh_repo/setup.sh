@@ -6,10 +6,10 @@ mkdir -p "/var/log/baroboys/"
 chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/"
 chmod 700  "/var/log/baroboys/"
 
-touch  "/var/log/baroboys/refresh_users_startup.log"
-printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "/var/log/baroboys/refresh_users_startup.log"
-chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/refresh_users_startup.log"
-chmod 644  "/var/log/baroboys/refresh_users_startup.log"
+touch  "/var/log/baroboys/refresh_repo_startup.log"
+printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "/var/log/baroboys/refresh_repo_startup.log"
+chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/refresh_repo_startup.log"
+chmod 644  "/var/log/baroboys/refresh_repo_startup.log"
 
 # Unit installation
 install -m 644 '/root/baroboys/scripts/services/refresh_repo/refresh-repo-setup.service' \
