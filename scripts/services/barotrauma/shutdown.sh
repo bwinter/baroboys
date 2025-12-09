@@ -3,7 +3,7 @@ set -eux
 
 cd "$HOME/baroboys"
 
-touch "/tmp/barotrauma_intentional_shutdown"
+systemctl mask game-startup
 
 pkill DedicatedServer
 
