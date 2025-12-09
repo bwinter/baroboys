@@ -9,7 +9,11 @@ sudo rm -f "/etc/systemd/system/game-startup.service"
 sudo sudo systemctl daemon-reload
 sudo systemctl mask game-startup
 
-pkill DedicatedServer
+if pkill -0 DedicatedServer 2>/dev/null; then
+    pkill DedicatedServer
+else
+    echo "DedicatedServer not running, nothing to kill"
+fi
 
 echo "🔃 Monitoring DedicatedServer status..."
 
