@@ -3,7 +3,9 @@ set -eux
 
 cd "$HOME/baroboys"
 
-systemctl mask game-startup
+sudo rm -f "/etc/systemd/system/game-startup.service"
+sudo sudo systemctl daemon-reload
+sudo systemctl mask game-startup
 
 pkill DedicatedServer
 
