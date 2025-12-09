@@ -3,6 +3,8 @@ set -eux
 
 cd "$HOME/baroboys"
 
+SAVE_DIR="Barotrauma/Multiplayer"
+
 sudo rm -f "/etc/systemd/system/game-startup.service"
 sudo sudo systemctl daemon-reload
 sudo systemctl mask game-startup
@@ -17,8 +19,9 @@ else
   echo "✅ DedicatedServer exited cleanly."
 fi
 
-# === Commit latest autosave ===
-git add ./Barotrauma/Multiplayer
+# === Commit saves ===
+find "$SAVE_DIR" -type f \( -name '*.save' -o -name '*.xml' \) ! -name '*.bk*' -print0 \
+  | xargs -0 git add
 git commit -m "Auto-save before shutdown $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "Nothing to commit"
 
 # Stash local state, pull, and push
