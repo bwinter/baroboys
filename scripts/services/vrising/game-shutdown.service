@@ -10,7 +10,7 @@ User=bwinter_sc81
 Group=bwinter_sc81
 
 ExecStart=/home/bwinter_sc81/baroboys/scripts/services/vrising/shutdown.sh
-ExecStopPost=/usr/bin/systemctl poweroff
+ExecStopPost=sudo /usr/bin/systemctl poweroff
 
 SuccessExitStatus=0
 KillMode=control-group
