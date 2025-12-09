@@ -3,7 +3,7 @@ set -euo pipefail
 
 PROJECT="europan-world"
 
-KEEP_IMAGES=2
+KEEP_IMAGES=5
 
 echo "Updating \`gcloud\` cloud components"
 gcloud components update
