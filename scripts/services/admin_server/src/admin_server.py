@@ -90,7 +90,7 @@ def trigger_shutdown():
                 "note": "This is mock data. No actual shutdown occurred."
             }, 200
 
-        subprocess.Popen(["systemctl", "start", "game-shutdown.service"])
+        subprocess.Popen(["systemctl", "restart", "game-shutdown.service"])
         return {
             "status": "Shutdown triggered",
             "time": now
