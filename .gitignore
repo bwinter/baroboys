@@ -298,6 +298,14 @@ Barotrauma/libEOSSDK-Linux-Shipping.so
 Barotrauma/libclrgc.so
 Barotrauma/libsteamwebrtc.so
 
+# Barotrauma backup saves. (repo acts as backup)
+Barotrauma/Multiplayer/.Arkham Aquatics.save.bk0
+Barotrauma/Multiplayer/.Arkham Aquatics.save.bk1
+Barotrauma/Multiplayer/.Arkham Aquatics.save.bk2
+Barotrauma/Multiplayer/.Arkham Aquatics_CharacterData.xml.bk0
+Barotrauma/Multiplayer/.Arkham Aquatics_CharacterData.xml.bk1
+Barotrauma/Multiplayer/.Arkham Aquatics_CharacterData.xml.bk2
+
 # Ignore these because they get the password eventually.
 VRising/*ServerHostSettings.json
 VRising/*ServerGameSettings.json
