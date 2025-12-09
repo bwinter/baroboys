@@ -26,5 +26,5 @@ envsubst < "$SERVER_SETTINGS_XML" > "$SERVER_SETTINGS_XML.tmp"
 mv "$SERVER_SETTINGS_XML.tmp" "$SERVER_SETTINGS_XML"
 
 mkdir -p "$HOME/.local/share/Daedalic Entertainment GmbH/Barotrauma/"
-ln -sf "$HOME/baroboys/Barotrauma/Multiplayer" "$HOME/.local/share/Daedalic Entertainment GmbH/Barotrauma/Multiplayer"
-ln -sf "$HOME/baroboys/Barotrauma/WorkshopMods" "$HOME/.local/share/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods"
+ln -sf "$HOME/baroboys/Barotrauma/Multiplayer" "$HOME/.local/share/Daedalic Entertainment GmbH/Barotrauma"
+ln -sf "$HOME/baroboys/Barotrauma/WorkshopMods" "$HOME/.local/share/Daedalic Entertainment GmbH/Barotrauma"
