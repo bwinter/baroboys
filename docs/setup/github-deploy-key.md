@@ -1,7 +1,6 @@
 # 🔐 GitHub SSH Deploy Key Setup (Automated via Secret Manager)
 
-To allow VMs to securely clone private GitHub repositories via SSH, this setup stores an SSH private key in Secret
-Manager, accessible only by the VM's runtime service account.
+To allow VMs to securely clone private GitHub repositories via SSH, this setup stores an SSH private key in Secret Manager, accessible only by the VM's runtime service account.
 
 ---
 

@@ -19,6 +19,7 @@ gcloud config set project europan-world
 ````
 
 Then run the following bootstrap script:
+
 ```bash
 make iam-boostrap
 ```

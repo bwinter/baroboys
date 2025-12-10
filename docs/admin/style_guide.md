@@ -1,7 +1,6 @@
 # ✅ Baroboys Admin Panel – Style Guide (Cyborg Theme, Finalized)
 
-This guide reflects the **final visual system for the admin panel**, built on Bootswatch **Cyborg**, using native
-Bootstrap classes with minimal, focused overrides.
+This guide reflects the **final visual system for the admin panel**, built on Bootswatch **Cyborg**, using native Bootstrap classes with minimal, focused overrides.
 
 > 🧠 **Note:** This guide is meant to support the visual direction already in place — not to enforce new rules or
 > override working styles. If the existing admin dashboard uses a class or color, **assume it's intentional** unless
@@ -25,8 +24,7 @@ Bootstrap classes with minimal, focused overrides.
 
 ## 🎭 Semantic Inversion: Color Name ≠ Color Meaning
 
-In Bootstrap's dark themes like **Cyborg**, semantic color names (`.text-info`, `.bg-success`, etc.) may appear **very
-different** from their default Bootstrap colors. This is intentional for better contrast and theme balance.
+In Bootstrap's dark themes like **Cyborg**, semantic color names (`.text-info`, `.bg-success`, etc.) may appear **very different** from their default Bootstrap colors. This is intentional for better contrast and theme balance.
 
 | Class           | Default Bootstrap Look | Actual in Cyborg      |
 |-----------------|------------------------|-----------------------|
@@ -161,6 +159,4 @@ These states override any default or `.border-*` classes. They exist purely for 
 
 ## 🧠 Design Intent Reminder
 
-This dashboard reflects a **developer-friendly**, clean, minimalist admin experience. Every style exists to support
-clarity, not decoration. Avoid visual clutter, preserve whitespace, and **trust Cyborg + Bootstrap defaults unless
-there's a clear need to override.**
+This dashboard reflects a **developer-friendly**, clean, minimalist admin experience. Every style exists to support clarity, not decoration. Avoid visual clutter, preserve whitespace, and **trust Cyborg + Bootstrap defaults unless there's a clear need to override.**

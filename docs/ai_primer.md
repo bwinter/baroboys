@@ -1,19 +1,14 @@
 # 🧠 Baroboys AI Primer: Vision & Meta-Goals
 
-Baroboys is a modular game server orchestration platform—part DevOps playground, part narrative simulation. It blends
-repeatable infrastructure with expressive automation, letting each server behave like a system with memory, lifecycle,
-and recovery.
+Baroboys is a modular game server orchestration platform—part DevOps playground, part narrative simulation. It blends repeatable infrastructure with expressive automation, letting each server behave like a system with memory, lifecycle, and recovery.
 
-The system supports multiple games (e.g. *V Rising*, *Barotrauma*) under a unified orchestration layer. It uses
-Terraform to provision GCP VMs, Packer to bake layered images, and systemd + shell scripts to coordinate startup,
-shutdown, and state capture—like a playable cluster node.
+The system supports multiple games (e.g. *V Rising*, *Barotrauma*) under a unified orchestration layer. It uses Terraform to provision GCP VMs, Packer to bake layered images, and systemd + shell scripts to coordinate startup, shutdown, and state capture—like a playable cluster node.
 
 ---
 
 ## 🌌 Operating Philosophy
 
-Baroboys treats servers like vessels: composable, inspectable, and resilient. A game world isn't just launched—it spins
-up with a boot history, commits its memory to Git, and sleeps gracefully when commanded.
+Baroboys treats servers like vessels: composable, inspectable, and resilient. A game world isn't just launched—it spins up with a boot history, commits its memory to Git, and sleeps gracefully when commanded.
 
 You don't babysit it; you steer it.
 
@@ -41,8 +36,7 @@ Each game world defines its own startup parameters, save behavior, and logging f
 Baroboys uses Packer to build layered GCE images:
 
 * **Core image**: Common runtime tools (Wine, SteamCMD, xvfb, shell orchestration, systemd services)
-* **Game layer**: Runtime setup scripts run at VM start to pull configs, install or update binaries, and register
-  services
+* **Game layer**: Runtime setup scripts run at VM start to pull configs, install or update binaries, and register services
 
 This model minimizes rebuilds and allows rapid iteration or hotfixes by Git + restart.
 

@@ -12,7 +12,6 @@ Setting up file paths:
 
 ![VirtualBox Shared Folders](https://raw.githubusercontent.com/wiki/bwinter/baroboys/barotrauma/VirtualBox_Shared_Folders.png)
 
-
 See `scripts/save-decompressor`
 
 ### Setup local env to use repo:
