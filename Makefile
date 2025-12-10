@@ -5,8 +5,7 @@ PROJECT          := europan-world
 ZONE             := us-west1-c
 INSTANCE         := europa
 USER             := bwinter_sc81
-REMOTE_SAVE_SCRIPT := sudo systemctl start game-shutdown.service
-ACTIVE_GAME_FILE := .envrc
+REMOTE_SAVE_SCRIPT := sudo systemctl restart game-shutdown.service
 
 TF_VAR_FILE      := terraform/terraform.tfvars
 TF_VAR_DEF_FILE  := terraform/variables.tf
@@ -121,29 +120,16 @@ iam-destroy:
 # =======================
 # 🎮 Game
 # =======================
-.PHONY: vm-switch vm-mode vm-refresh
+.PHONY: restart-game save-and-shutdown
 
-vm-switch:
-	scripts/tools/switch_game.sh
-
-vm-mode:
-	@grep ACTIVE_GAME $(ACTIVE_GAME_FILE) | cut -d= -f2
-
-vm-refresh:
+restart-game:
 	scripts/tools/remote_refresh.sh
-
-
-# =======================
-# 💾 Save + Shutdown
-# =======================
-.PHONY: save-and-shutdown
 
 save-and-shutdown:
 	gcloud compute ssh $(USER)@$(INSTANCE) \
 		--project=$(PROJECT) \
 		--zone=$(ZONE) \
 		--command="$(REMOTE_SAVE_SCRIPT)"
-
 
 # =======================
 # 🔐 SSH Access
@@ -244,22 +230,22 @@ help:
 	@echo ""
 
 	@echo "🎮 Game Mode:"
-	@echo "  make vm-switch              - Switch game vm-mode (.envrc)"
-	@echo "  make vm-mode                - Show current game vm-mode"
-	@echo "  make vm-refresh             - Trigger remote reinstall of game"
+	@echo "  make restart game           - Trigger remote restart of game"
+	@echo "  make save-and-shutdown      - Save game state by triggering shutdown"
 	@echo ""
 
 	@echo "🧪 Control:"
-	@echo "  make save-and-shutdown      - Save game state by triggering shutdown"
 	@echo "  make ssh                    - SSH into VM"
 	@echo "  make ssh-iap                - SSH using IAP tunnel"
 	@echo ""
 
 	@echo "📦 Packer Builds:"
 	@echo "  make build-core             - Build base image (core setup)"
-	@echo "  make build-steam            - Build Steam dependencies layer"
-	@echo "  make build                  - Build all Packer image layers"
-	@echo "  make clean                  - Review usage and delete Packer images and disks"
+	@echo "  make build-admin            - Build Admin layer"
+	@echo "  make build-vrising          - Build V Rising Game layer"
+	@echo "  make build-barotraums       - Build Barotrauma Game layer"
+	@echo "  make build                  - Build all image layers"
+	@echo "  make clean                  - Review usage and delete unused images and disks"
 	@echo ""
 
 	@echo "🧹 Git History Cleanup:"
