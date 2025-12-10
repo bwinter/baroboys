@@ -5,15 +5,23 @@ PROJECT_ID="europan-world"
 SA_NAME="vm-runtime"
 SA_EMAIL="${SA_NAME}@${PROJECT_ID}.iam.gserviceaccount.com"
 
-# Map of GCP roles → Terraform resource names
-declare -A ROLE_MAP=(
-  ["roles/logging.logWriter"]="vm_runtime_log_writer"
-  ["roles/monitoring.metricWriter"]="vm_runtime_monitoring_writer"
-  ["roles/secretmanager.secretAccessor"]="vm_runtime_secret_accessor"
+# Roles and corresponding Terraform resource names
+ROLES=(
+  "roles/logging.logWriter"
+  "roles/monitoring.metricWriter"
+  "roles/secretmanager.secretAccessor"
 )
 
-for ROLE in "${!ROLE_MAP[@]}"; do
-  TF_RESOURCE="${ROLE_MAP[$ROLE]}"
+TF_RESOURCES=(
+  "vm_runtime_log_writer"
+  "vm_runtime_monitoring_writer"
+  "vm_runtime_secret_accessor"
+)
+
+# Loop over roles and import
+for i in "${!ROLES[@]}"; do
+  ROLE="${ROLES[$i]}"
+  TF_RESOURCE="${TF_RESOURCES[$i]}"
   IMPORT_ID="${PROJECT_ID}/${ROLE}/serviceAccount:${SA_EMAIL}"
   echo "Importing $TF_RESOURCE ($ROLE) into Terraform state"
   terraform import "google_project_iam_member.${TF_RESOURCE}" "$IMPORT_ID"
