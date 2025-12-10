@@ -63,7 +63,7 @@ echo "📤 Wrote status to $STATUS_JSON"
 # === SHUTDOWN TRIGGER ===
 if (( IDLE_DURATION >= COOLDOWN_MINUTES )); then
   echo "🕒 Idle for $IDLE_DURATION minutes. Triggering shutdown..."
-  if ! /usr/bin/sudo systemctl start game-shutdown.service; then
+  if ! /usr/bin/sudo systemctl restart game-shutdown.service; then
     echo "⚠️  Failed to start game-shutdown.service" >&2
   fi
 else
