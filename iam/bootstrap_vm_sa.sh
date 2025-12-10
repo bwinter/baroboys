@@ -29,7 +29,6 @@ REQUIRED_ROLES=(
   roles/secretmanager.secretAccessor
   roles/logging.logWriter
   roles/monitoring.metricWriter
-  roles/osconfig.guestPolicyAdmin
 )
 
 for ROLE in "${REQUIRED_ROLES[@]}"; do

@@ -27,11 +27,9 @@ gcloud services enable \
 # Assign necessary roles
 REQUIRED_ROLES=(
   roles/compute.admin
-  roles/compute.securityAdmin
   roles/iam.serviceAccountUser
-  roles/osconfig.guestPolicyAdmin
-  roles/logging.logWriter
-  roles/monitoring.metricWriter
+  roles/iam.serviceAccountAdmin
+  roles/resourcemanager.projectIamAdmin
 )
 
 for ROLE in "${REQUIRED_ROLES[@]}"; do
@@ -52,6 +50,8 @@ if [ ! -f "$KEY_PATH" ]; then
   gcloud iam service-accounts keys create "$KEY_PATH" \
     --iam-account="$SA_EMAIL" \
     --project="$PROJECT_ID"
+
+  chmod 600 "$KEY_PATH"
 else
   echo "✅ Key already exists at $KEY_PATH — skipping"
 fi
