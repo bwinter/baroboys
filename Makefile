@@ -62,7 +62,19 @@ IAM_BUILD_DIR  := $(IAM_TF_DIR)/tmp
 IAM_VARS       := terraform.tfvars
 IAM_VAR_DEFS   := variables.tf
 
-.PHONY: iam-apply iam-destroy
+.PHONY: iam-boostrap iam-import iam-apply iam-refresh iam-destroy
+
+iam-bootstrap:
+	@echo "✅ Bootstrapping IAM roles..."
+	cd "$(IAM_TF_DIR)" && \
+		./bootstrap_terraform_sa.sh && \
+		./bootstrap_vm_runtime_sa.sh
+
+iam-import:
+	@echo "✅ Importing IAM roles..."
+	cd "$(IAM_TF_DIR)" && \
+		./import_terraform_sa_roles.sh && \
+		./import_vm_runtime_sa_roles.sh
 
 iam-apply:
 	@echo "📤 Syncing IAM Terraform files..."
@@ -81,6 +93,12 @@ iam-apply:
 
 	gcloud iam service-accounts keys create .secrets/europan-world-terraform-key.json \
 	  --iam-account=terraform@europan-world.iam.gserviceaccount.com
+
+iam-refresh:
+	@echo "✅ Refreshing IAM roles..."
+	cd $(IAM_BUILD_DIR) && \
+		unset GOOGLE_APPLICATION_CREDENTIALS && \
+		terraform refresh -var-file=$(IAM_VARS)
 
 iam-destroy:
 	@echo "🔥 Destroying IAM roles..."
@@ -205,8 +223,11 @@ help:
 	@echo ""
 
 	@echo "🔐 IAM:"
-	@echo "  make iam-apply              - Build and apply IAM service accounts"
-	@echo "  make iam-destroy            - Destroy IAM service accounts and keys"
+	@echo "  make iam-bootstrap          - Bootstrap IAM service accounts"
+	@echo "  make iam-apply              - Apply IAM roles"
+	@echo "  make iam-import             - Import IAM roles"
+	@echo "  make iam-refresh            - Refresh IAM roles"
+	@echo "  make iam-destroy            - Destroy IAM roles"
 	@echo ""
 
 	@echo "🐍 Flask Admin Panel:"

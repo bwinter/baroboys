@@ -18,23 +18,25 @@ gcloud auth login
 gcloud config set project europan-world
 ````
 
-Then run the following bootstrap scripts:
+Then run the following bootstrap script:
+```bash
+make iam-boostrap
+```
 
 ---
+
+## Results:
 
 ### 1. Bootstrap Terraform Service Account
 
 Creates `terraform@...` and assigns roles needed for infrastructure provisioning.
 
-```bash
-bash scripts/tools/gcp/bootstrap_terraform_sa.sh
-```
-
 This script assigns:
 
 * `roles/compute.admin`
-* `roles/compute.securityAdmin`
 * `roles/iam.serviceAccountUser`
+* `roles/iam.serviceAccountAdmin`
+* `roles/resourcemanager.projectIamAdmin`
 
 ---
 
@@ -42,16 +44,11 @@ This script assigns:
 
 Creates `vm-runtime@...` and assigns roles needed for VM runtime operations.
 
-```bash
-bash scripts/tools/gcp/bootstrap_vm_sa.sh
-```
-
 This script assigns:
 
-* `roles/secretmanager.secretAccessor`
 * `roles/logging.logWriter`
 * `roles/monitoring.metricWriter`
-* `roles/osconfig.guestPolicyAdmin`
+* `roles/secretmanager.secretAccessor`
 
 ---
 
@@ -63,7 +60,7 @@ This script assigns:
 
 ---
 
-## 🚀 Ready to Run Terraform
+## 🚀 Activate Service Accounts
 
 Activate the Terraform SA:
 
