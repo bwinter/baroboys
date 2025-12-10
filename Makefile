@@ -79,8 +79,8 @@ iam-import:
 iam-apply:
 	@echo "📤 Syncing IAM Terraform files..."
 	mkdir -p "$(IAM_BUILD_DIR)/"
-	cp -f "$(IAM_TF_DIR)/iam_terraform_service_account.tf" "$(IAM_BUILD_DIR)/"
-	cp -f "$(IAM_TF_DIR)/iam_vm_runtime.tf" "$(IAM_BUILD_DIR)/"
+	#cp -f "$(IAM_TF_DIR)/iam_terraform_service_account.tf" "$(IAM_BUILD_DIR)/"
+	#cp -f "$(IAM_TF_DIR)/iam_vm_runtime.tf" "$(IAM_BUILD_DIR)/"
 	cp -f "$(IAM_TF_DIR)/iam_game_admins.tf" "$(IAM_BUILD_DIR)/"
 	cp -f "$(TF_VAR_FILE)" "$(IAM_BUILD_DIR)/$(IAM_VARS)"
 	cp -f "$(TF_VAR_DEF_FILE)" "$(IAM_BUILD_DIR)/$(IAM_VAR_DEFS)"
@@ -97,8 +97,8 @@ iam-apply:
 iam-refresh:
 	@echo "📤 Syncing IAM Terraform files..."
 	mkdir -p "$(IAM_BUILD_DIR)/"
-	cp -f "$(IAM_TF_DIR)/iam_terraform_service_account.tf" "$(IAM_BUILD_DIR)/"
-	cp -f "$(IAM_TF_DIR)/iam_vm_runtime.tf" "$(IAM_BUILD_DIR)/"
+	#cp -f "$(IAM_TF_DIR)/iam_terraform_service_account.tf" "$(IAM_BUILD_DIR)/"
+	#cp -f "$(IAM_TF_DIR)/iam_vm_runtime.tf" "$(IAM_BUILD_DIR)/"
 	cp -f "$(IAM_TF_DIR)/iam_game_admins.tf" "$(IAM_BUILD_DIR)/"
 	cp -f "$(TF_VAR_FILE)" "$(IAM_BUILD_DIR)/$(IAM_VARS)"
 	cp -f "$(TF_VAR_DEF_FILE)" "$(IAM_BUILD_DIR)/$(IAM_VAR_DEFS)"
