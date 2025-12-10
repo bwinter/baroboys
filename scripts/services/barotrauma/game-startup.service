@@ -4,7 +4,6 @@ Requires=game-setup.service
 
 [Service]
 Type=simple
-Restart=on-failure
 WorkingDirectory=/home/bwinter_sc81/baroboys/Barotrauma
 User=bwinter_sc81
 Group=bwinter_sc81

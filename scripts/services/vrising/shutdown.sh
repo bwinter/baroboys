@@ -8,10 +8,6 @@ SAVE_DIR="VRising/Data/Saves/v4/TestWorld-1"
 
 SERVER_PASS="$(gcloud secrets versions access latest --secret="server-password")"
 
-sudo rm -f "/etc/systemd/system/game-startup.service"
-sudo sudo systemctl daemon-reload
-sudo systemctl mask game-startup
-
 # Tell players and trigger autosave
 if ! mcrcon -H 127.0.0.1 -P 25575 -p "$SERVER_PASS" \
   "shutdown ${SHUTDOWN_DELAY_MINUTES} \"Server will shut down in ~{t}m! Get to a safe place.\""; then

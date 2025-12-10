@@ -5,8 +5,6 @@ cd "$HOME/baroboys"
 
 SAVE_DIR="Barotrauma/Multiplayer"
 
-sudo systemctl stop game-startup
-
 if pkill -0 DedicatedServer 2>/dev/null; then
     pkill DedicatedServer
 else
