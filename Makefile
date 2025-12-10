@@ -73,7 +73,7 @@ iam-apply:
 	cp -f "$(TF_VAR_FILE)" "$(IAM_BUILD_DIR)/$(IAM_VARS)"
 	cp -f "$(TF_VAR_DEF_FILE)" "$(IAM_BUILD_DIR)/$(IAM_VAR_DEFS)"
 
-	@echo "✅ Applying IAM using GCP user credentials..."
+	@echo "✅ Applying IAM roles..."
 	cd $(IAM_BUILD_DIR) && \
 		unset GOOGLE_APPLICATION_CREDENTIALS && \
 		terraform init && \
@@ -83,7 +83,7 @@ iam-apply:
 	  --iam-account=terraform@europan-world.iam.gserviceaccount.com
 
 iam-destroy:
-	@echo "🔥 Destroying IAM with GCP user credentials..."
+	@echo "🔥 Destroying IAM roles..."
 	cd $(IAM_BUILD_DIR) && \
 		unset GOOGLE_APPLICATION_CREDENTIALS && \
 		terraform init && \
