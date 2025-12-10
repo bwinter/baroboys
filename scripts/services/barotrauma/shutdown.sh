@@ -5,9 +5,7 @@ cd "$HOME/baroboys"
 
 SAVE_DIR="Barotrauma/Multiplayer"
 
-sudo rm -f "/etc/systemd/system/game-startup.service"
-sudo sudo systemctl daemon-reload
-sudo systemctl mask game-startup
+sudo systemctl stop game-startup
 
 if pkill -0 DedicatedServer 2>/dev/null; then
     pkill DedicatedServer
