@@ -68,26 +68,20 @@ variable "gcp_image_project" {
   default     = "debian-cloud"
 }
 
-variable "base_core_image" {
-  description = "Core image used for the base layer"
+variable "core_image" {
+  description = "Image used for the base layer"
   type        = string
   default     = "baroboys-core"
 }
 
-variable "base_admin_image" {
-  description = "Admin image used for the admin layer"
+variable "admin_image" {
+  description = "Image used for the admin layer"
   type        = string
   default     = "baroboys-admin"
 }
 
-variable "base_barotrauma_image" {
-  description = "Barotrauma image used for the Barotrauma layer"
+variable "game_image" {
+  description = "Image used for the Game layer"
   type        = string
   default     = "baroboys-barotrauma"
-}
-
-variable "base_vrising_image" {
-  description = "V Rising image used for the V Rising layer"
-  type        = string
-  default     = "baroboys-vrising"
 }

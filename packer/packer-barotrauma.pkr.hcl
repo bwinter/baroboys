@@ -21,11 +21,11 @@ source "googlecompute" "baroboys-barotrauma" {
   service_account_email = var.service_account_email
   scopes = ["https://www.googleapis.com/auth/cloud-platform"]
 
-  source_image = var.base_admin_image
+  source_image = var.admin_image
   source_image_project_id = [var.project]
 
-  image_name   = var.base_barotrauma_image
-  image_family = var.base_barotrauma_image
+  image_name   = var.game_image
+  image_family = var.game_image
 
   ssh_username = "packer"
 

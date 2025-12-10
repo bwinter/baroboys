@@ -24,8 +24,8 @@ source "googlecompute" "baroboys-core" {
   source_image_family = var.gcp_image_family
   source_image_project_id = [var.gcp_image_project]
 
-  image_name   = var.base_core_image
-  image_family = var.base_core_image
+  image_name   = var.core_image
+  image_family = var.core_image
 
   ssh_username = "packer"
 

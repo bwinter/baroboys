@@ -18,8 +18,8 @@
 
 provider "google" {
   credentials = file("${path.module}/../.secrets/europan-world-terraform-key.json")
-  project = var.project
-  region  = var.region
+  project     = var.project
+  region      = var.region
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -34,8 +34,8 @@ resource "random_id" "instance_id" {
 // 📦 Image Source (from Packer build)
 // ─────────────────────────────────────────────────────────────────────────────
 
-data "google_compute_image" "base_barotrauma_image" {
-  family  = var.base_barotrauma_image
+data "google_compute_image" "game_image" {
+  family  = var.game_image
   project = var.project
 }
 
@@ -68,9 +68,9 @@ resource "google_compute_instance" "default" {
   boot_disk {
     auto_delete = true
     initialize_params {
-      image = data.google_compute_image.base_barotrauma_image.self_link
-      type = "pd-ssd"    # changed from default
-      size  = 20          # minimal but safe
+      image = data.google_compute_image.game_image.self_link
+      type  = "pd-ssd" # changed from default
+      size  = 20       # minimal but safe
     }
   }
 
@@ -83,13 +83,13 @@ resource "google_compute_instance" "default" {
   }
 
   service_account {
-    email = var.service_account_email
+    email  = var.service_account_email
     scopes = ["cloud-platform"]
   }
 
   lifecycle {
     prevent_destroy = false
-    ignore_changes = [metadata["startup-script"], metadata["shutdown-script"]]
+    ignore_changes  = [metadata["startup-script"], metadata["shutdown-script"]]
   }
 }
 
@@ -103,7 +103,7 @@ resource "google_compute_firewall" "barotrauma_ports" {
 
   allow {
     protocol = "tcp"
-    ports = ["27015", "27016"]
+    ports    = ["27015", "27016"]
   }
 
   direction = "INGRESS"
@@ -120,7 +120,7 @@ resource "google_compute_firewall" "barotrauma_ports_udp" {
 
   allow {
     protocol = "udp"
-    ports = ["27015", "27016"]
+    ports    = ["27015", "27016"]
   }
 
   direction = "INGRESS"
@@ -141,7 +141,7 @@ resource "google_compute_firewall" "vrising_ports" {
 
   allow {
     protocol = "tcp"
-    ports = ["9876", "9877"]
+    ports    = ["9876", "9877"]
   }
 
   direction = "INGRESS"
@@ -158,7 +158,7 @@ resource "google_compute_firewall" "vrising_ports_udp" {
 
   allow {
     protocol = "udp"
-    ports = ["9876", "9877"]
+    ports    = ["9876", "9877"]
   }
 
   direction = "INGRESS"
@@ -180,11 +180,11 @@ resource "google_compute_firewall" "admin_server" {
 
   allow {
     protocol = "tcp"
-    ports = ["8080"]
+    ports    = ["8080"]
   }
 
-  direction = "INGRESS"
-  priority  = 1000
+  direction     = "INGRESS"
+  priority      = 1000
   source_ranges = ["0.0.0.0/0"]
-  target_tags = ["admin-server"]
+  target_tags   = ["admin-server"]
 }

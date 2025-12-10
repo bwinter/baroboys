@@ -21,11 +21,11 @@ source "googlecompute" "baroboys-admin" {
   service_account_email = var.service_account_email
   scopes = ["https://www.googleapis.com/auth/cloud-platform"]
 
-  source_image = var.base_core_image
+  source_image = var.core_image
   source_image_project_id = [var.project]
 
-  image_name   = var.base_admin_image
-  image_family = var.base_admin_image
+  image_name   = var.admin_image
+  image_family = var.admin_image
 
   ssh_username = "packer"
 
