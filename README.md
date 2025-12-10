@@ -64,17 +64,11 @@ terraform init
 
 ---
 
-### 2. Set your game mode (optional, default is `vrising`)
+### 2. Set your game mode
 
-```bash
-make switch
-```
+Via terraform variables.tf
 
-Ensure `direnv` is installed and run (or set env manually):
-
-```bash
-direnv allow .
-```
+(TODO: Add a script to make this change.)
 
 ---
 
@@ -106,21 +100,13 @@ make apply
 
 ---
 
-### 5. Manually trigger a save (anytime)
-
-```bash
-make save
-```
-
----
-
-### 6. Destroy the instance when done
+### 6. (Optional) Destroy the instance when done with the server
 
 ```bash
 make destroy
 ```
 
-💡 Auto-save runs before shutdown if the game service exits cleanly.
+Keep the existing server, leaving it powered off to save provisioning time. It just costs a little money, where as full destruction costs nothing.
 
 ---
 
@@ -150,21 +136,21 @@ make destroy
 
 - **Barotrauma State & Mods** (`/Barotrauma`)
     - Contains saved games, mod files, and game server config
+    -
+- **VRising State & Mods** (`/VRising`)
+    - Contains saved games, and game server config
 
 ---
 
 ## 🔐 Security Notes
 
-- All secrets (e.g., GitHub deploy key, service account JSON) should be stored locally and excluded from version
-  control.
+- All secrets (e.g., GitHub deploy key, service account JSON) should be stored locally and excluded from version control.
 
 ## License
 
-This project is licensed under
-the [Polyform Small Business License](https://polyformproject.org/licenses/small-business/1.0.0/).
+This project is licensed under the [Polyform Small Business License](https://polyformproject.org/licenses/small-business/1.0.0/).
 
 - ✅ Free for personal, educational use
 - ❌ Commercial use by larger companies requires a commercial license
 
-If you’re a business above the size threshold and would like to use this project, please contact me
-at [bwinter.sc81@gmail.com].
+If you’re a business above the size threshold and would like to use this project, please contact me at [bwinter.sc81@gmail.com].
