@@ -26,9 +26,9 @@ gcloud services enable \
 
 # Required roles for the VM runtime identity
 REQUIRED_ROLES=(
-  roles/secretmanager.secretAccessor
   roles/logging.logWriter
   roles/monitoring.metricWriter
+  roles/secretmanager.secretAccessor
 )
 
 for ROLE in "${REQUIRED_ROLES[@]}"; do
@@ -38,3 +38,11 @@ for ROLE in "${REQUIRED_ROLES[@]}"; do
     --role="$ROLE" \
     --quiet
 done
+
+# Bind the SA to the secret
+echo "Binding $SA_EMAIL to roles/secretmanager.secretAccessor on github-deploy-key"
+gcloud secrets add-iam-policy-binding github-deploy-key \
+  --project="$PROJECT_ID" \
+  --member="serviceAccount:$SA_EMAIL" \
+  --role="roles/secretmanager.secretAccessor" \
+  --quiet
