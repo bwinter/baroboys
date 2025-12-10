@@ -12,8 +12,6 @@ TF_VAR_DEF_FILE  := terraform/variables.tf
 
 .DEFAULT_GOAL := help
 
-dev: vm-refresh
-
 apply: terraform-apply
 
 destroy: terraform-destroy
