@@ -1,7 +1,6 @@
 # =======================
 # 📦 Config
 # =======================
-TF_DIR           := terraform
 PROJECT          := europan-world
 ZONE             := us-west1-c
 INSTANCE         := europa
@@ -35,6 +34,8 @@ admin-logs:
 # =======================
 # 🌍 Terraform
 # =======================
+TF_DIR           := terraform
+
 .PHONY: terraform-init terraform-plan terraform-apply terraform-destroy
 
 terraform-init:
