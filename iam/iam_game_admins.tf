@@ -4,7 +4,7 @@ variable "baroboys_operators" {
   default = [
     "nilsen.j.k@gmail.com",
     "dema@u.washington.edu",
-    "stevecheng5544@gmail.com",
+    "menotquilty@gmail.com",
     "vduray@gmail.com"
   ]
 }
