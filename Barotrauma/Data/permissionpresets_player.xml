@@ -1,125 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Custom permission presets for this server.
-     Safe from game updates. -->
+<!-- Custom permission presets for this server -->
 <PermissionPresets>
 
-    <!-- Full server owner / god admin -->
+    <!-- Server owner / emergency admin -->
     <Preset
-            name="FullAdmin"
-            description="Full server control, debugging, and permission management."
+            name="OwnerAdmin"
+            description="Server owner with full override and recovery powers."
             permissions="All">
 
-        <!-- Lifecycle / server -->
-        <Command name="startgame"/>
-        <Command name="endgame"/>
-        <Command name="exit"/>
-        <Command name="restart"/>
-        <Command name="setpassword"/>
-        <Command name="servername"/>
-        <Command name="setmaxplayers"/>
-
-        <!-- Permission management -->
-        <Command name="giverank"/>
-        <Command name="giveperm"/>
-        <Command name="revokeperm"/>
-        <Command name="givecommandperm"/>
-        <Command name="revokecommandperm"/>
+        <!-- Minimal but sufficient god access -->
+        <Command name="clientlist"/>
         <Command name="showperm"/>
 
-        <!-- Campaign & economy -->
-        <Command name="campaigninfo"/>
-        <Command name="campaigndestination"/>
-        <Command name="money"/>
-        <Command name="showmoney"/>
-        <Command name="setreputation"/>
-        <Command name="setlocationreputation"/>
+        <Command name="startgame"/>
+        <Command name="endgame"/>
+        <Command name="restart"/>
+        <Command name="exit"/>
 
-        <!-- Player & entity control -->
-        <Command name="teleportcharacter"/>
-        <Command name="teleportsub"/>
-        <Command name="setclientcharacter"/>
-        <Command name="kill"/>
-        <Command name="revive"/>
-        <Command name="heal"/>
-        <Command name="ragdoll"/>
-
-        <!-- Spawning / cheating -->
         <Command name="spawn"/>
         <Command name="spawnitem"/>
         <Command name="give"/>
-        <Command name="giveexperience"/>
-        <Command name="givetalent"/>
-        <Command name="unlocktalents"/>
-
-        <!-- World manipulation -->
-        <Command name="explosion"/>
-        <Command name="fire"/>
-        <Command name="water"/>
-        <Command name="oxygen"/>
-        <Command name="power"/>
-        <Command name="lighting"/>
-        <Command name="ambientlight"/>
-
-        <!-- AI / bots -->
-        <Command name="enablecrewai"/>
-        <Command name="disablecrewai"/>
-        <Command name="enableenemyai"/>
-        <Command name="disableenemyai"/>
-        <Command name="botcount"/>
-        <Command name="botspawnmode"/>
-
-        <!-- Moderation -->
-        <Command name="kick"/>
-        <Command name="kickid"/>
-        <Command name="ban"/>
-        <Command name="banid"/>
-        <Command name="banip"/>
-        <Command name="unban"/>
-        <Command name="unbanaddress"/>
-        <Command name="mute"/>
-        <Command name="unmute"/>
-
-        <!-- Debug / diagnostics -->
-        <Command name="clientlist"/>
-        <Command name="netstats"/>
-        <Command name="verboselogging"/>
-        <Command name="dumptofile"/>
-        <Command name="debugdraw"/>
-        <Command name="findentityids"/>
-
-    </Preset>
-
-    <!-- Trusted admin for friends -->
-    <Preset
-            name="TrustedAdmin"
-            description="Trusted friends with campaign control and recovery tools."
-            permissions="ManageRound,ManageCampaign,ConsoleCommands,ServerLog,ManageSettings,SpamImmunity">
-
-        <Command name="readycheck"/>
-        <Command name="difficulty"/>
-        <Command name="campaigninfo"/>
-        <Command name="campaigndestination"/>
-
-        <Command name="kick"/>
-        <Command name="kickid"/>
-        <Command name="mute"/>
-        <Command name="unmute"/>
-
-        <Command name="respawnnow"/>
-        <Command name="heal"/>
-        <Command name="revive"/>
+        <Command name="teleportcharacter"/>
+        <Command name="teleportsub"/>
+        <Command name="godmode"/>
+        <Command name="godmode_mainsub"/>
 
         <Command name="fixitems"/>
         <Command name="fixhulls"/>
+        <Command name="heal"/>
+        <Command name="revive"/>
 
-        <Command name="togglekarma"/>
-        <Command name="setkarma"/>
-        <Command name="resetkarma"/>
-        <Command name="showkarma"/>
+    </Preset>
 
-        <Command name="botcount"/>
-        <Command name="enablecrewai"/>
-        <Command name="disablecrewai"/>
+    <!-- Friends: full campaign + round control, no god tools -->
+    <Preset
+            name="CampaignAdmin"
+            description="Trusted friends with full campaign and round control."
+            permissions="
+      ManageRound,
+      ManageCampaign">
+
+        <!-- Round flow -->
+        <Command name="readycheck"/>
+
+        <!-- Campaign navigation -->
+        <Command name="campaigninfo"/>
+        <Command name="campaigndestination"/>
+
+        <!-- Basic recovery -->
+        <Command name="respawnnow"/>
+        <Command name="heal"/>
+        <Command name="revive"/>
+        <Command name="fixitems"/>
+        <Command name="fixhulls"/>
 
     </Preset>
 

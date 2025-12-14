@@ -4,21 +4,21 @@
     <Client
             name="SnowCrash"
             accountid="STEAM_1:1:50470452"
-            preset="FullAdmin"/>
+            preset="OwnerAdmin"/>
 
     <Client
             name="Gunner"
             accountid="STEAM_1:0:57529211"
-            preset="TrustedAdmin"/>
+            preset="CampaignAdmin"/>
 
     <Client
             name="menotquilty"
             accountid="STEAM_1:0:32388717"
-            preset="TrustedAdmin"/>
+            preset="CampaignAdmin"/>
 
     <Client
             name="Dr. Eugene Gilman"
             accountid="STEAM_1:1:52913915"
-            preset="TrustedAdmin"/>
+            preset="CampaignAdmin"/>
 
 </ClientPermissions>
