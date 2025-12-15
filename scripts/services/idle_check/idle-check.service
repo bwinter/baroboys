@@ -16,3 +16,6 @@ TimeoutStartSec=60
 
 StandardOutput=append:/var/log/baroboys/idle_check.log
 StandardError=append:/var/log/baroboys/idle_check.log
+
+[Install]
+WantedBy=multi-user.target
