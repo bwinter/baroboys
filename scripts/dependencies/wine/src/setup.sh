@@ -2,7 +2,7 @@
 set -eux
 
 echo "🪟 Starting xvfb..."
-systemctl enable xvfb-startup.service
+systemctl start xvfb-startup.service
 
 echo "🌀 Installing fonts..."
 
