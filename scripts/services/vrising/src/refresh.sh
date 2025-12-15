@@ -34,6 +34,17 @@ else
   echo "✅ Latest .save is up-to-date or newer than .gz"
 fi
 
+echo "=== BEFORE steamcmd ==="
+id
+echo "HOME=$HOME"
+ls -la ~
+ls -la ~/.steam ~/.local/share || true
+
+# Warm steam to hopefully avoid intermittent failures.
+/usr/games/steamcmd \
+  +login anonymous \
+  +quit
+
 # Update game files via SteamCMD
 /usr/games/steamcmd \
   +@sSteamCmdForcePlatformType windows \
@@ -41,6 +52,10 @@ fi
   +login anonymous \
   +app_update 1829350 validate \
   +quit
+
+echo "=== AFTER steamcmd ==="
+ls -la ~/.steam ~/.local/share || true
+find ~/.steam -maxdepth 3 -type f 2>/dev/null || true
 
 # Restore canonical server configs
 cd "$HOME/baroboys"
