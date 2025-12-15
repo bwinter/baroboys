@@ -5,7 +5,7 @@ echo "Ensuring mcrcon is installed"
 source "/root/baroboys/scripts/dependencies/mcrcon/refresh.sh"
 
 echo "Ensuring Vrising is setup"
-/usr/bin/sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/services/vrising/src/refresh.sh"
+/usr/bin/sudo -u bwinter_sc81 -H -- "/home/bwinter_sc81/baroboys/scripts/services/vrising/src/refresh.sh"
 
 # Give Admin Server access to logs.
 mkdir -p "/var/log/baroboys/"
