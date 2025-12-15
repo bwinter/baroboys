@@ -24,8 +24,8 @@ source "googlecompute" "baroboys-vrising" {
   source_image = var.admin_image
   source_image_project_id = [var.project]
 
-  image_name   = var.base_vrising_image
-  image_family = var.base_vrising_image
+  image_name   = var.game_image
+  image_family = var.game_image
 
   ssh_username = "packer"
 
