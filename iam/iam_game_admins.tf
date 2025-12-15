@@ -3,7 +3,7 @@ variable "baroboys_operators" {
   type = list(string)
   default = [
     "nilsen.j.k@gmail.com",
-    "dema@u.washington.edu",
+    "demapoppa@gmail.com",
     "menotquilty@gmail.com",
     "vduray@gmail.com"
   ]
