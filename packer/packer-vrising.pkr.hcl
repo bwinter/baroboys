@@ -53,17 +53,17 @@ build {
       "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/setup.sh",
       "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/startup.sh",
 
-      "echo '🔧 Install Wine'",
-      "/usr/bin/sudo /root/baroboys/scripts/dependencies/wine/apt_wine.sh",
-
       "echo '🔧 Install Xvfb'",
       "/usr/bin/sudo /root/baroboys/scripts/dependencies/xvfb/apt_xvfb.sh",
 
-      "echo '🔧 Setup Wine'",
-      "/usr/bin/sudo /root/baroboys/scripts/dependencies/wine/src/setup.sh",
-
       "echo '🔧 Setup Xvfb'",
       "/usr/bin/sudo /root/baroboys/scripts/services/xvfb/setup.sh",
+
+      "echo '🔧 Install Wine'",
+      "/usr/bin/sudo /root/baroboys/scripts/dependencies/wine/apt_wine.sh",
+
+      "echo '🔧 Setup Wine'",
+      "/usr/bin/sudo /root/baroboys/scripts/dependencies/wine/src/setup.sh",
 
       "echo '🔧 Install latest version of V Rising'",
       "/usr/bin/sudo /root/baroboys/scripts/services/vrising/setup.sh",
