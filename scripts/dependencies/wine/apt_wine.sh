@@ -23,6 +23,10 @@ echo "ℹ️ wine version info:"
   exit 1
 }
 
+# Need to happen before wine installer can finish.
+echo "🪟 Starting xvfb..."
+systemctl start xvfb-startup.service
+
 # Initialize Wine prefix (once!)
 sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/dependencies/wine/src/setup.sh"
 
