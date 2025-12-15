@@ -10,6 +10,12 @@ BAROTRAUMA_DIR="${HOME}/baroboys/Barotrauma"
 CLIENT_PERMISSIONS_XML="$BAROTRAUMA_DIR/Data/clientpermissions.xml"
 SERVER_SETTINGS_XML="$BAROTRAUMA_DIR/serversettings.xml"
 
+echo "=== BEFORE steamcmd ==="
+id
+echo "HOME=$HOME"
+ls -la ~
+ls -la ~/.steam ~/.local/share || true
+
 # Warm steam to hopefully avoid intermittent failures.
 /usr/games/steamcmd \
   +login anonymous \
@@ -20,6 +26,10 @@ SERVER_SETTINGS_XML="$BAROTRAUMA_DIR/serversettings.xml"
   +login anonymous \
   +app_update 1026340 validate \
   +quit
+
+echo "=== AFTER steamcmd ==="
+ls -la ~/.steam ~/.local/share || true
+find ~/.steam -maxdepth 3 -type f 2>/dev/null || true
 
 # Restore canonical server configs
 cd "$HOME/baroboys"
