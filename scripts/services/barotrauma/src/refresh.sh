@@ -10,6 +10,11 @@ BAROTRAUMA_DIR="${HOME}/baroboys/Barotrauma"
 CLIENT_PERMISSIONS_XML="$BAROTRAUMA_DIR/Data/clientpermissions.xml"
 SERVER_SETTINGS_XML="$BAROTRAUMA_DIR/serversettings.xml"
 
+# Warm steam to hopefully avoid intermittent failures.
+/usr/games/steamcmd \
+  +login anonymous \
+  +quit
+
 /usr/games/steamcmd \
   +force_install_dir "$BAROTRAUMA_DIR" \
   +login anonymous \
