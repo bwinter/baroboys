@@ -1,6 +1,9 @@
 #!/bin/bash
 set -eux
 
+echo "🪟 Starting xvfb..."
+systemctl enable xvfb-startup.service
+
 echo "🌀 Installing fonts..."
 
 # UID info and TMPDIR
