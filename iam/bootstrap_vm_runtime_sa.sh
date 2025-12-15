@@ -1,6 +1,9 @@
 #!/bin/bash
 set -eux
 
+# Login as your user.
+gcloud auth login
+
 PROJECT_ID="europan-world"
 SA_NAME="vm-runtime"
 SA_EMAIL="${SA_NAME}@${PROJECT_ID}.iam.gserviceaccount.com"
