@@ -18,7 +18,10 @@ sudo apt -yq install \
 
 # Show version of wine64
 echo "ℹ️ wine version info:"
-/opt/wine-stable/bin/wine64 --version || echo "⚠️ wine64 not working"
+/opt/wine-stable/bin/wine64 --version || {
+  echo "⚠️ wine64 not working" >&2
+  exit 1
+}
 
 # Initialize Wine prefix (once!)
 sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/dependencies/wine/src/setup.sh"
