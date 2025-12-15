@@ -31,3 +31,9 @@ resource "google_project_iam_member" "terraform_project_iam_admin" {
   role    = "roles/resourcemanager.projectIamAdmin"
   member  = local.terraform_sa_member
 }
+
+resource "google_project_iam_member" "terraform_compute_admin" {
+  project = var.project
+  role    = "roles/secretmanager.secretAccessor"
+  member  = local.terraform_sa_member
+}

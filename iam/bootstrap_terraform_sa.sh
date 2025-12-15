@@ -33,6 +33,7 @@ REQUIRED_ROLES=(
   roles/iam.serviceAccountUser
   roles/iam.serviceAccountAdmin
   roles/resourcemanager.projectIamAdmin
+  roles/secretmanager.secretAccessor
 )
 
 for ROLE in "${REQUIRED_ROLES[@]}"; do
