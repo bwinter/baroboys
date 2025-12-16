@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Custom permission presets for this server -->
 <PermissionPresets>
 
-    <!-- Server owner / emergency admin -->
-    <Preset
+    <!-- Server owner / recovery admin -->
+    <PermissionPreset
             name="OwnerAdmin"
-            description="Server owner with full override and recovery powers."
+            description="Server owner with full override and recovery permissions."
             permissions="All">
 
-        <!-- Minimal but sufficient god access -->
+        <!-- Visibility / diagnostics -->
         <Command name="clientlist"/>
         <Command name="showperm"/>
 
+        <!-- Round control -->
         <Command name="startgame"/>
         <Command name="endgame"/>
         <Command name="restart"/>
-        <Command name="exit"/>
+        <Command name="readycheck"/>
 
-        <Command name="spawn"/>
-        <Command name="spawnitem"/>
-        <Command name="give"/>
+        <!-- Recovery tools -->
+        <Command name="heal"/>
+        <Command name="revive"/>
+        <Command name="fixitems"/>
+        <Command name="fixhulls"/>
+
+        <!-- Emergency movement -->
         <Command name="teleportcharacter"/>
         <Command name="teleportsub"/>
+
+        <!-- God fallback only -->
         <Command name="godmode"/>
         <Command name="godmode_mainsub"/>
 
-        <Command name="fixitems"/>
-        <Command name="fixhulls"/>
-        <Command name="heal"/>
-        <Command name="revive"/>
+    </PermissionPreset>
 
-    </Preset>
 
-    <!-- Friends: full campaign + round control, no god tools -->
-    <Preset
+    <!-- Trusted friends: full campaign control, no god toys -->
+    <PermissionPreset
             name="CampaignAdmin"
-            description="Trusted friends with full campaign and round control."
-            permissions="
-      ManageRound,
-      ManageCampaign">
+            description="Trusted campaign admins with full gameplay control."
+            permissions="ManageRound,ManageCampaign">
 
-        <!-- Round flow -->
-        <Command name="readycheck"/>
-
-        <!-- Campaign navigation -->
+        <!-- Campaign flow -->
         <Command name="campaigninfo"/>
         <Command name="campaigndestination"/>
 
-        <!-- Basic recovery -->
+        <!-- Round control -->
+        <Command name="readycheck"/>
         <Command name="respawnnow"/>
+
+        <!-- Recovery (non-cheaty) -->
         <Command name="heal"/>
         <Command name="revive"/>
         <Command name="fixitems"/>
         <Command name="fixhulls"/>
 
-    </Preset>
+    </PermissionPreset>
 
 </PermissionPresets>

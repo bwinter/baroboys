@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClientPermissions>
 
+    <!-- Server owner -->
     <Client
             name="SnowCrash"
             accountid="STEAM_1:1:50470452"
             preset="OwnerAdmin"/>
 
+    <!-- Friends -->
     <Client
             name="Gunner"
             accountid="STEAM_1:0:57529211"
