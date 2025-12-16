@@ -1,8 +1,8 @@
 #!/bin/bash
 set -eux
 
-sudo dpkg --add-architecture amd64
-sudo apt-get -yq update
+dpkg --add-architecture amd64
+apt-get -yq update
 
-sudo apt -yq install \
+apt -yq install \
   xvfb

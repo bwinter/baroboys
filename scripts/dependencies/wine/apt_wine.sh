@@ -9,10 +9,10 @@ curl -fsSL "https://dl.winehq.org/wine-builds/winehq.key" \
 echo "deb [signed-by=/usr/share/keyrings/winehq.gpg] https://dl.winehq.org/wine-builds/debian bookworm main" \
   > "/etc/apt/sources.list.d/winehq.list"
 
-sudo dpkg --add-architecture amd64
-sudo apt-get -yq update
+dpkg --add-architecture amd64
+apt-get -yq update
 
-sudo apt -yq install \
+apt -yq install \
   wine-stable \
   winetricks
 
