@@ -62,9 +62,6 @@ build {
       "echo '🔧 Install Wine'",
       "/usr/bin/sudo /root/baroboys/scripts/dependencies/wine/apt_wine.sh",
 
-      "echo '🔧 Setup Wine'",
-      "/usr/bin/sudo /root/baroboys/scripts/dependencies/wine/src/setup.sh",
-
       "echo '🔧 Install latest version of V Rising'",
       "/usr/bin/sudo /root/baroboys/scripts/services/vrising/setup.sh",
 
