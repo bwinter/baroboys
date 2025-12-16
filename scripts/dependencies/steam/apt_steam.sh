@@ -15,4 +15,4 @@ echo steam steam/license note "" | debconf-set-selections
 
 apt-get install -yq steamcmd libicu72
 
-sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/dependencies/steam/src/patch_steam.sh"
+sudo -u bwinter_sc81 -H -- "/home/bwinter_sc81/baroboys/scripts/dependencies/steam/src/patch_steam.sh"

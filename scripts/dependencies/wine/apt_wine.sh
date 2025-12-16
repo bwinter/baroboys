@@ -28,6 +28,6 @@ echo "🪟 Starting xvfb..."
 systemctl start xvfb-startup.service
 
 # Initialize Wine prefix (once!)
-sudo -u bwinter_sc81 -- "/home/bwinter_sc81/baroboys/scripts/dependencies/wine/src/setup.sh"
+sudo -u bwinter_sc81 -H -- "/home/bwinter_sc81/baroboys/scripts/dependencies/wine/src/setup.sh"
 
 echo "✅ Fonts install attempt complete."
