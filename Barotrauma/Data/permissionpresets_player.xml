@@ -1,59 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PermissionPresets>
 
-    <!-- Server owner / recovery admin -->
-    <PermissionPreset
+    <Preset
             name="OwnerAdmin"
-            description="Server owner with full override and recovery permissions."
+            description="Server owner with full recovery and override permissions."
             permissions="All">
 
-        <!-- Visibility / diagnostics -->
         <Command name="clientlist"/>
         <Command name="showperm"/>
 
-        <!-- Round control -->
+        <Command name="readycheck"/>
         <Command name="startgame"/>
         <Command name="endgame"/>
         <Command name="restart"/>
-        <Command name="readycheck"/>
 
-        <!-- Recovery tools -->
         <Command name="heal"/>
         <Command name="revive"/>
         <Command name="fixitems"/>
         <Command name="fixhulls"/>
 
-        <!-- Emergency movement -->
         <Command name="teleportcharacter"/>
         <Command name="teleportsub"/>
 
-        <!-- God fallback only -->
         <Command name="godmode"/>
         <Command name="godmode_mainsub"/>
 
-    </PermissionPreset>
+    </Preset>
 
-
-    <!-- Trusted friends: full campaign control, no god toys -->
-    <PermissionPreset
+    <Preset
             name="CampaignAdmin"
-            description="Trusted campaign admins with full gameplay control."
+            description="Trusted campaign admins with full game control."
             permissions="ManageRound,ManageCampaign">
 
-        <!-- Campaign flow -->
         <Command name="campaigninfo"/>
         <Command name="campaigndestination"/>
-
-        <!-- Round control -->
         <Command name="readycheck"/>
         <Command name="respawnnow"/>
 
-        <!-- Recovery (non-cheaty) -->
         <Command name="heal"/>
         <Command name="revive"/>
         <Command name="fixitems"/>
         <Command name="fixhulls"/>
 
-    </PermissionPreset>
+    </Preset>
 
 </PermissionPresets>
