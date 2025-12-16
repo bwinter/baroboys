@@ -170,7 +170,7 @@
     <Wallet balance="370" rewarddistribution="15" />
   </CharacterCampaignData>
   <CharacterCampaignData name="Gunner" address="66.171.188.202" accountid="STEAM_1:0:57529211" waitingforshuttle="false">
-    <Character name="Gunner" originalname="Gunner" speciesname="human" tags="male,head7" salary="1560" experiencepoints="2866" additionaltalentpoints="0" talentResetCount="0" hairindex="13" beardindex="16" moustacheindex="0" faceattachmentindex="0" skincolor="122,80,38,255" haircolor="71,54,55,255" facialhaircolor="222,215,204,255" startitemsgiven="false" personality="laid-back" refundpoints="0" lastrewarddistribution="15" permanentlydead="false" IsOnReserveBench="false" renamingenabled="false" missionscompletedsincedeath="5">
+    <Character name="Gunner" originalname="Gunner" speciesname="human" tags="head7,male" salary="1560" experiencepoints="2866" additionaltalentpoints="0" talentResetCount="0" hairindex="13" beardindex="16" moustacheindex="0" faceattachmentindex="0" skincolor="122,80,38,255" haircolor="71,54,55,255" facialhaircolor="222,215,204,255" startitemsgiven="false" personality="laid-back" refundpoints="0" lastrewarddistribution="15" permanentlydead="false" IsOnReserveBench="false" renamingenabled="false" missionscompletedsincedeath="5">
       <job name="Security Officer" identifier="securityofficer">
         <skill identifier="weapons" level="54.678844" />
         <skill identifier="medical" level="40.64038" />
@@ -359,7 +359,7 @@
     <Wallet balance="975" rewarddistribution="15" />
   </CharacterCampaignData>
   <CharacterCampaignData name="Dr. Eugene Gilman" address="73.193.24.53" accountid="STEAM_1:1:52913915" waitingforshuttle="false">
-    <Character name="Dr. Eugene Gilman" originalname="Dr. Eugene Gilman" speciesname="human" tags="head14,male" salary="2221" experiencepoints="9772" additionaltalentpoints="0" talentResetCount="0" hairindex="15" beardindex="1" moustacheindex="0" faceattachmentindex="3" skincolor="74,50,25,255" haircolor="139,126,108,255" facialhaircolor="187,169,129,255" startitemsgiven="false" personality="crazy" refundpoints="0" lastrewarddistribution="15" permanentlydead="false" IsOnReserveBench="false" renamingenabled="false" missionscompletedsincedeath="20">
+    <Character name="Dr. Eugene Gilman" originalname="Dr. Eugene Gilman" speciesname="human" tags="male,head14" salary="2221" experiencepoints="9772" additionaltalentpoints="0" talentResetCount="0" hairindex="15" beardindex="1" moustacheindex="0" faceattachmentindex="3" skincolor="74,50,25,255" haircolor="139,126,108,255" facialhaircolor="187,169,129,255" startitemsgiven="false" personality="crazy" refundpoints="0" lastrewarddistribution="15" permanentlydead="false" IsOnReserveBench="false" renamingenabled="false" missionscompletedsincedeath="20">
       <job name="Medical Doctor" identifier="medicaldoctor">
         <skill identifier="medical" level="70.289185" />
         <skill identifier="weapons" level="36.273743" />
@@ -740,7 +740,7 @@
     <Wallet balance="0" rewarddistribution="15" />
   </CharacterCampaignData>
   <CharacterCampaignData name="SnowCrash" address="174.21.78.237" accountid="STEAM_1:1:50470452" waitingforshuttle="false">
-    <Character name="SnowCrash" originalname="SnowCrash" speciesname="human" tags="head1,male" salary="2429" experiencepoints="7902" additionaltalentpoints="0" talentResetCount="0" hairindex="16" beardindex="2" moustacheindex="0" faceattachmentindex="12" skincolor="171,112,70,255" haircolor="52,48,48,255" facialhaircolor="123,132,120,255" startitemsgiven="false" personality="laid-back" refundpoints="0" lastrewarddistribution="15" permanentlydead="false" IsOnReserveBench="false" renamingenabled="false" missionscompletedsincedeath="26" hull="246">
+    <Character name="SnowCrash" originalname="SnowCrash" speciesname="human" tags="male,head1" salary="2429" experiencepoints="7902" additionaltalentpoints="0" talentResetCount="0" hairindex="16" beardindex="2" moustacheindex="0" faceattachmentindex="12" skincolor="171,112,70,255" haircolor="52,48,48,255" facialhaircolor="123,132,120,255" startitemsgiven="false" personality="laid-back" refundpoints="0" lastrewarddistribution="15" permanentlydead="false" IsOnReserveBench="false" renamingenabled="false" missionscompletedsincedeath="26">
       <job name="Engineer" identifier="engineer">
         <skill identifier="electrical" level="92.548515" />
         <skill identifier="mechanical" level="76.6659" />
