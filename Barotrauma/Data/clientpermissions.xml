@@ -1,6 +1,48 @@
-﻿<ClientPermissions>
-    <Client name="Gunner" accountid="STEAM_1:0:57529211" preset="CampaignAdmin"/>
-    <Client name="menotquilty" accountid="STEAM_1:0:32388717" preset="CampaignAdmin"/>
-    <Client name="Dr. Eugene Gilman" accountid="STEAM_1:1:52913915" preset="CampaignAdmin"/>
-    <Client name="SnowCrash" accountid="STEAM_1:1:50470452" preset="OwnerAdmin"/>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClientPermissions>
+  <Client
+    name="Gunner"
+    accountid="STEAM_1:0:57529211"
+    preset="CampaignAdmin" />
+  <Client
+    name="menotquilty"
+    accountid="STEAM_1:0:32388717"
+    preset="CampaignAdmin" />
+  <Client
+    name="Dr. Eugene Gilman"
+    accountid="STEAM_1:1:52913915"
+    preset="CampaignAdmin" />
+  <Client
+    name="SnowCrash"
+    accountid="STEAM_1:1:50470452"
+    preset="OwnerAdmin">
+    <command
+      name="restart" />
+    <command
+      name="heal" />
+    <command
+      name="showperm" />
+    <command
+      name="revive" />
+    <command
+      name="godmode_mainsub" />
+    <command
+      name="teleportcharacter" />
+    <command
+      name="godmode" />
+    <command
+      name="startgame" />
+    <command
+      name="fixhulls" />
+    <command
+      name="readycheck" />
+    <command
+      name="endgame" />
+    <command
+      name="clientlist" />
+    <command
+      name="fixitems" />
+    <command
+      name="teleportsub" />
+  </Client>
 </ClientPermissions>
