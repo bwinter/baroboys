@@ -9,10 +9,6 @@
     accountid="STEAM_1:0:32388717"
     preset="CampaignAdmin" />
   <Client
-    name="Dr. Eugene Gilman"
-    accountid="STEAM_1:1:52913915"
-    preset="CampaignAdmin" />
-  <Client
     name="SnowCrash"
     accountid="STEAM_1:1:50470452"
     preset="OwnerAdmin">
@@ -45,4 +41,8 @@
     <command
       name="teleportsub" />
   </Client>
+  <Client
+    name="Dr. Eugene Gilman"
+    accountid="STEAM_1:1:52913915"
+    preset="CampaignAdmin" />
 </ClientPermissions>
