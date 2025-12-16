@@ -42,6 +42,10 @@ scripts/tools/barotrauma/Barotrauma-Save-Decompressor.lnk
 scripts/services/admin_server/src/dev/*
 
 # Barofiles
+
+# This specific file is tracked but gets interpolated on the remote. I want to ignore it there.
+Barotrauma/serversettings.xml
+
 Barotrauma/Concentus_LICENSE
 Barotrauma/Content/
 Barotrauma/Data/campaignsettings.xml
