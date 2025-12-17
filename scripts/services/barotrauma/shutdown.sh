@@ -20,7 +20,7 @@ else
 fi
 
 # === Commit saves ===
-find "$SAVE_DIR" -type f \( -name '*.save' -o -name '*_CharacterData.xml' \) ! -name '*.bk*' -print0 \
+find "$SAVE_DIR" -type f \( -name '*.save' -o -name '*.xml' \) ! -name '*.bk*' -print0 \
   | xargs -0 git add
 git commit -m "Auto-save before shutdown $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "Nothing to commit"
 
