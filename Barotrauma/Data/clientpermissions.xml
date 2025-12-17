@@ -3,129 +3,129 @@
   <Client
     name="Gunner"
     accountid="STEAM_1:0:57529211"
-    permissions="ManageRound, ManageCampaign, ConsoleCommands">
+    preset="CampaignAdmin">
+    <command
+      name="fixitems" />
+    <command
+      name="enablecrewai" />
     <command
       name="campaigndestination" />
     <command
-      name="fixhulls" />
-    <command
-      name="revive" />
+      name="disablecrewai" />
     <command
       name="startgame" />
     <command
       name="campaigninfo" />
     <command
-      name="readycheck" />
-    <command
-      name="fixitems" />
+      name="endgame" />
     <command
       name="heal" />
     <command
-      name="endgame" />
-    <command
-      name="enablecrewai" />
-    <command
       name="botcount" />
     <command
-      name="disablecrewai" />
-    <command
       name="respawnnow" />
+    <command
+      name="fixhulls" />
+    <command
+      name="readycheck" />
+    <command
+      name="revive" />
   </Client>
   <Client
     name="menotquilty"
     accountid="STEAM_1:0:32388717"
-    permissions="ManageRound, ManageCampaign, ConsoleCommands">
+    preset="CampaignAdmin">
+    <command
+      name="fixitems" />
+    <command
+      name="enablecrewai" />
     <command
       name="campaigndestination" />
     <command
-      name="fixhulls" />
-    <command
-      name="revive" />
+      name="disablecrewai" />
     <command
       name="startgame" />
     <command
       name="campaigninfo" />
     <command
-      name="readycheck" />
-    <command
-      name="fixitems" />
+      name="endgame" />
     <command
       name="heal" />
     <command
-      name="endgame" />
-    <command
-      name="enablecrewai" />
-    <command
       name="botcount" />
     <command
-      name="disablecrewai" />
-    <command
       name="respawnnow" />
+    <command
+      name="fixhulls" />
+    <command
+      name="readycheck" />
+    <command
+      name="revive" />
   </Client>
   <Client
     name="Dr. Eugene Gilman"
     accountid="STEAM_1:1:52913915"
-    permissions="ManageRound, ManageCampaign, ConsoleCommands">
+    preset="CampaignAdmin">
+    <command
+      name="fixitems" />
+    <command
+      name="enablecrewai" />
     <command
       name="campaigndestination" />
     <command
-      name="fixhulls" />
-    <command
-      name="revive" />
+      name="disablecrewai" />
     <command
       name="startgame" />
     <command
       name="campaigninfo" />
     <command
-      name="readycheck" />
-    <command
-      name="fixitems" />
+      name="endgame" />
     <command
       name="heal" />
     <command
-      name="endgame" />
-    <command
-      name="enablecrewai" />
-    <command
       name="botcount" />
     <command
-      name="disablecrewai" />
-    <command
       name="respawnnow" />
+    <command
+      name="fixhulls" />
+    <command
+      name="readycheck" />
+    <command
+      name="revive" />
   </Client>
   <Client
     name="SnowCrash"
     accountid="STEAM_1:1:50470452"
-    permissions="All">
-    <command
-      name="fixhulls" />
-    <command
-      name="revive" />
-    <command
-      name="startgame" />
-    <command
-      name="readycheck" />
-    <command
-      name="godmode" />
+    preset="OwnerAdmin">
     <command
       name="fixitems" />
     <command
-      name="showperm" />
+      name="teleportsub" />
     <command
-      name="heal" />
-    <command
-      name="endgame" />
-    <command
-      name="godmode_mainsub" />
+      name="startgame" />
     <command
       name="restart" />
     <command
-      name="teleportsub" />
+      name="endgame" />
     <command
-      name="teleportcharacter" />
+      name="heal" />
     <command
       name="clientlist" />
     <command
       name="respawnnow" />
+    <command
+      name="godmode" />
+    <command
+      name="godmode_mainsub" />
+    <command
+      name="showperm" />
+    <command
+      name="teleportcharacter" />
+    <command
+      name="fixhulls" />
+    <command
+      name="readycheck" />
+    <command
+      name="revive" />
   </Client>
 </ClientPermissions>
