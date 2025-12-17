@@ -740,7 +740,7 @@
     <Wallet balance="0" rewarddistribution="15" />
   </CharacterCampaignData>
   <CharacterCampaignData name="SnowCrash" address="174.21.78.237" accountid="STEAM_1:1:50470452" waitingforshuttle="false">
-    <Character name="SnowCrash" originalname="SnowCrash" speciesname="human" tags="male,head1" salary="2429" experiencepoints="7902" additionaltalentpoints="0" talentResetCount="0" hairindex="16" beardindex="2" moustacheindex="0" faceattachmentindex="12" skincolor="171,112,70,255" haircolor="52,48,48,255" facialhaircolor="123,132,120,255" startitemsgiven="false" personality="laid-back" refundpoints="0" lastrewarddistribution="15" permanentlydead="false" IsOnReserveBench="false" renamingenabled="false" missionscompletedsincedeath="26" hull="2995">
+    <Character name="SnowCrash" originalname="SnowCrash" speciesname="human" tags="head1,male" salary="2429" experiencepoints="7902" additionaltalentpoints="0" talentResetCount="0" hairindex="16" beardindex="2" moustacheindex="0" faceattachmentindex="12" skincolor="171,112,70,255" haircolor="52,48,48,255" facialhaircolor="123,132,120,255" startitemsgiven="false" personality="laid-back" refundpoints="0" lastrewarddistribution="15" permanentlydead="false" IsOnReserveBench="false" renamingenabled="false" missionscompletedsincedeath="26">
       <job name="Engineer" identifier="engineer">
         <skill identifier="electrical" level="92.750465" />
         <skill identifier="mechanical" level="76.90398" />
