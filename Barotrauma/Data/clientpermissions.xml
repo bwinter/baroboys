@@ -1,131 +1,131 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClientPermissions>
   <Client
-    name="Gunner"
-    accountid="STEAM_1:0:57529211"
-    preset="CampaignAdmin">
-    <command
-      name="fixitems" />
-    <command
-      name="enablecrewai" />
-    <command
-      name="campaigndestination" />
-    <command
-      name="disablecrewai" />
-    <command
-      name="startgame" />
-    <command
-      name="campaigninfo" />
-    <command
-      name="endgame" />
-    <command
-      name="heal" />
-    <command
-      name="botcount" />
-    <command
-      name="respawnnow" />
+    name="SnowCrash"
+    accountid="STEAM_1:1:50470452"
+    preset="OwnerAdmin">
     <command
       name="fixhulls" />
     <command
+      name="teleportsub" />
+    <command
+      name="godmode_mainsub" />
+    <command
+      name="godmode" />
+    <command
+      name="startgame" />
+    <command
+      name="restart" />
+    <command
+      name="heal" />
+    <command
       name="readycheck" />
     <command
+      name="teleportcharacter" />
+    <command
+      name="endgame" />
+    <command
+      name="respawnnow" />
+    <command
+      name="showperm" />
+    <command
       name="revive" />
+    <command
+      name="clientlist" />
+    <command
+      name="fixitems" />
   </Client>
   <Client
     name="menotquilty"
     accountid="STEAM_1:0:32388717"
     preset="CampaignAdmin">
     <command
-      name="fixitems" />
-    <command
-      name="enablecrewai" />
-    <command
-      name="campaigndestination" />
+      name="botcount" />
     <command
       name="disablecrewai" />
     <command
+      name="fixhulls" />
+    <command
       name="startgame" />
-    <command
-      name="campaigninfo" />
-    <command
-      name="endgame" />
     <command
       name="heal" />
     <command
-      name="botcount" />
-    <command
-      name="respawnnow" />
-    <command
-      name="fixhulls" />
+      name="enablecrewai" />
     <command
       name="readycheck" />
     <command
+      name="endgame" />
+    <command
+      name="respawnnow" />
+    <command
+      name="campaigninfo" />
+    <command
       name="revive" />
+    <command
+      name="campaigndestination" />
+    <command
+      name="fixitems" />
+  </Client>
+  <Client
+    name="Gunner"
+    accountid="STEAM_1:0:57529211"
+    preset="CampaignAdmin">
+    <command
+      name="botcount" />
+    <command
+      name="disablecrewai" />
+    <command
+      name="fixhulls" />
+    <command
+      name="startgame" />
+    <command
+      name="heal" />
+    <command
+      name="enablecrewai" />
+    <command
+      name="readycheck" />
+    <command
+      name="endgame" />
+    <command
+      name="respawnnow" />
+    <command
+      name="campaigninfo" />
+    <command
+      name="revive" />
+    <command
+      name="campaigndestination" />
+    <command
+      name="fixitems" />
   </Client>
   <Client
     name="Dr. Eugene Gilman"
     accountid="STEAM_1:1:52913915"
     preset="CampaignAdmin">
     <command
-      name="fixitems" />
-    <command
-      name="enablecrewai" />
-    <command
-      name="campaigndestination" />
+      name="botcount" />
     <command
       name="disablecrewai" />
     <command
+      name="fixhulls" />
+    <command
       name="startgame" />
+    <command
+      name="heal" />
+    <command
+      name="enablecrewai" />
+    <command
+      name="readycheck" />
+    <command
+      name="endgame" />
+    <command
+      name="respawnnow" />
     <command
       name="campaigninfo" />
     <command
-      name="endgame" />
-    <command
-      name="heal" />
-    <command
-      name="botcount" />
-    <command
-      name="respawnnow" />
-    <command
-      name="fixhulls" />
-    <command
-      name="readycheck" />
-    <command
       name="revive" />
-  </Client>
-  <Client
-    name="SnowCrash"
-    accountid="STEAM_1:1:50470452"
-    preset="OwnerAdmin">
+    <command
+      name="campaigndestination" />
     <command
       name="fixitems" />
-    <command
-      name="teleportsub" />
-    <command
-      name="startgame" />
-    <command
-      name="restart" />
-    <command
-      name="endgame" />
-    <command
-      name="heal" />
-    <command
-      name="clientlist" />
-    <command
-      name="respawnnow" />
-    <command
-      name="godmode" />
-    <command
-      name="godmode_mainsub" />
-    <command
-      name="showperm" />
-    <command
-      name="teleportcharacter" />
-    <command
-      name="fixhulls" />
-    <command
-      name="readycheck" />
-    <command
-      name="revive" />
   </Client>
 </ClientPermissions>
