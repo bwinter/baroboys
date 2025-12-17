@@ -1,124 +1,131 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClientPermissions>
-<Client
-  name="SnowCrash"
-  accountid="STEAM_1:1:50470452"
-  permissions="All">
-
-  <!-- Visibility -->
-  <command name="clientlist"/>
-  <command name="showperm"/>
-
-  <!-- Flow -->
-  <command name="readycheck"/>
-  <command name="startgame"/>
-  <command name="endgame"/>
-  <command name="restart"/>
-
-  <!-- Recovery -->
-  <command name="heal"/>
-  <command name="revive"/>
-  <command name="fixitems"/>
-  <command name="fixhulls"/>
-  <command name="respawnnow"/>
-
-  <!-- Movement / recovery -->
-  <command name="teleportcharacter"/>
-  <command name="teleportsub"/>
-
-  <!-- Safety net -->
-  <command name="godmode"/>
-  <command name="godmode_mainsub"/>
-
-</Client>
-<Client
-  name="Gunner"
-  accountid="STEAM_1:0:57529211"
-  permissions="
-    ManageRound,
-    ManageCampaign,
-    ConsoleCommands">
-
-  <!-- Round / flow -->
-  <command name="readycheck"/>
-  <command name="startgame"/>
-  <command name="endgame"/>
-
-  <!-- Campaign -->
-  <command name="campaigninfo"/>
-  <command name="campaigndestination"/>
-
-  <!-- Recovery / QoL -->
-  <command name="heal"/>
-  <command name="revive"/>
-  <command name="fixitems"/>
-  <command name="fixhulls"/>
-  <command name="respawnnow"/>
-
-  <!-- Bots -->
-  <command name="botcount"/>
-  <command name="enablecrewai"/>
-  <command name="disablecrewai"/>
-
-</Client>
-<Client
-  name="menotquilty"
-  accountid="STEAM_1:0:32388717"
-  permissions="
-    ManageRound,
-    ManageCampaign,
-    ConsoleCommands">
-
-  <!-- Round / flow -->
-  <command name="readycheck"/>
-  <command name="startgame"/>
-  <command name="endgame"/>
-
-  <!-- Campaign -->
-  <command name="campaigninfo"/>
-  <command name="campaigndestination"/>
-
-  <!-- Recovery / QoL -->
-  <command name="heal"/>
-  <command name="revive"/>
-  <command name="fixitems"/>
-  <command name="fixhulls"/>
-  <command name="respawnnow"/>
-
-  <!-- Bots -->
-  <command name="botcount"/>
-  <command name="enablecrewai"/>
-  <command name="disablecrewai"/>
-
-</Client>
-<Client
-  name="Dr. Eugene Gilman"
-  accountid="STEAM_1:1:52913915"
-  permissions="
-    ManageRound,
-    ManageCampaign,
-    ConsoleCommands">
-
-  <!-- Round / flow -->
-  <command name="readycheck"/>
-  <command name="startgame"/>
-  <command name="endgame"/>
-
-  <!-- Campaign -->
-  <command name="campaigninfo"/>
-  <command name="campaigndestination"/>
-
-  <!-- Recovery / QoL -->
-  <command name="heal"/>
-  <command name="revive"/>
-  <command name="fixitems"/>
-  <command name="fixhulls"/>
-  <command name="respawnnow"/>
-
-  <!-- Bots -->
-  <command name="botcount"/>
-  <command name="enablecrewai"/>
-  <command name="disablecrewai"/>
-
-</Client>
-<ClientPermissions />
+  <Client
+    name="Gunner"
+    accountid="STEAM_1:0:57529211"
+    permissions="ManageRound, ManageCampaign, ConsoleCommands">
+    <command
+      name="campaigndestination" />
+    <command
+      name="fixhulls" />
+    <command
+      name="revive" />
+    <command
+      name="startgame" />
+    <command
+      name="campaigninfo" />
+    <command
+      name="readycheck" />
+    <command
+      name="fixitems" />
+    <command
+      name="heal" />
+    <command
+      name="endgame" />
+    <command
+      name="enablecrewai" />
+    <command
+      name="botcount" />
+    <command
+      name="disablecrewai" />
+    <command
+      name="respawnnow" />
+  </Client>
+  <Client
+    name="menotquilty"
+    accountid="STEAM_1:0:32388717"
+    permissions="ManageRound, ManageCampaign, ConsoleCommands">
+    <command
+      name="campaigndestination" />
+    <command
+      name="fixhulls" />
+    <command
+      name="revive" />
+    <command
+      name="startgame" />
+    <command
+      name="campaigninfo" />
+    <command
+      name="readycheck" />
+    <command
+      name="fixitems" />
+    <command
+      name="heal" />
+    <command
+      name="endgame" />
+    <command
+      name="enablecrewai" />
+    <command
+      name="botcount" />
+    <command
+      name="disablecrewai" />
+    <command
+      name="respawnnow" />
+  </Client>
+  <Client
+    name="Dr. Eugene Gilman"
+    accountid="STEAM_1:1:52913915"
+    permissions="ManageRound, ManageCampaign, ConsoleCommands">
+    <command
+      name="campaigndestination" />
+    <command
+      name="fixhulls" />
+    <command
+      name="revive" />
+    <command
+      name="startgame" />
+    <command
+      name="campaigninfo" />
+    <command
+      name="readycheck" />
+    <command
+      name="fixitems" />
+    <command
+      name="heal" />
+    <command
+      name="endgame" />
+    <command
+      name="enablecrewai" />
+    <command
+      name="botcount" />
+    <command
+      name="disablecrewai" />
+    <command
+      name="respawnnow" />
+  </Client>
+  <Client
+    name="SnowCrash"
+    accountid="STEAM_1:1:50470452"
+    permissions="All">
+    <command
+      name="fixhulls" />
+    <command
+      name="revive" />
+    <command
+      name="startgame" />
+    <command
+      name="readycheck" />
+    <command
+      name="godmode" />
+    <command
+      name="fixitems" />
+    <command
+      name="showperm" />
+    <command
+      name="heal" />
+    <command
+      name="endgame" />
+    <command
+      name="godmode_mainsub" />
+    <command
+      name="restart" />
+    <command
+      name="teleportsub" />
+    <command
+      name="teleportcharacter" />
+    <command
+      name="clientlist" />
+    <command
+      name="respawnnow" />
+  </Client>
+</ClientPermissions>

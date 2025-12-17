@@ -1,36 +1,38 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<!-- Custom permission presets, feel free to modify this file to add your own custom presets. -->
+﻿<?xml version="1.0" encoding="utf-8"?>
 <PermissionPresets>
-<!-- 
-  <Preset 
-    name="Example" 
-    description="Allowed to do e.g. manage round settings, kick players and access server logs." 
-    permissions="ManageRound,Kick,SelectSub,SelectMode,ManageCampaign,ConsoleCommands,ServerLog,ManageSettings,ManageMoney,ManageBotTalents,SpamImmunity">
-    <Command name="clientlist"/>
+
+  <PermissionPreset name="CampaignAdmin" description="Trusted players with campaign and round control." permissions="ManageRound,ManageCampaign,ConsoleCommands">
     <Command name="readycheck"/>
-    <Command name="autorestart"/>
-    <Command name="autorestartinterval"/>
-    <Command name="autorestarttimer"/>
-    <Command name="botcount"/>
-    <Command name="botspawnmode"/>
-    <Command name="gamemode"/>
-    <Command name="sub"/>
-    <Command name="shuttle"/>
-    <Command name="water"/>
-    <Command name="fire"/>
-    <Command name="difficulty"/>
-    <Command name="kick"/>
-    <Command name="kickid"/>
+    <Command name="startgame"/>
+    <Command name="endgame"/>
     <Command name="campaigninfo"/>
     <Command name="campaigndestination"/>
-    <Command name="togglekarma"/>
-    <Command name="setkarma"/>
-    <Command name="resetkarma"/>
-    <Command name="showkarma"/>
-    <Command name="togglekarmatestmode"/>
+    <Command name="heal"/>
+    <Command name="revive"/>
+    <Command name="fixitems"/>
+    <Command name="fixhulls"/>
     <Command name="respawnnow"/>
-    <Command name="traitorlist"/>
-    <Command name="setsalary"/>
-  </Preset>
- -->
+    <Command name="botcount"/>
+    <Command name="enablecrewai"/>
+    <Command name="disablecrewai"/>
+  </PermissionPreset>
+
+  <PermissionPreset name="OwnerAdmin" description="Server owner with full recovery and override powers." permissions="All,ConsoleCommands">
+    <Command name="clientlist"/>
+    <Command name="showperm"/>
+    <Command name="readycheck"/>
+    <Command name="startgame"/>
+    <Command name="endgame"/>
+    <Command name="restart"/>
+    <Command name="heal"/>
+    <Command name="revive"/>
+    <Command name="fixitems"/>
+    <Command name="fixhulls"/>
+    <Command name="respawnnow"/>
+    <Command name="teleportcharacter"/>
+    <Command name="teleportsub"/>
+    <Command name="godmode"/>
+    <Command name="godmode_mainsub"/>
+  </PermissionPreset>
+
 </PermissionPresets>
