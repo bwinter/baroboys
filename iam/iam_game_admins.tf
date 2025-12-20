@@ -1,3 +1,12 @@
+# Uncomment if remote state desired.
+# terraform {
+#   backend "gcs" {
+#     credentials = "./europan-world-terraform-key.json"
+#     bucket      = "tf-state-iam-admins"
+#     prefix      = "terraform/state"
+#   }
+# }
+
 # List of users allowed to administer VMs
 variable "baroboys_operators" {
   type = list(string)
