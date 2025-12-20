@@ -8,6 +8,7 @@ export SERVER_PASSWORD
 # Paths
 BAROTRAUMA_DIR="${HOME}/baroboys/Barotrauma"
 CLIENT_PERMISSIONS_XML="$BAROTRAUMA_DIR/Data/clientpermissions.xml"
+PERMISSION_PRESETS_XML="$BAROTRAUMA_DIR/Data/permissionpresets_player.xml"
 SERVER_SETTINGS_XML="$BAROTRAUMA_DIR/serversettings.xml"
 
 echo "=== BEFORE steamcmd ==="
@@ -35,6 +36,7 @@ find ~/.steam -maxdepth 3 -type f 2>/dev/null || true
 cd "$HOME/baroboys"
 git checkout -- \
   "$CLIENT_PERMISSIONS_XML" \
+  "$PERMISSION_PRESETS_XML" \
   "$SERVER_SETTINGS_XML"
 
 envsubst < "$SERVER_SETTINGS_XML" > "$SERVER_SETTINGS_XML.tmp"
