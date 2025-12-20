@@ -1,15 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClientPermissions>
   <Client
-    name="menotquilty"
-    accountid="STEAM_1:0:32388717"
+    name="Dr. Eugene Gilman"
+    accountid="STEAM_1:1:52913915"
     preset="CampaignAdmin">
     <command
-      name="disablecrewai" />
-    <command
-      name="enablecrewai" />
-    <command
-      name="revive" />
+      name="campaigndestination" />
     <command
       name="respawnnow" />
     <command
@@ -17,30 +13,30 @@
     <command
       name="fixitems" />
     <command
-      name="campaigndestination" />
-    <command
-      name="readycheck" />
-    <command
-      name="botcount" />
-    <command
-      name="startgame" />
-    <command
-      name="heal" />
+      name="disablecrewai" />
     <command
       name="campaigninfo" />
     <command
+      name="botcount" />
+    <command
+      name="enablecrewai" />
+    <command
+      name="heal" />
+    <command
+      name="startgame" />
+    <command
+      name="readycheck" />
+    <command
       name="endgame" />
+    <command
+      name="revive" />
   </Client>
   <Client
     name="Gunner"
     accountid="STEAM_1:0:57529211"
     preset="CampaignAdmin">
     <command
-      name="disablecrewai" />
-    <command
-      name="enablecrewai" />
-    <command
-      name="revive" />
+      name="campaigndestination" />
     <command
       name="respawnnow" />
     <command
@@ -48,57 +44,32 @@
     <command
       name="fixitems" />
     <command
-      name="campaigndestination" />
-    <command
-      name="readycheck" />
-    <command
-      name="botcount" />
-    <command
-      name="startgame" />
-    <command
-      name="heal" />
+      name="disablecrewai" />
     <command
       name="campaigninfo" />
     <command
-      name="endgame" />
-  </Client>
-  <Client
-    name="Dr. Eugene Gilman"
-    accountid="STEAM_1:1:52913915"
-    preset="CampaignAdmin">
-    <command
-      name="disablecrewai" />
+      name="botcount" />
     <command
       name="enablecrewai" />
     <command
-      name="revive" />
-    <command
-      name="respawnnow" />
-    <command
-      name="fixhulls" />
-    <command
-      name="fixitems" />
-    <command
-      name="campaigndestination" />
-    <command
-      name="readycheck" />
-    <command
-      name="botcount" />
+      name="heal" />
     <command
       name="startgame" />
     <command
-      name="heal" />
-    <command
-      name="campaigninfo" />
+      name="readycheck" />
     <command
       name="endgame" />
+    <command
+      name="revive" />
   </Client>
   <Client
     name="SnowCrash"
     accountid="STEAM_1:1:50470452"
     preset="OwnerAdmin">
     <command
-      name="revive" />
+      name="teleportsub" />
+    <command
+      name="showperm" />
     <command
       name="respawnnow" />
     <command
@@ -106,26 +77,55 @@
     <command
       name="fixitems" />
     <command
+      name="godmode" />
+    <command
+      name="teleportcharacter" />
+    <command
+      name="godmode_mainsub" />
+    <command
+      name="heal" />
+    <command
+      name="startgame" />
+    <command
       name="restart" />
     <command
       name="readycheck" />
     <command
-      name="teleportcharacter" />
-    <command
-      name="startgame" />
-    <command
       name="clientlist" />
     <command
-      name="showperm" />
+      name="endgame" />
     <command
-      name="godmode" />
+      name="revive" />
+  </Client>
+  <Client
+    name="menotquilty"
+    accountid="STEAM_1:0:32388717"
+    preset="CampaignAdmin">
+    <command
+      name="campaigndestination" />
+    <command
+      name="respawnnow" />
+    <command
+      name="fixhulls" />
+    <command
+      name="fixitems" />
+    <command
+      name="disablecrewai" />
+    <command
+      name="campaigninfo" />
+    <command
+      name="botcount" />
+    <command
+      name="enablecrewai" />
     <command
       name="heal" />
     <command
-      name="teleportsub" />
+      name="startgame" />
     <command
-      name="godmode_mainsub" />
+      name="readycheck" />
     <command
       name="endgame" />
+    <command
+      name="revive" />
   </Client>
 </ClientPermissions>
