@@ -11,6 +11,7 @@ CLIENT_PERMISSIONS_XML="$BAROTRAUMA_DIR/Data/clientpermissions.xml"
 PERMISSION_PRESETS_XML="$BAROTRAUMA_DIR/Data/permissionpresets_player.xml"
 SERVER_SETTINGS_XML="$BAROTRAUMA_DIR/serversettings.xml"
 
+# Debugging
 echo "=== BEFORE steamcmd ==="
 id
 echo "HOME=$HOME"
@@ -28,6 +29,7 @@ ls -la ~/.steam ~/.local/share || true
   +app_update 1026340 validate \
   +quit
 
+# Debugging
 echo "=== AFTER steamcmd ==="
 ls -la ~/.steam ~/.local/share || true
 find ~/.steam -maxdepth 3 -type f 2>/dev/null || true
