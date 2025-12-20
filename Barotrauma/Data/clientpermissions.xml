@@ -5,127 +5,127 @@
     accountid="STEAM_1:1:52913915"
     preset="CampaignAdmin">
     <command
-      name="campaigndestination" />
+      name="fixitems" />
     <command
-      name="respawnnow" />
+      name="heal" />
     <command
       name="fixhulls" />
     <command
-      name="fixitems" />
+      name="campaigndestination" />
     <command
-      name="disablecrewai" />
+      name="endgame" />
     <command
       name="campaigninfo" />
     <command
       name="botcount" />
     <command
-      name="enablecrewai" />
-    <command
-      name="heal" />
+      name="readycheck" />
     <command
       name="startgame" />
     <command
-      name="readycheck" />
+      name="disablecrewai" />
     <command
-      name="endgame" />
+      name="enablecrewai" />
     <command
       name="revive" />
+    <command
+      name="respawnnow" />
   </Client>
   <Client
     name="Gunner"
     accountid="STEAM_1:0:57529211"
     preset="CampaignAdmin">
     <command
-      name="campaigndestination" />
+      name="fixitems" />
     <command
-      name="respawnnow" />
+      name="heal" />
     <command
       name="fixhulls" />
     <command
-      name="fixitems" />
+      name="campaigndestination" />
     <command
-      name="disablecrewai" />
+      name="endgame" />
     <command
       name="campaigninfo" />
     <command
       name="botcount" />
     <command
+      name="readycheck" />
+    <command
+      name="startgame" />
+    <command
+      name="disablecrewai" />
+    <command
       name="enablecrewai" />
     <command
-      name="heal" />
-    <command
-      name="startgame" />
-    <command
-      name="readycheck" />
-    <command
-      name="endgame" />
-    <command
       name="revive" />
-  </Client>
-  <Client
-    name="SnowCrash"
-    accountid="STEAM_1:1:50470452"
-    preset="OwnerAdmin">
-    <command
-      name="teleportsub" />
-    <command
-      name="showperm" />
     <command
       name="respawnnow" />
-    <command
-      name="fixhulls" />
-    <command
-      name="fixitems" />
-    <command
-      name="godmode" />
-    <command
-      name="teleportcharacter" />
-    <command
-      name="godmode_mainsub" />
-    <command
-      name="heal" />
-    <command
-      name="startgame" />
-    <command
-      name="restart" />
-    <command
-      name="readycheck" />
-    <command
-      name="clientlist" />
-    <command
-      name="endgame" />
-    <command
-      name="revive" />
   </Client>
   <Client
     name="menotquilty"
     accountid="STEAM_1:0:32388717"
     preset="CampaignAdmin">
     <command
-      name="campaigndestination" />
+      name="fixitems" />
     <command
-      name="respawnnow" />
+      name="heal" />
     <command
       name="fixhulls" />
     <command
-      name="fixitems" />
+      name="campaigndestination" />
     <command
-      name="disablecrewai" />
+      name="endgame" />
     <command
       name="campaigninfo" />
     <command
       name="botcount" />
     <command
-      name="enablecrewai" />
-    <command
-      name="heal" />
+      name="readycheck" />
     <command
       name="startgame" />
     <command
-      name="readycheck" />
+      name="disablecrewai" />
+    <command
+      name="enablecrewai" />
+    <command
+      name="revive" />
+    <command
+      name="respawnnow" />
+  </Client>
+  <Client
+    name="SnowCrash"
+    accountid="STEAM_1:1:50470452"
+    preset="OwnerAdmin">
+    <command
+      name="showperm" />
+    <command
+      name="fixitems" />
+    <command
+      name="heal" />
+    <command
+      name="fixhulls" />
     <command
       name="endgame" />
     <command
+      name="godmode_mainsub" />
+    <command
+      name="readycheck" />
+    <command
+      name="teleportsub" />
+    <command
+      name="startgame" />
+    <command
+      name="godmode" />
+    <command
+      name="teleportcharacter" />
+    <command
+      name="clientlist" />
+    <command
       name="revive" />
+    <command
+      name="restart" />
+    <command
+      name="respawnnow" />
   </Client>
 </ClientPermissions>
