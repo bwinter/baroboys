@@ -3,21 +3,21 @@
   <Client
     name="Dr. Eugene Gilman"
     accountid="STEAM_1:1:52913915"
-    preset="All">
+    permissions="All">
   </Client>
   <Client
     name="Gunner"
     accountid="STEAM_1:0:57529211"
-    preset="All">
+    permissions="All">
   </Client>
   <Client
     name="menotquilty"
     accountid="STEAM_1:0:32388717"
-    preset="All">
+    permissions="All">
   </Client>
   <Client
     name="SnowCrash"
     accountid="STEAM_1:1:50470452"
-    preset="All">
+    permissions="All">
   </Client>
 </ClientPermissions>
