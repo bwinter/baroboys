@@ -7,6 +7,12 @@
 #   }
 # }
 
+provider "google" {
+  credentials = file("${path.module}/../${var.credentials_file}")
+  project     = var.project
+  region      = var.region
+}
+
 # List of users allowed to administer VMs
 variable "baroboys_operators" {
   type = list(string)
