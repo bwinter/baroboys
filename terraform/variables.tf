@@ -35,7 +35,7 @@ variable "project" {
 variable "credentials_file" {
   description = "Credentials file"
   type        = string
-  default     = ".secrets/europan-world-terraform-key.jsonn"
+  default     = "../.secrets/europan-world-terraform-key.json"
 }
 
 variable "service_account_email" {
