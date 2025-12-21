@@ -10,7 +10,7 @@ packer {
 }
 
 source "googlecompute" "baroboys-admin" {
-  account_file = var.credentials_file
+  credentials_json = file(var.credentials_file)
 
   project_id   = var.project
   zone         = var.zone

@@ -1,5 +1,5 @@
 project               = "europan-world"
-credentials_file      = "../.secrets/europan-world-terraform-key.json"
+credentials_file      = ".secrets/europan-world-terraform-key.json"
 service_account_email = "vm-runtime@europan-world.iam.gserviceaccount.com"
 region                = "us-west1"
 zone                  = "us-west1-c"
