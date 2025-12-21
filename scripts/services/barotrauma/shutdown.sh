@@ -29,3 +29,5 @@ git stash push --include-untracked --quiet || echo "Nothing to stash"
 git pull --rebase
 git push origin main
 git stash pop --quiet || echo "No stash to pop"
+
+sudo systemctl poweroff

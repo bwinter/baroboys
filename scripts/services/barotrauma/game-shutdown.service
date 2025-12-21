@@ -10,7 +10,6 @@ User=bwinter_sc81
 Group=bwinter_sc81
 
 ExecStart=/home/bwinter_sc81/baroboys/scripts/services/barotrauma/shutdown.sh
-ExecStopPost=sudo /usr/bin/systemctl poweroff
 
 SuccessExitStatus=0
 KillMode=control-group
