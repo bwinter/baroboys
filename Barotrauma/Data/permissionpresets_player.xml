@@ -1,38 +1,3 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PermissionPresets>
-
-  <PermissionPreset name="CampaignAdmin" description="Trusted players with campaign and round control." permissions="ManageRound,ManageCampaign,ConsoleCommands">
-    <Command name="readycheck"/>
-    <Command name="startgame"/>
-    <Command name="endgame"/>
-    <Command name="campaigninfo"/>
-    <Command name="campaigndestination"/>
-    <Command name="heal"/>
-    <Command name="revive"/>
-    <Command name="fixitems"/>
-    <Command name="fixhulls"/>
-    <Command name="respawnnow"/>
-    <Command name="botcount"/>
-    <Command name="enablecrewai"/>
-    <Command name="disablecrewai"/>
-  </PermissionPreset>
-
-  <PermissionPreset name="OwnerAdmin" description="Server owner with full recovery and override powers." permissions="All,ConsoleCommands">
-    <Command name="clientlist"/>
-    <Command name="showperm"/>
-    <Command name="readycheck"/>
-    <Command name="startgame"/>
-    <Command name="endgame"/>
-    <Command name="restart"/>
-    <Command name="heal"/>
-    <Command name="revive"/>
-    <Command name="fixitems"/>
-    <Command name="fixhulls"/>
-    <Command name="respawnnow"/>
-    <Command name="teleportcharacter"/>
-    <Command name="teleportsub"/>
-    <Command name="godmode"/>
-    <Command name="godmode_mainsub"/>
-  </PermissionPreset>
-
 </PermissionPresets>
