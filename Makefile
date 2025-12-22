@@ -67,9 +67,13 @@ IAM_VAR_DEFS   := variables.tf
 
 iam-bootstrap:
 	@echo "✅ Bootstrapping IAM roles..."
-	cd "$(IAM_TF_DIR)" && \
+	rm -dr .secrets && \
+	pushd "$(IAM_TF_DIR)" && \
 		./bootstrap_terraform_sa.sh && \
-		./bootstrap_vm_runtime_sa.sh
+		./bootstrap_vm_runtime_sa.sh && \
+	popd && \
+	cp iam/.secrets/europan-world-terraform-key.json .secrets/europan-world-terraform-key.json
+
 
 iam-import:
 	@echo "✅ Importing IAM roles..."
