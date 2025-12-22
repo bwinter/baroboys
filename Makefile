@@ -36,7 +36,8 @@ TF_DIR           := terraform
 .PHONY: terraform-init terraform-plan terraform-apply terraform-destroy
 
 terraform-copy-secrets:
-	cp -R .secrets $(TF_DIR)
+	mkdir -p $(TF_DIR)/.secrets
+	cp .secrets/europan-world-terraform-key.json $(TF_DIR)/.secrets/europan-world-terraform-key.json
 
 terraform-init: terraform-copy-secrets
 	cd $(TF_DIR) && terraform init
