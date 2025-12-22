@@ -24,8 +24,8 @@ Barotrauma/Multiplayer/Baroboys
 
 # Ignored Terraform / Packer files
 .packer.d
-*.tfstate*
 terraform/.terraform/
+terraform/terraform.tfstate*
 iam/.terraform/
 iam/tmp/*
 packer/tmp/*
