@@ -35,19 +35,22 @@ TF_DIR           := terraform
 
 .PHONY: terraform-init terraform-plan terraform-apply terraform-destroy
 
-terraform-init:
+terraform-copy-secrets:
+	cp .sercrets $(TF_DIR)
+
+terraform-init: terraform-copy-secrets
 	cd $(TF_DIR) && terraform init
 
-terraform-plan:
+terraform-plan: terraform-copy-secrets
 	cd $(TF_DIR) && terraform plan
 
-terraform-apply:
+terraform-apply: terraform-copy-secrets
 	cd $(TF_DIR) && terraform apply
 
-terraform-destroy:
+terraform-destroy: terraform-copy-secrets
 	cd $(TF_DIR) && terraform destroy
 
-terraform-refresh:
+terraform-refresh: terraform-copy-secrets
 	cd $(TF_DIR) && terraform refresh
 
 
