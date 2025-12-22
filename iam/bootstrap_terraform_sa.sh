@@ -2,7 +2,9 @@
 set -eux
 
 # Login as your user.
-gcloud auth login
+if ! gcloud auth print-access-token >/dev/null 2>&1; then
+    gcloud auth login
+fi
 
 PROJECT_ID="europan-world"
 SA_NAME="terraform"
