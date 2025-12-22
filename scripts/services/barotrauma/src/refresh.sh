@@ -9,6 +9,7 @@ export SERVER_PASSWORD
 BAROTRAUMA_DIR="${HOME}/baroboys/Barotrauma"
 CLIENT_PERMISSIONS_XML="$BAROTRAUMA_DIR/Data/clientpermissions.xml"
 PERMISSION_PRESETS_XML="$BAROTRAUMA_DIR/Data/permissionpresets_player.xml"
+SERVER_SETTINGS_XML_IN="$BAROTRAUMA_DIR/serversettings.xml.in"
 SERVER_SETTINGS_XML="$BAROTRAUMA_DIR/serversettings.xml"
 
 # Debugging
@@ -41,8 +42,7 @@ git checkout -- \
   "$PERMISSION_PRESETS_XML" \
   "$SERVER_SETTINGS_XML"
 
-envsubst < "$SERVER_SETTINGS_XML" > "$SERVER_SETTINGS_XML.tmp"
-mv "$SERVER_SETTINGS_XML.tmp" "$SERVER_SETTINGS_XML"
+envsubst < "$SERVER_SETTINGS_XML_IN" > "$SERVER_SETTINGS_XML"
 
 mkdir -p "$HOME/.local/share/Daedalic Entertainment GmbH/Barotrauma/"
 ln -sf "$HOME/baroboys/Barotrauma/Multiplayer" "$HOME/.local/share/Daedalic Entertainment GmbH/Barotrauma"
