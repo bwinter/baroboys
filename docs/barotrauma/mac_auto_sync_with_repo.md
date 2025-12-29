@@ -2,18 +2,6 @@
 
 Works on Windows but requires different commands.
 
-# Developers (Mac OS)
-
-### Getting submarine out of the save file
-
-Use VirtualBox to get Windows
-
-Setting up file paths:
-
-![VirtualBox Shared Folders](https://raw.githubusercontent.com/wiki/bwinter/baroboys/barotrauma/VirtualBox_Shared_Folders.png)
-
-See `scripts/save-decompressor`
-
 ### Setup local env to use repo:
 
 This is helpful when iterating as you can have your sub updates show up in your repo for an easy git commit.
@@ -38,8 +26,3 @@ Link Multiplayer Games
   rm '/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma/Multiplayer/'
   ln -s '/Users/bwinter/Desktop/Baroboys/Barotrauma/Multiplayer/' '/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma'
   ```
-
-- Important Locations
-    - Local Install:
-      `/Users/bwinter/Library/Application Support/Steam/steamapps/common/Barotrauma/Barotrauma.app/Contents/MacOS`
-    - Multiplayer & Community Mods: `/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma`
