@@ -136,7 +136,7 @@ If you skip this, the server will power off after 30 minutes of disuse. This wil
     - Contains saved games, mod files, and game server config
 
 - **VRising State & Mods** (`/VRising`)
-    - Contains saved games, and game server config
+    - Contains saved games and game server config
 
 ---
 

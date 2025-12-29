@@ -1,9 +1,0 @@
-# Sub Editor
-- Test all the mods
-- Create SeaLab explosion!
-- Save SeaLab to the repo.
-
-# Server Design
-- Get tf state into S3
-- Get emails into secrets
-- Get save data and game data into S3 / mount.
