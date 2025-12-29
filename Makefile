@@ -5,10 +5,6 @@ PROJECT          := europan-world
 ZONE             := us-west1-c
 INSTANCE         := europa
 USER             := bwinter_sc81
-REMOTE_SAVE_SCRIPT := sudo systemctl restart game-shutdown.service
-
-TF_VAR_FILE      := terraform/terraform.tfvars
-TF_VAR_DEF_FILE  := terraform/variables.tf
 
 .DEFAULT_GOAL := help
 
@@ -31,6 +27,8 @@ admin-logs:
 # =======================
 # 🌍 Terraform
 # =======================
+TF_VAR_FILE      := terraform/terraform.tfvars
+TF_VAR_DEF_FILE  := terraform/variables.tf
 TF_DIR           := terraform
 
 .PHONY: terraform-init terraform-plan terraform-apply terraform-destroy
@@ -73,7 +71,6 @@ iam-bootstrap:
 		./bootstrap_vm_runtime_sa.sh && \
 	popd && \
 	cp iam/.secrets/europan-world-terraform-key.json .secrets/europan-world-terraform-key.json
-
 
 iam-import:
 	@echo "✅ Importing IAM roles..."
@@ -126,16 +123,22 @@ iam-destroy:
 # =======================
 # 🎮 Game
 # =======================
+REMOTE_STARTUP_SCRIPT := sudo systemctl restart game-startup.service
+REMOTE_SHUTDOWN_SCRIPT := sudo systemctl restart game-shutdown.service
+
 .PHONY: restart-game save-and-shutdown
 
 restart-game:
-	scripts/tools/remote_refresh.sh
+	gcloud compute ssh $(USER)@$(INSTANCE) \
+		--project=$(PROJECT) \
+		--zone=$(ZONE) \
+		--command="$(REMOTE_STARTUP_SCRIPT)"
 
 save-and-shutdown:
 	gcloud compute ssh $(USER)@$(INSTANCE) \
 		--project=$(PROJECT) \
 		--zone=$(ZONE) \
-		--command="$(REMOTE_SAVE_SCRIPT)"
+		--command="$(REMOTE_SHUTDOWN_SCRIPT)"
 
 # =======================
 # 🔐 SSH Access
@@ -206,8 +209,6 @@ clean-git: clean-git-pre clean-git-bfg clean-git-post
 # =======================
 .PHONY: help
 
-.PHONY: help
-
 help:
 	@echo "🛠️  Common Targets:"
 	@echo "  make apply                  - Alias for terraform-apply"
@@ -222,7 +223,7 @@ help:
 	@echo "  make terraform-refresh      - Refresh Terraform state"
 	@echo ""
 
-	@echo "🔐 IAM:"
+	@echo "🔐 IAM: (WIP)"
 	@echo "  make iam-bootstrap          - Bootstrap IAM service accounts"
 	@echo "  make iam-apply              - Apply IAM roles"
 	@echo "  make iam-import             - Import IAM roles"
@@ -236,7 +237,7 @@ help:
 	@echo ""
 
 	@echo "🎮 Game Mode:"
-	@echo "  make restart game           - Trigger remote restart of game"
+	@echo "  make restart-game           - Trigger remote restart of game"
 	@echo "  make save-and-shutdown      - Save game state by triggering shutdown"
 	@echo ""
 
