@@ -1,12 +1,14 @@
 # Infrastructure Automation for Game Servers
 
-This project automates the hosting of game servers (currently for myself and my friends).
+This project automates the hosting of game servers (currently works for VRising and Barotrauma).
 
-A design priority was no cost when unused – otherwise I would have considered demoning k8s. Hence, essentially all state lives in GitHub - allowing `terraform destory` to purge all of GCP.
+A design priority was low cost, ideally 0 when unused. To that end, this repo saves (essentially) all state to GitHub - allowing `terraform destory` to purge GCP down to a near 0 cost.
 
-Tech tl;dr is basically: GCP, Terraform, and Bash. (+ Steam, Packer, and a few linux tools)
+(This project would have been a good k8s demo, but it comes with some additional operating costs and complexity I wanted to avoid for such a simple project.)
 
-There is a small admin console for managing the server and accessing the logs as well. It was designed to give limited admin control and debugging details without needing technical skills. It doesn't cleanly separate games yet, so the UI log access is a bit messy.
+Tech Stack tl;dr is: GCP, Packer, Terraform, and Bash. (+ Steam, and a few linux tools)
+
+There is a small admin console for managing the server and accessing the logs as well. It was designed to give limited admin control and debugging details without needing technical skills. (It doesn't currently separate game UI well – aka it needs some work but is functional.)
 
 ---
 
@@ -75,20 +77,20 @@ make build
     * Steam, Wine, Xvfb, and their dependencies
     * Some helpful server side command line tools. e.g., curl, wget, etc.
     * Install GCP monitoring packages.
-* (Note that this builds images both games. See Makefile for more fine-grained control.)
+* (Note that this builds images for both games. See Makefile help for more fine-grained control.)
 
 ---
 
 ### 3. Apply Terraform to create the VM and start the game server
 
-Select the game by editing terraform/variables.tf (update `game_image` variable)
+Select the game by editing `terraform/variables.tf` (update `game_image` variable)
 
 ```bash
 make apply
 ```
 
 * This boots a VM
-    * Every boot the repo pulls HEAD, and the game updates if necessary.
+    * Every boot the repo pulls HEAD, and the game updates if necessary. Allows the server to be power cycled to update the game.
 
 ---
 
@@ -98,7 +100,7 @@ make apply
 make destroy
 ```
 
-If you skip this, the server will power off after 30 minutes of disuse. This will leave it in a powered-off state, where it can be manually started in the GPC UI. (Something simple enough that non-technical users are able to start the server on their own.)
+If you skip this, the server will power off after 30 minutes of disuse. This will leave it in a powered-off state, where it can be manually started again. (The GCP UI is simple enough that non-technical users are able to start the server on their own.)
 
 ---
 
@@ -123,14 +125,14 @@ If you skip this, the server will power off after 30 minutes of disuse. This wil
     - Installs dependencies and enables services that run on boot.
 
 - **Infrastructure** (`/terraform`)
-    - Provisions VMs, setup firewall rules, etc. 
+    - Provisions VMs, setup firewall rules, etc.
 
 - **Gameserver Setup and Execution** (`/scripts`)
     - Installers / updaters for environment dependencies
     - Services that support the game's server
     - Misc tools for debugging and development
     - (Note: This section is a work in progress and may evolve as the project matures.)
-      - It works fairly well, but it's possible there might be a better separation of concerns. 
+        - It works fairly well, but it's possible there might be a better separation of concerns.
 
 - **Barotrauma State & Mods** (`/Barotrauma`)
     - Contains saved games, mod files, and game server config

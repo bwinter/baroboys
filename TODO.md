@@ -1,5 +1,6 @@
 # Project Backlog (of sorts)
-- Clean up IAM files (Fix)
+
+- Clean up IAM files and workflow (Fix / Upgrade)
 - Get emails into secrets (Security)
 - Get save data and game data into S3 / mount. (Security-ish & Reduce Git complexity.)
 - Get tf state into S3 (Simplification & multi-admin device support.)
