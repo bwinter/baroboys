@@ -2,7 +2,7 @@
 
 This project automates the hosting of game servers (currently for myself and my friends).
 
-A design priority was no cost when unused. Hence, essentially all state lives in GitHub - allowing `terraform destory` to purge all of GCP.
+A design priority was no cost when unused – otherwise I would have considered demoning k8s. Hence, essentially all state lives in GitHub - allowing `terraform destory` to purge all of GCP.
 
 Tech tl;dr is basically: GCP, Terraform, and Bash. (+ Steam, Packer, and a few linux tools)
 
