@@ -77,41 +77,47 @@ gcloud compute ssh bwinter_sc81@europa \
 /usr/bin/sudo systemctl status google-startup-scripts.service
 ```
 
----
+## 🔁 Restart Game Server
 
-## 🎮 **Game and Service Logs**
-
-### `vrising.service` logs (game lifecycle):
+To gracefully restart the server through systemd:
 
 ```bash
-/usr/bin/sudo journalctl -u vrising.service --since="-10min" --no-pager
+/usr/bin/sudo systemctl restart game-startup.service
 ```
 
-### `<GAME>.service` logs (shutdown & save):
+## ✅ Check Game Server Status:
 
 ```bash
-/usr/bin/sudo journalctl -u <GAME>.service --since="-10min" --no-pager
-```
-
-### `<GAME>.service` logs (game startup & provisioning):
-
-```bash
-/usr/bin/sudo journalctl -u <GAME>.service --since="-10min" --no-pager
+/usr/bin/sudo systemctl status game-startup.service
 ```
 
 ---
 
-### 📜 VRising game log (in-game server events):
+## 🎮 **Game Server Logs**
+
+### `game-startup.service` logs (game lifecycle):
 
 ```bash
-tail -n 200 /home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log
+/usr/bin/sudo journalctl -u game-startup.service --since="-10min" --no-pager
+```
+
+### `game-shutdown.service` logs (shutdown & save):
+
+```bash
+/usr/bin/sudo journalctl -u game-shutdown.service --since="-10min" --no-pager
+```
+
+### `game-setup.service` logs (game setup & provisioning):
+
+```bash
+/usr/bin/sudo journalctl -u game-setup.service --since="-10min" --no-pager
 ```
 
 ---
 
 ## 🌐 **Steam Master Server Check**
 
-Ensure server is externally discoverable:
+Ensure the server is externally discoverable:
 
 ```bash
 curl -s "https://api.steampowered.com/ISteamApps/GetServersAtAddress/v0001?addr=$(curl -s ifconfig.me)"
