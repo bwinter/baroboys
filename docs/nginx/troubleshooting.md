@@ -76,7 +76,7 @@ cat /etc/nginx/.htpasswd
 If missing:
 
 ```bash
-htpasswd -c temp_htpasswd Hex
+htpasswd -c temp_htpasswd <PW>
 gcloud secrets versions add nginx-htpasswd --data-file=temp_htpasswd
 gcloud secrets versions access latest --secret=nginx-htpasswd \
   | /usr/bin/sudo tee /etc/nginx/.htpasswd > /dev/null
