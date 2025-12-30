@@ -40,5 +40,4 @@ gcloud secrets versions add github-deploy-key \
 ## 🧠 Notes
 
 * The service account `vm-runtime@...` is attached to the VM via Terraform.
-* The key is retrieved at boot (inside the startup script) and used for `git clone` via SSH.
-* This avoids embedding credentials in your image or using GitHub tokens.
+* The key is retrieved during Packer image creation (inside the startup script) and used for cloning / pulling the repo.
