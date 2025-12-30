@@ -4,7 +4,7 @@ This project automates the hosting of game servers (currently works for VRising 
 
 A design priority was low cost, ideally 0 when unused. To that end, this repo saves (essentially) all state to GitHub - allowing `terraform destory` to purge GCP down to a near 0 cost.
 
-(This project would have been a good k8s demo, but it comes with some additional operating costs and complexity I wanted to avoid for such a simple project.)
+(I would love to have demoed k8s and Go in this project, but I think they would be unnecessary complexities for a reltiavely simple project.)
 
 Tech Stack tl;dr is: GCP, Packer, Terraform, and Bash. (+ Steam, and a few linux tools)
 
