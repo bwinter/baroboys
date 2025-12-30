@@ -6,10 +6,10 @@ cd "$HOME/baroboys"
 SHUTDOWN_DELAY_MINUTES=1
 SAVE_DIR="VRising/Data/Saves/v4/TestWorld-1"
 
-SERVER_PASS="$(gcloud secrets versions access latest --secret="server-password")"
+SERVER_PASSWORD="$(gcloud secrets versions access latest --secret="server-password")"
 
 # Tell players and trigger autosave
-if ! mcrcon -H 127.0.0.1 -P 25575 -p "$SERVER_PASS" \
+if ! mcrcon -H 127.0.0.1 -P 25575 -p "$SERVER_PASSWORD" \
   "shutdown ${SHUTDOWN_DELAY_MINUTES} \"Server will shut down in ~{t}m! Get to a safe place.\""; then
   echo "⚠️ mcrcon failed to send shutdown command"
 fi
