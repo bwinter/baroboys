@@ -26,8 +26,6 @@ Barotrauma/Multiplayer/Baroboys
 .packer.d
 terraform/.terraform/
 terraform/terraform.tfstate*
-iam/.terraform/
-iam/tmp/*
 packer/tmp/*
 packer/tmp/.secrets/*
 

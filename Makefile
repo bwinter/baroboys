@@ -5,8 +5,11 @@ PROJECT          := europan-world
 ZONE             := us-west1-c
 INSTANCE         := europa
 USER             := bwinter_sc81
+BOOTSTRAP_DIR    := bootstrap
 
 .DEFAULT_GOAL := help
+
+bootstrap: terraform-bootstrap iam-bootstrap
 
 apply: terraform-apply
 
@@ -27,97 +30,43 @@ admin-logs:
 # =======================
 # 🌍 Terraform
 # =======================
-TF_VAR_FILE      := terraform/terraform.tfvars
-TF_VAR_DEF_FILE  := terraform/variables.tf
+ENV ?= prod
+TF_BACKEND=backend/$(ENV).hcl
+TF_VARS=$(ENV).tfvars
 TF_DIR           := terraform
 
-.PHONY: terraform-init terraform-plan terraform-apply terraform-destroy
+.PHONY: terraform-bootstrap terraform-init terraform-plan terraform-apply terraform-destroy
 
-terraform-copy-secrets:
-	mkdir -p $(TF_DIR)/.secrets
-	cp .secrets/europan-world-terraform-key.json $(TF_DIR)/.secrets/europan-world-terraform-key.json
+terraform-bootstrap:
+	cd $(BOOTSTRAP_DIR) && \
+		./bootstrap_tf_state_bucket.sh
 
-terraform-init: terraform-copy-secrets
-	cd $(TF_DIR) && terraform init
+terraform-init:
+	cd $(TF_DIR) && terraform init -backend-config=$(TF_BACKEND)
 
-terraform-plan: terraform-copy-secrets
-	cd $(TF_DIR) && terraform plan
+terraform-plan: terraform-init
+	cd $(TF_DIR) && terraform plan -var-file=$(TF_VARS)
 
-terraform-apply: terraform-copy-secrets
-	cd $(TF_DIR) && terraform apply
+terraform-apply: terraform-init
+	cd $(TF_DIR) && terraform apply -var-file=$(TF_VARS)
 
-terraform-destroy: terraform-copy-secrets
-	cd $(TF_DIR) && terraform destroy
+terraform-destroy: terraform-init
+	cd $(TF_DIR) && terraform destroy -var-file=$(TF_VARS)
 
-terraform-refresh: terraform-copy-secrets
-	cd $(TF_DIR) && terraform refresh
+terraform-refresh: terraform-init
+	cd $(TF_DIR) && terraform refresh -var-file=$(TF_VARS)
 
 
 # =======================
 # 🔐 IAM (Service Accounts)
 # =======================
-IAM_TF_DIR     := iam
-IAM_BUILD_DIR  := $(IAM_TF_DIR)/tmp
-IAM_VARS       := terraform.tfvars
-IAM_VAR_DEFS   := variables.tf
-
-.PHONY: iam-boostrap iam-import iam-apply iam-refresh iam-destroy
+.PHONY: iam-boostrap
 
 iam-bootstrap:
 	@echo "✅ Bootstrapping IAM roles..."
-	rm -dr .secrets && \
-	pushd "$(IAM_TF_DIR)" && \
+	cd $(BOOTSTRAP_DIR) && \
 		./bootstrap_terraform_sa.sh && \
-		./bootstrap_vm_runtime_sa.sh && \
-	popd && \
-	cp iam/.secrets/europan-world-terraform-key.json .secrets/europan-world-terraform-key.json
-
-iam-import:
-	@echo "✅ Importing IAM roles..."
-	cd "$(IAM_TF_DIR)" && \
-		./import_terraform_sa_roles.sh && \
-		./import_vm_runtime_sa_roles.sh
-
-iam-apply:
-	@echo "📤 Syncing IAM Terraform files..."
-	mkdir -p "$(IAM_BUILD_DIR)/"
-	#cp -f "$(IAM_TF_DIR)/iam_terraform_service_account.tf" "$(IAM_BUILD_DIR)/"
-	#cp -f "$(IAM_TF_DIR)/iam_vm_runtime.tf" "$(IAM_BUILD_DIR)/"
-	cp -f "$(IAM_TF_DIR)/iam_game_admins.tf" "$(IAM_BUILD_DIR)/"
-	cp -f "$(TF_VAR_FILE)" "$(IAM_BUILD_DIR)/$(IAM_VARS)"
-	cp -f "$(TF_VAR_DEF_FILE)" "$(IAM_BUILD_DIR)/$(IAM_VAR_DEFS)"
-
-	@echo "✅ Applying IAM roles..."
-	cd $(IAM_BUILD_DIR) && \
-		unset GOOGLE_APPLICATION_CREDENTIALS && \
-		terraform init && \
-		terraform apply -var-file=$(IAM_VARS)
-
-	gcloud iam service-accounts keys create .secrets/europan-world-terraform-key.json \
-	  --iam-account=terraform@europan-world.iam.gserviceaccount.com
-
-iam-refresh:
-	@echo "📤 Syncing IAM Terraform files..."
-	mkdir -p "$(IAM_BUILD_DIR)/"
-	#cp -f "$(IAM_TF_DIR)/iam_terraform_service_account.tf" "$(IAM_BUILD_DIR)/"
-	#cp -f "$(IAM_TF_DIR)/iam_vm_runtime.tf" "$(IAM_BUILD_DIR)/"
-	cp -f "$(IAM_TF_DIR)/iam_game_admins.tf" "$(IAM_BUILD_DIR)/"
-	cp -f "$(TF_VAR_FILE)" "$(IAM_BUILD_DIR)/$(IAM_VARS)"
-	cp -f "$(TF_VAR_DEF_FILE)" "$(IAM_BUILD_DIR)/$(IAM_VAR_DEFS)"
-
-	@echo "✅ Refreshing IAM roles..."
-	cd $(IAM_BUILD_DIR) && \
-		unset GOOGLE_APPLICATION_CREDENTIALS && \
-		terraform refresh -var-file=$(IAM_VARS)
-
-iam-destroy:
-	@echo "🔥 Destroying IAM roles..."
-	cd $(IAM_BUILD_DIR) && \
-		unset GOOGLE_APPLICATION_CREDENTIALS && \
-		terraform init && \
-		terraform destroy -var-file=$(IAM_VARS)
-
-	rm .secrets/europan-world-terraform-key.json
+		./bootstrap_vm_runtime_sa.sh
 
 
 # =======================
@@ -211,11 +160,13 @@ clean-git: clean-git-pre clean-git-bfg clean-git-post
 
 help:
 	@echo "🛠️  Common Targets:"
+	@echo "  make bootstrap              - Bootstraps terraform and iam"
 	@echo "  make apply                  - Alias for terraform-apply"
 	@echo "  make destroy                - Alias for terraform-destroy"
 	@echo ""
 
 	@echo "🌍 Terraform:"
+	@echo "  make terraform-bootstrap    - Bootstrap Terraform Buckets"
 	@echo "  make terraform-init         - Initialize Terraform"
 	@echo "  make terraform-plan         - Show Terraform plan"
 	@echo "  make terraform-apply        - Apply Terraform (build VM)"
@@ -223,12 +174,8 @@ help:
 	@echo "  make terraform-refresh      - Refresh Terraform state"
 	@echo ""
 
-	@echo "🔐 IAM: (WIP)"
+	@echo "🔐 IAM:"
 	@echo "  make iam-bootstrap          - Bootstrap IAM service accounts"
-	@echo "  make iam-apply              - Apply IAM roles"
-	@echo "  make iam-import             - Import IAM roles"
-	@echo "  make iam-refresh            - Refresh IAM roles"
-	@echo "  make iam-destroy            - Destroy IAM roles"
 	@echo ""
 
 	@echo "🐍 Flask Admin Panel:"
