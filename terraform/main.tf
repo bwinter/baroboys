@@ -3,14 +3,9 @@
  * Author: Brendan / ChatGPT assisted
  */
 
-# Uncomment if remote state desired.
-# terraform {
-#   backend "gcs" {
-#     credentials = "./europan-world-terraform-key.json"
-#     bucket      = "tf-state-baroboys"
-#     prefix      = "terraform/state"
-#   }
-# }
+terraform {
+  backend "gcs" {}
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 🔐 Provider & Project Setup
