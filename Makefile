@@ -1,6 +1,7 @@
 # =======================
 # 📦 Config
 # =======================
+ENV              ?= prod
 PROJECT          := europan-world
 ZONE             := us-west1-c
 INSTANCE         := europa
@@ -30,9 +31,8 @@ admin-logs:
 # =======================
 # 🌍 Terraform
 # =======================
-ENV ?= prod
-TF_BACKEND=backend/$(ENV).hcl
-TF_VARS=$(ENV).tfvars
+TF_BACKEND       :=backend/$(ENV).hcl
+TF_VARS          :=$(ENV).tfvars
 TF_DIR           := terraform
 
 .PHONY: terraform-bootstrap terraform-init terraform-plan terraform-apply terraform-destroy
@@ -111,16 +111,16 @@ ssh-iap:
 .PHONY: build-core build-admin build-barotrauma build-vrising build
 
 build-core:
-	packer/packer_build.sh core
+	packer/packer_build.sh core $(ENV)
 
 build-admin:
-	packer/packer_build.sh admin
+	packer/packer_build.sh admin $(ENV)
 
 build-barotrauma:
-	packer/packer_build.sh barotrauma
+	packer/packer_build.sh barotrauma $(ENV)
 
 build-vrising:
-	packer/packer_build.sh vrising
+	packer/packer_build.sh vrising $(ENV)
 
 build: build-core build-admin build-barotrauma build-vrising
 

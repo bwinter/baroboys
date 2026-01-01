@@ -1,36 +1,69 @@
-#!/bin/bash
-set -eux
+#!/usr/bin/env bash
+set -euo pipefail
 
-if [[ -z "$1" ]]; then
-  echo "Usage: $0 <layer-name>"
+if [[ $# -ne 2 ]]; then
+  echo "Usage: $0 <layer-name> <env>"
   exit 1
 fi
 
 LAYER="$1"
-TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
+ENV="$2"
 
-# Paths
-BUILD_DIR="packer/tmp"
-LOG_DIR="${BUILD_DIR}/logs"
-SCRIPT_DIR="scripts/services/refresh_repo"
+case "$ENV" in
+  prod|staging|dev) ;;
+  *)
+    echo "Invalid env: $ENV"
+    exit 1
+    ;;
+esac
+
+# Directories
 PACKER_DIR="packer"
+TERRAFORM_DIR="terraform"
+SCRIPT_DIR="scripts/services/refresh_repo"
+BUILD_DIR="packer/tmp"
 
-PACKER_VARS_FILE="terraform.pkrvars.hcl"
-PACKER_VAR_DEFS_FILE="variables.pkr.hcl"
+# Files
 PACKER_TEMPLATE_FILE="packer-${LAYER}.pkr.hcl"
-LOG_FILE_NAME="packer_${LAYER}_${USER}_${TIMESTAMP}.log"
-ABS_LOG_PATH="$(pwd)/${LOG_DIR}/${LOG_FILE_NAME}"
 
-mkdir -p "${LOG_DIR}"
+TF_SHARED_VARS_FILE="${TERRAFORM_DIR}/shared.tfvars"
+TF_ENV_VARS_FILE="${TERRAFORM_DIR}/${ENV}.tfvars"
+TF_VAR_DEFS_FILE="${TERRAFORM_DIR}/variables.tf"
 
-cp -f "${SCRIPT_DIR}/src/refresh_repo.sh" "${BUILD_DIR}/refresh_repo.sh"
-cp -f "${PACKER_DIR}/${PACKER_TEMPLATE_FILE}" "${BUILD_DIR}/packer.pkr.hcl"
-cp -f "terraform/terraform.tfvars" "${BUILD_DIR}/${PACKER_VARS_FILE}"
-cp -f "terraform/variables.tf" "${BUILD_DIR}/${PACKER_VAR_DEFS_FILE}"
+PACKER_SHARED_VARS_FILE="shared.pkrvars.hcl"
+PACKER_ENV_VARS_FILE="${ENV}.pkrvars.hcl"
+PACKER_VAR_DEFS_FILE="variables.pkr.hcl"
 
-# Build
+# Validate required files exist
+for f in \
+  "${PACKER_DIR}/${PACKER_TEMPLATE_FILE}" \
+  "${SCRIPT_DIR}/src/refresh_repo.sh" \
+  "${TF_SHARED_VARS_FILE}" \
+  "${TF_ENV_VARS_FILE}" \
+  "${TF_VAR_DEFS_FILE}"
+do
+  [[ -f "$f" ]] || { echo "Missing file: $f"; exit 1; }
+done
+
+# Prepare build directory
+rm -rf "${BUILD_DIR}"
+mkdir -p "${BUILD_DIR}"
+
+# Copy necessary files
+cp "${PACKER_DIR}/${PACKER_TEMPLATE_FILE}" "${BUILD_DIR}/packer.pkr.hcl"
+cp "${SCRIPT_DIR}/src/refresh_repo.sh" "${BUILD_DIR}/refresh_repo.sh"
+
+cp "${TF_SHARED_VARS_FILE}" "${BUILD_DIR}/${PACKER_SHARED_VARS_FILE}"
+cp "${TF_ENV_VARS_FILE}" "${BUILD_DIR}/${PACKER_ENV_VARS_FILE}"
+cp "${TF_VAR_DEFS_FILE}" "${BUILD_DIR}/${PACKER_VAR_DEFS_FILE}"
+
+chmod +x "${BUILD_DIR}/refresh_repo.sh"
+
+# Run Packer
 cd "${BUILD_DIR}"
 packer init .
-packer build --force -var-file="${PACKER_VARS_FILE}" . | tee "${ABS_LOG_PATH}"
-
-echo "✅ Log written to: ${ABS_LOG_PATH}"
+packer build \
+  --force \
+  -var-file="${PACKER_SHARED_VARS_FILE}" \
+  -var-file="${PACKER_ENV_VARS_FILE}" \
+  .
