@@ -21,10 +21,6 @@ PACKER_TEMPLATE_FILE="packer-${LAYER}.pkr.hcl"
 LOG_FILE_NAME="packer_${LAYER}_${USER}_${TIMESTAMP}.log"
 ABS_LOG_PATH="$(pwd)/${LOG_DIR}/${LOG_FILE_NAME}"
 
-# Prep
-mkdir -p "${BUILD_DIR}/.secrets"
-cp ".secrets/europan-world-terraform-key.json" "${BUILD_DIR}/.secrets/"
-
 mkdir -p "${LOG_DIR}"
 
 cp -f "${SCRIPT_DIR}/src/refresh_repo.sh" "${BUILD_DIR}/refresh_repo.sh"

@@ -65,7 +65,6 @@ terraform-refresh: terraform-init
 iam-bootstrap:
 	@echo "✅ Bootstrapping IAM roles..."
 	cd $(BOOTSTRAP_DIR) && \
-		./bootstrap_terraform_sa.sh && \
 		./bootstrap_vm_runtime_sa.sh
 
 

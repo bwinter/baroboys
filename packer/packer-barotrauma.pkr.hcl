@@ -10,8 +10,6 @@ packer {
 }
 
 source "googlecompute" "baroboys-barotrauma" {
-  credentials_json = file(var.credentials_file)
-
   project_id   = var.project
   zone         = var.zone
   machine_type = var.machine_type
