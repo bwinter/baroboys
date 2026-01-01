@@ -45,16 +45,16 @@ terraform-init:
 	cd $(TF_DIR) && terraform init -backend-config=$(TF_BACKEND)
 
 terraform-plan: terraform-init
-	cd $(TF_DIR) && terraform plan -var-file=$(TF_VARS)
+	cd $(TF_DIR) && terraform plan -var-file=shared.tfvars -var-file=$(TF_VARS)
 
 terraform-apply: terraform-init
-	cd $(TF_DIR) && terraform apply -var-file=$(TF_VARS)
+	cd $(TF_DIR) && terraform apply -var-file=shared.tfvars -var-file=$(TF_VARS)
 
 terraform-destroy: terraform-init
-	cd $(TF_DIR) && terraform destroy -var-file=$(TF_VARS)
+	cd $(TF_DIR) && terraform destroy -var-file=shared.tfvars -var-file=$(TF_VARS)
 
 terraform-refresh: terraform-init
-	cd $(TF_DIR) && terraform refresh -var-file=$(TF_VARS)
+	cd $(TF_DIR) && terraform refresh -var-file=shared.tfvars -var-file=$(TF_VARS)
 
 
 # =======================
