@@ -1,10 +1,10 @@
 # Project Backlog (of sorts)
 
 - Get emails into secrets (Security)
+- Improve game selection (Currently a bit clunky, needing to edit the terraform files directly.)
 - Get save data and game data into S3 / mount. (Security-ish & Reduce Git complexity.)
 - Improve the admin page (Make it handle multiple games and add the ability to start game. Later requires a bigger redesign.)
     - Maybe get some React in here?
-- Improve game selection (Currently a bit clunky, needing to edit the terraform files directly.)
 - Might be interesting to demo K8s, GoLang and React in here. (Future)
     - AI? - Admin console?
     - GoLang - ...

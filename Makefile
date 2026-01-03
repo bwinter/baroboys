@@ -1,6 +1,7 @@
 # =======================
 # 📦 Config
 # =======================
+SHELL            := /bin/bash
 ENV              ?= prod
 PROJECT          := europan-world
 ZONE             := us-west1-c
@@ -203,7 +204,7 @@ help:
 	@echo "  make save-and-shutdown      - Save game state by triggering shutdown"
 	@echo ""
 
-	@echo "🧪 Control:"
+	@echo "🧪 SSH Access:"
 	@echo "  make ssh                    - SSH into VM"
 	@echo "  make ssh-iap                - SSH using IAP tunnel"
 	@echo ""
