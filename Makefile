@@ -68,12 +68,15 @@ update-password:
 # =======================
 # 🔐 IAM (Service Accounts)
 # =======================
-.PHONY: iam-boostrap
+.PHONY: iam-bootstrap iam-add-admin
 
 iam-bootstrap:
-	@echo "✅ Bootstrapping IAM roles..."
+	echo "✅ Bootstrapping IAM roles..."
 	cd $(BOOTSTRAP_DIR) && \
 		./bootstrap_vm_runtime_sa.sh
+
+iam-add-admin:
+	./scripts/tools/admin/add_admin.sh $(EMAIL)
 
 
 # =======================
@@ -187,6 +190,7 @@ help:
 
 	@echo "🔐 IAM:"
 	@echo "  make iam-bootstrap          - Bootstrap IAM service accounts"
+	@echo "  make iam-add-admin          - Add administrator emails (can start VMs)"
 	@echo ""
 
 	@echo "🐍 Flask Admin Panel:"

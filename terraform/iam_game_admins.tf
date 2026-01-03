@@ -1,20 +1,16 @@
-# List of users allowed to administer VMs
-variable "baroboys_operators" {
-  type = list(string)
-  default = [
-    "nilsen.j.k@gmail.com",
-    "demapoppa@gmail.com",
-    "menotquilty@gmail.com",
-    "vduray@gmail.com"
-  ]
+# Operator capability represented as a service account
+resource "google_service_account" "baroboys_operators" {
+  account_id   = "baroboys-operators"
+  display_name = "Baroboys Operators (Human IAM proxy)"
+  project      = var.project
 }
 
-# Grant the custom role to each user
+# Operator role bound once, canonically
 resource "google_project_iam_binding" "baroboys_operator_binding" {
   project = var.project
   role    = "roles/compute.instanceAdmin.v1"
 
   members = [
-    for user in var.baroboys_operators : "user:${user}"
+    "serviceAccount:${google_service_account.baroboys_operators.email}"
   ]
 }
