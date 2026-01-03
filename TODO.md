@@ -1,6 +1,5 @@
 # Project Backlog (of sorts)
 
-- Get emails into secrets (Security)
 - Improve game selection (Currently a bit clunky, needing to edit the terraform files directly.)
 - Get save data and game data into S3 / mount. (Security-ish & Reduce Git complexity.)
 - Improve the admin page (Make it handle multiple games and add the ability to start game. Later requires a bigger redesign.)
@@ -18,6 +17,7 @@
 
 # Done
 
+- Get emails into secrets (Security)
 - Clean up IAM files and workflow (Fix / Upgrade)
     - Reworked this and simplified to a single design.
 - Verify Terraform SA can have secrets access removed. (Security)
