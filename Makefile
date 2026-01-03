@@ -56,6 +56,14 @@ terraform-destroy: terraform-init
 terraform-refresh: terraform-init
 	cd $(TF_DIR) && terraform refresh -var-file=shared.tfvars -var-file=$(TF_VARS)
 
+# =======================
+# 🔑 Server / Game Password
+# =======================
+.PHONY: update-password
+
+update-password:
+	@./scripts/tools/update_password.sh
+
 
 # =======================
 # 🔐 IAM (Service Accounts)
@@ -171,6 +179,10 @@ help:
 	@echo "  make terraform-apply        - Apply Terraform (build VM)"
 	@echo "  make terraform-destroy      - Destroy infrastructure"
 	@echo "  make terraform-refresh      - Refresh Terraform state"
+	@echo ""
+
+	@echo "🔑 Game / Admin Password"
+	@echo "  make update-password        - Modify game and admin password (requires server restart)"
 	@echo ""
 
 	@echo "🔐 IAM:"
