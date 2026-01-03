@@ -4,7 +4,14 @@ set -euo pipefail
 # =========================
 # CONFIG
 # =========================
-PROJECT_ID="europan-world"
+
+PROJECT="${PROJECT:-$(gcloud config get-value project 2>/dev/null)}"
+
+if [[ -z "$PROJECT" ]]; then
+  echo "ERROR: GCP project not set. Run 'gcloud config set project ...' or export PROJECT."
+  exit 1
+fi
+
 BUCKET_NAME="tf-state-baroboys"
 LOCATION="us-west1"
 
@@ -14,7 +21,7 @@ LOCATION="us-west1"
 command -v gcloud >/dev/null || { echo "gcloud not installed"; exit 1; }
 command -v gsutil >/dev/null || { echo "gsutil not installed"; exit 1; }
 
-gcloud config set project "$PROJECT_ID" >/dev/null
+gcloud config set project "$PROJECT" >/dev/null
 
 # =========================
 # CREATE BUCKET (IF NEEDED)
@@ -24,7 +31,7 @@ if gsutil ls -b "gs://${BUCKET_NAME}" >/dev/null 2>&1; then
 else
   echo "➕ Creating bucket: gs://${BUCKET_NAME}"
   gsutil mb \
-    -p "$PROJECT_ID" \
+    -p "$PROJECT" \
     -l "$LOCATION" \
     -b on \
     "gs://${BUCKET_NAME}"

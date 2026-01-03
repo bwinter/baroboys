@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PROJECT="europan-world"
+PROJECT="${PROJECT:-$(gcloud config get-value project 2>/dev/null)}"
+
+if [[ -z "$PROJECT" ]]; then
+  echo "ERROR: GCP project not set. Run 'gcloud config set project ...' or export PROJECT."
+  exit 1
+fi
+
 
 KEEP_IMAGES=5
 
