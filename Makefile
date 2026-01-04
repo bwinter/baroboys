@@ -77,7 +77,7 @@ iam-bootstrap:
 		./bootstrap_vm_runtime_sa.sh
 
 iam-add-admin:
-	./scripts/tools/admin/add_admin.sh $(EMAIL)
+	./scripts/tools/gcp/add_admin.sh $(EMAIL)
 
 
 # =======================
