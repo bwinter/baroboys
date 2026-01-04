@@ -3,6 +3,7 @@
 # =======================
 SHELL            := /bin/bash
 ENV              ?= prod
+GAME             ?= barotrauma
 PROJECT          := europan-world
 ZONE             := us-west1-c
 INSTANCE         := europa
@@ -32,8 +33,8 @@ admin-logs:
 # =======================
 # 🌍 Terraform
 # =======================
-TF_BACKEND       :=backend/$(ENV).hcl
-TF_VARS          :=$(ENV).tfvars
+TF_BACKEND       := backend/$(ENV).hcl
+TF_VARS          := game/$(GAME).tfvars
 TF_DIR           := terraform
 
 .PHONY: terraform-bootstrap terraform-init terraform-plan terraform-apply terraform-destroy

@@ -1,6 +1,5 @@
 # Project Backlog (of sorts)
 
-- Improve game selection (Currently a bit clunky, needing to edit the terraform files directly.)
 - Get save data and game data into S3 / mount. (Security-ish & Reduce Git complexity.)
 - Improve the admin page (Make it handle multiple games and add the ability to start game. Later requires a bigger redesign.)
     - Maybe get some React in here?
@@ -17,6 +16,9 @@
 
 # Done
 
+- Improve game selection (Currently a bit clunky, needing to edit the terraform files directly.)
+  - Can now specify via a GAME env var for the makefile's terraform commands.
+  - Using custom tfvars files for each game.
 - Get emails into secrets (Security)
 - Clean up IAM files and workflow (Fix / Upgrade)
     - Reworked this and simplified to a single design.
