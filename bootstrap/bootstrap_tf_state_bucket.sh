@@ -13,7 +13,7 @@ if [[ -z "$PROJECT" ]]; then
 fi
 
 BUCKET_NAME="tf-state-baroboys"
-LOCATION="us-west1"
+REGION="us-west1"
 
 # =========================
 # PRE-FLIGHT CHECKS
@@ -32,7 +32,7 @@ else
   echo "➕ Creating bucket: gs://${BUCKET_NAME}"
   gsutil mb \
     -p "$PROJECT" \
-    -l "$LOCATION" \
+    -l "$REGION" \
     -b on \
     "gs://${BUCKET_NAME}"
 fi

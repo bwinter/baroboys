@@ -47,7 +47,7 @@ gcloud logging read \
 ### Standard SSH:
 
 ```bash
-gcloud compute ssh <USER_NAME>@<VM_NAME> \
+gcloud compute ssh <GCP_USER>@<MACHINE_NAME> \
   --project=europan-world \
   --zone=us-west1-c
 ```
@@ -55,7 +55,7 @@ gcloud compute ssh <USER_NAME>@<VM_NAME> \
 ### SSH via IAP (no external IP):
 
 ```bash
-gcloud compute ssh <USER_NAME>@<VM_NAME> \
+gcloud compute ssh <GCP_USER>@<MACHINE_NAME> \
   --project=europan-world \
   --zone=us-west1-c \
   --tunnel-through-iap
