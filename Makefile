@@ -24,10 +24,10 @@ destroy: terraform-destroy
 .PHONY: admin-local admin-logs
 
 admin-local:
-	scripts/tools/admin/run_admin_server_local.sh
+	./scripts/tools/admin/run_admin_server_local.sh
 
 admin-logs:
-	scripts/tools/admin/get_admin_server_logs.sh
+	./scripts/tools/admin/get_admin_server_logs.sh
 
 
 # =======================
