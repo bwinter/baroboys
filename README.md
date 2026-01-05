@@ -139,7 +139,7 @@ make help
 - **Bootstrapping** (`/bootstrap`)
     - Sets up service accounts and TF buckets.
 
-- ** VM Image** (`/packer`)
+- **VM Image** (`/packer`)
     - Installs dependencies and enables services that run on boot.
 
 - **Infrastructure** (`/terraform`)
