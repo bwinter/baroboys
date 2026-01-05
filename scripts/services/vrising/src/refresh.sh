@@ -1,10 +1,6 @@
 #!/bin/bash
 set -eu
 
-# Fetch the RCON password from GCP Secret Manager
-SERVER_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)"
-export SERVER_PASSWORD
-
 # Paths
 VRISING_DIR="$HOME/baroboys/VRising"
 SAVE_DIR="$VRISING_DIR/Data/Saves/v4/TestWorld-1"
@@ -64,6 +60,11 @@ git checkout -- \
   "$GAME_JSON" \
   "$VRISING_DIR/Data/Settings/adminlist.txt" \
   "$VRISING_DIR/Data/Settings/banlist.txt"
+
+
+# Fetch the RCON password from GCP Secret Manager
+SERVER_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)"
+export SERVER_PASSWORD
 
 envsubst < "$HOST_JSON" > "$HOST_JSON.tmp"
 mv "$HOST_JSON.tmp" "$HOST_JSON"

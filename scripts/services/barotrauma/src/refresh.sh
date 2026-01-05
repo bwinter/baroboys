@@ -1,10 +1,6 @@
 #!/bin/bash
 set -eu
 
-# Fetch the RCON password from GCP Secret Manager
-SERVER_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)"
-export SERVER_PASSWORD
-
 # Paths
 BAROTRAUMA_DIR="${HOME}/baroboys/Barotrauma"
 CLIENT_PERMISSIONS_XML="$BAROTRAUMA_DIR/Data/clientpermissions.xml"
@@ -41,6 +37,10 @@ git checkout -- \
   "$CLIENT_PERMISSIONS_XML" \
   "$PERMISSION_PRESETS_XML" \
   "$SERVER_SETTINGS_XML_IN"
+
+# Fetch the RCON password from GCP Secret Manager
+SERVER_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)"
+export SERVER_PASSWORD
 
 envsubst < "$SERVER_SETTINGS_XML_IN" > "$SERVER_SETTINGS_XML"
 
