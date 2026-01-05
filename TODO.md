@@ -1,5 +1,6 @@
 # Project Backlog (of sorts)
 
+- Configuration is a bit all over the place. Often hardcoded in specific scripts, would be good to be more specific - maybe using direnv? (Upgrade)
 - Get save data and game data into S3 / mount. (Security-ish & Reduce Git complexity.)
 - Improve the admin page (Make it handle multiple games and add the ability to start game. Later requires a bigger redesign.)
     - Maybe get some React in here?

@@ -24,49 +24,59 @@ There is a small admin console for managing the server and accessing the logs as
     brew tap hashicorp/tap
     brew install hashicorp/tap/packer
     ```
-- Google Cloud SDK (`gcloud`)
-    ```shell
-    curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-457.0.0-darwin-arm.tar.gz
-    tar -xvzf google-cloud-cli-457.0.0-darwin-arm.tar.gz
-    ./google-cloud-sdk/setup.sh
-    ```
+- Google Cloud SDK (`gcloud`) (see [docs/setup/installing-gcloud.md](docs/setup/gcp-service-accounts.md) for help installing)
 - A valid GCP project (e.g., `europan-world`)
-- GitHub account (where game state lives currently)
+- GitHub project (e.g. `baroboys`)
+- `direnv` (see .envrc for configuration)
+  - TODO: need to make a boostrap for this / centralize configuration.
 
 ---
 
 ## 🚀 Getting Started
 
 1. **Configure GitHub SSH access** (once)
-    - See [`docs/setup/github-deploy-key.md`](./docs/setup/github-deploy-key.md)
-    - This ensures your VM can clone private repos
+    - See [docs/setup/github-deploy-key.md](./docs/setup/github-deploy-key.md)
+    - This ensures your VM can clone your repository.
 
-2. **Install GCP tooling** (once)
-    - See [`docs/setup/installing-gcloud.md`](docs/setup/gcp-service-accounts.md)
+2. **Running Server**
+    - See [Step-by-Step Setup](#-step-by-step-setup) below.
 
-3. **Configure GCP tooling** (once)
-    - See [`docs/setup/gcp-service-account.md`](docs/setup/gcp-service-accounts.md)
-    - After completion, Makefile should now be usable
-
-4. **Debug server**
-    - See [`docs/usage/troubleshooting.md`](./docs/usage/troubleshooting.md)
-    - Some basic commands you can run to debug install and game server issues.
+3. **Runtime Debugging**
+    - See [docs/usage/troubleshooting.md](./docs/usage/troubleshooting.md)
+    - Some basic commands you can run to debug install and runtime issues.
 
 ---
 
 ## 🚀 Step-by-Step Setup
 
-### 1. Clone the repo and initialize Terraform
+### 1. Fork this repo and then clone it
 
 ```bash
-git clone git@github.com:bwinter/baroboys.git
-cd baroboys/terraform
-terraform init
+git clone git@github.com:<YOUR_USER>/<YOUR_FORK>.git
 ```
 
 ---
 
-### 2. Build all packer images
+### 2. Create Service Accounts and Terraform Buckets
+
+Ensure you are authenticated as a project owner:
+
+```bash
+gcloud auth application-default login
+gcloud config set project <YOUR_PROJECT>
+````
+
+Boostrap Service Account:
+
+```bash
+make bootstrap
+```
+
+- See [`docs/setup/gcp-service-account.md`](docs/setup/gcp-service-accounts.md) for details.
+
+---
+
+### 3. Build all packer images
 
 ```bash
 make build
@@ -77,30 +87,38 @@ make build
     * Steam, Wine, Xvfb, and their dependencies
     * Some helpful server side command line tools. e.g., curl, wget, etc.
     * Install GCP monitoring packages.
-* (Note that this builds images for both games. See Makefile help for more fine-grained control.)
+* (Note that this builds images for all games. See Makefile `help` for more fine-grained control.)
 
 ---
 
-### 3. Apply Terraform to create the VM and start the game server
-
-Select the game by editing `terraform/variables.tf` (update `game_image` variable)
+### 4. Apply Terraform to create the VM and start the game server
 
 ```bash
-make apply
+make apply GAME=barotrauma
 ```
 
-* This boots a VM
-    * Every boot the repo pulls HEAD, and the game updates if necessary. Allows the server to be power cycled to update the game.
+* This boots game VM
+* Note the server shutsdown after 30 minutes of inactivity. Saveing the game at the same time.
+* To restart the server, simply power it back on via the GCP UI.
+  * To grant others ability to start server, see `make iam-add-admin`.
 
 ---
 
-### 4. (Optional) Destroy the instance when done with the server
+### 5. (Optional) Destroy the instance when done with the server
 
 ```bash
 make destroy
 ```
 
-If you skip this, the server will power off after 30 minutes of disuse. This will leave it in a powered-off state, where it can be manually started again. (The GCP UI is simple enough that non-technical users are able to start the server on their own.)
+* Lowest GCP cost.
+
+---
+
+### 6. See Makefile help for more options
+
+```bash
+make help
+```
 
 ---
 
@@ -118,10 +136,10 @@ If you skip this, the server will power off after 30 minutes of disuse. This wil
 - **General Documentation** (`/docs`)
     - Setup and usage instructions
 
-- **Setting up Access Management** (`/iam`)
-    - Sets up terraform and VM service accounts (functional, but also a WIP)
+- **Bootstrapping** (`/bootstrap`)
+    - Sets up service accounts and TF buckets.
 
-- **Building VM Image** (`/packer`)
+- ** VM Image** (`/packer`)
     - Installs dependencies and enables services that run on boot.
 
 - **Infrastructure** (`/terraform`)
@@ -141,10 +159,6 @@ If you skip this, the server will power off after 30 minutes of disuse. This wil
     - Contains saved games and game server config
 
 ---
-
-## 🔐 Security Notes
-
-- All secrets (e.g., GitHub deploy key, service account JSON) should be stored locally or in GCP secrete store and excluded from version control (e.g., see `.gitignore`).
 
 ## License
 
