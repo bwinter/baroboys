@@ -64,7 +64,7 @@ terraform-refresh: terraform-init
 .PHONY: update-password
 
 update-password:
-	@./scripts/tools/update_password.sh
+	./scripts/tools/update_password.sh
 
 
 # =======================
@@ -124,16 +124,16 @@ ssh-iap:
 .PHONY: build-core build-admin build-barotrauma build-vrising build
 
 build-core:
-	packer/packer_build.sh core $(ENV)
+	./packer/packer_build.sh core $(ENV)
 
 build-admin:
-	packer/packer_build.sh admin $(ENV)
+	./packer/packer_build.sh admin $(ENV)
 
 build-barotrauma:
-	packer/packer_build.sh barotrauma $(ENV)
+	./packer/packer_build.sh barotrauma $(ENV)
 
 build-vrising:
-	packer/packer_build.sh vrising $(ENV)
+	./packer/packer_build.sh vrising $(ENV)
 
 build: build-core build-admin build-barotrauma build-vrising
 
@@ -144,7 +144,7 @@ build: build-core build-admin build-barotrauma build-vrising
 .PHONY: clean
 
 clean:
-	scripts/tools/gcp/review_and_cleanup.sh
+	./scripts/tools/gcp/review_and_cleanup.sh
 
 # Git Cleanup Targets
 .PHONY: clean-git-pre clean-git-bfg clean-git-post clean-git
