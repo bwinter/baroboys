@@ -1,33 +1,25 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PROJECT="${PROJECT:-$(gcloud config get-value project 2>/dev/null)}"
-
-if [[ -z "$PROJECT" ]]; then
-  echo "ERROR: PROJECT not set and no gcloud default project."
+if [[ $# -ne 1 ]]; then
+  echo "Usage: $0 user@example.com"
   exit 1
 fi
 
-SA="baroboys-operators@${PROJECT}.iam.gserviceaccount.com"
+EMAIL="$1"
 
-EMAIL="${1:-}"
-
-if [[ -z "$EMAIL" ]]; then
-  read -rp "Enter admin email: " EMAIL
-fi
-
-if [[ -z "$EMAIL" ]]; then
-  echo "ERROR: No email provided."
+if [[ -z "${PROJECT:-}" ]]; then
+  echo "PROJECT must be set in the environment"
   exit 1
 fi
 
-[[ "$EMAIL" == *"@"* ]] || { echo "Invalid email"; exit 1; }
+ROLE="roles/compute.instanceAdmin.v1"
 
-echo "➕ Adding admin: $EMAIL"
+echo "Granting $ROLE to user:$EMAIL on project $PROJECT"
 
-gcloud iam service-accounts add-iam-policy-binding "$SA" \
-  --project "$PROJECT" \
+gcloud projects add-iam-policy-binding "$PROJECT" \
   --member="user:${EMAIL}" \
-  --role="roles/iam.serviceAccountUser"
+  --role="$ROLE" \
+  --quiet
 
-echo "✅ $EMAIL added"
+echo "✅ $EMAIL now has VM admin access via the GCP Console"
