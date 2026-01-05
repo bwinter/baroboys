@@ -30,3 +30,5 @@ fi
 # Add the new version
 gcloud secrets versions add "$SECRET_NAME" --data-file=<(echo "$SECRET_VALUE")
 echo "✅ Secret '$SECRET_NAME' updated"
+
+echo "📝 Server requires restart for change to take effect."
