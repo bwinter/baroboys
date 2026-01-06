@@ -1,5 +1,5 @@
-#!/bin/bash
-set -eux
+#!/usr/bin/env bash
+set -euxo pipefail
 
 # Add WineHQ key
 curl -fsSL "https://dl.winehq.org/wine-builds/winehq.key" \

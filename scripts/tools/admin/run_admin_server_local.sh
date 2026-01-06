@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-# admin/run_admin_server_local.sh
-
-set -euo pipefail
+set -euxo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"

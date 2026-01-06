@@ -1,5 +1,5 @@
-#!/bin/bash
-set -eux
+#!/usr/bin/env bash
+set -euxo pipefail
 
 echo "Ensuring Barotrauma is setup"
 /usr/bin/sudo -u bwinter_sc81 -H -- "/home/bwinter_sc81/baroboys/scripts/services/barotrauma/src/refresh.sh"

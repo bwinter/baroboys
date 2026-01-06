@@ -1,5 +1,5 @@
-#! /bin/bash
-set -eux
+#!/usr/bin/env bash
+set -euxo pipefail
 
 # Add key
 curl -fsSL "https://repo.steampowered.com/steam/archive/stable/steam.gpg" \

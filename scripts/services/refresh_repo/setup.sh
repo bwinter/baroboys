@@ -1,5 +1,5 @@
-#!/bin/bash
-set -eux
+#!/usr/bin/env bash
+set -euxo pipefail
 
 # Give Admin Server access to logs.
 mkdir -p "/var/log/baroboys/"

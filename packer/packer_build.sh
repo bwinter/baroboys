@@ -1,5 +1,5 @@
-#!/usr/bin/GAME bash
-set -euo pipefail
+#!/usr/bin/env bash
+set -euxo pipefail
 
 if [[ $# -ne 2 ]]; then
   echo "Usage: $0 <layer-name> <GAME>"

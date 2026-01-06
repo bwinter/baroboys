@@ -1,5 +1,5 @@
-#!/bin/bash
-set -eux
+#!/usr/bin/env bash
+set -euxo pipefail
 
 echo "📦 [install-ops-agent] Installing Google Cloud CLI and Ops Agent..."
 

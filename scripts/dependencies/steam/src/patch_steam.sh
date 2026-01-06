@@ -1,5 +1,5 @@
-#!/bin/bash
-set -eux
+#!/usr/bin/env bash
+set -euxo pipefail
 
 mkdir -p "$HOME/.steam/sdk64"
 mkdir -p "$HOME/.steam/sdk32"

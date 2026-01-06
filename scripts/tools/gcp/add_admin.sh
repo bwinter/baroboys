@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -euxo pipefail
 
 if [[ $# -ne 1 ]]; then
   echo "Usage: $0 user@example.com"

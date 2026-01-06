@@ -1,5 +1,5 @@
-#!/bin/bash
-set -eux
+#!/usr/bin/env bash
+set -euxo pipefail
 
 # Login as your user.
 if ! gcloud auth print-access-token >/dev/null 2>&1; then

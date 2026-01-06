@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euox pipefail
 
 LOG_FILE="/var/log/baroboys/barotrauma.log"

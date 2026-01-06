@@ -1,5 +1,5 @@
-#!/bin/bash
-set -euo pipefail
+#!/usr/bin/env bash
+set -euxo pipefail
 
 # Run this remotely to get a diagnostic of VRising dependencies.
 

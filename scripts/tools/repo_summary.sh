@@ -1,5 +1,5 @@
-#!/bin/bash
-set -euo pipefail
+#!/usr/bin/env bash
+set -euxo pipefail
 
 echo "# 🧱 Print contents of some repo files."
 echo "This file is designed to be edited to change the files printed."

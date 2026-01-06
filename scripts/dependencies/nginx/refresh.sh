@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euxo pipefail
 
 echo "🔐 [nginx] Fetching .htpasswd from GCP secrets..."

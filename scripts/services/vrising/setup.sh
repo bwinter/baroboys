@@ -1,5 +1,5 @@
-#!/bin/bash
-set -eux
+#!/usr/bin/env bash
+set -euxo pipefail
 
 echo "Ensuring mcrcon is installed"
 source "/root/baroboys/scripts/dependencies/mcrcon/refresh.sh"

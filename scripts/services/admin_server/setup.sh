@@ -1,5 +1,5 @@
-#!/bin/bash
-set -eux
+#!/usr/bin/env bash
+set -euxo pipefail
 
 echo "Ensure Ningx service is setup."
 source "/root/baroboys/scripts/dependencies/nginx/refresh.sh" || exit

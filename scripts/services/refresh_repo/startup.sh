@@ -1,5 +1,5 @@
-#!/bin/bash
-set -eux
+#!/usr/bin/env bash
+set -euxo pipefail
 
 SCRIPT_DIR="/root/baroboys/scripts/services/refresh_repo"
 

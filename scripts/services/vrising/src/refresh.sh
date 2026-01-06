@@ -1,5 +1,5 @@
-#!/bin/bash
-set -eu
+#!/usr/bin/env bash
+set -euxo pipefail
 
 # Paths
 VRISING_DIR="$HOME/baroboys/VRising"

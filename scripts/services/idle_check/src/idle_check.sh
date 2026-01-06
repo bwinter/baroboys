@@ -1,5 +1,5 @@
-#!/bin/bash
-set -euo pipefail
+#!/usr/bin/env bash
+set -euxo pipefail
 
 # === CONFIGURATION ===
 STATIC_NGINX="/opt/baroboys/static"

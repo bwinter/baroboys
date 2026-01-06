@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -euxo pipefail
 
 PROJECT="${PROJECT:-$(gcloud config get-value project 2>/dev/null)}"
 

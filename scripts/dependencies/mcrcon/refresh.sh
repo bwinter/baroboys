@@ -1,5 +1,5 @@
-#!/bin/bash
-set -eux
+#!/usr/bin/env bash
+set -euxo pipefail
 
 # Target binary
 MCRCON_BIN="/usr/local/bin/mcrcon"

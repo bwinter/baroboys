@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+set -euxo pipefail
+
 # In a test script
 ORIG="$HOME/Desktop/Baroboys-backup"
 CLEAN="$HOME/Desktop/Baroboys"
