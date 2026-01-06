@@ -3,7 +3,7 @@
 # =======================
 SHELL            := /bin/bash
 ENV              ?= prod
-GAME             ?= barotrauma
+GAMES            := barotrauma vrising
 PROJECT          := europan-world
 ZONE             := us-west1-c
 INSTANCE         := europa
@@ -16,7 +16,8 @@ PACKER_DIR       := packer
 
 bootstrap: terraform-bootstrap iam-bootstrap
 
-apply: terraform-apply
+# Barotrauma as default for now.
+apply: terraform-apply-barotrauma
 
 destroy: terraform-destroy
 
@@ -37,30 +38,48 @@ admin-logs:
 # =======================
 # 🌍 Terraform
 # =======================
-TF_BACKEND       := backend/$(ENV).hcl
-TF_VARS          := game/$(GAME).tfvars
-TF_DIR           := terraform
+TF_DIR        := terraform
+TF_BACKEND    := $(TF_DIR)/backend/$(ENV).hcl
+TF_SHARED     := $(TF_DIR)/shared.tfvars
 
-.PHONY: terraform-bootstrap terraform-init terraform-plan terraform-apply terraform-destroy
+.PHONY: \
+	terraform-bootstrap \
+	terraform-init \
+	terraform-plan \
+	$(addprefix terraform-apply-, $(GAMES)) \
+	terraform-destroy \
+	terraform-refresh
 
+# -----------------------
+# Bootstrap
+# -----------------------
 terraform-bootstrap:
-	cd $(BOOTSTRAP_DIR) && \
-		./bootstrap_tf_state_bucket.sh
+	cd $(BOOTSTRAP_DIR) && ./bootstrap_tf_state_bucket.sh
 
+# -----------------------
+# Init
+# -----------------------
 terraform-init:
 	cd $(TF_DIR) && terraform init -backend-config=$(TF_BACKEND)
 
+# -----------------------
+# Plan / Destroy / Refresh
+# -----------------------
 terraform-plan: terraform-init
-	cd $(TF_DIR) && terraform plan -var-file=shared.tfvars -var-file=$(TF_VARS)
-
-terraform-apply: terraform-init
-	cd $(TF_DIR) && terraform apply -var-file=shared.tfvars -var-file=$(TF_VARS)
+	cd $(TF_DIR) && terraform plan -var-file=shared.tfvars
 
 terraform-destroy: terraform-init
-	cd $(TF_DIR) && terraform destroy -var-file=shared.tfvars -var-file=$(TF_VARS)
+	cd $(TF_DIR) && terraform destroy -var-file=shared.tfvars
 
 terraform-refresh: terraform-init
-	cd $(TF_DIR) && terraform refresh -var-file=shared.tfvars -var-file=$(TF_VARS)
+	cd $(TF_DIR) && terraform refresh -var-file=shared.tfvars
+
+# -----------------------
+# Apply (game-specific vars)
+# -----------------------
+terraform-apply-%: terraform-init
+	./$(TF_DIR)/build.sh $*
+
 
 # =======================
 # 🔑 Server / Game Password
@@ -128,21 +147,25 @@ ssh-iap:
 # =======================
 # 🧱 Packer Builds
 # =======================
-.PHONY: build-core build-admin build-barotrauma build-vrising build
+.PHONY: \
+	build \
+	build-base-core \
+	build-base-admin \
+	$(addprefix build-game-, $(GAMES))
 
-build-core:
-	./$(PACKER_DIR)/packer_build.sh core $(GAME)
+build-base-core:
+	./$(PACKER_DIR)/build.sh base/core
 
-build-admin:
-	./$(PACKER_DIR)/packer_build.sh admin $(GAME)
+build-base-admin:
+	./$(PACKER_DIR)/build.sh base/admin
 
-build-barotrauma:
-	./$(PACKER_DIR)/packer_build.sh barotrauma $(GAME)
+build-game-%:
+	./$(PACKER_DIR)/build.sh game/$*
 
-build-vrising:
-	./$(PACKER_DIR)/packer_build.sh vrising $(GAME)
-
-build: build-core build-admin build-barotrauma build-vrising
+build: \
+	build-base-core \
+	build-base-admin \
+	$(addprefix build-game-, $(GAMES))
 
 
 # =======================
@@ -183,55 +206,54 @@ clean-git: clean-git-pre clean-git-bfg clean-git-post
 
 help:
 	@echo "🛠️  Common Targets:"
-	@echo "  make bootstrap              - Bootstraps terraform and iam"
-	@echo "  make apply                  - Alias for terraform-apply"
-	@echo "  make destroy                - Alias for terraform-destroy"
+	@echo "  make bootstrap                - Bootstraps terraform and iam"
+	@echo "  make apply                    - Alias for terraform-apply"
+	@echo "  make destroy                  - Alias for terraform-destroy"
 	@echo ""
 
 	@echo "🌍 Terraform:"
-	@echo "  make terraform-bootstrap    - Bootstrap Terraform Buckets"
-	@echo "  make terraform-init         - Initialize Terraform"
-	@echo "  make terraform-plan         - Show Terraform plan"
-	@echo "  make terraform-apply        - Apply Terraform (build VM)"
-	@echo "  make terraform-destroy      - Destroy infrastructure"
-	@echo "  make terraform-refresh      - Refresh Terraform state"
+	@echo "  make terraform-bootstrap      - Bootstrap Terraform Buckets"
+	@echo "  make terraform-init           - Initialize Terraform"
+	@echo "  make terraform-plan           - Show Terraform plan"
+	@echo "  make terraform-apply-<GAME>   - Apply Terraform (build VM)"
+	@echo "  make terraform-destroy        - Destroy infrastructure"
+	@echo "  make terraform-refresh        - Refresh Terraform state"
 	@echo ""
 
 	@echo "🔑 Game / Admin Password"
-	@echo "  make update-password        - Modify game and admin password (requires server restart)"
+	@echo "  make update-password          - Modify game and admin password (requires server restart)"
 	@echo ""
 
 	@echo "🔐 IAM:"
-	@echo "  make iam-bootstrap          - Bootstrap IAM service accounts"
-	@echo "  make iam-add-admin          - Add administrator emails (can start VMs)"
+	@echo "  make iam-bootstrap            - Bootstrap IAM service accounts"
+	@echo "  make iam-add-admin            - Add administrator emails (can start VMs)"
 	@echo ""
 
 	@echo "🐍 Flask Admin Panel:"
-	@echo "  make admin-local            - Run admin server locally"
-	@echo "  make admin-logs             - Fetch logs from admin systemd service"
+	@echo "  make admin-local              - Run admin server locally"
+	@echo "  make admin-logs               - Fetch logs from admin systemd service"
 	@echo ""
 
 	@echo "🎮 Game Mode:"
-	@echo "  make restart-game           - Trigger remote restart of game"
-	@echo "  make save-and-shutdown      - Save game state by triggering shutdown"
+	@echo "  make restart-game             - Trigger remote restart of game"
+	@echo "  make save-and-shutdown        - Save game state by triggering shutdown"
 	@echo ""
 
 	@echo "🧪 SSH Access:"
-	@echo "  make ssh                    - SSH into VM"
-	@echo "  make ssh-iap                - SSH using IAP tunnel"
+	@echo "  make ssh                      - SSH into VM"
+	@echo "  make ssh-iap                  - SSH using IAP tunnel"
 	@echo ""
 
 	@echo "📦 Packer Builds:"
-	@echo "  make build-core             - Build base image (core setup)"
-	@echo "  make build-admin            - Build Admin layer"
-	@echo "  make build-vrising          - Build V Rising Game layer"
-	@echo "  make build-barotraums       - Build Barotrauma Game layer"
-	@echo "  make build                  - Build all image layers"
-	@echo "  make clean                  - Review usage and delete unused images and disks"
+	@echo "  make build-base-core          - Build base image (core setup)"
+	@echo "  make build-base-admin         - Build Admin layer"
+	@echo "  make build-game-<GAME>        - Build V Rising Game layer"
+	@echo "  make build                    - Build all images"
+	@echo "  make clean                    - Review usage and delete unused images and disks"
 	@echo ""
 
 	@echo "🧹 Git History Cleanup:"
-	@echo "  make clean-git-pre          - Scan repo history and write deletable blobs list"
-	@echo "  make clean-git-bfg          - Rewrite repo history using BFG with the deletable list"
-	@echo "  make clean-git-post         - Preview, diff, and optionally push cleaned history"
-	@echo "  make clean-git              - Full pipeline: pre-check → BFG → post-cleanup workflow"
+	@echo "  make clean-git-pre            - Scan repo history and write deletable blobs list"
+	@echo "  make clean-git-bfg            - Rewrite repo history using BFG with the deletable list"
+	@echo "  make clean-git-post           - Preview, diff, and optionally push cleaned history"
+	@echo "  make clean-git                - Full pipeline: pre-check → BFG → post-cleanup workflow"
