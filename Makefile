@@ -9,6 +9,8 @@ ZONE             := us-west1-c
 INSTANCE         := europa
 USER             := bwinter_sc81
 BOOTSTRAP_DIR    := bootstrap
+TOOLS_DIR        := scripts/tools
+PACKER_DIR       := packer
 
 .DEFAULT_GOAL := help
 
@@ -24,10 +26,12 @@ destroy: terraform-destroy
 .PHONY: admin-local admin-logs
 
 admin-local:
-	./scripts/tools/admin/run_admin_server_local.sh
+	cd $(TOOLS_DIR) && \
+	./admin/run_admin_server_local.sh
 
 admin-logs:
-	./scripts/tools/admin/get_admin_server_logs.sh
+	cd $(TOOLS_DIR) && \
+	./admin/get_admin_server_logs.sh
 
 
 # =======================
@@ -64,7 +68,8 @@ terraform-refresh: terraform-init
 .PHONY: update-password
 
 update-password:
-	./scripts/tools/update_password.sh
+	cd $(TOOLS_DIR) && \
+	./update_password.sh
 
 
 # =======================
@@ -79,7 +84,8 @@ iam-bootstrap:
 
 iam-add-admin:
 	read -p "Admin email: " EMAIL; \
-	./scripts/tools/gcp/add_admin.sh $$EMAIL
+	cd $(TOOLS_DIR) && \
+	./gcp/add_admin.sh $$EMAIL
 
 
 # =======================
@@ -125,16 +131,20 @@ ssh-iap:
 .PHONY: build-core build-admin build-barotrauma build-vrising build
 
 build-core:
-	./packer/packer_build.sh core $(GAME)
+	cd $(PACKER_DIR) && \
+	./packer_build.sh core $(GAME)
 
 build-admin:
-	./packer/packer_build.sh admin $(GAME)
+	cd $(PACKER_DIR) && \
+	./packer_build.sh admin $(GAME)
 
 build-barotrauma:
-	./packer/packer_build.sh barotrauma $(GAME)
+	cd $(PACKER_DIR) && \
+	./packer_build.sh barotrauma $(GAME)
 
 build-vrising:
-	./packer/packer_build.sh vrising $(GAME)
+	cd $(PACKER_DIR) && \
+	./packer_build.sh vrising $(GAME)
 
 build: build-core build-admin build-barotrauma build-vrising
 
@@ -145,22 +155,26 @@ build: build-core build-admin build-barotrauma build-vrising
 .PHONY: clean
 
 clean:
-	./scripts/tools/gcp/review_and_cleanup.sh
+	cd $(TOOLS_DIR) && \
+	./gcp/review_and_cleanup.sh
 
 # Git Cleanup Targets
 .PHONY: clean-git-pre clean-git-bfg clean-git-post clean-git
 
 clean-git-pre:
 	echo "🔍 [print_git_info] Scanning for large blobs and writing deletable list..."
-	./scripts/tools/clean_git/bfg_pre_cleanup.sh
+	cd $(TOOLS_DIR) && \
+	./clean_git/bfg_pre_cleanup.sh
 
 clean-git-bfg:
 	echo "🧹 [bfg_cleanup] Running BFG history rewrite using deletable list..."
-	./scripts/tools/clean_git/bfg_cleanup.sh
+	cd $(TOOLS_DIR) && \
+	./clean_git/bfg_cleanup.sh
 
 clean-git-post:
 	echo "✅ [bfg_post_cleanup] Cloning preview, diffing, pushing cleaned history..."
-	./scripts/tools/clean_git/bfg_post_cleanup.sh
+	cd $(TOOLS_DIR) && \
+	./clean_git/bfg_post_cleanup.sh
 
 clean-git: clean-git-pre clean-git-bfg clean-git-post
 	echo "🎉 [clean-git] Repo fully cleaned, reviewed, and remote history overwritten (if confirmed)."
