@@ -6,12 +6,13 @@ set -euxo pipefail
 # - terraform/game/<name>.tfvars must exist
 # - Only applies games, uses shared.tfvars
 
-if [[ $# -ne 1 ]]; then
-  echo "Usage: $0 <game-name>"
+if [[ $# -ne 2 ]]; then
+  echo "Usage: $0 <game-name> <env>"
   exit 1
 fi
 
 GAME="$1"
+ENV="$2"
 TF_DIR="terraform"
 
 # Validate vars file exists **relative to repo root**

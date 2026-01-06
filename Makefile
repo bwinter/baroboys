@@ -77,7 +77,7 @@ terraform-refresh: terraform-init
 # Apply (game-specific vars)
 # -----------------------
 $(foreach game,$(GAMES),\
-  $(eval terraform-apply-$(game): terraform-init ; ./$(TF_DIR)/build.sh $(game)))
+  $(eval terraform-apply-$(game): ; ./$(TF_DIR)/build.sh $(game) $(ENV)))
 
 
 # =======================
