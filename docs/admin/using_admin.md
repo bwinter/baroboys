@@ -1,71 +1,65 @@
-# 🎮🧛‍♂️ V Rising Server Admin Guide
+# 🎮🧛‍♂️ Power User Guide
 
-## ✅ Available Operations
+## Index
 
-* 🟢 Start the server
-* 💾 Save game state and gracefully shut down
-* 🔍 Check system status
-* 📜 View logs
+* [🖥️ The Server](#-the-server)
+* [🌐 Web Interface](#-web-interface)
+* [📜 Logs](#-logs)
+* [🦸‍♂️ Super Admin Notes](#-super-admin-notes)
 
 ---
 
-## 🖥️ VM Lifecycle
+## 🖥️ The Server
 
-👉 [**Open GCP VM Admin Page
-**](https://console.cloud.google.com/compute/instancesDetail/zones/us-west1-c/instances/europa?project=europan-world)
+👉 [**Open GCP VM Admin Page**](https://console.cloud.google.com/compute/instancesDetail/zones/us-west1-c/instances/europa?project=europan-world)
 
 1. 🟢 Click **Start**
 
     * Boots the server
     * Loads the most recent saved game state
 
-2. 🟡 Each game saves on its own cadence.
+2. 🟡 Games don't have a consistent technique for saving. 
+   - Some do on intervals, others checkpoints.
 
-3. 🔴 To shut down, visit the **Web Admin Interface**  
-   *See `💾 Save & Shutdown` section below*
+3. 🔴 To shut down, visit the [Web Admin Interface](#-web-admin-interface) **OR** simply logout and wait for idle timeout.
 
 ---
 
-### 🌐 Use the Admin Panel
+## 🌐 Web Interface
 
-1. Visit:
+1. **Visit**:
 
    ```
    http://<server-external-ip>:8080/
    ```
 
-   > You can find this IP *see `🖥️ VM Lifecycle` section above*
+   `<server-external-ip>` is the [**GCP VM's IP**](https://console.cloud.google.com/compute/instancesDetail/zones/us-west1-c/instances/europa?project=europan-world)
 
-2. Login:
+2. **Login**:
 
     * **Username:** `Hex`
     * **Password:** *(same as game password)*
 
-3. Click **🟠 Save & Shutdown**
+3. **💾 Save & Shutdown**
 
     * Captures the latest save
     * Powers down the server
-
-   ⚠️ **Note:** This ensures the latest progress is saved remotely before shutting down.
-
-4. When the server shuts down, the page will turn orange.
-
-    * Can also watch `shutdown.log`
 
 ---
 
 ## 📜 Logs
 
-Click **📜 View Logs** in the admin panel to inspect server behavior.
+Click the **📜 Logs** dropdown in the admin panel to inspect server various behavior.
 
 ### Log Descriptions
 
-| Log File          | Description                                                           |
-|-------------------|-----------------------------------------------------------------------|
-| **startup.logs**  | Records the game's boot process and initialization steps.             |
-| **shutdown.logs** | Tracks actions during graceful shutdown, including save confirmation. |
+| Log File               | Description                                                          |
+|------------------------|----------------------------------------------------------------------|
+| **game-startup.logs**  | Game's erver Logs.                                                   |
+| **game-shutdown.logs** | Actions taken during graceful shutdown, including save confirmation. |
+| ***.logs**             | More system level logs exists, this is not an exhaustive list.       |
 
-Logs are accessible from the admin page and are automatically refreshed.
+Logs are automatically refreshed.
 
 ---
 
@@ -74,10 +68,20 @@ Logs are accessible from the admin page and are automatically refreshed.
 ### 🔐 Rotate Admin Password
 
 ```bash
-htpasswd -c temp_htpasswd vrising  # Replace current credentials
-gcloud secrets versions add nginx-htpasswd \
-  --data-file=temp_htpasswd
+make update-password
 
-# 🚨 Then SSH into the server and restart Nginx:
+# 🚨 Then SSH into the server
+make ssh
+```
+
+On the server:
+```bash
+# restart Nginx:
 /usr/bin/sudo systemctl reload nginx
+
+# rebuild configs:
+/usr/bin/sudo systemctl restart game-setup.service
+
+# restart the server:
+/usr/bin/sudo systemctl restart game-startup.service
 ```
