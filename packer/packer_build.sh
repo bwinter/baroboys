@@ -27,7 +27,7 @@ BUILD_DIR="packer/tmp"
 PACKER_TEMPLATE_FILE="packer-${LAYER}.pkr.hcl"
 
 TF_SHARED_VARS_FILE="${TERRAFORM_DIR}/shared.tfvars"
-TF_ENV_VARS_FILE="${TERRAFORM_DIR}/${GAME}.tfvars"
+TF_ENV_VARS_FILE="${TERRAFORM_DIR}/game/${GAME}.tfvars"
 TF_VAR_DEFS_FILE="${TERRAFORM_DIR}/variables.tf"
 
 PACKER_SHARED_VARS_FILE="shared.pkrvars.hcl"
