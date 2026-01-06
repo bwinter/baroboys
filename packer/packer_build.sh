@@ -31,7 +31,7 @@ TF_GAME_VARS_FILE="${TERRAFORM_DIR}/game/${GAME}.tfvars"
 TF_VAR_DEFS_FILE="${TERRAFORM_DIR}/variables.tf"
 
 PACKER_SHARED_VARS_FILE="shared.pkrvars.hcl"
-PACKER_ENV_VARS_FILE="${GAME}.pkrvars.hcl"
+PACKER_GAME_VARS_FILE="${GAME}.pkrvars.hcl"
 PACKER_VAR_DEFS_FILE="variables.pkr.hcl"
 
 # Validate required files exist
@@ -54,7 +54,7 @@ cp "${PACKER_DIR}/${PACKER_TEMPLATE_FILE}" "${BUILD_DIR}/packer.pkr.hcl"
 cp "${SCRIPT_DIR}/src/refresh_repo.sh" "${BUILD_DIR}/refresh_repo.sh"
 
 cp "${TF_SHARED_VARS_FILE}" "${BUILD_DIR}/${PACKER_SHARED_VARS_FILE}"
-cp "${TF_GAME_VARS_FILE}" "${BUILD_DIR}/${PACKER_ENV_VARS_FILE}"
+cp "${TF_GAME_VARS_FILE}" "${BUILD_DIR}/${PACKER_GAME_VARS_FILE}"
 cp "${TF_VAR_DEFS_FILE}" "${BUILD_DIR}/${PACKER_VAR_DEFS_FILE}"
 
 chmod +x "${BUILD_DIR}/refresh_repo.sh"
@@ -65,5 +65,5 @@ packer init .
 packer build \
   --force \
   -var-file="${PACKER_SHARED_VARS_FILE}" \
-  -var-file="${PACKER_ENV_VARS_FILE}" \
+  -var-file="${PACKER_GAME_VARS_FILE}" \
   .
