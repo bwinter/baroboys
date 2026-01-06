@@ -6,15 +6,15 @@ from functools import lru_cache
 from flask import Flask, render_template, send_from_directory, Response
 
 # Environment-aware paths
-ENV = os.getenv("FLASK_ENV", "production")
+ENV = os.getenv("FLASK_ENV", "prod")
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_DIR = os.path.join(THIS_DIR, "static") if ENV == "development" else "/opt/baroboys/static"
-TEMPLATE_DIR = os.path.join(THIS_DIR, "templates") if ENV == "development" else "/opt/baroboys/templates"
-LOG_DIR = os.path.join(THIS_DIR, "dev/logs") if ENV == "development" else "/var/log/baroboys"
-STATUS_DIR = os.path.join(THIS_DIR, "dev/status") if ENV == "development" else "/dev/null"
+STATIC_DIR = os.path.join(THIS_DIR, "static") if ENV == "dev" else "/opt/baroboys/static"
+TEMPLATE_DIR = os.path.join(THIS_DIR, "templates") if ENV == "dev" else "/opt/baroboys/templates"
+LOG_DIR = os.path.join(THIS_DIR, "dev/logs") if ENV == "dev" else "/var/log/baroboys"
+STATUS_DIR = os.path.join(THIS_DIR, "dev/status") if ENV == "dev" else "/dev/null"
 
-if ENV == "development":
-    print("🧪 Flask running in development mode – using stubbed logs.")
+if ENV == "dev":
+    print("🧪 Flask running in dev mode – using stubbed logs.")
 
 app = Flask(__name__, template_folder=TEMPLATE_DIR)
 
@@ -82,7 +82,7 @@ def trigger_shutdown():
     try:
         now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
-        if ENV == "development":
+        if ENV == "dev":
             print("🔧 [Dev Mode] Mock shutdown triggered.")
             return {
                 "status": "[Dev Mode] Shutdown triggered",
@@ -120,7 +120,7 @@ def tail_log(name):
         "VRisingServer.log": os.path.join(LOG_DIR, "VRisingServer.log"),
     }
 
-    if ENV == "development":
+    if ENV == "dev":
         log_map.update({
             "nginx_access": os.path.join(LOG_DIR, "nginx_access.log"),
             "nginx_error": os.path.join(LOG_DIR, "nginx_error.log"),
