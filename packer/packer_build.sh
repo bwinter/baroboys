@@ -27,7 +27,7 @@ BUILD_DIR="packer/tmp"
 PACKER_TEMPLATE_FILE="packer-${LAYER}.pkr.hcl"
 
 TF_SHARED_VARS_FILE="${TERRAFORM_DIR}/shared.tfvars"
-TF_ENV_VARS_FILE="${TERRAFORM_DIR}/game/${GAME}.tfvars"
+TF_GAME_VARS_FILE="${TERRAFORM_DIR}/game/${GAME}.tfvars"
 TF_VAR_DEFS_FILE="${TERRAFORM_DIR}/variables.tf"
 
 PACKER_SHARED_VARS_FILE="shared.pkrvars.hcl"
@@ -39,7 +39,7 @@ for f in \
   "${PACKER_DIR}/${PACKER_TEMPLATE_FILE}" \
   "${SCRIPT_DIR}/src/refresh_repo.sh" \
   "${TF_SHARED_VARS_FILE}" \
-  "${TF_ENV_VARS_FILE}" \
+  "${TF_GAME_VARS_FILE}" \
   "${TF_VAR_DEFS_FILE}"
 do
   [[ -f "$f" ]] || { echo "Missing file: $f"; exit 1; }
@@ -54,7 +54,7 @@ cp "${PACKER_DIR}/${PACKER_TEMPLATE_FILE}" "${BUILD_DIR}/packer.pkr.hcl"
 cp "${SCRIPT_DIR}/src/refresh_repo.sh" "${BUILD_DIR}/refresh_repo.sh"
 
 cp "${TF_SHARED_VARS_FILE}" "${BUILD_DIR}/${PACKER_SHARED_VARS_FILE}"
-cp "${TF_ENV_VARS_FILE}" "${BUILD_DIR}/${PACKER_ENV_VARS_FILE}"
+cp "${TF_GAME_VARS_FILE}" "${BUILD_DIR}/${PACKER_ENV_VARS_FILE}"
 cp "${TF_VAR_DEFS_FILE}" "${BUILD_DIR}/${PACKER_VAR_DEFS_FILE}"
 
 chmod +x "${BUILD_DIR}/refresh_repo.sh"
