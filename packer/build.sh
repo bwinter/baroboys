@@ -49,7 +49,7 @@ done
 rm -rf "$BUILD_DIR"
 mkdir -p "$BUILD_DIR"
 
-cp "$PACKER_TEMPLATE_FILE" "$BUILD_DIR/packer.pkr.hcl"
+cp "$PACKER_TEMPLATE_FILE" "$BUILD_DIR/${META}-${NAME}-packer.pkr.hcl"
 cp "$REFRESH_SCRIPT_SRC" "$BUILD_DIR/refresh_repo.sh"
 chmod +x "$BUILD_DIR/refresh_repo.sh"
 
