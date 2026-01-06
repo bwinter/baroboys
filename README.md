@@ -2,9 +2,9 @@
 
 This project automates the hosting of game servers (currently works for VRising and Barotrauma).
 
-A design priority was low cost, ideally 0 when unused. To that end, this repo saves (essentially) all state to GitHub - allowing `terraform destory` to purge GCP down to a near 0 cost.
+A design priority was low cost, ideally 0 when unused. To that end, this repo saves all state (essentially) to GitHub - allowing `terraform destory` to purge GCP down to a near 0 cost.
 
-(I would love to have demoed k8s and Go in this project, but I think they would be unnecessary complexities for a reltiavely simple project.)
+(I would love to have demoed k8s and Go in this project, but I think they would be unnecessary complexities for a relatively simple project.)
 
 Tech Stack tl;dr is: GCP, Packer, Terraform, and Bash. (+ Steam, and a few linux tools)
 
@@ -94,13 +94,14 @@ make build
 ### 4. Apply Terraform to create the VM and start the game server
 
 ```bash
-make apply GAME=barotrauma
+make terraform-apply-<game>
 ```
 
+* Replace `<game>` with `vrising` or `barotrauma`.
 * This boots game VM
-* Note the server shutsdown after 30 minutes of inactivity. Saveing the game at the same time.
+* Note the server shuts down after 30 minutes of inactivity. Saving the game at the same time.
 * To restart the server, simply power it back on via the GCP UI.
-  * To grant others ability to start server, see `make iam-add-admin`.
+  * To grant others the ability to start server, see `make iam-add-admin`.
 
 ---
 
