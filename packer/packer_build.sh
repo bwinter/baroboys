@@ -10,7 +10,7 @@ LAYER="$1"
 GAME="$2"
 
 case "$GAME" in
-  prod|staging|dev) ;;
+  barotrauma|vrising) ;;
   *)
     echo "Invalid GAME: $GAME"
     exit 1
