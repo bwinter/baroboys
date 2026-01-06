@@ -10,7 +10,6 @@ INSTANCE         := europa
 USER             := bwinter_sc81
 BOOTSTRAP_DIR    := bootstrap
 TOOLS_DIR        := scripts/tools
-PACKER_DIR       := packer
 
 .DEFAULT_GOAL := help
 
@@ -46,9 +45,9 @@ TF_SHARED     := shared.tfvars
 	terraform-bootstrap \
 	terraform-init \
 	terraform-plan \
-	$(addprefix terraform-apply-, $(GAMES)) \
 	terraform-destroy \
-	terraform-refresh
+	terraform-refresh \
+	$(addprefix terraform-apply-, $(GAMES))
 
 # -----------------------
 # Bootstrap
@@ -77,8 +76,8 @@ terraform-refresh: terraform-init
 # -----------------------
 # Apply (game-specific vars)
 # -----------------------
-terraform-apply-%: terraform-init
-	./$(TF_DIR)/build.sh $*
+$(foreach game,$(GAMES),\
+  $(eval terraform-apply-$(game): terraform-init ; ./$(TF_DIR)/build.sh $(game)))
 
 
 # =======================
@@ -147,6 +146,8 @@ ssh-iap:
 # =======================
 # 🧱 Packer Builds
 # =======================
+PACKER_DIR       := packer
+
 .PHONY: \
 	build \
 	build-base-core \
@@ -159,8 +160,8 @@ build-base-core:
 build-base-admin:
 	./$(PACKER_DIR)/build.sh base/admin
 
-build-game-%:
-	./$(PACKER_DIR)/build.sh game/$*
+$(foreach game,$(GAMES),\
+  $(eval build-game-$(game): ; ./$(PACKER_DIR)/build.sh game/$(game)))
 
 build: \
 	build-base-core \
