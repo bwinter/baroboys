@@ -39,8 +39,8 @@ admin-logs:
 # 🌍 Terraform
 # =======================
 TF_DIR        := terraform
-TF_BACKEND    := $(TF_DIR)/backend/$(ENV).hcl
-TF_SHARED     := $(TF_DIR)/shared.tfvars
+TF_BACKEND    := backend/$(ENV).hcl
+TF_SHARED     := shared.tfvars
 
 .PHONY: \
 	terraform-bootstrap \

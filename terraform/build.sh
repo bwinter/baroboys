@@ -13,13 +13,13 @@ fi
 
 GAME="$1"
 TF_DIR="terraform"
-TF_SHARED="$TF_DIR/shared.tfvars"
-TF_FILE="$TF_DIR/game/$GAME.tfvars"
 
-# Validate vars file exists
-[[ -f "$TF_FILE" ]] || { echo "Missing Terraform vars file: $TF_FILE"; exit 1; }
+# Validate vars file exists **relative to repo root**
+[[ -f "$TF_DIR/game/$GAME.tfvars" ]] || { echo "Missing Terraform vars file: $TF_DIR/game/$GAME.tfvars"; exit 1; }
 
-# Apply
+# Change to terraform dir for apply
 cd "$TF_DIR"
+
+# Now paths are relative to current directory
 terraform init -backend-config="backend/${ENV}.hcl"
-terraform apply -var-file="$TF_SHARED" -var-file="$TF_FILE"
+terraform apply -var-file="shared.tfvars" -var-file="game/$GAME.tfvars"
