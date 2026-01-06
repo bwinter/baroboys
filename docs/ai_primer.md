@@ -26,9 +26,9 @@ Each game world defines its own startup parameters, save behavior, and logging f
 
 Baroboys uses Packer to build layered GCE images:
 
-* **Core laybe**: Common runtime tools (shell orchestration, systemd services, gcloud monitoring)
+* **Core layer**: Common runtime tools (shell orchestration, systemd services, gcloud monitoring)
 * **Admin layer**: Admin server and SteamCMD
-* **Game layer**: Install or update game binaries, and register services Wine and xvfb
+* **Game layer**: Install or update game binaries and register services Wine and xvfb
 
 This model minimizes rebuilds and allows rapid iteration or hotfixes by Git + restart.
 
@@ -36,7 +36,7 @@ This model minimizes rebuilds and allows rapid iteration or hotfixes by Git + re
 
 ## ⚙️ Operational Flow
 
-### Startup (e.g. V Rising)
+### Startup (e.g., V Rising)
 
 ```
 📱 GCP VM heartbeat received
@@ -47,7 +47,7 @@ This model minimizes rebuilds and allows rapid iteration or hotfixes by Git + re
 🕒 Ready in 41s
 ```
 
-### Shutdown (e.g. V Rising)
+### Shutdown (e.g., V Rising)
 
 ```
 📣 In-game: "Server shutting down in 60s"
@@ -93,8 +93,8 @@ These integrate with the existing `game-shutdown.service` and respect per-game s
 
 1. `game-shutdown.service` runs *before* VM halts
     1. Executes `$HOME/baroboys/scripts/services/<GAME>/shutdown.sh`
-       1. Game server is gracefully shut down
-       2. Save committed to Git and pushed upstream
+        1. Game server is gracefully shut down
+        2. Save committed to Git and pushed upstream
 2. VM shutdown occurs
 
 ---

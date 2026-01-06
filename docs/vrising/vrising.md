@@ -1,4 +1,4 @@
-# 🧰 V Rising Server Admin: 
+# 🧰 V Rising Server Admin:
 
 ---
 

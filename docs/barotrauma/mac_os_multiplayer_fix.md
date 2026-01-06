@@ -1,6 +1,6 @@
 ## Mac OS
 
-Worth mentioning, on Mac OS. At time of writing this patch was required on clients to play multiplayer.
+Worth mentioning, on macOS. At the time of writing this patch was required on clients to play multiplayer.
 
 https://steamcommunity.com/sharedfiles/filedetails/?id=2559634234
 

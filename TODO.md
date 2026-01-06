@@ -7,7 +7,7 @@
 - Might be interesting to demo K8s, GoLang and React in here. (Future)
     - AI? - Admin console?
     - GoLang - ...
-    - Kubernetes? - Running services maybe?
+    - Kubernetes? — Running services maybe?
 - Tests?
 - Pipelines?
 
@@ -18,8 +18,8 @@
 # Done
 
 - Improve game selection (Currently a bit clunky, needing to edit the terraform files directly.)
-  - Can now specify via a GAME env var for the makefile's terraform commands.
-  - Using custom tfvars files for each game.
+    - Can now specify via a GAME env var for the makefile's terraform commands.
+    - Using custom tfvars files for each game.
 - Get emails into secrets (Security)
 - Clean up IAM files and workflow (Fix / Upgrade)
     - Reworked this and simplified to a single design.
@@ -28,5 +28,5 @@
     - Q: It's possible I won't be able to due to early cloning needs. It's unclear what SA Packer uses. 🤔
     - A: Removed this SA for now.
     - Q: Maybe part of the refactor here is getting packer to use the vm SA. It is basically being built in a VM. Hmm.
-      - N/A: Packer seems to use my local credentials.
+        - N/A: Packer seems to use my local credentials.
 
