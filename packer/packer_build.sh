@@ -1,18 +1,18 @@
-#!/usr/bin/env bash
+#!/usr/bin/GAME bash
 set -euo pipefail
 
 if [[ $# -ne 2 ]]; then
-  echo "Usage: $0 <layer-name> <env>"
+  echo "Usage: $0 <layer-name> <GAME>"
   exit 1
 fi
 
 LAYER="$1"
-ENV="$2"
+GAME="$2"
 
-case "$ENV" in
+case "$GAME" in
   prod|staging|dev) ;;
   *)
-    echo "Invalid env: $ENV"
+    echo "Invalid GAME: $GAME"
     exit 1
     ;;
 esac
@@ -27,11 +27,11 @@ BUILD_DIR="packer/tmp"
 PACKER_TEMPLATE_FILE="packer-${LAYER}.pkr.hcl"
 
 TF_SHARED_VARS_FILE="${TERRAFORM_DIR}/shared.tfvars"
-TF_ENV_VARS_FILE="${TERRAFORM_DIR}/${ENV}.tfvars"
+TF_ENV_VARS_FILE="${TERRAFORM_DIR}/${GAME}.tfvars"
 TF_VAR_DEFS_FILE="${TERRAFORM_DIR}/variables.tf"
 
 PACKER_SHARED_VARS_FILE="shared.pkrvars.hcl"
-PACKER_ENV_VARS_FILE="${ENV}.pkrvars.hcl"
+PACKER_ENV_VARS_FILE="${GAME}.pkrvars.hcl"
 PACKER_VAR_DEFS_FILE="variables.pkr.hcl"
 
 # Validate required files exist

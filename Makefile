@@ -125,16 +125,16 @@ ssh-iap:
 .PHONY: build-core build-admin build-barotrauma build-vrising build
 
 build-core:
-	./packer/packer_build.sh core $(ENV)
+	./packer/packer_build.sh core $(GAME)
 
 build-admin:
-	./packer/packer_build.sh admin $(ENV)
+	./packer/packer_build.sh admin $(GAME)
 
 build-barotrauma:
-	./packer/packer_build.sh barotrauma $(ENV)
+	./packer/packer_build.sh barotrauma $(GAME)
 
 build-vrising:
-	./packer/packer_build.sh vrising $(ENV)
+	./packer/packer_build.sh vrising $(GAME)
 
 build: build-core build-admin build-barotrauma build-vrising
 
