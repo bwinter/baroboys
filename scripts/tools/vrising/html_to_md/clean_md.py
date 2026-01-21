@@ -48,7 +48,7 @@ def clean_markdown(input_text):
 
 def main():
     if len(sys.argv) != 3:
-        print("Usage: clean_md.py input.md output.md")
+        print("Usage: clean_md.py input.html output.md")
         sys.exit(1)
 
     with open(sys.argv[1], 'r', encoding='utf-8') as f:
