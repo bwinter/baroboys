@@ -3,6 +3,8 @@ set -euxo pipefail
 
 # Paths
 VRISING_DIR="$HOME/baroboys/VRising"
+ADMIN_LIST="$VRISING_DIR/Data/Settings/adminlist.txt"
+BAN_LIST="$VRISING_DIR/Data/Settings/banlist.txt"
 SAVE_DIR="$VRISING_DIR/Data/Saves/v4/TestWorld-1"
 HOST_JSON="$VRISING_DIR/VRisingServer_Data/StreamingAssets/Settings/ServerHostSettings.json"
 GAME_JSON="$VRISING_DIR/VRisingServer_Data/StreamingAssets/Settings/ServerGameSettings.json"
@@ -30,6 +32,7 @@ else
   echo "✅ Latest .save is up-to-date or newer than .gz"
 fi
 
+# Debugging
 echo "=== BEFORE steamcmd ==="
 id
 echo "HOME=$HOME"
@@ -58,8 +61,8 @@ cd "$HOME/baroboys"
 git checkout -- \
   "$HOST_JSON" \
   "$GAME_JSON" \
-  "$VRISING_DIR/Data/Settings/adminlist.txt" \
-  "$VRISING_DIR/Data/Settings/banlist.txt"
+  "$ADMIN_LIST" \
+  "$BAN_LIST"
 
 
 # Fetch the RCON password from GCP Secret Manager
