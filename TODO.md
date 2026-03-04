@@ -1,5 +1,8 @@
 # Project Backlog (of sorts)
 
+Add Nix / Claude to demo a modern env tool and some AI interfacing?
+Get tf config into bucket so any system can run it.
+
 - Valheim?
 - Kubernetes?
 - Rails?
