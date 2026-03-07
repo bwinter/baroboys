@@ -149,7 +149,6 @@ Local dev: `make admin-local` (runs both processes, mirrors prod layout, fetches
 idle_check.sh OR admin panel OR VM stop
   → systemctl restart game-shutdown.service
   → shutdown.sh (as bwinter_sc81)
-      → notify players (VRising: mcrcon RCON)
       → kill game process, wait for clean exit
       → compress/stage save file
       → git commit + pull --rebase + push origin main
@@ -193,9 +192,8 @@ Logs are accessible via admin panel dropdown or `make admin-logs`.
 
 See [`docs/known-issues.md`](docs/known-issues.md) for full detail.
 
-1. `mcrcon_cmd()` is stubbed in `admin_server.py` — RCON not functional from web UI
-2. Flask admin server runs as root (security concern)
-3. `game-shutdown.service` `TimeoutStartSec=300` may be too short for VRising shutdown (~390s worst case)
+1. Flask admin server runs as root (security concern)
+2. `bfg_cleanup.sh` hardcodes `$HOME/Desktop/Baroboys` — broken on any other setup
 
 ---
 
