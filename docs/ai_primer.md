@@ -1,118 +1,129 @@
-# 🧠 Baroboys AI Primer: Vision & Meta-Goals
+# Baroboys AI Primer
 
-Baroboys is a modular game server orchestration platform—part DevOps playground. It blends repeatable infrastructure with expressive automation, giving each server memory, lifecycle, and recovery.
+Baroboys is a GCP game server hosting platform for **V Rising** and **Barotrauma**. It blends
+repeatable infrastructure with expressive automation — each server boots from a Packer image,
+pulls the latest repo, runs systemd-managed services, commits save state to Git on shutdown,
+and powers off. Near-zero cost when idle.
 
-The system supports multiple games (e.g. *V Rising*, *Barotrauma*) under a unified orchestration layer. It uses Terraform to provision GCP VMs, Packer to bake layered images, and systemd + shell scripts to coordinate startup, shutdown, and state capture.
-
----
-
-## 🌌 Operating Philosophy
-
-Baroboys servers are: composable, inspectable, and resilient. A game world isn't just launched—it spins up with a boot history, commits its memory to Git, and sleeps gracefully when commanded.
-
-You don't babysit it; you steer it.
+**For a full system map, see [`docs/architecture.md`](architecture.md).**
 
 ---
 
-## ♻️ Game-Aware Modularity
+## Operating Philosophy
 
-Systemd units manage lifecycles.
+Servers are: composable, inspectable, and cost-aware.
 
-Each game world defines its own startup parameters, save behavior, and logging footprint.
-
----
-
-## 🛠️ Image Layering Strategy
-
-Baroboys uses Packer to build layered GCE images:
-
-* **Core layer**: Common runtime tools (shell orchestration, systemd services, gcloud monitoring)
-* **Admin layer**: Admin server and SteamCMD
-* **Game layer**: Install or update game binaries and register services Wine and xvfb
-
-This model minimizes rebuilds and allows rapid iteration or hotfixes by Git + restart.
+A game world isn't just launched — it spins up with a cloned repo, runs from baked images,
+commits its memory to Git, and shuts down gracefully. You don't babysit it; you steer it.
 
 ---
 
-## ⚙️ Operational Flow
+## Key Facts
 
-### Startup (e.g., V Rising)
+| Item | Value |
+|------|-------|
+| GCP project | `europan-world` |
+| VM name | `europa` |
+| Zone | `us-west1-c` |
+| Machine type | `n2-custom-2-6144` |
+| VM user | `bwinter_sc81` |
+| TF state | `gs://tf-state-baroboys/terraform/prod` |
+| Service account | `vm-runtime@europan-world.iam.gserviceaccount.com` |
+| Admin panel | `http://<VM-IP>:8080/` (user: `Hex`, pw: server-password) |
+
+---
+
+## Image Layering
 
 ```
-📱 GCP VM heartbeat received
-🌐 xvfb + Wine initialized
-🧬 Active game: V Rising
-🔄 AutoSave_1472.save.gz restored
-🔗 Git commit history intact
-🕒 Ready in 41s
+debian-12 → baroboys-core → baroboys-admin → baroboys-barotrauma
+                                           └→ baroboys-vrising
 ```
 
-### Shutdown (e.g., V Rising)
+- **core**: git, gcloud, Ops Agent, refresh-repo service
+- **admin**: Nginx (:8080), SteamCMD, Flask admin server (:5000), idle-check timer
+- **barotrauma**: Barotrauma native Linux server (Steam app 1026340)
+- **vrising**: Xvfb + WineHQ + VRising Windows server (Steam app 1829350)
+
+---
+
+## Boot Sequence (brief)
+
+1. GCE runs startup-script → `systemctl start game-startup.service`
+2. `refresh-repo-startup` pulls latest Git for root and `bwinter_sc81`
+3. `game-setup` (root): updates game via SteamCMD, fetches `server-password` secret, runs `envsubst` on config templates
+4. `game-startup` (bwinter_sc81): runs the game process
+5. `admin-server-startup` (root): Flask on :5000; Nginx on :8080 proxies `/api/*` to Flask
+6. `idle-check.timer`: fires every 5 min, auto-shuts down after 30 min CPU < 5%
+
+---
+
+## Shutdown Sequence (brief)
+
+Triggered by admin panel, idle-check, or VM stop metadata.
+
+1. `game-shutdown.service` → `shutdown.sh`
+2. Notify players (VRising: mcrcon), kill game process, wait for clean exit
+3. Compress/stage save file
+4. `git commit` → `git pull --rebase` → `git push origin main`
+5. `sudo systemctl poweroff`
+
+---
+
+## Secrets (GCP Secret Manager)
+
+| Secret | Purpose |
+|--------|---------|
+| `github-deploy-key` | ECDSA SSH key to clone/pull private repo on boot |
+| `server-password` | Game join + RCON password (injected via `envsubst` into server configs) |
+| `nginx-htpasswd` | Basic auth for admin panel |
+
+---
+
+## Admin Panel
+
+- External URL: `http://<VM-IP>:8080/` (from `terraform output admin_server_url`)
+- Nginx handles auth and serves static files; proxies `/api/*` to Flask on `127.0.0.1:5000`
+- Flask app: `scripts/services/admin_server/src/admin_server.py`
+- On-VM install: `/opt/baroboys/admin_server.py` + `/opt/baroboys/static/`
+- `status.json` is written by `idle_check.sh` every 5 min and served directly by Nginx
+
+**Local dev:** `make admin-local` (runs Flask + Nginx locally, mirrors prod layout)
+
+---
+
+## Observability
+
+- Logs: `/var/log/baroboys/` (startup, shutdown, idle_check, admin_server, xvfb logs)
+- VRising game log: `/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log`
+- Ops Agent ships metrics and journald logs to GCP Cloud Logging/Monitoring
+- Admin panel streams any log via `GET /api/logs/<name>`
+
+---
+
+## Teardown
 
 ```
-📣 In-game: "Server shutting down in 60s"
-🧠 game-shutdown.service triggered (Before=halt.target)
-📂 save_game.sh → setup_vrising.sh (or setup_barotrauma.sh)
-🔗 Git commit: "Autosave @ 2025-05-28 05:21 UTC"
-🚁 Pushed upstream
-🔺 VM idle, safe to terminate
+game-shutdown.service
+  └── shutdown.sh
+        ├── gracefully stop game
+        ├── git commit save state
+        ├── git push origin main
+        └── sudo systemctl poweroff
 ```
 
-> **Note:** These sequences are *illustrative design goals*, not literal logs.
-
 ---
 
-## 🔐 Secrets and Observability
-
-* `.htpasswd` is pulled securely via GCP Secret Manager at runtime
-* Nginx serves the log directory at `http://[SERVER_EXTERNAL_IP]:8080/logs/`
-* Auth protected via Basic Auth (`/etc/nginx/.htpasswd`)
-* File system permissions are adjusted to expose logs without overexposure
-* Log directory: `/home/bwinter_sc81/baroboys/VRising/logs/`, `/var/log/baroboys/`
-* Typical logs:
-
-    * `VRisingServer.log`
-    * `game-startup.log`
-    * `game-shutdown.log`
-
-Nginx config is managed via `scripts/dependencies/nginx/apt_refresh.sh`, and registered as a site via `/etc/nginx/sites-available/vrising-admin`.
-
----
-
-## 🛌 Idle Shutdown Strategy
-
-Baroboys supports automatic shutdown of idle game servers.
-
-* **Resource-aware**: Use CPU thresholds after N minutes with idle activity
-
-These integrate with the existing `game-shutdown.service` and respect per-game shutdown protocols.
-
----
-
-## 🔺 Teardown Pipeline Summary
-
-1. `game-shutdown.service` runs *before* VM halts
-    1. Executes `$HOME/baroboys/scripts/services/<GAME>/shutdown.sh`
-        1. Game server is gracefully shut down
-        2. Save committed to Git and pushed upstream
-2. VM shutdown occurs
-
----
-
-## ⚖️ System Diagram (Mermaid)
+## Mermaid Overview
 
 ```mermaid
 flowchart TD
-    GCP[GCP VM]
-    Game[V Rising / Barotrauma]
-    Systemd[Systemd Units]
-    Scripts[Shell Scripts]
-    Git[Git Save Repo]
-    Logs[Nginx Log View]
-
-    GCP --> Systemd
-    Systemd --> Scripts
-    Scripts --> Game
-    Game --> Logs
-    Scripts --> Git
+    GCP[GCP VM boot] --> RefreshRepo[refresh-repo: git pull]
+    RefreshRepo --> Setup[game-setup: SteamCMD + envsubst]
+    RefreshRepo --> AdminSetup[admin-server-setup: nginx + flask]
+    Setup --> Game[game-startup: VRising / Barotrauma]
+    AdminSetup --> Admin[admin-server-startup: Flask :5000 + Nginx :8080]
+    Game --> IdleCheck[idle-check.timer every 5min]
+    IdleCheck -->|30min idle| Shutdown[game-shutdown: save + git push + poweroff]
+    Admin -->|trigger-shutdown| Shutdown
 ```
