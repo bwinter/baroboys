@@ -3,7 +3,7 @@ set -euxo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
-ADMIN_DIR="$(cd "$REPO_ROOT/admin" && pwd)"
+ADMIN_DIR="$REPO_ROOT/scripts/services/admin_server/src"
 
 # === Shared paths (mirroring prod) ===
 STATIC_SOURCE="$ADMIN_DIR/static"
@@ -15,7 +15,7 @@ HTPASSWD_DEST="/etc/nginx/.htpasswd"
 STATUS_JSON="$STATIC_DEST/status.json"
 NGINX_LOG_DIR="/var/log/nginx"
 NGINX_RUN_DIR="/var/run"
-NGINX_CONFIG_SOURCE="$REPO_ROOT/scripts/services/nginx/assets/nginx.conf"
+NGINX_CONFIG_SOURCE="$REPO_ROOT/scripts/dependencies/nginx/assets/nginx.conf"
 
 # Function to clean up on SIGINT
 cleanup() {

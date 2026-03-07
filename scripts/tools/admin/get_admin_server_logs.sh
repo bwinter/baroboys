@@ -10,7 +10,7 @@ fi
 
 REMOTE="bwinter_sc81@europa"
 ZONE="us-west1-c"
-SERVICE="admin-server.service"
+SERVICE="admin-server-startup.service"
 LOG_LINES=200
 
 echo "📡 Fetching logs for $SERVICE from $REMOTE..."
