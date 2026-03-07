@@ -13,7 +13,7 @@ ExecStart=/home/bwinter_sc81/baroboys/scripts/services/vrising/shutdown.sh
 
 SuccessExitStatus=0
 KillMode=control-group
-TimeoutStartSec=300
+TimeoutStartSec=600
 
 StandardOutput=append:/var/log/baroboys/vrising_shutdown.log
 StandardError=append:/var/log/baroboys/vrising_shutdown.log

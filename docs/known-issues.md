@@ -7,7 +7,7 @@ architectural. Items marked ✅ have been fixed.
 
 ## Active Bugs
 
-### 1. `make admin-local` is broken
+### 1. ✅ `make admin-local` is broken
 
 **File:** `scripts/tools/admin/run_admin_server_local.sh`
 
@@ -17,7 +17,7 @@ The script references `$REPO_ROOT/admin` (a directory that does not exist) and
 The actual admin server lives at `scripts/services/admin_server/src/`.
 The nginx config lives at `scripts/dependencies/nginx/assets/nginx.conf`.
 
-**Impact:** `make admin-local` always fails.
+**Fixed:** corrected both paths in the script.
 
 ---
 
@@ -32,16 +32,17 @@ These never matched the Flask log map, so selecting them always returned 404.
 
 ---
 
-### 3. mcrcon is not implemented
+### 3. ✅ mcrcon dead code removed
 
-**File:** `scripts/services/admin_server/src/admin_server.py`, `mcrcon_cmd()` function
+**File:** `scripts/services/admin_server/src/admin_server.py`
 
-The mcrcon function returns a `TODO` string. The full implementation is present but commented out.
-Nothing in the current codebase calls `mcrcon_cmd()`, so there is no active breakage — but any
-future feature that relies on it (e.g., sending in-game announcements from the admin panel) will
-silently fail.
+`mcrcon_cmd()` and `get_server_password()` were stubs kept speculatively. VRising does not
+implement the RCON commands needed for player-count detection, so the RCON approach was abandoned.
+The CPU-based idle check works well — even a relatively idle client generates enough load to
+distinguish connected vs. empty server state.
 
-**Workaround:** SSH to the VM and use `mcrcon` directly. See `docs/vrising/vrising.md`.
+**Fixed:** both functions removed. If RCON is ever needed again, `get_server_password()` can be
+restored from git history.
 
 ---
 
@@ -92,7 +93,7 @@ a Flask compromise equals full root access.
 
 ---
 
-### 8. `game-shutdown.service` timeout may be too short for VRising
+### 8. ✅ `game-shutdown.service` timeout too short for VRising
 
 **File:** `scripts/services/vrising/game-shutdown.service`
 
@@ -100,7 +101,7 @@ a Flask compromise equals full root access.
 then waits up to 300 seconds for the process to exit — a potential 390 seconds total. systemd
 would kill the script at 300 seconds, before the git commit/push completes.
 
-**Suggestion:** increase `TimeoutStartSec` to `600` in `game-shutdown.service`.
+**Fixed:** increased `TimeoutStartSec` to `600`.
 
 ---
 
