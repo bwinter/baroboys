@@ -136,6 +136,8 @@ make help
 
 - **General Documentation** (`/docs`)
     - Setup and usage instructions
+    - [`docs/architecture.md`](docs/architecture.md) — full system architecture reference
+    - [`docs/known-issues.md`](docs/known-issues.md) — known bugs and gaps
 
 - **Bootstrapping** (`/bootstrap`)
     - Sets up service accounts and TF buckets.
