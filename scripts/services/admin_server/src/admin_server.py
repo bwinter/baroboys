@@ -110,7 +110,7 @@ def tail_log(name):
         "vrising_startup.log": os.path.join(LOG_DIR, "vrising_startup.log"),
         "vrising_shutdown.log": os.path.join(LOG_DIR, "vrising_shutdown.log"),
         "admin_server_startup.log": os.path.join(LOG_DIR, "admin_server_startup.log"),
-        "refresh_users.log": os.path.join(LOG_DIR, "refresh_users_startup.log"),
+        "refresh_repo.log": os.path.join(LOG_DIR, "refresh_repo_startup.log"),
         "xvfb.log": os.path.join(LOG_DIR, "xvfb_startup.log"),
         "idle_check.log": os.path.join(LOG_DIR, "idle_check.log"),
         "nginx_access": ["tail", "-n", "500", "/var/log/nginx/access.log"],
@@ -185,8 +185,8 @@ def directory():
             "icon": "🌐",
             "title": "Nginx Logs",
             "links": [
-                ("/api/logs/nginx/access", "Nginx Access Log", "GET"),
-                ("/api/logs/nginx/error", "Nginx Error Log", "GET"),
+                ("/api/logs/nginx_access", "Nginx Access Log", "GET"),
+                ("/api/logs/nginx_error", "Nginx Error Log", "GET"),
             ]
         },
     ]
