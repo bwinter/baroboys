@@ -1,7 +1,6 @@
 import os
 import subprocess
 from datetime import datetime, timezone
-from functools import lru_cache
 
 from flask import Flask, render_template, send_from_directory, Response
 
@@ -17,54 +16,6 @@ if ENV == "dev":
     print("🧪 Flask running in dev mode – using stubbed logs.")
 
 app = Flask(__name__, template_folder=TEMPLATE_DIR)
-
-
-@lru_cache(maxsize=1)
-def get_server_password():
-    return subprocess.run(
-        ["gcloud", "secrets", "versions", "access", "latest", "--secret=server-password"],
-        capture_output=True, text=True, check=True
-    ).stdout.strip()
-
-
-def mcrcon_cmd(cmd):
-    return 'TODO: Implement mcrcon commands.'
-    # if isinstance(cmd, str):
-    #     cmd_parts = cmd.strip().split()
-    # else:
-    #     cmd_parts = list(cmd)  # Allow already-split list input
-    #
-    # try:
-    #     result = subprocess.run(
-    #         [
-    #             "mcrcon",
-    #             "-H", "127.0.0.1",
-    #             "-P", "25575",
-    #             "-p", get_server_password(),
-    #             "-r",
-    #         ] + cmd_parts,
-    #         capture_output=True,
-    #         text=True,
-    #         timeout=5,
-    #         check=True
-    #     )
-    #     print(f"🛰️ RCON command: {' '.join(cmd_parts)}")
-    #     print(f"🛰️ RCON pwd: {get_server_password()}")
-    #     if result.stdout.strip():
-    #         print(f"📥 stdout: {result.stdout.strip()}")
-    #     if result.stderr.strip():
-    #         print(f"⚠️ stderr: {result.stderr.strip()}")
-    #     print(f"📄 Raw RCON output:\n{result.stdout}")
-    #     return result.stdout.strip()
-    # except subprocess.CalledProcessError as e:
-    #     print(f"❌ RCON command failed (exit {e.returncode}): {e.stderr.strip()}")
-    #     return None
-    # except subprocess.TimeoutExpired:
-    #     print("⏳ RCON command timed out")
-    #     return None
-    # except Exception as e:
-    #     print(f"💥 RCON unexpected error: {type(e).__name__}: {e}")
-    #     return None
 
 
 @app.route("/")
@@ -195,5 +146,3 @@ def directory():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
-
-get_server_password()  # warm secret cache
