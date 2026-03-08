@@ -1,6 +1,7 @@
 [Unit]
 Description=Shutdown if Idle
 Requires=idle-check-setup.service
+After=idle-check-setup.service
 
 [Service]
 Type=oneshot

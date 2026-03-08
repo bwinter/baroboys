@@ -2,7 +2,7 @@
 Description=V Rising Shutdown
 DefaultDependencies=no
 Before=poweroff.target halt.target reboot.target
-Requires=network-online.target
+Wants=network-online.target
 After=network-online.target
 
 [Service]

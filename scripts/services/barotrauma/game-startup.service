@@ -1,6 +1,7 @@
 [Unit]
 Description=Barotrauma Startup
 Requires=game-setup.service
+After=game-setup.service
 
 [Service]
 Type=simple

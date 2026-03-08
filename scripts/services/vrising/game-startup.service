@@ -1,6 +1,7 @@
 [Unit]
 Description=V Rising Startup
 Requires=game-setup.service xvfb-startup.service
+After=game-setup.service xvfb-startup.service
 
 [Service]
 Type=simple

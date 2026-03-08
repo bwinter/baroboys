@@ -1,6 +1,7 @@
 [Unit]
 Description=Xvfb Setup
 Requires=network-online.target refresh-repo-startup.service
+After=network-online.target refresh-repo-startup.service
 
 [Service]
 Type=oneshot
@@ -14,8 +15,8 @@ SuccessExitStatus=0
 KillMode=control-group
 TimeoutStartSec=300
 
-StandardOutput=append:/var/log/baroboys/xfvb_setup.log
-StandardError=append:/var/log/baroboys/xfvb_setup.log
+StandardOutput=append:/var/log/baroboys/xvfb_setup.log
+StandardError=append:/var/log/baroboys/xvfb_setup.log
 
 [Install]
 WantedBy=multi-user.target
