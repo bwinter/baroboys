@@ -57,3 +57,4 @@ All of the following have been resolved and committed:
 | 12 | `ServeGameSettings.jsonc` filename typo + unclear purpose → renamed to `ServerGameSettings.jsonc` and moved to `VRising/` root (annotated reference doc for `ServerGameSettings.json`) |
 | 13 | `ServerHostSettings.json` + `ServerGameSettings.json` force-committed into gitignored `StreamingAssets/Settings/` → moved to `VRising/*.json.in` templates; `refresh.sh` now `envsubst`s both into Settings/ at boot |
 | 14 | Flask admin server ran as root → now runs as `bwinter_sc81`; sudoers drop-in grants single `systemctl restart game-shutdown.service` permission; `adm` group added for nginx log access |
+| 15 | Wine 11.0 (Jan 2026) removed `wine64` binary (unified into `wine`) → updated all 4 hardcoded `/opt/wine-stable/bin/wine64` references in `apt_wine.sh`, `src/setup.sh`, `vrising/startup.sh` |
