@@ -23,22 +23,6 @@ is planned.
 ## Open — Needs Attention
 
 
-## Open — Architectural
-
-### Flask admin server runs as root
-
-**File:** `scripts/services/admin_server/admin-server-startup.service`
-**Effort:** Medium (sudoers + service file changes + testing)
-
-`User=root` — Flask process has full root access. A compromise of the web process (path traversal
-in `/logs/<name>`, etc.) equals full root on the VM.
-
-**Fix:** Run Flask as `bwinter_sc81`. Grant that user a single specific sudoers entry:
-```
-bwinter_sc81 ALL=(ALL) NOPASSWD: /bin/systemctl restart game-shutdown.service
-```
-
----
 
 ## Accepted / Won't Fix
 
@@ -72,3 +56,4 @@ All of the following have been resolved and committed:
 | 11 | `terraform/main.tf` `ignore_changes` on startup/shutdown metadata + metadata block removed — VM lifecycle now owned by systemd `[Install]` |
 | 12 | `ServeGameSettings.jsonc` filename typo + unclear purpose → renamed to `ServerGameSettings.jsonc` and moved to `VRising/` root (annotated reference doc for `ServerGameSettings.json`) |
 | 13 | `ServerHostSettings.json` + `ServerGameSettings.json` force-committed into gitignored `StreamingAssets/Settings/` → moved to `VRising/*.json.in` templates; `refresh.sh` now `envsubst`s both into Settings/ at boot |
+| 14 | Flask admin server ran as root → now runs as `bwinter_sc81`; sudoers drop-in grants single `systemctl restart game-shutdown.service` permission; `adm` group added for nginx log access |

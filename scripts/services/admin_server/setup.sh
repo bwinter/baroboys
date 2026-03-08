@@ -30,6 +30,14 @@ for file in directory.html; do
 done
 chmod 644 /opt/baroboys/templates/*.html
 
+# Sudoers: allow bwinter_sc81 to trigger shutdown without root
+install -m 440 -o root -g root \
+  "/root/baroboys/scripts/services/admin_server/sudoers-admin-server" \
+  "/etc/sudoers.d/admin-server"
+
+# Add bwinter_sc81 to adm group so Flask can read nginx logs
+usermod -aG adm bwinter_sc81
+
 # Give Admin Server access to logs.
 mkdir -p "/var/log/baroboys/"
 chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/"
