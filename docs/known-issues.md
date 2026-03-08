@@ -125,9 +125,8 @@ nginx as using `sites-available/` (it actually replaces the entire `nginx.conf`)
   ("Serve" not "Server"). This file appears to be unused.
   - Brendan's_notes:need_to_explore_this.I_thought_this_would_Be_used.
 
-- `scripts/tools/clean_git/bfg_cleanup.sh` uses macOS BSD `stat -f` syntax. It also hardcodes
-  `REPO_PATH="$HOME/Desktop/Baroboys"` — will fail on any other local setup.
-  - Brendan's_notes:this_needs_to_be_fixed.I_have_moved_the_folder.
+- ✅ `scripts/tools/clean_git/bfg_cleanup.sh` hardcoded `REPO_PATH="$HOME/Desktop/Baroboys"` —
+  fixed to derive from script location. Still uses macOS BSD `stat -f` syntax (minor, local-only tool).
 
 - `scripts/tools/vrising/vrising_diagnostic.sh` uses `wine` instead of `wine64`. Since VRising
   runs under `wine64`, the diagnostic may inspect the wrong binary on systems where `wine` ≠ `wine64`.
