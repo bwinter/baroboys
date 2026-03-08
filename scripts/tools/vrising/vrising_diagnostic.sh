@@ -31,7 +31,7 @@ uname -a
 lsb_release -a || true
 df -h /
 free -h
-ulimit -a
+ulimit -v -s  # virtual address space + stack size (relevant for 64-bit headroom)
 
 echo -e "\n${COLOR_BLUE}🔧 CPU Info${COLOR_RESET}"
 lscpu | grep -E 'Model name|Architecture|CPU\(s\):|Thread'
@@ -103,10 +103,9 @@ echo "WINEPREFIX = $WINEPREFIX"
 if [[ ! -d "$WINEPREFIX" ]]; then
   echo "${COLOR_YELLOW}⚠️ WINEPREFIX not found. It will be auto-created by Wine.${COLOR_RESET}"
 else
-  [[ -f "$WINEPREFIX/system.reg" ]] || echo "${COLOR_YELLOW}⚠️ system.reg not found${COLOR_RESET}"
-  grep -i 'winearch' "$WINEPREFIX/system.reg" \
-    || echo "${COLOR_YELLOW}⚠️ 'winearch' not found in system.reg — not necessarily a problem${COLOR_RESET}" \
-    || true
+  [[ -f "$WINEPREFIX/system.reg" ]] \
+    && echo "✅ system.reg present" \
+    || echo "${COLOR_YELLOW}⚠️ system.reg not found — prefix may not be initialised${COLOR_RESET}"
 fi
 
 # ========== VRising Process ==========
@@ -120,7 +119,7 @@ if [[ -n "$VRISING_PID" ]]; then
   EXE_PATH=$(readlink -f "/proc/$VRISING_PID/exe")
   echo "🧵 Executable Path: $EXE_PATH"
   VRISING_BITNESS=$(file "$EXE_PATH" | grep -Eo '64-bit|32-bit' || echo "unknown")
-  echo "🧬 Binary Architecture: $VRISING_BITNESS"
+  echo "🧬 Wine Loader Architecture: $VRISING_BITNESS"
 
   echo -e "\n📊 Memory Mapping Range Overview:"
   VRISING_TOP_ADDR=$(awk '{print $1}' "/proc/$VRISING_PID/maps" | cut -d'-' -f1 | sort | tail -n1)
@@ -137,10 +136,6 @@ if [[ -n "$VRISING_PID" ]]; then
   else
     echo "${COLOR_YELLOW}⚠️ could not parse top memory address — malformed value${COLOR_RESET}"
   fi
-
-  echo -e "\n📐 Memory Map Range Analysis"
-  MAX_ADDR=$(awk '{print $1}' "/proc/$VRISING_PID/maps" | cut -d'-' -f2 | sort | tail -n1)
-  echo "📈 Highest mapped address: $MAX_ADDR"
 
   echo -e "\n📜 Memory Map Snapshot (looking for 32-bit libs)"
   FOUND_32=0
