@@ -6,18 +6,6 @@ Bugs and gaps. Open items organized by effort — easy wins first.
 
 ## Open — Easy Fix
 
-### Packer build: no cleanup trap on failure
-
-**File:** `packer/build.sh:49`
-**Effort:** Trivial (one line)
-
-`rm -rf "$BUILD_DIR"` runs at the start of every build, but there is no `trap` to clean up if
-`packer build` fails mid-run. Stale files in `packer/tmp/` persist until the next build starts.
-
-**Fix:** Add `trap 'rm -rf "$BUILD_DIR"' ERR EXIT` after `BUILD_DIR` is set.
-
----
-
 ### VRising world name "TestWorld-1" hardcoded in multiple places
 
 **Files:**
@@ -33,24 +21,6 @@ is planned.
 ---
 
 ## Open — Needs Attention
-
-### Terraform ignores startup/shutdown script changes after first apply
-
-**File:** `terraform/main.tf:86`
-**Effort:** Low-medium (remove the ignore or document clearly)
-
-```hcl
-ignore_changes = [metadata["startup-script"], metadata["shutdown-script"]]
-```
-
-This is intentional (avoids noisy re-applies) but is a silent footgun: changes to startup/shutdown
-scripts don't take effect until `terraform taint google_compute_instance.game_server` or
-destroy+recreate. Easy to forget during debugging.
-
-**Options:** Remove the `ignore_changes` (may cause VM restarts on apply), or add a prominent
-comment and note in `CLAUDE.md`.
-
----
 
 ### `ServeGameSettings.jsonc` — purpose unclear, filename typo
 
@@ -109,3 +79,5 @@ All of the following have been resolved and committed:
 | 7 | `game-shutdown.service` `TimeoutStartSec=300` too short for VRising (~390s worst case) → bumped to 600 |
 | 8 | `docs/ai_primer.md` referenced wrong script name and nginx layout |
 | 9 | `bfg_cleanup.sh` hardcoded `$HOME/Desktop/Baroboys` → derived from script location |
+| 10 | `packer/build.sh` no cleanup trap on failure → added `trap 'rm -rf "$BUILD_DIR"' ERR EXIT` |
+| 11 | `terraform/main.tf` `ignore_changes` on startup/shutdown metadata + metadata block removed — VM lifecycle now owned by systemd `[Install]` |
