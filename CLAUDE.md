@@ -146,8 +146,8 @@ Local dev: `make admin-local` (runs both processes, mirrors prod layout, fetches
 ## Shutdown / Save Flow
 
 ```
-idle_check.sh OR admin panel OR VM stop
-  → systemctl restart game-shutdown.service
+idle_check.sh OR admin panel OR any VM stop (poweroff/halt/reboot)
+  → game-shutdown.service (hooks into poweroff.target via [Install])
   → shutdown.sh (as bwinter_sc81)
       → kill game process, wait for clean exit
       → compress/stage save file
@@ -188,12 +188,19 @@ Logs are accessible via admin panel dropdown or `make admin-logs`.
 
 ---
 
+## systemd Unit Conventions
+
+All units follow a two-phase pattern per component: `*-setup.service` (oneshot, root, installs/configures) → `*-startup.service` (long-running or oneshot, bwinter_sc81, runs the thing). Always pair `Requires=X` with `After=X` — `Requires` alone does not enforce order. For shutdown services use `Wants=` not `Requires=` for network dependency (network may stop during poweroff sequence). Unit changes require image rebuild to take effect.
+
+`idle-check.service` has `WantedBy=multi-user.target` intentionally — runs once at boot to seed `status.json` before the timer's first 5-minute fire.
+
+---
+
 ## Known Open Issues
 
 See [`docs/known-issues.md`](docs/known-issues.md) for full detail.
 
 1. Flask admin server runs as root (security concern)
-2. `bfg_cleanup.sh` hardcodes `$HOME/Desktop/Baroboys` — broken on any other setup
 
 ---
 
