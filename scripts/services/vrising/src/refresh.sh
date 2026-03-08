@@ -3,11 +3,14 @@ set -euxo pipefail
 
 # Paths
 VRISING_DIR="$HOME/baroboys/VRising"
+SETTINGS_DIR="$VRISING_DIR/VRisingServer_Data/StreamingAssets/Settings"
 ADMIN_LIST="$VRISING_DIR/Data/Settings/adminlist.txt"
 BAN_LIST="$VRISING_DIR/Data/Settings/banlist.txt"
 SAVE_DIR="$VRISING_DIR/Data/Saves/v4/TestWorld-1"
-HOST_JSON="$VRISING_DIR/VRisingServer_Data/StreamingAssets/Settings/ServerHostSettings.json"
-GAME_JSON="$VRISING_DIR/VRisingServer_Data/StreamingAssets/Settings/ServerGameSettings.json"
+HOST_JSON_IN="$VRISING_DIR/ServerHostSettings.json.in"
+GAME_JSON_IN="$VRISING_DIR/ServerGameSettings.json.in"
+HOST_JSON="$SETTINGS_DIR/ServerHostSettings.json"
+GAME_JSON="$SETTINGS_DIR/ServerGameSettings.json"
 
 # Ensure save is uncompressed
 cd "$SAVE_DIR"
@@ -56,21 +59,18 @@ echo "=== AFTER steamcmd ==="
 ls -la ~/.steam ~/.local/share || true
 find ~/.steam -maxdepth 3 -type f 2>/dev/null || true
 
-# Restore canonical server configs
+# Restore force-committed files that SteamCMD may have clobbered
 cd "$HOME/baroboys"
 git checkout -- \
-  "$HOST_JSON" \
-  "$GAME_JSON" \
   "$ADMIN_LIST" \
   "$BAN_LIST"
 
-
-# Fetch the RCON password from GCP Secret Manager
+# Fetch the RCON password and interpolate config templates into Settings/
 SERVER_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)"
 export SERVER_PASSWORD
 
-envsubst < "$HOST_JSON" > "$HOST_JSON.tmp"
-mv "$HOST_JSON.tmp" "$HOST_JSON"
+envsubst < "$HOST_JSON_IN" > "$HOST_JSON"
+envsubst < "$GAME_JSON_IN" > "$GAME_JSON"
 
 # Ensure log paths are readable
 mkdir -p "$VRISING_DIR/logs"

@@ -22,17 +22,6 @@ is planned.
 
 ## Open — Needs Attention
 
-### `ServeGameSettings.jsonc` — purpose unclear, filename typo
-
-**File:** `VRising/VRisingServer_Data/StreamingAssets/Settings/ServeGameSettings.jsonc`
-**Effort:** Investigation needed
-
-Filename is "Serve" not "Server" — likely a typo. File appears unused but may be a VRising
-configuration file that should be active.
-
-> **Brendan's note:** "need to explore this. I thought this would be used."
-
----
 
 ## Open — Architectural
 
@@ -81,3 +70,5 @@ All of the following have been resolved and committed:
 | 9 | `bfg_cleanup.sh` hardcoded `$HOME/Desktop/Baroboys` → derived from script location |
 | 10 | `packer/build.sh` no cleanup trap on failure → added `trap 'rm -rf "$BUILD_DIR"' ERR EXIT` |
 | 11 | `terraform/main.tf` `ignore_changes` on startup/shutdown metadata + metadata block removed — VM lifecycle now owned by systemd `[Install]` |
+| 12 | `ServeGameSettings.jsonc` filename typo + unclear purpose → renamed to `ServerGameSettings.jsonc` and moved to `VRising/` root (annotated reference doc for `ServerGameSettings.json`) |
+| 13 | `ServerHostSettings.json` + `ServerGameSettings.json` force-committed into gitignored `StreamingAssets/Settings/` → moved to `VRising/*.json.in` templates; `refresh.sh` now `envsubst`s both into Settings/ at boot |
