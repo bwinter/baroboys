@@ -1,6 +1,6 @@
 # Baroboys AI Primer
 
-sBaroboys is a GCP game server hosting platform for **V Rising** and **Barotrauma**. Packer builds
+Baroboys is a GCP game server hosting platform for **V Rising** and **Barotrauma**. Packer builds
 layered GCE images; Terraform provisions the VM; systemd + bash scripts manage the game lifecycle;
 saves are committed to Git on every shutdown. Near-zero cost when idle.
 
