@@ -43,6 +43,8 @@
 
 These are interesting but not current priority. Logged so they aren't forgotten.
 
+- `/wrap` slash command skill — formalize the session wrap protocol as a Claude Code skill
+  so memory updates run automatically on demand
 - Nix for environment management (replace/augment direnv)
 - Claude API integration — AI-assisted ops from the admin console
 - React frontend for admin panel
