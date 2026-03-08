@@ -5,6 +5,28 @@ dependencies, networking, secrets, and state persistence.
 
 ---
 
+## Architecture Decisions
+
+### VM lifecycle is owned by systemd, not Terraform
+
+Terraform provisions the VM once. After that, the VM is self-managing: it pulls the latest repo
+from Git on every boot, runs via systemd-managed services, and handles its own shutdown gracefully.
+
+This means:
+- **Script changes deploy via Git**, not Terraform. Commit, push, restart the VM — `refresh-repo`
+  pulls on boot and the new scripts run.
+- **Terraform metadata scripts are not used.** `startup-script` was redundant because
+  `game-startup.service` auto-starts via `WantedBy=multi-user.target`. `shutdown-script` is
+  replaced by `game-shutdown.service` hooking into `poweroff.target` via `[Install]`.
+- **Git acts as a stability gate.** The VM only runs what is in `origin/main`. Changes go through
+  normal review before they reach production, even without a formal CI pipeline.
+
+Tying runtime script execution to Terraform metadata would be an implicit external dependency
+orthogonal to these goals — it would push scripts from a local dev environment directly to the
+VM, bypassing the Git-based stability guarantees the rest of the system relies on.
+
+---
+
 ## Overview
 
 ```
