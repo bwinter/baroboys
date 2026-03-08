@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-set -euxo pipefail
-
 # Run this remotely to get a diagnostic of VRising dependencies.
+# Safe to run while VRising is live — read-only except for the alloc test compile.
+set -uo pipefail
 
 # ========== Color Handling ==========
 COLOR_RESET=$(tput sgr0 || echo "")
@@ -12,9 +12,6 @@ COLOR_BLUE=$(tput setaf 4 || echo "")
 COLOR_BOLD=$(tput bold || echo "")
 
 # ========== Setup ==========
-sudo apt update
-sudo apt install -y gcc-mingw-w64-x86-64
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ALLOC_TEST_SOURCE="${SCRIPT_DIR}/alloc_test.c"
 LOG_FILE="/tmp/vrising_env_diagnostics.log"
@@ -23,6 +20,10 @@ exec > >(tee "$LOG_FILE") 2>&1
 echo "${COLOR_BOLD}🔍 Starting V Rising Wine Environment Diagnostics${COLOR_RESET}"
 echo "📅 Timestamp: $(date)"
 echo "📂 Script Directory: $SCRIPT_DIR"
+
+# Install mingw compiler if not already present
+command -v x86_64-w64-mingw32-gcc &>/dev/null \
+  || sudo apt install -y gcc-mingw-w64-x86-64
 
 # ========== System Info ==========
 echo -e "\n${COLOR_BLUE}🔧 System Info${COLOR_RESET}"
@@ -48,42 +49,47 @@ done
 
 # ========== Wine Binary Architecture ==========
 echo -e "\n${COLOR_BLUE}🧩 Wine Binary Architecture Check${COLOR_RESET}"
+
+# Show everything in the WineHQ install dir so version upgrades are visible
+echo "ℹ️ /opt/wine-stable/bin/ contents:"
+ls /opt/wine-stable/bin/ 2>/dev/null || echo "${COLOR_YELLOW}⚠️ /opt/wine-stable/bin/ not found${COLOR_RESET}"
+
+# Check both the WineHQ explicit path and whatever 'wine' resolves to in PATH —
+# they should match; if they don't, something is shadowing WineHQ's wine.
 for bin in wine wineserver; do
-  BIN_PATH=$(command -v "$bin" 2>/dev/null || true)
+  echo ""
+  WINEHQ_BIN="/opt/wine-stable/bin/$bin"
+  PATH_BIN=$(command -v "$bin" 2>/dev/null || true)
+  PATH_REAL=$(realpath "$PATH_BIN" 2>/dev/null || echo "")
 
-  if [[ -z "$BIN_PATH" ]]; then
-    echo "${COLOR_YELLOW}⚠️ $bin not found in PATH — check if the correct Wine package is installed${COLOR_RESET}"
+  echo "🔎 $bin:"
+  echo "   WineHQ path : $WINEHQ_BIN"
+  echo "   PATH resolves to: ${PATH_BIN:-not found} -> ${PATH_REAL:-}"
+
+  if [[ -n "$PATH_REAL" && "$PATH_REAL" != "$WINEHQ_BIN" ]]; then
+    echo "   ${COLOR_YELLOW}⚠️ PATH wine differs from WineHQ path — may be using wrong version${COLOR_RESET}"
+  fi
+
+  TARGET="${WINEHQ_BIN}"
+  if [[ ! -x "$TARGET" ]]; then
+    echo "   ${COLOR_RED}❗ $TARGET not executable or missing${COLOR_RESET}"
     continue
   fi
 
-  BIN_REAL=$(realpath "$BIN_PATH" 2>/dev/null || echo "")
-  echo "🔎 $bin -> $BIN_REAL"
-
-  if [[ ! -e "$BIN_REAL" ]]; then
-    echo "${COLOR_RED}❗ Resolved path does not exist — something is broken in Wine install${COLOR_RESET}"
-    continue
-  fi
-
-  if [[ ! -x "$BIN_REAL" ]]; then
-    echo "${COLOR_YELLOW}⚠️ Path exists but is not executable: $BIN_REAL${COLOR_RESET}"
-    continue
-  fi
-
-  TYPE_LINE=$(file "$BIN_REAL" 2>/dev/null || echo "unreadable")
+  TYPE_LINE=$(file "$TARGET" 2>/dev/null || echo "unreadable")
   TYPE=$(echo "$TYPE_LINE" | grep -Eo '64-bit|32-bit' || true)
 
   if [[ -z "$TYPE" ]]; then
-    echo "${COLOR_YELLOW}⚠️ could not determine architecture — possibly a shell wrapper or script${COLOR_RESET}"
-    echo "    file output: $TYPE_LINE"
+    echo "   ${COLOR_YELLOW}⚠️ could not determine architecture — possibly a shell wrapper or script${COLOR_RESET}"
+    echo "   file output: $TYPE_LINE"
   else
-    echo "    file output: $TYPE_LINE"
-    echo "    parsed type: $TYPE"
+    echo "   file output: $TYPE_LINE"
+    echo "   parsed type: $TYPE"
     if [[ "$TYPE" != "64-bit" ]]; then
-      echo "${COLOR_RED}❗ $bin is not 64-bit — may prevent VRising from using full memory space${COLOR_RESET}"
+      echo "   ${COLOR_RED}❗ $bin is not 64-bit — may prevent VRising from using full memory space${COLOR_RESET}"
     fi
   fi
 done
-
 
 # ========== Wine Version ==========
 echo -e "\n${COLOR_BLUE}🍷 Wine Version${COLOR_RESET}"
@@ -91,14 +97,16 @@ wine --version || echo "${COLOR_YELLOW}⚠️ wine failed to report version${COL
 
 # ========== Wine Prefix Info ==========
 echo -e "\n${COLOR_BLUE}📁 Wine Prefix Info${COLOR_RESET}"
-WINEPREFIX="${WINEPREFIX:-$HOME/.wine}"
+WINEPREFIX="${WINEPREFIX:-/home/bwinter_sc81/.wine64}"
 echo "WINEPREFIX = $WINEPREFIX"
 
 if [[ ! -d "$WINEPREFIX" ]]; then
   echo "${COLOR_YELLOW}⚠️ WINEPREFIX not found. It will be auto-created by Wine.${COLOR_RESET}"
 else
   [[ -f "$WINEPREFIX/system.reg" ]] || echo "${COLOR_YELLOW}⚠️ system.reg not found${COLOR_RESET}"
-  grep -i 'winearch' "$WINEPREFIX/system.reg" || echo "${COLOR_YELLOW}⚠️ 'winearch' not found in system.reg — not necessarily a problem${COLOR_RESET}" || true
+  grep -i 'winearch' "$WINEPREFIX/system.reg" \
+    || echo "${COLOR_YELLOW}⚠️ 'winearch' not found in system.reg — not necessarily a problem${COLOR_RESET}" \
+    || true
 fi
 
 # ========== VRising Process ==========
@@ -136,15 +144,15 @@ if [[ -n "$VRISING_PID" ]]; then
 
   echo -e "\n📜 Memory Map Snapshot (looking for 32-bit libs)"
   FOUND_32=0
-  grep -E 'wine|\.dll' "/proc/$VRISING_PID/maps" | awk '{print $6}' | sort -u | while read -r bin; do
+  while read -r bin; do
     echo "🔍 Scanning: $bin"
     if [[ -n "$bin" && -f "$bin" ]]; then
       if file "$bin" | grep -q "32-bit"; then
-        echo -e "${COLOR_RED}❗ 32-bit binary loaded: $bin${COLOR_RESET}"
-        FOUND_32=$(expr "$FOUND_32" + 1)
+        echo "${COLOR_RED}❗ 32-bit binary loaded: $bin${COLOR_RESET}"
+        (( FOUND_32++ )) || true
       fi
     fi
-  done
+  done < <(grep -E 'wine|\.dll' "/proc/$VRISING_PID/maps" | awk '{print $6}' | sort -u)
   echo "🔬 Total 32-bit artifacts found: $FOUND_32"
 
   echo -e "\n📊 Total RSS (from smaps)"
@@ -165,14 +173,13 @@ fi
 
 # ========== In-Process Alloc Test ==========
 echo -e "\n${COLOR_BLUE}🧪 In-Wine Allocation Test${COLOR_RESET}"
-TEST_DIR=$(mktemp -d)
-cp "$ALLOC_TEST_SOURCE" "$TEST_DIR/"
-cd "$TEST_DIR"
-x86_64-w64-mingw32-gcc alloc_test.c -o alloc_test.exe
-ALLOC_OUTPUT=$(WINEDEBUG=-all WINEPREFIX="$WINEPREFIX" wine ./alloc_test.exe 2>&1 || true)
+ALLOC_OUTPUT=$(
+  cd "$(mktemp -d)"
+  cp "$ALLOC_TEST_SOURCE" .
+  x86_64-w64-mingw32-gcc alloc_test.c -o alloc_test.exe
+  WINEDEBUG=-all WINEPREFIX="$WINEPREFIX" wine ./alloc_test.exe 2>&1 || true
+)
 echo "$ALLOC_OUTPUT"
-cd /
-rm -rf "$TEST_DIR"
 
 ALLOC_OK=$(echo "$ALLOC_OUTPUT" | grep -c "VirtualAlloc of 6GB succeeded")
 
@@ -180,7 +187,8 @@ ALLOC_OK=$(echo "$ALLOC_OUTPUT" | grep -c "VirtualAlloc of 6GB succeeded")
 echo -e "\n${COLOR_BLUE}📊 FINAL VERDICT${COLOR_RESET}"
 echo "VRising binary:          $VRISING_BITNESS"
 echo "Top memory mapping:      $VRISING_TOP_ADDR"
-echo "Wine:                    $(realpath "$(command -v wine)" 2>/dev/null || echo "Unknown")"
+echo "Wine (PATH):             $(realpath "$(command -v wine)" 2>/dev/null || echo "Unknown")"
+echo "Wine (WineHQ):           /opt/wine-stable/bin/wine"
 echo "Wineserver:              $(realpath "$(command -v wineserver)" 2>/dev/null || echo "Unknown")"
 
 if [[ "$ALLOC_OK" -gt 0 ]]; then
