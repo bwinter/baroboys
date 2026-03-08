@@ -92,6 +92,8 @@ make clean                       # Delete old GCP images/disks/IPs
 - **Fix in place** — don't restructure directories as a prerequisite to small fixes
 - **Bite-sized commits** — logical groupings, not one-liners and not monoliths
 - **TODO.md** = long-term aspirations, not current sprint work
+- **Session wrap** — when a topic finishes, run the wrap protocol (`memory/wrap-protocol.md`)
+  to preserve what was learned before context compaction
 
 ---
 
@@ -120,8 +122,8 @@ Three secrets, all accessed via the `vm-runtime` service account at runtime:
 | `nginx-htpasswd` | `nginx/refresh.sh` | Basic auth for admin panel |
 
 Password is injected via `envsubst`:
-- Barotrauma: `serversettings.xml.in` → `serversettings.xml`
-- VRising: `ServerHostSettings.json` (contains `"${SERVER_PASSWORD}"` literals)
+- Barotrauma: `Barotrauma/serversettings.xml.in` → `serversettings.xml`
+- VRising: `VRising/ServerHostSettings.json.in` → `StreamingAssets/Settings/ServerHostSettings.json`
 
 ---
 
@@ -170,7 +172,8 @@ idle_check.sh OR admin panel OR any VM stop (poweroff/halt/reboot)
 - Requires Xvfb on DISPLAY=:0, WINEPREFIX=`/home/bwinter_sc81/.wine64`
 - Ports: TCP+UDP 9876/9877 (firewall), 27015/27016 (configured in ServerHostSettings.json)
 - RCON: port 25575 (used by shutdown.sh)
-- Config: `VRising/VRisingServer_Data/StreamingAssets/Settings/ServerHostSettings.json`
+- Config templates: `VRising/ServerHostSettings.json.in`, `VRising/ServerGameSettings.json.in`
+  (envsubst'd into `StreamingAssets/Settings/` at boot by `vrising/src/refresh.sh`)
 - Saves: `VRising/Data/Saves/v4/TestWorld-1/AutoSave_*.save.gz` (only latest in Git)
 - Game settings: 5x stack size, no castle decay, no raids, faster crafting/research
 
@@ -200,7 +203,8 @@ All units follow a two-phase pattern per component: `*-setup.service` (oneshot, 
 
 See [`docs/known-issues.md`](docs/known-issues.md) for full detail.
 
-1. Flask admin server runs as root (security concern)
+- VRising world name `TestWorld-1` hardcoded in `vrising/shutdown.sh` and `vrising/src/refresh.sh`
+  (deferred — folder rename may corrupt save)
 
 ---
 
