@@ -16,10 +16,14 @@ apt -yq install \
   wine-stable \
   winetricks
 
-# Show version of wine64
+# Diagnostics: show what WineHQ installed (useful when wine64 binary moves between versions)
+echo "ℹ️ /opt/wine-stable/bin/ contents:"
+ls /opt/wine-stable/bin/ || echo "⚠️ /opt/wine-stable/bin/ not found"
+
+# Show version (Wine 11+ unified wine64 into a single 'wine' binary)
 echo "ℹ️ wine version info:"
-/opt/wine-stable/bin/wine64 --version || {
-  echo "⚠️ wine64 not working" >&2
+/opt/wine-stable/bin/wine --version || {
+  echo "⚠️ wine not working" >&2
   exit 1
 }
 

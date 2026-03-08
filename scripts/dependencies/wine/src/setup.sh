@@ -11,15 +11,15 @@ echo "🧪 HOME: $HOME"
 export WINEARCH=win64
 export WINEPREFIX=/home/bwinter_sc81/.wine64
 
-# Launch wineboot
-/opt/wine-stable/bin/wine64 wineboot || {
+# Launch wineboot (Wine 11+ uses 'wine' unified binary; wine64 was removed)
+/opt/wine-stable/bin/wine wineboot || {
   echo "⚠️ wineboot failed" >&2
   exit 1
 }
 
 echo "✅ Debug trace complete."
 
-export WINE=/opt/wine-stable/bin/wine64
+export WINE=/opt/wine-stable/bin/wine
 export WINESERVER=/opt/wine-stable/bin/wineserver
 export WINETRICKS_GUI=none
 
