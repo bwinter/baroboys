@@ -1,6 +1,9 @@
 [Unit]
 Description=Barotrauma Shutdown
+DefaultDependencies=no
+Before=poweroff.target halt.target reboot.target
 Requires=network-online.target
+After=network-online.target
 
 [Service]
 Type=oneshot
@@ -17,3 +20,6 @@ TimeoutStartSec=300
 
 StandardOutput=append:/var/log/baroboys/barotrauma_shutdown.log
 StandardError=append:/var/log/baroboys/barotrauma_shutdown.log
+
+[Install]
+WantedBy=poweroff.target halt.target reboot.target

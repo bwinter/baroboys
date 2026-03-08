@@ -54,11 +54,6 @@ resource "google_compute_instance" "default" {
     environment = "dev"
   }
 
-  metadata = {
-    startup-script  = "systemctl start game-startup.service"
-    shutdown-script = "systemctl start game-shutdown.service"
-  }
-
   boot_disk {
     auto_delete = true
     initialize_params {
@@ -81,10 +76,6 @@ resource "google_compute_instance" "default" {
     scopes = ["cloud-platform"]
   }
 
-  lifecycle {
-    prevent_destroy = false
-    ignore_changes  = [metadata["startup-script"], metadata["shutdown-script"]]
-  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
