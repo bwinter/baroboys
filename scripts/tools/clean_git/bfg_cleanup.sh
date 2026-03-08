@@ -9,7 +9,7 @@ set -euxo pipefail
 ########################################
 
 ### CONFIG ###
-REPO_PATH="$HOME/Desktop/Baroboys"
+REPO_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 WORKDIR="/tmp/bfg-cleanup"
 MIRROR_REPO="$WORKDIR/baroboys-bfg-clean.git"
 ORIG_LIST="/tmp/deletable-blobs.txt"
