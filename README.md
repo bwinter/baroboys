@@ -28,7 +28,6 @@ There is a small admin console for managing the server and accessing the logs as
 - A valid GCP project (e.g., `europan-world`)
 - GitHub project (e.g. `baroboys`)
 - `direnv` (see .envrc for configuration)
-  - TODO: need to make a boostrap for this / centralize configuration.
 
 ---
 

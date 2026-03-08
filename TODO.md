@@ -22,6 +22,7 @@ Get tf config into bucket so any system can run it.
 
 - Configuration is a bit all over the place. Often hardcoded in specific scripts, would be good to be more specific – maybe using direnv? (Upgrade)
   - Even the way the variables work in the make file is a bit confusing. In some cases, they are specified in the Makefile in other cases by the ENV – it's kind of a mixed mess. I think an ideal would be controlled by the environment and maybe have a command for shifting environment and games. As is the makefiles commands are getting kind of overly complex.
+  - Bootstrap setup needs a centralization pass — currently the README says "TODO: need to make a bootstrap for this / centralize configuration" (README.md:31); bootstrap process is manual and not fully self-contained.
 - Get save data and game data into S3 / mount. (Security-ish & Reduce Git complexity.)
 - GraphQL?
 

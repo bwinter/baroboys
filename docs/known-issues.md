@@ -131,3 +131,74 @@ nginx as using `sites-available/` (it actually replaces the entire `nginx.conf`)
 - `scripts/tools/vrising/vrising_diagnostic.sh` uses `wine` instead of `wine64`. Since VRising
   runs under `wine64`, the diagnostic may inspect the wrong binary on systems where `wine` ≠ `wine64`.
   - Brendan's_notes:pretty_sure_this_works_as_intended.I_spent_tons_of_hours_getting_this_to_work.
+
+---
+
+## Tracked Minor Issues
+
+### 10. `idle_check.sh` uses GNU `date -d` — macOS incompatible
+
+**File:** `scripts/services/idle_check/src/idle_check.sh:44`
+
+```bash
+IDLE_SINCE_ISO=$(date -u -d "@$IDLE_SINCE" +"%Y-%m-%dT%H:%M:%SZ")
+```
+
+`-d` is a GNU coreutils flag. macOS BSD `date` uses `-r` for epoch conversion. Not a production
+issue (server is Linux), but would fail if `idle_check.sh` were ever run locally.
+
+**Impact:** Low — local dev only. `run_admin_server_local.sh` does not invoke `idle_check.sh`.
+
+---
+
+### 11. `bfg_cleanup.sh` uses BSD `stat` and requires bash 4+
+
+**File:** `scripts/tools/clean_git/bfg_cleanup.sh:52,81`
+
+- Line 52: `stat -f "%Sm" -t "%Y-%m-%d %H:%M:%S"` — BSD/macOS syntax; GNU `stat` uses `-c "%y"`.
+- Line 81: `mapfile -t FILENAMES < <(...)` — requires bash 4+; macOS ships bash 3.2.
+
+Tool is macOS-only in practice and works fine there. Would fail if run on Linux.
+
+**Impact:** Low — local tool, macOS-only use case currently.
+
+---
+
+### 12. Terraform ignores startup/shutdown script changes after first apply
+
+**File:** `terraform/main.tf:86`
+
+```hcl
+ignore_changes = [metadata["startup-script"], metadata["shutdown-script"]]
+```
+
+Changes to startup or shutdown scripts are intentionally ignored to avoid noise on re-apply.
+Side effect: script changes require `terraform taint google_compute_instance.game_server` or
+a destroy+recreate to take effect — easy to forget and silently not deploy.
+
+**Impact:** Medium — could cause confusion when debugging why a script change didn't take effect.
+
+---
+
+### 13. VRising world name "TestWorld-1" hardcoded in multiple places
+
+**Files:**
+- `scripts/services/vrising/shutdown.sh:7` — `SAVE_DIR="VRising/Data/Saves/v4/TestWorld-1"`
+- `scripts/services/vrising/src/refresh.sh:8` — `SAVE_DIR="$VRISING_DIR/Data/Saves/v4/TestWorld-1"`
+- `VRising/VRisingServer_Data/StreamingAssets/Settings/ServerHostSettings.json` — `"SaveName": "TestWorld-1"`
+
+Renaming the world would require coordinated changes in 3+ places. Currently works fine as-is.
+
+**Impact:** Low — cosmetic. Only matters if the world is ever renamed.
+
+---
+
+### 14. Packer build has no cleanup trap on failure
+
+**File:** `packer/build.sh:49`
+
+`rm -rf "$BUILD_DIR"` runs at the start of every build, but there is no `trap ... ERR` to clean up
+if `packer build` fails mid-run. Stale files in `packer/tmp/` (gitignored) persist until the next
+successful build start.
+
+**Impact:** Low — `packer/tmp/` is gitignored; stale files cause no harm but can be confusing.
