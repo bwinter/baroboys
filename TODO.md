@@ -145,12 +145,6 @@
   instead of git commit). `vm-runtime` SA already has cloud-platform scope. Trade-off: loses the
   "Git as backup" simplicity.
 
-- **Consolidate VRisingServer.log into `/var/log/baroboys/`** — VRising writes its game log to
-  `$GAME_DIR/logs/VRisingServer.log` (set via `-logFile ./logs/VRisingServer.log` in startup.sh,
-  relative to WorkingDirectory). All other game logs land in `/var/log/baroboys/`. Options:
-  add a symlink from `/var/log/baroboys/VRisingServer.log` in `vrising/setup.sh`, or change the
-  `-logFile` arg and update `refresh.sh` accordingly. Current workaround: admin_server.py
-  hardcodes the full path directly.
 
 - **Refactor games into subdir** — move `Barotrauma/` and `VRising/` under `games/`. Mostly
   straightforward: GAME_DIR in config.sh is the only per-game change for startup/shutdown/refresh
