@@ -23,7 +23,7 @@ destroy: terraform-destroy
 # =======================
 # 🐍 Flask Admin Panel
 # =======================
-.PHONY: admin-local admin-logs
+.PHONY: admin-local admin-logs admin-url
 
 admin-local:
 	cd $(TOOLS_DIR) && \
@@ -32,6 +32,9 @@ admin-local:
 admin-logs:
 	cd $(TOOLS_DIR) && \
 	./admin/get_admin_server_logs.sh
+
+admin-url: terraform-init
+	cd $(TF_DIR) && terraform output admin_server_url
 
 
 # =======================
@@ -233,6 +236,7 @@ help:
 	@echo "🐍 Flask Admin Panel:"
 	@echo "  make admin-local              - Run admin server locally"
 	@echo "  make admin-logs               - Fetch logs from admin systemd service"
+	@echo "  make admin-url                - Print the live admin panel URL"
 	@echo ""
 
 	@echo "🎮 Game Mode:"

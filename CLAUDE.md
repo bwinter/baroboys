@@ -78,6 +78,7 @@ make save-and-shutdown           # Trigger game-shutdown.service on VM
 
 # Admin panel (local dev)
 make admin-local                 # Run Flask + Nginx locally
+make admin-url                   # Print live admin panel URL
 
 # Maintenance
 make update-password             # Update server-password secret
