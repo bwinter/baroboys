@@ -10,7 +10,7 @@ WorkingDirectory=/home/bwinter_sc81
 User=bwinter_sc81
 Group=bwinter_sc81
 
-ExecStart=/usr/bin/Xvfb :0 -screen 0 1024x768x16
+ExecStart=/usr/bin/Xvfb :0 -screen 0 1024x768x24
 
 SuccessExitStatus=0
 KillMode=control-group

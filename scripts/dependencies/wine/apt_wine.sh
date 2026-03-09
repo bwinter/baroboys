@@ -9,7 +9,6 @@ curl -fsSL "https://dl.winehq.org/wine-builds/winehq.key" \
 echo "deb [signed-by=/usr/share/keyrings/winehq.gpg] https://dl.winehq.org/wine-builds/debian bookworm main" \
   > "/etc/apt/sources.list.d/winehq.list"
 
-dpkg --add-architecture amd64
 apt-get -yq update
 
 apt -yq install \
