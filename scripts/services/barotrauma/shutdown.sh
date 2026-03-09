@@ -3,7 +3,8 @@ set -euxo pipefail
 
 cd "$HOME/baroboys"
 
-SAVE_DIR="Barotrauma/Multiplayer"
+# shellcheck source=scripts/services/barotrauma/config.sh
+source "$(dirname "${BASH_SOURCE[0]}")/config.sh"
 
 if pkill -0 DedicatedServer 2>/dev/null; then
     pkill DedicatedServer
