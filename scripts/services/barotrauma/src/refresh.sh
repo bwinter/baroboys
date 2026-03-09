@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-# Paths
-BAROTRAUMA_DIR="${HOME}/baroboys/Barotrauma"
-CLIENT_PERMISSIONS_XML="$BAROTRAUMA_DIR/Data/clientpermissions.xml"
-PERMISSION_PRESETS_XML="$BAROTRAUMA_DIR/Data/permissionpresets_player.xml"
-SERVER_SETTINGS_XML_IN="$BAROTRAUMA_DIR/serversettings.xml.in"
-SERVER_SETTINGS_XML="$BAROTRAUMA_DIR/serversettings.xml"
+# shellcheck source=scripts/services/barotrauma/config.sh
+source "$(dirname "${BASH_SOURCE[0]}")/../config.sh"
+
+# Paths (GAME_DIR from config.sh)
+CLIENT_PERMISSIONS_XML="$GAME_DIR/Data/clientpermissions.xml"
+PERMISSION_PRESETS_XML="$GAME_DIR/Data/permissionpresets_player.xml"
+SERVER_SETTINGS_XML_IN="$GAME_DIR/serversettings.xml.in"
+SERVER_SETTINGS_XML="$GAME_DIR/serversettings.xml"
 
 # Warm login before the real app_update. This works around intermittent SteamCMD failures
 # that occur when the depot cache or config hasn't been initialised yet. Root cause is

@@ -7,7 +7,7 @@ cd "$HOME/baroboys"
 source "$(dirname "${BASH_SOURCE[0]}")/config.sh"
 
 SHUTDOWN_DELAY_MINUTES=1
-SAVE_DIR="VRising/Data/Saves/v4/$WORLD_NAME"
+# SAVE_DIR from config.sh
 
 SERVER_PASSWORD="$(gcloud secrets versions access latest --secret="server-password")"
 

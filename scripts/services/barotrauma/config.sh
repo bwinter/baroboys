@@ -3,4 +3,5 @@
 # Source this from any Barotrauma script that needs these values.
 
 GAME_NAME="barotrauma"
-SAVE_DIR="Barotrauma/Multiplayer"
+GAME_DIR="$HOME/baroboys/Barotrauma"
+SAVE_DIR="$GAME_DIR/Multiplayer"

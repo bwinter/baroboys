@@ -4,14 +4,12 @@ set -euxo pipefail
 # shellcheck source=scripts/services/vrising/config.sh
 source "$(dirname "${BASH_SOURCE[0]}")/../config.sh"
 
-# Paths
-VRISING_DIR="$HOME/baroboys/VRising"
-SETTINGS_DIR="$VRISING_DIR/VRisingServer_Data/StreamingAssets/Settings"
-ADMIN_LIST="$VRISING_DIR/Data/Settings/adminlist.txt"
-BAN_LIST="$VRISING_DIR/Data/Settings/banlist.txt"
-SAVE_DIR="$VRISING_DIR/Data/Saves/v4/$WORLD_NAME"
-HOST_JSON_IN="$VRISING_DIR/ServerHostSettings.json.in"
-GAME_JSON_IN="$VRISING_DIR/ServerGameSettings.json.in"
+# Paths (GAME_DIR and SAVE_DIR from config.sh)
+SETTINGS_DIR="$GAME_DIR/VRisingServer_Data/StreamingAssets/Settings"
+ADMIN_LIST="$GAME_DIR/Data/Settings/adminlist.txt"
+BAN_LIST="$GAME_DIR/Data/Settings/banlist.txt"
+HOST_JSON_IN="$GAME_DIR/ServerHostSettings.json.in"
+GAME_JSON_IN="$GAME_DIR/ServerGameSettings.json.in"
 HOST_JSON="$SETTINGS_DIR/ServerHostSettings.json"
 GAME_JSON="$SETTINGS_DIR/ServerGameSettings.json"
 
