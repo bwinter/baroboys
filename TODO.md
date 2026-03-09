@@ -73,16 +73,8 @@ These are interesting but not current priority. Logged so they aren't forgotten.
 
 ## Done
 
-- **Game selection UX** — was clunky (edit tfvars directly). Now: `make terraform-apply-<game>`
-  uses per-game tfvars files and a `GAME` env var.
-- **Email secrets** — moved emails into GCP Secret Manager.
-- **IAM cleanup** — simplified to a single design; removed unnecessary service account permissions.
-- **Terraform SA secret access** — verified and removed; Packer uses local credentials.
-- **Wine/xvfb easy wins** — 8 items: fixed `set -euxo`, removed no-op `dpkg --add-architecture amd64`,
-  added `DISPLAY=:0` before wineboot, dropped redundant `xvfb-run`, added `WINEDEBUG=-all` and
-  `WINESERVER` to startup.sh, fixed stale label, unified Xvfb to 24-bit color depth.
-- **`refresh.sh`: Remove boot-time debug noise** — removed from `vrising/src/refresh.sh` and
-  `barotrauma/src/refresh.sh`; upgraded weak warm-SteamCMD comment in Barotrauma to match
-  VRising version.
-- **`shutdown.sh`: Document stash strategy** — added comment explaining the stash → pull --rebase
-  → push → pop pattern is intentional (clears local taint before rebase).
+- **Wine/xvfb stack** — wine64→wine (Wine 11), 24-bit Xvfb, WINEDEBUG=-all, winetricks via
+  curl (not apt), wineboot headless fix, Xvfb ExecStartPost= readiness poll. See known-issues
+  #15, #16, #18 for the significant items.
+- **`shutdown.sh` stash strategy** — documented that stash → pull --rebase → push → pop is
+  intentional; clears local working-tree taint before rebase so push doesn't fail on dirty state.

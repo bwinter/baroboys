@@ -82,26 +82,15 @@ These are known but intentionally not being addressed.
 
 ## Fixed
 
-All of the following have been resolved and committed:
+Entries worth preserving as design context or non-obvious gotchas. Routine fixes
+(typos, dead code, minor tool bugs) are in git log but not listed here.
 
 | # | Issue |
 |---|-------|
-| 1 | `make admin-local` broken — wrong `ADMIN_DIR` and nginx config paths |
-| 2 | Admin panel log dropdown "vristing" typos (always returned 404) |
-| 3 | `mcrcon_cmd()` / `get_server_password()` dead code removed |
-| 4 | `/directory` page nginx log links used slashes instead of underscores |
-| 5 | `refresh_users.log` key mapped to nonexistent file |
-| 6 | `get_admin_server_logs.sh` referenced nonexistent `admin-server.service` |
 | 7 | `game-shutdown.service` `TimeoutStartSec=300` too short for VRising (~390s worst case) → bumped to 600 |
-| 8 | `docs/ai_primer.md` referenced wrong script name and nginx layout |
-| 9 | `bfg_cleanup.sh` hardcoded `$HOME/Desktop/Baroboys` → derived from script location |
-| 10 | `packer/build.sh` no cleanup trap on failure → added `trap 'rm -rf "$BUILD_DIR"' ERR EXIT` |
-| 11 | `terraform/main.tf` `ignore_changes` on startup/shutdown metadata + metadata block removed — VM lifecycle now owned by systemd `[Install]` |
-| 12 | `ServeGameSettings.jsonc` filename typo + unclear purpose → renamed to `ServerGameSettings.jsonc` and moved to `VRising/` root (annotated reference doc for `ServerGameSettings.json`) |
-| 13 | `ServerHostSettings.json` + `ServerGameSettings.json` force-committed into gitignored `StreamingAssets/Settings/` → moved to `VRising/*.json.in` templates; `refresh.sh` now `envsubst`s both into Settings/ at boot |
-| 14 | Flask admin server ran as root → now runs as `bwinter_sc81`; sudoers drop-in grants single `systemctl restart game-shutdown.service` permission; `adm` group added for nginx log access |
-| 15 | Wine 11.0 (Jan 2026) removed `wine64` binary (unified into `wine`) → updated all 4 hardcoded `/opt/wine-stable/bin/wine64` references in `apt_wine.sh`, `src/setup.sh`, `vrising/startup.sh` |
-| 16 | Xvfb race condition: `systemctl start xvfb-startup.service` (Type=simple) returned before display socket was ready; wineboot raced and failed with `start_rpcss Failed` → `boot event wait timed out` → `wine: could not load kernel32.dll, status c0000135` → build failure. Fixed via `ExecStartPost=` readiness poll in `xvfb-startup.service` |
-| 17 | `review_and_cleanup.sh`: hung Packer instances (RUNNING, name~packer-) not caught — TERMINATED filter missed them. Fixed by adding dedicated section. Also fixed `gsutil ls "${bucket}**"` (invalid glob) → `gsutil ls "${bucket}"` |
-| 19 | `barotrauma/src/refresh.sh`: boot-time debug noise (`id`, `ls -la`, `find`, `=== BEFORE/AFTER steamcmd ===`) removed; weak warm-SteamCMD comment replaced with explanation matching VRising version |
-| 18 | `wine/src/setup.sh`: `DISPLAY=:0` was set before `wineboot` (introduced in commit `82d841c` as an apparent cleanup). Wine 11 requires wineboot to run headless — setting `DISPLAY` before it causes `start_rpcss Failed` → `boot event wait timed out` → `could not load kernel32.dll`. Fixed by `unset DISPLAY` before wineboot and `export DISPLAY=:0` only immediately before winetricks. `unset` (not just omitting the export) makes the constraint hold regardless of caller environment. |
+| 11 | `terraform/main.tf` metadata startup/shutdown scripts + `ignore_changes` removed — VM lifecycle is owned entirely by systemd `[Install]`, not Terraform metadata |
+| 13 | `ServerHostSettings.json` + `ServerGameSettings.json` were force-committed into gitignored `StreamingAssets/Settings/` → moved to `VRising/*.json.in` templates; `refresh.sh` `envsubst`s them into Settings/ at boot |
+| 14 | Flask admin server ran as root → now runs as `bwinter_sc81`; sudoers drop-in grants single `systemctl restart game-shutdown.service`; `adm` group added for nginx log access |
+| 15 | Wine 11.0 (Jan 2026) removed `wine64` binary (unified into `wine`) → updated all hardcoded `wine64` references |
+| 16 | Xvfb race: `Type=simple` returns on fork, not readiness; wineboot raced a half-started Xvfb and failed with `start_rpcss Failed` → `kernel32.dll` error. Fixed via `ExecStartPost=` socket poll in `xvfb-startup.service` |
+| 18 | `wine/src/setup.sh`: `DISPLAY=:0` set before `wineboot` caused Wine 11 `start_rpcss Failed` → `kernel32.dll` error. Fixed: `unset DISPLAY` before wineboot, `export DISPLAY=:0` only before winetricks. `unset` (not just omitting) enforces headless regardless of caller environment. |
