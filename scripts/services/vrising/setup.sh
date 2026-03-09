@@ -22,6 +22,11 @@ printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "/var/log/baroboys/vri
 chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/vrising_shutdown.log"
 chmod 644  "/var/log/baroboys/vrising_shutdown.log"
 
+# VRising writes its game log to $GAME_DIR/logs/VRisingServer.log (via -logFile ./logs/VRisingServer.log
+# in startup.sh). Symlink into /var/log/baroboys/ so the admin server can use the standard LOG_DIR path.
+ln -sf "/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log" \
+  "/var/log/baroboys/VRisingServer.log"
+
 
 # Unit installation
 install -m 644 "/root/baroboys/scripts/services/vrising/game-setup.service" \

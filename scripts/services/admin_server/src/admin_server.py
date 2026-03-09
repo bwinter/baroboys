@@ -68,8 +68,7 @@ def tail_log(name):
         "nginx_error": ["tail", "-n", "500", "/var/log/nginx/error.log"],
         "barotrauma.log": os.path.join(LOG_DIR, "barotrauma.log"),
         "vrising.log": os.path.join(LOG_DIR, "vrising.log"),
-        # VRising writes its game log to the game dir, not /var/log/baroboys/
-        "VRisingServer.log": "/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log",
+        "VRisingServer.log": os.path.join(LOG_DIR, "VRisingServer.log"),
     }
 
     if ENV == "dev":
