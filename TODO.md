@@ -6,12 +6,6 @@
 
 ### Near-term
 
-- **Config centralization — Layer 1 accepted gaps** — `.envrc` is the authoritative source for
-  infra globals; local dev tools read from env with fallbacks. Two intentional gaps remain:
-  `Makefile` duplicates `PROJECT`/`ZONE`/`INSTANCE`/`USER` (Make can't source `.envrc`; values
-  rarely change); `terraform/shared.tfvars` duplicates some values (feeds Packer/Terraform, must
-  be static files). Neither gap is worth closing — accept as-is.
-
 - **CI pipeline** — two tiers:
 
   **Tier 1 — syntax/validate (free, no GCP):** `packer validate` and `terraform validate` on
@@ -29,6 +23,7 @@
   - Verify `WORLD_NAME` is exported in `vrising/src/refresh.sh` before `envsubst`
   - Verify `shutdown.sh` files contain the stash-pull-push-pop sequence in order
   - Verify every game dir has a `config.sh` exporting `GAME_NAME`
+  - Verify `.envrc` and `shared.tfvars` agree on project/zone/region/machine_name
   These can be implemented as a bash test script or simple GitHub Actions steps — no mocking
   or GCP access needed.
 
@@ -63,28 +58,27 @@
 
 - **Admin panel: multi-game awareness** — log dropdown always shows both Barotrauma and VRising
   entries regardless of which game is running. Should filter to the active game.
-  Approach: during `game-setup.service`, write the active game name to a known file, e.g.
-  `echo "vrising" > /etc/baroboys/active-game` (created by `vrising/setup.sh`,
-  `barotrauma/setup.sh` writes its own — source `config.sh` to get `$GAME_NAME`). `idle_check.sh`
-  already writes `status.json` — add a `"game": "vrising"` field there. Admin panel JS reads
-  `status.json` on load and hides log entries whose name doesn't match the active game.
+  Approach (simplified by config.sh groundwork):
+  1. In each `<game>/setup.sh`: `source config.sh && echo "$GAME_NAME" > /etc/baroboys/active-game`
+  2. In `idle_check.sh`: read `/etc/baroboys/active-game` and add `"game": "<name>"` to status.json
+  3. Admin panel JS: read `status.json.game` on load, hide log entries whose name prefix doesn't match
 
-- **Adding a new game — checklist** — the pattern is now established but not written down.
-  Adding a third game should follow:
-  - `scripts/services/<game>/config.sh` — `GAME_NAME` + game-specific tunables (world name,
-    RCON port, etc.)
-  - `scripts/services/<game>/setup.sh` — sources config.sh, runs refresh.sh as bwinter_sc81,
-    creates log files, installs + enables 3 systemd units
-  - `scripts/services/<game>/src/refresh.sh` — sources config.sh, SteamCMD warm + app_update,
-    git checkout canonical configs, envsubst password into config templates
+- **Adding a new game — checklist** — the pattern is established; formalize when a 3rd game
+  is added. Adding a game requires:
+  - `scripts/services/<game>/config.sh` — GAME_NAME, GAME_DIR, STEAM_APP_ID, STEAM_PLATFORM,
+    SAVE_DIR, LOG_FILE, plus game-specific tunables (WORLD_NAME, RCON_PORT, WINEPREFIX if Wine)
+  - `scripts/services/<game>/setup.sh` — sources config.sh, runs refresh.sh, creates log files,
+    installs + enables 3 systemd units; writes `$GAME_NAME` to `/etc/baroboys/active-game`
+  - `scripts/services/<game>/src/refresh.sh` — sources config.sh, SteamCMD warm + app_update
+    (using `$STEAM_APP_ID`, `$GAME_DIR`, `$STEAM_PLATFORM`), git checkout canonical configs,
+    envsubst password into config templates
   - `scripts/services/<game>/startup.sh`, `shutdown.sh` — source config.sh; shutdown follows
     stash→pull→push→pop pattern
   - Systemd unit triplet: `game-setup.service`, `game-startup.service`, `game-shutdown.service`
   - Add game to `Makefile` `GAMES` list and `packer/` template
   - Terraform firewall rules for game ports
   - Admin server log map entries in `admin_server.py`
-  - CI contract test: verify config.sh exports GAME_NAME, verify unit pairing
-  Worth formalizing as a `docs/adding-a-game.md` guide once a 3rd game is added.
+  Worth formalizing as `docs/adding-a-game.md` when a 3rd game is actually added.
 
 ### Medium-term
 
@@ -106,10 +100,9 @@
   web service, not a transient script. A top-level `admin/` directory was considered.
   - Also considered renaming the "admin" packer layer to "shared".
 
-- **Refactor games into subdir** — move `Barotrauma/` and `VRising/` under `games/`. Config
-  inconsistency (original blocker) is resolved. The only remaining change per game is `GAME_DIR`
-  in `config.sh` — all scripts derive paths from it. Plus Packer templates and terraform paths.
-  Low risk, straightforward when ready.
+- **Refactor games into subdir** — move `Barotrauma/` and `VRising/` under `games/`. Now
+  straightforward: GAME_DIR in config.sh is the only per-game change; all scripts derive paths
+  from it. Also update Packer templates and terraform game_image references. Low risk.
 
 ---
 

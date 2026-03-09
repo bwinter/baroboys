@@ -4,8 +4,12 @@
 SHELL            := /bin/bash
 ENV              ?= prod
 GAMES            := barotrauma vrising
-PROJECT          := europan-world
-ZONE             := us-west1-c
+# PROJECT and ZONE defer to .envrc (exported by direnv) when available.
+# Canonical source: .envrc — shared.tfvars carries the same values for Terraform/Packer.
+# INSTANCE and USER intentionally use := (INSTANCE has no matching .envrc export;
+# USER would conflict with the OS $USER env var).
+PROJECT          ?= europan-world
+ZONE             ?= us-west1-c
 INSTANCE         := europa
 USER             := bwinter_sc81
 BOOTSTRAP_DIR    := bootstrap

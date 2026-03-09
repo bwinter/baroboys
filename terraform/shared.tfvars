@@ -1,3 +1,5 @@
+# Canonical source for Terraform/Packer variables.
+# project/zone/region/machine_name are mirrored in .envrc for shell/Make — keep in sync.
 project               = "europan-world"
 service_account_email = "vm-runtime@europan-world.iam.gserviceaccount.com"
 region                = "us-west1"

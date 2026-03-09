@@ -13,7 +13,7 @@ if [[ -z "$PROJECT" ]]; then
 fi
 
 BUCKET_NAME="tf-state-baroboys"
-REGION="us-west1"
+REGION="${REGION:-us-west1}"
 
 # =========================
 # PRE-FLIGHT CHECKS
