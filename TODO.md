@@ -13,11 +13,6 @@
   hardcodes `bwinter_sc81@europa`). Audit scripts for hardcoded project/zone/user strings and
   replace with `$PROJECT`, `$ZONE`, `$GCP_USER` (already exported by `.envrc`).
 
-- **Barotrauma `refresh.sh` debug noise** — same `id`/`ls -la`/`find` lines that were cleaned
-  from `vrising/src/refresh.sh` are still present in `barotrauma/src/refresh.sh:11-16,30-33`.
-  Also copy the detailed warm-SteamCMD comment from the VRising version to the Barotrauma one.
-  See known-issues.md for exact lines to delete. Two-minute fix.
-
 - **Pin mcrcon to a release tag** — `mcrcon/refresh.sh:15` clones HEAD; add
   `git -C "/tmp/mcrcon" checkout <tag>` after clone. Check releases page for current tag.
   See known-issues.md for exact implementation.
@@ -86,7 +81,8 @@ These are interesting but not current priority. Logged so they aren't forgotten.
 - **Wine/xvfb easy wins** — 8 items: fixed `set -euxo`, removed no-op `dpkg --add-architecture amd64`,
   added `DISPLAY=:0` before wineboot, dropped redundant `xvfb-run`, added `WINEDEBUG=-all` and
   `WINESERVER` to startup.sh, fixed stale label, unified Xvfb to 24-bit color depth.
-- **`refresh.sh`: Remove boot-time debug noise** — removed `id`, `ls -la ~`, `ls -la ~/.steam`,
-  `find ~/.steam`, and `=== BEFORE/AFTER steamcmd ===` banners from `vrising/src/refresh.sh`.
+- **`refresh.sh`: Remove boot-time debug noise** — removed from `vrising/src/refresh.sh` and
+  `barotrauma/src/refresh.sh`; upgraded weak warm-SteamCMD comment in Barotrauma to match
+  VRising version.
 - **`shutdown.sh`: Document stash strategy** — added comment explaining the stash → pull --rebase
   → push → pop pattern is intentional (clears local taint before rebase).

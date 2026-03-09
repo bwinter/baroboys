@@ -6,37 +6,6 @@ Bugs and gaps. Open items organized by effort — easy wins first.
 
 ## Open — Easy Fix
 
-### Barotrauma `refresh.sh` still has boot-time debug noise
-
-**File:** `scripts/services/barotrauma/src/refresh.sh:11-16, 30-33`
-
-`id`, `ls -la ~`, `ls -la ~/.steam ~/.local/share`, `find ~/.steam`, and
-`=== BEFORE/AFTER steamcmd ===` banners are still present. These run on every boot and
-produce several lines of noise in the setup log. The identical noise was cleaned from
-`vrising/src/refresh.sh` (see Done in TODO.md) — Barotrauma was missed.
-
-**Effort:** Easy — delete these exact blocks:
-
-```bash
-# Debugging
-echo "=== BEFORE steamcmd ==="
-id
-echo "HOME=$HOME"
-ls -la ~
-ls -la ~/.steam ~/.local/share || true
-```
-and:
-```bash
-# Debugging
-echo "=== AFTER steamcmd ==="
-ls -la ~/.steam ~/.local/share || true
-find ~/.steam -maxdepth 3 -type f 2>/dev/null || true
-```
-
-Use `vrising/src/refresh.sh` as the reference for what the cleaned-up version looks like.
-
----
-
 ### `mcrcon` install not version-pinned
 
 **File:** `scripts/dependencies/mcrcon/refresh.sh:15`
@@ -134,4 +103,5 @@ All of the following have been resolved and committed:
 | 15 | Wine 11.0 (Jan 2026) removed `wine64` binary (unified into `wine`) → updated all 4 hardcoded `/opt/wine-stable/bin/wine64` references in `apt_wine.sh`, `src/setup.sh`, `vrising/startup.sh` |
 | 16 | Xvfb race condition: `systemctl start xvfb-startup.service` (Type=simple) returned before display socket was ready; wineboot raced and failed with `start_rpcss Failed` → `boot event wait timed out` → `wine: could not load kernel32.dll, status c0000135` → build failure. Fixed via `ExecStartPost=` readiness poll in `xvfb-startup.service` |
 | 17 | `review_and_cleanup.sh`: hung Packer instances (RUNNING, name~packer-) not caught — TERMINATED filter missed them. Fixed by adding dedicated section. Also fixed `gsutil ls "${bucket}**"` (invalid glob) → `gsutil ls "${bucket}"` |
+| 19 | `barotrauma/src/refresh.sh`: boot-time debug noise (`id`, `ls -la`, `find`, `=== BEFORE/AFTER steamcmd ===`) removed; weak warm-SteamCMD comment replaced with explanation matching VRising version |
 | 18 | `wine/src/setup.sh`: `DISPLAY=:0` was set before `wineboot` (introduced in commit `82d841c` as an apparent cleanup). Wine 11 requires wineboot to run headless — setting `DISPLAY` before it causes `start_rpcss Failed` → `boot event wait timed out` → `could not load kernel32.dll`. Fixed by `unset DISPLAY` before wineboot and `export DISPLAY=:0` only immediately before winetricks. `unset` (not just omitting the export) makes the constraint hold regardless of caller environment. |

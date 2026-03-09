@@ -8,14 +8,9 @@ PERMISSION_PRESETS_XML="$BAROTRAUMA_DIR/Data/permissionpresets_player.xml"
 SERVER_SETTINGS_XML_IN="$BAROTRAUMA_DIR/serversettings.xml.in"
 SERVER_SETTINGS_XML="$BAROTRAUMA_DIR/serversettings.xml"
 
-# Debugging
-echo "=== BEFORE steamcmd ==="
-id
-echo "HOME=$HOME"
-ls -la ~
-ls -la ~/.steam ~/.local/share || true
-
-# Warm steam to hopefully avoid intermittent failures.
+# Warm login before the real app_update. This works around intermittent SteamCMD failures
+# that occur when the depot cache or config hasn't been initialised yet. Root cause is
+# unknown; removing this call makes builds flaky. Do not simplify.
 /usr/games/steamcmd \
   +login anonymous \
   +quit
@@ -25,11 +20,6 @@ ls -la ~/.steam ~/.local/share || true
   +login anonymous \
   +app_update 1026340 validate \
   +quit
-
-# Debugging
-echo "=== AFTER steamcmd ==="
-ls -la ~/.steam ~/.local/share || true
-find ~/.steam -maxdepth 3 -type f 2>/dev/null || true
 
 # Restore canonical server configs
 cd "$HOME/baroboys"
