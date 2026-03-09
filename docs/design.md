@@ -103,7 +103,3 @@ image. At VM boot, Wine just uses the pre-built prefix in `~/.wine64`.
 `systemctl start` returns as soon as the process forks — before it accepts connections. Use
 `ExecStartPost=` to express readiness. `xvfb-startup.service` is the canonical example: it polls
 for `/tmp/.X11-unix/X0` before reporting active.
-
-**`wine64` was removed in Wine 11 (Jan 2026).**
-The unified `wine` binary handles both 32-bit and 64-bit PE binaries. All invocations use
-`/opt/wine-stable/bin/wine`. `WINEARCH=win64` still works as expected.

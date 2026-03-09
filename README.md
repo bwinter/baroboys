@@ -2,13 +2,11 @@
 
 This project automates the hosting of game servers (currently works for VRising and Barotrauma).
 
-A design priority was low cost, ideally 0 when unused. To that end, this repo saves all state (essentially) to GitHub - allowing `terraform destory` to purge GCP down to a near 0 cost.
-
-(I would love to have demoed k8s and Go in this project, but I think they would be unnecessary complexities for a relatively simple project.)
+A design priority was low cost, ideally 0 when unused. To that end, this repo saves all state (essentially) to GitHub — allowing `terraform destroy` to purge GCP down to a near 0 cost.
 
 Tech Stack tl;dr is: GCP, Packer, Terraform, and Bash. (+ Steam, and a few linux tools)
 
-There is a small admin console for managing the server and accessing the logs as well. It was designed to give limited admin control and debugging details without needing technical skills. (It doesn't currently separate game UI well – aka it needs some work but is functional.)
+There is a small admin console for managing the server and accessing the logs. It was designed to give limited admin control and debugging details without needing technical skills.
 
 ---
 
@@ -99,8 +97,9 @@ make terraform-apply-<game>
 * Replace `<game>` with `vrising` or `barotrauma`.
 * This boots game VM
 * Note the server shuts down after 30 minutes of inactivity. Saving the game at the same time.
-* To restart the server, simply power it back on via the GCP UI.
-  * To grant others the ability to start server, see `make iam-add-admin`.
+* To restart the server: `make start`
+  * To grant others the ability to start the server, see `make iam-add-admin`.
+* To get the admin panel URL: `make admin-url`
 
 ---
 
@@ -127,7 +126,7 @@ make help
 | Goal              | Command                                                                    |
 |-------------------|----------------------------------------------------------------------------|
 | View startup logs | `gcloud compute instances get-serial-port-output europa --zone=us-west1-c` |
-| View systemd logs | `journalctl -u google-startup-scripts.service -e`                          |
+| View service logs | `make admin-logs`                                                          |
 
 ---
 
@@ -135,8 +134,10 @@ make help
 
 - **General Documentation** (`/docs`)
     - Setup and usage instructions
+    - [`docs/design.md`](docs/design.md) — design philosophy and mental models
     - [`docs/architecture.md`](docs/architecture.md) — full system architecture reference
     - [`docs/known-issues.md`](docs/known-issues.md) — known bugs and gaps
+    - [`docs/admin/using_admin.md`](docs/admin/using_admin.md) — admin panel usage guide
 
 - **Bootstrapping** (`/bootstrap`)
     - Sets up service accounts and TF buckets.
@@ -151,8 +152,6 @@ make help
     - Installers / updaters for environment dependencies
     - Services that support the game's server
     - Misc tools for debugging and development
-    - (Note: This section is a work in progress and may evolve as the project matures.)
-        - It works fairly well, but it's possible there might be a better separation of concerns.
 
 - **Barotrauma State & Mods** (`/Barotrauma`)
     - Contains saved games, mod files, and game server config
@@ -169,4 +168,4 @@ This project is licensed under the [Polyform Small Business License](https://pol
 - ✅ Free for personal, educational use
 - ❌ Commercial use by larger companies requires a commercial license
 
-If you’re a business that would like to use this project, please contact me at [bwinter.sc81@gmail.com].
+If you're a business that would like to use this project, please contact me at [bwinter.sc81@gmail.com].
