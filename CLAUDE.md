@@ -201,13 +201,6 @@ All units follow a two-phase pattern per component: `*-setup.service` (oneshot, 
 
 ---
 
-## Known Open Issues
-
-See [`docs/known-issues.md`](docs/known-issues.md) for full detail.
-
-- VRising world name `TestWorld-1` hardcoded in `vrising/shutdown.sh` and `vrising/src/refresh.sh`
-  (deferred — folder rename may corrupt save)
-
 ---
 
 ## Files to Be Aware Of
