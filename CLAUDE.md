@@ -201,6 +201,11 @@ All units follow a two-phase pattern per component: `*-setup.service` (oneshot, 
 
 ---
 
+## Known Issues
+
+See [`docs/known-issues.md`](docs/known-issues.md) — Won't Fix platform constraints and any
+currently open issues. When you find a new bug, add it there.
+
 ---
 
 ## Files to Be Aware Of
