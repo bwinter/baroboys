@@ -72,6 +72,33 @@ else
   echo "✅ No stopped VMs found."
 fi
 
+# =================== Hung Packer Instances ===================
+# Packer instances left RUNNING after a failed/interrupted build are not caught by the
+# TERMINATED filter above. They're identifiable by the packer-* naming convention.
+
+echo -e "\n🔨 Looking for hung Packer build instances (status=RUNNING, name~packer-)..."
+echo '```'
+gcloud compute instances list \
+  --project="$PROJECT" \
+  --filter="name~^packer- AND status=RUNNING" \
+  --format="table[box](name, zone, status, creationTimestamp)" 2>&1
+echo '```'
+
+packer_vms=$(gcloud compute instances list \
+  --project="$PROJECT" \
+  --filter="name~^packer- AND status=RUNNING" \
+  --format="csv(name,zone)" 2>/dev/null || true)
+
+if [[ -n "$packer_vms" ]]; then
+  { echo "$packer_vms" | tail -n +2 || true; } | while IFS=',' read -r name zone; do
+    echo "🗑 Deleting hung Packer instance: $name in $zone"
+    gcloud compute instances delete "$name" --zone="$zone" --project="$PROJECT" --quiet || \
+      echo "❌ Failed to delete $name — skipping."
+  done
+else
+  echo "✅ No hung Packer instances found."
+fi
+
 # =================== Disks ===================
 
 echo -e "\n📦 Looking for orphaned Packer-created disks..."
@@ -149,7 +176,7 @@ bucket_names=$(gsutil ls -p "$PROJECT" 2>/dev/null || true)
 
 if [[ -n "$bucket_names" ]]; then
   for bucket in $bucket_names; do
-    if gsutil ls "${bucket}**" | grep -q .; then
+    if gsutil ls "${bucket}" | grep -q .; then
       echo "❌ Skipping non-empty bucket: $bucket"
     else
       echo "🗑 Deleting empty bucket: $bucket"
