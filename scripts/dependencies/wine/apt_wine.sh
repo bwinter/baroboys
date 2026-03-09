@@ -12,11 +12,15 @@ echo "deb [signed-by=/usr/share/keyrings/winehq.gpg] https://dl.winehq.org/wine-
 dpkg --add-architecture amd64
 apt-get -yq update
 
-apt -yq install wine-stable
+apt -yq install \
+  wine-stable \
+  cabextract  # needed by winetricks to extract .cab font archives (corefonts, tahoma)
 
 # Install winetricks directly from source to avoid pulling in Debian's wine packages.
 # Debian's winetricks package depends on wine (Debian 8.x), which would shadow WineHQ's
 # wine at /opt/wine-stable/bin/ whenever 'wine' is invoked without a full path.
+# Note: winetricks recommends several packages (cabextract, p7zip, unzip, etc.) — install
+# the ones we actually need above rather than pulling in the full Debian package tree.
 curl -fsSL "https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks" \
   -o /usr/local/bin/winetricks
 chmod +x /usr/local/bin/winetricks
