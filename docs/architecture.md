@@ -76,8 +76,10 @@ one source of truth for project, zone, machine type, and image names.
 `terraform/main.tf` provisions:
 - One GCE VM (`europa`, `n2-custom-2-6144`, `us-west1-c`, 20GB pd-ssd)
 - Firewall rules for Barotrauma (TCP+UDP 27015, 27016), VRising (TCP+UDP 9876, 9877), and admin panel (TCP 8080)
-- Startup metadata: `systemctl start game-startup.service`
-- Shutdown metadata: `systemctl start game-shutdown.service`
+
+No metadata startup/shutdown scripts — game lifecycle is entirely owned by systemd `[Install]`
+targets. `game-startup.service` auto-starts via `WantedBy=multi-user.target`; `game-shutdown.service`
+hooks into `poweroff/halt/reboot` targets.
 
 The `game_image` variable selects which Packer image the VM boots from.
 `terraform apply` is game-specific: `make terraform-apply-vrising` or `make terraform-apply-barotrauma`.
@@ -88,8 +90,8 @@ State is stored remotely in `gs://tf-state-baroboys/terraform/prod`.
 
 ## VM Boot Sequence
 
-When the VM starts, GCE runs the startup-script metadata which triggers systemd.
-Services run in dependency order:
+When the VM starts, systemd brings up services in dependency order. `game-startup.service`
+auto-starts via `WantedBy=multi-user.target` — no metadata scripts involved:
 
 ```
 network-online.target
@@ -106,7 +108,8 @@ network-online.target
               │
               ├── xvfb-setup.service           (VRising only, oneshot, root)
               │     └── xvfb-startup.service   (simple, always restart)
-              │           Xvfb :0 -screen 0 1024x768x16
+              │           Xvfb :0 -screen 0 1024x768x24
+              │           ExecStartPost= polls /tmp/.X11-unix/X0 — blocks until display is live
               │
               └── game-setup.service           (oneshot, root)
                     Runs as root, calls scripts/services/<game>/setup.sh:
@@ -116,7 +119,7 @@ network-online.target
                     - (VRising) decompresses latest AutoSave_*.save.gz
                     └── game-startup.service   (simple, bwinter_sc81)
                           Barotrauma: ./DedicatedServer
-                          VRising:    wine64 VRisingServer.exe (DISPLAY=:0)
+                          VRising:    wine VRisingServer.exe (DISPLAY=:0, Wine 11+)
 ```
 
 ---
@@ -138,6 +141,7 @@ Triggered by any of:
 5. `git rm --cached` older `.save.gz` files, `git add` new one
 6. `git commit -m "Auto-save before shutdown <timestamp>"`
 7. `git stash push` → `git pull --rebase` → `git push origin main` → `git stash pop`
+   (stash is intentional — clears working-tree taint so rebase succeeds; do not simplify)
 8. `sudo systemctl poweroff`
 
 **Barotrauma:**
@@ -199,8 +203,8 @@ Three secrets live in GCP Secret Manager. All fetched at runtime by the `vm-runt
 | `nginx-htpasswd` | `nginx/refresh.sh` (setup) | Basic auth credentials for admin panel |
 
 Password injection:
-- **Barotrauma**: `serversettings.xml.in` → `envsubst` → `serversettings.xml` (placeholder: `${SERVER_PASSWORD}`)
-- **VRising**: `ServerHostSettings.json` contains literal `"${SERVER_PASSWORD}"` strings → `envsubst` overwrites the file
+- **Barotrauma**: `Barotrauma/serversettings.xml.in` → `envsubst` → `serversettings.xml` (placeholder: `${SERVER_PASSWORD}`)
+- **VRising**: `VRising/ServerHostSettings.json.in` → `envsubst` → `StreamingAssets/Settings/ServerHostSettings.json` (gitignored, regenerated each boot)
 
 ---
 
@@ -254,3 +258,38 @@ The VM's `.gitconfig` identifies commits as `Game Server <bwinter.sc81+gameserve
 | On-VM static files | `/opt/baroboys/static/` |
 | On-VM logs | `/var/log/baroboys/` |
 | On-VM game logs (VRising) | `/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log` |
+
+---
+
+## Wine / Xvfb: Build-Time Initialisation (VRising only)
+
+VRising is a Windows binary. It runs under WineHQ stable (`/opt/wine-stable/bin/wine`), installed
+from the WineHQ apt repo during the VRising Packer image build.
+
+**The Wine prefix is initialised at build time, not runtime.** During the Packer build:
+1. Xvfb is started (display `:0`, 1024×768×24)
+2. `wineboot` initialises the prefix at `~/.wine64` (`WINEARCH=win64`, `WINEPREFIX=~/.wine64`)
+3. `winetricks corefonts tahoma` installs required fonts
+4. The completed prefix is baked into the image
+
+At VM boot, Wine simply uses the pre-built prefix — no initialisation needed at runtime.
+
+**Wine 11 (Jan 2026):** The `wine64` binary was removed; the unified `wine` binary handles both
+32-bit and 64-bit PE binaries based on the PE header. `WINEARCH=win64` still works as expected.
+
+---
+
+## Known Build Noise
+
+These warnings appear in every Packer build and are **expected — not failures**:
+
+| Warning | Source | Why |
+|---------|--------|-----|
+| `nodrv_CreateWindow` / `XDG_RUNTIME_DIR not set` | wineboot | Running Wine in a non-login Packer environment without a full session |
+| `fixme:actctx:parse_depend_manifests Could not find dependent assembly Microsoft.Windows.Common-Controls` | wineboot | Missing Windows common controls manifest — harmless for a headless server |
+| `err:vulkan:vulkan_init_once Failed to load libvulkan.so.1` | wineboot | No GPU on the build VM — expected |
+| `ILocalize::AddFile() failed to load file` | SteamCMD | Localisation file missing — always present, never a failure |
+| `setlocale` warnings | SteamCMD | Locale not fully configured in Packer environment |
+| `fatal: Cannot rebase onto multiple branches` | refresh_repo.sh | Git tracking state ambiguous after fresh clone; fallback to `--no-rebase` handles it |
+
+Anything **not** in this table during a build is worth investigating.

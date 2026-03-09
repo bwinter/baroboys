@@ -6,6 +6,7 @@ GCP game server hosting platform for **VRising** and **Barotrauma**. Packer buil
 images; Terraform provisions the VM; systemd + bash scripts manage the game lifecycle; saves are
 committed to Git on every shutdown.
 
+**Design philosophy:** [`docs/design.md`](docs/design.md)
 **Full system reference:** [`docs/architecture.md`](docs/architecture.md)
 **Known bugs/gaps:** [`docs/known-issues.md`](docs/known-issues.md)
 
