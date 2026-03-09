@@ -50,10 +50,24 @@
   terraform, packer, gcloud, python3, bash 4, nginx, java. Devbox (Nix-backed, no Nix knowledge
   required) pins these with a `devbox.json` + `devbox.lock`. Non-pure shell: host tools (git,
   make, curl, ssh) still work; devbox only owns the version-sensitive/platform-painful ones.
+  Same `devbox.json` works on macOS and Linux — Nix selects the right platform binary automatically.
   Integrates with existing `.envrc` via a generated snippet — auto-activates on `cd`.
   Approach: `devbox init`, `devbox add terraform packer google-cloud-sdk python3 bash nginx jdk`,
   wire into `.envrc`. Commit `devbox.json` + `devbox.lock`. New dev runs `devbox shell` (or
   just `cd` with direnv) and has everything pinned.
+
+  **Bootstrap (macOS):** `xcode-select --install` → Nix installer → `devbox shell`. Xcode CLT
+  is Apple's unavoidable first step (provides git, make, clang). After that Nix is self-contained.
+  Linux only needs curl for the Nix installer — simpler.
+
+  **gcloud caveat:** nixpkgs disables gcloud's built-in component manager because `/nix/store/`
+  is read-only — `gcloud components update` and `gcloud components install` won't work. Core
+  gcloud commands are fine. If additional components (alpha, emulators) are ever needed, may
+  need to manage gcloud outside devbox and leave it to the host.
+
+  **Do not use on the VM:** Packer bakes deps at build time, not runtime. Wine and SteamCMD
+  have known-working apt installs that are risky to swap. Nix would add store overhead to the
+  image. Keep apt + Packer for VM; devbox is local dev only.
 
 - **Admin panel: multi-game awareness** — log dropdown always shows both Barotrauma and VRising
   entries regardless of which game is running. Should filter to the active game.
