@@ -6,20 +6,12 @@
 
 ### Near-term
 
-- **Config centralization** — config values are scattered across multiple layers and scopes.
-  Two distinct problems:
-
-  **Layer 1 — infrastructure globals** (`PROJECT`, `ZONE`, `REGION`, `GCP_USER`): scattered
-  across `.envrc`, `Makefile`, `terraform/shared.tfvars`, individual scripts. Goal: `.envrc` is
-  the one place to change. Gap: scripts that hardcode values (e.g. `get_admin_server_logs.sh`
-  hardcodes `bwinter_sc81@europa`). Approach: audit scripts for hardcoded project/zone/user
-  strings and replace with `$PROJECT`, `$ZONE`, `$GCP_USER` (already exported by `.envrc`).
-
-  **Layer 2 — game-specific config** (`WORLD_NAME`, game ports, save paths, etc.): naturally
-  lives in per-game config files, not a single global. Values like `WORLD_NAME="TestWorld-1"`
-  are set per-script today (shutdown.sh, refresh.sh each define their own copy). A sourced
-  per-game config (e.g. `scripts/services/vrising/config.sh`) would be the single place to
-  update for a rename. Blocked on the broader config-centralization design.
+- **Config centralization — Layer 1 remaining** — `.envrc` exports `PROJECT`, `ZONE`, `REGION`,
+  `GCP_USER`, `REMOTE`, `MACHINE_NAME`. Local dev tools now read these with hardcoded fallbacks
+  (`get_admin_server_logs.sh`, `remote_refresh.sh`). Remaining gap: `Makefile` duplicates
+  `PROJECT`, `ZONE`, `INSTANCE`, `USER` as Make variables — those are intentional (Make doesn't
+  source `.envrc`) and unlikely to diverge, so low priority. `terraform/shared.tfvars` also
+  duplicates some values — those feed Packer/Terraform and can't be replaced by shell vars.
 
 - **CI pipeline** — two tiers:
 
@@ -111,6 +103,10 @@ These are interesting but not current priority. Logged so they aren't forgotten.
 ---
 
 ## Done
+
+- **Config centralization — Layer 2** — `scripts/services/vrising/config.sh` is the single source
+  for `WORLD_NAME`, `RCON_PORT`, and `GAME_NAME`. Both `shutdown.sh` and `src/refresh.sh` source
+  it; rename procedure documented in `config.sh`. Establishes the pattern for Barotrauma to follow.
 
 - **Wine/xvfb stack** — wine64→wine (Wine 11), 24-bit Xvfb, WINEDEBUG=-all, winetricks via
   curl (not apt), wineboot headless fix, Xvfb ExecStartPost= readiness poll. Rationale in

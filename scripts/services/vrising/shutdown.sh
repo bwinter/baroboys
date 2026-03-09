@@ -3,17 +3,16 @@ set -euxo pipefail
 
 cd "$HOME/baroboys"
 
+# shellcheck source=scripts/services/vrising/config.sh
+source "$(dirname "${BASH_SOURCE[0]}")/config.sh"
+
 SHUTDOWN_DELAY_MINUTES=1
-# To rename the world: update WORLD_NAME here and in vrising/src/refresh.sh, rename the
-# on-disk save directory to match, then push. The game creates a fresh world if the
-# directory is missing — a mismatched rename will silently wipe the save.
-WORLD_NAME="TestWorld-1"
 SAVE_DIR="VRising/Data/Saves/v4/$WORLD_NAME"
 
 SERVER_PASSWORD="$(gcloud secrets versions access latest --secret="server-password")"
 
 # Tell players and trigger autosave
-if ! mcrcon -H 127.0.0.1 -P 25575 -p "$SERVER_PASSWORD" \
+if ! mcrcon -H 127.0.0.1 -P "$RCON_PORT" -p "$SERVER_PASSWORD" \
   "shutdown ${SHUTDOWN_DELAY_MINUTES} \"Server will shut down in ~{t}m! Get to a safe place.\""; then
   echo "⚠️ mcrcon failed to send shutdown command"
 fi

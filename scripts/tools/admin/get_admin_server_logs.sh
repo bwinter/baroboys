@@ -8,8 +8,8 @@ if [[ -z "$PROJECT" ]]; then
   exit 1
 fi
 
-REMOTE="bwinter_sc81@europa"
-ZONE="us-west1-c"
+REMOTE="${REMOTE:-bwinter_sc81@europa}"
+ZONE="${ZONE:-us-west1-c}"
 SERVICE="admin-server-startup.service"
 LOG_LINES=200
 

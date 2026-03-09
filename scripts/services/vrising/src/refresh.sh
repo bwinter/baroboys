@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
+# shellcheck source=scripts/services/vrising/config.sh
+source "$(dirname "${BASH_SOURCE[0]}")/../config.sh"
+
 # Paths
 VRISING_DIR="$HOME/baroboys/VRising"
 SETTINGS_DIR="$VRISING_DIR/VRisingServer_Data/StreamingAssets/Settings"
 ADMIN_LIST="$VRISING_DIR/Data/Settings/adminlist.txt"
 BAN_LIST="$VRISING_DIR/Data/Settings/banlist.txt"
-# See shutdown.sh for rename instructions — must be kept in sync with that file.
-WORLD_NAME="TestWorld-1"
 SAVE_DIR="$VRISING_DIR/Data/Saves/v4/$WORLD_NAME"
 HOST_JSON_IN="$VRISING_DIR/ServerHostSettings.json.in"
 GAME_JSON_IN="$VRISING_DIR/ServerGameSettings.json.in"
