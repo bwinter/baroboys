@@ -15,7 +15,25 @@ Bugs and gaps. Open items organized by effort — easy wins first.
 produce several lines of noise in the setup log. The identical noise was cleaned from
 `vrising/src/refresh.sh` (see Done in TODO.md) — Barotrauma was missed.
 
-**Effort:** Easy (delete those lines; mirror what VRising now looks like)
+**Effort:** Easy — delete these exact blocks:
+
+```bash
+# Debugging
+echo "=== BEFORE steamcmd ==="
+id
+echo "HOME=$HOME"
+ls -la ~
+ls -la ~/.steam ~/.local/share || true
+```
+and:
+```bash
+# Debugging
+echo "=== AFTER steamcmd ==="
+ls -la ~/.steam ~/.local/share || true
+find ~/.steam -maxdepth 3 -type f 2>/dev/null || true
+```
+
+Use `vrising/src/refresh.sh` as the reference for what the cleaned-up version looks like.
 
 ---
 
@@ -28,7 +46,13 @@ build or changes the CLI, VRising shutdown (which relies on mcrcon for RCON) wil
 break on the next image build that has a cache miss. The idempotency check (`mcrcon -v`) only
 guards against re-installing, not against a bad upstream version.
 
-**Effort:** Easy (add `git checkout <tag>` after clone; check https://github.com/Tiiffi/mcrcon/releases for latest tag)
+**Effort:** Easy — after the `git clone` line, add:
+```bash
+git -C "/tmp/mcrcon" checkout v0.7.2   # or latest tag from /releases
+```
+Check https://github.com/Tiiffi/mcrcon/releases for the current latest release tag before
+committing. The version string is printed by `mcrcon -v`, so the existing idempotency check
+will still work correctly after pinning.
 
 ---
 
@@ -41,7 +65,10 @@ SteamCMD failure, likely depot cache init, root cause unknown, removing it makes
 Barotrauma has only `# Warm steam to hopefully avoid intermittent failures.` — a future reader
 might remove it not knowing the reasoning.
 
-**Effort:** Trivial (copy the explanatory comment from VRising's refresh.sh)
+**Effort:** Trivial — replace the current one-liner with the explanation from `vrising/src/refresh.sh`.
+The comment should convey: this is a deliberate workaround for intermittent SteamCMD failures
+(likely depot cache initialisation); root cause is unknown; removing it makes builds flaky;
+do not simplify.
 
 ---
 
@@ -50,12 +77,23 @@ might remove it not knowing the reasoning.
 **Files:**
 - `scripts/services/vrising/shutdown.sh:7` — `SAVE_DIR="VRising/Data/Saves/v4/TestWorld-1"`
 - `scripts/services/vrising/src/refresh.sh:8` — `SAVE_DIR="$VRISING_DIR/Data/Saves/v4/TestWorld-1"`
-- `VRising/VRisingServer_Data/StreamingAssets/Settings/ServerHostSettings.json` — `"SaveName": "TestWorld-1"`
+- `VRising/ServerHostSettings.json.in` — `"SaveName": "TestWorld-1"` (envsubst'd at boot)
 
-**Effort:** Easy (extract to a shared variable or env var)
+**Effort:** Easy if only changing variable references; risky if actually renaming the world.
 
-Renaming the world requires coordinated changes in 3+ places. Low value to fix unless a rename
-is planned.
+**Implementation:** In each shell script, replace the hardcoded string with a variable defined
+at the top: `WORLD_NAME="TestWorld-1"`. Then reference `$WORLD_NAME` in the path. Each script
+sets its own local copy — there is no shared sourced config file. The three changes are:
+
+1. `shutdown.sh:7` → `WORLD_NAME="TestWorld-1"; SAVE_DIR="VRising/Data/Saves/v4/$WORLD_NAME"`
+2. `refresh.sh:8` → `WORLD_NAME="TestWorld-1"; SAVE_DIR="$VRISING_DIR/Data/Saves/v4/$WORLD_NAME"`
+3. `ServerHostSettings.json.in` → replace literal `"TestWorld-1"` with `"${WORLD_NAME}"` and
+   ensure `refresh.sh` exports `WORLD_NAME` before calling `envsubst`
+
+**Warning:** Actually renaming the world (not just the variable) requires the on-disk save
+directory to be renamed too. The game will create a fresh world if the directory is missing.
+Do a coordinated rename: rename dir, update variable, push, then boot. Low priority unless a
+rename is actively planned.
 
 ---
 
