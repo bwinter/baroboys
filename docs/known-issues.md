@@ -5,6 +5,18 @@ gotchas live in `docs/architecture.md` and inline comments in the relevant files
 
 ---
 
+## Open
+
+Active bugs — fix approach documented, not yet resolved.
+
+| Issue | File | Fix |
+|-------|------|-----|
+| `VRisingServer.log` served from wrong path | `admin_server.py:71` | Change log_map path to `/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log`, or symlink into `/var/log/baroboys/` from `vrising/setup.sh` |
+| `barotrauma.log` directory label wrong | `admin_server.py:123` | Change `"V Rising Service Logs"` to `"Barotrauma Service Logs"` |
+| `refresh_repo.log`, `xvfb.log` missing from admin panel dropdown | `admin.html` | Add both options to the `<select>` — they're in Flask's log_map but not exposed in the UI |
+
+---
+
 ## Accepted / Won't Fix
 
 These are known but intentionally not being addressed.
