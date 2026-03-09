@@ -4,6 +4,34 @@ Bugs and gaps. Open items organized by effort — easy wins first.
 
 ---
 
+## Open — Under Investigation
+
+### VRising build failing: wineboot crashes with `could not load kernel32.dll`
+
+**Symptoms:**
+```
+start_rpcss Failed to open RpcSs service
+run_wineboot boot event wait timed out
+wine: could not load kernel32.dll, status c0000135
+```
+
+**Root cause (working theory):** Commit `82d841c` added `export DISPLAY=:0` before the
+`wineboot` call in `scripts/dependencies/wine/src/setup.sh`. Before that commit, wineboot
+ran headless (no DISPLAY set) and succeeded. After, it fails with the above.
+
+Two fixes have been attempted:
+1. ✅ `xvfb-startup.service` `ExecStartPost=` socket check (issue #16) — fixed the Xvfb
+   readiness race, but wineboot **still fails** with the same errors even when Xvfb is ready.
+   This means the race condition was not the root cause of the wineboot failure.
+2. ⏳ **Next to try:** remove `DISPLAY=:0` from before wineboot in `setup.sh` — let wineboot
+   run headless as it did before `82d841c`. Keep `DISPLAY=:0` only for winetricks (which
+   genuinely needs X for font installation). Build `boadh2537` is testing the socket check;
+   if it still fails, apply this fix.
+
+**Not the cause:** missing packages — `wine-stable-amd64` and `wine-stable-i386` both install fine.
+
+---
+
 ## Open — Easy Fix
 
 ### VRising world name "TestWorld-1" hardcoded in multiple places
