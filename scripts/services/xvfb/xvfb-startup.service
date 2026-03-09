@@ -13,11 +13,12 @@ Group=bwinter_sc81
 ExecStart=/usr/bin/Xvfb :0 -screen 0 1024x768x24
 
 # Type=simple means systemctl start returns as soon as Xvfb is forked — before it is
-# actually listening on the display socket. ExecStartPost polls xdpyinfo until display
-# :0 accepts connections, so any caller that does `systemctl start xvfb-startup.service`
-# is guaranteed the display is ready when the command returns. Without this, wineboot
-# races against a half-started Xvfb and fails to initialise the Wine prefix.
-ExecStartPost=/bin/bash -c 'until xdpyinfo -display :0 &>/dev/null; do sleep 0.5; done'
+# actually listening on the display socket. ExecStartPost polls for the Unix socket that
+# Xvfb creates at /tmp/.X11-unix/X0 when display :0 is ready, so any caller that does
+# `systemctl start xvfb-startup.service` is guaranteed the display is live when the
+# command returns. Without this, wineboot races against a half-started Xvfb and fails
+# to initialise the Wine prefix.
+ExecStartPost=/bin/bash -c 'until [ -S /tmp/.X11-unix/X0 ]; do sleep 0.5; done'
 
 SuccessExitStatus=0
 KillMode=control-group
