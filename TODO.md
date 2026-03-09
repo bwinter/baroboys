@@ -24,11 +24,6 @@
 
 ### Medium-term (from wine/build audit)
 
-- **`refresh.sh`: Remove boot-time debug noise** — `id`, `ls -la ~`, `ls -la ~/.steam`,
-  `find ~/.steam`, and `echo "=== BEFORE/AFTER steamcmd ==="` are leftover troubleshooting
-  that run on every VM boot and pollute logs. Remove or gate behind a `DEBUG=1` flag.
-  `scripts/services/vrising/src/refresh.sh:39-43, 58-61`
-
 - **`refresh.sh`: Investigate warm SteamCMD call** — First `steamcmd +login anonymous +quit`
   before the real update call was a workaround for intermittent SteamCMD failures. Test if still
   needed; removing it would speed up every boot. `scripts/services/vrising/src/refresh.sh:46-48`
@@ -76,3 +71,7 @@ These are interesting but not current priority. Logged so they aren't forgotten.
 - **Wine/xvfb easy wins** — 8 items: fixed `set -euxo`, removed no-op `dpkg --add-architecture amd64`,
   added `DISPLAY=:0` before wineboot, dropped redundant `xvfb-run`, added `WINEDEBUG=-all` and
   `WINESERVER` to startup.sh, fixed stale label, unified Xvfb to 24-bit color depth.
+- **`refresh.sh`: Remove boot-time debug noise** — removed `id`, `ls -la ~`, `ls -la ~/.steam`,
+  `find ~/.steam`, and `=== BEFORE/AFTER steamcmd ===` banners from `vrising/src/refresh.sh`.
+- **`shutdown.sh`: Document stash strategy** — added comment explaining the stash → pull --rebase
+  → push → pop pattern is intentional (clears local taint before rebase).
