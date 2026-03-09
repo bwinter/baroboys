@@ -208,6 +208,11 @@ Three secrets live in GCP Secret Manager. All fetched at runtime by the `vm-runt
 | `server-password` | `<game>/refresh.sh` (setup) and `vrising/shutdown.sh` | Game join password + RCON password (injected via `envsubst`) |
 | `nginx-htpasswd` | `nginx/refresh.sh` (setup) | Basic auth credentials for admin panel |
 
+The `.json.in` / `.xml.in` template pattern exists because the game writes to `StreamingAssets/Settings/`
+at runtime, so that directory is gitignored — files there can't be committed directly. Templates
+in the repo root let config be version-controlled without committing live credentials; `envsubst`
+regenerates the live files at each boot.
+
 Password injection:
 - **Barotrauma**: `Barotrauma/serversettings.xml.in` → `envsubst` → `serversettings.xml` (placeholder: `${SERVER_PASSWORD}`)
 - **VRising**: `VRising/ServerHostSettings.json.in` → `envsubst` → `StreamingAssets/Settings/ServerHostSettings.json` (gitignored, regenerated each boot)
