@@ -4,34 +4,6 @@ Bugs and gaps. Open items organized by effort — easy wins first.
 
 ---
 
-## Open — Under Investigation
-
-### VRising build failing: wineboot crashes with `could not load kernel32.dll`
-
-**Symptoms:**
-```
-start_rpcss Failed to open RpcSs service
-run_wineboot boot event wait timed out
-wine: could not load kernel32.dll, status c0000135
-```
-
-**Root cause (working theory):** Commit `82d841c` added `export DISPLAY=:0` before the
-`wineboot` call in `scripts/dependencies/wine/src/setup.sh`. Before that commit, wineboot
-ran headless (no DISPLAY set) and succeeded. After, it fails with the above.
-
-Two fixes have been attempted:
-1. ✅ `xvfb-startup.service` `ExecStartPost=` socket check (issue #16) — fixed the Xvfb
-   readiness race, but wineboot **still fails** with the same errors even when Xvfb is ready.
-   This means the race condition was not the root cause of the wineboot failure.
-2. ⏳ **Next to try:** remove `DISPLAY=:0` from before wineboot in `setup.sh` — let wineboot
-   run headless as it did before `82d841c`. Keep `DISPLAY=:0` only for winetricks (which
-   genuinely needs X for font installation). Build `boadh2537` is testing the socket check;
-   if it still fails, apply this fix.
-
-**Not the cause:** missing packages — `wine-stable-amd64` and `wine-stable-i386` both install fine.
-
----
-
 ## Open — Easy Fix
 
 ### VRising world name "TestWorld-1" hardcoded in multiple places
@@ -84,3 +56,4 @@ All of the following have been resolved and committed:
 | 15 | Wine 11.0 (Jan 2026) removed `wine64` binary (unified into `wine`) → updated all 4 hardcoded `/opt/wine-stable/bin/wine64` references in `apt_wine.sh`, `src/setup.sh`, `vrising/startup.sh` |
 | 16 | Xvfb race condition: `systemctl start xvfb-startup.service` (Type=simple) returned before display socket was ready; wineboot raced and failed with `start_rpcss Failed` → `boot event wait timed out` → `wine: could not load kernel32.dll, status c0000135` → build failure. Fixed via `ExecStartPost=` readiness poll in `xvfb-startup.service` |
 | 17 | `review_and_cleanup.sh`: hung Packer instances (RUNNING, name~packer-) not caught — TERMINATED filter missed them. Fixed by adding dedicated section. Also fixed `gsutil ls "${bucket}**"` (invalid glob) → `gsutil ls "${bucket}"` |
+| 18 | `wine/src/setup.sh`: `DISPLAY=:0` was set before `wineboot` (introduced in commit `82d841c` as an apparent cleanup). Wine 11 requires wineboot to run headless — setting `DISPLAY` before it causes `start_rpcss Failed` → `boot event wait timed out` → `could not load kernel32.dll`. Fixed by `unset DISPLAY` before wineboot and `export DISPLAY=:0` only immediately before winetricks. `unset` (not just omitting the export) makes the constraint hold regardless of caller environment. |
