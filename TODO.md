@@ -24,10 +24,6 @@
 
 ### Medium-term (from wine/build audit)
 
-- **`refresh.sh`: Investigate warm SteamCMD call** — First `steamcmd +login anonymous +quit`
-  before the real update call was a workaround for intermittent SteamCMD failures. Test if still
-  needed; removing it would speed up every boot. `scripts/services/vrising/src/refresh.sh:46-48`
-
 ### Medium-term
 
 - **Save files to GCS** — saves currently live in Git (growing binary history). Moving to a GCS
