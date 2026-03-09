@@ -113,7 +113,7 @@ These are interesting but not current priority. Logged so they aren't forgotten.
 ## Done
 
 - **Wine/xvfb stack** — wine64→wine (Wine 11), 24-bit Xvfb, WINEDEBUG=-all, winetricks via
-  curl (not apt), wineboot headless fix, Xvfb ExecStartPost= readiness poll. See known-issues
-  #15, #16, #18 for the significant items.
+  curl (not apt), wineboot headless fix, Xvfb ExecStartPost= readiness poll. Rationale in
+  `docs/design.md` gotchas; detail in `docs/architecture.md` Wine section.
 - **`shutdown.sh` stash strategy** — documented that stash → pull --rebase → push → pop is
   intentional; clears local working-tree taint before rebase so push doesn't fail on dirty state.

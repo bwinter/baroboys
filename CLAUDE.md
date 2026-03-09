@@ -171,7 +171,7 @@ idle_check.sh OR admin panel OR any VM stop (poweroff/halt/reboot)
 - Saves: `Barotrauma/Multiplayer/*.save` + `*_CharacterData.xml`
 
 **VRising** (Steam app 1829350)
-- Windows binary via Wine64: `wine64 VRisingServer.exe`
+- Windows binary via Wine: `wine VRisingServer.exe` (Wine 11+ unified binary; wine64 removed)
 - Requires Xvfb on DISPLAY=:0, WINEPREFIX=`/home/bwinter_sc81/.wine64`
 - Ports: TCP+UDP 9876/9877 (firewall), 27015/27016 (configured in ServerHostSettings.json)
 - RCON: port 25575 (used by shutdown.sh)
@@ -215,4 +215,3 @@ currently open issues. When you find a new bug, add it there.
 - `.gitconfig` — VM git identity (`Game Server`, `bwinter.sc81+gameserver@gmail.com`)
 - `terraform/.terraform.lock.hcl` — committed; keeps provider versions pinned
 - `packer/tmp/` — gitignored build scratch dir, safe to delete
-- `scripts/services/*/src/tmp.sh` — orphaned helper scripts, not wired up to anything
