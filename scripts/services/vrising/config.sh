@@ -7,6 +7,10 @@
 
 GAME_NAME="vrising"
 GAME_DIR="$HOME/baroboys/VRising"
+STEAM_APP_ID=1829350
+STEAM_PLATFORM="windows"
 WORLD_NAME="TestWorld-1"
 RCON_PORT=25575
 SAVE_DIR="$GAME_DIR/Data/Saves/v4/$WORLD_NAME"
+LOG_FILE="/var/log/baroboys/${GAME_NAME}.log"
+WINEPREFIX="$HOME/.wine64"

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euox pipefail
 
-LOG_FILE="/var/log/baroboys/barotrauma.log"
+# shellcheck source=scripts/services/barotrauma/config.sh
+source "$(dirname "${BASH_SOURCE[0]}")/config.sh"
 
 echo "🚀 Barotrauma launcher started at $(date)" >> "$LOG_FILE"
 

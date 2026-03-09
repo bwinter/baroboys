@@ -18,9 +18,9 @@ SERVER_SETTINGS_XML="$GAME_DIR/serversettings.xml"
   +quit
 
 /usr/games/steamcmd \
-  +force_install_dir "$BAROTRAUMA_DIR" \
+  +force_install_dir "$GAME_DIR" \
   +login anonymous \
-  +app_update 1026340 validate \
+  +app_update "$STEAM_APP_ID" validate \
   +quit
 
 # Restore canonical server configs
@@ -37,5 +37,5 @@ export SERVER_PASSWORD
 envsubst < "$SERVER_SETTINGS_XML_IN" > "$SERVER_SETTINGS_XML"
 
 mkdir -p "$HOME/.local/share/Daedalic Entertainment GmbH/Barotrauma/"
-ln -sf "$HOME/baroboys/Barotrauma/Multiplayer" "$HOME/.local/share/Daedalic Entertainment GmbH/Barotrauma"
-ln -sf "$HOME/baroboys/Barotrauma/WorkshopMods" "$HOME/.local/share/Daedalic Entertainment GmbH/Barotrauma"
+ln -sf "$GAME_DIR/Multiplayer" "$HOME/.local/share/Daedalic Entertainment GmbH/Barotrauma"
+ln -sf "$GAME_DIR/WorkshopMods" "$HOME/.local/share/Daedalic Entertainment GmbH/Barotrauma"

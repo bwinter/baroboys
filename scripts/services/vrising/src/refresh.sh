@@ -48,10 +48,10 @@ fi
 
 # Update game files via SteamCMD
 /usr/games/steamcmd \
-  +@sSteamCmdForcePlatformType windows \
-  +force_install_dir "$VRISING_DIR" \
+  +@sSteamCmdForcePlatformType "$STEAM_PLATFORM" \
+  +force_install_dir "$GAME_DIR" \
   +login anonymous \
-  +app_update 1829350 validate \
+  +app_update "$STEAM_APP_ID" validate \
   +quit
 
 # Restore force-committed files that SteamCMD may have clobbered
@@ -69,10 +69,10 @@ envsubst < "$HOST_JSON_IN" > "$HOST_JSON"
 envsubst < "$GAME_JSON_IN" > "$GAME_JSON"
 
 # Ensure log paths are readable
-mkdir -p "$VRISING_DIR/logs"
-chmod o+rx "$HOME" "$HOME/baroboys" "$VRISING_DIR" "$VRISING_DIR/logs"
-touch "$VRISING_DIR/logs/VRisingServer.log"
+mkdir -p "$GAME_DIR/logs"
+chmod o+rx "$HOME" "$HOME/baroboys" "$GAME_DIR" "$GAME_DIR/logs"
+touch "$GAME_DIR/logs/VRisingServer.log"
 
-printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "$VRISING_DIR/logs/VRisingServer.log"
-chown bwinter_sc81:bwinter_sc81 "$VRISING_DIR/logs/VRisingServer.log"
-chmod 644 "$VRISING_DIR/logs/VRisingServer.log"
+printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "$GAME_DIR/logs/VRisingServer.log"
+chown bwinter_sc81:bwinter_sc81 "$GAME_DIR/logs/VRisingServer.log"
+chmod 644 "$GAME_DIR/logs/VRisingServer.log"
