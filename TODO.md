@@ -6,19 +6,39 @@
 
 ### Near-term
 
-- **Config centralization** — PROJECT, ZONE, REGION, GCP_USER are scattered across `.envrc`,
-  `Makefile`, `terraform/shared.tfvars`, and individual scripts. Goal: `.envrc` is the one
-  place to change. Approach: Makefile already sources `.envrc` via direnv; Terraform already
-  reads `shared.tfvars`; the gap is scripts that hardcode values (e.g. `get_admin_server_logs.sh`
-  hardcodes `bwinter_sc81@europa`). Audit scripts for hardcoded project/zone/user strings and
-  replace with `$PROJECT`, `$ZONE`, `$GCP_USER` (already exported by `.envrc`).
+- **Config centralization** — config values are scattered across multiple layers and scopes.
+  Two distinct problems:
 
-- **CI: validate-only pipeline** — `packer validate` and `terraform validate` are free (no GCP
-  calls). Running them on push would catch syntax errors early with zero infrastructure cost.
-  Approach: GitHub Actions workflow on `push`/`pull_request`. For Packer: replicate the
+  **Layer 1 — infrastructure globals** (`PROJECT`, `ZONE`, `REGION`, `GCP_USER`): scattered
+  across `.envrc`, `Makefile`, `terraform/shared.tfvars`, individual scripts. Goal: `.envrc` is
+  the one place to change. Gap: scripts that hardcode values (e.g. `get_admin_server_logs.sh`
+  hardcodes `bwinter_sc81@europa`). Approach: audit scripts for hardcoded project/zone/user
+  strings and replace with `$PROJECT`, `$ZONE`, `$GCP_USER` (already exported by `.envrc`).
+
+  **Layer 2 — game-specific config** (`WORLD_NAME`, game ports, save paths, etc.): naturally
+  lives in per-game config files, not a single global. Values like `WORLD_NAME="TestWorld-1"`
+  are set per-script today (shutdown.sh, refresh.sh each define their own copy). A sourced
+  per-game config (e.g. `scripts/services/vrising/config.sh`) would be the single place to
+  update for a rename. Blocked on the broader config-centralization design.
+
+- **CI pipeline** — two tiers:
+
+  **Tier 1 — syntax/validate (free, no GCP):** `packer validate` and `terraform validate` on
+  every push. GitHub Actions workflow on `push`/`pull_request`. For Packer: replicate the
   `packer/build.sh` var-file setup (copy `shared.tfvars` + `variables.tf` to `packer/tmp/`),
   then `packer init && packer validate` for each template. For Terraform: `terraform init -backend=false`
-  (skips remote state) + `terraform validate`. No GCP credentials needed for either.
+  + `terraform validate`. No GCP credentials needed.
+
+  **Tier 2 — design/contract tests (shellcheck + shell tests):** enforce design decisions that
+  are otherwise invisible until a real build or boot fails. Candidates:
+  - `shellcheck` on all scripts in `scripts/` — catches unquoted vars, bad substitutions, etc.
+  - Verify systemd unit pairing: every `*-setup.service` has a matching `*-startup.service`
+  - Verify `Requires=` is always accompanied by `After=` (grep unit files for violations)
+  - Verify all `.json.in` templates contain only known `${VAR}` placeholders (no typos)
+  - Verify `WORLD_NAME` is exported in `vrising/src/refresh.sh` before `envsubst`
+  - Verify `shutdown.sh` files contain the stash-pull-push-pop sequence in order
+  These can be implemented as a bash test script or simple GitHub Actions steps — no mocking
+  or GCP access needed.
 
 - **Admin panel: start server button** — panel runs on the VM, so it can only help when the VM
   is already up. "Start" requires a GCP Compute API call from *outside* the VM. Options:
