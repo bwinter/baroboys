@@ -13,10 +13,6 @@
   hardcodes `bwinter_sc81@europa`). Audit scripts for hardcoded project/zone/user strings and
   replace with `$PROJECT`, `$ZONE`, `$GCP_USER` (already exported by `.envrc`).
 
-- **Pin mcrcon to a release tag** — `mcrcon/refresh.sh:15` clones HEAD; add
-  `git -C "/tmp/mcrcon" checkout <tag>` after clone. Check releases page for current tag.
-  See known-issues.md for exact implementation.
-
 - **CI: validate-only pipeline** — `packer validate` and `terraform validate` are free (no GCP
   calls). Running them on push would catch syntax errors early with zero infrastructure cost.
   Approach: GitHub Actions workflow on `push`/`pull_request`. For Packer: replicate the

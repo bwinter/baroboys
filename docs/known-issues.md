@@ -6,41 +6,6 @@ Bugs and gaps. Open items organized by effort — easy wins first.
 
 ## Open — Easy Fix
 
-### `mcrcon` install not version-pinned
-
-**File:** `scripts/dependencies/mcrcon/refresh.sh:15`
-
-`git clone https://github.com/Tiiffi/mcrcon.git` always clones HEAD. If upstream breaks the
-build or changes the CLI, VRising shutdown (which relies on mcrcon for RCON) will silently
-break on the next image build that has a cache miss. The idempotency check (`mcrcon -v`) only
-guards against re-installing, not against a bad upstream version.
-
-**Effort:** Easy — after the `git clone` line, add:
-```bash
-git -C "/tmp/mcrcon" checkout v0.7.2   # or latest tag from /releases
-```
-Check https://github.com/Tiiffi/mcrcon/releases for the current latest release tag before
-committing. The version string is printed by `mcrcon -v`, so the existing idempotency check
-will still work correctly after pinning.
-
----
-
-### Barotrauma `refresh.sh` warm-SteamCMD comment is weaker than VRising's
-
-**File:** `scripts/services/barotrauma/src/refresh.sh:18`
-
-VRising has a detailed comment explaining *why* the warm login workaround exists (intermittent
-SteamCMD failure, likely depot cache init, root cause unknown, removing it makes builds flaky).
-Barotrauma has only `# Warm steam to hopefully avoid intermittent failures.` — a future reader
-might remove it not knowing the reasoning.
-
-**Effort:** Trivial — replace the current one-liner with the explanation from `vrising/src/refresh.sh`.
-The comment should convey: this is a deliberate workaround for intermittent SteamCMD failures
-(likely depot cache initialisation); root cause is unknown; removing it makes builds flaky;
-do not simplify.
-
----
-
 ### VRising world name "TestWorld-1" hardcoded in multiple places
 
 **Files:**
@@ -94,3 +59,5 @@ Entries worth preserving as design context or non-obvious gotchas. Routine fixes
 | 15 | Wine 11.0 (Jan 2026) removed `wine64` binary (unified into `wine`) → updated all hardcoded `wine64` references |
 | 16 | Xvfb race: `Type=simple` returns on fork, not readiness; wineboot raced a half-started Xvfb and failed with `start_rpcss Failed` → `kernel32.dll` error. Fixed via `ExecStartPost=` socket poll in `xvfb-startup.service` |
 | 18 | `wine/src/setup.sh`: `DISPLAY=:0` set before `wineboot` caused Wine 11 `start_rpcss Failed` → `kernel32.dll` error. Fixed: `unset DISPLAY` before wineboot, `export DISPLAY=:0` only before winetricks. `unset` (not just omitting) enforces headless regardless of caller environment. |
+| 19 | `barotrauma/src/refresh.sh` had boot-time debug blocks (`id`, `ls -la`, `find`, `=== BEFORE/AFTER steamcmd ===`) running every boot. Also had a weak warm-SteamCMD comment. Removed debug blocks; replaced one-liner with full rationale matching VRising version. |
+| 20 | `mcrcon/refresh.sh` cloned HEAD with no tag pin — upstream breakage would silently break VRising shutdown. Added `git -C "/tmp/mcrcon" checkout v0.7.2` after clone. |

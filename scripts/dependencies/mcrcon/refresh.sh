@@ -13,6 +13,7 @@ if ! command -v mcrcon >/dev/null || ! "$MCRCON_BIN" -v 2>&1 | grep -qi 'mcrcon'
 
   # Clone and build
   git clone "https://github.com/Tiiffi/mcrcon.git" "/tmp/mcrcon"
+  git -C "/tmp/mcrcon" checkout v0.7.2
   cd "/tmp/mcrcon"
   make
 
