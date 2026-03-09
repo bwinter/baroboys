@@ -27,25 +27,33 @@
 
 - **Start VM via bookmarkable URL** — `make start` works from a terminal but friends need GCP
   console access today. Goal: a URL anyone with a Google account (that you've approved) can click
-  to start the VM — no GCP console, no CLI.
+  to start the VM — with boot progress feedback — no GCP console, no CLI.
 
-  **Design:** Cloud Run + Identity-Aware Proxy (IAP)
-  - Cloud Run service: ~10-line Python HTTP handler that calls `google.cloud.compute` to start
-    the VM. Serverless, always available, no persistent infrastructure. Free tier covers all
-    realistic usage (2M requests/month).
-  - IAP wraps the Cloud Run URL with Google auth. Friends click the URL → Google login → VM
-    starts. No GCP console access, no service account keys to share.
-  - Permissions: Cloud Run service runs as a dedicated SA with only
-    `compute.instances.start` scoped to the one VM. Friends get
-    `roles/iap.httpsResourceAccessor` on the Cloud Run service — granted and revoked per-email
-    with a single `gcloud` command.
-  - Terraform provisions Cloud Run + IAP config + SA + IAM bindings. Friends added via
-    `make iam-add-friend` (new target).
+  **Design:** Cloud Run + Identity-Aware Proxy (IAP) serving a small HTML page
+  - Cloud Run: Python/Flask service (same tech as `admin_server.py`). Serves its own HTML
+    page with start button + status display + boot log. Serverless, free tier covers all usage.
+  - IAP wraps the URL with Google auth. Friends click → Google login → page loads. No GCP
+    console access, no service account keys.
+  - Permissions: Cloud Run SA gets `compute.instances.start` + `compute.instances.get` +
+    `compute.instances.getSerialPortOutput` scoped to the one VM. Friends get
+    `roles/iap.httpsResourceAccessor` — one `gcloud` command to grant or revoke per person.
+  - Terraform provisions Cloud Run + IAP config + SA + IAM bindings. New `make iam-add-friend`
+    target (parallel to existing `make iam-add-admin`).
 
-  **Note:** Cloud Run is near-zero cost but is "always-on infrastructure" in the sense that
-  it exists as a resource. Acceptable under the cost philosophy since idle Cloud Run costs $0.
-  This is the one exception worth making — the alternative (giving friends GCP console access)
-  has worse security properties and a higher friction UX.
+  **Page features:**
+  1. **Start button** — POST `/api/start` → Compute API `instances.start`, returns immediately
+  2. **Status badge** — polls `/api/status` (Compute API `instances.get`) every 3s, shows
+     `TERMINATED` / `STAGING` / `RUNNING`. Auto-stops polling on `RUNNING`.
+  3. **Boot log** — polls `/api/serial` (Compute API `instances.getSerialPortOutput`) every 3s.
+     This is the VM's serial console — shows systemd boot sequence, game setup output, errors —
+     the same view as GCP console "Serial port" tab. Answers "is it stuck?" without SSH.
+     Stop tailing when status reaches `RUNNING`.
+
+  Polling at 3s is simpler than SSE (server-sent events) with equivalent UX for a ~5 min boot.
+  SSE is a future refinement if the polling feel is too janky.
+
+  **Note:** Cloud Run costs $0 at idle — the one justified exception to the no-always-on-infra
+  rule. The alternative (GCP console access for friends) has worse security and worse UX.
 
 
 - **Admin panel: multi-game awareness** — log dropdown always shows both Barotrauma and VRising
