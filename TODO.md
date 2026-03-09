@@ -4,42 +4,6 @@
 
 ## Active
 
-### Easy Wins (from wine/build audit)
-
-- **`startup.sh`: Fix `set -euox pipefail` → `set -euxo pipefail`** — wrong flag order means
-  pipefail is never enabled (the `x` is consumed as the `-o` argument, `pipefail` becomes `$1`).
-  One-character reorder. `scripts/services/vrising/startup.sh:2`
-
-- **`apt_xvfb.sh` + `apt_wine.sh`: Remove `dpkg --add-architecture amd64`** — no-op on amd64
-  hosts. Likely a copy-paste from i386 Wine instructions. Wine 11 WoW64 mode doesn't need i386
-  system libs. Investigate whether either call is needed; probably remove both.
-  `scripts/dependencies/xvfb/apt_xvfb.sh:4`, `scripts/dependencies/wine/apt_wine.sh:12`
-
-- **`setup.sh`: Add `export DISPLAY=:0` before wineboot** — Xvfb is running at `:0` when
-  wineboot runs, but DISPLAY isn't exported. Wine relies on `$DISPLAY`; currently succeeds by
-  luck or silent fallback. `scripts/dependencies/wine/src/setup.sh:14`
-
-- **`setup.sh`: Fix stale "Debug trace complete" label** — wineboot section ends with
-  `"✅ Debug trace complete."`. Should say "Wine prefix initialized" or similar.
-  `scripts/dependencies/wine/src/setup.sh:20`
-
-- **`startup.sh`: Add `WINEDEBUG=-all`** — Wine outputs extensive debug noise to stderr by
-  default; all of it lands in `vrising_startup.log`. Setting `WINEDEBUG=-all` suppresses it
-  and keeps logs meaningful. `scripts/services/vrising/startup.sh`
-
-- **`startup.sh`: Add explicit `WINESERVER` env** — `setup.sh` sets
-  `WINESERVER=/opt/wine-stable/bin/wineserver` explicitly; `startup.sh` doesn't. Wine auto-finds
-  it, but explicit is consistent. `scripts/services/vrising/startup.sh`
-
-- **`setup.sh`: Use `DISPLAY=:0` directly instead of `xvfb-run`** — `xvfb-run --auto-servernum`
-  starts a second Xvfb alongside the one already running at `:0`. Could simplify by setting
-  `DISPLAY=:0` and calling winetricks directly.
-  `scripts/dependencies/wine/src/setup.sh:27`
-
-- **`xvfb-startup.service`: Screen depth 16-bit vs 24-bit** — service uses `1024x768x16`;
-  `xvfb-run` in setup.sh uses `1024x768x24`. Inconsistent; pick one (24-bit is more standard).
-  `scripts/services/xvfb/xvfb-startup.service:13`
-
 ### Near-term
 
 - **Config centralization** — PROJECT, ZONE, REGION, GCP_USER are scattered across `.envrc`,
@@ -114,3 +78,6 @@ These are interesting but not current priority. Logged so they aren't forgotten.
 - **Email secrets** — moved emails into GCP Secret Manager.
 - **IAM cleanup** — simplified to a single design; removed unnecessary service account permissions.
 - **Terraform SA secret access** — verified and removed; Packer uses local credentials.
+- **Wine/xvfb easy wins** — 8 items: fixed `set -euxo`, removed no-op `dpkg --add-architecture amd64`,
+  added `DISPLAY=:0` before wineboot, dropped redundant `xvfb-run`, added `WINEDEBUG=-all` and
+  `WINESERVER` to startup.sh, fixed stale label, unified Xvfb to 24-bit color depth.
