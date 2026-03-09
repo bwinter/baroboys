@@ -68,7 +68,8 @@ def tail_log(name):
         "nginx_error": ["tail", "-n", "500", "/var/log/nginx/error.log"],
         "barotrauma.log": os.path.join(LOG_DIR, "barotrauma.log"),
         "vrising.log": os.path.join(LOG_DIR, "vrising.log"),
-        "VRisingServer.log": os.path.join(LOG_DIR, "VRisingServer.log"),
+        # VRising writes its game log to the game dir, not /var/log/baroboys/
+        "VRisingServer.log": "/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log",
     }
 
     if ENV == "dev":
@@ -120,7 +121,7 @@ def directory():
                 ("/api/logs/vrising_startup.log", "VM Startup Logs", "GET"),
                 ("/api/logs/vrising_shutdown.log", "VM Shutdown Logs", "GET"),
                 ("/api/logs/idle_check.log", "Idle Check Logs", "GET"),
-                ("/api/logs/barotrauma.log", "V Rising Service Logs", "GET"),
+                ("/api/logs/barotrauma.log", "Barotrauma Service Logs", "GET"),
                 ("/api/logs/vrising.log", "V Rising Service Logs", "GET"),
                 ("/api/logs/VRisingServer.log", "V Rising Server Logs", "GET"),
             ]
@@ -130,6 +131,8 @@ def directory():
             "title": "System Logs",
             "links": [
                 ("/api/logs/admin_server_startup.log", "Admin Server Logs", "GET"),
+                ("/api/logs/refresh_repo.log", "Refresh Repo Logs", "GET"),
+                ("/api/logs/xvfb.log", "Xvfb Logs", "GET"),
             ]
         },
         {

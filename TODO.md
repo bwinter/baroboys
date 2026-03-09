@@ -29,18 +29,6 @@
   These can be implemented as a bash test script or simple GitHub Actions steps — no mocking
   or GCP access needed.
 
-- **Admin panel bugs** — three known issues in the current admin panel:
-  1. **`VRisingServer.log` wrong path** (`admin_server.py:71`): log_map points to
-     `/var/log/baroboys/VRisingServer.log` but the file is at
-     `/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log` (written by startup.sh with
-     `-logFile ./logs/VRisingServer.log`). Fix: update log_map entry to the correct absolute path,
-     or symlink the file into `/var/log/baroboys/` from `vrising/setup.sh`.
-  2. **Copy-paste label** (`admin_server.py:123`): `barotrauma.log` entry in the directory view
-     has label `"V Rising Service Logs"` — should be `"Barotrauma Service Logs"`.
-  3. **Missing log entries in dropdown** (`admin.html`): `refresh_repo.log` and `xvfb.log` are
-     handled by Flask's log_map but absent from the `<select>`. Both are useful when debugging
-     boot failures. Add them as options.
-
 - **`make start` / `make stop` targets** — the Makefile already has `$(MACHINE_NAME)`, `$(PROJECT)`,
   and `$(ZONE)`. Two one-liner additions:
   ```makefile
@@ -135,6 +123,13 @@
   bucket would reduce repo bloat, allow multiple save slots, and simplify shutdown (gsutil cp
   instead of git commit). `vm-runtime` SA already has cloud-platform scope. Trade-off: loses the
   "Git as backup" simplicity.
+
+- **Consolidate VRisingServer.log into `/var/log/baroboys/`** — VRising writes its game log to
+  `$GAME_DIR/logs/VRisingServer.log` (set via `-logFile ./logs/VRisingServer.log` in startup.sh,
+  relative to WorkingDirectory). All other game logs land in `/var/log/baroboys/`. Options:
+  add a symlink from `/var/log/baroboys/VRisingServer.log` in `vrising/setup.sh`, or change the
+  `-logFile` arg and update `refresh.sh` accordingly. Current workaround: admin_server.py
+  hardcodes the full path directly.
 
 - **Admin server location** — `scripts/services/admin_server/` is awkward. It's a long-running
   web service, not a transient script. A top-level `admin/` directory was considered.
