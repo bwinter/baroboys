@@ -1,28 +1,37 @@
 # =======================
 # 📦 Config
 # =======================
-SHELL            := /bin/bash
-ENV              ?= prod
-GAMES            := barotrauma vrising
-# PROJECT and ZONE defer to .envrc (exported by direnv) when available.
-# Canonical source: .envrc — shared.tfvars carries the same values for Terraform/Packer.
-# INSTANCE and USER intentionally use := (INSTANCE has no matching .envrc export;
-# USER would conflict with the OS $USER env var).
-PROJECT          ?= europan-world
-ZONE             ?= us-west1-c
-INSTANCE         := europa
-USER             := bwinter_sc81
-BOOTSTRAP_DIR    := bootstrap
-TOOLS_DIR        := scripts/tools
+SHELL := /bin/bash
+
+# Infrastructure — defer to .envrc (exported by direnv) when available.
+# Canonical source: .envrc for shell/Make; terraform/shared.tfvars for Terraform/Packer.
+# Variable names match .envrc exports so direnv injection works with ?=.
+PROJECT      ?= europan-world
+ZONE         ?= us-west1-c
+MACHINE_NAME ?= europa
+GCP_USER     ?= bwinter_sc81
+
+# Games — extend this list when adding a new game.
+GAMES := barotrauma vrising
+ENV   ?= prod
+
+# Paths
+BOOTSTRAP_DIR := bootstrap
+TOOLS_DIR     := scripts/tools
+TF_DIR        := terraform
+TF_BACKEND    := backend/$(ENV).hcl
+TF_SHARED     := shared.tfvars
+PACKER_DIR    := packer
 
 .DEFAULT_GOAL := help
 
 bootstrap: terraform-bootstrap iam-bootstrap
 
-# Barotrauma as default for now.
+# Default game for plain `make apply`.
 apply: terraform-apply-barotrauma
 
 destroy: terraform-destroy
+
 
 # =======================
 # 🐍 Flask Admin Panel
@@ -44,10 +53,6 @@ admin-url: terraform-init
 # =======================
 # 🌍 Terraform
 # =======================
-TF_DIR        := terraform
-TF_BACKEND    := backend/$(ENV).hcl
-TF_SHARED     := shared.tfvars
-
 .PHONY: \
 	terraform-bootstrap \
 	terraform-init \
@@ -56,33 +61,21 @@ TF_SHARED     := shared.tfvars
 	terraform-refresh \
 	$(addprefix terraform-apply-, $(GAMES))
 
-# -----------------------
-# Bootstrap
-# -----------------------
 terraform-bootstrap:
 	cd $(BOOTSTRAP_DIR) && ./bootstrap_tf_state_bucket.sh
 
-# -----------------------
-# Init
-# -----------------------
 terraform-init:
 	cd $(TF_DIR) && terraform init -backend-config=$(TF_BACKEND)
 
-# -----------------------
-# Plan / Destroy / Refresh
-# -----------------------
 terraform-plan: terraform-init
-	cd $(TF_DIR) && terraform plan -var-file=shared.tfvars
+	cd $(TF_DIR) && terraform plan -var-file=$(TF_SHARED)
 
 terraform-destroy: terraform-init
-	cd $(TF_DIR) && terraform destroy -var-file=shared.tfvars
+	cd $(TF_DIR) && terraform destroy -var-file=$(TF_SHARED)
 
 terraform-refresh: terraform-init
-	cd $(TF_DIR) && terraform refresh -var-file=shared.tfvars
+	cd $(TF_DIR) && terraform refresh -var-file=$(TF_SHARED)
 
-# -----------------------
-# Apply (game-specific vars)
-# -----------------------
 $(foreach game,$(GAMES),\
   $(eval terraform-apply-$(game): ; ./$(TF_DIR)/build.sh $(game) $(ENV)))
 
@@ -116,22 +109,23 @@ iam-add-admin:
 # =======================
 # 🎮 Game
 # =======================
-REMOTE_STARTUP_SCRIPT := sudo systemctl restart game-startup.service
+REMOTE_STARTUP_SCRIPT  := sudo systemctl restart game-startup.service
 REMOTE_SHUTDOWN_SCRIPT := sudo systemctl restart game-shutdown.service
 
 .PHONY: restart-game save-and-shutdown
 
 restart-game:
-	gcloud compute ssh $(USER)@$(INSTANCE) \
+	gcloud compute ssh $(GCP_USER)@$(MACHINE_NAME) \
 		--project=$(PROJECT) \
 		--zone=$(ZONE) \
 		--command="$(REMOTE_STARTUP_SCRIPT)"
 
 save-and-shutdown:
-	gcloud compute ssh $(USER)@$(INSTANCE) \
+	gcloud compute ssh $(GCP_USER)@$(MACHINE_NAME) \
 		--project=$(PROJECT) \
 		--zone=$(ZONE) \
 		--command="$(REMOTE_SHUTDOWN_SCRIPT)"
+
 
 # =======================
 # 🔐 SSH Access
@@ -139,12 +133,12 @@ save-and-shutdown:
 .PHONY: ssh ssh-iap
 
 ssh:
-	gcloud compute ssh $(USER)@$(INSTANCE) \
+	gcloud compute ssh $(GCP_USER)@$(MACHINE_NAME) \
 		--project=$(PROJECT) \
 		--zone=$(ZONE)
 
 ssh-iap:
-	gcloud compute ssh $(USER)@$(INSTANCE) \
+	gcloud compute ssh $(GCP_USER)@$(MACHINE_NAME) \
 		--project=$(PROJECT) \
 		--zone=$(ZONE) \
 		--tunnel-through-iap
@@ -153,8 +147,6 @@ ssh-iap:
 # =======================
 # 🧱 Packer Builds
 # =======================
-PACKER_DIR       := packer
-
 .PHONY: \
 	build \
 	build-base-core \
@@ -179,14 +171,11 @@ build: \
 # =======================
 # 🧹 Cleanup
 # =======================
-.PHONY: clean
+.PHONY: clean clean-git-pre clean-git-bfg clean-git-post clean-git
 
 clean:
 	cd $(TOOLS_DIR) && \
 	./gcp/review_and_cleanup.sh
-
-# Git Cleanup Targets
-.PHONY: clean-git-pre clean-git-bfg clean-git-post clean-git
 
 clean-git-pre:
 	echo "🔍 [print_git_info] Scanning for large blobs and writing deletable list..."
@@ -215,20 +204,20 @@ clean-git: clean-git-pre clean-git-bfg clean-git-post
 help:
 	@echo "🛠️  Common Targets:"
 	@echo "  make bootstrap                - Bootstraps terraform and iam"
-	@echo "  make apply                    - Alias for terraform-apply"
+	@echo "  make apply                    - Alias for terraform-apply-barotrauma"
 	@echo "  make destroy                  - Alias for terraform-destroy"
 	@echo ""
 
 	@echo "🌍 Terraform:"
-	@echo "  make terraform-bootstrap      - Bootstrap Terraform Buckets"
+	@echo "  make terraform-bootstrap      - Bootstrap Terraform state bucket"
 	@echo "  make terraform-init           - Initialize Terraform"
 	@echo "  make terraform-plan           - Show Terraform plan"
-	@echo "  make terraform-apply-<GAME>   - Apply Terraform (build VM)"
+	@echo "  make terraform-apply-<GAME>   - Apply Terraform (build VM for game)"
 	@echo "  make terraform-destroy        - Destroy infrastructure"
 	@echo "  make terraform-refresh        - Refresh Terraform state"
 	@echo ""
 
-	@echo "🔑 Game / Admin Password"
+	@echo "🔑 Game / Admin Password:"
 	@echo "  make update-password          - Modify game and admin password (requires server restart)"
 	@echo ""
 
@@ -243,26 +232,26 @@ help:
 	@echo "  make admin-url                - Print the live admin panel URL"
 	@echo ""
 
-	@echo "🎮 Game Mode:"
+	@echo "🎮 Game:"
 	@echo "  make restart-game             - Trigger remote restart of game"
 	@echo "  make save-and-shutdown        - Save game state by triggering shutdown"
 	@echo ""
 
-	@echo "🧪 SSH Access:"
+	@echo "🔑 SSH Access:"
 	@echo "  make ssh                      - SSH into VM"
 	@echo "  make ssh-iap                  - SSH using IAP tunnel"
 	@echo ""
 
 	@echo "📦 Packer Builds:"
 	@echo "  make build-base-core          - Build base image (core setup)"
-	@echo "  make build-base-admin         - Build Admin layer"
-	@echo "  make build-game-<GAME>        - Build V Rising Game layer"
-	@echo "  make build                    - Build all images"
-	@echo "  make clean                    - Review usage and delete unused images and disks"
+	@echo "  make build-base-admin         - Build admin layer"
+	@echo "  make build-game-<GAME>        - Build game image layer"
+	@echo "  make build                    - Build all images in order"
+	@echo "  make clean                    - Review and delete unused GCP images/disks/IPs"
 	@echo ""
 
 	@echo "🧹 Git History Cleanup:"
 	@echo "  make clean-git-pre            - Scan repo history and write deletable blobs list"
 	@echo "  make clean-git-bfg            - Rewrite repo history using BFG with the deletable list"
 	@echo "  make clean-git-post           - Preview, diff, and optionally push cleaned history"
-	@echo "  make clean-git                - Full pipeline: pre-check → BFG → post-cleanup workflow"
+	@echo "  make clean-git                - Full pipeline: pre-check → BFG → post-cleanup"
