@@ -6,12 +6,11 @@
 
 ### Near-term
 
-- **Config centralization — Layer 1 remaining** — `.envrc` exports `PROJECT`, `ZONE`, `REGION`,
-  `GCP_USER`, `REMOTE`, `MACHINE_NAME`. Local dev tools now read these with hardcoded fallbacks
-  (`get_admin_server_logs.sh`, `remote_refresh.sh`). Remaining gap: `Makefile` duplicates
-  `PROJECT`, `ZONE`, `INSTANCE`, `USER` as Make variables — those are intentional (Make doesn't
-  source `.envrc`) and unlikely to diverge, so low priority. `terraform/shared.tfvars` also
-  duplicates some values — those feed Packer/Terraform and can't be replaced by shell vars.
+- **Config centralization — Layer 1 accepted gaps** — `.envrc` is the authoritative source for
+  infra globals; local dev tools read from env with fallbacks. Two intentional gaps remain:
+  `Makefile` duplicates `PROJECT`/`ZONE`/`INSTANCE`/`USER` (Make can't source `.envrc`; values
+  rarely change); `terraform/shared.tfvars` duplicates some values (feeds Packer/Terraform, must
+  be static files). Neither gap is worth closing — accept as-is.
 
 - **CI pipeline** — two tiers:
 
@@ -89,11 +88,14 @@
 
 ### Medium-term
 
-- **DRY shared game script logic** — both games' scripts repeat the same patterns verbatim:
-  git stash→pull→push→pop in shutdown.sh; log dir creation + unit installation in setup.sh.
-  Blocked by the 3-game rule (two examples is coincidence, three is a pattern worth abstracting).
-  When a 3rd game is added, extract these into a shared library (e.g. `scripts/services/lib/`).
-  Current duplication is acceptable; do not abstract prematurely.
+- **DRY shared game script logic** — after config centralization, the game scripts are strikingly
+  similar in structure. Patterns duplicated verbatim across both games:
+  - `shutdown.sh`: git stash→pull→push→pop sequence (identical)
+  - `setup.sh`: log dir creation + unit installation (identical)
+  - `src/refresh.sh`: SteamCMD warm call + app_update + git checkout canonical files (structurally identical)
+  Blocked by the 3-game rule. When a 3rd game is added, extract shared logic into
+  `scripts/services/lib/` (e.g. `git_sync.sh`, `steamcmd_update.sh`). Scripts would source lib
+  functions and supply game-specific args from config.sh. Current duplication is acceptable.
 
 - **Save files to GCS** — saves currently live in Git (growing binary history). Moving to a GCS
   bucket would reduce repo bloat, allow multiple save slots, and simplify shutdown (gsutil cp
@@ -105,9 +107,9 @@
   - Also considered renaming the "admin" packer layer to "shared".
 
 - **Refactor games into subdir** — move `Barotrauma/` and `VRising/` under `games/`. Config
-  inconsistency (the original blocker) is now resolved — both games have `config.sh`. Remaining
-  work: update hardcoded paths in game scripts (`$HOME/baroboys/VRising/`, etc.) and Packer
-  templates. Straightforward but touches many files.
+  inconsistency (original blocker) is resolved. The only remaining change per game is `GAME_DIR`
+  in `config.sh` — all scripts derive paths from it. Plus Packer templates and terraform paths.
+  Low risk, straightforward when ready.
 
 ---
 
