@@ -4,6 +4,9 @@ set -euxo pipefail
 cd "$HOME/baroboys"
 
 SHUTDOWN_DELAY_MINUTES=1
+# To rename the world: update WORLD_NAME here and in vrising/src/refresh.sh, rename the
+# on-disk save directory to match, then push. The game creates a fresh world if the
+# directory is missing — a mismatched rename will silently wipe the save.
 WORLD_NAME="TestWorld-1"
 SAVE_DIR="VRising/Data/Saves/v4/$WORLD_NAME"
 
