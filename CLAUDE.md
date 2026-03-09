@@ -93,9 +93,9 @@ make clean                       # Delete old GCP images/disks/IPs
 - **Fix in place** — don't restructure directories as a prerequisite to small fixes
 - **Bite-sized commits** — logical groupings, not one-liners and not monoliths
 - **TODO.md** = long-term aspirations, not current sprint work
-- **Fix protocol** — after each individual fix: update known-issues + TODO + memory → commit → push (`memory/fix-protocol.md`)
-- **Session wrap** — when a topic finishes, run the wrap protocol (`memory/wrap-protocol.md`)
-  to preserve what was learned before context compaction
+- **Fix protocol** — task-specific steps (code → docs → stage) then calls wrap (`memory/fix-protocol.md`)
+- **Wrap protocol** — universal ending after any task: memory updates → commit → push (`memory/wrap-protocol.md`).
+  Task wrap (quick) after a fix; session wrap (full sweep) at a topic boundary or on user request.
 
 ---
 

@@ -131,7 +131,8 @@ Triggered by any of:
 - `idle_check.sh` after 30 min CPU below 5% → `systemctl restart game-shutdown.service`
 - VM stop event → GCE shutdown-script metadata
 
-`game-shutdown.service` runs `scripts/services/<game>/shutdown.sh` as `bwinter_sc81`:
+`game-shutdown.service` runs `scripts/services/<game>/shutdown.sh` as `bwinter_sc81`.
+`TimeoutStartSec=600` — VRising takes up to ~390s to save and exit cleanly; 300s was too short.
 
 **VRising:**
 1. Fetch server password from Secret Manager
@@ -175,6 +176,11 @@ Flask (`admin_server.py`) routes:
 
 The admin panel auto-refreshes status every 5 seconds and streams the selected log.
 UI theme: Bootstrap 5 + Bootswatch Cyborg (dark). See `docs/admin/style_guide.md`.
+
+**Security model:** Flask runs as `bwinter_sc81` (not root). A sudoers drop-in
+(`/etc/sudoers.d/admin-server`, mode 440) grants the single permission needed:
+`systemctl restart game-shutdown.service`. `bwinter_sc81` is in the `adm` group for
+nginx log read access. No other elevated permissions.
 
 ---
 
