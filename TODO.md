@@ -25,11 +25,27 @@
   - Verify every game dir has a `config.sh` exporting `GAME_NAME`
   - Verify `.envrc` and `shared.tfvars` agree on project/zone/region/machine_name
 
-- **Admin panel: start server button** — the circular dependency is intentional and
-  cost-driven (see `docs/design.md` Cost Philosophy): the panel lives on the game VM, so it
-  can't start a stopped VM. `make start` satisfies the need with no new infrastructure.
-  A bookmarkable URL would require a Cloud Function + always-on SA — not warranted under the
-  current cost constraints. Revisit if the single-VM cost model ever changes.
+- **Start VM via bookmarkable URL** — `make start` works from a terminal but friends need GCP
+  console access today. Goal: a URL anyone with a Google account (that you've approved) can click
+  to start the VM — no GCP console, no CLI.
+
+  **Design:** Cloud Run + Identity-Aware Proxy (IAP)
+  - Cloud Run service: ~10-line Python HTTP handler that calls `google.cloud.compute` to start
+    the VM. Serverless, always available, no persistent infrastructure. Free tier covers all
+    realistic usage (2M requests/month).
+  - IAP wraps the Cloud Run URL with Google auth. Friends click the URL → Google login → VM
+    starts. No GCP console access, no service account keys to share.
+  - Permissions: Cloud Run service runs as a dedicated SA with only
+    `compute.instances.start` scoped to the one VM. Friends get
+    `roles/iap.httpsResourceAccessor` on the Cloud Run service — granted and revoked per-email
+    with a single `gcloud` command.
+  - Terraform provisions Cloud Run + IAP config + SA + IAM bindings. Friends added via
+    `make iam-add-friend` (new target).
+
+  **Note:** Cloud Run is near-zero cost but is "always-on infrastructure" in the sense that
+  it exists as a resource. Acceptable under the cost philosophy since idle Cloud Run costs $0.
+  This is the one exception worth making — the alternative (giving friends GCP console access)
+  has worse security properties and a higher friction UX.
 
 
 - **Admin panel: multi-game awareness** — log dropdown always shows both Barotrauma and VRising
@@ -41,6 +57,30 @@
      `/root/...` in root context — simpler to write the literal game name than source config.sh.)
   2. In `idle_check.sh`: read `/etc/baroboys/active-game` and add `"game": "<name>"` to status.json
   3. Admin panel JS: read `status.json.game` on load, hide log entries whose name prefix doesn't match
+
+- **Add Valheim (game 3)** — Linux-native dedicated server, simplest possible addition.
+  Follows the established pattern; adding it triggers the 3-game DRY rule and unlocks the
+  `scripts/services/lib/` extraction + game manifest work.
+
+  **config.sh sketch:**
+  ```bash
+  GAME_NAME="valheim"
+  GAME_DIR="$HOME/baroboys/Valheim"
+  STEAM_APP_ID=896660
+  STEAM_PLATFORM=""          # native Linux
+  WORLD_NAME="BaroboysWorld" # or whatever
+  SAVE_DIR="$HOME/.config/unity3d/IronGate/Valheim/worlds_local"
+  LOG_FILE="/var/log/baroboys/valheim.log"
+  ```
+  **Differences from Barotrauma/VRising:**
+  - Config is command-line args to the server binary, not a template file. Password and world
+    name passed as `-password` and `-world` flags in `startup.sh`. No `.in` template needed.
+  - Shutdown: `SIGTERM` to `valheim_server.x86_64` — no RCON, no mcrcon dependency.
+  - Saves: live in `$HOME/.config/unity3d/IronGate/Valheim/worlds_local/` — need to stage these
+    in `shutdown.sh` the same way Barotrauma stages `.save` files.
+  - Ports: UDP 2456-2458 — add to Terraform firewall rules.
+  - No Wine, no Xvfb — simpler Packer layer than VRising.
+  Also add `valheim` to `Makefile` `GAMES` list and create `packer/game/valheim.pkr.hcl`.
 
 - **Adding a new game — checklist** — the pattern is established; formalize when a 3rd game
   is added. Adding a game requires:
