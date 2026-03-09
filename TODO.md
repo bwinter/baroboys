@@ -94,9 +94,10 @@
     SAVE_DIR, LOG_FILE, plus game-specific tunables (WORLD_NAME, RCON_PORT, WINEPREFIX if Wine)
   - `scripts/services/<game>/setup.sh` — runs refresh.sh as bwinter_sc81, creates log files,
     installs + enables 3 systemd units; writes `$GAME_NAME` to `/etc/baroboys/active-game`.
+    If the game manifest (see medium-term DRY item) exists by this point, also write it here.
     Note: existing setup.sh files use hardcoded game-specific strings (log names, script paths)
     rather than sourcing config.sh — this is acceptable since setup.sh runs as root and config.sh's
-    `$HOME`-based paths would be wrong in that context.
+    `$HOME`-based paths would be wrong in that context (use `HOME=/home/bwinter_sc81 source config.sh`).
   - `scripts/services/<game>/src/refresh.sh` — sources config.sh, SteamCMD warm + app_update
     (using `$STEAM_APP_ID`, `$GAME_DIR`, `$STEAM_PLATFORM`), git checkout canonical configs,
     envsubst password into config templates
@@ -110,14 +111,32 @@
 
 ### Medium-term
 
-- **DRY shared game script logic** — after config centralization, the game scripts are strikingly
-  similar in structure. Patterns duplicated verbatim across both games:
+- **DRY shared game script logic + game manifest** — after config centralization, the game scripts
+  are strikingly similar in structure. Patterns duplicated verbatim across both games:
   - `shutdown.sh`: git stash→pull→push→pop sequence (identical)
   - `setup.sh`: log dir creation + unit installation (identical structure, different hardcoded names)
   - `src/refresh.sh`: SteamCMD warm call + app_update + git checkout canonical files (structurally identical)
   Blocked by the 3-game rule. When a 3rd game is added, extract shared logic into
   `scripts/services/lib/` (e.g. `git_sync.sh`, `steamcmd_update.sh`). Scripts would source lib
   functions and supply game-specific args from config.sh. Current duplication is acceptable.
+
+  **Game manifest (bridges bash → Python):** the same 3rd-game trigger should produce a
+  machine-readable manifest written by `setup.sh` and consumed by `admin_server.py`. Today
+  `admin_server.py` hardcodes every log path — the bash-side canonical definitions live in
+  systemd `StandardOutput=` lines and `config.sh:LOG_FILE`, but Python can't source them.
+  A JSON manifest at `/etc/baroboys/manifest.json` closes the gap:
+  ```json
+  {
+    "game_name": "vrising",
+    "log_dir": "/var/log/baroboys",
+    "game_log": "/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log"
+  }
+  ```
+  `setup.sh` writes it (running as root, can `HOME=/home/bwinter_sc81 source config.sh`);
+  `admin_server.py` reads it on startup and derives `{game}_startup.log`, `{game}_shutdown.log`,
+  `{game}.log` from `game_name` + `log_dir`, using `game_log` for the special game-engine log.
+  This also unlocks multi-game awareness (see near-term item) without a separate mechanism —
+  admin_server.py already has everything it needs from the manifest.
 
 - **Save files to GCS** — saves currently live in Git (growing binary history). Moving to a GCS
   bucket would reduce repo bloat, allow multiple save slots, and simplify shutdown (gsutil cp
