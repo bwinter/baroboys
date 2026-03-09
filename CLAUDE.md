@@ -94,8 +94,8 @@ make clean                       # Delete old GCP images/disks/IPs
 - **Bite-sized commits** — logical groupings, not one-liners and not monoliths
 - **TODO.md** = long-term aspirations, not current sprint work
 - **Fix protocol** — task-specific steps (code → docs → stage) then calls wrap (`memory/fix-protocol.md`)
-- **Wrap protocol** — universal ending after any task: memory updates → commit → push (`memory/wrap-protocol.md`).
-  Task wrap (quick) after a fix; session wrap (full sweep) at a topic boundary or on user request.
+- **Wrap protocol** — universal ending after any completed task: full memory sweep → commit → push.
+  Always the full version — no shortcuts (`memory/wrap-protocol.md`)
 
 ---
 
