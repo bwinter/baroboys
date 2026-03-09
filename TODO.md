@@ -11,6 +11,14 @@
   manual and not fully self-contained. Goal: everything reads from env; `.envrc` is the one
   place to change.
 
+- **Barotrauma `refresh.sh` debug noise** — same `id`/`ls -la`/`find` lines that were cleaned
+  from `vrising/src/refresh.sh` are still present in `barotrauma/src/refresh.sh:11-16,30-33`.
+  Also copy the detailed warm-SteamCMD comment from the VRising version to the Barotrauma one
+  (see known-issues.md for details). Two-minute fix.
+
+- **Pin mcrcon to a release tag** — `mcrcon/refresh.sh` clones HEAD; add `git checkout <tag>`
+  after clone. Check https://github.com/Tiiffi/mcrcon/releases for current latest.
+
 - **CI: validate-only pipeline** — `packer validate` and `terraform validate` are free (no GCP
   calls). Running them on push would catch syntax errors early with zero infrastructure cost.
 
