@@ -22,8 +22,6 @@
 - **Admin panel: multi-game awareness** — log dropdown always shows both Barotrauma and VRising
   entries regardless of which game is running. Should filter to the active game.
 
-### Medium-term (from wine/build audit)
-
 ### Medium-term
 
 - **Save files to GCS** — saves currently live in Git (growing binary history). Moving to a GCS

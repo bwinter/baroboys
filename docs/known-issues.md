@@ -20,10 +20,6 @@ is planned.
 
 ---
 
-## Open — Needs Attention
-
-
-
 ## Accepted / Won't Fix
 
 These are known but intentionally not being addressed.
