@@ -10,7 +10,7 @@
   "ServerFps": 60,
   "LowerFPSWhenEmpty": true,
   "LowerFPSWhenEmptyValue": 5,
-  "SaveName": "TestWorld-1",
+  "SaveName": "${WORLD_NAME}",
   "Password": "${SERVER_PASSWORD}",
   "Secure": true,
   "ListOnSteam": true,

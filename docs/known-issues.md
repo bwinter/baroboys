@@ -4,33 +4,6 @@ Bugs and gaps. Open items organized by effort — easy wins first.
 
 ---
 
-## Open — Easy Fix
-
-### VRising world name "TestWorld-1" hardcoded in multiple places
-
-**Files:**
-- `scripts/services/vrising/shutdown.sh:7` — `SAVE_DIR="VRising/Data/Saves/v4/TestWorld-1"`
-- `scripts/services/vrising/src/refresh.sh:8` — `SAVE_DIR="$VRISING_DIR/Data/Saves/v4/TestWorld-1"`
-- `VRising/ServerHostSettings.json.in` — `"SaveName": "TestWorld-1"` (envsubst'd at boot)
-
-**Effort:** Easy if only changing variable references; risky if actually renaming the world.
-
-**Implementation:** In each shell script, replace the hardcoded string with a variable defined
-at the top: `WORLD_NAME="TestWorld-1"`. Then reference `$WORLD_NAME` in the path. Each script
-sets its own local copy — there is no shared sourced config file. The three changes are:
-
-1. `shutdown.sh:7` → `WORLD_NAME="TestWorld-1"; SAVE_DIR="VRising/Data/Saves/v4/$WORLD_NAME"`
-2. `refresh.sh:8` → `WORLD_NAME="TestWorld-1"; SAVE_DIR="$VRISING_DIR/Data/Saves/v4/$WORLD_NAME"`
-3. `ServerHostSettings.json.in` → replace literal `"TestWorld-1"` with `"${WORLD_NAME}"` and
-   ensure `refresh.sh` exports `WORLD_NAME` before calling `envsubst`
-
-**Warning:** Actually renaming the world (not just the variable) requires the on-disk save
-directory to be renamed too. The game will create a fresh world if the directory is missing.
-Do a coordinated rename: rename dir, update variable, push, then boot. Low priority unless a
-rename is actively planned.
-
----
-
 ## Accepted / Won't Fix
 
 These are known but intentionally not being addressed.
@@ -61,3 +34,4 @@ Entries worth preserving as design context or non-obvious gotchas. Routine fixes
 | 18 | `wine/src/setup.sh`: `DISPLAY=:0` set before `wineboot` caused Wine 11 `start_rpcss Failed` → `kernel32.dll` error. Fixed: `unset DISPLAY` before wineboot, `export DISPLAY=:0` only before winetricks. `unset` (not just omitting) enforces headless regardless of caller environment. |
 | 19 | `barotrauma/src/refresh.sh` had boot-time debug blocks (`id`, `ls -la`, `find`, `=== BEFORE/AFTER steamcmd ===`) running every boot. Also had a weak warm-SteamCMD comment. Removed debug blocks; replaced one-liner with full rationale matching VRising version. |
 | 20 | `mcrcon/refresh.sh` cloned HEAD with no tag pin — upstream breakage would silently break VRising shutdown. Added `git -C "/tmp/mcrcon" checkout v0.7.2` after clone. |
+| 21 | `TestWorld-1` hardcoded in `vrising/shutdown.sh`, `vrising/src/refresh.sh`, and `ServerHostSettings.json.in`. Replaced with `WORLD_NAME="TestWorld-1"` variable; `refresh.sh` exports it before `envsubst`. Rename still requires coordinated on-disk dir rename. |

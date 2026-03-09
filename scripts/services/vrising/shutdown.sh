@@ -4,7 +4,8 @@ set -euxo pipefail
 cd "$HOME/baroboys"
 
 SHUTDOWN_DELAY_MINUTES=1
-SAVE_DIR="VRising/Data/Saves/v4/TestWorld-1"
+WORLD_NAME="TestWorld-1"
+SAVE_DIR="VRising/Data/Saves/v4/$WORLD_NAME"
 
 SERVER_PASSWORD="$(gcloud secrets versions access latest --secret="server-password")"
 
