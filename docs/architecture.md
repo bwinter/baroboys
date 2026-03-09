@@ -129,7 +129,7 @@ network-online.target
 Triggered by any of:
 - Admin panel "Trigger Shutdown" button → POST `/api/trigger-shutdown` → `systemctl restart game-shutdown.service`
 - `idle_check.sh` after 30 min CPU below 5% → `systemctl restart game-shutdown.service`
-- VM stop event → GCE shutdown-script metadata
+- VM stop event (poweroff/halt/reboot) → `game-shutdown.service` via `[Install] WantedBy=poweroff.target`
 
 `game-shutdown.service` runs `scripts/services/<game>/shutdown.sh` as `bwinter_sc81`.
 `TimeoutStartSec=600` — VRising takes up to ~390s to save and exit cleanly; 300s was too short.
@@ -240,7 +240,7 @@ The repo serves as a game-state database. Saves are committed and pushed on ever
 
 | Game | Tracked paths | Format |
 |------|--------------|--------|
-| VRising | `VRising/Data/Saves/v4/TestWorld-1/AutoSave_*.save.gz` | Only latest kept in Git (older removed with `git rm --cached`) |
+| VRising | `VRising/Data/Saves/v4/$WORLD_NAME/AutoSave_*.save.gz` (`WORLD_NAME="TestWorld-1"` in `vrising/shutdown.sh`) | Only latest kept in Git (older removed with `git rm --cached`) |
 | Barotrauma | `Barotrauma/Multiplayer/*.save`, `*_CharacterData.xml` | All saves tracked |
 
 The VM's `.gitconfig` identifies commits as `Game Server <bwinter.sc81+gameserver@gmail.com>`.
