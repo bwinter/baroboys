@@ -49,7 +49,12 @@ done
 git add "$gzipped_file"
 git commit -m "Auto-save before shutdown $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "Nothing to commit"
 
-# Stash local state, pull, and push
+# Stash → pull --rebase → push → pop.
+# The stash is intentional: the working tree can accumulate local taint (envsubst'd
+# config files, steamcmd artifacts, etc.) that would cause `pull --rebase` to fail.
+# Stashing clears that state before the rebase so the push lands cleanly, then pops
+# it back. Do NOT simplify this to a bare `git fetch && git rebase` — the stash step
+# is load-bearing.
 git stash push --include-untracked --quiet || echo "Nothing to stash"
 git pull --rebase
 git push origin main
