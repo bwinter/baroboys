@@ -46,6 +46,15 @@
   (b) **GCP Cloud Function** — lightweight HTTP trigger that calls Compute API; can be invoked from a bookmark or simple page. `vm-runtime` SA doesn't help (it's on the stopped VM); need a separate SA with `compute.instanceAdmin.v1`.
   (c) **Admin panel endpoint** — only reachable when VM is already up, so only useful as a "restart" not a "start". Already partially covered by `make restart-game`.
 
+- **devbox dev environment** — new machine setup currently requires manually hunting down
+  terraform, packer, gcloud, python3, bash 4, nginx, java. Devbox (Nix-backed, no Nix knowledge
+  required) pins these with a `devbox.json` + `devbox.lock`. Non-pure shell: host tools (git,
+  make, curl, ssh) still work; devbox only owns the version-sensitive/platform-painful ones.
+  Integrates with existing `.envrc` via a generated snippet — auto-activates on `cd`.
+  Approach: `devbox init`, `devbox add terraform packer google-cloud-sdk python3 bash nginx jdk`,
+  wire into `.envrc`. Commit `devbox.json` + `devbox.lock`. New dev runs `devbox shell` (or
+  just `cd` with direnv) and has everything pinned.
+
 - **Admin panel: multi-game awareness** — log dropdown always shows both Barotrauma and VRising
   entries regardless of which game is running. Should filter to the active game.
   Approach: during `game-setup.service`, write the active game name to a known file, e.g.
@@ -77,7 +86,7 @@ These are interesting but not current priority. Logged so they aren't forgotten.
 
 - `/wrap` slash command skill — formalize the session wrap protocol as a Claude Code skill
   so memory updates run automatically on demand
-- Nix for environment management (replace/augment direnv)
+- Nix for environment management (replace/augment direnv) — see near-term item
 - Claude API integration — AI-assisted ops from the admin console
 - React frontend for admin panel
 - Go for backend services
