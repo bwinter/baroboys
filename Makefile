@@ -112,7 +112,17 @@ iam-add-admin:
 REMOTE_STARTUP_SCRIPT  := sudo systemctl restart game-startup.service
 REMOTE_SHUTDOWN_SCRIPT := sudo systemctl restart game-shutdown.service
 
-.PHONY: restart-game save-and-shutdown
+.PHONY: start stop restart-game save-and-shutdown
+
+start:
+	gcloud compute instances start $(MACHINE_NAME) \
+		--project=$(PROJECT) \
+		--zone=$(ZONE)
+
+stop:
+	gcloud compute instances stop $(MACHINE_NAME) \
+		--project=$(PROJECT) \
+		--zone=$(ZONE)
 
 restart-game:
 	gcloud compute ssh $(GCP_USER)@$(MACHINE_NAME) \
@@ -233,8 +243,10 @@ help:
 	@echo ""
 
 	@echo "🎮 Game:"
-	@echo "  make restart-game             - Trigger remote restart of game"
-	@echo "  make save-and-shutdown        - Save game state by triggering shutdown"
+	@echo "  make start                    - Start the VM"
+	@echo "  make stop                     - Hard stop the VM (no save — use save-and-shutdown for graceful)"
+	@echo "  make restart-game             - Trigger remote restart of game service"
+	@echo "  make save-and-shutdown        - Graceful shutdown: save game state then power off"
 	@echo ""
 
 	@echo "🔑 SSH Access:"

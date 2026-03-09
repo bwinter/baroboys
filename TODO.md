@@ -6,77 +6,31 @@
 
 ### Near-term
 
-- **CI pipeline** — two tiers:
-
-  **Tier 1 — syntax/validate (free, no GCP):** `packer validate` and `terraform validate` on
-  every push. GitHub Actions workflow on `push`/`pull_request`. For Packer: replicate the
-  `packer/build.sh` var-file setup (copy `shared.tfvars` + `variables.tf` to `packer/tmp/`),
-  then `packer init && packer validate` for each template. For Terraform: `terraform init -backend=false`
+- **CI — Tier 1: syntax/validate** — `packer validate` and `terraform validate` on every push.
+  GitHub Actions workflow on `push`/`pull_request`. For Packer: replicate `packer/build.sh`'s
+  var-file setup (copy `shared.tfvars` + `variables.tf` to `packer/tmp/`), then
+  `packer init && packer validate` for each template. For Terraform: `terraform init -backend=false`
   + `terraform validate`. No GCP credentials needed.
 
-  **Tier 2 — design/contract tests (shellcheck + shell tests):** enforce design decisions that
-  are otherwise invisible until a real build or boot fails. Candidates:
+- **CI — Tier 2: design/contract tests** — enforce design decisions invisible until a real build
+  or boot fails. Implement as a bash test script or GitHub Actions steps (no GCP access needed):
   - `shellcheck` on all scripts in `scripts/` — catches unquoted vars, bad substitutions, etc.
   - Verify systemd unit pairing: every `*-setup.service` has a matching `*-startup.service`.
     **Exception:** `idle-check-setup.service` pairs with `idle-check.timer` + `idle-check.service`
-    (no `-startup` unit — timer pattern, not service pattern). Test must whitelist this.
+    (no `-startup` unit — timer pattern). Test must whitelist this.
   - Verify `Requires=` is always accompanied by `After=` (grep unit files for violations)
   - Verify all `.json.in` templates contain only known `${VAR}` placeholders (no typos)
   - Verify `WORLD_NAME` is exported in `vrising/src/refresh.sh` before `envsubst`
   - Verify `shutdown.sh` files contain the stash-pull-push-pop sequence in order
   - Verify every game dir has a `config.sh` exporting `GAME_NAME`
   - Verify `.envrc` and `shared.tfvars` agree on project/zone/region/machine_name
-  These can be implemented as a bash test script or simple GitHub Actions steps — no mocking
-  or GCP access needed.
 
-- **`make start` / `make stop` targets** — the Makefile already has `$(MACHINE_NAME)`, `$(PROJECT)`,
-  and `$(ZONE)`. Two one-liner additions:
-  ```makefile
-  start:
-      gcloud compute instances start $(MACHINE_NAME) --project=$(PROJECT) --zone=$(ZONE)
-  stop:
-      gcloud compute instances stop $(MACHINE_NAME) --project=$(PROJECT) --zone=$(ZONE)
-  ```
-  `make stop` is a hard stop (no save); `make save-and-shutdown` is the graceful path. Both are
-  useful — stop for emergencies, save-and-shutdown for normal sessions. Also add these as option (a)
-  in the admin panel start-server design below and update the help text.
+- **Admin panel: start server button** — the circular dependency is intentional and
+  cost-driven (see `docs/design.md` Cost Philosophy): the panel lives on the game VM, so it
+  can't start a stopped VM. `make start` satisfies the need with no new infrastructure.
+  A bookmarkable URL would require a Cloud Function + always-on SA — not warranted under the
+  current cost constraints. Revisit if the single-VM cost model ever changes.
 
-- **Admin panel: start server button** — panel runs on the VM, so it can only help when the VM
-  is already up. "Start" requires a GCP Compute API call from *outside* the VM. Options:
-  (a) **Makefile target only** (simplest) — `make start` / `make stop` (see above). Already
-      achievable with no new infrastructure; add the targets first before any fancier option.
-  (b) **GCP Cloud Function** — lightweight HTTP trigger that calls Compute API; can be invoked from
-      a bookmark or simple page. `vm-runtime` SA doesn't help (it's on the stopped VM); need a
-      separate SA with `compute.instanceAdmin.v1`.
-  (c) **Admin panel endpoint** — only reachable when VM is already up, so only useful as a
-      "restart" not a "start". Already partially covered by `make restart-game`.
-
-- **devbox dev environment** — new machine setup currently requires manually hunting down
-  terraform, packer, gcloud, python3, bash 4, nginx, java. Devbox (Nix-backed, no Nix knowledge
-  required) pins these with a `devbox.json` + `devbox.lock`. Non-pure shell: host tools (git,
-  make, curl, ssh) still work; devbox only owns the version-sensitive/platform-painful ones.
-  Same `devbox.json` works on macOS and Linux — Nix selects the right platform binary automatically.
-  Integrates with existing `.envrc` via a generated snippet — auto-activates on `cd`.
-  Approach: `devbox init`, `devbox add terraform packer google-cloud-sdk python3 bash nginx jdk`,
-  wire into `.envrc`. Commit `devbox.json` + `devbox.lock`. New dev runs `devbox shell` (or
-  just `cd` with direnv) and has everything pinned.
-
-  **Bootstrap (macOS):** `xcode-select --install` → Nix installer → `devbox shell`. Xcode CLT
-  is Apple's unavoidable first step (provides git, make, clang). After that Nix is self-contained.
-  Linux only needs curl for the Nix installer — simpler.
-
-  **gcloud caveat:** nixpkgs disables gcloud's built-in component manager because `/nix/store/`
-  is read-only — `gcloud components update` and `gcloud components install` won't work. Core
-  gcloud commands are fine. If additional components (alpha, emulators) are ever needed, may
-  need to manage gcloud outside devbox and leave it to the host.
-
-  **Python/venv caveat:** `.envrc` activates `.venv` directly. When devbox manages Python, the
-  venv may need to be rebuilt against devbox's Python binary. Test that `python3 -m venv .venv`
-  works inside `devbox shell` before committing.
-
-  **Do not use on the VM:** Packer bakes deps at build time, not runtime. Wine and SteamCMD
-  have known-working apt installs that are risky to swap. Nix would add store overhead to the
-  image. Keep apt + Packer for VM; devbox is local dev only.
 
 - **Admin panel: multi-game awareness** — log dropdown always shows both Barotrauma and VRising
   entries regardless of which game is running. Should filter to the active game.
@@ -150,10 +104,6 @@
   `-logFile` arg and update `refresh.sh` accordingly. Current workaround: admin_server.py
   hardcodes the full path directly.
 
-- **Admin server location** — `scripts/services/admin_server/` is awkward. It's a long-running
-  web service, not a transient script. A top-level `admin/` directory was considered.
-  - Also considered renaming the "admin" packer layer to "shared".
-
 - **Refactor games into subdir** — move `Barotrauma/` and `VRising/` under `games/`. Mostly
   straightforward: GAME_DIR in config.sh is the only per-game change for startup/shutdown/refresh
   scripts (all paths derive from it). Also requires:
@@ -170,7 +120,13 @@ These are interesting but not current priority. Logged so they aren't forgotten.
 
 - `/wrap` slash command skill — formalize the session wrap protocol as a Claude Code skill
   so memory updates run automatically on demand
-- Nix for environment management (replace/augment direnv) — see near-term item
+- **devbox dev environment** — pins terraform, packer, gcloud, python3, bash 4, nginx, java via
+  Nix-backed devbox. `devbox init`, `devbox add terraform packer google-cloud-sdk python3 bash
+  nginx jdk`, wire into `.envrc`. Bootstrap (macOS): `xcode-select --install` → Nix → devbox.
+  Caveat: nixpkgs gcloud disables component manager (read-only /nix/store/). Python/venv needs
+  rebuilding inside devbox shell. Do not use on VM (apt + Packer stays). Learning/demo item —
+  not a current pain point.
+- Nix for environment management (replace/augment direnv)
 - Claude API integration — AI-assisted ops from the admin console
 - Productize game management — web UI for picking/loading games, adding new titles; would
   require a formal game manifest (config.sh is the seed of this), dependency declaration per

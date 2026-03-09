@@ -50,6 +50,23 @@ for the long-running process. See `docs/architecture.md` for the full dependency
 
 ---
 
+## Cost Philosophy
+
+**Optimize for near-zero idle cost.** The server runs only during active play sessions; it is
+fully destroyed between sessions (not just stopped — `make destroy` tears down the VM entirely).
+This is a hard constraint: any new feature or infrastructure addition should be evaluated against
+its always-on cost. A stopped VM costs nothing; a Cloud Function costs near-nothing but is still
+"always on" in billing terms; a second persistent VM is a non-starter.
+
+Consequences:
+- Single VM for everything (game + admin panel + idle-check) — no separate management server
+- Admin panel is on the game VM, so it can't help start a stopped VM (the circular dependency is
+  intentional — fixing it would require always-on infrastructure)
+- `make start` from a local terminal is the correct start mechanism; no bookmarkable URL is
+  worth adding always-on infra to support
+
+---
+
 ## Key Tradeoffs
 
 | Decision | Benefit | Cost |
