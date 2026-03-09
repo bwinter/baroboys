@@ -33,11 +33,6 @@
   before the real update call was a workaround for intermittent SteamCMD failures. Test if still
   needed; removing it would speed up every boot. `scripts/services/vrising/src/refresh.sh:46-48`
 
-- **`shutdown.sh`: Simplify git stash strategy** — `stash push → pull --rebase → stash pop`
-  is fragile: a failed pop leaves stashed state behind. After committing the save file, a simple
-  `git fetch && git rebase origin/main` achieves the same goal more cleanly.
-  `scripts/services/vrising/shutdown.sh:53-56`
-
 ### Medium-term
 
 - **Save files to GCS** — saves currently live in Git (growing binary history). Moving to a GCS

@@ -35,14 +35,12 @@ else
   echo "✅ Latest .save is up-to-date or newer than .gz"
 fi
 
-# Debugging
-echo "=== BEFORE steamcmd ==="
-id
-echo "HOME=$HOME"
-ls -la ~
-ls -la ~/.steam ~/.local/share || true
-
-# Warm steam to hopefully avoid intermittent failures.
+# Warm SteamCMD before the real install call.
+# Without this, SteamCMD intermittently fails to start the installer correctly — likely a
+# first-run initialization issue (depot cache, config, or update manifest setup). Running a
+# bare login+quit first does a clean pave of whatever internal state SteamCMD needs, and
+# the subsequent app_update call reliably succeeds. Root cause is unclear; workaround was
+# found via community reports of similar intermittent SteamCMD failures.
 /usr/games/steamcmd \
   +login anonymous \
   +quit
@@ -54,10 +52,6 @@ ls -la ~/.steam ~/.local/share || true
   +login anonymous \
   +app_update 1829350 validate \
   +quit
-
-echo "=== AFTER steamcmd ==="
-ls -la ~/.steam ~/.local/share || true
-find ~/.steam -maxdepth 3 -type f 2>/dev/null || true
 
 # Restore force-committed files that SteamCMD may have clobbered
 cd "$HOME/baroboys"
