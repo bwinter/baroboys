@@ -23,32 +23,29 @@ committed to Git on every shutdown.
 | TF state | `gs://tf-state-baroboys/terraform/prod` |
 | Admin panel | `http://<VM-IP>:8080/` — user `Hex`, pw = server-password secret |
 
+Secrets, ports, log paths, file locations: see `docs/architecture.md`.
+
 ---
 
 ## Repo Layout
 
 ```
 bootstrap/          Bootstrap scripts (TF bucket, SA) — run once
-packer/             Packer templates (base/core, base/admin, game/vrising, game/barotrauma)
-  build.sh          Entry point — accepts "base/<name>" or "game/<name>"
-terraform/          Infrastructure (VM, firewall, outputs)
-  build.sh          Entry point — accepts <game> <env>
+packer/             Packer templates; build.sh accepts "base/<name>" or "game/<name>"
+terraform/          Infrastructure; build.sh accepts <game> <env>
 scripts/
   dependencies/     apt installers (steam, wine, nginx, gcloud, etc.)
   services/         Per-component: setup.sh + startup.sh + shutdown.sh + systemd units
-    admin_server/   Flask app (src/admin_server.py), static files, templates
-    barotrauma/     Game lifecycle scripts
-    vrising/        Game lifecycle scripts
-    idle_check/     CPU-based auto-shutdown (every 5 min timer)
-    refresh_repo/   Git pull on boot (runs for both root and bwinter_sc81)
-    xvfb/           Virtual display for VRising/Wine
-  tools/            Local developer utilities (not deployed to VM)
-    admin/          run_admin_server_local.sh, get_admin_server_logs.sh
-    gcp/            add_admin.sh, review_and_cleanup.sh
-    clean_git/      BFG history cleanup pipeline
+    admin_server/   Flask admin app
+    barotrauma/     Game lifecycle
+    vrising/        Game lifecycle
+    idle_check/     CPU-based auto-shutdown
+    refresh_repo/   Git pull on boot
+    xvfb/           Virtual display (VRising/Wine)
+  tools/            Local dev utilities (not deployed to VM)
 docs/               Documentation
-Barotrauma/         Game state: saves, mods, server config template
-VRising/            Game state: saves, admin/ban lists, server config
+Barotrauma/         Game state: saves, mods, config template
+VRising/            Game state: saves, admin/ban lists, config
 ```
 
 ---
@@ -56,34 +53,27 @@ VRising/            Game state: saves, admin/ban lists, server config
 ## Common Commands
 
 ```bash
-# Infrastructure
-make bootstrap                   # First-time setup (TF bucket + SA)
-make terraform-apply-barotrauma  # Deploy Barotrauma server
-make terraform-apply-vrising     # Deploy VRising server
-make destroy                     # Tear down VM
-
-# Images (build in order: core → admin → game)
+# Images — always build in this order
 make build-base-core
 make build-base-admin
-make build-game-barotrauma       # or build-game-vrising
-make build                       # All images
+make build-game-barotrauma   # or build-game-vrising
+make build                   # all images
 
-# VM access
-make ssh                         # Direct SSH
-make ssh-iap                     # SSH via IAP tunnel
+# Deploy / tear down
+make terraform-apply-vrising   # or terraform-apply-barotrauma
+make destroy
 
-# Game control
-make restart-game                # Restart game-startup.service on VM
-make save-and-shutdown           # Trigger game-shutdown.service on VM
+# VM access + game control
+make ssh                       # or make ssh-iap
+make restart-game
+make save-and-shutdown
 
-# Admin panel (local dev)
-make admin-local                 # Run Flask + Nginx locally
-make admin-url                   # Print live admin panel URL
+# Test
+make smoke-test-vrising        # full E2E: terraform + checks + destroy
 
-# Maintenance
-make update-password             # Update server-password secret
-make iam-add-admin               # Grant VM start/stop to an email
-make clean                       # Delete old GCP images/disks/IPs
+# Local dev
+make admin-local               # Flask + Nginx locally, fetches real secrets
+make clean                     # delete old GCP images/disks/IPs
 ```
 
 ---
@@ -114,37 +104,11 @@ as Packer var files — Packer and Terraform share the same variable definitions
 
 ---
 
-## Secrets (GCP Secret Manager)
+## systemd Unit Conventions
 
-Three secrets, all accessed via the `vm-runtime` service account at runtime:
+All units follow a two-phase pattern per component: `*-setup.service` (oneshot, root, installs/configures) → `*-startup.service` (long-running or oneshot, bwinter_sc81, runs the thing). Always pair `Requires=X` with `After=X` — `Requires` alone does not enforce order. For shutdown services use `Wants=` not `Requires=` for network dependency (network may stop during poweroff sequence). Unit changes require image rebuild to take effect.
 
-| Secret | Used by | What |
-|--------|---------|------|
-| `github-deploy-key` | `refresh_repo.sh` (every boot) | ECDSA SSH key to clone/pull repo |
-| `server-password` | `<game>/src/refresh.sh`, `vrising/shutdown.sh` | Game join + RCON password |
-| `nginx-htpasswd` | `nginx/refresh.sh` | Basic auth for admin panel |
-
-Password is injected via `envsubst`:
-- Barotrauma: `Barotrauma/serversettings.xml.in` → `serversettings.xml`
-- VRising: `VRising/ServerHostSettings.json.in` → `StreamingAssets/Settings/ServerHostSettings.json`
-
----
-
-## Admin Panel
-
-Flask on `:5000` (internal) + Nginx on `:8080` (public, basic auth).
-
-```
-:8080 Nginx
-  /             → /opt/baroboys/static/admin.html
-  /status.json  → /opt/baroboys/static/status.json  (written by idle_check.sh)
-  /api/*        → http://127.0.0.1:5000/             (Flask, /api/ stripped)
-```
-
-**Source:** `scripts/services/admin_server/src/admin_server.py`
-**On-VM install:** `/opt/baroboys/`
-
-Local dev: `make admin-local` (runs both processes, mirrors prod layout, fetches real secrets).
+`idle-check.service` has `WantedBy=multi-user.target` intentionally — runs once at boot to seed `status.json` before the timer's first 5-minute fire.
 
 ---
 
@@ -159,46 +123,6 @@ idle_check.sh OR admin panel OR any VM stop (poweroff/halt/reboot)
       → git commit + pull --rebase + push origin main
       → sudo systemctl poweroff
 ```
-
----
-
-## Game-Specific Notes
-
-**Barotrauma** (Steam app 1026340)
-- Native Linux binary: `./DedicatedServer`
-- Ports: TCP+UDP 27015/27016
-- Config template: `Barotrauma/serversettings.xml.in`
-- Saves: `Barotrauma/Multiplayer/*.save` + `*_CharacterData.xml`
-
-**VRising** (Steam app 1829350)
-- Windows binary via Wine: `wine VRisingServer.exe` (Wine 11+ unified binary; wine64 removed)
-- Requires Xvfb on DISPLAY=:0, WINEPREFIX=`/home/bwinter_sc81/.wine64`
-- Ports: TCP+UDP 9876/9877 (firewall), 27015/27016 (configured in ServerHostSettings.json)
-- RCON: port 25575 (used by shutdown.sh)
-- Config templates: `VRising/ServerHostSettings.json.in`, `VRising/ServerGameSettings.json.in`
-  (envsubst'd into `StreamingAssets/Settings/` at boot by `vrising/src/refresh.sh`)
-- Saves: `VRising/Data/Saves/v4/TestWorld-1/AutoSave_*.save.gz` (only latest in Git)
-- Game settings: 5x stack size, no castle decay, no raids, faster crafting/research
-
----
-
-## On-VM Log Locations
-
-| Log | Path |
-|-----|------|
-| All baroboys logs | `/var/log/baroboys/` |
-| VRising game log | `/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log` |
-| Nginx | `/var/log/nginx/access.log`, `error.log` |
-
-Logs are accessible via admin panel dropdown or `make admin-logs`.
-
----
-
-## systemd Unit Conventions
-
-All units follow a two-phase pattern per component: `*-setup.service` (oneshot, root, installs/configures) → `*-startup.service` (long-running or oneshot, bwinter_sc81, runs the thing). Always pair `Requires=X` with `After=X` — `Requires` alone does not enforce order. For shutdown services use `Wants=` not `Requires=` for network dependency (network may stop during poweroff sequence). Unit changes require image rebuild to take effect.
-
-`idle-check.service` has `WantedBy=multi-user.target` intentionally — runs once at boot to seed `status.json` before the timer's first 5-minute fire.
 
 ---
 
