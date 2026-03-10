@@ -139,3 +139,5 @@ currently open issues. When you find a new bug, add it there.
 - `.gitconfig` — VM git identity (`Game Server`, `bwinter.sc81+gameserver@gmail.com`)
 - `terraform/.terraform.lock.hcl` — committed; keeps provider versions pinned
 - `packer/tmp/` — gitignored build scratch dir, safe to delete
+- `.claude/settings.local.json` — repo-level auto-approval list. Commands not in this list
+  require manual confirmation — run them as standalone Bash calls, never chained with others.
