@@ -41,6 +41,11 @@
   Ports from `config.sh`: Barotrauma 27015, VRising 9876. This is the closest approximation to
   "did the game actually start?" without a real game client.
 
+- **Manual QA: connect and play both games** — provision each game server, actually launch the
+  game client, and verify a real connection works end-to-end. Port checks confirm the server is
+  listening; only a human client confirms the game is actually playable. Do this after the
+  smoke test items above pass cleanly.
+
 - **Start VM via bookmarkable URL** — `make start` works from a terminal but friends need GCP
   console access today. Goal: a URL anyone with a Google account (that you've approved) can click
   to start the VM — with boot progress feedback — no GCP console, no CLI.
