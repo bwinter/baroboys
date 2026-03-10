@@ -1,13 +1,18 @@
 #!/usr/bin/env bash
 # vm_checks.sh — internal smoke test, runs ON the VM.
-# Sources config.sh so all checks are game-aware.
+# Self-identifying: reads /etc/baroboys/active-game (written by setup.sh) to determine
+# which game is running. Sources config.sh so all checks are game-aware.
 # Exit code: 0 = all passed, 1 = one or more failed.
 #
-# Usage: bash ~/baroboys/scripts/tools/smoke_test/vm_checks.sh <game>
-#   e.g. bash ~/baroboys/scripts/tools/smoke_test/vm_checks.sh vrising
+# Usage: bash ~/baroboys/scripts/tools/smoke_test/vm_checks.sh
 set -uo pipefail
 
-GAME="${1:-vrising}"
+ACTIVE_GAME_FILE="/etc/baroboys/active-game"
+if [[ ! -f "$ACTIVE_GAME_FILE" ]]; then
+    echo "❌ $ACTIVE_GAME_FILE not found — setup.sh may not have run yet"
+    exit 1
+fi
+GAME=$(cat "$ACTIVE_GAME_FILE")
 REPO_DIR="$HOME/baroboys"
 CONFIG="$REPO_DIR/scripts/services/$GAME/config.sh"
 

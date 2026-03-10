@@ -121,11 +121,21 @@ done
 # ============================================================
 header "Stage 4 — Internal Checks (via SSH)"
 
-# SSH and execute vm_checks.sh from the repo on the VM
+# SSH and execute vm_checks.sh — self-identifies game from /etc/baroboys/active-game
 gcloud compute ssh "${GCP_USER}@${MACHINE_NAME}" \
     --zone="$ZONE" --project="$PROJECT" \
-    --command="bash ~/baroboys/scripts/tools/smoke_test/vm_checks.sh $GAME" \
+    --command="bash ~/baroboys/scripts/tools/smoke_test/vm_checks.sh" \
     || { fail "vm_checks.sh reported failures"; exit_code=1; }
+
+# Cross-check: verify reported game matches what we provisioned
+reported_game=$(gcloud compute ssh "${GCP_USER}@${MACHINE_NAME}" \
+    --zone="$ZONE" --project="$PROJECT" \
+    --command="cat /etc/baroboys/active-game" 2>/dev/null || echo "")
+if [[ "$reported_game" == "$GAME" ]]; then
+    pass "active-game cross-check: server reports '$reported_game' (expected '$GAME')"
+else
+    fail "active-game cross-check: server reports '$reported_game', expected '$GAME'"
+fi
 
 # ============================================================
 # Stage 5 — External checks (admin panel)

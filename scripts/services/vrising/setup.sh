@@ -27,6 +27,10 @@ chmod 644  "/var/log/baroboys/vrising_shutdown.log"
 ln -sf "/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log" \
   "/var/log/baroboys/VRisingServer.log"
 
+# Record active game — read by admin panel (multi-game awareness) and smoke test (self-identification).
+mkdir -p /etc/baroboys
+echo "vrising" > /etc/baroboys/active-game
+
 
 # Unit installation
 install -m 644 "/root/baroboys/scripts/services/vrising/game-setup.service" \

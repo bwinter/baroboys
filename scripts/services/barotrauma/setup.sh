@@ -19,6 +19,10 @@ printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "/var/log/baroboys/bar
 chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/barotrauma_shutdown.log"
 chmod 644  "/var/log/baroboys/barotrauma_shutdown.log"
 
+# Record active game — read by admin panel (multi-game awareness) and smoke test (self-identification).
+mkdir -p /etc/baroboys
+echo "barotrauma" > /etc/baroboys/active-game
+
 # Unit installation
 install -m 644 "/root/baroboys/scripts/services/barotrauma/game-setup.service" \
   "/etc/systemd/system/"

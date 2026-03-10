@@ -20,15 +20,18 @@ runs checks from both outside and inside, then tears down.
 - `VRisingServer.log` served via admin panel (exercises symlink + log_map end-to-end)
 
 **Internal** (`vm_checks.sh` runs on the VM, sources `config.sh`):
+- Self-identifies game from `/etc/baroboys/active-game` (written by `setup.sh` at boot)
 - All required systemd services active
 - VRisingServer.log symlink points to correct target (VRising only)
 - Game process running with sane RAM usage (500MB–5.5GB)
 - Game log has real content (not just boot stub)
 - Flask responding on :5000 directly
 
+`run.sh` cross-checks that the server's reported game matches what was provisioned.
+
 ## Notes
 
 - `run.sh` calls `terraform apply/destroy -auto-approve` directly — `make apply/destroy`
   are interactive and not scriptable.
-- Internal checks are game-aware: `vm_checks.sh` sources the game's `config.sh` so
-  the same script works for any game that follows the config.sh pattern.
+- `vm_checks.sh` takes no arguments — it self-identifies via `/etc/baroboys/active-game`,
+  which also feeds the admin panel multi-game awareness feature.

@@ -179,6 +179,14 @@ build: \
 
 
 # =======================
+# 🧪 Smoke Test
+# =======================
+.PHONY: smoke-test
+
+smoke-test:
+	./scripts/tools/smoke_test/run.sh --game $(GAME)
+
+# =======================
 # 🧹 Cleanup
 # =======================
 .PHONY: clean clean-git-pre clean-git-bfg clean-git-post clean-git
@@ -262,6 +270,10 @@ help:
 	@echo "  make clean                    - Review and delete unused GCP images/disks/IPs"
 	@echo ""
 
+	@echo "🧪 Smoke Test:"
+	@echo "  make smoke-test GAME=vrising    - Full deploy+verify+destroy smoke test"
+	@echo "  make smoke-test GAME=barotrauma - Same for Barotrauma"
+	@echo ""
 	@echo "🧹 Git History Cleanup:"
 	@echo "  make clean-git-pre            - Scan repo history and write deletable blobs list"
 	@echo "  make clean-git-bfg            - Rewrite repo history using BFG with the deletable list"
