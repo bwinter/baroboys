@@ -1,18 +1,25 @@
 # VRising Deploy + Inspection Runbook
 
-Tracks a full deploy-and-verify run. Check off stages as completed.
-Commands recorded here are the seed of a future CI smoke test script.
+**Goal:** E2E smoke test — pave IaaS, boot VRising, probe the VM for life.
+Built interactively: update each stage with actual commands + results as we go.
 
-**Context:** Run after the VRisingServer.log symlink change (b334b10) and full image rebuild
-to verify: symlink works, admin panel serves the log, VRising boots cleanly under Wine.
+**Conversion:** At the end, invert this doc into a bash script — prose lines become
+`# comments`, bash blocks stay as-is. The result is a repeatable CI smoke test.
+
+**Context:** Verifying the VRisingServer.log symlink (b334b10) and full image rebuild.
+Checks: symlink present, admin panel serves the log, VRising boots cleanly under Wine.
+
+**Resume:** If context resets, `cat RUNBOOK.md` to see current state and next step.
 
 ---
 
-## Stage 1 — Environment Check
-- [ ] direnv vars active (`PROJECT`, `ZONE`, `MACHINE_NAME`, `GCP_USER`)
-- [ ] gcloud authenticated and pointing at correct project
+## Stage 1 — Environment Check ✅
+
+- [x] direnv vars active
+- [x] gcloud authenticated, correct project
 
 ```bash
+# Verify environment vars and gcloud auth
 echo "PROJECT=$PROJECT ZONE=$ZONE MACHINE_NAME=$MACHINE_NAME GCP_USER=$GCP_USER"
 gcloud config get-value project
 gcloud auth list --filter=status:ACTIVE --format="value(account)"
@@ -22,110 +29,101 @@ gcloud auth list --filter=status:ACTIVE --format="value(account)"
 
 ## Stage 2 — Terraform Apply
 - [ ] `make terraform-apply-vrising` exits 0
-- [ ] External IP printed in terraform output
+- [ ] External IP visible in terraform output
 
 ```bash
+# Provision VRising VM + firewall rules
 make terraform-apply-vrising
 ```
 
-Expected output includes:
-```
-admin_server_url = "http://<IP>:8080"
-```
+**Result:** *(fill in after running — IP, any errors)*
 
 ---
 
-## Stage 3 — Boot Watch (Serial Port)
-- [ ] VM reaches `RUNNING` state
-- [ ] Serial output shows systemd boot sequence in order:
-  - [ ] `refresh-repo-startup`
-  - [ ] `game-setup`
-  - [ ] `xvfb-startup`
-  - [ ] `game-startup`
+## Stage 3 — Boot Watch
+- [ ] VM status reaches `RUNNING`
+- [ ] Serial output shows boot order: refresh-repo → game-setup → xvfb → game-startup
 - [ ] No `Failed` or `dependency failed` lines
 
 ```bash
-# Poll VM status
+# Poll until RUNNING, capture external IP
 gcloud compute instances describe europa \
-  --zone=us-west1-c \
-  --project=europan-world \
+  --zone=us-west1-c --project=europan-world \
   --format="value(status,networkInterfaces[0].accessConfigs[0].natIP)"
 
-# Watch boot sequence
+# Inspect full boot sequence via serial console
 gcloud compute instances get-serial-port-output europa \
-  --zone=us-west1-c \
-  --project=europan-world
+  --zone=us-west1-c --project=europan-world
 ```
+
+**Result:** *(fill in — boot time, any warnings)*
 
 ---
 
 ## Stage 4 — SSH Inspection
 - [ ] SSH succeeds
-- [ ] `game-setup.service` completed successfully
+- [ ] `game-setup.service` completed
 - [ ] `game-startup.service` active (running)
 - [ ] `admin-server-startup.service` active
-- [ ] Symlink exists: `/var/log/baroboys/VRisingServer.log -> .../VRising/logs/VRisingServer.log`
-- [ ] VRisingServer.exe process visible in `ps`
+- [ ] Symlink correct: `/var/log/baroboys/VRisingServer.log -> .../VRising/logs/VRisingServer.log`
+- [ ] VRisingServer.exe process visible
 - [ ] Admin server responding on :5000
 
 ```bash
-# SSH in
-make ssh
-
-# --- on the VM ---
-
-# Service health
-sudo systemctl status game-setup.service
-sudo systemctl status game-startup.service
-sudo systemctl status admin-server-startup.service
-
-# Verify symlink (KEY CHECK for b334b10)
-ls -la /var/log/baroboys/VRisingServer.log
-
-# VRising process running
-ps aux | grep -i vrising
-
-# Admin server alive
-curl -s http://localhost:5000/ping
+# SSH and run inline inspection
+gcloud compute ssh bwinter_sc81@europa --zone=us-west1-c --project=europan-world \
+  --command="
+    sudo systemctl is-active game-setup.service
+    sudo systemctl is-active game-startup.service
+    sudo systemctl is-active admin-server-startup.service
+    ls -la /var/log/baroboys/VRisingServer.log
+    ps aux | grep -i vrising | grep -v grep
+    curl -s http://localhost:5000/ping
+  "
 ```
+
+**Result:** *(fill in — symlink target, process state, ping response)*
 
 ---
 
 ## Stage 5 — Admin Panel
 - [ ] Admin panel reachable at `http://<IP>:8080`
-- [ ] Health check (`/ping`) responds
-- [ ] VRisingServer.log accessible via log endpoint (no 404/500)
+- [ ] Health ping responds
+- [ ] VRisingServer.log endpoint returns content (not 404/500)
 
 ```bash
-# Get URL
-make admin-url
+# Capture IP from terraform output
+ADMIN_URL=$(cd terraform && terraform output -raw admin_server_url)
+SERVER_PASSWORD=$(gcloud secrets versions access latest --secret=server-password --project=europan-world)
 
-# Health check (replace IP)
-curl -s -u Hex:$(gcloud secrets versions access latest --secret=server-password) \
-  http://<IP>:8080/api/ping
+# Health check
+curl -s -u "Hex:${SERVER_PASSWORD}" "${ADMIN_URL}/api/ping"
 
-# VRisingServer.log via admin panel
-curl -s -u Hex:$(gcloud secrets versions access latest --secret=server-password) \
-  http://<IP>:8080/api/logs/VRisingServer.log | head -20
+# Verify VRisingServer.log accessible via admin panel (KEY CHECK)
+curl -s -u "Hex:${SERVER_PASSWORD}" "${ADMIN_URL}/api/logs/VRisingServer.log" | head -5
 ```
+
+**Result:** *(fill in — ping response, first log lines)*
 
 ---
 
 ## Stage 6 — Teardown
-- [ ] `make destroy` exits 0 (or idle timeout triggers naturally after 30 min)
+- [ ] VM destroyed (manual or idle timeout after 30 min)
 
 ```bash
+# Destroy all provisioned infrastructure
 make destroy
 ```
 
----
-
-## Notes / Issues Found
-
-*(record anything unexpected here during the run)*
+**Result:** *(fill in)*
 
 ---
 
-## Status
+## Issues Found
 
-- [ ] Run complete — all checks passed
+*(record anything unexpected during the run)*
+
+---
+
+## Final Status
+- [ ] All stages passed — ready to convert to CI script
