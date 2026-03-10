@@ -181,6 +181,9 @@ These are interesting but not current priority. Logged so they aren't forgotten.
 
 - `/wrap` slash command skill — formalize the session wrap protocol as a Claude Code skill
   so memory updates run automatically on demand
+- `/cold-boot` slash command skill — formalize `~/.claude/cold-boot-protocol.md` as an
+  invocable skill usable in any repo; assesses CLAUDE.md, memory files, settings, and hooks
+  for warm boot quality; asks about goals, proposes and applies changes with approval
 - **devbox dev environment** — pins terraform, packer, gcloud, python3, bash 4, nginx, java via
   Nix-backed devbox. `devbox init`, `devbox add terraform packer google-cloud-sdk python3 bash
   nginx jdk`, wire into `.envrc`. Bootstrap (macOS): `xcode-select --install` → Nix → devbox.
