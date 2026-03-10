@@ -90,7 +90,13 @@ PROCESS_PATTERN="${GAME_NAME}"
 [[ "$GAME_NAME" == "vrising" ]] && PROCESS_PATTERN="VRisingServer.exe"
 [[ "$GAME_NAME" == "barotrauma" ]] && PROCESS_PATTERN="DedicatedServer"
 
-pid=$(pgrep -f "$PROCESS_PATTERN" | head -1)
+# For Wine games (VRising), multiple processes match the pattern — pick the one
+# with highest RSS to avoid selecting the Wine launcher (start.exe) over the game itself.
+pid=$(pgrep -f "$PROCESS_PATTERN" | while read -r p; do
+    rss=$(awk '/VmRSS/ {print $2}' "/proc/$p/status" 2>/dev/null || echo 0)
+    echo "$rss $p"
+done | sort -n | tail -1 | awk '{print $2}')
+
 if [[ -z "$pid" ]]; then
     check "game process ($PROCESS_PATTERN)" "fail" "not found"
 else
