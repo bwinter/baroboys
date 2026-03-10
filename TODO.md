@@ -59,10 +59,8 @@
 - **Admin panel: multi-game awareness** — log dropdown always shows both Barotrauma and VRising
   entries regardless of which game is running. Should filter to the active game.
   Approach (simplified by config.sh groundwork):
-  1. In each `<game>/setup.sh`: create `/etc/baroboys/` dir and write the game name:
-     `mkdir -p /etc/baroboys && echo "vrising" > /etc/baroboys/active-game`
-     (Note: setup.sh runs as root; config.sh uses `$HOME`-based paths which would resolve to
-     `/root/...` in root context — simpler to write the literal game name than source config.sh.)
+  1. ✅ In each `<game>/setup.sh`: write `/etc/baroboys/active-game` — done (889a2ed).
+     Also consumed by `smoke_test/vm_checks.sh` for self-identification.
   2. In `idle_check.sh`: read `/etc/baroboys/active-game` and add `"game": "<name>"` to status.json
   3. Admin panel JS: read `status.json.game` on load, hide log entries whose name prefix doesn't match
 

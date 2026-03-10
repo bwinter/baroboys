@@ -117,6 +117,7 @@ network-online.target
                     - Fetches SERVER_PASSWORD from Secret Manager
                     - Runs envsubst on server config template
                     - (VRising) decompresses latest AutoSave_*.save.gz
+                    - Writes /etc/baroboys/active-game (game name for admin panel + smoke test)
                     └── game-startup.service   (simple, bwinter_sc81)
                           Barotrauma: ./DedicatedServer
                           VRising:    wine VRisingServer.exe (DISPLAY=:0, Wine 11+)
@@ -196,6 +197,9 @@ nginx log read access. No other elevated permissions.
 
 Status JSON fields: `timestamp_utc`, `cpu_percent`, `mem_percent`, `idle_flag_set`, `idle_since`, `idle_duration_minutes`
 
+`/etc/baroboys/active-game` contains the running game name (written by `setup.sh` at boot).
+Consumed by the admin panel (log dropdown filtering) and `smoke_test/vm_checks.sh` (self-identification).
+
 ---
 
 ## Secrets
@@ -268,7 +272,9 @@ The VM's `.gitconfig` identifies commits as `Game Server <bwinter.sc81+gameserve
 | On-VM Flask install | `/opt/baroboys/admin_server.py` |
 | On-VM static files | `/opt/baroboys/static/` |
 | On-VM logs | `/var/log/baroboys/` |
-| On-VM game logs (VRising) | `/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log` |
+| On-VM game logs (VRising) | `/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log` (symlinked from `/var/log/baroboys/VRisingServer.log`) |
+| Active game file | `/etc/baroboys/active-game` |
+| E2E smoke test | `scripts/tools/smoke_test/` — `make smoke-test-vrising` |
 
 ---
 

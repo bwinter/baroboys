@@ -181,10 +181,10 @@ build: \
 # =======================
 # 🧪 Smoke Test
 # =======================
-.PHONY: smoke-test
+.PHONY: $(addprefix smoke-test-, $(GAMES))
 
-smoke-test:
-	./scripts/tools/smoke_test/run.sh --game $(GAME)
+$(foreach game,$(GAMES),\
+  $(eval smoke-test-$(game): ; ./scripts/tools/smoke_test/run.sh --game=$(game)))
 
 # =======================
 # 🧹 Cleanup
@@ -271,8 +271,8 @@ help:
 	@echo ""
 
 	@echo "🧪 Smoke Test:"
-	@echo "  make smoke-test GAME=vrising    - Full deploy+verify+destroy smoke test"
-	@echo "  make smoke-test GAME=barotrauma - Same for Barotrauma"
+	@echo "  make smoke-test-vrising         - Full deploy+verify+destroy smoke test"
+	@echo "  make smoke-test-barotrauma      - Same for Barotrauma"
 	@echo ""
 	@echo "🧹 Git History Cleanup:"
 	@echo "  make clean-git-pre            - Scan repo history and write deletable blobs list"
