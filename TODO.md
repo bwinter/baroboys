@@ -25,6 +25,22 @@
   - Verify every game dir has a `config.sh` exporting `GAME_NAME`
   - Verify `.envrc` and `shared.tfvars` agree on project/zone/region/machine_name
 
+- **CI — Tier 3: E2E smoke test on push** — run the full smoke test in serial on every push to
+  `main`. GitHub Actions with GCP service account credentials; calls `scripts/tools/smoke_test/run.sh`
+  directly (not `make` — interactive). Upload logs as job artifacts so they're reviewable in the
+  Actions UI without SSH. Long-term: diff game server logs across runs to surface things worth
+  implementing (unexpected warnings, latency patterns, missing features visible in output).
+
+- **Smoke test both games** — `make smoke-test-vrising` is exercised; `make smoke-test-barotrauma`
+  exists via the Makefile pattern but hasn't been run end-to-end. Verify it passes clean. Likely
+  surfaces small config or path differences — that's the point.
+
+- **Smoke test: verify game is joinable** — extend `vm_checks.sh` to check that the game port
+  is actually accepting connections, not just that the process is running. A live process with a
+  closed port is a false positive. Implementation: `nc -z -w5 <host> <port>` (TCP) or a UDP probe.
+  Ports from `config.sh`: Barotrauma 27015, VRising 9876. This is the closest approximation to
+  "did the game actually start?" without a real game client.
+
 - **Start VM via bookmarkable URL** — `make start` works from a terminal but friends need GCP
   console access today. Goal: a URL anyone with a Google account (that you've approved) can click
   to start the VM — with boot progress feedback — no GCP console, no CLI.
