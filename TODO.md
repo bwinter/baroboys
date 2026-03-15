@@ -109,26 +109,8 @@
   - No Wine, no Xvfb — simpler Packer layer than VRising.
   Also add `valheim` to `Makefile` `GAMES` list and create `packer/game/valheim.pkr.hcl`.
 
-- **Adding a new game — checklist** — the pattern is established; formalize when a 3rd game
-  is added. Adding a game requires:
-  - `scripts/services/<game>/config.sh` — GAME_NAME, GAME_DIR, STEAM_APP_ID, STEAM_PLATFORM,
-    SAVE_DIR, LOG_FILE, plus game-specific tunables (WORLD_NAME, RCON_PORT, WINEPREFIX if Wine)
-  - `scripts/services/<game>/setup.sh` — runs refresh.sh as bwinter_sc81, creates log files,
-    installs + enables 3 systemd units; writes `$GAME_NAME` to `/etc/baroboys/active-game`.
-    If the game manifest (see medium-term DRY item) exists by this point, also write it here.
-    Note: existing setup.sh files use hardcoded game-specific strings (log names, script paths)
-    rather than sourcing config.sh — this is acceptable since setup.sh runs as root and config.sh's
-    `$HOME`-based paths would be wrong in that context (use `HOME=/home/bwinter_sc81 source config.sh`).
-  - `scripts/services/<game>/src/refresh.sh` — sources config.sh, SteamCMD warm + app_update
-    (using `$STEAM_APP_ID`, `$GAME_DIR`, `$STEAM_PLATFORM`), git checkout canonical configs,
-    envsubst password into config templates
-  - `scripts/services/<game>/startup.sh`, `shutdown.sh` — source config.sh; shutdown follows
-    stash→pull→push→pop pattern
-  - Systemd unit triplet: `game-setup.service`, `game-startup.service`, `game-shutdown.service`
-  - Add game to `Makefile` `GAMES` list and `packer/` template
-  - Terraform firewall rules for game ports
-  - Admin server log map entries in `admin_server.py`
-  Worth formalizing as `docs/adding-a-game.md` when a 3rd game is actually added.
+- **Adding a new game — checklist** — formalized as [`docs/adding-a-game.md`](docs/adding-a-game.md).
+  Update that doc after each new game is added.
 
 ### Medium-term
 
@@ -199,7 +181,14 @@ These are interesting but not current priority. Logged so they aren't forgotten.
 - React frontend for admin panel
 - Go for backend services
 - Kubernetes for service orchestration
-- Additional games: Valheim, Rails app, others
+- **Add Project Zomboid (game 4)** — Java-based dedicated server; different from all current games.
+  Steam App ID 380870. No Wine, no native binary — runs `java -jar PZServer.jar`. Config is a
+  plain `.ini` file (`~/Zomboid/Server/servertest.ini`) — no `.in` template needed, password set
+  directly in ini. Saves in `~/Zomboid/Saves/Multiplayer/<server-name>/`. Ports: UDP/TCP 16261,
+  UDP 16262. Shutdown via SIGTERM (no RCON required). Java means `openjdk` as a new apt dependency
+  (add to `scripts/dependencies/`). Do after Valheim — Valheim triggers the 3-game DRY rule and
+  by the time Zomboid is added, `scripts/services/lib/` should already exist.
+- Additional games: Valheim (near-term, see above), Project Zomboid (see above), Rails app, others
 - GraphQL API
 
 ---
