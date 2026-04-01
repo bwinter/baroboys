@@ -85,9 +85,16 @@
   2. In `idle_check.sh`: read `/etc/baroboys/active-game` and add `"game": "<name>"` to status.json
   3. Admin panel JS: read `status.json.game` on load, hide log entries whose name prefix doesn't match
 
-- **Add Valheim (game 3)** — Linux-native dedicated server, simplest possible addition.
-  Follows the established pattern; adding it triggers the 3-game DRY rule and unlocks the
-  `scripts/services/lib/` extraction + game manifest work.
+- **Add Project Zomboid (game 3)** — Java-based dedicated server; different from all current games.
+  Steam App ID 380870. No Wine, no native binary — runs `java -jar PZServer.jar`. Config is a
+  plain `.ini` file (`~/Zomboid/Server/servertest.ini`) — no `.in` template needed, password set
+  directly in ini. Saves in `~/Zomboid/Saves/Multiplayer/<server-name>/`. Ports: UDP/TCP 16261,
+  UDP 16262. Shutdown via SIGTERM (no RCON required). Java means `openjdk` as a new apt dependency
+  (add to `scripts/dependencies/`). Triggers the 3-game DRY rule — `lib/` extraction happens
+  alongside this. Follow `docs/adding-a-game.md`; update that doc as you go.
+
+- **Add Valheim (game 4)** — Linux-native dedicated server, simplest possible addition.
+  Slot in after Project Zomboid. Follow `docs/adding-a-game.md`.
 
   **config.sh sketch:**
   ```bash
@@ -181,14 +188,7 @@ These are interesting but not current priority. Logged so they aren't forgotten.
 - React frontend for admin panel
 - Go for backend services
 - Kubernetes for service orchestration
-- **Add Project Zomboid (game 4)** — Java-based dedicated server; different from all current games.
-  Steam App ID 380870. No Wine, no native binary — runs `java -jar PZServer.jar`. Config is a
-  plain `.ini` file (`~/Zomboid/Server/servertest.ini`) — no `.in` template needed, password set
-  directly in ini. Saves in `~/Zomboid/Saves/Multiplayer/<server-name>/`. Ports: UDP/TCP 16261,
-  UDP 16262. Shutdown via SIGTERM (no RCON required). Java means `openjdk` as a new apt dependency
-  (add to `scripts/dependencies/`). Do after Valheim — Valheim triggers the 3-game DRY rule and
-  by the time Zomboid is added, `scripts/services/lib/` should already exist.
-- Additional games: Valheim (near-term, see above), Project Zomboid (see above), Rails app, others
+- Additional games: Project Zomboid (near-term, see above), Valheim (near-term, see above), Rails app, others
 - GraphQL API
 
 ---
