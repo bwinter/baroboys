@@ -4,8 +4,6 @@ set -euxo pipefail
 # shellcheck source=scripts/services/Barotrauma/env-vars.sh
 source "$(dirname "${BASH_SOURCE[0]}")/env-vars.sh"
 
-cd "$BAROBOYS"
-
 # SETUP: OPTIONAL - Kill running gserver.
 if pkill -0 DedicatedServer 2>/dev/null; then
     pkill DedicatedServer
@@ -20,6 +18,8 @@ if ! timeout 300 bash -c 'while ps -C DedicatedServer >/dev/null; do sleep 1; do
 else
   echo "✅ DedicatedServer exited cleanly."
 fi
+
+cd "$GAME_DIR"
 
 # SETUP: REQUIRED === Commit saves ===
 find "$SAVE_FILE_PATH" -type f \( -name '*.save' -o -name '*_CharacterData.xml' \) ! -name '*.bk*' -print0 \

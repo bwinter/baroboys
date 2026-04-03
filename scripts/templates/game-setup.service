@@ -6,10 +6,10 @@ After=network-online.target refresh-repo-startup.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-WorkingDirectory=${BAROBOYS}/${GAME_NAME}
+WorkingDirectory=${GAME_DIR}
 User=bwinter_sc81
 
-ExecStart=${BAROBOYS}/${GAME_NAME}/scripts/services/shared/setup.sh
+ExecStart=${BAROBOYS}/scripts/services/shared/setup.sh
 ExecStartPost=/usr/bin/bash -c 'echo "✅ game-setup.service launched at $(date)" >> ${LOG_FILE}'
 ExecStopPost=/usr/bin/bash -c 'echo "🛑 game-setupservice finished shutdown at $(date)" >> ${LOG_FILE}'
 

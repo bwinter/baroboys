@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-# shellcheck source=scripts/services/env-vars.sh
+# shellcheck source=scripts/services/shared/env-vars.sh
 source "$(dirname "${BASH_SOURCE[0]}")/env-vars.sh"
 
 # Give Admin Server access to logs.
@@ -38,7 +38,7 @@ source "$(dirname "${BASH_SOURCE[0]}")../$GAME_NAME/env-vars.sh"
   +quit
 
 # Restore canonical server configs
-cd "$BAROBOYS"
+cd "$GAME_DIR"
 git checkout -- "$CHECKOUT_LIST"
 
 # shellcheck source=scripts/services/$GAME_NAME/config.sh

@@ -4,8 +4,6 @@ set -euxo pipefail
 # shellcheck source=scripts/services/VRising/env-vars.sh
 source "$(dirname "${BASH_SOURCE[0]}")/env-vars.sh"
 
-cd "$BAROBOYS"
-
 # SETUP: OPTIONAL - Tell players and trigger autosave
 if ! mcrcon -H 127.0.0.1 -P "$RCON_PORT" -p "$RCON_PASSWORD" \
   "shutdown ${SHUTDOWN_DELAY_MINUTES} \"Server will shut down in ~{t}m! Get to a safe place.\""; then
@@ -23,6 +21,7 @@ else
   echo "✅ VRisingServer.exe exited cleanly."
 fi
 
+cd "$GAME_DIR"
 
 # SETUP: OPTIONAL === Compress latest autosave ===
 latest_file=$(find "$SAVE_FILE_PATH" -type f -name "$SAVE_FILE_NAME*.save" |

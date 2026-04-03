@@ -5,7 +5,7 @@ After=game-setup.service
 
 [Service]
 Type=simple
-WorkingDirectory=${BAROBOYS}/${GAME_NAME}
+WorkingDirectory=${GAME_DIR}
 User=bwinter_sc81
 Group=bwinter_sc81
 
