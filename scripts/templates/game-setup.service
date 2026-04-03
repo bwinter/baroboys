@@ -9,14 +9,16 @@ RemainAfterExit=yes
 WorkingDirectory=${BAROBOYS}/${GAME_NAME}
 User=bwinter_sc81
 
-ExecStart=${BAROBOYS}/${GAME_NAME}/scripts/services/${GAME_NAME}/setup.sh ${GAME_NAME}
+ExecStart=${BAROBOYS}/${GAME_NAME}/scripts/services/shared/setup.sh
+ExecStartPost=/usr/bin/bash -c 'echo "✅ game-setup.service launched at $(date)" >> ${LOG_FILE}'
+ExecStopPost=/usr/bin/bash -c 'echo "🛑 game-setupservice finished shutdown at $(date)" >> ${LOG_FILE}'
 
 SuccessExitStatus=0
 KillMode=control-group
 TimeoutStartSec=300
 
-StandardOutput=append:/var/log/baroboys/${GAME_NAME}.log
-StandardError=append:/var/log/baroboys/${GAME_NAME}.log
+StandardOutput=append:${LOG_FILE}
+StandardError=append:${LOG_FILE}
 
 [Install]
 WantedBy=multi-user.target

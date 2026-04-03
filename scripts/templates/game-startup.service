@@ -9,16 +9,16 @@ WorkingDirectory=${BAROBOYS}/${GAME_NAME}
 User=bwinter_sc81
 Group=bwinter_sc81
 
-ExecStart=${BAROBOYS}/scripts/services/${GAME_NAME}/startup.sh ${GAME_NAME}
-ExecStartPost=/usr/bin/bash -c 'echo "✅ ${GAME_NAME}.service launched at $(date)" >> /var/log/baroboys/${GAME_NAME}.log'
-ExecStopPost=/usr/bin/bash -c 'echo "🛑 ${GAME_NAME}.service finished shutdown at $(date)" >> /var/log/baroboys/${GAME_NAME}.log'
+ExecStart=${BAROBOYS}/scripts/services/${GAME_NAME}/startup.sh
+ExecStartPost=/usr/bin/bash -c 'echo "✅ game-startup.service launched at $(date)" >> ${LOG_FILE}'
+ExecStopPost=/usr/bin/bash -c 'echo "🛑 game-startup.service finished shutdown at $(date)" >> ${LOG_FILE}'
 
 SuccessExitStatus=0
 KillMode=control-group
 TimeoutStopSec=60
 
-StandardOutput=append:/var/log/baroboys/${GAME_NAME}.log
-StandardError=append:/var/log/baroboys/${GAME_NAME}.log
+StandardOutput=append:${LOG_FILE}
+StandardError=append:${LOG_FILE}
 
 [Install]
 WantedBy=multi-user.target

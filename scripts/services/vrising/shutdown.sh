@@ -1,18 +1,13 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-cd "$HOME/baroboys"
+# shellcheck source=scripts/services/VRising/env-vars.sh
+source "$(dirname "${BASH_SOURCE[0]}")/env-vars.sh"
 
-# shellcheck source=scripts/services/vrising/config.sh
-source "$(dirname "${BASH_SOURCE[0]}")/config.sh"
+cd "$BAROBOYS"
 
-SHUTDOWN_DELAY_MINUTES=1
-# SAVE_DIR from config.sh
-
-SERVER_PASSWORD="$(gcloud secrets versions access latest --secret="server-password")"
-
-# Tell players and trigger autosave
-if ! mcrcon -H 127.0.0.1 -P "$RCON_PORT" -p "$SERVER_PASSWORD" \
+# SETUP: OPTIONAL - Tell players and trigger autosave
+if ! mcrcon -H 127.0.0.1 -P "$RCON_PORT" -p "$RCON_PASSWORD" \
   "shutdown ${SHUTDOWN_DELAY_MINUTES} \"Server will shut down in ~{t}m! Get to a safe place.\""; then
   echo "⚠️ mcrcon failed to send shutdown command"
 fi
@@ -29,9 +24,9 @@ else
 fi
 
 
-# === Compress latest autosave ===
-latest_file=$(find "$SAVE_DIR" -type f -name 'AutoSave_*.save' |
-  sed -E 's/.*AutoSave_([0-9]+)\.save/\1 \0/' |
+# SETUP: OPTIONAL === Compress latest autosave ===
+latest_file=$(find "$SAVE_FILE_PATH" -type f -name "$SAVE_FILE_NAME*.save" |
+  sed -E "s/.*$SAVE_FILE_NAME([0-9]+)\.save/\1 \0/" |
   sort -n | tail -n1 | cut -d' ' -f2)
 
 if [[ -z "$latest_file" ]]; then
@@ -44,11 +39,11 @@ gzip -kf "$latest_file"
 gzipped_file="${latest_file}.gz"
 
 # === Clean up Git tracking for older autosaves ===
-for tracked in $(git ls-files "$SAVE_DIR/AutoSave_*.save.gz"); do
+for tracked in $(git ls-files "$SAVE_FILE_PATH/$SAVE_FILE_NAME*.save.gz"); do
   [[ "$tracked" != "$gzipped_file" ]] && git rm --cached "$tracked"
 done
 
-# === Commit latest autosave ===
+# SETUP: REQUIRED === Commit latest autosave ===
 git add "$gzipped_file"
 git commit -m "Auto-save before shutdown $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "Nothing to commit"
 

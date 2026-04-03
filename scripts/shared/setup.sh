@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-# Record active game — read by admin panel (multi-game awareness) and smoke test (self-identification).
-mkdir -p /etc/baroboys
-echo "$GAME_NAME" > /etc/baroboys/active-game
-
-LOG_PATH="/var/log/baroboys"
-LOG_FILE="${LOG_PATH}/${GAME_NAME}.log"
+# shellcheck source=scripts/services/env-vars.sh
+source "$(dirname "${BASH_SOURCE[0]}")/env-vars.sh"
 
 # Give Admin Server access to logs.
 mkdir -p "$LOG_PATH"
@@ -17,6 +13,9 @@ touch "$LOG_FILE"
 printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "$LOG_FILE"
 chown bwinter_sc81:bwinter_sc81  "$LOG_FILE"
 chmod 644  "$LOG_FILE"
+
+# shellcheck source=scripts/services/$GAME_NAME/env-vars.sh
+source "$(dirname "${BASH_SOURCE[0]}")../$GAME_NAME/env-vars.sh"
 
 # Warm SteamCMD before the real install call.
 # Without this, SteamCMD intermittently fails to start the installer correctly — likely a
@@ -42,44 +41,16 @@ chmod 644  "$LOG_FILE"
 cd "$BAROBOYS"
 git checkout -- "$CHECKOUT_LIST"
 
-# --- DECOMPRESS SAVE
-
-# File exists and name not empty.
-# TODO: Fix `if` statement
-if [[ -[file exist] $SAVE_FILE_PATH && -[not empty] $SAVE_FILE_NAME ]] then
-  # Ensure save is uncompressed
-  cd "$SAVE_FILE_PATH"
-
-  # Find the latest uncompressed save (if any)
-  latest_save=$(find . -name "$SAVE_FILE_NAME*.save" | sed -E "s/.*$SAVE_FILE_NAME([0-9]+)\.save/\1 \0/" | sort -n | tail -n1)
-  save_num=$(cut -d' ' -f1 <<< "$latest_save") # How do these work?
-  save_file=$(cut -d' ' -f2 <<< "$latest_save") # How do these work?
-
-  # Find the latest compressed save
-  latest_gz=$(find . -name "$SAVE_FILE_NAME*.save.gz" | sed -E "s/.*$SAVE_FILE_NAME([0-9]+)\.save\.gz/\1 \0/" | sort -n | tail -n1)
-  gz_num=$(cut -d' ' -f1 <<< "$latest_gz") # How do these work?
-  gz_file=$(cut -d' ' -f2 <<< "$latest_gz") # How do these work?
-
-  # Decide if we need to decompress
-  if [[ -z "$gz_file" ]]; then
-    echo "⚠️ No compressed autosaves found." >> "$LOG_FILE"
-
-    # TODO: Explain `if` statement
-  elif [[ -z "$save_file" || "$gz_num" -gt "$save_num" ]]; then
-    echo "🗜 Decompressing newer autosave: $gz_file" >> "$LOG_FILE"
-    gunzip -kf "$gz_file"
-  else
-    echo "✅ Latest .save is up-to-date or newer than .gz" >> "$LOG_FILE"
-  fi
-fi
+# shellcheck source=scripts/services/$GAME_NAME/config.sh
+source "$(dirname "${BASH_SOURCE[0]}")../$GAME_NAME/config.sh"
 
 SERVICE_SETUP_TEMPLATE="$BAROBOYS/scripts/services/templates/game-setup.service"
 SERVICE_STARTUP_TEMPLATE="$BAROBOYS/scripts/services/templates/game-startup.service"
 SERVICE_SHUTDOWN_TEMPLATE="$BAROBOYS/scripts/services/templates/game-shutdown.service"
 
-SERVICE_SETUP_TMP="/tmp/scripts/services/templates/game-setup.service"
-SERVICE_STARTUP_TMP="/tmp/scripts/services/templates/game-startup.service"
-SERVICE_SHUTDOWN_TMP="/tmp/scripts/services/templates/game-shutdown.service"
+SERVICE_SETUP_TMP="/tmp/game-setup.service"
+SERVICE_STARTUP_TMP="/tmp/game-startup.service"
+SERVICE_SHUTDOWN_TMP="/tmp/game-shutdown.service"
 
 # Requires $BAROBOYS & $GAME_NAME
 envsubst < "$SERVICE_SETUP_TEMPLATE" > "$SERVICE_SETUP_TMP"

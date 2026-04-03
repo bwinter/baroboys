@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-cd "$HOME/baroboys"
+# shellcheck source=scripts/services/Barotrauma/env-vars.sh
+source "$(dirname "${BASH_SOURCE[0]}")/env-vars.sh"
 
-# shellcheck source=scripts/services/barotrauma/config.sh
-source "$(dirname "${BASH_SOURCE[0]}")/config.sh"
+cd "$BAROBOYS"
 
+# SETUP: OPTIONAL - Kill running gserver.
 if pkill -0 DedicatedServer 2>/dev/null; then
     pkill DedicatedServer
 else
@@ -20,12 +21,17 @@ else
   echo "✅ DedicatedServer exited cleanly."
 fi
 
-# === Commit saves ===
-find "$SAVE_DIR" -type f \( -name '*.save' -o -name '*_CharacterData.xml' \) ! -name '*.bk*' -print0 \
+# SETUP: REQUIRED === Commit saves ===
+find "$SAVE_FILE_PATH" -type f \( -name '*.save' -o -name '*_CharacterData.xml' \) ! -name '*.bk*' -print0 \
   | xargs -0 git add
 git commit -m "Auto-save before shutdown $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "Nothing to commit"
 
-# Stash local state, pull, and push
+# Stash → pull --rebase → push → pop.
+# The stash is intentional: the working tree can accumulate local taint (envsubst'd
+# config files, steamcmd artifacts, etc.) that would cause `pull --rebase` to fail.
+# Stashing clears that state before the rebase so the push lands cleanly, then pops
+# it back. Do NOT simplify this to a bare `git fetch && git rebase` — the stash step
+# is load-bearing.
 git stash push --include-untracked --quiet || echo "Nothing to stash"
 git pull --rebase
 git push origin main

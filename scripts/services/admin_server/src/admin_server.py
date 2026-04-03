@@ -66,8 +66,8 @@ def tail_log(name):
         "idle_check.log": os.path.join(LOG_DIR, "idle_check.log"),
         "nginx_access": ["tail", "-n", "500", "/var/log/nginx/access.log"],
         "nginx_error": ["tail", "-n", "500", "/var/log/nginx/error.log"],
-        "barotrauma.log": os.path.join(LOG_DIR, "barotrauma.log"),
-        "vrising.log": os.path.join(LOG_DIR, "vrising.log"),
+        "Barotrauma.log": os.path.join(LOG_DIR, "Barotrauma.log"),
+        "VRising.log": os.path.join(LOG_DIR, "VRising.log"),
         "VRisingServer.log": os.path.join(LOG_DIR, "VRisingServer.log"),
     }
 
@@ -120,8 +120,8 @@ def directory():
                 ("/api/logs/vrising_startup.log", "VM Startup Logs", "GET"),
                 ("/api/logs/vrising_shutdown.log", "VM Shutdown Logs", "GET"),
                 ("/api/logs/idle_check.log", "Idle Check Logs", "GET"),
-                ("/api/logs/barotrauma.log", "Barotrauma Service Logs", "GET"),
-                ("/api/logs/vrising.log", "V Rising Service Logs", "GET"),
+                ("/api/logs/Barotrauma.log", "Barotrauma Service Logs", "GET"),
+                ("/api/logs/VRising.log", "V Rising Service Logs", "GET"),
                 ("/api/logs/VRisingServer.log", "V Rising Server Logs", "GET"),
             ]
         },

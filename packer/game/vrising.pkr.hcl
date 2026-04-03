@@ -1,4 +1,4 @@
-# === packer-vrising.pkr.hcl ===
+# === packer-VRising.pkr.hcl ===
 
 packer {
   required_plugins {
@@ -62,8 +62,15 @@ build {
       "echo '🔧 Install Wine'",
       "/usr/bin/sudo /root/baroboys/scripts/dependencies/wine/apt_wine.sh",
 
-      "echo '🔧 Install latest version of V Rising'",
-      "/usr/bin/sudo /root/baroboys/scripts/services/vrising/setup.sh",
+      "echo '🔧 Install McRcon'",
+      "/usr/bin/sudo -u bwinter_sc81 -H -- /root/baroboys/scripts/dependencies/mcrcon/refresh.sh",
+
+      "echo '🔧 Record active game'",
+      "/usr/bin/sudo mkdir -p /etc/baroboys",
+      "/usr/bin/sudo echo VRising > /etc/baroboys/active-game",
+
+      "echo '🔧 Install latest version of VRising'",
+      "/usr/bin/sudo -u bwinter_sc81 -H -- /root/baroboys/scripts/services/shared/setup.sh",
 
       "echo '🧹 Running autoremove'",
       "/usr/bin/sudo apt-get -yq autoremove"

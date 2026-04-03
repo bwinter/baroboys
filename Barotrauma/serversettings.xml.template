@@ -2,7 +2,7 @@
 <serversettings
   port="27015"
   queryport="27016"
-  password="${SERVER_PASSWORD}"
+  password="${GAME_PASSWORD}"
   enableupnp="false"
   HiddenSubs=""
   AllowedRandomMissionTypes="Salvage,Monster,Cargo,Combat,SubVsSubCombat"

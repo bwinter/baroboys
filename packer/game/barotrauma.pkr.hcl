@@ -1,4 +1,4 @@
-# === packer-barotrauma.pkr.hcl ===
+# === packer-Barotrauma.pkr.hcl ===
 
 packer {
   required_plugins {
@@ -53,8 +53,12 @@ build {
       "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/setup.sh",
       "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/startup.sh",
 
+      "echo '🔧 Record active game'",
+      "/usr/bin/sudo mkdir -p /etc/baroboys",
+      "/usr/bin/sudo echo Barotrauma > /etc/baroboys/active-game",
+
       "echo '🔧 Install Barotrauma'",
-      "/usr/bin/sudo /root/baroboys/scripts/services/barotrauma/setup.sh",
+      "/usr/bin/sudo -u bwinter_sc81 -H -- /root/baroboys/scripts/services/shared/setup.sh",
 
       "echo '🧹 Running autoremove'",
       "/usr/bin/sudo apt-get -yq autoremove"
