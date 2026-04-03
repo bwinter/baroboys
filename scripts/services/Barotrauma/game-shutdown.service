@@ -12,14 +12,14 @@ WorkingDirectory=/home/bwinter_sc81
 User=bwinter_sc81
 Group=bwinter_sc81
 
-ExecStart=/home/bwinter_sc81/baroboys/scripts/services/barotrauma/shutdown.sh
+ExecStart=/home/bwinter_sc81/baroboys/scripts/services/Barotrauma/shutdown.sh
 
 SuccessExitStatus=0
 KillMode=control-group
-TimeoutStartSec=300
+TimeoutStartSec=configured
 
-StandardOutput=append:/var/log/baroboys/barotrauma_shutdown.log
-StandardError=append:/var/log/baroboys/barotrauma_shutdown.log
+StandardOutput=append:/var/log/baroboys/Barotrauma.log
+StandardError=append:/var/log/baroboys/Barotrauma.log
 
 [Install]
 WantedBy=poweroff.target halt.target reboot.target

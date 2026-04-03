@@ -10,7 +10,7 @@ User=bwinter_sc81
 Group=bwinter_sc81
 
 Environment=DISPLAY=:0
-ExecStart=/home/bwinter_sc81/baroboys/scripts/services/vrising/startup.sh
+ExecStart=/home/bwinter_sc81/baroboys/scripts/services/VRising/startup.sh
 ExecStartPost=/usr/bin/bash -c 'echo "✅ vrising.service launched at $(date)" >> /var/log/baroboys/vrising_startup.log'
 ExecStopPost=/usr/bin/bash -c 'echo "🛑 vrising.service finished shutdown at $(date)" >> /var/log/baroboys/vrising_startup.log'
 
@@ -18,8 +18,8 @@ SuccessExitStatus=0
 KillMode=control-group
 TimeoutStopSec=60
 
-StandardOutput=append:/var/log/baroboys/vrising_startup.log
-StandardError=append:/var/log/baroboys/vrising_startup.log
+StandardOutput=append:/var/log/baroboys/VRising.log
+StandardError=append:/var/log/baroboys/VRising.log
 
 [Install]
 WantedBy=multi-user.target

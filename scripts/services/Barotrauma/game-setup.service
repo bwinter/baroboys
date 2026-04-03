@@ -1,5 +1,5 @@
 [Unit]
-Description=V Rising Setup
+Description=Barotrauma Setup
 Requires=network-online.target refresh-repo-startup.service
 After=network-online.target refresh-repo-startup.service
 
@@ -9,14 +9,14 @@ RemainAfterExit=yes
 WorkingDirectory=/root
 User=root
 
-ExecStart=/root/baroboys/scripts/services/vrising/setup.sh
+ExecStart=/root/baroboys/scripts/services/Barotrauma/setup.sh Barotrauma
 
 SuccessExitStatus=0
 KillMode=control-group
 TimeoutStartSec=300
 
-StandardOutput=append:/var/log/baroboys/vrising_setup.log
-StandardError=append:/var/log/baroboys/vrising_setup.log
+StandardOutput=append:/var/log/baroboys/game-setup.service.log
+StandardError=append:/var/log/baroboys/game-setup.service.log
 
 [Install]
 WantedBy=multi-user.target

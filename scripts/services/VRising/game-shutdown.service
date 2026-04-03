@@ -1,5 +1,5 @@
 [Unit]
-Description=V Rising Shutdown
+Description=VRising Shutdown
 DefaultDependencies=no
 Before=poweroff.target halt.target reboot.target
 Wants=network-online.target
@@ -12,14 +12,14 @@ WorkingDirectory=/home/bwinter_sc81
 User=bwinter_sc81
 Group=bwinter_sc81
 
-ExecStart=/home/bwinter_sc81/baroboys/scripts/services/vrising/shutdown.sh
+ExecStart=/home/bwinter_sc81/baroboys/scripts/services/VRising/shutdown.sh
 
 SuccessExitStatus=0
 KillMode=control-group
 TimeoutStartSec=600
 
-StandardOutput=append:/var/log/baroboys/vrising_shutdown.log
-StandardError=append:/var/log/baroboys/vrising_shutdown.log
+StandardOutput=append:/var/log/baroboys/VRising.log
+StandardError=append:/var/log/baroboys/VRising.log
 
 [Install]
 WantedBy=poweroff.target halt.target reboot.target
