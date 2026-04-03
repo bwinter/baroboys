@@ -31,7 +31,6 @@ chmod 644  "$LOG_FILE"
   +login anonymous \
   +quit
 
-# Update game files via SteamCMD
 /usr/games/steamcmd \
   +@sSteamCmdForcePlatformType "$STEAM_PLATFORM" \
   +force_install_dir "$GAME_DIR" \
@@ -39,7 +38,7 @@ chmod 644  "$LOG_FILE"
   +app_update "$STEAM_APP_ID" validate \
   +quit
 
-# Restore force-committed files that SteamCMD may have clobbered
+# Restore canonical server configs
 cd "$BAROBOYS"
 git checkout -- "$CHECKOUT_LIST"
 
@@ -47,7 +46,7 @@ git checkout -- "$CHECKOUT_LIST"
 
 # File exists and name not empty.
 # TODO: Fix `if` statement
-if [[ -[file exist] $SAVE_FILE_PATH && -[not empty] $SAVE_FILE_NAME ]]; then
+if [[ -[file exist] $SAVE_FILE_PATH && -[not empty] $SAVE_FILE_NAME ]] then
   # Ensure save is uncompressed
   cd "$SAVE_FILE_PATH"
 
@@ -74,12 +73,25 @@ if [[ -[file exist] $SAVE_FILE_PATH && -[not empty] $SAVE_FILE_NAME ]]; then
   fi
 fi
 
+SERVICE_SETUP_TEMPLATE="$BAROBOYS/scripts/services/templates/game-setup.service"
+SERVICE_STARTUP_TEMPLATE="$BAROBOYS/scripts/services/templates/game-startup.service"
+SERVICE_SHUTDOWN_TEMPLATE="$BAROBOYS/scripts/services/templates/game-shutdown.service"
+
+SERVICE_SETUP_TMP="/tmp/scripts/services/templates/game-setup.service"
+SERVICE_STARTUP_TMP="/tmp/scripts/services/templates/game-startup.service"
+SERVICE_SHUTDOWN_TMP="/tmp/scripts/services/templates/game-shutdown.service"
+
+# Requires $BAROBOYS & $GAME_NAME
+envsubst < "$SERVICE_SETUP_TEMPLATE" > "$SERVICE_SETUP_TMP"
+envsubst < "$SERVICE_STARTUP_TEMPLATE" > "$SERVICE_STARTUP_TMP"
+envsubst < "$SERVICE_SHUTDOWN_TEMPLATE" > "$SERVICE_SHUTDOWN_TMP"
+
 # Install Services
-sudo install -m 644 "$BAROBOYS/scripts/services/$GAME_NAME/game-setup.service" \
+sudo install -m 644 "/tmp/game-setup.service" \
   "/etc/systemd/system/"
-sudo install -m 644 "$BAROBOYS/scripts/services/$GAME_NAME/game-startup.service" \
+sudo install -m 644 "/tmp/game-startup.service" \
   "/etc/systemd/system/"
-sudo install -m 644 "$BAROBOYS/scripts/services/$GAME_NAME/game-shutdown.service" \
+sudo install -m 644 "/tmp/game-shutdown.service" \
   "/etc/systemd/system/"
 
 # Enable Services

@@ -1,5 +1,5 @@
 [Unit]
-Description=Barotrauma Shutdown
+Description=${GAME_NAME} Shutdown
 DefaultDependencies=no
 Before=poweroff.target halt.target reboot.target
 Wants=network-online.target
@@ -8,18 +8,18 @@ After=network-online.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-WorkingDirectory=/home/bwinter_sc81
+WorkingDirectory=${BAROBOYS}/${GAME_NAME}
 User=bwinter_sc81
 Group=bwinter_sc81
 
-ExecStart=/home/bwinter_sc81/baroboys/scripts/services/Barotrauma/shutdown.sh
+ExecStart=${BAROBOYS}/scripts/services/${GAME_NAME}/shutdown.sh ${GAME_NAME}
 
 SuccessExitStatus=0
 KillMode=control-group
 TimeoutStartSec=configured
 
-StandardOutput=append:/var/log/baroboys/Barotrauma.log
-StandardError=append:/var/log/baroboys/Barotrauma.log
+StandardOutput=append:/var/log/baroboys/${GAME_NAME}.log
+StandardError=append:/var/log/baroboys/${GAME_NAME}.log
 
 [Install]
 WantedBy=poweroff.target halt.target reboot.target

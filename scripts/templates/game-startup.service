@@ -1,0 +1,24 @@
+[Unit]
+Description=${GAME_NAME} Startup
+Requires=game-setup.service
+After=game-setup.service
+
+[Service]
+Type=simple
+WorkingDirectory=${BAROBOYS}/${GAME_NAME}
+User=bwinter_sc81
+Group=bwinter_sc81
+
+ExecStart=${BAROBOYS}/scripts/services/${GAME_NAME}/startup.sh ${GAME_NAME}
+ExecStartPost=/usr/bin/bash -c 'echo "✅ ${GAME_NAME}.service launched at $(date)" >> /var/log/baroboys/${GAME_NAME}.log'
+ExecStopPost=/usr/bin/bash -c 'echo "🛑 ${GAME_NAME}.service finished shutdown at $(date)" >> /var/log/baroboys/${GAME_NAME}.log'
+
+SuccessExitStatus=0
+KillMode=control-group
+TimeoutStopSec=60
+
+StandardOutput=append:/var/log/baroboys/${GAME_NAME}.log
+StandardError=append:/var/log/baroboys/${GAME_NAME}.log
+
+[Install]
+WantedBy=multi-user.target

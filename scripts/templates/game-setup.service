@@ -1,0 +1,22 @@
+[Unit]
+Description=${GAME_NAME} Setup
+Requires=network-online.target refresh-repo-startup.service
+After=network-online.target refresh-repo-startup.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=${BAROBOYS}/${GAME_NAME}
+User=bwinter_sc81
+
+ExecStart=${BAROBOYS}/${GAME_NAME}/scripts/services/${GAME_NAME}/setup.sh ${GAME_NAME}
+
+SuccessExitStatus=0
+KillMode=control-group
+TimeoutStartSec=300
+
+StandardOutput=append:/var/log/baroboys/${GAME_NAME}.log
+StandardError=append:/var/log/baroboys/${GAME_NAME}.log
+
+[Install]
+WantedBy=multi-user.target
