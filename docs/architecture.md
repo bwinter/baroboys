@@ -212,14 +212,14 @@ Three secrets live in GCP Secret Manager. All fetched at runtime by the `vm-runt
 | `server-password` | `<game>/refresh.sh` (setup) and `vrising/shutdown.sh` | Game join password + RCON password (injected via `envsubst`) |
 | `nginx-htpasswd` | `nginx/refresh.sh` (setup) | Basic auth credentials for admin panel |
 
-The `.json.in` / `.xml.in` template pattern exists because the game writes to `StreamingAssets/Settings/`
+The `.template` pattern exists because the game writes to `StreamingAssets/Settings/`
 at runtime, so that directory is gitignored — files there can't be committed directly. Templates
 in the repo root let config be version-controlled without committing live credentials; `envsubst`
 regenerates the live files at each boot.
 
 Password injection:
-- **Barotrauma**: `Barotrauma/serversettings.xml.in` → `envsubst` → `serversettings.xml` (placeholder: `${GAME_PASSWORD}`)
-- **VRising**: `VRising/ServerHostSettings.json.in` → `envsubst` → `StreamingAssets/Settings/ServerHostSettings.json` (gitignored, regenerated each boot)
+- **Barotrauma**: `Barotrauma/serversettings.xml.template` → `envsubst` → `serversettings.xml` (placeholder: `${GAME_PASSWORD}`)
+- **VRising**: `VRising/ServerHostSettings.json.template` → `envsubst` → `StreamingAssets/Settings/ServerHostSettings.json` (gitignored, regenerated each boot)
 
 ---
 
@@ -267,7 +267,7 @@ The VM's `.gitconfig` identifies commits as `Game Server <bwinter.sc81+gameserve
 | Nginx config | `scripts/dependencies/nginx/assets/nginx.conf` |
 | Developer tools | `scripts/tools/` |
 | VRising game config | `VRising/VRisingServer_Data/StreamingAssets/Settings/` |
-| Barotrauma server config template | `Barotrauma/serversettings.xml.in` |
+| Barotrauma server config template | `Barotrauma/serversettings.xml.template` |
 | Barotrauma local mod submarines | `Barotrauma/LocalMods/` |
 | On-VM Flask install | `/opt/baroboys/admin_server.py` |
 | On-VM static files | `/opt/baroboys/static/` |

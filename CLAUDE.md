@@ -63,10 +63,10 @@ make build                   # all images
 make terraform-apply-VRising   # or terraform-apply-Barotrauma
 make destroy
 
-# VM access + game control
-make ssh                       # or make ssh-iap
-make restart-game
-make save-and-shutdown
+# VM access + game control (require GAME=<Game>)
+make ssh GAME=VRising          # or make ssh-iap GAME=VRising
+make restart-game GAME=VRising
+make save-and-shutdown GAME=VRising
 
 # Test
 make smoke-test-VRising        # full E2E: terraform + checks + destroy
