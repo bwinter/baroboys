@@ -9,11 +9,8 @@ PROJECT      ?= europan-world
 ZONE         ?= us-west1-c
 GCP_USER     ?= bwinter_sc81
 
-# VM-specific targets (ssh, start, stop, etc.) require GAME= on the command line.
-# Machine name is the game name lowercased (e.g. GAME=VRising → vrising).
-ifdef GAME
-  MACHINE_NAME := $(shell echo '$(GAME)' | tr '[:upper:]' '[:lower:]')
-endif
+# Game name → VM machine name (lowercase). Used by foreach-generated targets.
+machine_name = $(shell echo '$(1)' | tr '[:upper:]' '[:lower:]')
 
 # Games — extend this list when adding a new game.
 GAMES := Barotrauma VRising
@@ -120,47 +117,36 @@ iam-add-admin:
 REMOTE_STARTUP_SCRIPT  := sudo systemctl restart game-startup.service
 REMOTE_SHUTDOWN_SCRIPT := sudo systemctl restart game-shutdown.service
 
-# All targets below require: make <target> GAME=<Game> (e.g. make ssh GAME=VRising)
-.PHONY: start stop restart-game save-and-shutdown
+.PHONY: \
+	$(addprefix start-, $(GAMES)) \
+	$(addprefix stop-, $(GAMES)) \
+	$(addprefix restart-game-, $(GAMES)) \
+	$(addprefix save-and-shutdown-, $(GAMES)) \
+	$(addprefix ssh-, $(GAMES)) \
+	$(addprefix ssh-iap-, $(GAMES))
 
-start:
-	gcloud compute instances start $(MACHINE_NAME) \
-		--project=$(PROJECT) \
-		--zone=$(ZONE)
+$(foreach game,$(GAMES),\
+  $(eval start-$(game): ; gcloud compute instances start $(call machine_name,$(game)) --project=$(PROJECT) --zone=$(ZONE)))
 
-stop:
-	gcloud compute instances stop $(MACHINE_NAME) \
-		--project=$(PROJECT) \
-		--zone=$(ZONE)
+$(foreach game,$(GAMES),\
+  $(eval stop-$(game): ; gcloud compute instances stop $(call machine_name,$(game)) --project=$(PROJECT) --zone=$(ZONE)))
 
-restart-game:
-	gcloud compute ssh $(GCP_USER)@$(MACHINE_NAME) \
-		--project=$(PROJECT) \
-		--zone=$(ZONE) \
-		--command="$(REMOTE_STARTUP_SCRIPT)"
+$(foreach game,$(GAMES),\
+  $(eval restart-game-$(game): ; gcloud compute ssh $(GCP_USER)@$(call machine_name,$(game)) --project=$(PROJECT) --zone=$(ZONE) --command="$(REMOTE_STARTUP_SCRIPT)"))
 
-save-and-shutdown:
-	gcloud compute ssh $(GCP_USER)@$(MACHINE_NAME) \
-		--project=$(PROJECT) \
-		--zone=$(ZONE) \
-		--command="$(REMOTE_SHUTDOWN_SCRIPT)"
+$(foreach game,$(GAMES),\
+  $(eval save-and-shutdown-$(game): ; gcloud compute ssh $(GCP_USER)@$(call machine_name,$(game)) --project=$(PROJECT) --zone=$(ZONE) --command="$(REMOTE_SHUTDOWN_SCRIPT)"))
 
 
 # =======================
 # 🔐 SSH Access
 # =======================
-.PHONY: ssh ssh-iap
 
-ssh:
-	gcloud compute ssh $(GCP_USER)@$(MACHINE_NAME) \
-		--project=$(PROJECT) \
-		--zone=$(ZONE)
+$(foreach game,$(GAMES),\
+  $(eval ssh-$(game): ; gcloud compute ssh $(GCP_USER)@$(call machine_name,$(game)) --project=$(PROJECT) --zone=$(ZONE)))
 
-ssh-iap:
-	gcloud compute ssh $(GCP_USER)@$(MACHINE_NAME) \
-		--project=$(PROJECT) \
-		--zone=$(ZONE) \
-		--tunnel-through-iap
+$(foreach game,$(GAMES),\
+  $(eval ssh-iap-$(game): ; gcloud compute ssh $(GCP_USER)@$(call machine_name,$(game)) --project=$(PROJECT) --zone=$(ZONE) --tunnel-through-iap))
 
 
 # =======================
@@ -259,16 +245,16 @@ help:
 	@echo "  make admin-url                - Print the live admin panel URL"
 	@echo ""
 
-	@echo "🎮 Game (require GAME=<Game>):"
-	@echo "  make start GAME=VRising       - Start the VM"
-	@echo "  make stop GAME=VRising        - Hard stop the VM (no save — use save-and-shutdown for graceful)"
-	@echo "  make restart-game GAME=VRising - Trigger remote restart of game service"
-	@echo "  make save-and-shutdown GAME=VRising - Graceful shutdown: save game state then power off"
+	@echo "🎮 Game:"
+	@echo "  make start-<GAME>             - Start the VM"
+	@echo "  make stop-<GAME>              - Hard stop the VM (no save — use save-and-shutdown for graceful)"
+	@echo "  make restart-game-<GAME>      - Trigger remote restart of game service"
+	@echo "  make save-and-shutdown-<GAME>  - Graceful shutdown: save game state then power off"
 	@echo ""
 
-	@echo "🔑 SSH Access (require GAME=<Game>):"
-	@echo "  make ssh GAME=VRising         - SSH into VM"
-	@echo "  make ssh-iap GAME=VRising     - SSH using IAP tunnel"
+	@echo "🔑 SSH Access:"
+	@echo "  make ssh-<GAME>               - SSH into VM"
+	@echo "  make ssh-iap-<GAME>           - SSH using IAP tunnel"
 	@echo ""
 
 	@echo "📦 Packer Builds:"
