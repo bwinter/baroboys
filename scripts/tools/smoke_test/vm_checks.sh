@@ -89,19 +89,16 @@ fi
 
 # --- Game process + RAM ---
 echo "--- Process ---"
-PROCESS_PATTERN="${GAME_NAME}"
-[[ "$GAME_NAME" == "VRising" ]] && PROCESS_PATTERN="VRisingServer.exe"
-[[ "$GAME_NAME" == "Barotrauma" ]] && PROCESS_PATTERN="DedicatedServer"
 
 # For Wine games (VRising), multiple processes match the pattern — pick the one
 # with highest RSS to avoid selecting the Wine launcher (start.exe) over the game itself.
-pid=$(pgrep -f "$PROCESS_PATTERN" | while read -r p; do
+pid=$(pgrep -f "$PROCESS_NAME" | while read -r p; do
     rss=$(awk '/VmRSS/ {print $2}' "/proc/$p/status" 2>/dev/null || echo 0)
     echo "$rss $p"
 done | sort -n | tail -1 | awk '{print $2}')
 
 if [[ -z "$pid" ]]; then
-    check "game process ($PROCESS_PATTERN)" "fail" "not found"
+    check "game process ($PROCESS_NAME)" "fail" "not found"
 else
     # RAM check: RSS in kB from /proc
     rss_kb=$(awk '/VmRSS/ {print $2}' "/proc/$pid/status" 2>/dev/null || echo 0)
@@ -126,13 +123,10 @@ fi
 
 # --- Game log has real content (not just boot stub) ---
 echo "--- Log Content ---"
-game_log="/var/log/baroboys/VRisingServer.log"
-[[ "$GAME_NAME" == "Barotrauma" ]] && game_log="$LOG_FILE"
-
-if [[ -f "$game_log" ]] && [[ $(wc -l < "$game_log") -gt 5 ]]; then
-    check "game log has content" "pass" "$(wc -l < "$game_log") lines"
+if [[ -f "$GAME_ENGINE_LOG" ]] && [[ $(wc -l < "$GAME_ENGINE_LOG") -gt 5 ]]; then
+    check "game log has content" "pass" "$(wc -l < "$GAME_ENGINE_LOG") lines"
 else
-    check "game log has content" "fail" "log missing or fewer than 5 lines — game may not have started"
+    check "game log has content" "fail" "$GAME_ENGINE_LOG missing or fewer than 5 lines — game may not have started"
 fi
 
 # --- Print results ---

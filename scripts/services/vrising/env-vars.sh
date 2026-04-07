@@ -7,6 +7,8 @@ source "$(dirname "${BASH_SOURCE[0]}")/../shared/env-vars.sh"
 # Steam
 export STEAM_APP_ID=1829350 # SETUP: REQUIRED
 export STEAM_PLATFORM="windows" # SETUP: OPTIONAL
+export PROCESS_NAME="VRisingServer.exe" # SETUP: REQUIRED — process name for pgrep/pkill
+export GAME_ENGINE_LOG="/var/log/baroboys/VRisingServer.log" # SETUP: REQUIRED — where the game writes real output
 
 SAVE_FILE_NAME="AutoSave_*" # SETUP: OPTIONAL
 export SAVE_FILE_PATH="$GAME_DIR/Data/Saves/v4/$SAVE_FILE_NAME" # SETUP: OPTIONAL

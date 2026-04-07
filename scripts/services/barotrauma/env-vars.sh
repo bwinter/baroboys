@@ -7,6 +7,8 @@ source "$(dirname "${BASH_SOURCE[0]}")/../shared/env-vars.sh"
 # Steam
 export STEAM_APP_ID=1026340 # SETUP: REQUIRED
 export STEAM_PLATFORM="linux" # SETUP: OPTIONAL — "linux" for native; "windows" for Wine games
+export PROCESS_NAME="DedicatedServer" # SETUP: REQUIRED — process name for pgrep/pkill
+export GAME_ENGINE_LOG="$LOG_FILE" # SETUP: REQUIRED — where the game writes real output
 
 # SAVE_FILE_NAME="[REPLACE]" # SETUP: OPTIONAL
 SAVE_FILE_PATH="$GAME_DIR/Multiplayer" # SETUP: OPTIONAL
