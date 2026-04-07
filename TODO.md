@@ -20,7 +20,7 @@
     (no `-startup` unit — timer pattern). Test must whitelist this.
   - Verify `Requires=` is always accompanied by `After=` (grep unit files for violations)
   - Verify all `.json.in` templates contain only known `${VAR}` placeholders (no typos)
-  - Verify `WORLD_NAME` is exported in `vrising/src/refresh.sh` before `envsubst`
+  - Verify `WORLD_NAME` is exported in `VRising/config.sh` before `envsubst`
   - Verify `shutdown.sh` files contain the stash-pull-push-pop sequence in order
   - Verify every game dir has a `config.sh` exporting `GAME_NAME`
   - Verify `.envrc` and `shared.tfvars` agree on project/zone/region/machine_name
@@ -103,7 +103,7 @@
   STEAM_APP_ID=896660
   STEAM_PLATFORM=""          # native Linux
   WORLD_NAME="BaroboysWorld" # or whatever
-  SAVE_DIR="$HOME/.config/unity3d/IronGate/Valheim/worlds_local"
+  SAVE_FILE_PATH="$HOME/.config/unity3d/IronGate/Valheim/worlds_local"
   LOG_FILE="/var/log/baroboys/valheim.log"
   ```
   **Differences from Barotrauma/VRising:**
@@ -137,7 +137,7 @@
   A JSON manifest at `/etc/baroboys/manifest.json` closes the gap:
   ```json
   {
-    "game_name": "vrising",
+    "game_name": "VRising",
     "log_dir": "/var/log/baroboys",
     "game_log": "/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log"
   }

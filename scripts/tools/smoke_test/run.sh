@@ -3,7 +3,7 @@
 # External checks run from local machine; internal checks run on the VM via SSH.
 # Converted from RUNBOOK.md (b601cef).
 #
-# Usage: ./scripts/tools/smoke_test/run.sh [--game vrising|barotrauma] [--skip-destroy]
+# Usage: ./scripts/tools/smoke_test/run.sh [--game VRising|Barotrauma] [--skip-destroy]
 #   --skip-destroy  leave VM running after tests (useful for manual inspection)
 set -euo pipefail
 
@@ -142,13 +142,13 @@ fi
 # ============================================================
 header "Stage 5 — External Checks (Admin Panel)"
 
-SERVER_PASSWORD=$(gcloud secrets versions access latest \
+GAME_PASSWORD=$(gcloud secrets versions access latest \
     --secret=server-password --project="$PROJECT")
 ADMIN_URL="http://${IP}:8080"
 
 # Full external stack: nginx auth + proxy + Flask
 ping_response=$(curl -sf --max-time 10 \
-    -u "Hex:${SERVER_PASSWORD}" \
+    -u "Hex:${GAME_PASSWORD}" \
     "${ADMIN_URL}/api/ping" 2>/dev/null || echo "")
 if [[ "$ping_response" == "pong" ]]; then
     pass "Admin panel /api/ping → pong (nginx + auth + Flask)"
@@ -158,7 +158,7 @@ fi
 
 # VRisingServer.log via admin panel — exercises symlink + log_map + nginx end-to-end
 log_lines=$(curl -sf --max-time 10 \
-    -u "Hex:${SERVER_PASSWORD}" \
+    -u "Hex:${GAME_PASSWORD}" \
     "${ADMIN_URL}/api/logs/VRisingServer.log" 2>/dev/null | wc -l || echo 0)
 if (( log_lines >= 5 )); then
     pass "VRisingServer.log endpoint returned ${log_lines} lines (symlink + log_map verified)"

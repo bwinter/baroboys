@@ -44,7 +44,7 @@ mcrcon -H 127.0.0.1 -P 25575 -p <PW> \
 If you are SSH'd into the VM, you can trigger a graceful shutdown manually:
 
 ```bash
-/usr/bin/sudo /root/baroboys/scripts/services/vrising/shutdown.sh
+/usr/bin/sudo /root/baroboys/scripts/services/VRising/shutdown.sh
 ```
 
 This will:

@@ -114,7 +114,7 @@ network-online.target
               └── game-setup.service           (oneshot, root)
                     Runs as root, calls scripts/services/<game>/setup.sh:
                     - Updates game files via SteamCMD
-                    - Fetches SERVER_PASSWORD from Secret Manager
+                    - Fetches GAME_PASSWORD from Secret Manager
                     - Runs envsubst on server config template
                     - (VRising) decompresses latest AutoSave_*.save.gz
                     - Writes /etc/baroboys/active-game (game name for admin panel + smoke test)
@@ -218,7 +218,7 @@ in the repo root let config be version-controlled without committing live creden
 regenerates the live files at each boot.
 
 Password injection:
-- **Barotrauma**: `Barotrauma/serversettings.xml.in` → `envsubst` → `serversettings.xml` (placeholder: `${SERVER_PASSWORD}`)
+- **Barotrauma**: `Barotrauma/serversettings.xml.in` → `envsubst` → `serversettings.xml` (placeholder: `${GAME_PASSWORD}`)
 - **VRising**: `VRising/ServerHostSettings.json.in` → `envsubst` → `StreamingAssets/Settings/ServerHostSettings.json` (gitignored, regenerated each boot)
 
 ---
@@ -260,7 +260,7 @@ The VM's `.gitconfig` identifies commits as `Game Server <bwinter.sc81+gameserve
 | Bootstrap scripts | `bootstrap/` |
 | Systemd unit files | `scripts/services/<component>/` |
 | Game startup/shutdown logic | `scripts/services/<game>/startup.sh`, `shutdown.sh` |
-| Game install/update logic | `scripts/services/<game>/src/refresh.sh` |
+| Game install/update logic | `scripts/shared/setup.sh` |
 | Dependency installers | `scripts/dependencies/` |
 | Admin Flask app | `scripts/services/admin_server/src/admin_server.py` |
 | Admin static files | `scripts/services/admin_server/src/static/` |

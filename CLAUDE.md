@@ -56,11 +56,11 @@ VRising/            Game state: saves, admin/ban lists, config
 # Images — always build in this order
 make build-base-core
 make build-base-admin
-make build-game-barotrauma   # or build-game-vrising
+make build-game-barotrauma   # or build-game-VRising
 make build                   # all images
 
 # Deploy / tear down
-make terraform-apply-vrising   # or terraform-apply-barotrauma
+make terraform-apply-VRising   # or terraform-apply-barotrauma
 make destroy
 
 # VM access + game control
@@ -69,7 +69,7 @@ make restart-game
 make save-and-shutdown
 
 # Test
-make smoke-test-vrising        # full E2E: terraform + checks + destroy
+make smoke-test-VRising        # full E2E: terraform + checks + destroy
 
 # Local dev
 make admin-local               # Flask + Nginx locally, fetches real secrets

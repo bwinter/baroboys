@@ -6,7 +6,7 @@ runs checks from both outside and inside, then tears down.
 ## Usage
 
 ```bash
-./scripts/tools/smoke_test/run.sh [--game vrising|barotrauma] [--skip-destroy]
+./scripts/tools/smoke_test/run.sh [--game VRising|Barotrauma] [--skip-destroy]
 ```
 
 `--skip-destroy` leaves the VM running after tests for manual inspection.

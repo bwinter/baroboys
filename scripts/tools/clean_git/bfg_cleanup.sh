@@ -91,15 +91,15 @@ CURRENT=0
 for FILENAME in "${FILENAMES[@]}"; do
   ((CURRENT+=1))
   SAFE_NAME="${FILENAME//[^a-zA-Z0-9]/_}"
-  LOG_PATH="$LOGDIR/${SAFE_NAME}.log"
+  LOG_FILE="$LOGDIR/${SAFE_NAME}.log"
 
-  if [[ -f "$LOG_PATH" ]]; then
+  if [[ -f "$LOG_FILE" ]]; then
     echo "[$CURRENT/$TOTAL] ⏭️  Skipping (already processed): $FILENAME"
     continue
   fi
 
   echo "[$CURRENT/$TOTAL] 🔸 Deleting: $FILENAME"
-  java -jar "$BFG_JAR" --delete-files "$FILENAME" > "$LOG_PATH" 2>&1 || true
+  java -jar "$BFG_JAR" --delete-files "$FILENAME" > "$LOG_FILE" 2>&1 || true
 done
 
 step "6️⃣ Final aggressive GC"
