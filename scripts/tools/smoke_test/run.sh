@@ -43,7 +43,7 @@ teardown() {
     fi
     header "Stage 6 — Teardown"
     cd "$TF_DIR"
-    # Destroy all provisioned infrastructure
+    terraform workspace select "$WORKSPACE" 2>/dev/null || true
     terraform destroy -auto-approve \
         -var-file="shared.tfvars" \
         -var-file="game/${GAME}.tfvars"
@@ -68,8 +68,10 @@ pass "Environment OK"
 header "Stage 2 — Terraform Apply"
 
 cd "$TF_DIR"
+WORKSPACE="$(echo "$GAME" | tr '[:upper:]' '[:lower:]')"
 # Provision VM + firewall rules. build.sh is interactive — call terraform directly.
 terraform init -backend-config="backend/prod.hcl" -input=false
+terraform workspace select "$WORKSPACE" || terraform workspace new "$WORKSPACE"
 terraform apply -auto-approve \
     -var-file="shared.tfvars" \
     -var-file="game/${GAME}.tfvars"

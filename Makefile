@@ -31,7 +31,7 @@ bootstrap: terraform-bootstrap iam-bootstrap
 # Default game for plain `make apply`.
 apply: terraform-apply-Barotrauma
 
-destroy: terraform-destroy
+destroy: terraform-destroy-Barotrauma
 
 
 # =======================
@@ -58,7 +58,7 @@ admin-url: terraform-init
 	terraform-bootstrap \
 	terraform-init \
 	terraform-plan \
-	terraform-destroy \
+	$(addprefix terraform-destroy-, $(GAMES)) \
 	terraform-refresh \
 	$(addprefix terraform-apply-, $(GAMES))
 
@@ -71,14 +71,14 @@ terraform-init:
 terraform-plan: terraform-init
 	cd $(TF_DIR) && terraform plan -var-file=$(TF_SHARED)
 
-terraform-destroy: terraform-init
-	cd $(TF_DIR) && terraform destroy -var-file=$(TF_SHARED)
-
 terraform-refresh: terraform-init
 	cd $(TF_DIR) && terraform refresh -var-file=$(TF_SHARED)
 
 $(foreach game,$(GAMES),\
   $(eval terraform-apply-$(game): ; ./$(TF_DIR)/build.sh $(game) $(ENV)))
+
+$(foreach game,$(GAMES),\
+  $(eval terraform-destroy-$(game): terraform-init ; cd $(TF_DIR) && terraform workspace select $(call machine_name,$(game)) && terraform destroy -var-file=$(TF_SHARED) -var-file=game/$(game).tfvars))
 
 
 # =======================
@@ -218,7 +218,7 @@ help:
 	@echo "🛠️  Common Targets:"
 	@echo "  make bootstrap                       - Bootstraps terraform and iam"
 	@echo "  make apply                           - Alias for terraform-apply-Barotrauma"
-	@echo "  make destroy                         - Alias for terraform-destroy"
+	@echo "  make destroy                         - Alias for terraform-destroy-Barotrauma"
 	@echo ""
 
 	@echo "🌍 Terraform:"
@@ -226,7 +226,7 @@ help:
 	@echo "  make terraform-init                  - Initialize Terraform"
 	@echo "  make terraform-plan                  - Show Terraform plan"
 	@echo "  make terraform-apply-<GAME>          - Apply Terraform (build VM for game)"
-	@echo "  make terraform-destroy               - Destroy infrastructure"
+	@echo "  make terraform-destroy-<GAME>        - Destroy game VM"
 	@echo "  make terraform-refresh               - Refresh Terraform state"
 	@echo ""
 

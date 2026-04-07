@@ -21,6 +21,10 @@ TF_DIR="terraform"
 # Change to terraform dir for apply
 cd "$TF_DIR"
 
+# Workspace per game — each game gets independent state.
+WORKSPACE="$(echo "$GAME" | tr '[:upper:]' '[:lower:]')"
+
 # Now paths are relative to current directory
 terraform init -backend-config="backend/${ENV}.hcl"
+terraform workspace select "$WORKSPACE" || terraform workspace new "$WORKSPACE"
 terraform apply -var-file="shared.tfvars" -var-file="game/$GAME.tfvars"
