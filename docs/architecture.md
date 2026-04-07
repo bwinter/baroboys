@@ -33,7 +33,7 @@ VM, bypassing the Git-based stability guarantees the rest of the system relies o
 [Local Machine]                    [GCP: europan-world]
  Makefile
    ├── packer build.sh  ──────────► GCE Images (Packer)
-   └── terraform build.sh ────────► VM: europa (Terraform)
+   └── terraform build.sh ────────► VM: <game> (Terraform)
                                          │
                                     systemd units
                                     ├── refresh-repo
@@ -74,7 +74,7 @@ one source of truth for project, zone, machine type, and image names.
 ## Terraform
 
 `terraform/main.tf` provisions:
-- One GCE VM (`europa`, `n2-custom-2-6144`, `us-west1-c`, 20GB pd-ssd)
+- One GCE VM per game (`vrising` or `barotrauma`, `n2-custom-2-6144`, `us-west1-c`, 20GB pd-ssd)
 - Firewall rules for Barotrauma (TCP+UDP 27015, 27016), VRising (TCP+UDP 9876, 9877), and admin panel (TCP 8080)
 
 No metadata startup/shutdown scripts — game lifecycle is entirely owned by systemd `[Install]`

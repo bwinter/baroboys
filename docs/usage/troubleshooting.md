@@ -17,14 +17,16 @@
 ### 🪵 Serial console (no SSH required):
 
 ```bash
-gcloud compute instances get-serial-port-output europa \
+gcloud compute instances get-serial-port-output <MACHINE_NAME> \
   --zone=us-west1-c
 ```
+
+Where `<MACHINE_NAME>` is the game's VM name (e.g. `vrising`, `barotrauma`).
 
 Optional full boot output:
 
 ```bash
-gcloud compute instances get-serial-port-output europa \
+gcloud compute instances get-serial-port-output <MACHINE_NAME> \
   --zone=us-west1-c --port=1
 ```
 

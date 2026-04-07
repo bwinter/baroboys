@@ -11,7 +11,7 @@
 
 ## 🖥️ The Server
 
-👉 [**Open GCP VM Admin Page**](https://console.cloud.google.com/compute/instancesDetail/zones/us-west1-c/instances/europa?project=europan-world)
+👉 Open the GCP VM page for your game: `https://console.cloud.google.com/compute/instancesDetail/zones/us-west1-c/instances/<MACHINE_NAME>?project=europan-world`
 
 1. 🟢 Click **Start**
 
@@ -33,7 +33,7 @@
    http://<server-external-ip>:8080/
    ```
 
-   `<server-external-ip>` is the [**GCP VM's IP**](https://console.cloud.google.com/compute/instancesDetail/zones/us-west1-c/instances/europa?project=europan-world)
+   `<server-external-ip>` is the VM's external IP from the GCP Console
 
 2. **Login**:
 

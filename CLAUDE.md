@@ -17,7 +17,7 @@ committed to Git on every shutdown.
 | Item | Value |
 |------|-------|
 | GCP project | `europan-world` |
-| VM | `europa`, `us-west1-c`, `n2-custom-2-6144` |
+| VM naming | `<game>` (e.g. `vrising`, `barotrauma`), `us-west1-c`, `n2-custom-2-6144` |
 | VM user | `bwinter_sc81` |
 | Service account | `vm-runtime@europan-world.iam.gserviceaccount.com` |
 | TF state | `gs://tf-state-baroboys/terraform/prod` |
