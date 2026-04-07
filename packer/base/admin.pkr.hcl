@@ -53,6 +53,9 @@ build {
       "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/refresh.sh",
       "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/startup.sh",
 
+      "echo '🔧 Install sudoers for bwinter_sc81'",
+      "/usr/bin/sudo install -m 440 -o root -g root /root/baroboys/scripts/services/shared/sudoers-bwinter /etc/sudoers.d/bwinter",
+
       "echo '🔧 Install Nginx'",
       "/usr/bin/sudo /root/baroboys/scripts/dependencies/nginx/apt_nginx.sh",
 

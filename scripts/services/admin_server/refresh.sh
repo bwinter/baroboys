@@ -29,11 +29,7 @@ for file in /root/baroboys/scripts/services/admin_server/src/templates/*.html; d
 done
 chmod 644 /opt/baroboys/templates/*.html
 
-# Sudoers: allow bwinter_sc81 to trigger shutdown without root
-install -m 440 -o root -g root \
-  "/root/baroboys/scripts/services/shared/sudoers-bwinter" \
-  "/etc/sudoers.d/bwinter"
-
+# Sudoers is installed at Packer build time (admin layer), not here.
 # Add bwinter_sc81 to adm group so Flask can read nginx logs
 usermod -aG adm bwinter_sc81
 
