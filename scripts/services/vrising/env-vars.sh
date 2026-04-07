@@ -1,5 +1,5 @@
 # shellcheck source=scripts/services/shared/env-vars.sh
-source "$(dirname "${BASH_SOURCE[0]}")../shared/env-vars.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/../shared/env-vars.sh"
 
 # VRising game-specific configuration.
 

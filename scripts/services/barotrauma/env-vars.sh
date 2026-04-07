@@ -1,11 +1,12 @@
+#!/usr/bin/env bash
 # shellcheck source=scripts/services/shared/env-vars.sh
-source "$(dirname "${BASH_SOURCE[0]}")../shared/env-vars.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/../shared/env-vars.sh"
 
 # Barotrauma game-specific configuration.
 
 # Steam
 STEAM_APP_ID=1026340 # SETUP: REQUIRED
-STEAM_PLATFORM="" # SETUP: OPTIONAL # What is the actual default value for linux?
+STEAM_PLATFORM="linux" # SETUP: OPTIONAL — "linux" for native; "windows" for Wine games
 
 # SAVE_FILE_NAME="[REPLACE]" # SETUP: OPTIONAL
 SAVE_FILE_PATH="$GAME_DIR/Multiplayer" # SETUP: OPTIONAL

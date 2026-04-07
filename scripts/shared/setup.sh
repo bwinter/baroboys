@@ -15,7 +15,7 @@ chown bwinter_sc81:bwinter_sc81  "$LOG_FILE"
 chmod 644  "$LOG_FILE"
 
 # shellcheck source=scripts/services/$GAME_NAME/env-vars.sh
-source "$(dirname "${BASH_SOURCE[0]}")../$GAME_NAME/env-vars.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/../$GAME_NAME/env-vars.sh"
 
 # Warm SteamCMD before the real install call.
 # Without this, SteamCMD intermittently fails to start the installer correctly — likely a
@@ -42,7 +42,7 @@ cd "$GAME_DIR"
 git checkout -- "$CHECKOUT_LIST"
 
 # shellcheck source=scripts/services/$GAME_NAME/config.sh
-source "$(dirname "${BASH_SOURCE[0]}")../$GAME_NAME/config.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/../$GAME_NAME/config.sh"
 
 SERVICE_SETUP_TEMPLATE="$BAROBOYS/scripts/services/templates/game-setup.service"
 SERVICE_STARTUP_TEMPLATE="$BAROBOYS/scripts/services/templates/game-startup.service"
