@@ -28,3 +28,11 @@ ADMIN_LIST="$GAME_DIR/$ADMIN_LIST"
 BAN_LIST="$GAME_DIR/$BAN_LIST"
 
 export CHECKOUT_LIST="$ADMIN_LIST $BAN_LIST"
+
+# Wine — runtime env for startup
+export WINEARCH=win64  # must match prefix created at build time (see wine/src/setup.sh)
+export WINESERVER=/opt/wine-stable/bin/wineserver
+export WINEDEBUG=-all  # suppress verbose wine debug noise from logs
+
+# SETUP: REQUIRED — the command that launches the game server
+export LAUNCH_CMD="/opt/wine-stable/bin/wine VRisingServer.exe -persistentDataPath ./Data -logFile $GAME_ENGINE_LOG"
