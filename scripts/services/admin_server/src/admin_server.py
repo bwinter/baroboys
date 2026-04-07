@@ -60,9 +60,9 @@ def tail_log(name):
         "barotrauma_shutdown.log": os.path.join(LOG_DIR, "barotrauma_shutdown.log"),
         "vrising_startup.log": os.path.join(LOG_DIR, "vrising_startup.log"),
         "vrising_shutdown.log": os.path.join(LOG_DIR, "vrising_shutdown.log"),
-        "admin_server_startup.log": os.path.join(LOG_DIR, "admin_server_startup.log"),
-        "refresh_repo.log": os.path.join(LOG_DIR, "refresh_repo_startup.log"),
-        "xvfb.log": os.path.join(LOG_DIR, "xvfb_startup.log"),
+        "admin_server.log": os.path.join(LOG_DIR, "admin_server.log"),
+        "refresh_repo.log": os.path.join(LOG_DIR, "refresh_repo.log"),
+        "xvfb.log": os.path.join(LOG_DIR, "xvfb.log"),
         "idle_check.log": os.path.join(LOG_DIR, "idle_check.log"),
         "nginx_access": ["tail", "-n", "500", "/var/log/nginx/access.log"],
         "nginx_error": ["tail", "-n", "500", "/var/log/nginx/error.log"],
@@ -129,7 +129,7 @@ def directory():
             "icon": "🌀",
             "title": "System Logs",
             "links": [
-                ("/api/logs/admin_server_startup.log", "Admin Server Logs", "GET"),
+                ("/api/logs/admin_server.log", "Admin Server Logs", "GET"),
                 ("/api/logs/refresh_repo.log", "Refresh Repo Logs", "GET"),
                 ("/api/logs/xvfb.log", "Xvfb Logs", "GET"),
             ]

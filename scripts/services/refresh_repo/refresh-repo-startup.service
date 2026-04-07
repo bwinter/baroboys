@@ -15,8 +15,8 @@ SuccessExitStatus=0
 KillMode=control-group
 TimeoutStartSec=300
 
-StandardOutput=append:/var/log/baroboys/refresh_repo_startup.log
-StandardError=append:/var/log/baroboys/refresh_repo_startup.log
+StandardOutput=append:/var/log/baroboys/refresh_repo.log
+StandardError=append:/var/log/baroboys/refresh_repo.log
 
 [Install]
 WantedBy=multi-user.target

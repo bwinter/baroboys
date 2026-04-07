@@ -24,8 +24,8 @@ SuccessExitStatus=0
 KillMode=control-group
 TimeoutStopSec=60
 
-StandardOutput=append:/var/log/baroboys/xvfb_startup.log
-StandardError=append:/var/log/baroboys/xvfb_startup.log
+StandardOutput=append:/var/log/baroboys/xvfb.log
+StandardError=append:/var/log/baroboys/xvfb.log
 
 [Install]
 WantedBy=multi-user.target
