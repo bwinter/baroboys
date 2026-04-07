@@ -12,7 +12,7 @@ apt install -y python3-flask
 mkdir -p "/opt/baroboys"
 cp "/root/baroboys/scripts/services/admin_server/src/admin_server.py" \
    "/opt/baroboys/admin_server.py"
-chmod 755 "/opt/baroboys/admin_server.py"
+chmod 644 "/opt/baroboys/admin_server.py"
 
 # Static HTML and assets
 mkdir -p "/opt/baroboys/static"

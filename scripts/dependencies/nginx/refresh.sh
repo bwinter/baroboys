@@ -4,8 +4,8 @@ set -euxo pipefail
 echo "🔐 [nginx] Generating .htpasswd from server-password..."
 PASSWORD="$(gcloud secrets versions access latest --secret=server-password --quiet)"
 htpasswd -cbB "/etc/nginx/.htpasswd" "Hex" "$PASSWORD"
-chmod 644 "/etc/nginx/.htpasswd"
-chown root:root "/etc/nginx/.htpasswd"
+chown root:www-data "/etc/nginx/.htpasswd"
+chmod 640 "/etc/nginx/.htpasswd"
 
 # === Full nginx.conf replacement mode ===
 CUSTOM_CONF="/root/baroboys/scripts/dependencies/nginx/assets/nginx.conf"
