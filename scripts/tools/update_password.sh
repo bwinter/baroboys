@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-SECRET_NAME="${1:-server-password}"
+# Updates all password secrets to the same value.
+# Secrets: server-password (game join + admin panel), rcon-password (VRising RCON).
+# nginx htpasswd is derived from server-password at boot — no separate secret needed.
+
 PROJECT="${PROJECT:-$(gcloud config get-value project 2>/dev/null)}"
 
 if [[ -z "$PROJECT" ]]; then
@@ -9,23 +12,27 @@ if [[ -z "$PROJECT" ]]; then
   exit 1
 fi
 
-# Prompt for the secret value interactively
-read -s -rp "Enter value for ${SECRET_NAME}: " SECRET_VALUE
+SECRETS=(server-password rcon-password)
+
+read -s -rp "Enter password for all secrets: " SECRET_VALUE
 echo
 if [[ -z "$SECRET_VALUE" ]]; then
-  echo "ERROR: No secret value provided."
+  echo "ERROR: No password provided."
   exit 1
 fi
 
-# Check if the secret exists; create it if not.
-if gcloud secrets describe "$SECRET_NAME" >/dev/null 2>&1; then
-  echo "Secret '$SECRET_NAME' exists. Adding a new version..."
-else
-  echo "Secret '$SECRET_NAME' does not exist. Creating it..."
-  gcloud secrets create "$SECRET_NAME" \
-    --replication-policy=automatic
-fi
+for SECRET_NAME in "${SECRETS[@]}"; do
+  if gcloud secrets describe "$SECRET_NAME" --project="$PROJECT" >/dev/null 2>&1; then
+    echo "Updating '$SECRET_NAME'..."
+  else
+    echo "Creating '$SECRET_NAME'..."
+    gcloud secrets create "$SECRET_NAME" \
+      --project="$PROJECT" \
+      --replication-policy=automatic
+  fi
 
-# Add the new version.
-gcloud secrets versions add "$SECRET_NAME" --data-file=<(echo "$SECRET_VALUE")
-echo "✅ Secret '$SECRET_NAME' updated"
+  gcloud secrets versions add "$SECRET_NAME" \
+    --project="$PROJECT" \
+    --data-file=<(echo "$SECRET_VALUE")
+  echo "✅ $SECRET_NAME updated"
+done

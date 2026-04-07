@@ -83,15 +83,11 @@ $(foreach game,$(GAMES),\
 # =======================
 # 🔑 Secrets
 # =======================
-.PHONY: update-password update-rcon-password
+.PHONY: update-password
 
 update-password:
 	cd $(TOOLS_DIR) && \
 	./update_password.sh
-
-update-rcon-password:
-	cd $(TOOLS_DIR) && \
-	./update_password.sh rcon-password
 
 
 # =======================
@@ -231,8 +227,7 @@ help:
 	@echo ""
 
 	@echo "🔑 Secrets:"
-	@echo "  make update-password                 - Modify game and admin password"
-	@echo "  make update-rcon-password            - Modify RCON password (VRising)"
+	@echo "  make update-password                 - Update all passwords (game, admin, RCON)"
 	@echo ""
 
 	@echo "🔐 IAM:"
