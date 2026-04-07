@@ -5,8 +5,8 @@
 | Tool                                                            | Scope                         | When to Use                                                              |
 |-----------------------------------------------------------------|-------------------------------|--------------------------------------------------------------------------|
 | `gcloud compute instances get-serial-port-output`               | Serial console (boot)         | VM won’t boot, startup script fails silently, SSH not available          |
-| `journalctl -u google-startup-scripts.service`                  | Startup script logs (systemd) | VM boots, but provisioning (e.g. startup.sh) fails or partially executes |
-| `/usr/bin/sudo systemctl status google-startup-scripts.service` | Unit health summary           | Verify if startup unit ran, succeeded, or failed                         |
+| `journalctl -u game-refresh.service`                            | Game refresh logs (systemd)   | VM boots, but provisioning (SteamCMD, config) fails or partially runs    |
+| `/usr/bin/sudo systemctl status game-refresh.service`           | Unit health summary           | Verify if refresh unit ran, succeeded, or failed                         |
 | `gcloud logging read`                                           | Cloud Logging (optional)      | Postmortem debugging (if OSConfig + logging enabled)                     |
 | `gcloud compute ssh`                                            | Direct access                 | Live VM debugging (VRising, Git, system state, etc.)                     |
 
@@ -67,16 +67,16 @@ gcloud compute ssh <GCP_USER>@<MACHINE_NAME> \
 
 ## 🧪 **Post-SSH System Diagnostics**
 
-### Google startup script logs:
+### Game refresh logs (provisioning):
 
 ```bash
-/usr/bin/sudo journalctl -u google-startup-scripts.service -e
+/usr/bin/sudo journalctl -u game-refresh.service -e
 ```
 
-### Startup unit status:
+### Refresh unit status:
 
 ```bash
-/usr/bin/sudo systemctl status google-startup-scripts.service
+/usr/bin/sudo systemctl status game-refresh.service
 ```
 
 ## 🔁 Restart Game Server

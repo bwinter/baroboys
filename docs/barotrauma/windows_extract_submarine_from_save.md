@@ -8,4 +8,4 @@ Setting up file paths:
 
 ![VirtualBox Shared Folders](VirtualBox_Shared_Folders.png)
 
-See `scripts/save-decompressor`
+See `scripts/tools/barotrauma/get_save_decompressor.sh`

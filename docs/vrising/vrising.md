@@ -44,14 +44,10 @@ mcrcon -H 127.0.0.1 -P 25575 -p <PW> \
 If you are SSH'd into the VM, you can trigger a graceful shutdown manually:
 
 ```bash
-/usr/bin/sudo /root/baroboys/scripts/services/VRising/shutdown.sh
+sudo systemctl restart game-shutdown.service
 ```
 
-This will:
-
-* Save the game
-* Commit to Git
-* Shut down the VM cleanly
+This will save the game, commit to Git, and shut down the VM cleanly.
 
 ---
 

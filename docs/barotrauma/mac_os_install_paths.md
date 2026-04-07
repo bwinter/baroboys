@@ -1,6 +1,6 @@
-# Important Paths
+# Barotrauma — macOS Install Paths
 
 - Local Install:
-    - `/Users/bwinter/Library/Application Support/Steam/steamapps/common/Barotrauma/Barotrauma.app/Contents/MacOS`
+    - `~/Library/Application Support/Steam/steamapps/common/Barotrauma/Barotrauma.app/Contents/MacOS`
 - Multiplayer & Community Mods:
-    - `/Users/bwinter/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma`
+    - `~/Library/Application Support/Daedalic Entertainment GmbH/Barotrauma`
