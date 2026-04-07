@@ -37,8 +37,9 @@ scripts/
   dependencies/     apt installers (steam, wine, nginx, gcloud, etc.)
   services/         Per-component: setup.sh + startup.sh + shutdown.sh + systemd units
     admin_server/   Flask admin app
-    barotrauma/     Game lifecycle
-    vrising/        Game lifecycle
+    Barotrauma/     Game lifecycle
+    VRising/        Game lifecycle
+    shared/         Shared setup/startup/shutdown/env-vars
     idle_check/     CPU-based auto-shutdown
     refresh_repo/   Git pull on boot
     xvfb/           Virtual display (VRising/Wine)
