@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # vm_checks.sh — internal smoke test, runs ON the VM.
 # Self-identifying: reads /etc/baroboys/active-game (written by setup.sh) to determine
-# which game is running. Sources config.sh so all checks are game-aware.
+# which game is running. Sources env-vars.sh so all checks are game-aware.
 # Exit code: 0 = all passed, 1 = one or more failed.
 #
 # Usage: bash ~/baroboys/scripts/tools/smoke_test/vm_checks.sh
@@ -48,8 +48,8 @@ echo ""
 echo "--- Services ---"
 for svc in game-setup.service game-startup.service admin-server-startup.service xvfb-startup.service; do
     state=$(systemctl is-active "$svc" 2>/dev/null)
-    # xvfb only required for vrising
-    if [[ "$svc" == "xvfb-startup.service" && "$GAME_NAME" != "vrising" ]]; then
+    # xvfb only required for VRising
+    if [[ "$svc" == "xvfb-startup.service" && "$GAME_NAME" != "VRising" ]]; then
         continue
     fi
     # game-setup is oneshot — "inactive" after successful completion is correct
@@ -71,7 +71,7 @@ done
 
 # --- Log symlink (VRising only) ---
 echo "--- Log Files ---"
-if [[ "$GAME_NAME" == "vrising" ]]; then
+if [[ "$GAME_NAME" == "VRising" ]]; then
     SYMLINK="/var/log/baroboys/VRisingServer.log"
     EXPECTED_TARGET="$GAME_DIR/logs/VRisingServer.log"
     actual_target=$(readlink "$SYMLINK" 2>/dev/null || echo "")
@@ -92,8 +92,8 @@ fi
 # --- Game process + RAM ---
 echo "--- Process ---"
 PROCESS_PATTERN="${GAME_NAME}"
-[[ "$GAME_NAME" == "vrising" ]] && PROCESS_PATTERN="VRisingServer.exe"
-[[ "$GAME_NAME" == "barotrauma" ]] && PROCESS_PATTERN="DedicatedServer"
+[[ "$GAME_NAME" == "VRising" ]] && PROCESS_PATTERN="VRisingServer.exe"
+[[ "$GAME_NAME" == "Barotrauma" ]] && PROCESS_PATTERN="DedicatedServer"
 
 # For Wine games (VRising), multiple processes match the pattern — pick the one
 # with highest RSS to avoid selecting the Wine launcher (start.exe) over the game itself.
@@ -129,7 +129,7 @@ fi
 # --- Game log has real content (not just boot stub) ---
 echo "--- Log Content ---"
 game_log="/var/log/baroboys/VRisingServer.log"
-[[ "$GAME_NAME" == "barotrauma" ]] && game_log="$LOG_FILE"
+[[ "$GAME_NAME" == "Barotrauma" ]] && game_log="$LOG_FILE"
 
 if [[ -f "$game_log" ]] && [[ $(wc -l < "$game_log") -gt 5 ]]; then
     check "game log has content" "pass" "$(wc -l < "$game_log") lines"
