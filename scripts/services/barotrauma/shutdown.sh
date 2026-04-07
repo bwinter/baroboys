@@ -4,26 +4,25 @@ set -euxo pipefail
 # shellcheck source=scripts/services/Barotrauma/env-vars.sh
 source "$(dirname "${BASH_SOURCE[0]}")/env-vars.sh"
 
-# SETUP: OPTIONAL - Kill running gserver.
-if pkill -0 DedicatedServer 2>/dev/null; then
-    pkill DedicatedServer
+# SETUP: OPTIONAL - Kill running game server.
+if pkill -0 "$PROCESS_NAME" 2>/dev/null; then
+    pkill "$PROCESS_NAME"
 else
-    echo "DedicatedServer not running, nothing to kill"
+    echo "$PROCESS_NAME not running, nothing to kill"
 fi
 
-echo "🔃 Monitoring DedicatedServer status..."
+echo "🔃 Monitoring $PROCESS_NAME status..."
 
-if ! timeout 300 bash -c 'while ps -C DedicatedServer >/dev/null; do sleep 1; done'; then
-  echo "⚠️ DedicatedServer did not exit in time."
+if ! timeout 300 bash -c "while ps -C $PROCESS_NAME >/dev/null; do sleep 1; done"; then
+  echo "⚠️ $PROCESS_NAME did not exit in time."
 else
-  echo "✅ DedicatedServer exited cleanly."
+  echo "✅ $PROCESS_NAME exited cleanly."
 fi
 
 cd "$GAME_DIR"
 
 # SETUP: REQUIRED === Commit saves ===
-find "$SAVE_FILE_PATH" -type f \( -name '*.save' -o -name '*_CharacterData.xml' \) ! -name '*.bk*' -print0 \
-  | xargs -0 git add
+git add "$SAVE_FILE_PATH/$SAVE_FILE_PREFIX"*
 git commit -m "Auto-save before shutdown $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "Nothing to commit"
 
 # Stash → pull --rebase → push → pop.
