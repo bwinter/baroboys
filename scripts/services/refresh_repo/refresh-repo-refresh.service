@@ -1,5 +1,5 @@
 [Unit]
-Description=Refresh Repo Setup
+Description=Refresh Repo Refresh
 Requires=network-online.target
 After=network-online.target
 

@@ -1,7 +1,7 @@
 [Unit]
 Description=${GAME_NAME} Startup
-Requires=game-setup.service
-After=game-setup.service
+Requires=game-refresh.service
+After=game-refresh.service
 
 [Service]
 Type=simple

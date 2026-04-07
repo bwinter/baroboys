@@ -44,14 +44,14 @@ echo ""
 
 # --- Services ---
 echo "--- Services ---"
-for svc in game-setup.service game-startup.service admin-server-startup.service xvfb-startup.service; do
+for svc in game-refresh.service game-startup.service admin-server-startup.service xvfb-startup.service; do
     state=$(systemctl is-active "$svc" 2>/dev/null)
     # xvfb only required for VRising
     if [[ "$svc" == "xvfb-startup.service" && "$GAME_NAME" != "VRising" ]]; then
         continue
     fi
     # game-setup is oneshot — "inactive" after successful completion is correct
-    if [[ "$svc" == "game-setup.service" ]]; then
+    if [[ "$svc" == "game-refresh.service" ]]; then
         result_state=$(systemctl show "$svc" --property=Result --value 2>/dev/null)
         if [[ "$result_state" == "success" ]]; then
             check "$svc" "pass" "oneshot completed (result=success)"

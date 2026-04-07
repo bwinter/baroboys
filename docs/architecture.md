@@ -97,23 +97,23 @@ auto-starts via `WantedBy=multi-user.target` — no metadata scripts involved:
 
 ```
 network-online.target
-  └── refresh-repo-setup.service   (oneshot, root)
+  └── refresh-repo-refresh.service   (oneshot, root)
         └── refresh-repo-startup.service  (oneshot, root)
              Clones/pulls latest Git for both /root and /home/bwinter_sc81
-              ├── admin-server-setup.service   (oneshot, root)
+              ├── admin-server-refresh.service   (oneshot, root)
               │     Installs nginx config, derives .htpasswd from server-password
               │     └── admin-server-startup.service  (simple, auto-restart)
               │           Flask app at /opt/baroboys/admin_server.py on :5000
               │
-              ├── idle-check-setup.service     (oneshot, root)
+              ├── idle-check-refresh.service     (oneshot, root)
               │     └── idle-check.timer  →  idle-check.service  (every 5 min)
               │
-              ├── xvfb-setup.service           (VRising only, oneshot, root)
+              ├── xvfb-refresh.service           (VRising only, oneshot, root)
               │     └── xvfb-startup.service   (simple, always restart)
               │           Xvfb :0 -screen 0 1024x768x24
               │           ExecStartPost= polls /tmp/.X11-unix/X0 — blocks until display is live
               │
-              └── game-setup.service           (oneshot, bwinter_sc81)
+              └── game-refresh.service           (oneshot, bwinter_sc81)
                     Calls scripts/services/shared/refresh.sh:
                     - Updates game files via SteamCMD
                     - Fetches GAME_PASSWORD from Secret Manager

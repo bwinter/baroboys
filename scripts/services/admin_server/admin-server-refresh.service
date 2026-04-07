@@ -1,5 +1,5 @@
 [Unit]
-Description=Admin Server Setup
+Description=Admin Server Refresh
 Requires=network-online.target refresh-repo-startup.service
 After=network-online.target refresh-repo-startup.service
 

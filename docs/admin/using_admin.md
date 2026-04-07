@@ -80,7 +80,7 @@ On the server:
 /usr/bin/sudo systemctl reload nginx
 
 # rebuild configs:
-/usr/bin/sudo systemctl restart game-setup.service
+/usr/bin/sudo systemctl restart game-refresh.service
 
 # restart the server:
 /usr/bin/sudo systemctl restart game-startup.service

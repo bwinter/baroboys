@@ -1,5 +1,5 @@
 [Unit]
-Description=${GAME_NAME} Setup
+Description=${GAME_NAME} Refresh
 Requires=network-online.target refresh-repo-startup.service
 After=network-online.target refresh-repo-startup.service
 
@@ -10,8 +10,8 @@ WorkingDirectory=${GAME_DIR}
 User=bwinter_sc81
 
 ExecStart=${BAROBOYS}/scripts/services/shared/refresh.sh
-ExecStartPost=/usr/bin/bash -c 'echo "✅ game-setup.service launched at $(date)" >> ${LOG_FILE}'
-ExecStopPost=/usr/bin/bash -c 'echo "🛑 game-setup.service finished shutdown at $(date)" >> ${LOG_FILE}'
+ExecStartPost=/usr/bin/bash -c 'echo "✅ game-refresh.service launched at $(date)" >> ${LOG_FILE}'
+ExecStopPost=/usr/bin/bash -c 'echo "🛑 game-refresh.service finished shutdown at $(date)" >> ${LOG_FILE}'
 
 SuccessExitStatus=0
 KillMode=control-group

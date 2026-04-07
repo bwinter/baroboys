@@ -109,10 +109,10 @@ To gracefully restart the server through systemd:
 /usr/bin/sudo journalctl -u game-shutdown.service --since="-10min" --no-pager
 ```
 
-### `game-setup.service` logs (game setup & provisioning):
+### `game-refresh.service` logs (game setup & provisioning):
 
 ```bash
-/usr/bin/sudo journalctl -u game-setup.service --since="-10min" --no-pager
+/usr/bin/sudo journalctl -u game-refresh.service --since="-10min" --no-pager
 ```
 
 ---

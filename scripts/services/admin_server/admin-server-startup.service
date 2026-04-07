@@ -1,7 +1,7 @@
 [Unit]
 Description=Admin Server Startup
-Requires=admin-server-setup.service
-After=admin-server-setup.service
+Requires=admin-server-refresh.service
+After=admin-server-refresh.service
 
 [Service]
 Type=simple

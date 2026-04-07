@@ -1,7 +1,7 @@
 [Unit]
 Description=Xvfb Startup
-Requires=xvfb-setup.service
-After=xvfb-setup.service
+Requires=xvfb-refresh.service
+After=xvfb-refresh.service
 
 [Service]
 Type=simple

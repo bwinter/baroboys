@@ -11,7 +11,7 @@ printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "/var/log/baroboys/idl
 chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/idle_check.log"
 chmod 644  "/var/log/baroboys/idle_check.log"
 
-install -m 644 "/root/baroboys/scripts/services/idle_check/idle-check-setup.service" \
+install -m 644 "/root/baroboys/scripts/services/idle_check/idle-check-refresh.service" \
   "/etc/systemd/system/"
 install -m 644 "/root/baroboys/scripts/services/idle_check/idle-check.service" \
   "/etc/systemd/system/"
@@ -19,6 +19,6 @@ install -m 644 "/root/baroboys/scripts/services/idle_check/idle-check.timer" \
   "/etc/systemd/system/"
 
 systemctl daemon-reload
-systemctl enable idle-check-setup.service
+systemctl enable idle-check-refresh.service
 systemctl enable idle-check.service
 systemctl enable idle-check.timer

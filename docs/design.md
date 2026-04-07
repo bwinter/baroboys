@@ -43,7 +43,7 @@ Concretely:
 
 ### 4. Two-phase service pattern
 
-Every component has two units: `*-setup.service` (oneshot, root, installs/configures) followed by
+Every component has two units: `*-refresh.service` (oneshot, root, installs/configures) followed by
 `*-startup.service` (long-running or oneshot, `bwinter_sc81`, runs the process). This is a
 **security boundary** — root does system-level setup once, then hands off to an unprivileged user
 for the long-running process. See `docs/architecture.md` for the full dependency graph.

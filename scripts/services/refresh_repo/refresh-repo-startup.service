@@ -1,7 +1,7 @@
 [Unit]
 Description=Refresh Repo Startup
-Requires=refresh-repo-setup.service
-After=refresh-repo-setup.service
+Requires=refresh-repo-refresh.service
+After=refresh-repo-refresh.service
 
 [Service]
 Type=oneshot

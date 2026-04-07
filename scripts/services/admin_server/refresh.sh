@@ -48,11 +48,11 @@ chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/admin_server_startup.log"
 chmod 644  "/var/log/baroboys/admin_server_startup.log"
 
 # Unit installation
-install -m 644 "/root/baroboys/scripts/services/admin_server/admin-server-setup.service" \
+install -m 644 "/root/baroboys/scripts/services/admin_server/admin-server-refresh.service" \
   "/etc/systemd/system/"
 install -m 644 "/root/baroboys/scripts/services/admin_server/admin-server-startup.service" \
   "/etc/systemd/system/"
 
 systemctl daemon-reload
-systemctl enable admin-server-setup.service
+systemctl enable admin-server-refresh.service
 systemctl enable admin-server-startup.service
