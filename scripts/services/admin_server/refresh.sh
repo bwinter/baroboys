@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-echo "Ensure Ningx service is setup."
+echo "Ensure Nginx service is refreshed."
 source "/root/baroboys/scripts/dependencies/nginx/refresh.sh" || exit
 
 # Install system Python and Flask via apt (safe under Debian 12 policy)
@@ -37,7 +37,7 @@ install -m 440 -o root -g root \
 # Add bwinter_sc81 to adm group so Flask can read nginx logs
 usermod -aG adm bwinter_sc81
 
-# Give Admin Server access to logs.
+# Ensure log directory and file exist with correct permissions.
 mkdir -p "/var/log/baroboys/"
 chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/"
 chmod 700  "/var/log/baroboys/"

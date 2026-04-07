@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-# Give Admin Server access to logs.
+# Ensure log directory and file exist with correct permissions.
 mkdir -p "/var/log/baroboys/"
 chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/"
 chmod 700  "/var/log/baroboys/"
@@ -11,7 +11,7 @@ printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "/var/log/baroboys/xvf
 chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/xvfb.log"
 chmod 644  "/var/log/baroboys/xvfb.log"
 
-# Start xvfb-startup
+# Unit installation
 install -m 644 "/root/baroboys/scripts/services/xvfb/xvfb-refresh.service" \
   "/etc/systemd/system/"
 install -m 644 "/root/baroboys/scripts/services/xvfb/xvfb-startup.service" \
