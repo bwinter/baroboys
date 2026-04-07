@@ -29,6 +29,7 @@ fi
 
 # Enable required services for the runtime behavior
 gcloud services enable \
+  compute.googleapis.com \
   secretmanager.googleapis.com \
   logging.googleapis.com \
   monitoring.googleapis.com \
@@ -49,11 +50,3 @@ for ROLE in "${REQUIRED_ROLES[@]}"; do
     --role="$ROLE" \
     --quiet
 done
-
-# Bind the SA to the secret
-echo "Binding $SA_EMAIL to roles/secretmanager.secretAccessor on github-deploy-key"
-gcloud secrets add-iam-policy-binding github-deploy-key \
-  --project="$PROJECT" \
-  --member="serviceAccount:$SA_EMAIL" \
-  --role="roles/secretmanager.secretAccessor" \
-  --quiet
