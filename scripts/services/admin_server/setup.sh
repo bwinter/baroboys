@@ -31,7 +31,7 @@ chmod 644 /opt/baroboys/templates/*.html
 
 # Sudoers: allow bwinter_sc81 to trigger shutdown without root
 install -m 440 -o root -g root \
-  "/root/baroboys/scripts/services/admin_server/sudoers-bwinter" \
+  "/root/baroboys/scripts/shared/sudoers-bwinter" \
   "/etc/sudoers.d/bwinter"
 
 # Add bwinter_sc81 to adm group so Flask can read nginx logs
