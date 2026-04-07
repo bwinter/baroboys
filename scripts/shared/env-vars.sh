@@ -6,8 +6,8 @@ _SHARED_ENV_LOADED=1
 
 export BAROBOYS="$HOME/baroboys"
 
-GAME_NAME="$(cat /etc/baroboys/active-game)"
-export GAME_NAME
+GAME_NAME="$(cat /etc/baroboys/active-game)" || true
+export GAME_NAME="${GAME_NAME:?/etc/baroboys/active-game is missing or empty}"
 export GAME_DIR="$BAROBOYS/$GAME_NAME"
 
 export LOG_PATH="/var/log/baroboys"

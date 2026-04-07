@@ -6,6 +6,10 @@ source "$(dirname "${BASH_SOURCE[0]}")/env-vars.sh"
 # shellcheck source=scripts/services/$GAME_NAME/env-vars.sh
 source "$(dirname "${BASH_SOURCE[0]}")/../$GAME_NAME/env-vars.sh"
 
+# Preconditions — fail fast before any side effects
+: "${PROCESS_NAME:?PROCESS_NAME not set — check game env-vars.sh}"
+: "${GAME_DIR:?GAME_DIR not set — check shared env-vars.sh}"
+
 # === Graceful shutdown ===
 # RCON-capable games warn players and let the engine save before killing.
 # Others get a direct signal.
