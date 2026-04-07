@@ -28,10 +28,9 @@ PACKER_DIR    := packer
 
 bootstrap: terraform-bootstrap iam-bootstrap
 
-# Default game for plain `make apply`.
-apply: terraform-apply-Barotrauma
+apply: $(addprefix terraform-apply-, $(GAMES))
 
-destroy: terraform-destroy-Barotrauma
+destroy: $(addprefix terraform-destroy-, $(GAMES))
 
 
 # =======================
@@ -217,8 +216,8 @@ clean-git: clean-git-pre clean-git-bfg clean-git-post
 help:
 	@echo "🛠️  Common Targets:"
 	@echo "  make bootstrap                       - Bootstraps terraform and iam"
-	@echo "  make apply                           - Alias for terraform-apply-Barotrauma"
-	@echo "  make destroy                         - Alias for terraform-destroy-Barotrauma"
+	@echo "  make apply                           - Apply all games"
+	@echo "  make destroy                         - Destroy all games"
 	@echo ""
 
 	@echo "🌍 Terraform:"
