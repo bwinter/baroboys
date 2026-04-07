@@ -39,9 +39,8 @@ variable "service_account_email" {
 }
 
 variable "machine_name" {
-  description = "Machine Name"
+  description = "Machine Name — set per-game in terraform/game/<Game>.tfvars"
   type        = string
-  default     = "europa"
 }
 
 variable "machine_type" {
@@ -75,7 +74,6 @@ variable "admin_image" {
 }
 
 variable "game_image" {
-  description = "Image used for the Game layer"
+  description = "Image used for the Game layer — set per-game in terraform/game/<Game>.tfvars"
   type        = string
-  default     = "barotrauma"
 }
