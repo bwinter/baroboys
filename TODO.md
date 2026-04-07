@@ -31,7 +31,7 @@
   Actions UI without SSH. Long-term: diff game server logs across runs to surface things worth
   implementing (unexpected warnings, latency patterns, missing features visible in output).
 
-- **Smoke test both games** — `make smoke-test-vrising` is exercised; `make smoke-test-barotrauma`
+- **Smoke test both games** — `make smoke-test-VRising` is exercised; `make smoke-test-Barotrauma`
   exists via the Makefile pattern but hasn't been run end-to-end. Verify it passes clean. Likely
   surfaces small config or path differences — that's the point.
 

@@ -83,7 +83,7 @@ Consequences:
 
 **Unit changes require a new Packer image.**
 Units are baked in at build time via `setup.sh` calling `systemctl enable`. A unit change that
-isn't followed by `make build-game-vrising` (or the relevant game) won't take effect.
+isn't followed by `make build-game-VRising` (or the relevant game) won't take effect.
 
 **The shutdown stash is load-bearing.**
 `git stash push → pull --rebase → push → stash pop` in `shutdown.sh` intentionally clears

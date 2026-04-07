@@ -12,7 +12,7 @@ MACHINE_NAME ?= europa
 GCP_USER     ?= bwinter_sc81
 
 # Games — extend this list when adding a new game.
-GAMES := barotrauma vrising
+GAMES := Barotrauma VRising
 ENV   ?= prod
 
 # Paths
@@ -28,7 +28,7 @@ PACKER_DIR    := packer
 bootstrap: terraform-bootstrap iam-bootstrap
 
 # Default game for plain `make apply`.
-apply: terraform-apply-barotrauma
+apply: terraform-apply-Barotrauma
 
 destroy: terraform-destroy
 
@@ -226,7 +226,7 @@ clean-git: clean-git-pre clean-git-bfg clean-git-post
 help:
 	@echo "🛠️  Common Targets:"
 	@echo "  make bootstrap                - Bootstraps terraform and iam"
-	@echo "  make apply                    - Alias for terraform-apply-barotrauma"
+	@echo "  make apply                    - Alias for terraform-apply-Barotrauma"
 	@echo "  make destroy                  - Alias for terraform-destroy"
 	@echo ""
 
@@ -275,8 +275,8 @@ help:
 	@echo ""
 
 	@echo "🧪 Smoke Test:"
-	@echo "  make smoke-test-vrising         - Full deploy+verify+destroy smoke test"
-	@echo "  make smoke-test-barotrauma      - Same for Barotrauma"
+	@echo "  make smoke-test-VRising         - Full deploy+verify+destroy smoke test"
+	@echo "  make smoke-test-Barotrauma      - Same for Barotrauma"
 	@echo ""
 	@echo "🧹 Git History Cleanup:"
 	@echo "  make clean-git-pre            - Scan repo history and write deletable blobs list"

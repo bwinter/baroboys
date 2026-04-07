@@ -54,8 +54,8 @@ Images are built in a strict hierarchy; each layer bakes in the one above it:
 debian-12 (upstream)
   └── baroboys-core        packer/base/core.pkr.hcl
         └── baroboys-admin       packer/base/admin.pkr.hcl
-              ├── baroboys-barotrauma  packer/game/barotrauma.pkr.hcl
-              └── baroboys-vrising     packer/game/vrising.pkr.hcl
+              ├── baroboys-barotrauma  packer/game/Barotrauma.pkr.hcl
+              └── baroboys-vrising     packer/game/VRising.pkr.hcl
 ```
 
 | Layer | Adds |
@@ -82,7 +82,7 @@ targets. `game-startup.service` auto-starts via `WantedBy=multi-user.target`; `g
 hooks into `poweroff/halt/reboot` targets.
 
 The `game_image` variable selects which Packer image the VM boots from.
-`terraform apply` is game-specific: `make terraform-apply-vrising` or `make terraform-apply-barotrauma`.
+`terraform apply` is game-specific: `make terraform-apply-VRising` or `make terraform-apply-Barotrauma`.
 
 State is stored remotely in `gs://tf-state-baroboys/terraform/prod`.
 
@@ -274,7 +274,7 @@ The VM's `.gitconfig` identifies commits as `Game Server <bwinter.sc81+gameserve
 | On-VM logs | `/var/log/baroboys/` |
 | On-VM game logs (VRising) | `/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log` (symlinked from `/var/log/baroboys/VRisingServer.log`) |
 | Active game file | `/etc/baroboys/active-game` |
-| E2E smoke test | `scripts/tools/smoke_test/` — `make smoke-test-vrising` |
+| E2E smoke test | `scripts/tools/smoke_test/` — `make smoke-test-VRising` |
 
 ---
 

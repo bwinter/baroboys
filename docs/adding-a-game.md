@@ -143,7 +143,7 @@ committed here are restored on each boot via `git checkout` in `refresh.sh`.
 
 ### 4. Packer template — `packer/game/<game>.pkr.hcl`
 
-Copy `packer/game/barotrauma.pkr.hcl`. Make these substitutions (5 occurrences):
+Copy `packer/game/Barotrauma.pkr.hcl`. Make these substitutions (5 occurrences):
 
 | Placeholder | Replace with |
 |-------------|-------------|
@@ -154,7 +154,7 @@ Copy `packer/game/barotrauma.pkr.hcl`. Make these substitutions (5 occurrences):
 | `/scripts/services/barotrauma/setup.sh` | `/scripts/services/<game>/setup.sh` |
 
 If the game needs extra dependencies (step 2), add provisioner steps before the
-`<game>/setup.sh` call — see `vrising.pkr.hcl` for the Xvfb + Wine example.
+`<game>/setup.sh` call — see `VRising.pkr.hcl` for the Xvfb + Wine example.
 
 ---
 

@@ -11,7 +11,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
 TF_DIR="$REPO_ROOT/terraform"
 
-GAME="vrising"
+GAME="VRising"
 SKIP_DESTROY=false
 
 for arg in "$@"; do
