@@ -71,9 +71,10 @@ echo "📝 Installing nginx.conf to $NGINX_CONF_MAIN..."
 sudo cp "$NGINX_CONFIG_SOURCE" "$NGINX_CONF_MAIN"
 
 # === Install .htpasswd ===
-echo "🔐 Installing .htpasswd from gcloud..."
+echo "🔐 Generating .htpasswd from server-password..."
 sudo mkdir -p "$(dirname "$HTPASSWD_DEST")"
-gcloud secrets versions access latest --secret="nginx-htpasswd" --quiet | sudo tee "$HTPASSWD_DEST" >/dev/null
+PASSWORD="$(gcloud secrets versions access latest --secret=server-password --quiet)"
+sudo htpasswd -cbB "$HTPASSWD_DEST" "Hex" "$PASSWORD"
 sudo chmod 644 "$HTPASSWD_DEST"
 sudo chown "$(whoami)" "$HTPASSWD_DEST"
 

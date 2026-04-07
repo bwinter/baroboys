@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-echo "🔐 [nginx] Fetching .htpasswd from GCP secrets..."
-gcloud secrets versions access latest --secret="nginx-htpasswd" --quiet > "/etc/nginx/.htpasswd"
+echo "🔐 [nginx] Generating .htpasswd from server-password..."
+PASSWORD="$(gcloud secrets versions access latest --secret=server-password --quiet)"
+htpasswd -cbB "/etc/nginx/.htpasswd" "Hex" "$PASSWORD"
 chmod 644 "/etc/nginx/.htpasswd"
 chown root:root "/etc/nginx/.htpasswd"
 
