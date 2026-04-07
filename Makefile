@@ -216,6 +216,7 @@ clean-git: clean-git-pre clean-git-bfg clean-git-post
 help:
 	@echo "🛠️  Common Targets:"
 	@echo "  make bootstrap                       - Bootstraps terraform and iam"
+	@echo "  make build                           - Build all Packer images in order"
 	@echo "  make apply                           - Apply all games"
 	@echo "  make destroy                         - Destroy all games"
 	@echo ""
@@ -261,7 +262,6 @@ help:
 	@echo "  make build-base-core                 - Build base image (core setup)"
 	@echo "  make build-base-admin                - Build admin layer"
 	@echo "  make build-game-<GAME>               - Build game image layer"
-	@echo "  make build                           - Build all images in order"
 	@echo ""
 
 	@echo "🧪 Smoke Test:"
