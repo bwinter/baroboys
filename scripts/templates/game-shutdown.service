@@ -12,7 +12,7 @@ WorkingDirectory=${GAME_DIR}
 User=bwinter_sc81
 Group=bwinter_sc81
 
-ExecStart=${BAROBOYS}/scripts/services/${GAME_NAME}/shutdown.sh
+ExecStart=${BAROBOYS}/scripts/shared/shutdown.sh
 ExecStartPost=/usr/bin/bash -c 'echo "✅ game-shutdown.service launched at $(date)" >> ${LOG_FILE}'
 ExecStopPost=/usr/bin/bash -c 'echo "🛑 game-shutdown.service finished shutdown at $(date)" >> ${LOG_FILE}'
 
