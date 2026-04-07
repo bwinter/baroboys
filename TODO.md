@@ -16,6 +16,9 @@
 
 ### Near-term
 
+- **Terraform state for multi-VM** — single state file means one `terraform apply` clobbers the
+  other game's VM. Evaluate: workspaces, `for_each`, or separate root modules.
+- **Project rename** — "baroboys" → something generic. Image/tag prefixes already stripped as prep.
 - [Games](todo/games.md) — Zomboid, Valheim, template-based onboarding
 - [Testing](todo/testing.md) — smoke tests, CI tiers, manual QA
 - [Admin & UX](todo/admin.md) — Cloud Run URL, multi-game awareness, game manifest
