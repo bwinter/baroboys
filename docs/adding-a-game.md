@@ -32,7 +32,7 @@ Create the following files. Copy the nearest existing game as a starting point.
 Use `grep SETUP scripts/services/` to see every decision point marked with
 `# SETUP: REQUIRED` or `# SETUP: OPTIONAL` across existing games.
 
-#### `config.sh` — the game manifest
+#### `post-checkout.sh` — the game manifest
 
 Sourced by all other game scripts. Minimum required vars:
 
@@ -47,8 +47,8 @@ LOG_FILE="/var/log/baroboys/<game>.log"
 
 Add game-specific vars as needed (e.g. `WORLD_NAME`, `RCON_PORT`).
 
-> **Note:** `setup.sh` runs as root; `$HOME`-based paths in `config.sh` will resolve to
-> `/root`. When sourcing from setup.sh, use `HOME=/home/bwinter_sc81 source config.sh`.
+> **Note:** `setup.sh` runs as root; `$HOME`-based paths in `post-checkout.sh` will resolve to
+> `/root`. When sourcing from setup.sh, use `HOME=/home/bwinter_sc81 source post-checkout.sh`.
 
 #### `setup.sh` — runs once at Packer build time (and again on each boot via game-setup.service)
 
@@ -85,12 +85,12 @@ If the game config is command-line args only (e.g. Valheim), skip the envsubst s
 
 #### `startup.sh`
 
-Sources `config.sh`. Launches the game process. For Wine games, set up `WINEPREFIX` and
+Sources `post-checkout.sh`. Launches the game process. For Wine games, set up `WINEPREFIX` and
 `DISPLAY` first (see VRising startup.sh for ordering requirements).
 
 #### `shutdown.sh`
 
-Sources `config.sh`. Must follow the stash→pull→push→pop pattern — do not simplify:
+Sources `post-checkout.sh`. Must follow the stash→pull→push→pop pattern — do not simplify:
 
 ```bash
 git stash push

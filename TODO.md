@@ -20,9 +20,9 @@
     (no `-startup` unit — timer pattern). Test must whitelist this.
   - Verify `Requires=` is always accompanied by `After=` (grep unit files for violations)
   - Verify all `.template` files contain only known `${VAR}` placeholders (no typos)
-  - Verify `WORLD_NAME` is exported in `VRising/config.sh` before `envsubst`
+  - Verify `WORLD_NAME` is exported in `VRising/post-checkout.sh` before `envsubst`
   - Verify `shutdown.sh` files contain the stash-pull-push-pop sequence in order
-  - Verify every game dir has a `config.sh` exporting `GAME_NAME`
+  - Verify every game dir has a `post-checkout.sh` exporting `GAME_NAME`
   - Verify `.envrc` and `shared.tfvars` agree on project/zone/region/machine_name
 
 - **CI — Tier 3: E2E smoke test on push** — run the full smoke test in serial on every push to
@@ -38,7 +38,7 @@
 - **Smoke test: verify game is joinable** — extend `vm_checks.sh` to check that the game port
   is actually accepting connections, not just that the process is running. A live process with a
   closed port is a false positive. Implementation: `nc -z -w5 <host> <port>` (TCP) or a UDP probe.
-  Ports from `config.sh`: Barotrauma 27015, VRising 9876. This is the closest approximation to
+  Ports from `post-checkout.sh`: Barotrauma 27015, VRising 9876. This is the closest approximation to
   "did the game actually start?" without a real game client.
 
 - **Manual QA: connect and play both games** — provision each game server, actually launch the
@@ -79,7 +79,7 @@
 
 - **Admin panel: multi-game awareness** — log dropdown always shows both Barotrauma and VRising
   entries regardless of which game is running. Should filter to the active game.
-  Approach (simplified by config.sh groundwork):
+  Approach (simplified by post-checkout.sh groundwork):
   1. ✅ In each `<game>/setup.sh`: write `/etc/baroboys/active-game` — done (889a2ed).
      Also consumed by `smoke_test/vm_checks.sh` for self-identification.
   2. In `idle_check.sh`: read `/etc/baroboys/active-game` and add `"game": "<name>"` to status.json
@@ -130,7 +130,7 @@
   **Game manifest (bridges bash → Python):** the same 3rd-game trigger should produce a
   machine-readable manifest written by `setup.sh` and consumed by `admin_server.py`. Today
   `admin_server.py` hardcodes every log path — the bash-side canonical definitions live in
-  systemd `StandardOutput=` lines and `config.sh:LOG_FILE`, but Python can't source them.
+  systemd `StandardOutput=` lines and `post-checkout.sh:LOG_FILE`, but Python can't source them.
   A JSON manifest at `/etc/baroboys/manifest.json` closes the gap:
   ```json
   {
@@ -139,7 +139,7 @@
     "game_log": "/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log"
   }
   ```
-  `setup.sh` writes it (running as root, can `HOME=/home/bwinter_sc81 source config.sh`);
+  `setup.sh` writes it (running as root, can `HOME=/home/bwinter_sc81 source post-checkout.sh`);
   `admin_server.py` reads it on startup and derives `{game}_startup.log`, `{game}_shutdown.log`,
   `{game}.log` from `game_name` + `log_dir`, using `game_log` for the special game-engine log.
   This also unlocks multi-game awareness (see near-term item) without a separate mechanism —
@@ -152,7 +152,7 @@
 
 
 - **Refactor games into subdir** — move `Barotrauma/` and `VRising/` under `games/`. Mostly
-  straightforward: GAME_DIR in config.sh is the only per-game change for startup/shutdown/refresh
+  straightforward: GAME_DIR in post-checkout.sh is the only per-game change for startup/shutdown/refresh
   scripts (all paths derive from it). Also requires:
   - Packer templates: update `game_image` family name references in `terraform/game/*.tfvars`
   - `setup.sh` files: hardcoded script path references (e.g. the path passed to `sudo -u bwinter_sc81`)
@@ -179,7 +179,7 @@ These are interesting but not current priority. Logged so they aren't forgotten.
 - Nix for environment management (replace/augment direnv)
 - Claude API integration — AI-assisted ops from the admin console
 - Productize game management — web UI for picking/loading games, adding new titles; would
-  require a formal game manifest (config.sh is the seed of this), dependency declaration per
+  require a formal game manifest (post-checkout.sh is the seed of this), dependency declaration per
   game (apt packages, SteamCMD app ID, Wine yes/no), and likely a metadata-driven setup pipeline
   rather than per-game bash scripts. Nix per-game derivations are a natural fit here.
 - React frontend for admin panel

@@ -31,8 +31,8 @@ cd "$GAME_DIR"
 # shellcheck disable=SC2086
 git checkout -- $CHECKOUT_LIST
 
-# shellcheck source=scripts/services/$GAME_NAME/config.sh
-source "$(dirname "${BASH_SOURCE[0]}")/../$GAME_NAME/config.sh"
+# shellcheck source=scripts/services/$GAME_NAME/post-checkout.sh
+source "$(dirname "${BASH_SOURCE[0]}")/../$GAME_NAME/post-checkout.sh"
 
 # === Decompress saves ===
 # Decompress all .gz saves matching the prefix. Without -f, gunzip skips files
