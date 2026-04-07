@@ -60,6 +60,9 @@ build {
       "echo '🔧 Install Barotrauma'",
       "/usr/bin/sudo -u bwinter_sc81 -H -- /root/baroboys/scripts/services/shared/setup.sh",
 
+      "echo '🔧 Install game systemd units'",
+      "/usr/bin/sudo /root/baroboys/scripts/shared/install-game-units.sh",
+
       "echo '🧹 Running autoremove'",
       "/usr/bin/sudo apt-get -yq autoremove"
     ]

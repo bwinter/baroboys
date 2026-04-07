@@ -18,7 +18,7 @@ ExecStopPost=/usr/bin/bash -c 'echo "🛑 game-shutdown.service finished shutdow
 
 SuccessExitStatus=0
 KillMode=control-group
-TimeoutStartSec=configured
+TimeoutStartSec=600
 
 StandardOutput=append:${LOG_FILE}
 StandardError=append:${LOG_FILE}
