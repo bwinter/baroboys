@@ -56,19 +56,17 @@ def trigger_shutdown():
 @app.route("/logs/<name>")
 def tail_log(name):
     log_map = {
-        "barotrauma_startup.log": os.path.join(LOG_DIR, "barotrauma_startup.log"),
-        "barotrauma_shutdown.log": os.path.join(LOG_DIR, "barotrauma_shutdown.log"),
-        "vrising_startup.log": os.path.join(LOG_DIR, "vrising_startup.log"),
-        "vrising_shutdown.log": os.path.join(LOG_DIR, "vrising_shutdown.log"),
+        # Game lifecycle (refresh + startup + shutdown all write here)
+        "game.log": os.path.join(LOG_DIR, "game.log"),
+        "VRisingServer.log": os.path.join(LOG_DIR, "VRisingServer.log"),
+        # Infrastructure
         "admin_server.log": os.path.join(LOG_DIR, "admin_server.log"),
         "refresh_repo.log": os.path.join(LOG_DIR, "refresh_repo.log"),
-        "xvfb.log": os.path.join(LOG_DIR, "xvfb.log"),
         "idle_check.log": os.path.join(LOG_DIR, "idle_check.log"),
+        "xvfb.log": os.path.join(LOG_DIR, "xvfb.log"),
+        # Nginx (subprocess, not file read)
         "nginx_access": ["tail", "-n", "500", "/var/log/nginx/access.log"],
         "nginx_error": ["tail", "-n", "500", "/var/log/nginx/error.log"],
-        "Barotrauma.log": os.path.join(LOG_DIR, "Barotrauma.log"),
-        "VRising.log": os.path.join(LOG_DIR, "VRising.log"),
-        "VRisingServer.log": os.path.join(LOG_DIR, "VRisingServer.log"),
     }
 
     if ENV == "dev":
@@ -115,23 +113,18 @@ def directory():
             "icon": "📄",
             "title": "Game Logs",
             "links": [
-                ("/api/logs/barotrauma_startup.log", "VM Startup Logs", "GET"),
-                ("/api/logs/barotrauma_shutdown.log", "VM Shutdown Logs", "GET"),
-                ("/api/logs/vrising_startup.log", "VM Startup Logs", "GET"),
-                ("/api/logs/vrising_shutdown.log", "VM Shutdown Logs", "GET"),
-                ("/api/logs/idle_check.log", "Idle Check Logs", "GET"),
-                ("/api/logs/Barotrauma.log", "Barotrauma Service Logs", "GET"),
-                ("/api/logs/VRising.log", "V Rising Service Logs", "GET"),
-                ("/api/logs/VRisingServer.log", "V Rising Server Logs", "GET"),
+                ("/api/logs/game.log", "Game Lifecycle", "GET"),
+                ("/api/logs/VRisingServer.log", "VRising Engine Output", "GET"),
+                ("/api/logs/idle_check.log", "Idle Check", "GET"),
             ]
         },
         {
             "icon": "🌀",
             "title": "System Logs",
             "links": [
-                ("/api/logs/admin_server.log", "Admin Server Logs", "GET"),
-                ("/api/logs/refresh_repo.log", "Refresh Repo Logs", "GET"),
-                ("/api/logs/xvfb.log", "Xvfb Logs", "GET"),
+                ("/api/logs/admin_server.log", "Admin Server", "GET"),
+                ("/api/logs/refresh_repo.log", "Refresh Repo", "GET"),
+                ("/api/logs/xvfb.log", "Xvfb", "GET"),
             ]
         },
         {
