@@ -10,7 +10,7 @@ STEAM_PLATFORM="windows" # SETUP: OPTIONAL
 SAVE_FILE_NAME="AutoSave_*" # SETUP: OPTIONAL
 SAVE_FILE_PATH="$GAME_DIR/Data/Saves/v4/$SAVE_FILE_NAME" # SETUP: OPTIONAL
 
-RCON_PASSWORD="$(gcloud secrets versions access latest --secret=rcon-password)" # TODO: Create an RCON password.
+RCON_PASSWORD="$(gcloud secrets versions access latest --secret=rcon-password)" # SETUP: run `make update-rcon-password` to create this secret
 RCON_PORT=25575
 RCON_SHUTDOWN_DELAY_MINUTES=1
 

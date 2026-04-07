@@ -81,13 +81,17 @@ $(foreach game,$(GAMES),\
 
 
 # =======================
-# 🔑 Server / Game Password
+# 🔑 Secrets
 # =======================
-.PHONY: update-password
+.PHONY: update-password update-rcon-password
 
 update-password:
 	cd $(TOOLS_DIR) && \
 	./update_password.sh
+
+update-rcon-password:
+	cd $(TOOLS_DIR) && \
+	./update_password.sh rcon-password
 
 
 # =======================
