@@ -81,15 +81,10 @@ Set the shared password for game servers, admin panel, and RCON:
 make set-password
 ```
 
-Create the GitHub deploy key so the VM can clone this repo:
+Create the GitHub deploy key so the VM can clone this repo (requires `gh` CLI):
 
 ```bash
-# See docs/setup/github-deploy-key.md for full steps
-ssh-keygen -t ecdsa -b 521 -C "vm-github-access"
-# Add the public key to GitHub → Settings → Deploy Keys
-# Then store the private key:
-gcloud secrets create github-deploy-key --replication-policy=automatic
-gcloud secrets versions add github-deploy-key --data-file=<path-to-private-key>
+make set-deploy-key
 ```
 
 ---

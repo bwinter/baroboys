@@ -83,11 +83,15 @@ $(foreach game,$(GAMES),\
 # =======================
 # 🔑 Secrets
 # =======================
-.PHONY: set-password
+.PHONY: set-password set-deploy-key
 
 set-password:
 	cd $(TOOLS_DIR) && \
 	./set_secret.sh
+
+set-deploy-key:
+	cd $(TOOLS_DIR) && \
+	./set_deploy_key.sh
 
 
 # =======================
@@ -228,6 +232,7 @@ help:
 
 	@echo "🔑 Secrets:"
 	@echo "  make set-password                    - Set server password (game, admin, RCON)"
+	@echo "  make set-deploy-key                  - Generate and store GitHub deploy key"
 	@echo ""
 
 	@echo "🔐 IAM:"
