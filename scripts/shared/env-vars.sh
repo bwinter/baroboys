@@ -10,7 +10,3 @@ export GAME_PASSWORD
 
 export LOG_PATH="/var/log/baroboys"
 export LOG_FILE="${LOG_PATH}/game.log"
-
-# TODO: Would be curious to know if this can be deleted.
-#  We made some updates to wine a while back.
-export WINEPREFIX="$HOME/.wine64"

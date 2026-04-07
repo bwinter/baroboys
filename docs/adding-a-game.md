@@ -38,7 +38,7 @@ Sourced by all other game scripts. Minimum required vars:
 GAME_NAME="<game>"
 GAME_DIR="$HOME/baroboys/<GameName>"
 STEAM_APP_ID=<id>          # dedicated server app ID (may differ from client)
-STEAM_PLATFORM=""          # "" for Linux-native; "windows" for Wine
+STEAM_PLATFORM="linux"     # "linux" for native; "windows" for Wine
 SAVE_FILE_PATH="<path>"          # where save files live
 LOG_FILE="/var/log/baroboys/<game>.log"
 ```
