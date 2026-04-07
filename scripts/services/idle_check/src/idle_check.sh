@@ -47,7 +47,7 @@ else
 fi
 
 # === WRITE STATUS.JSON ===
-sudo tee "$STATUS_JSON" > /dev/null <<EOF
+tee "$STATUS_JSON" > /dev/null <<EOF
 {
   "timestamp_utc": "$NOW_ISO",
   "cpu_percent": $CPU_PERCENT,
