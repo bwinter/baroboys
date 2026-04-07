@@ -35,11 +35,11 @@ packer/             Packer templates; build.sh accepts "base/<name>" or "game/<n
 terraform/          Infrastructure; build.sh accepts <game> <env>
 scripts/
   dependencies/     apt installers (steam, wine, nginx, gcloud, etc.)
-  services/         Per-component: setup.sh + startup.sh + shutdown.sh + systemd units
+  services/         Per-component: refresh.sh + startup.sh + shutdown.sh + systemd units
     admin_server/   Flask admin app
     Barotrauma/     Game lifecycle
     VRising/        Game lifecycle
-    shared/         Shared setup/startup/shutdown/env-vars
+    shared/         Shared refresh/startup/shutdown/env-vars
     idle_check/     CPU-based auto-shutdown
     refresh_repo/   Git pull on boot
     xvfb/           Virtual display (VRising/Wine)
@@ -116,7 +116,7 @@ needed if the game uses that feature (e.g. save decompression, RCON, template in
 
 ## systemd Unit Conventions
 
-All units follow a two-phase pattern per component: `*-refresh.service` (oneshot, root, installs/configures) → `*-startup.service` (long-running or oneshot, bwinter_sc81, runs the thing). Always pair `Requires=X` with `After=X` — `Requires` alone does not enforce order. For shutdown services use `Wants=` not `Requires=` for network dependency (network may stop during poweroff sequence). Unit changes require image rebuild to take effect.
+All units follow a two-phase pattern per component: `*-refresh.service` (oneshot, root, ensures current state) → `*-startup.service` (long-running or oneshot, bwinter_sc81, runs the thing). Always pair `Requires=X` with `After=X` — `Requires` alone does not enforce order. For shutdown services use `Wants=` not `Requires=` for network dependency (network may stop during poweroff sequence). Unit changes require image rebuild to take effect.
 
 `idle-check.service` has `WantedBy=multi-user.target` intentionally — runs once at boot to seed `status.json` before the timer's first 5-minute fire.
 

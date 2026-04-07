@@ -20,7 +20,7 @@ runs checks from both outside and inside, then tears down.
 - `game.log` served via admin panel (exercises log_map end-to-end)
 
 **Internal** (`vm_checks.sh` runs on the VM, sources `env-vars.sh`):
-- Self-identifies game from `/etc/baroboys/active-game` (written by `setup.sh` at boot)
+- Self-identifies game from `/etc/baroboys/active-game` (written by `refresh.sh` at boot)
 - All required systemd services active
 - Game log has real content (not just boot stub)
 - Game process running with sane RAM usage (500MB–5.5GB)

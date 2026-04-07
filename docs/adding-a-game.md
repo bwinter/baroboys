@@ -19,7 +19,7 @@ for the title-case game name (e.g. `VRising`, `Barotrauma`, `Zomboid`).
 | `Makefile` | Add to `GAMES` list — auto-generates 3 targets |
 | `admin_server.py` | Log map entries for the admin panel |
 
-**You do NOT need to create:** startup.sh, shutdown.sh, setup.sh, or systemd units.
+**You do NOT need to create:** startup.sh, shutdown.sh, refresh.sh, or systemd units.
 These are all shared scripts driven by env-vars.sh.
 
 Build order: always `base/core → base/admin → game/<Game>`.
@@ -90,7 +90,7 @@ Create the directory and commit files that should live in version control:
 - Any seed files needed for a fresh install
 
 Gitignore generated config and save files. Save `.gz` files are committed by
-shutdown.sh and decompressed by setup.sh on each boot.
+shutdown.sh and decompressed by refresh.sh on each boot.
 
 ---
 

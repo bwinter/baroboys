@@ -68,7 +68,7 @@ Logs are automatically refreshed.
 ### 🔐 Rotate Admin Password
 
 ```bash
-make update-password
+make set-password
 
 # 🚨 Then SSH into the server
 make ssh

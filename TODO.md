@@ -6,18 +6,13 @@
 
 ### Immediate
 
-- **Verify refactor on live VM** — the shared script architecture (setup.sh, startup.sh,
-  shutdown.sh, install-game-units.sh) has not been tested on a live VM. Build and smoke test
-  both existing games before adding new ones:
-  1. `make build-game-VRising` + `make smoke-test-VRising`
-  2. `make build-game-Barotrauma` + `make smoke-test-Barotrauma`
-
-- **Create RCON password secret** — `make update-rcon-password` (VRising needs this before boot).
+- **Verify refactor on live VM** — the full refactor (refresh.sh rename, multi-VM workspaces,
+  secret consolidation, log consolidation) has not been tested on a live VM:
+  1. `make set-password` (if not already set)
+  2. `make build-game-VRising` + `make smoke-test-VRising`
+  3. `make build-game-Barotrauma` + `make smoke-test-Barotrauma`
 
 ### Near-term
-
-- **Terraform state for multi-VM** — single state file means one `terraform apply` clobbers the
-  other game's VM. Evaluate: workspaces, `for_each`, or separate root modules.
 - **Project rename** — "baroboys" → something generic. Image/tag prefixes already stripped as prep.
 - [Games](todo/games.md) — Zomboid, Valheim, template-based onboarding
 - [Testing](todo/testing.md) — smoke tests, CI tiers, manual QA

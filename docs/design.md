@@ -82,7 +82,7 @@ Consequences:
 ## Gotchas for New Contributors
 
 **Unit changes require a new Packer image.**
-Units are baked in at build time via `setup.sh` calling `systemctl enable`. A unit change that
+Units are baked in at build time via `refresh.sh` calling `systemctl enable`. A unit change that
 isn't followed by `make build-game-VRising` (or the relevant game) won't take effect.
 
 **The shutdown stash is load-bearing.**
@@ -91,7 +91,7 @@ working-tree taint before rebasing. Do not simplify this to a bare `git fetch &&
 The stash step is what makes the rebase reliable in a dirty working tree.
 
 **The warm SteamCMD call is intentional.**
-`setup.sh` runs a bare `+login anonymous +quit` before the real `app_update`. This works around
+`refresh.sh` runs a bare `+login anonymous +quit` before the real `app_update`. This works around
 intermittent SteamCMD installer failures (likely depot cache initialisation). Root cause unknown;
 removing it makes builds flaky. The comment in the file explains this.
 

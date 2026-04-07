@@ -73,14 +73,13 @@ View file:
 cat /etc/nginx/.htpasswd
 ```
 
-If missing:
+If missing, htpasswd is derived from `server-password` at boot by `nginx/refresh.sh`.
+To regenerate manually:
 
 ```bash
-htpasswd -c temp_htpasswd <PW>
-gcloud secrets versions add nginx-htpasswd --data-file=temp_htpasswd
-gcloud secrets versions access latest --secret=nginx-htpasswd \
-  | /usr/bin/sudo tee /etc/nginx/.htpasswd > /dev/null
-/usr/bin/sudo systemctl reload nginx
+PASSWORD=$(gcloud secrets versions access latest --secret=server-password)
+sudo htpasswd -cbB /etc/nginx/.htpasswd Hex "$PASSWORD"
+sudo systemctl reload nginx
 ```
 
 ---
