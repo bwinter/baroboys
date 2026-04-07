@@ -67,16 +67,13 @@ for svc in game-setup.service game-startup.service admin-server-startup.service 
     fi
 done
 
-# --- Log symlink (VRising only) ---
+# --- Game engine log (written directly by -logFile flag) ---
 echo "--- Log Files ---"
-if [[ "$GAME_NAME" == "VRising" ]]; then
-    SYMLINK="/var/log/baroboys/VRisingServer.log"
-    EXPECTED_TARGET="$GAME_DIR/logs/VRisingServer.log"
-    actual_target=$(readlink "$SYMLINK" 2>/dev/null || echo "")
-    if [[ "$actual_target" == "$EXPECTED_TARGET" ]]; then
-        check "VRisingServer.log symlink" "pass" "$SYMLINK -> $actual_target"
+if [[ -n "$GAME_ENGINE_LOG" && "$GAME_ENGINE_LOG" != "$LOG_FILE" ]]; then
+    if [[ -f "$GAME_ENGINE_LOG" ]]; then
+        check "game engine log" "pass" "$GAME_ENGINE_LOG exists"
     else
-        check "VRisingServer.log symlink" "fail" "expected -> $EXPECTED_TARGET, got -> $actual_target"
+        check "game engine log" "fail" "$GAME_ENGINE_LOG not found — game may not have started"
     fi
 fi
 

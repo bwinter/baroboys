@@ -22,10 +22,6 @@ GAME_JSON_OUT="$GAME_DIR/$GAME_JSON_OUT"
 envsubst < "$HOST_JSON_IN" > "$HOST_JSON_OUT"
 envsubst < "$GAME_JSON_IN" > "$GAME_JSON_OUT"
 
-# SETUP: OPTIONAL --- Game engine log directory + symlink for admin panel
-mkdir -p "$GAME_DIR/logs"
-ln -sf "$GAME_DIR/logs/VRisingServer.log" "/var/log/baroboys/VRisingServer.log"
-
 # SETUP: OPTIONAL --- DECOMPRESS SAVE
 
 # -d: save directory exists; -n: SAVE_FILE_NAME is non-empty.
