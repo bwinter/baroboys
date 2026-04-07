@@ -29,6 +29,8 @@ The `game/<game>` layer bakes in the `base/admin` image, which bakes in `base/co
 ### 1. Scripts — `scripts/services/<game>/`
 
 Create the following files. Copy the nearest existing game as a starting point.
+Use `grep SETUP scripts/services/` to see every decision point marked with
+`# SETUP: REQUIRED` or `# SETUP: OPTIONAL` across existing games.
 
 #### `config.sh` — the game manifest
 
@@ -43,7 +45,7 @@ SAVE_FILE_PATH="<path>"          # where save files live
 LOG_FILE="/var/log/baroboys/<game>.log"
 ```
 
-Add game-specific vars as needed (e.g. `WORLD_NAME`, `RCON_PORT`, `WINEPREFIX`).
+Add game-specific vars as needed (e.g. `WORLD_NAME`, `RCON_PORT`).
 
 > **Note:** `setup.sh` runs as root; `$HOME`-based paths in `config.sh` will resolve to
 > `/root`. When sourcing from setup.sh, use `HOME=/home/bwinter_sc81 source config.sh`.

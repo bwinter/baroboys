@@ -96,15 +96,12 @@
 - **Add Valheim (game 4)** — Linux-native dedicated server, simplest possible addition.
   Slot in after Project Zomboid. Follow `docs/adding-a-game.md`.
 
-  **config.sh sketch:**
+  **env-vars.sh sketch:**
   ```bash
-  GAME_NAME="valheim"
-  GAME_DIR="$HOME/baroboys/Valheim"
-  STEAM_APP_ID=896660
-  STEAM_PLATFORM=""          # native Linux
+  export STEAM_APP_ID=896660
+  export STEAM_PLATFORM="linux"
   WORLD_NAME="BaroboysWorld" # or whatever
-  SAVE_FILE_PATH="$HOME/.config/unity3d/IronGate/Valheim/worlds_local"
-  LOG_FILE="/var/log/baroboys/valheim.log"
+  export SAVE_FILE_PATH="$HOME/.config/unity3d/IronGate/Valheim/worlds_local"
   ```
   **Differences from Barotrauma/VRising:**
   - Config is command-line args to the server binary, not a template file. Password and world
@@ -114,7 +111,7 @@
     in `shutdown.sh` the same way Barotrauma stages `.save` files.
   - Ports: UDP 2456-2458 — add to Terraform firewall rules.
   - No Wine, no Xvfb — simpler Packer layer than VRising.
-  Also add `valheim` to `Makefile` `GAMES` list and create `packer/game/valheim.pkr.hcl`.
+  Also add `Valheim` to `Makefile` `GAMES` list and create `packer/game/Valheim.pkr.hcl`.
 
 - **Adding a new game — checklist** — formalized as [`docs/adding-a-game.md`](docs/adding-a-game.md).
   Update that doc after each new game is added.
@@ -122,13 +119,13 @@
 ### Medium-term
 
 - **DRY shared game script logic + game manifest** — after config centralization, the game scripts
-  are strikingly similar in structure. Patterns duplicated verbatim across both games:
-  - `shutdown.sh`: git stash→pull→push→pop sequence (identical)
-  - `setup.sh`: log dir creation + unit installation (identical structure, different hardcoded names)
-  - `src/refresh.sh`: SteamCMD warm call + app_update + git checkout canonical files (structurally identical)
-  Blocked by the 3-game rule. When a 3rd game is added, extract shared logic into
-  `scripts/services/lib/` (e.g. `git_sync.sh`, `steamcmd_update.sh`). Scripts would source lib
-  functions and supply game-specific args from config.sh. Current duplication is acceptable.
+  are strikingly similar in structure. The refactor already extracted setup into
+  `scripts/shared/setup.sh` (SteamCMD, git checkout, systemd template installation) and
+  `scripts/shared/env-vars.sh` (global vars). Remaining duplication:
+  - `shutdown.sh`: git stash→pull→push→pop sequence (identical between games)
+  Blocked by the 3-game rule. When a 3rd game is added, extract the git sync sequence into
+  `scripts/shared/` (e.g. `git_sync.sh`). shutdown.sh would source it and supply
+  game-specific save staging from env-vars.sh. Current duplication is acceptable.
 
   **Game manifest (bridges bash → Python):** the same 3rd-game trigger should produce a
   machine-readable manifest written by `setup.sh` and consumed by `admin_server.py`. Today

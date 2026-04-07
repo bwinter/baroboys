@@ -104,6 +104,15 @@ as Packer var files — Packer and Terraform share the same variable definitions
 
 ---
 
+## Game Config Convention — `SETUP:` markers
+
+Game-specific scripts use `# SETUP: REQUIRED` and `# SETUP: OPTIONAL` comments to mark
+lines that need attention when adding a new game. `grep SETUP scripts/services/` shows
+every decision point. `REQUIRED` = must be set for the game to work. `OPTIONAL` = only
+needed if the game uses that feature (e.g. save decompression, RCON, template interpolation).
+
+---
+
 ## systemd Unit Conventions
 
 All units follow a two-phase pattern per component: `*-setup.service` (oneshot, root, installs/configures) → `*-startup.service` (long-running or oneshot, bwinter_sc81, runs the thing). Always pair `Requires=X` with `After=X` — `Requires` alone does not enforce order. For shutdown services use `Wants=` not `Requires=` for network dependency (network may stop during poweroff sequence). Unit changes require image rebuild to take effect.

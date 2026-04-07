@@ -97,7 +97,10 @@ removing it makes builds flaky. The comment in the file explains this.
 
 **Wine prefix is initialised at build time, not runtime.**
 `wineboot` + `winetricks` run during Packer's VRising image build. The prefix lives in the baked
-image. At VM boot, Wine just uses the pre-built prefix in `~/.wine64`.
+image. At VM boot, Wine just uses the pre-built prefix (`~/.wine` default).
+`WINEARCH=win64` is set at both build and runtime to force a pure 64-bit prefix —
+without it, Wine creates a wow64 prefix whose 32-bit subsystem fragments address
+space enough to fail VRising's ~6GB allocation.
 
 **`Type=simple` does not mean "ready".**
 `systemctl start` returns as soon as the process forks — before it accepts connections. Use
