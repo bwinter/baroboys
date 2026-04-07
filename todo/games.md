@@ -1,11 +1,16 @@
+# Games
+
+Adding new game servers. Each game needs just two files (`env-vars.sh` + `post-checkout.sh`)
+plus a Packer template and Terraform tfvars/firewall. See `docs/adding-a-game.md`.
+
+## Next up
+
 - **Add Project Zomboid (game 3)** — Java-based dedicated server. Steam App ID 380870.
   `LAUNCH_CMD="java -jar PZServer.jar"`. Config: `~/Zomboid/Server/servertest.ini` (plain ini,
   password set directly). Saves: `~/Zomboid/Saves/Multiplayer/<server-name>/`. Ports: UDP/TCP
   16261, UDP 16262. Shutdown: SIGTERM. New dep: `scripts/dependencies/java/apt_java.sh` (openjdk).
-  Follow `docs/adding-a-game.md` — just env-vars.sh + post-checkout.sh + Packer template.
 
 - **Add Valheim (game 4)** — Linux-native, simplest possible addition.
-  Follow `docs/adding-a-game.md`.
 
   **env-vars.sh sketch:**
   ```bash
@@ -18,7 +23,9 @@
   export SAVE_FILE_PREFIX="BaroboysWorld"
   export SAVE_FILE_PATH="$HOME/.config/unity3d/IronGate/Valheim/worlds_local"
   ```
-  Ports: UDP 2456–2458. No Wine, no Xvfb, no RCON. Minimal post-checkout.sh (just password fetch).
+  Ports: UDP 2456-2458. No Wine, no Xvfb, no RCON. Minimal post-checkout.sh (just password fetch).
+
+## Process
 
 - **Template-based game onboarding** — turn adding-a-game.md into a fillable template.
   Start by creating filled-in markdown versions for VRising and Barotrauma (we know all the

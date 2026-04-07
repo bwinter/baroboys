@@ -1,9 +1,17 @@
+# Admin & UX
+
+The admin panel, friend-facing UX, and the plumbing that connects bash config to Python.
+
+## Friend access
+
 - **Start VM via bookmarkable URL** — Cloud Run + IAP serving a start button + status page.
   See git history for full design sketch (removed from TODO for brevity — the design is stable,
   just needs implementation).
 
-- **Admin panel: multi-game awareness** — log dropdown shows all games regardless of which is
-  running. Filter to active game:
+## Admin panel
+
+- **Multi-game awareness** — log dropdown shows all games regardless of which is running.
+  Filter to active game:
   1. ✅ `active-game` written at Packer build time (in each game's .pkr.hcl)
   2. In `idle_check.sh`: read `active-game`, add `"game": "<name>"` to status.json
   3. Admin panel JS: read `status.json.game`, hide non-matching log entries
