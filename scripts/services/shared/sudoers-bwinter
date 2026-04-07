@@ -1,2 +1,9 @@
 bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart game-shutdown.service
 bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/systemctl poweroff
+bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/systemctl daemon-reload
+bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/systemctl enable *
+bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/install -m 644 * /etc/systemd/system/
+bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/mkdir -p /var/log/baroboys/
+bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/chown bwinter_sc81\:bwinter_sc81 /var/log/baroboys/*
+bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/chmod 700 /var/log/baroboys/
+bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/chmod 644 /var/log/baroboys/*
