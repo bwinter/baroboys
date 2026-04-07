@@ -83,9 +83,10 @@ targets. `game-startup.service` auto-starts via `WantedBy=multi-user.target`; `g
 hooks into `poweroff/halt/reboot` targets.
 
 Per-game variables (`machine_name`, `game_image`, `game_tags`) are set in `terraform/game/<Game>.tfvars`.
-`terraform apply` is game-specific: `make terraform-apply-VRising` or `make terraform-apply-Barotrauma`.
+Each game gets its own Terraform workspace (lowercase game name), so `terraform apply` for one
+game doesn't affect another. `make terraform-apply-VRising` or `make terraform-destroy-Barotrauma`.
 
-State is stored remotely in `gs://tf-state-baroboys/terraform/prod`.
+State is stored remotely in `gs://tf-state-baroboys/terraform/prod`, with per-game workspace isolation.
 
 ---
 
