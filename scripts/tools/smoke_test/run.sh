@@ -159,13 +159,13 @@ else
     fail "Admin panel /api/ping failed (response: $ping_response)"
 fi
 
-# VRisingServer.log via admin panel — exercises symlink + log_map + nginx end-to-end
+# VRisingServer.log via admin panel — exercises log_map + nginx end-to-end
 if [[ "$GAME" == "VRising" ]]; then
     log_lines=$(curl -sf --max-time 10 \
         -u "Hex:${GAME_PASSWORD}" \
         "${ADMIN_URL}/api/logs/VRisingServer.log" 2>/dev/null | wc -l || echo 0)
     if (( log_lines >= 5 )); then
-        pass "VRisingServer.log endpoint returned ${log_lines} lines (symlink + log_map verified)"
+        pass "VRisingServer.log endpoint returned ${log_lines} lines (log_map verified)"
     else
         fail "VRisingServer.log endpoint returned ${log_lines} lines — expected ≥5"
     fi

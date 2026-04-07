@@ -75,13 +75,14 @@ one source of truth for project, zone, machine type, and image names.
 
 `terraform/main.tf` provisions:
 - One GCE VM per game (`vrising` or `barotrauma`, `n2-custom-2-6144`, `us-west1-c`, 20GB pd-ssd)
-- Firewall rules for Barotrauma (TCP+UDP 27015, 27016), VRising (TCP+UDP 9876, 9877), and admin panel (TCP 8080)
+- Firewall rules per game (targeted via network tags from `game_tags` variable):
+  Barotrauma (TCP+UDP 27015, 27016), VRising (TCP+UDP 9876, 9877), admin panel (TCP 8080, all VMs)
 
 No metadata startup/shutdown scripts — game lifecycle is entirely owned by systemd `[Install]`
 targets. `game-startup.service` auto-starts via `WantedBy=multi-user.target`; `game-shutdown.service`
 hooks into `poweroff/halt/reboot` targets.
 
-The `game_image` variable selects which Packer image the VM boots from.
+Per-game variables (`machine_name`, `game_image`, `game_tags`) are set in `terraform/game/<Game>.tfvars`.
 `terraform apply` is game-specific: `make terraform-apply-VRising` or `make terraform-apply-Barotrauma`.
 
 State is stored remotely in `gs://tf-state-baroboys/terraform/prod`.
@@ -272,7 +273,7 @@ The VM's `.gitconfig` identifies commits as `Game Server <bwinter.sc81+gameserve
 | On-VM Flask install | `/opt/baroboys/admin_server.py` |
 | On-VM static files | `/opt/baroboys/static/` |
 | On-VM logs | `/var/log/baroboys/` |
-| On-VM game logs (VRising) | `/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log` (symlinked from `/var/log/baroboys/VRisingServer.log`) |
+| On-VM game logs (VRising) | `/var/log/baroboys/VRisingServer.log` (direct via `-logFile` flag) |
 | Active game file | `/etc/baroboys/active-game` |
 | E2E smoke test | `scripts/tools/smoke_test/` — `make smoke-test-VRising` |
 
