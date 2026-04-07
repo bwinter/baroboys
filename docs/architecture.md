@@ -206,13 +206,15 @@ Consumed by the admin panel (log dropdown filtering) and `smoke_test/vm_checks.s
 
 ## Secrets
 
-Three secrets live in GCP Secret Manager. All fetched at runtime by the `vm-runtime` SA.
+Two secrets live in GCP Secret Manager. All fetched at runtime by the `vm-runtime` SA.
 
 | Secret | Used by | Purpose |
 |--------|---------|---------|
 | `github-deploy-key` | `refresh_repo.sh` at every boot | ECDSA SSH key to clone/pull private repo |
-| `server-password` | `<game>/refresh.sh` (setup) and `vrising/shutdown.sh` | Game join password + RCON password (injected via `envsubst`) |
-| `nginx-htpasswd` | `nginx/refresh.sh` (setup) | Basic auth credentials for admin panel |
+| `server-password` | `post-checkout.sh` (game config), `env-vars.sh` (RCON), `nginx/refresh.sh` (htpasswd) | Single password for game join, admin panel, and RCON |
+
+Admin panel auth: `nginx/refresh.sh` derives htpasswd format from `server-password` at boot
+using `htpasswd -cbB` — no separate `nginx-htpasswd` secret needed.
 
 The `.template` pattern exists because the game writes to `StreamingAssets/Settings/`
 at runtime, so that directory is gitignored — files there can't be committed directly. Templates
