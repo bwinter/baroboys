@@ -6,7 +6,7 @@ After=network-online.target refresh-repo-startup.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-WorkingDirectory=/root
+WorkingDirectory=/home/bwinter_sc81
 User=bwinter_sc81
 
 ExecStart=/home/bwinter_sc81/baroboys/scripts/services/idle_check/refresh.sh
