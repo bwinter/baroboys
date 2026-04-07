@@ -10,7 +10,7 @@
   "ServerFps": 60,
   "LowerFPSWhenEmpty": true,
   "LowerFPSWhenEmptyValue": 5,
-  "SaveName": "${SAVE_FILE_NAME}",
+  "SaveName": "${SAVE_NAME}",
   "Password": "${GAME_PASSWORD}",
   "Secure": true,
   "ListOnSteam": true,

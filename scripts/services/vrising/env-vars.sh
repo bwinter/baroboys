@@ -10,13 +10,14 @@ export STEAM_PLATFORM="windows" # SETUP: OPTIONAL
 export PROCESS_NAME="VRisingServer.exe" # SETUP: REQUIRED — process name for pgrep/pkill
 export GAME_ENGINE_LOG="/var/log/baroboys/VRisingServer.log" # SETUP: REQUIRED — where the game writes real output
 
-SAVE_FILE_NAME="AutoSave_*" # SETUP: OPTIONAL
-export SAVE_FILE_PATH="$GAME_DIR/Data/Saves/v4/$SAVE_FILE_NAME" # SETUP: OPTIONAL
+export SAVE_NAME="TestWorld-1" # SETUP: OPTIONAL — save/world identity; feeds config template and path
+export SAVE_FILE_PREFIX="AutoSave_" # SETUP: OPTIONAL — filename prefix for save compression
+export SAVE_FILE_PATH="$GAME_DIR/Data/Saves/v4/$SAVE_NAME" # SETUP: OPTIONAL — directory containing saves
 
 RCON_PASSWORD="$(gcloud secrets versions access latest --secret=rcon-password)" # SETUP: run `make update-rcon-password` to create this secret
 export RCON_PASSWORD
 export RCON_PORT=25575
-export RCON_SHUTDOWN_DELAY_MINUTES=1
+export SHUTDOWN_DELAY_MINUTES=1
 
 # Checkout
 # SETUP: OPTIONAL

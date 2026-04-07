@@ -3,7 +3,7 @@
 # SETUP: OPTIONAL
 GAME_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)"
 export GAME_PASSWORD
-export SAVE_FILE_NAME
+export SAVE_NAME
 export RCON_PASSWORD
 export RCON_PORT
 
@@ -24,20 +24,20 @@ envsubst < "$GAME_JSON_IN" > "$GAME_JSON_OUT"
 
 # SETUP: OPTIONAL --- DECOMPRESS SAVE
 
-# -d: save directory exists; -n: SAVE_FILE_NAME is non-empty.
-if [[ -d "$SAVE_FILE_PATH" && -n "$SAVE_FILE_NAME" ]]; then
+# -d: save directory exists; -n: SAVE_FILE_PREFIX is non-empty.
+if [[ -d "$SAVE_FILE_PATH" && -n "$SAVE_FILE_PREFIX" ]]; then
   # Ensure save is uncompressed
 
   pushd "$SAVE_FILE_PATH" || exit 1
     # Find the latest uncompressed save (if any).
     # sed -E: extended regex; captures numeric suffix, prepends it so sort can rank by number.
     # sort -n: numeric sort; tail -n1: keep only the last (highest-numbered) result.
-    latest_save=$(find . -name "$SAVE_FILE_NAME*.save" | sed -E "s/.*$SAVE_FILE_NAME([0-9]+)\.save/\1 \0/" | sort -n | tail -n1)
+    latest_save=$(find . -name "$SAVE_FILE_PREFIX*.save" | sed -E "s/.*$SAVE_FILE_PREFIX([0-9]+)\.save/\1 \0/" | sort -n | tail -n1)
     save_num=$(cut -d' ' -f1 <<< "$latest_save") # -d' ': split on space; -f1: first field (the number); <<<: here-string
     save_file=$(cut -d' ' -f2 <<< "$latest_save") # -f2: second field (the filename)
 
     # Find the latest compressed save.
-    latest_gz=$(find . -name "$SAVE_FILE_NAME*.save.gz" | sed -E "s/.*$SAVE_FILE_NAME([0-9]+)\.save\.gz/\1 \0/" | sort -n | tail -n1)
+    latest_gz=$(find . -name "$SAVE_FILE_PREFIX*.save.gz" | sed -E "s/.*$SAVE_FILE_PREFIX([0-9]+)\.save\.gz/\1 \0/" | sort -n | tail -n1)
     gz_num=$(cut -d' ' -f1 <<< "$latest_gz") # first field: the number
     gz_file=$(cut -d' ' -f2 <<< "$latest_gz") # second field: the filename
 

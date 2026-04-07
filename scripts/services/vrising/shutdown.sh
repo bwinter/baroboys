@@ -24,8 +24,8 @@ fi
 cd "$GAME_DIR"
 
 # SETUP: OPTIONAL === Compress latest autosave ===
-latest_file=$(find "$SAVE_FILE_PATH" -type f -name "$SAVE_FILE_NAME*.save" |
-  sed -E "s/.*$SAVE_FILE_NAME([0-9]+)\.save/\1 \0/" |
+latest_file=$(find "$SAVE_FILE_PATH" -type f -name "$SAVE_FILE_PREFIX*.save" |
+  sed -E "s/.*$SAVE_FILE_PREFIX([0-9]+)\.save/\1 \0/" |
   sort -n | tail -n1 | cut -d' ' -f2)
 
 if [[ -z "$latest_file" ]]; then
@@ -38,7 +38,7 @@ gzip -kf "$latest_file"
 gzipped_file="${latest_file}.gz"
 
 # === Clean up Git tracking for older autosaves ===
-for tracked in $(git ls-files "$SAVE_FILE_PATH/$SAVE_FILE_NAME*.save.gz"); do
+for tracked in $(git ls-files "$SAVE_FILE_PATH/$SAVE_FILE_PREFIX*.save.gz"); do
   [[ "$tracked" != "$gzipped_file" ]] && git rm --cached "$tracked"
 done
 

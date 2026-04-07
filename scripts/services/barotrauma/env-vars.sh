@@ -10,8 +10,9 @@ export STEAM_PLATFORM="linux" # SETUP: OPTIONAL — "linux" for native; "windows
 export PROCESS_NAME="DedicatedServer" # SETUP: REQUIRED — process name for pgrep/pkill
 export GAME_ENGINE_LOG="$LOG_FILE" # SETUP: REQUIRED — where the game writes real output
 
-# SAVE_FILE_NAME="[REPLACE]" # SETUP: OPTIONAL
-SAVE_FILE_PATH="$GAME_DIR/Multiplayer" # SETUP: OPTIONAL
+# SAVE_NAME="" # SETUP: OPTIONAL — save/world identity (if game uses one in config)
+# SAVE_FILE_PREFIX="" # SETUP: OPTIONAL — filename prefix for save compression
+export SAVE_FILE_PATH="$GAME_DIR/Multiplayer" # SETUP: OPTIONAL — directory containing saves
 
 WORKSHOP_MODS_PATH="$GAME_DIR/WorkshopMods" # SETUP: OPTIONAL
 
