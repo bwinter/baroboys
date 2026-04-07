@@ -1,24 +1,27 @@
-# 🔐 GCP Service Account (SA)
+# GCP Service Account — Reference
 
-This project uses this service account:
+> Created by `make bootstrap` (`bootstrap/bootstrap_vm_runtime_sa.sh`).
 
-| Service Account  | Purpose                                                                    |
-|------------------|----------------------------------------------------------------------------|
-| `vm-runtime@...` | VM uses this to clone repo, update server passwords, and send logs/metrics |
+## Service Account
 
----
+| Name | Email | Purpose |
+|------|-------|---------|
+| `vm-runtime` | `vm-runtime@europan-world.iam.gserviceaccount.com` | VM runtime identity — secrets, logs, metrics |
 
-Creates `vm-runtime@...` and assigns roles needed for VM runtime operations.
+## IAM Roles
 
-Bootstrap script assigns:
+| Role | Purpose |
+|------|---------|
+| `roles/logging.logWriter` | Ops Agent log forwarding |
+| `roles/monitoring.metricWriter` | Ops Agent metrics |
+| `roles/secretmanager.secretAccessor` | Read all secrets (server-password, github-deploy-key) |
 
-* `roles/logging.logWriter`
-* `roles/monitoring.metricWriter`
-* `roles/secretmanager.secretAccessor`
+## APIs Enabled
 
----
+`compute`, `secretmanager`, `logging`, `monitoring`, `osconfig` — all enabled by the bootstrap script.
 
-## 🧠 Notes
+## Notes
 
-* Bootstrap scripts are **idempotent** — safe to re-run
-* SA has minimal runtime permissions
+* Bootstrap is **idempotent** — safe to re-run
+* SA has minimal runtime permissions — no write access to secrets, no compute admin
+* To grant someone VM start/stop access: `make iam-add-admin`
