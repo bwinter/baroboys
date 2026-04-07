@@ -23,7 +23,7 @@ ln -sf "$SAVE_FILE_PATH" "$HOME/.local/share/Daedalic Entertainment GmbH/Barotra
 ln -sf "$WORKSHOP_MODS_PATH" "$HOME/.local/share/Daedalic Entertainment GmbH/Barotrauma"
 
 # Checkout
-# SETUP: OPTIONAL
+# SETUP: REQUIRED — git checkout uses this; empty value would checkout everything
 CLIENT_PERMISSIONS_XML="Data/clientpermissions.xml"
 PERMISSION_PRESETS_XML="Data/permissionpresets_player.xml"
 

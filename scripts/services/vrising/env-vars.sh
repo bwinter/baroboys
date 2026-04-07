@@ -20,7 +20,7 @@ export RCON_PORT=25575
 export SHUTDOWN_DELAY_MINUTES=1
 
 # Checkout
-# SETUP: OPTIONAL
+# SETUP: REQUIRED — git checkout uses this; empty value would checkout everything
 ADMIN_LIST="Data/Settings/adminlist.txt"
 BAN_LIST="Data/Settings/banlist.txt"
 
