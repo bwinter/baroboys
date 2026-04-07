@@ -8,7 +8,6 @@ source "$(dirname "${BASH_SOURCE[0]}")/../shared/env-vars.sh"
 export STEAM_APP_ID=1829350 # SETUP: REQUIRED
 export STEAM_PLATFORM="windows" # SETUP: OPTIONAL
 export PROCESS_NAME="VRisingServer.exe" # SETUP: REQUIRED — process name for pgrep/pkill
-export GAME_ENGINE_LOG="$LOG_FILE" # SETUP: REQUIRED — where the game writes real output
 
 export SAVE_NAME="TestWorld-1" # SETUP: OPTIONAL — save/world identity; feeds config template and path
 export SAVE_FILE_PREFIX="AutoSave_" # SETUP: OPTIONAL — filename prefix for save compression
@@ -35,4 +34,4 @@ export WINESERVER=/opt/wine-stable/bin/wineserver
 export WINEDEBUG=-all  # suppress verbose wine debug noise from logs
 
 # SETUP: REQUIRED — the command that launches the game server
-export LAUNCH_CMD="/opt/wine-stable/bin/wine VRisingServer.exe -persistentDataPath ./Data -logFile $GAME_ENGINE_LOG"
+export LAUNCH_CMD="/opt/wine-stable/bin/wine VRisingServer.exe -persistentDataPath ./Data -logFile $LOG_FILE"

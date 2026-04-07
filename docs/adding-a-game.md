@@ -38,7 +38,6 @@ Use `grep SETUP scripts/services/` to see every decision point across existing g
 export STEAM_APP_ID=<id>
 export STEAM_PLATFORM="linux"     # "linux" for native; "windows" for Wine
 export PROCESS_NAME="<binary>"    # process name for pgrep/pkill
-export GAME_ENGINE_LOG="$LOG_FILE" # where the game writes real output (or a separate path)
 export LAUNCH_CMD="./<binary>"    # the command that starts the game server
 
 # SETUP: OPTIONAL — saves
@@ -162,7 +161,7 @@ Auto-generates: `make build-game-<Game>`, `make terraform-apply-<Game>`, `make s
 Two places in `tail_log()`:
 
 **`log_map` dict:** add entries for `<game>_startup.log`, `<game>_shutdown.log`, `<game>.log`.
-All game engine output goes to `game.log` via `GAME_ENGINE_LOG=$LOG_FILE`.
+All game output goes to `game.log` (`$LOG_FILE` from shared env-vars).
 
 **`links` list:** add corresponding entries for the admin panel directory page.
 

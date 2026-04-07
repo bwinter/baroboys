@@ -67,17 +67,8 @@ for svc in game-refresh.service game-startup.service admin-server-startup.servic
     fi
 done
 
-# --- Game engine log (written directly by -logFile flag) ---
-echo "--- Log Files ---"
-if [[ -n "$GAME_ENGINE_LOG" && "$GAME_ENGINE_LOG" != "$LOG_FILE" ]]; then
-    if [[ -f "$GAME_ENGINE_LOG" ]]; then
-        check "game engine log" "pass" "$GAME_ENGINE_LOG exists"
-    else
-        check "game engine log" "fail" "$GAME_ENGINE_LOG not found — game may not have started"
-    fi
-fi
-
 # --- LOG_FILE exists and has content ---
+echo "--- Log Files ---"
 if [[ -s "$LOG_FILE" ]]; then
     check "$GAME_NAME launcher log" "pass" "$LOG_FILE (non-empty)"
 else
@@ -120,10 +111,10 @@ fi
 
 # --- Game log has real content (not just boot stub) ---
 echo "--- Log Content ---"
-if [[ -f "$GAME_ENGINE_LOG" ]] && [[ $(wc -l < "$GAME_ENGINE_LOG") -gt 5 ]]; then
-    check "game log has content" "pass" "$(wc -l < "$GAME_ENGINE_LOG") lines"
+if [[ -f "$LOG_FILE" ]] && [[ $(wc -l < "$LOG_FILE") -gt 5 ]]; then
+    check "game log has content" "pass" "$(wc -l < "$LOG_FILE") lines"
 else
-    check "game log has content" "fail" "$GAME_ENGINE_LOG missing or fewer than 5 lines — game may not have started"
+    check "game log has content" "fail" "$LOG_FILE missing or fewer than 5 lines — game may not have started"
 fi
 
 # --- Print results ---

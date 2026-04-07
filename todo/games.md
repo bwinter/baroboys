@@ -17,7 +17,6 @@ plus a Packer template and Terraform tfvars/firewall. See `docs/adding-a-game.md
   export STEAM_APP_ID=896660
   export STEAM_PLATFORM="linux"
   export PROCESS_NAME="valheim_server.x86_64"
-  export GAME_ENGINE_LOG="$LOG_FILE"
   export LAUNCH_CMD="./valheim_server.x86_64 -name BaroboysServer -world BaroboysWorld -password \$GAME_PASSWORD -port 2456"
   export SAVE_NAME="BaroboysWorld"
   export SAVE_FILE_PREFIX="BaroboysWorld"
