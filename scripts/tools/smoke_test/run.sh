@@ -23,7 +23,7 @@ done
 
 PROJECT="${PROJECT:-europan-world}"
 ZONE="${ZONE:-us-west1-c}"
-MACHINE_NAME="${MACHINE_NAME:-europa}"
+MACHINE_NAME="${MACHINE_NAME:-$(echo "$GAME" | tr '[:upper:]' '[:lower:]')}"
 GCP_USER="${GCP_USER:-bwinter_sc81}"
 
 exit_code=0

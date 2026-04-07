@@ -8,7 +8,8 @@ if [[ -z "$PROJECT" ]]; then
   exit 1
 fi
 
-REMOTE="${REMOTE:-bwinter_sc81@europa}"
+# Requires MACHINE_NAME (e.g. via: GAME=VRising make admin-logs)
+REMOTE="${REMOTE:-bwinter_sc81@${MACHINE_NAME:?MACHINE_NAME not set}}"
 ZONE="${ZONE:-us-west1-c}"
 SERVICE="admin-server-startup.service"
 LOG_LINES=200
