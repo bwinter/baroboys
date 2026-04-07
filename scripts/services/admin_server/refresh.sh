@@ -29,9 +29,6 @@ for file in /root/baroboys/scripts/services/admin_server/src/templates/*.html; d
 done
 chmod 644 /opt/baroboys/templates/*.html
 
-# bwinter_sc81 owns /opt/baroboys — Flask reads from here, idle_check writes status.json here
-chown -R bwinter_sc81:bwinter_sc81 /opt/baroboys
-
 # Sudoers is installed at Packer build time (admin layer), not here.
 # Add bwinter_sc81 to adm group so Flask can read nginx logs
 usermod -aG adm bwinter_sc81

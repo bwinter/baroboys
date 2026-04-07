@@ -56,6 +56,10 @@ build {
       "echo '🔧 Install sudoers for bwinter_sc81'",
       "/usr/bin/sudo install -m 440 -o root -g root /root/baroboys/scripts/services/shared/sudoers-bwinter /etc/sudoers.d/bwinter",
 
+      "echo '🔧 Create /opt/baroboys owned by bwinter_sc81'",
+      "/usr/bin/sudo mkdir -p /opt/baroboys",
+      "/usr/bin/sudo chown -R bwinter_sc81:bwinter_sc81 /opt/baroboys",
+
       "echo '🔧 Install Nginx'",
       "/usr/bin/sudo /root/baroboys/scripts/dependencies/nginx/apt_nginx.sh",
 
