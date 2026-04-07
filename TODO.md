@@ -4,189 +4,108 @@
 
 ## Active
 
+### Immediate
+
+- **Verify refactor on live VM** — the shared script architecture (setup.sh, startup.sh,
+  shutdown.sh, install-game-units.sh) has not been tested on a live VM. Build and smoke test
+  both existing games before adding new ones:
+  1. `make build-game-VRising` + `make smoke-test-VRising`
+  2. `make build-game-Barotrauma` + `make smoke-test-Barotrauma`
+
+- **Create RCON password secret** — `make update-rcon-password` (VRising needs this before boot).
+
 ### Near-term
 
-- **CI — Tier 1: syntax/validate** — `packer validate` and `terraform validate` on every push.
-  GitHub Actions workflow on `push`/`pull_request`. For Packer: replicate `packer/build.sh`'s
-  var-file setup (copy `shared.tfvars` + `variables.tf` to `packer/tmp/`), then
-  `packer init && packer validate` for each template. For Terraform: `terraform init -backend=false`
-  + `terraform validate`. No GCP credentials needed.
+- **Add Project Zomboid (game 3)** — Java-based dedicated server. Steam App ID 380870.
+  `LAUNCH_CMD="java -jar PZServer.jar"`. Config: `~/Zomboid/Server/servertest.ini` (plain ini,
+  password set directly). Saves: `~/Zomboid/Saves/Multiplayer/<server-name>/`. Ports: UDP/TCP
+  16261, UDP 16262. Shutdown: SIGTERM. New dep: `scripts/dependencies/java/apt_java.sh` (openjdk).
+  Follow `docs/adding-a-game.md` — just env-vars.sh + post-checkout.sh + Packer template.
 
-- **CI — Tier 2: design/contract tests** — enforce design decisions invisible until a real build
-  or boot fails. Implement as a bash test script or GitHub Actions steps (no GCP access needed):
-  - `shellcheck` on all scripts in `scripts/` — catches unquoted vars, bad substitutions, etc.
-  - Verify systemd unit pairing: every `*-setup.service` has a matching `*-startup.service`.
-    **Exception:** `idle-check-setup.service` pairs with `idle-check.timer` + `idle-check.service`
-    (no `-startup` unit — timer pattern). Test must whitelist this.
-  - Verify `Requires=` is always accompanied by `After=` (grep unit files for violations)
-  - Verify all `.template` files contain only known `${VAR}` placeholders (no typos)
-  - Verify `WORLD_NAME` is exported in `VRising/post-checkout.sh` before `envsubst`
-  - Verify `shutdown.sh` files contain the stash-pull-push-pop sequence in order
-  - Verify every game dir has a `post-checkout.sh` exporting `GAME_NAME`
-  - Verify `.envrc` and `shared.tfvars` agree on project/zone/region/machine_name
-
-- **CI — Tier 3: E2E smoke test on push** — run the full smoke test in serial on every push to
-  `main`. GitHub Actions with GCP service account credentials; calls `scripts/tools/smoke_test/run.sh`
-  directly (not `make` — interactive). Upload logs as job artifacts so they're reviewable in the
-  Actions UI without SSH. Long-term: diff game server logs across runs to surface things worth
-  implementing (unexpected warnings, latency patterns, missing features visible in output).
-
-- **Smoke test both games** — `make smoke-test-VRising` is exercised; `make smoke-test-Barotrauma`
-  exists via the Makefile pattern but hasn't been run end-to-end. Verify it passes clean. Likely
-  surfaces small config or path differences — that's the point.
-
-- **Smoke test: verify game is joinable** — extend `vm_checks.sh` to check that the game port
-  is actually accepting connections, not just that the process is running. A live process with a
-  closed port is a false positive. Implementation: `nc -z -w5 <host> <port>` (TCP) or a UDP probe.
-  Ports from `post-checkout.sh`: Barotrauma 27015, VRising 9876. This is the closest approximation to
-  "did the game actually start?" without a real game client.
-
-- **Manual QA: connect and play both games** — provision each game server, actually launch the
-  game client, and verify a real connection works end-to-end. Port checks confirm the server is
-  listening; only a human client confirms the game is actually playable. Do this after the
-  smoke test items above pass cleanly.
-
-- **Start VM via bookmarkable URL** — `make start` works from a terminal but friends need GCP
-  console access today. Goal: a URL anyone with a Google account (that you've approved) can click
-  to start the VM — with boot progress feedback — no GCP console, no CLI.
-
-  **Design:** Cloud Run + Identity-Aware Proxy (IAP) serving a small HTML page
-  - Cloud Run: Python/Flask service (same tech as `admin_server.py`). Serves its own HTML
-    page with start button + status display + boot log. Serverless, free tier covers all usage.
-  - IAP wraps the URL with Google auth. Friends click → Google login → page loads. No GCP
-    console access, no service account keys.
-  - Permissions: Cloud Run SA gets `compute.instances.start` + `compute.instances.get` +
-    `compute.instances.getSerialPortOutput` scoped to the one VM. Friends get
-    `roles/iap.httpsResourceAccessor` — one `gcloud` command to grant or revoke per person.
-  - Terraform provisions Cloud Run + IAP config + SA + IAM bindings. New `make iam-add-friend`
-    target (parallel to existing `make iam-add-admin`).
-
-  **Page features:**
-  1. **Start button** — POST `/api/start` → Compute API `instances.start`, returns immediately
-  2. **Status badge** — polls `/api/status` (Compute API `instances.get`) every 3s, shows
-     `TERMINATED` / `STAGING` / `RUNNING`. Auto-stops polling on `RUNNING`.
-  3. **Boot log** — polls `/api/serial` (Compute API `instances.getSerialPortOutput`) every 3s.
-     This is the VM's serial console — shows systemd boot sequence, game setup output, errors —
-     the same view as GCP console "Serial port" tab. Answers "is it stuck?" without SSH.
-     Stop tailing when status reaches `RUNNING`.
-
-  Polling at 3s is simpler than SSE (server-sent events) with equivalent UX for a ~5 min boot.
-  SSE is a future refinement if the polling feel is too janky.
-
-  **Note:** Cloud Run costs $0 at idle — the one justified exception to the no-always-on-infra
-  rule. The alternative (GCP console access for friends) has worse security and worse UX.
-
-
-- **Admin panel: multi-game awareness** — log dropdown always shows both Barotrauma and VRising
-  entries regardless of which game is running. Should filter to the active game.
-  Approach (simplified by post-checkout.sh groundwork):
-  1. ✅ In each `<game>/setup.sh`: write `/etc/baroboys/active-game` — done (889a2ed).
-     Also consumed by `smoke_test/vm_checks.sh` for self-identification.
-  2. In `idle_check.sh`: read `/etc/baroboys/active-game` and add `"game": "<name>"` to status.json
-  3. Admin panel JS: read `status.json.game` on load, hide log entries whose name prefix doesn't match
-
-- **Add Project Zomboid (game 3)** — Java-based dedicated server; different from all current games.
-  Steam App ID 380870. No Wine, no native binary — runs `java -jar PZServer.jar`. Config is a
-  plain `.ini` file (`~/Zomboid/Server/servertest.ini`) — no `.in` template needed, password set
-  directly in ini. Saves in `~/Zomboid/Saves/Multiplayer/<server-name>/`. Ports: UDP/TCP 16261,
-  UDP 16262. Shutdown via SIGTERM (no RCON required). Java means `openjdk` as a new apt dependency
-  (add to `scripts/dependencies/`). Triggers the 3-game DRY rule — `lib/` extraction happens
-  alongside this. Follow `docs/adding-a-game.md`; update that doc as you go.
-
-- **Add Valheim (game 4)** — Linux-native dedicated server, simplest possible addition.
-  Slot in after Project Zomboid. Follow `docs/adding-a-game.md`.
+- **Add Valheim (game 4)** — Linux-native, simplest possible addition.
+  Follow `docs/adding-a-game.md`.
 
   **env-vars.sh sketch:**
   ```bash
   export STEAM_APP_ID=896660
   export STEAM_PLATFORM="linux"
-  WORLD_NAME="BaroboysWorld" # or whatever
+  export PROCESS_NAME="valheim_server.x86_64"
+  export GAME_ENGINE_LOG="$LOG_FILE"
+  export LAUNCH_CMD="./valheim_server.x86_64 -name BaroboysServer -world BaroboysWorld -password \$GAME_PASSWORD -port 2456"
+  export SAVE_NAME="BaroboysWorld"
+  export SAVE_FILE_PREFIX="BaroboysWorld"
   export SAVE_FILE_PATH="$HOME/.config/unity3d/IronGate/Valheim/worlds_local"
   ```
-  **Differences from Barotrauma/VRising:**
-  - Config is command-line args to the server binary, not a template file. Password and world
-    name passed as `-password` and `-world` flags in `startup.sh`. No `.in` template needed.
-  - Shutdown: `SIGTERM` to `valheim_server.x86_64` — no RCON, no mcrcon dependency.
-  - Saves: live in `$HOME/.config/unity3d/IronGate/Valheim/worlds_local/` — need to stage these
-    in `shutdown.sh` the same way Barotrauma stages `.save` files.
-  - Ports: UDP 2456-2458 — add to Terraform firewall rules.
-  - No Wine, no Xvfb — simpler Packer layer than VRising.
-  Also add `Valheim` to `Makefile` `GAMES` list and create `packer/game/Valheim.pkr.hcl`.
+  Ports: UDP 2456–2458. No Wine, no Xvfb, no RCON. Minimal post-checkout.sh (just password fetch).
 
-- **Adding a new game — checklist** — formalized as [`docs/adding-a-game.md`](docs/adding-a-game.md).
-  Update that doc after each new game is added.
+- **Template-based game onboarding** — turn adding-a-game.md into a fillable template.
+  Start by creating filled-in markdown versions for VRising and Barotrauma (we know all the
+  details). Derive the blank template from those. Then fill it out for Zomboid as the test.
+  Markdown works well: prose around code blocks lets you annotate "research the save path here"
+  alongside the actual config. The filled template becomes the source for generating env-vars.sh
+  and post-checkout.sh.
+
+- **Smoke test both games** — `make smoke-test-VRising` is exercised; `make smoke-test-Barotrauma`
+  hasn't been run end-to-end. Verify it passes clean.
+
+- **Smoke test: verify game is joinable** — extend `vm_checks.sh` to check that the game port
+  is accepting connections, not just that the process is running. `nc -z -w5 <host> <port>`.
+
+- **Manual QA: connect and play both games** — provision, launch game client, verify real
+  connection. Port checks confirm listening; only a human client confirms playable.
+
+- **CI — Tier 1: syntax/validate** — `packer validate` and `terraform validate` on every push.
+  GitHub Actions on `push`/`pull_request`. No GCP credentials needed.
+
+- **CI — Tier 2: design/contract tests** — enforce design decisions:
+  - `shellcheck` on all scripts in `scripts/`
+  - Verify systemd unit template pairing (setup/startup/shutdown)
+  - Verify `Requires=` always accompanied by `After=` in unit templates
+  - Verify all `.template` files contain only known `${VAR}` placeholders
+  - Verify `SAVE_NAME` is exported in VRising/post-checkout.sh before `envsubst`
+  - Verify `shared/shutdown.sh` contains the stash-pull-push-pop sequence
+  - Verify every game dir has an `env-vars.sh` with all `SETUP: REQUIRED` vars set
+  - Verify `.envrc` and `shared.tfvars` agree on project/zone/region/machine_name
+
+- **CI — Tier 3: E2E smoke test on push** — full smoke test on every push to `main`.
+  GitHub Actions with GCP SA credentials. Upload logs as job artifacts.
+
+- **Start VM via bookmarkable URL** — Cloud Run + IAP serving a start button + status page.
+  See git history for full design sketch (removed from TODO for brevity — the design is stable,
+  just needs implementation).
+
+- **Admin panel: multi-game awareness** — log dropdown shows all games regardless of which is
+  running. Filter to active game:
+  1. ✅ `active-game` written at Packer build time (in each game's .pkr.hcl)
+  2. In `idle_check.sh`: read `active-game`, add `"game": "<name>"` to status.json
+  3. Admin panel JS: read `status.json.game`, hide non-matching log entries
 
 ### Medium-term
 
-- **DRY shared game script logic + game manifest** — after config centralization, the game scripts
-  are strikingly similar in structure. The refactor already extracted setup into
-  `scripts/shared/setup.sh` (SteamCMD, git checkout, systemd template installation) and
-  `scripts/shared/env-vars.sh` (global vars). Remaining duplication:
-  - `shutdown.sh`: git stash→pull→push→pop sequence (identical between games)
-  Blocked by the 3-game rule. When a 3rd game is added, extract the git sync sequence into
-  `scripts/shared/` (e.g. `git_sync.sh`). shutdown.sh would source it and supply
-  game-specific save staging from env-vars.sh. Current duplication is acceptable.
+- **Game manifest (bridges bash → Python)** — a JSON manifest at `/etc/baroboys/manifest.json`
+  written by shared/setup.sh, consumed by admin_server.py. Replaces hardcoded log paths in Python
+  with config derived from env-vars.sh. Unlocks multi-game awareness without a separate mechanism.
 
-  **Game manifest (bridges bash → Python):** the same 3rd-game trigger should produce a
-  machine-readable manifest written by `setup.sh` and consumed by `admin_server.py`. Today
-  `admin_server.py` hardcodes every log path — the bash-side canonical definitions live in
-  systemd `StandardOutput=` lines and `post-checkout.sh:LOG_FILE`, but Python can't source them.
-  A JSON manifest at `/etc/baroboys/manifest.json` closes the gap:
-  ```json
-  {
-    "game_name": "VRising",
-    "log_dir": "/var/log/baroboys",
-    "game_log": "/home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log"
-  }
-  ```
-  `setup.sh` writes it (running as root, can `HOME=/home/bwinter_sc81 source post-checkout.sh`);
-  `admin_server.py` reads it on startup and derives `{game}_startup.log`, `{game}_shutdown.log`,
-  `{game}.log` from `game_name` + `log_dir`, using `game_log` for the special game-engine log.
-  This also unlocks multi-game awareness (see near-term item) without a separate mechanism —
-  admin_server.py already has everything it needs from the manifest.
+- **Save files to GCS** — reduce repo bloat. `gsutil cp` instead of git commit. Trade-off:
+  loses "Git as backup" simplicity.
 
-- **Save files to GCS** — saves currently live in Git (growing binary history). Moving to a GCS
-  bucket would reduce repo bloat, allow multiple save slots, and simplify shutdown (gsutil cp
-  instead of git commit). `vm-runtime` SA already has cloud-platform scope. Trade-off: loses the
-  "Git as backup" simplicity.
-
-
-- **Refactor games into subdir** — move `Barotrauma/` and `VRising/` under `games/`. Mostly
-  straightforward: GAME_DIR in post-checkout.sh is the only per-game change for startup/shutdown/refresh
-  scripts (all paths derive from it). Also requires:
-  - Packer templates: update `game_image` family name references in `terraform/game/*.tfvars`
-  - `setup.sh` files: hardcoded script path references (e.g. the path passed to `sudo -u bwinter_sc81`)
-    would need updating — these don't derive from GAME_DIR since they're script paths, not game data paths
-  Low overall risk; the data dir move is the bulk of it.
+- **Refactor games into subdir** — move `Barotrauma/` and `VRising/` under `games/`.
+  GAME_DIR change cascades automatically (all paths derive from it). Low risk.
 
 ---
 
 ## Future / Big Ideas
 
-These are interesting but not current priority. Logged so they aren't forgotten.
+These are interesting but not current priority.
 
-- `/wrap` slash command skill — formalize the session wrap protocol as a Claude Code skill
-  so memory updates run automatically on demand
-- `/cold-boot` slash command skill — formalize `~/.claude/cold-boot-protocol.md` as an
-  invocable skill usable in any repo; assesses CLAUDE.md, memory files, settings, and hooks
-  for warm boot quality; asks about goals, proposes and applies changes with approval
-- **devbox dev environment** — pins terraform, packer, gcloud, python3, bash 4, nginx, java via
-  Nix-backed devbox. `devbox init`, `devbox add terraform packer google-cloud-sdk python3 bash
-  nginx jdk`, wire into `.envrc`. Bootstrap (macOS): `xcode-select --install` → Nix → devbox.
-  Caveat: nixpkgs gcloud disables component manager (read-only /nix/store/). Python/venv needs
-  rebuilding inside devbox shell. Do not use on VM (apt + Packer stays). Learning/demo item —
-  not a current pain point.
+- **devbox dev environment** — pins terraform, packer, gcloud, python3 via Nix-backed devbox.
+  Learning/demo item — not a current pain point.
 - Nix for environment management (replace/augment direnv)
-- Claude API integration — AI-assisted ops from the admin console
-- Productize game management — web UI for picking/loading games, adding new titles; would
-  require a formal game manifest (post-checkout.sh is the seed of this), dependency declaration per
-  game (apt packages, SteamCMD app ID, Wine yes/no), and likely a metadata-driven setup pipeline
-  rather than per-game bash scripts. Nix per-game derivations are a natural fit here.
+- Claude API integration — AI-assisted ops from admin console
+- Productize game management — web UI for picking/loading games; metadata-driven setup pipeline
 - React frontend for admin panel
 - Go for backend services
-- Kubernetes for service orchestration
-- Additional games: Project Zomboid (near-term, see above), Valheim (near-term, see above), Rails app, others
-- GraphQL API
+- Additional games beyond Zomboid/Valheim
 
 ---
 
