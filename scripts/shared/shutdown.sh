@@ -32,34 +32,17 @@ fi
 cd "$GAME_DIR"
 
 # === Stage saves for commit ===
-# If there are numbered save files (e.g. AutoSave_1.save), compress the latest
-# and track only the .gz. Otherwise, git-add matching files directly.
+# Compress all save files matching the prefix, git-add the .gz versions.
+# Same path for all games — no branching on save format.
 if [[ -n "${SAVE_FILE_PREFIX:-}" && -d "${SAVE_FILE_PATH:-}" ]]; then
-  latest_numbered=$(find "$SAVE_FILE_PATH" -maxdepth 1 -type f -name "${SAVE_FILE_PREFIX}[0-9]*.save" 2>/dev/null | head -1)
+  # Compress all matching non-gz files
+  find "$SAVE_FILE_PATH" -maxdepth 1 -name "${SAVE_FILE_PREFIX}*" -type f ! -name "*.gz" -exec gzip -kf {} \;
 
-  if [[ -n "$latest_numbered" ]]; then
-    # Numbered saves: compress the latest one, clean old .gz from git
-    latest_file=$(find "$SAVE_FILE_PATH" -type f -name "$SAVE_FILE_PREFIX*.save" |
-      sed -E "s/.*${SAVE_FILE_PREFIX}([0-9]+)\.save/\1 \0/" |
-      sort -n | tail -n1 | cut -d' ' -f2)
-
-    if [[ -n "$latest_file" ]]; then
-      echo "🗜 Compressing latest save: $latest_file"
-      gzip -kf "$latest_file"
-      gzipped_file="${latest_file}.gz"
-
-      for tracked in $(git ls-files "$SAVE_FILE_PATH/$SAVE_FILE_PREFIX*.save.gz"); do
-        [[ "$tracked" != "$gzipped_file" ]] && git rm --cached "$tracked"
-      done
-
-      git add "$gzipped_file"
-    else
-      echo "⚠️ No uncompressed .save file found"
-    fi
-  else
-    # Non-numbered saves: add matching files directly
-    git add "$SAVE_FILE_PATH/$SAVE_FILE_PREFIX"*
-  fi
+  # Remove old .gz from git tracking, then add current ones
+  for tracked in $(git ls-files "$SAVE_FILE_PATH/${SAVE_FILE_PREFIX}*.gz"); do
+    git rm --cached "$tracked" 2>/dev/null || true
+  done
+  git add "$SAVE_FILE_PATH/${SAVE_FILE_PREFIX}"*.gz
 fi
 
 git commit -m "Auto-save before shutdown $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "Nothing to commit"
