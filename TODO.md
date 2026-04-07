@@ -19,7 +19,7 @@
     **Exception:** `idle-check-setup.service` pairs with `idle-check.timer` + `idle-check.service`
     (no `-startup` unit — timer pattern). Test must whitelist this.
   - Verify `Requires=` is always accompanied by `After=` (grep unit files for violations)
-  - Verify all `.json.in` templates contain only known `${VAR}` placeholders (no typos)
+  - Verify all `.template` files contain only known `${VAR}` placeholders (no typos)
   - Verify `WORLD_NAME` is exported in `VRising/config.sh` before `envsubst`
   - Verify `shutdown.sh` files contain the stash-pull-push-pop sequence in order
   - Verify every game dir has a `config.sh` exporting `GAME_NAME`
