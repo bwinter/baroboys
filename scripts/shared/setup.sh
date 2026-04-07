@@ -34,5 +34,12 @@ git checkout -- $CHECKOUT_LIST
 # shellcheck source=scripts/services/$GAME_NAME/config.sh
 source "$(dirname "${BASH_SOURCE[0]}")/../$GAME_NAME/config.sh"
 
+# === Decompress saves ===
+# Decompress all .gz saves matching the prefix. Without -f, gunzip skips files
+# that already exist — protecting uncommitted saves from being overwritten.
+if [[ -d "${SAVE_FILE_PATH:-}" && -n "${SAVE_FILE_PREFIX:-}" ]]; then
+  find "$SAVE_FILE_PATH" -maxdepth 1 -name "${SAVE_FILE_PREFIX}*.gz" -exec gunzip -k {} \; 2>/dev/null || true
+fi
+
 # Systemd unit installation is handled separately by install-game-units.sh
 # (runs as root at Packer build time only — units are baked into the image).
