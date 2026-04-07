@@ -39,7 +39,9 @@ source "$(dirname "${BASH_SOURCE[0]}")/../$GAME_NAME/env-vars.sh"
 
 # Restore canonical server configs
 cd "$GAME_DIR"
-git checkout -- "$CHECKOUT_LIST"
+# Intentional word splitting — CHECKOUT_LIST is space-separated paths.
+# shellcheck disable=SC2086
+git checkout -- $CHECKOUT_LIST
 
 # shellcheck source=scripts/services/$GAME_NAME/config.sh
 source "$(dirname "${BASH_SOURCE[0]}")/../$GAME_NAME/config.sh"

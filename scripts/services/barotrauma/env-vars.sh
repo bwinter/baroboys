@@ -5,8 +5,8 @@ source "$(dirname "${BASH_SOURCE[0]}")/../shared/env-vars.sh"
 # Barotrauma game-specific configuration.
 
 # Steam
-STEAM_APP_ID=1026340 # SETUP: REQUIRED
-STEAM_PLATFORM="linux" # SETUP: OPTIONAL — "linux" for native; "windows" for Wine games
+export STEAM_APP_ID=1026340 # SETUP: REQUIRED
+export STEAM_PLATFORM="linux" # SETUP: OPTIONAL — "linux" for native; "windows" for Wine games
 
 # SAVE_FILE_NAME="[REPLACE]" # SETUP: OPTIONAL
 SAVE_FILE_PATH="$GAME_DIR/Multiplayer" # SETUP: OPTIONAL
@@ -27,6 +27,4 @@ PERMISSION_PRESETS_XML="Data/permissionpresets_player.xml"
 CLIENT_PERMISSIONS_XML="$GAME_DIR/$CLIENT_PERMISSIONS_XML"
 PERMISSION_PRESETS_XML="$GAME_DIR/$PERMISSION_PRESETS_XML"
 
-CHECKOUT_LIST= \
-  "$CLIENT_PERMISSIONS_XML" \
-  "$PERMISSION_PRESETS_XML"
+export CHECKOUT_LIST="$CLIENT_PERMISSIONS_XML $PERMISSION_PRESETS_XML"
