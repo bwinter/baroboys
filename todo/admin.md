@@ -17,5 +17,5 @@ The admin panel, friend-facing UX, and the plumbing that connects bash config to
   3. Admin panel JS: read `status.json.game`, hide non-matching log entries
 
 - **Game manifest (bridges bash → Python)** — a JSON manifest at `/etc/baroboys/manifest.json`
-  written by shared/setup.sh, consumed by admin_server.py. Replaces hardcoded log paths in Python
+  written by shared/refresh.sh, consumed by admin_server.py. Replaces hardcoded log paths in Python
   with config derived from env-vars.sh. Unlocks multi-game awareness without a separate mechanism.

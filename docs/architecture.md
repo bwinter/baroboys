@@ -114,7 +114,7 @@ network-online.target
               │           ExecStartPost= polls /tmp/.X11-unix/X0 — blocks until display is live
               │
               └── game-setup.service           (oneshot, bwinter_sc81)
-                    Calls scripts/services/shared/setup.sh:
+                    Calls scripts/services/shared/refresh.sh:
                     - Updates game files via SteamCMD
                     - Fetches GAME_PASSWORD from Secret Manager
                     - Runs envsubst on server config template
@@ -192,7 +192,7 @@ nginx log read access. No other elevated permissions.
 
 Status JSON fields: `timestamp_utc`, `cpu_percent`, `mem_percent`, `idle_flag_set`, `idle_since`, `idle_duration_minutes`
 
-`/etc/baroboys/active-game` contains the running game name (written by `setup.sh` at boot).
+`/etc/baroboys/active-game` contains the running game name (written by `refresh.sh` at boot).
 Consumed by the admin panel (log dropdown filtering) and `smoke_test/vm_checks.sh` (self-identification).
 
 ---
@@ -256,7 +256,7 @@ The VM's `.gitconfig` identifies commits as `Game Server <bwinter.sc81+gameserve
 | Terraform config | `terraform/` |
 | Bootstrap scripts | `bootstrap/` |
 | Systemd unit files | `scripts/services/<component>/` |
-| Shared game lifecycle | `scripts/services/shared/` (setup.sh, startup.sh, shutdown.sh, env-vars.sh) |
+| Shared game lifecycle | `scripts/services/shared/` (refresh.sh, startup.sh, shutdown.sh, env-vars.sh) |
 | Per-game config | `scripts/services/<Game>/` (env-vars.sh, post-checkout.sh) |
 | Dependency installers | `scripts/dependencies/` |
 | Admin Flask app | `scripts/services/admin_server/src/admin_server.py` |

@@ -76,7 +76,7 @@ add an installer script:
 scripts/dependencies/<dep>/apt_<dep>.sh
 ```
 
-Call it from the Packer template (step 5) before `shared/setup.sh`.
+Call it from the Packer template (step 5) before `shared/refresh.sh`.
 
 Examples: VRising needed Wine + Xvfb. Project Zomboid needs openjdk.
 Barotrauma and Valheim (Linux native) need nothing extra.
@@ -108,7 +108,7 @@ The provisioner steps are:
 1. Clone repo + refresh_repo
 2. (Optional) Install dependencies — add steps here for Wine, Java, etc.
 3. Write active-game: `echo <Game> > /etc/baroboys/active-game`
-4. Run `shared/setup.sh` as bwinter_sc81 (SteamCMD + config)
+4. Run `shared/refresh.sh` as bwinter_sc81 (SteamCMD + config)
 5. Run `shared/install-game-units.sh` as root (systemd units)
 6. Autoremove
 

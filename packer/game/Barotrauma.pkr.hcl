@@ -58,7 +58,7 @@ build {
       "/usr/bin/sudo echo Barotrauma > /etc/baroboys/active-game",
 
       "echo '🔧 Install Barotrauma'",
-      "/usr/bin/sudo -u bwinter_sc81 -H -- /root/baroboys/scripts/services/shared/setup.sh",
+      "/usr/bin/sudo -u bwinter_sc81 -H -- /root/baroboys/scripts/services/shared/refresh.sh",
 
       "echo '🔧 Install game systemd units'",
       "/usr/bin/sudo /root/baroboys/scripts/services/shared/install-game-units.sh",

@@ -9,7 +9,7 @@ RemainAfterExit=yes
 WorkingDirectory=${GAME_DIR}
 User=bwinter_sc81
 
-ExecStart=${BAROBOYS}/scripts/services/shared/setup.sh
+ExecStart=${BAROBOYS}/scripts/services/shared/refresh.sh
 ExecStartPost=/usr/bin/bash -c 'echo "✅ game-setup.service launched at $(date)" >> ${LOG_FILE}'
 ExecStopPost=/usr/bin/bash -c 'echo "🛑 game-setup.service finished shutdown at $(date)" >> ${LOG_FILE}'
 
