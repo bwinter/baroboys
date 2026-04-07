@@ -21,13 +21,13 @@ do today vs. what needs infrastructure.
 
 - **Tier 2: design/contract tests** — enforce design decisions:
   - `shellcheck` on all scripts in `scripts/`
-  - Verify systemd unit template pairing (setup/startup/shutdown)
+  - Verify systemd unit template pairing (refresh/startup/shutdown)
   - Verify `Requires=` always accompanied by `After=` in unit templates
   - Verify all `.template` files contain only known `${VAR}` placeholders
   - Verify `SAVE_NAME` is exported in VRising/post-checkout.sh before `envsubst`
   - Verify `shared/shutdown.sh` contains the stash-pull-push-pop sequence
   - Verify every game dir has an `env-vars.sh` with all `SETUP: REQUIRED` vars set
-  - Verify `.envrc` and `shared.tfvars` agree on project/zone/region/machine_name
+  - Verify `.envrc` and `shared.tfvars` agree on project/zone/region
 
 - **Tier 3: E2E smoke test on push** — full smoke test on every push to `main`.
   GitHub Actions with GCP SA credentials. Upload logs as job artifacts.
