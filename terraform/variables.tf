@@ -73,6 +73,11 @@ variable "admin_image" {
   default     = "admin"
 }
 
+variable "game_tags" {
+  description = "Network tags for firewall targeting — set per-game in terraform/game/<Game>.tfvars"
+  type        = list(string)
+}
+
 variable "game_image" {
   description = "Image used for the Game layer — set per-game in terraform/game/<Game>.tfvars"
   type        = string

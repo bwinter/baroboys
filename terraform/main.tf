@@ -12,8 +12,8 @@ terraform {
 // ─────────────────────────────────────────────────────────────────────────────
 
 provider "google" {
-  project     = var.project
-  region      = var.region
+  project = var.project
+  region  = var.region
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -43,11 +43,7 @@ resource "google_compute_instance" "default" {
   machine_type = var.machine_type
   zone         = var.zone
 
-  tags = [
-    "barotrauma-server",
-    "vrising-server",
-    "admin-server"
-  ]
+  tags = concat(var.game_tags, ["admin"])
 
   labels = {
     project     = "baroboys"
@@ -96,7 +92,7 @@ resource "google_compute_firewall" "barotrauma_ports" {
 
   source_ranges = ["0.0.0.0/0"]
 
-  target_tags = ["barotrauma-server"]
+  target_tags = ["barotrauma"]
 }
 
 resource "google_compute_firewall" "barotrauma_ports_udp" {
@@ -113,7 +109,7 @@ resource "google_compute_firewall" "barotrauma_ports_udp" {
 
   source_ranges = ["0.0.0.0/0"]
 
-  target_tags = ["barotrauma-server"]
+  target_tags = ["barotrauma"]
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -134,7 +130,7 @@ resource "google_compute_firewall" "vrising_ports" {
 
   source_ranges = ["0.0.0.0/0"]
 
-  target_tags = ["vrising-server"]
+  target_tags = ["vrising"]
 }
 
 resource "google_compute_firewall" "vrising_ports_udp" {
@@ -151,7 +147,7 @@ resource "google_compute_firewall" "vrising_ports_udp" {
 
   source_ranges = ["0.0.0.0/0"]
 
-  target_tags = ["vrising-server"]
+  target_tags = ["vrising"]
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -171,5 +167,5 @@ resource "google_compute_firewall" "admin_server" {
   direction     = "INGRESS"
   priority      = 1000
   source_ranges = ["0.0.0.0/0"]
-  target_tags   = ["admin-server"]
+  target_tags   = ["admin"]
 }
