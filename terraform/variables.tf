@@ -65,17 +65,17 @@ variable "gcp_image_project" {
 variable "core_image" {
   description = "Image used for the base layer"
   type        = string
-  default     = "baroboys-core"
+  default     = "core"
 }
 
 variable "admin_image" {
   description = "Image used for the admin layer"
   type        = string
-  default     = "baroboys-admin"
+  default     = "admin"
 }
 
 variable "game_image" {
   description = "Image used for the Game layer"
   type        = string
-  default     = "baroboys-barotrauma"
+  default     = "barotrauma"
 }

@@ -95,8 +95,8 @@ make clean                     # delete old GCP images/disks/IPs
 Always build in this order (each bakes in the previous):
 
 ```
-debian-12 → baroboys-core → baroboys-admin → baroboys-barotrauma
-                                           └→ baroboys-vrising
+debian-12 → core → admin → barotrauma
+                        └→ vrising
 ```
 
 `packer/build.sh` copies `terraform/shared.tfvars` + `terraform/variables.tf` into `packer/tmp/`

@@ -52,10 +52,10 @@ Images are built in a strict hierarchy; each layer bakes in the one above it:
 
 ```
 debian-12 (upstream)
-  └── baroboys-core        packer/base/core.pkr.hcl
-        └── baroboys-admin       packer/base/admin.pkr.hcl
-              ├── baroboys-barotrauma  packer/game/Barotrauma.pkr.hcl
-              └── baroboys-vrising     packer/game/VRising.pkr.hcl
+  └── core             packer/base/core.pkr.hcl
+        └── admin            packer/base/admin.pkr.hcl
+              ├── barotrauma       packer/game/Barotrauma.pkr.hcl
+              └── vrising          packer/game/VRising.pkr.hcl
 ```
 
 | Layer | Adds |

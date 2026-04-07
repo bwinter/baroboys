@@ -1,2 +1,2 @@
-game_image   = "baroboys-barotrauma"
+game_image   = "barotrauma"
 machine_name = "barotrauma"

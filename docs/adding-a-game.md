@@ -101,7 +101,7 @@ Copy `packer/game/Barotrauma.pkr.hcl`. Make these substitutions:
 
 | Placeholder | Replace with |
 |-------------|-------------|
-| `baroboys-barotrauma` (source block, labels, build name) | `baroboys-<game>` |
+| `barotrauma` (source block, labels, build name) | `<game>` (lowercase) |
 | `Barotrauma` in `active-game` echo | `<Game>` |
 
 The provisioner steps are:

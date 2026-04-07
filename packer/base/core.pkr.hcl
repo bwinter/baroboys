@@ -9,7 +9,7 @@ packer {
   }
 }
 
-source "googlecompute" "baroboys-core" {
+source "googlecompute" "core" {
   project_id   = var.project
   zone         = var.zone
   machine_type = var.machine_type
@@ -30,13 +30,13 @@ source "googlecompute" "baroboys-core" {
   ssh_username = "packer"
 
   image_labels = {
-    role = "baroboys-core"
+    role = "core"
   }
 }
 
 build {
-  name = "baroboys-core-image"
-  sources = ["source.googlecompute.baroboys-core"]
+  name = "core-image"
+  sources = ["source.googlecompute.core"]
 
   provisioner "file" {
     source      = "refresh_repo.sh"

@@ -9,7 +9,7 @@ packer {
   }
 }
 
-source "googlecompute" "baroboys-barotrauma" {
+source "googlecompute" "barotrauma" {
   project_id   = var.project
   zone         = var.zone
   machine_type = var.machine_type
@@ -30,13 +30,13 @@ source "googlecompute" "baroboys-barotrauma" {
   ssh_username = "packer"
 
   image_labels = {
-    role = "baroboys-barotrauma"
+    role = "barotrauma"
   }
 }
 
 build {
-  name = "baroboys-barotrauma-image"
-  sources = ["source.googlecompute.baroboys-barotrauma"]
+  name = "barotrauma-image"
+  sources = ["source.googlecompute.barotrauma"]
 
   provisioner "file" {
     source      = "refresh_repo.sh"
