@@ -14,7 +14,7 @@ export SAVE_NAME="TestWorld-1" # SETUP: OPTIONAL — save/world identity; feeds 
 export SAVE_FILE_PREFIX="AutoSave_" # SETUP: OPTIONAL — filename prefix for save compression
 export SAVE_FILE_PATH="$GAME_DIR/Data/Saves/v4/$SAVE_NAME" # SETUP: OPTIONAL — directory containing saves
 
-RCON_PASSWORD="$(gcloud secrets versions access latest --secret=rcon-password)" # SETUP: run `make update-rcon-password` to create this secret
+RCON_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)" # SETUP: same secret as game join password
 export RCON_PASSWORD
 export RCON_PORT=25575
 export SHUTDOWN_DELAY_MINUTES=1

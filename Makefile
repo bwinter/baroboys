@@ -83,11 +83,11 @@ $(foreach game,$(GAMES),\
 # =======================
 # 🔑 Secrets
 # =======================
-.PHONY: update-password
+.PHONY: set-password
 
-update-password:
+set-password:
 	cd $(TOOLS_DIR) && \
-	./update_password.sh
+	./set_secret.sh
 
 
 # =======================
@@ -227,7 +227,7 @@ help:
 	@echo ""
 
 	@echo "🔑 Secrets:"
-	@echo "  make update-password                 - Update all passwords (game, admin, RCON)"
+	@echo "  make set-password                    - Set server password (game, admin, RCON)"
 	@echo ""
 
 	@echo "🔐 IAM:"

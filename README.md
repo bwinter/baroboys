@@ -78,7 +78,7 @@ make bootstrap
 Set the shared password for game servers, admin panel, and RCON:
 
 ```bash
-make update-password
+make set-password
 ```
 
 Create the GitHub deploy key so the VM can clone this repo:
