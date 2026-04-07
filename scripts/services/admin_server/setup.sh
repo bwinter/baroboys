@@ -24,9 +24,8 @@ chmod 644 /opt/baroboys/static/*
 
 # Jinja templates
 mkdir -p "/opt/baroboys/templates"
-for file in directory.html; do
-  cp "/root/baroboys/scripts/services/admin_server/src/templates/${file}" \
-     "/opt/baroboys/templates/${file}"
+for file in /root/baroboys/scripts/services/admin_server/src/templates/*.html; do
+  cp "$file" "/opt/baroboys/templates/"
 done
 chmod 644 /opt/baroboys/templates/*.html
 
