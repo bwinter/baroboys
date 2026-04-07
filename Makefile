@@ -5,11 +5,15 @@ SHELL := /bin/bash
 
 # Infrastructure — defer to .envrc (exported by direnv) when available.
 # Canonical source: .envrc for shell/Make; terraform/shared.tfvars for Terraform/Packer.
-# Variable names match .envrc exports so direnv injection works with ?=.
 PROJECT      ?= europan-world
 ZONE         ?= us-west1-c
-MACHINE_NAME ?= europa
 GCP_USER     ?= bwinter_sc81
+
+# VM-specific targets (ssh, start, stop, etc.) require GAME= on the command line.
+# Machine name is the game name lowercased (e.g. GAME=VRising → vrising).
+ifdef GAME
+  MACHINE_NAME := $(shell echo '$(GAME)' | tr '[:upper:]' '[:lower:]')
+endif
 
 # Games — extend this list when adding a new game.
 GAMES := Barotrauma VRising
@@ -116,6 +120,7 @@ iam-add-admin:
 REMOTE_STARTUP_SCRIPT  := sudo systemctl restart game-startup.service
 REMOTE_SHUTDOWN_SCRIPT := sudo systemctl restart game-shutdown.service
 
+# All targets below require: make <target> GAME=<Game> (e.g. make ssh GAME=VRising)
 .PHONY: start stop restart-game save-and-shutdown
 
 start:
@@ -254,16 +259,16 @@ help:
 	@echo "  make admin-url                - Print the live admin panel URL"
 	@echo ""
 
-	@echo "🎮 Game:"
-	@echo "  make start                    - Start the VM"
-	@echo "  make stop                     - Hard stop the VM (no save — use save-and-shutdown for graceful)"
-	@echo "  make restart-game             - Trigger remote restart of game service"
-	@echo "  make save-and-shutdown        - Graceful shutdown: save game state then power off"
+	@echo "🎮 Game (require GAME=<Game>):"
+	@echo "  make start GAME=VRising       - Start the VM"
+	@echo "  make stop GAME=VRising        - Hard stop the VM (no save — use save-and-shutdown for graceful)"
+	@echo "  make restart-game GAME=VRising - Trigger remote restart of game service"
+	@echo "  make save-and-shutdown GAME=VRising - Graceful shutdown: save game state then power off"
 	@echo ""
 
-	@echo "🔑 SSH Access:"
-	@echo "  make ssh                      - SSH into VM"
-	@echo "  make ssh-iap                  - SSH using IAP tunnel"
+	@echo "🔑 SSH Access (require GAME=<Game>):"
+	@echo "  make ssh GAME=VRising         - SSH into VM"
+	@echo "  make ssh-iap GAME=VRising     - SSH using IAP tunnel"
 	@echo ""
 
 	@echo "📦 Packer Builds:"
