@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Interpolate into Configs
 # SETUP: OPTIONAL
+GAME_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)"
 export GAME_PASSWORD
 export SAVE_FILE_NAME
 export RCON_PASSWORD

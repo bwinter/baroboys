@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Interpolate into Configs
 # SETUP: OPTIONAL:
-export GAME_PASSWORD # Game
+GAME_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)"
+export GAME_PASSWORD
 
 SERVER_SETTINGS_XML_IN="serversettings.xml.template"
 SERVER_SETTINGS_XML_OUT="serversettings.xml"

@@ -11,7 +11,7 @@ User=bwinter_sc81
 
 ExecStart=${BAROBOYS}/scripts/services/shared/setup.sh
 ExecStartPost=/usr/bin/bash -c 'echo "✅ game-setup.service launched at $(date)" >> ${LOG_FILE}'
-ExecStopPost=/usr/bin/bash -c 'echo "🛑 game-setupservice finished shutdown at $(date)" >> ${LOG_FILE}'
+ExecStopPost=/usr/bin/bash -c 'echo "🛑 game-setup.service finished shutdown at $(date)" >> ${LOG_FILE}'
 
 SuccessExitStatus=0
 KillMode=control-group
