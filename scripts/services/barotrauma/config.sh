@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Interpolate into Configs
 # SETUP: OPTIONAL:
 export GAME_PASSWORD # Game
