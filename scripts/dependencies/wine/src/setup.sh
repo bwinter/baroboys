@@ -8,8 +8,10 @@ echo "🧪 UID: $(id -u)"
 echo "🧪 HOME: $HOME"
 
 # Set wine env
+# WINEARCH=win64 creates a pure 64-bit prefix (no 32-bit subsystem). Without it,
+# Wine creates a "wow64" prefix whose 32-bit layer can fragment address space
+# enough to fail VRising's ~6GB allocation. Verified via alloc_test.c diagnostic.
 export WINEARCH=win64
-export WINEPREFIX=/home/bwinter_sc81/.wine64
 export WINE=/opt/wine-stable/bin/wine
 export WINESERVER=/opt/wine-stable/bin/wineserver
 export WINETRICKS_GUI=none

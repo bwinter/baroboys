@@ -97,7 +97,7 @@ wine --version || echo "${COLOR_YELLOW}⚠️ wine failed to report version${COL
 
 # ========== Wine Prefix Info ==========
 echo -e "\n${COLOR_BLUE}📁 Wine Prefix Info${COLOR_RESET}"
-WINEPREFIX="${WINEPREFIX:-/home/bwinter_sc81/.wine64}"
+WINEPREFIX="${WINEPREFIX:-$HOME/.wine}"
 echo "WINEPREFIX = $WINEPREFIX"
 
 if [[ ! -d "$WINEPREFIX" ]]; then
@@ -126,7 +126,7 @@ if [[ -n "$VRISING_PID" ]]; then
   echo "🔍 Highest mapping base address: $VRISING_TOP_ADDR"
 
   if [[ "$VRISING_TOP_ADDR" =~ ^[0-9a-fA-F]+$ ]]; then
-    ADDR_DEC=$(printf "%u\n" 0x$VRISING_TOP_ADDR 2>/dev/null || echo "0")
+    ADDR_DEC=$(printf "%u\n" "0x$VRISING_TOP_ADDR" 2>/dev/null || echo "0")
     echo -n "🧠 Address interpreted as decimal: $ADDR_DEC — "
     if [[ "$ADDR_DEC" -gt 4294967295 ]]; then
       echo "${COLOR_GREEN}✅ exceeds 0xFFFFFFFF — confirms 64-bit address space${COLOR_RESET}"
@@ -169,10 +169,10 @@ fi
 # ========== In-Process Alloc Test ==========
 echo -e "\n${COLOR_BLUE}🧪 In-Wine Allocation Test${COLOR_RESET}"
 ALLOC_OUTPUT=$(
-  cd "$(mktemp -d)"
+  cd "$(mktemp -d)" || exit 1
   cp "$ALLOC_TEST_SOURCE" .
   x86_64-w64-mingw32-gcc alloc_test.c -o alloc_test.exe
-  WINEDEBUG=-all WINEPREFIX="$WINEPREFIX" wine ./alloc_test.exe 2>&1 || true
+  WINEDEBUG=-all wine ./alloc_test.exe 2>&1 || true
 )
 echo "$ALLOC_OUTPUT"
 
