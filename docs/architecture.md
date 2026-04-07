@@ -97,18 +97,23 @@ auto-starts via `WantedBy=multi-user.target` — no metadata scripts involved:
 
 ```
 network-online.target
-  └── refresh-repo-refresh.service   (oneshot, root)
-        └── refresh-repo-startup.service  (oneshot, root)
-             Clones/pulls latest Git for both /root and /home/bwinter_sc81
+  ├── refresh-repo-refresh.service   (oneshot, root)
+  │     └── refresh-repo-startup.service  (oneshot, root)
+  │           Clones/pulls latest Git for both /root and /home/bwinter_sc81
+  │           Installs sudoers from repo (self-heal)
+  │
+  └── infrastructure-refresh.service (oneshot, root, parallel with refresh-repo)
+        Ensures /var/log/baroboys/ and /opt/baroboys ownership
+              ↓ (both refresh-repo-startup and infrastructure-refresh must complete)
               ├── admin-server-refresh.service   (oneshot, root)
               │     Installs nginx config, derives .htpasswd from server-password
               │     └── admin-server-startup.service  (simple, auto-restart)
               │           Flask app at /opt/baroboys/admin_server.py on :5000
               │
-              ├── idle-check-refresh.service     (oneshot, root)
+              ├── idle-check-refresh.service     (oneshot, bwinter_sc81)
               │     └── idle-check.timer  →  idle-check.service  (every 5 min)
               │
-              ├── xvfb-refresh.service           (VRising only, oneshot, root)
+              ├── xvfb-refresh.service           (VRising only, oneshot, bwinter_sc81)
               │     └── xvfb-startup.service   (simple, always restart)
               │           Xvfb :0 -screen 0 1024x768x24
               │           ExecStartPost= polls /tmp/.X11-unix/X0 — blocks until display is live
@@ -256,6 +261,7 @@ The VM's `.gitconfig` identifies commits as `Game Server <bwinter.sc81+gameserve
 | Terraform config | `terraform/` |
 | Bootstrap scripts | `bootstrap/` |
 | Systemd unit files | `scripts/services/<component>/` |
+| Infrastructure (OS dirs, perms) | `scripts/services/infrastructure/` |
 | Shared game lifecycle | `scripts/services/shared/` (refresh.sh, startup.sh, shutdown.sh, env-vars.sh) |
 | Per-game config | `scripts/services/<Game>/` (env-vars.sh, post-checkout.sh) |
 | Dependency installers | `scripts/dependencies/` |
