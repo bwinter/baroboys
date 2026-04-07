@@ -244,8 +244,8 @@ The repo serves as a game-state database. Saves are committed and pushed on ever
 
 | Game | Tracked paths | Format |
 |------|--------------|--------|
-| VRising | `VRising/Data/Saves/v4/$WORLD_NAME/AutoSave_*.save.gz` (`WORLD_NAME="TestWorld-1"` in `vrising/shutdown.sh`) | Only latest kept in Git (older removed with `git rm --cached`) |
-| Barotrauma | `Barotrauma/Multiplayer/*.save`, `*_CharacterData.xml` | All saves tracked |
+| VRising | `VRising/Data/Saves/v4/$SAVE_NAME/AutoSave_*.save.gz` (`SAVE_NAME="TestWorld-1"`) | Compressed .gz tracked; old .gz removed with `git rm --cached` |
+| Barotrauma | `Barotrauma/Multiplayer/Arkham Aquatics*.gz` | Compressed .gz tracked via `SAVE_FILE_PREFIX` |
 
 The VM's `.gitconfig` identifies commits as `Game Server <bwinter.sc81+gameserver@gmail.com>`.
 
