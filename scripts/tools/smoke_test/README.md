@@ -19,7 +19,7 @@ runs checks from both outside and inside, then tears down.
 - Admin panel reachable: nginx + auth + Flask proxy all working
 - `VRisingServer.log` served via admin panel (exercises symlink + log_map end-to-end)
 
-**Internal** (`vm_checks.sh` runs on the VM, sources `config.sh`):
+**Internal** (`vm_checks.sh` runs on the VM, sources `env-vars.sh`):
 - Self-identifies game from `/etc/baroboys/active-game` (written by `setup.sh` at boot)
 - All required systemd services active
 - VRisingServer.log symlink points to correct target (VRising only)

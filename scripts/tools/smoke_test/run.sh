@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# run.sh — E2E smoke test: provision VRising VM, probe it, tear down.
+# run.sh — E2E smoke test: provision game VM, probe it, tear down.
 # External checks run from local machine; internal checks run on the VM via SSH.
 # Converted from RUNBOOK.md (b601cef).
 #
@@ -47,7 +47,7 @@ teardown() {
     terraform destroy -auto-approve \
         -var-file="shared.tfvars" \
         -var-file="game/${GAME}.tfvars"
-    pass "7 resources destroyed"
+    pass "Terraform destroy complete"
 }
 trap teardown EXIT
 
@@ -114,6 +114,9 @@ for i in $(seq 1 30); do
     fi
     echo "  game-startup not yet seen, retrying in 15s..."
     sleep 15
+    if [[ "$i" -eq 30 ]]; then
+        fail "game-startup.service never appeared in serial output after 30 polls"
+    fi
 done
 
 # ============================================================
@@ -157,13 +160,15 @@ else
 fi
 
 # VRisingServer.log via admin panel — exercises symlink + log_map + nginx end-to-end
-log_lines=$(curl -sf --max-time 10 \
-    -u "Hex:${GAME_PASSWORD}" \
-    "${ADMIN_URL}/api/logs/VRisingServer.log" 2>/dev/null | wc -l || echo 0)
-if (( log_lines >= 5 )); then
-    pass "VRisingServer.log endpoint returned ${log_lines} lines (symlink + log_map verified)"
-else
-    fail "VRisingServer.log endpoint returned ${log_lines} lines — expected ≥5"
+if [[ "$GAME" == "VRising" ]]; then
+    log_lines=$(curl -sf --max-time 10 \
+        -u "Hex:${GAME_PASSWORD}" \
+        "${ADMIN_URL}/api/logs/VRisingServer.log" 2>/dev/null | wc -l || echo 0)
+    if (( log_lines >= 5 )); then
+        pass "VRisingServer.log endpoint returned ${log_lines} lines (symlink + log_map verified)"
+    else
+        fail "VRisingServer.log endpoint returned ${log_lines} lines — expected ≥5"
+    fi
 fi
 
 # ============================================================

@@ -14,10 +14,8 @@ if [[ ! -f "$ACTIVE_GAME_FILE" ]]; then
 fi
 GAME=$(cat "$ACTIVE_GAME_FILE")
 REPO_DIR="$HOME/baroboys"
-CONFIG="$REPO_DIR/scripts/services/$GAME/config.sh"
+ENV_VARS="$REPO_DIR/scripts/services/$GAME/env-vars.sh"
 
-PASS=0
-FAIL=1
 results=()
 exit_code=0
 
@@ -33,13 +31,13 @@ check() {
     fi
 }
 
-# --- Source game config ---
-if [[ ! -f "$CONFIG" ]]; then
-    echo "❌ config.sh not found: $CONFIG"
+# --- Source game env vars (chains to shared/env-vars.sh) ---
+if [[ ! -f "$ENV_VARS" ]]; then
+    echo "❌ env-vars.sh not found: $ENV_VARS"
     exit 1
 fi
 # shellcheck source=/dev/null
-source "$CONFIG"
+source "$ENV_VARS"
 
 echo "=== VM Smoke Test: $GAME_NAME ==="
 echo ""
