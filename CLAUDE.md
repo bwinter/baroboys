@@ -40,8 +40,9 @@ scripts/
     Barotrauma/     Game lifecycle
     VRising/        Game lifecycle
     shared/         Shared refresh/startup/shutdown/env-vars
+    infrastructure/ OS-level dirs and permissions (no repo dependency)
     idle_check/     CPU-based auto-shutdown
-    refresh_repo/   Git pull on boot
+    refresh_repo/   Git pull on boot + sudoers self-heal
     xvfb/           Virtual display (VRising/Wine)
   tools/            Local dev utilities (not deployed to VM)
 docs/               Documentation
