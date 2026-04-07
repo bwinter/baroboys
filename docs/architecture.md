@@ -101,7 +101,7 @@ network-online.target
         └── refresh-repo-startup.service  (oneshot, root)
              Clones/pulls latest Git for both /root and /home/bwinter_sc81
               ├── admin-server-setup.service   (oneshot, root)
-              │     Installs nginx config, fetches .htpasswd from Secret Manager
+              │     Installs nginx config, derives .htpasswd from server-password
               │     └── admin-server-startup.service  (simple, auto-restart)
               │           Flask app at /opt/baroboys/admin_server.py on :5000
               │
@@ -113,8 +113,8 @@ network-online.target
               │           Xvfb :0 -screen 0 1024x768x24
               │           ExecStartPost= polls /tmp/.X11-unix/X0 — blocks until display is live
               │
-              └── game-setup.service           (oneshot, root)
-                    Runs as root, calls scripts/services/<game>/setup.sh:
+              └── game-setup.service           (oneshot, bwinter_sc81)
+                    Calls scripts/services/shared/setup.sh:
                     - Updates game files via SteamCMD
                     - Fetches GAME_PASSWORD from Secret Manager
                     - Runs envsubst on server config template
@@ -134,25 +134,18 @@ Triggered by any of:
 - `idle_check.sh` after 30 min CPU below 5% → `systemctl restart game-shutdown.service`
 - VM stop event (poweroff/halt/reboot) → `game-shutdown.service` via `[Install] WantedBy=poweroff.target`
 
-`game-shutdown.service` runs `scripts/services/<game>/shutdown.sh` as `bwinter_sc81`.
+`game-shutdown.service` runs `scripts/services/shared/shutdown.sh` as `bwinter_sc81`.
 `TimeoutStartSec=600` — VRising takes up to ~390s to save and exit cleanly; 300s was too short.
 
-**VRising:**
-1. Fetch server password from Secret Manager
-2. `mcrcon` sends shutdown notice to players (RCON port 25575)
-3. Wait for `VRisingServer.exe` process to exit (up to 300s)
-4. `gzip -kf` the latest uncompressed autosave
-5. `git rm --cached` older `.save.gz` files, `git add` new one
-6. `git commit -m "Auto-save before shutdown <timestamp>"`
-7. `git stash push` → `git pull --rebase` → `git push origin main` → `git stash pop`
+**Unified shutdown flow (all games):**
+1. If RCON configured: `mcrcon` sends shutdown notice, waits for graceful exit
+2. Otherwise: `pkill $PROCESS_NAME`, wait for clean exit (up to 300s)
+3. Compress saves: `find $SAVE_FILE_PATH -name "$SAVE_FILE_PREFIX*" | gzip -kf`
+4. `git rm --cached` older `.gz` files, `git add` current ones
+5. `git commit -m "Auto-save before shutdown <timestamp>"`
+6. `git stash push` → `git pull --rebase` → `git push origin main` → `git stash pop`
    (stash is intentional — clears working-tree taint so rebase succeeds; do not simplify)
-8. `sudo systemctl poweroff`
-
-**Barotrauma:**
-1. `pkill DedicatedServer`, wait for clean exit
-2. `git add` all `*.save` and `*_CharacterData.xml` in `Barotrauma/Multiplayer/`
-3. `git commit` + rebase pull + push
-4. `sudo systemctl poweroff`
+7. `sudo systemctl poweroff`
 
 ---
 
@@ -162,7 +155,7 @@ Triggered by any of:
 External browser
       │
       ▼
-  :8080  Nginx  (basic auth via /etc/nginx/.htpasswd from Secret Manager)
+  :8080  Nginx  (basic auth via /etc/nginx/.htpasswd, derived from server-password at boot)
       │
       ├── /              →  /opt/baroboys/static/admin.html     (static)
       ├── /status.json   →  /opt/baroboys/static/status.json    (static, written by idle_check.sh)
@@ -181,7 +174,7 @@ The admin panel auto-refreshes status every 5 seconds and streams the selected l
 UI theme: Bootstrap 5 + Bootswatch Cyborg (dark). See `docs/admin/style_guide.md`.
 
 **Security model:** Flask runs as `bwinter_sc81` (not root). A sudoers drop-in
-(`/etc/sudoers.d/admin-server`, mode 440) grants the single permission needed:
+(`/etc/sudoers.d/bwinter`, mode 440) grants the single permission needed:
 `systemctl restart game-shutdown.service`. `bwinter_sc81` is in the `adm` group for
 nginx log read access. No other elevated permissions.
 
@@ -235,7 +228,7 @@ One service account: `vm-runtime@europan-world.iam.gserviceaccount.com`
 |------|---------|
 | `roles/logging.logWriter` | Ops Agent log forwarding |
 | `roles/monitoring.metricWriter` | Ops Agent metrics |
-| `roles/secretmanager.secretAccessor` | All three secrets above |
+| `roles/secretmanager.secretAccessor` | Both secrets above |
 
 To grant someone the ability to start/stop the VM via GCP Console: `make iam-add-admin`
 (grants `roles/compute.instanceAdmin.v1` to the provided email).
@@ -289,7 +282,7 @@ from the WineHQ apt repo during the VRising Packer image build.
 
 **The Wine prefix is initialised at build time, not runtime.** During the Packer build:
 1. Xvfb is started (display `:0`, 1024×768×24)
-2. `wineboot` initialises the prefix at `~/.wine64` (`WINEARCH=win64`, `WINEPREFIX=~/.wine64`)
+2. `wineboot` initialises the prefix at `~/.wine` (`WINEARCH=win64`; Wine 11 defaults to `~/.wine`)
 3. `winetricks corefonts tahoma` installs required fonts
 4. The completed prefix is baked into the image
 
