@@ -4,7 +4,7 @@ set -euxo pipefail
 # shellcheck source=scripts/services/shared/env-vars.sh
 source "$(dirname "${BASH_SOURCE[0]}")/env-vars.sh"
 
-# Mark setup start in log (dir already created by admin_server/setup.sh as root)
+# Mark refresh start in log (dir already created by admin_server/refresh.sh as root)
 touch "$LOG_FILE"
 printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "$LOG_FILE"
 

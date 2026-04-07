@@ -50,7 +50,7 @@ build {
       "/usr/bin/sudo /tmp/clone_repo.sh",
 
       "echo '🔧 Ensure both users have latest copy of repo'",
-      "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/setup.sh",
+      "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/refresh.sh",
       "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/startup.sh",
 
       "echo '🔧 Install Nginx'",
@@ -60,10 +60,10 @@ build {
       "/usr/bin/sudo /root/baroboys/scripts/dependencies/steam/apt_steam.sh",
 
       "echo '🔧 Install Admin Server'",
-      "/usr/bin/sudo /root/baroboys/scripts/services/admin_server/setup.sh",
+      "/usr/bin/sudo /root/baroboys/scripts/services/admin_server/refresh.sh",
 
       "echo '🔧 Install idle check service'",
-      "/usr/bin/sudo /root/baroboys/scripts/services/idle_check/setup.sh",
+      "/usr/bin/sudo /root/baroboys/scripts/services/idle_check/refresh.sh",
 
       "echo '🧹 Running autoremove'",
       "/usr/bin/sudo apt-get -yq autoremove"

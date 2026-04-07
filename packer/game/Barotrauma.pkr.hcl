@@ -50,7 +50,7 @@ build {
       "/usr/bin/sudo /tmp/clone_repo.sh",
 
       "echo '🔧 Ensure both users have latest copy of repo'",
-      "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/setup.sh",
+      "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/refresh.sh",
       "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/startup.sh",
 
       "echo '🔧 Record active game'",

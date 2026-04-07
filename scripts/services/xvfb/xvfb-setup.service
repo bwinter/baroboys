@@ -9,7 +9,7 @@ RemainAfterExit=yes
 WorkingDirectory=/root
 User=root
 
-ExecStart=/root/baroboys/scripts/services/xvfb/setup.sh
+ExecStart=/root/baroboys/scripts/services/xvfb/refresh.sh
 
 SuccessExitStatus=0
 KillMode=control-group

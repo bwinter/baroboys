@@ -9,7 +9,7 @@ RemainAfterExit=yes
 WorkingDirectory=/root
 User=root
 
-ExecStart=/root/baroboys/scripts/services/refresh_repo/setup.sh
+ExecStart=/root/baroboys/scripts/services/refresh_repo/refresh.sh
 
 SuccessExitStatus=0
 KillMode=control-group

@@ -50,14 +50,14 @@ build {
       "/usr/bin/sudo /tmp/clone_repo.sh",
 
       "echo '🔧 Ensure both users have latest copy of repo'",
-      "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/setup.sh",
+      "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/refresh.sh",
       "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/startup.sh",
 
       "echo '🔧 Install Xvfb'",
       "/usr/bin/sudo /root/baroboys/scripts/dependencies/xvfb/apt_xvfb.sh",
 
       "echo '🔧 Setup Xvfb'",
-      "/usr/bin/sudo /root/baroboys/scripts/services/xvfb/setup.sh",
+      "/usr/bin/sudo /root/baroboys/scripts/services/xvfb/refresh.sh",
 
       "echo '🔧 Install Wine'",
       "/usr/bin/sudo /root/baroboys/scripts/dependencies/wine/apt_wine.sh",
