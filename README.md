@@ -31,16 +31,11 @@ There is a small admin console for managing the server and accessing the logs. I
 
 ## 🚀 Getting Started
 
-1. **Configure GitHub SSH access** (once)
-    - See [docs/setup/github-deploy-key.md](./docs/setup/github-deploy-key.md)
-    - This ensures your VM can clone your repository.
+1. **First time?** See the [Cold Boot Guide](docs/setup/cold-boot.md) — prerequisites, ordering, troubleshooting.
 
-2. **Running Server**
-    - See [Step-by-Step Setup](#-step-by-step-setup) below.
+2. **Already set up?** See [Step-by-Step Setup](#-step-by-step-setup) below for the quick path.
 
-3. **Runtime Debugging**
-    - See [docs/usage/troubleshooting.md](./docs/usage/troubleshooting.md)
-    - Some basic commands you can run to debug install and runtime issues.
+3. **Runtime Debugging** — [docs/usage/troubleshooting.md](./docs/usage/troubleshooting.md)
 
 ---
 
