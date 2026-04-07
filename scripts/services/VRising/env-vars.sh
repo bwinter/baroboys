@@ -8,7 +8,7 @@ source "$(dirname "${BASH_SOURCE[0]}")/../shared/env-vars.sh"
 export STEAM_APP_ID=1829350 # SETUP: REQUIRED
 export STEAM_PLATFORM="windows" # SETUP: OPTIONAL
 export PROCESS_NAME="VRisingServer.exe" # SETUP: REQUIRED — process name for pgrep/pkill
-export GAME_ENGINE_LOG="/var/log/baroboys/VRisingServer.log" # SETUP: REQUIRED — where the game writes real output
+export GAME_ENGINE_LOG="$LOG_FILE" # SETUP: REQUIRED — where the game writes real output
 
 export SAVE_NAME="TestWorld-1" # SETUP: OPTIONAL — save/world identity; feeds config template and path
 export SAVE_FILE_PREFIX="AutoSave_" # SETUP: OPTIONAL — filename prefix for save compression

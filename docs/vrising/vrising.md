@@ -5,7 +5,7 @@
 ### 📜 VRising game log (in-game server events):
 
 ```bash
-tail -n 200 /home/bwinter_sc81/baroboys/VRising/logs/VRisingServer.log
+tail -n 200 /var/log/baroboys/game.log
 ```
 
 ---

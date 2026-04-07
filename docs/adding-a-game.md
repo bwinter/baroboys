@@ -162,7 +162,7 @@ Auto-generates: `make build-game-<Game>`, `make terraform-apply-<Game>`, `make s
 Two places in `tail_log()`:
 
 **`log_map` dict:** add entries for `<game>_startup.log`, `<game>_shutdown.log`, `<game>.log`.
-Add a game-engine log entry if the game writes a separate log (like VRising's VRisingServer.log).
+All game engine output goes to `game.log` via `GAME_ENGINE_LOG=$LOG_FILE`.
 
 **`links` list:** add corresponding entries for the admin panel directory page.
 

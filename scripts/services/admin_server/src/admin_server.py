@@ -56,9 +56,8 @@ def trigger_shutdown():
 @app.route("/logs/<name>")
 def tail_log(name):
     log_map = {
-        # Game lifecycle (refresh + startup + shutdown all write here)
+        # Game lifecycle (refresh + startup + shutdown + engine output all write here)
         "game.log": os.path.join(LOG_DIR, "game.log"),
-        "VRisingServer.log": os.path.join(LOG_DIR, "VRisingServer.log"),
         # Infrastructure
         "admin_server.log": os.path.join(LOG_DIR, "admin_server.log"),
         "refresh_repo.log": os.path.join(LOG_DIR, "refresh_repo.log"),
@@ -113,8 +112,7 @@ def directory():
             "icon": "📄",
             "title": "Game Logs",
             "links": [
-                ("/api/logs/game.log", "Game Lifecycle", "GET"),
-                ("/api/logs/VRisingServer.log", "VRising Engine Output", "GET"),
+                ("/api/logs/game.log", "Game Log", "GET"),
                 ("/api/logs/idle_check.log", "Idle Check", "GET"),
             ]
         },
