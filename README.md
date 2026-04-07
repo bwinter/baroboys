@@ -73,7 +73,28 @@ make bootstrap
 
 ---
 
-### 3. Build all packer images
+### 3. Create secrets
+
+Set the shared password for game servers, admin panel, and RCON:
+
+```bash
+make update-password
+```
+
+Create the GitHub deploy key so the VM can clone this repo:
+
+```bash
+# See docs/setup/github-deploy-key.md for full steps
+ssh-keygen -t ecdsa -b 521 -C "vm-github-access"
+# Add the public key to GitHub → Settings → Deploy Keys
+# Then store the private key:
+gcloud secrets create github-deploy-key --replication-policy=automatic
+gcloud secrets versions add github-deploy-key --data-file=<path-to-private-key>
+```
+
+---
+
+### 4. Build all packer images
 
 ```bash
 make build
@@ -88,32 +109,31 @@ make build
 
 ---
 
-### 4. Apply Terraform to create the VM and start the game server
+### 5. Apply Terraform to create the VM and start the game server
 
 ```bash
-make terraform-apply-<game>
+make terraform-apply-<Game>
 ```
 
-* Replace `<game>` with `vrising` or `barotrauma`.
-* This boots game VM
-* Note the server shuts down after 30 minutes of inactivity. Saving the game at the same time.
-* To restart the server: `make start`
-  * To grant others the ability to start the server, see `make iam-add-admin`.
+* Replace `<Game>` with `VRising` or `Barotrauma`.
+* This boots the game VM in its own Terraform workspace.
+* The server shuts down after 30 minutes of inactivity, saving the game automatically.
+* To restart: `make start-<Game>`
+* To grant others the ability to start the server: `make iam-add-admin`
 * To get the admin panel URL: `make admin-url`
 
 ---
 
-### 5. (Optional) Destroy the instance when done with the server
+### 6. (Optional) Destroy the instance when done
 
 ```bash
-make destroy
+make destroy              # all games
+make terraform-destroy-<Game>  # one game
 ```
-
-* Lowest GCP cost.
 
 ---
 
-### 6. See Makefile help for more options
+### 7. See Makefile help for more options
 
 ```bash
 make help
