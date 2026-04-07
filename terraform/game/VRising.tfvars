@@ -1,1 +1,2 @@
-game_image = "baroboys-vrising"
+game_image   = "baroboys-vrising"
+machine_name = "vrising"
