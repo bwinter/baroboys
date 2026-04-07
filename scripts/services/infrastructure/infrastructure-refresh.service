@@ -1,0 +1,22 @@
+[Unit]
+Description=Infrastructure Refresh
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/root
+User=root
+
+ExecStart=/root/baroboys/scripts/services/infrastructure/refresh.sh
+
+SuccessExitStatus=0
+KillMode=control-group
+TimeoutStartSec=60
+
+StandardOutput=append:/var/log/baroboys/infrastructure.log
+StandardError=append:/var/log/baroboys/infrastructure.log
+
+[Install]
+WantedBy=multi-user.target

@@ -1,19 +1,9 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-# Ensure log directory and file exist with correct permissions.
-mkdir -p "/var/log/baroboys/"
-chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/"
-chmod 700  "/var/log/baroboys/"
-
-touch  "/var/log/baroboys/refresh_repo.log"
+# Ensure log file exists (log directory created by infrastructure-refresh)
+touch "/var/log/baroboys/refresh_repo.log"
 printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "/var/log/baroboys/refresh_repo.log"
-chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/refresh_repo.log"
-chmod 644  "/var/log/baroboys/refresh_repo.log"
-
-# Shared directories — self-heal ownership on every boot
-mkdir -p /opt/baroboys
-chown -R bwinter_sc81:bwinter_sc81 /opt/baroboys
 
 # Sudoers — self-heal from repo (canonical source: scripts/services/shared/sudoers-bwinter)
 install -m 440 -o root -g root \

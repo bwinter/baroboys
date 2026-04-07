@@ -33,15 +33,9 @@ chmod 644 /opt/baroboys/templates/*.html
 # Add bwinter_sc81 to adm group so Flask can read nginx logs
 usermod -aG adm bwinter_sc81
 
-# Ensure log directory and file exist with correct permissions.
-mkdir -p "/var/log/baroboys/"
-chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/"
-chmod 700  "/var/log/baroboys/"
-
+# Ensure log file exists (log directory created by infrastructure-refresh)
 touch "/var/log/baroboys/admin_server.log"
 printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "/var/log/baroboys/admin_server.log"
-chown bwinter_sc81:bwinter_sc81  "/var/log/baroboys/admin_server.log"
-chmod 644  "/var/log/baroboys/admin_server.log"
 
 # Unit installation
 install -m 644 "/root/baroboys/scripts/services/admin_server/admin-server-refresh.service" \

@@ -3,11 +3,7 @@ set -euxo pipefail
 
 SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 
-# Ensure log directory and file exist with correct permissions.
-sudo mkdir -p "/var/log/baroboys/"
-sudo chown bwinter_sc81:bwinter_sc81 "/var/log/baroboys/"
-sudo chmod 700 "/var/log/baroboys/"
-
+# Ensure log file exists (log directory created by infrastructure-refresh)
 touch "/var/log/baroboys/idle_check.log"
 printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "/var/log/baroboys/idle_check.log"
 
