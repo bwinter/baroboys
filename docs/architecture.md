@@ -260,7 +260,7 @@ The VM's `.gitconfig` identifies commits as `Game Server <bwinter.sc81+gameserve
 | Bootstrap scripts | `bootstrap/` |
 | Systemd unit files | `scripts/services/<component>/` |
 | Game startup/shutdown logic | `scripts/services/<game>/startup.sh`, `shutdown.sh` |
-| Game install/update logic | `scripts/shared/setup.sh` |
+| Game install/update logic | `scripts/services/shared/setup.sh` |
 | Dependency installers | `scripts/dependencies/` |
 | Admin Flask app | `scripts/services/admin_server/src/admin_server.py` |
 | Admin static files | `scripts/services/admin_server/src/static/` |
