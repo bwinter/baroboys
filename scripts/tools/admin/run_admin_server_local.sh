@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
+if [[ "$(uname)" != "Darwin" ]]; then
+  echo "ERROR: This script uses macOS-specific tools (BSD date). Run on macOS only."
+  exit 1
+fi
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
 ADMIN_DIR="$REPO_ROOT/scripts/services/admin_server/src"
