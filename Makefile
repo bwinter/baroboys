@@ -24,6 +24,14 @@ TF_BACKEND    := backend/$(ENV).hcl
 TF_SHARED     := shared.tfvars
 PACKER_DIR    := packer
 
+# Common command templates for foreach-generated targets.
+# $(1) = game name (title case, e.g. VRising)
+gcloud_ssh = gcloud compute ssh $(GCP_USER)@$(call machine_name,$(1)) \
+	--project=$(PROJECT) --zone=$(ZONE)
+
+tf_in_workspace = cd $(TF_DIR) && \
+	terraform workspace select $(call machine_name,$(1))
+
 .DEFAULT_GOAL := help
 
 bootstrap: terraform-bootstrap iam-bootstrap
@@ -36,18 +44,25 @@ destroy: $(addprefix terraform-destroy-, $(GAMES))
 # =======================
 # 🐍 Flask Admin Panel
 # =======================
-.PHONY: admin-local admin-logs admin-url
+.PHONY: admin-local $(addprefix admin-logs-, $(GAMES)) $(addprefix admin-url-, $(GAMES))
 
 admin-local:
 	cd $(TOOLS_DIR) && \
 	./admin/run_admin_server_local.sh
 
-admin-logs:
-	cd $(TOOLS_DIR) && \
-	./admin/get_admin_server_logs.sh
+define admin_logs_recipe
+admin-logs-$(1):
+	MACHINE_NAME=$(call machine_name,$(1)) \
+		$(TOOLS_DIR)/admin/get_admin_server_logs.sh
+endef
+$(foreach game,$(GAMES),$(eval $(call admin_logs_recipe,$(game))))
 
-admin-url: terraform-init
-	cd $(TF_DIR) && terraform output admin_server_url
+define admin_url_recipe
+admin-url-$(1): terraform-init
+	$(call tf_in_workspace,$(1)) && \
+		terraform output admin_server_url
+endef
+$(foreach game,$(GAMES),$(eval $(call admin_url_recipe,$(game))))
 
 
 # =======================
@@ -73,11 +88,20 @@ terraform-plan: terraform-init
 terraform-refresh: terraform-init
 	cd $(TF_DIR) && terraform refresh -var-file=$(TF_SHARED)
 
-$(foreach game,$(GAMES),\
-  $(eval terraform-apply-$(game): ; ./$(TF_DIR)/build.sh $(game) $(ENV)))
+define terraform_apply_recipe
+terraform-apply-$(1):
+	./$(TF_DIR)/build.sh $(1) $(ENV)
+endef
+$(foreach game,$(GAMES),$(eval $(call terraform_apply_recipe,$(game))))
 
-$(foreach game,$(GAMES),\
-  $(eval terraform-destroy-$(game): terraform-init ; cd $(TF_DIR) && terraform workspace select $(call machine_name,$(game)) && terraform destroy -var-file=$(TF_SHARED) -var-file=game/$(game).tfvars))
+define terraform_destroy_recipe
+terraform-destroy-$(1): terraform-init
+	$(call tf_in_workspace,$(1)) && \
+		terraform destroy \
+		-var-file=$(TF_SHARED) \
+		-var-file=game/$(1).tfvars
+endef
+$(foreach game,$(GAMES),$(eval $(call terraform_destroy_recipe,$(game))))
 
 
 # =======================
@@ -124,28 +148,51 @@ REMOTE_SHUTDOWN_SCRIPT := sudo systemctl restart game-shutdown.service
 	$(addprefix ssh-, $(GAMES)) \
 	$(addprefix ssh-iap-, $(GAMES))
 
-$(foreach game,$(GAMES),\
-  $(eval start-$(game): ; gcloud compute instances start $(call machine_name,$(game)) --project=$(PROJECT) --zone=$(ZONE)))
+define start_recipe
+start-$(1):
+	gcloud compute instances start $(call machine_name,$(1)) \
+		--project=$(PROJECT) --zone=$(ZONE)
+endef
+$(foreach game,$(GAMES),$(eval $(call start_recipe,$(game))))
 
-$(foreach game,$(GAMES),\
-  $(eval stop-$(game): ; gcloud compute instances stop $(call machine_name,$(game)) --project=$(PROJECT) --zone=$(ZONE)))
+define stop_recipe
+stop-$(1):
+	gcloud compute instances stop $(call machine_name,$(1)) \
+		--project=$(PROJECT) --zone=$(ZONE)
+endef
+$(foreach game,$(GAMES),$(eval $(call stop_recipe,$(game))))
 
-$(foreach game,$(GAMES),\
-  $(eval restart-game-$(game): ; gcloud compute ssh $(GCP_USER)@$(call machine_name,$(game)) --project=$(PROJECT) --zone=$(ZONE) --command="$(REMOTE_STARTUP_SCRIPT)"))
+define restart_game_recipe
+restart-game-$(1):
+	$(call gcloud_ssh,$(1)) \
+		--command="$(REMOTE_STARTUP_SCRIPT)"
+endef
+$(foreach game,$(GAMES),$(eval $(call restart_game_recipe,$(game))))
 
-$(foreach game,$(GAMES),\
-  $(eval save-and-shutdown-$(game): ; gcloud compute ssh $(GCP_USER)@$(call machine_name,$(game)) --project=$(PROJECT) --zone=$(ZONE) --command="$(REMOTE_SHUTDOWN_SCRIPT)"))
+define save_and_shutdown_recipe
+save-and-shutdown-$(1):
+	$(call gcloud_ssh,$(1)) \
+		--command="$(REMOTE_SHUTDOWN_SCRIPT)"
+endef
+$(foreach game,$(GAMES),$(eval $(call save_and_shutdown_recipe,$(game))))
 
 
 # =======================
 # 🔐 SSH Access
 # =======================
 
-$(foreach game,$(GAMES),\
-  $(eval ssh-$(game): ; gcloud compute ssh $(GCP_USER)@$(call machine_name,$(game)) --project=$(PROJECT) --zone=$(ZONE)))
+define ssh_recipe
+ssh-$(1):
+	$(call gcloud_ssh,$(1))
+endef
+$(foreach game,$(GAMES),$(eval $(call ssh_recipe,$(game))))
 
-$(foreach game,$(GAMES),\
-  $(eval ssh-iap-$(game): ; gcloud compute ssh $(GCP_USER)@$(call machine_name,$(game)) --project=$(PROJECT) --zone=$(ZONE) --tunnel-through-iap))
+define ssh_iap_recipe
+ssh-iap-$(1):
+	$(call gcloud_ssh,$(1)) \
+		--tunnel-through-iap
+endef
+$(foreach game,$(GAMES),$(eval $(call ssh_iap_recipe,$(game))))
 
 
 # =======================
@@ -163,8 +210,11 @@ build-base-core:
 build-base-admin:
 	./$(PACKER_DIR)/build.sh base/admin
 
-$(foreach game,$(GAMES),\
-  $(eval build-game-$(game): ; ./$(PACKER_DIR)/build.sh game/$(game)))
+define build_game_recipe
+build-game-$(1):
+	./$(PACKER_DIR)/build.sh game/$(1)
+endef
+$(foreach game,$(GAMES),$(eval $(call build_game_recipe,$(game))))
 
 build: \
 	build-base-core \
@@ -177,8 +227,11 @@ build: \
 # =======================
 .PHONY: $(addprefix smoke-test-, $(GAMES))
 
-$(foreach game,$(GAMES),\
-  $(eval smoke-test-$(game): ; ./scripts/tools/smoke_test/run.sh --game=$(game)))
+define smoke_test_recipe
+smoke-test-$(1):
+	./scripts/tools/smoke_test/run.sh --game=$(1)
+endef
+$(foreach game,$(GAMES),$(eval $(call smoke_test_recipe,$(game))))
 
 # =======================
 # 🧹 Cleanup
@@ -241,9 +294,9 @@ help:
 	@echo ""
 
 	@echo "🐍 Flask Admin Panel:"
-	@echo "  make admin-local                     - Run admin server locally"
-	@echo "  make admin-logs                      - Fetch logs from admin systemd service"
-	@echo "  make admin-url                       - Print the live admin panel URL"
+	@echo "  make admin-local                     - Run admin server locally (macOS only)"
+	@echo "  make admin-logs-<GAME>               - Fetch logs from admin systemd service"
+	@echo "  make admin-url-<GAME>                - Print the live admin panel URL"
 	@echo ""
 
 	@echo "🎮 Game:"
