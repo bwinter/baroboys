@@ -14,6 +14,25 @@ do today vs. what needs infrastructure.
 - **Manual QA: connect and play both games** — provision, launch game client, verify real
   connection. Port checks confirm listening; only a human client confirms playable.
 
+## Self-reporting health (design ready, blocked on smoke test passing)
+
+The VM should self-report health, not require external probing. Design:
+
+1. **Fold vm_checks.sh logic into idle_check.sh** — health checks become additional fields in
+   status.json. Boot-time seed runs all checks (static + runtime). Timer runs only runtime
+   checks (process alive, services healthy, RAM). Static checks (Wine arch, WINEARCH) don't
+   change after boot.
+
+2. **`make status-<GAME>` already exists** — curls status.json from running VM. Once health
+   fields are in status.json, this becomes the single "how's my server" command.
+
+3. **Thin out run.sh** — replace SSH + vm_checks.sh stage with a curl to the health endpoint.
+   External smoke test becomes: provision → poll health endpoint → verify external reachability
+   (nginx + auth + Flask) → tear down. No SSH needed.
+
+4. **Admin panel** — status.json is already served by nginx. HTML changes to display health
+   fields are a separate step (see todo/admin.md).
+
 ## CI (needs GitHub Actions setup)
 
 - **Tier 1: syntax/validate** — `packer validate` and `terraform validate` on every push.
