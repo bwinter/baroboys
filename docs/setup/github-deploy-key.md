@@ -1,6 +1,6 @@
 # GitHub SSH Deploy Key — Manual Setup
 
-> **Prefer `make set-deploy-key`** — it automates all three steps below.
+> **Prefer `make secret-set-deploy-key`** — it automates all three steps below.
 > This doc is the manual fallback if the `gh` CLI isn't available.
 
 ---

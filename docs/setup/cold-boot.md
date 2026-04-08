@@ -54,14 +54,14 @@ See [gcp-service-accounts.md](gcp-service-accounts.md) for what gets created.
 Two secrets are needed. Both are created idempotently (safe to re-run).
 
 ```bash
-make set-password      # server password (game join, admin panel, RCON)
-make set-deploy-key    # SSH key for VM to clone/push this repo
+make secret-set-password      # server password (game join, admin panel, RCON)
+make secret-set-deploy-key    # SSH key for VM to clone/push this repo
 ```
 
-`set-deploy-key` generates an ECDSA key, adds it to GitHub as a deploy key (write access),
+`secret-set-deploy-key` generates an ECDSA key, adds it to GitHub as a deploy key (write access),
 and stores the private key in Secret Manager. Requires `gh` CLI.
 
-**If `set-deploy-key` fails:** Check `gh auth status`. The deploy key can also be created
+**If `secret-set-deploy-key` fails:** Check `gh auth status`. The deploy key can also be created
 manually — see [github-deploy-key.md](github-deploy-key.md).
 
 ### 4. Build Packer images
@@ -113,8 +113,8 @@ make terraform-destroy-VRising   # or: make destroy (all games)
 ## What's happening under the hood
 
 - `make bootstrap` → `bootstrap/bootstrap_tf_state_bucket.sh` + `bootstrap/bootstrap_vm_runtime_sa.sh`
-- `make set-password` → `scripts/tools/set_secret.sh`
-- `make set-deploy-key` → `scripts/tools/set_deploy_key.sh`
+- `make secret-set-password` → `scripts/tools/set_secret.sh`
+- `make secret-set-deploy-key` → `scripts/tools/set_deploy_key.sh`
 - `make build` → `packer/build.sh` (layered images, shares vars with Terraform)
 - `make terraform-apply-<Game>` → `terraform/build.sh` (workspace select + apply)
 

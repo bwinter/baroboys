@@ -73,13 +73,13 @@ make bootstrap
 Set the shared password for game servers, admin panel, and RCON:
 
 ```bash
-make set-password
+make secret-set-password
 ```
 
 Create the GitHub deploy key so the VM can clone this repo (requires `gh` CLI):
 
 ```bash
-make set-deploy-key
+make secret-set-deploy-key
 ```
 
 ---
@@ -136,7 +136,7 @@ make help
 | Goal              | Command                                                                    |
 |-------------------|----------------------------------------------------------------------------|
 | View startup logs | `gcloud compute instances get-serial-port-output <MACHINE_NAME> --zone=us-west1-c` |
-| View service logs | `make admin-logs`                                                          |
+| View service logs | `make admin-logs-<GAME>`                                                    |
 
 ---
 

@@ -68,10 +68,10 @@ Logs are automatically refreshed.
 ### 🔐 Rotate Admin Password
 
 ```bash
-make set-password
+make secret-set-password
 
 # 🚨 Then SSH into the server
-make ssh
+make game-ssh-<GAME>
 ```
 
 On the server:
