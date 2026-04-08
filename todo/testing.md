@@ -33,6 +33,25 @@ The VM should self-report health, not require external probing. Design:
 4. **Admin panel** — status.json is already served by nginx. HTML changes to display health
    fields are a separate step (see todo/admin.md).
 
+## LLM-Executor-Test (document the pattern)
+
+The LLM-in-conversation testing pattern that's emerged across sessions:
+- **Call path trace**: walk Packer build → boot → runtime → shutdown, find bugs at context boundaries
+- **Rename consistency**: grep every old name across scripts, units, docs, Makefile, memory
+- **Permission model audit**: trace which user runs what, verify sudo/chown/chmod match
+- **Ripple effect probe**: after any change, ask "what else references this?"
+
+This is static analysis that runs in conversation — complementary to the automated smoke test
+(which tests the running system). Worth documenting as a reusable pattern, especially for
+the post-build nudge where the LLM naturally suggests verification.
+
+## Makefile shortcuts
+
+The full menu uses consistent `object-verb-<GAME>` naming. Consider adding short aliases
+for the most-used commands. Candidates: `ssh-<GAME>` → `game-ssh-<GAME>`,
+`status-<GAME>` → `game-status-<GAME>`. Decide which ones earn their keep based on
+actual usage after the rename settles in.
+
 ## CI (needs GitHub Actions setup)
 
 - **Tier 1: syntax/validate** — `packer validate` and `terraform validate` on every push.
