@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Fetches status.json from a running game VM and pretty-prints it.
-# Requires: MACHINE_NAME (set by Makefile via make status-<GAME>)
+# Requires: MACHINE_NAME (set by Makefile via make game-status-<GAME>)
 
 PROJECT="${PROJECT:-$(gcloud config get-value project 2>/dev/null)}"
 ZONE="${ZONE:-us-west1-c}"

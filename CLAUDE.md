@@ -66,9 +66,9 @@ make terraform-apply-VRising   # or terraform-apply-Barotrauma
 make destroy
 
 # VM access + game control
-make ssh-VRising               # or make ssh-iap-VRising
-make restart-game-VRising
-make save-and-shutdown-VRising
+make game-ssh-VRising            # or game-ssh-iap-VRising
+make game-restart-VRising
+make game-shutdown-VRising
 
 # Test
 make smoke-test-VRising        # full E2E: terraform + checks + destroy

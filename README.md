@@ -108,9 +108,9 @@ make terraform-apply-<Game>
 * Replace `<Game>` with `VRising` or `Barotrauma`.
 * This boots the game VM in its own Terraform workspace.
 * The server shuts down after 30 minutes of inactivity, saving the game automatically.
-* To restart: `make start-<Game>`
+* To restart: `make game-start-<Game>`
 * To grant others the ability to start the server: `make iam-add-admin`
-* To get the admin panel URL: `make admin-url`
+* To get the admin panel URL: `make admin-url-<Game>`
 
 ---
 

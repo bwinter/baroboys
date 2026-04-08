@@ -92,14 +92,14 @@ The VM boots, pulls the latest repo, and starts the game automatically (~3-5 min
 
 - **Game:** Connect using the server's external IP and the password from step 3
 - **Admin panel:** `http://<VM-IP>:8080/` — username `Hex`, password from step 3
-- **SSH:** `make ssh-VRising`
+- **SSH:** `make game-ssh-VRising`
 
 ### 7. Shut down
 
 The VM auto-shuts down after 30 minutes of CPU idle. To shut down manually:
 
 ```bash
-make save-and-shutdown-VRising   # graceful: save → git push → poweroff
+make game-shutdown-VRising       # graceful: save → git push → poweroff
 ```
 
 To destroy the VM entirely (lowest cost):

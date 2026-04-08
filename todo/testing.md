@@ -23,7 +23,7 @@ The VM should self-report health, not require external probing. Design:
    checks (process alive, services healthy, RAM). Static checks (Wine arch, WINEARCH) don't
    change after boot.
 
-2. **`make status-<GAME>` already exists** — curls status.json from running VM. Once health
+2. **`make game-status-<GAME>` already exists** — curls status.json from running VM. Once health
    fields are in status.json, this becomes the single "how's my server" command.
 
 3. **Thin out run.sh** — replace SSH + vm_checks.sh stage with a curl to the health endpoint.
