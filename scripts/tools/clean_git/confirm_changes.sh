@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-# In a test script
-ORIG="$HOME/Desktop/Baroboys-backup"
-CLEAN="$HOME/Desktop/Baroboys"
+SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
+CLEAN="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+ORIG="${CLEAN}-backup"
 
 echo "🔍 Comparing only differing files..."
 find "$ORIG" -type f | sed "s|$ORIG/||" | sort > /tmp/orig_files.txt

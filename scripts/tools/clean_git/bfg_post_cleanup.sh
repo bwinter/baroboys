@@ -9,12 +9,14 @@ set -euxo pipefail
 ########################################
 
 ### CONFIG ###
+SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
+ORIGINAL_REPO="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+REPO_NAME="$(basename "$ORIGINAL_REPO")"
+REMOTE_URL="$(git -C "$ORIGINAL_REPO" remote get-url origin)"
 WORKDIR="/tmp/bfg-cleanup"
-MIRROR_REPO="$WORKDIR/baroboys-bfg-clean.git"
-PREVIEW_CLONE="$HOME/Desktop/Baroboys-preview"
-ORIGINAL_REPO="$HOME/Desktop/Baroboys"
-BACKUP_REPO="$HOME/Desktop/Baroboys-backup"
-REMOTE_URL="git@github.com:bwinter/baroboys.git"
+MIRROR_REPO="$WORKDIR/${REPO_NAME}-bfg-clean.git"
+PREVIEW_CLONE="$WORKDIR/${REPO_NAME}-preview"
+BACKUP_REPO="${ORIGINAL_REPO}-backup"
 
 ### Helpers ###
 confirm() {
