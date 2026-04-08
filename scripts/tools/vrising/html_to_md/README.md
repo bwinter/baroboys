@@ -1,1 +1,0 @@
-# This is a tool for cleaning the V Rising documentation.
