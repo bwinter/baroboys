@@ -9,7 +9,7 @@ if [[ -z "$PROJECT" ]]; then
 fi
 
 
-KEEP_IMAGES=5
+KEEP_PER_FAMILY=2
 
 echo "Updating \`gcloud\` cloud components"
 gcloud components update
@@ -20,31 +20,58 @@ echo '```'
 gcloud compute images list \
   --project="$PROJECT" \
   --no-standard-images \
-  --format="table[box](name, creationTimestamp)" \
+  --format="table[box](name, family, creationTimestamp)" \
   --sort-by="~creationTimestamp" 2>&1
 echo '```'
 
-image_names=$(gcloud compute images list \
+# Clean up per image family — keeps KEEP_PER_FAMILY newest images in each family.
+# Image families: core, admin, vrising, barotrauma, etc. (one per Packer layer).
+families=$(gcloud compute images list \
   --project="$PROJECT" \
   --no-standard-images \
-  --format="value(name)" \
-  --sort-by="~creationTimestamp")
+  --format="value(family)" 2>/dev/null | sort -u)
 
-image_array=()
-while IFS= read -r line; do
-  [[ -n "$line" ]] && image_array+=("$line")
-done <<< "$image_names"
-
-if [ "${#image_array[@]}" -le "$KEEP_IMAGES" ]; then
-  echo "✅ Only ${#image_array[@]} image(s) found. No cleanup needed."
+if [[ -z "$families" ]]; then
+  echo "✅ No custom images found."
 else
-  echo -e "\n🧹 Deleting old images (keeping $KEEP_IMAGES most recent)..."
-  to_delete=("${image_array[@]:KEEP_IMAGES}")
-  for img in "${to_delete[@]}"; do
-    echo "🗑 Deleting image: $img"
-    gcloud compute images delete "$img" --project="$PROJECT" --quiet || \
-      echo "❌ Failed to delete $img — skipping."
+  for family in $families; do
+    images=$(gcloud compute images list \
+      --project="$PROJECT" \
+      --no-standard-images \
+      --filter="family=$family" \
+      --format="value(name)" \
+      --sort-by="~creationTimestamp")
+
+    count=0
+    while IFS= read -r img; do
+      [[ -z "$img" ]] && continue
+      ((count++))
+      if (( count > KEEP_PER_FAMILY )); then
+        echo "🗑 Deleting image: $img (family: $family)"
+        gcloud compute images delete "$img" --project="$PROJECT" --quiet || \
+          echo "❌ Failed to delete $img — skipping."
+      fi
+    done <<< "$images"
+
+    if (( count <= KEEP_PER_FAMILY )); then
+      echo "✅ $family: $count image(s) — no cleanup needed."
+    fi
   done
+
+  # Catch orphaned images with no family set
+  orphans=$(gcloud compute images list \
+    --project="$PROJECT" \
+    --no-standard-images \
+    --filter="NOT family:*" \
+    --format="value(name)" 2>/dev/null || true)
+
+  if [[ -n "$orphans" ]]; then
+    echo -e "\n⚠️  Images with no family (orphaned):"
+    for img in $orphans; do
+      echo "  $img"
+    done
+    echo "  Delete manually if not needed: gcloud compute images delete <name> --project=$PROJECT"
+  fi
 fi
 
 # =================== Stopped VMs ===================
