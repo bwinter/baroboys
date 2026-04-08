@@ -45,6 +45,30 @@ This is static analysis that runs in conversation — complementary to the autom
 (which tests the running system). Worth documenting as a reusable pattern, especially for
 the post-build nudge where the LLM naturally suggests verification.
 
+### Full-flow consistency sweep (the "how")
+
+After any rename, deletion, or structural change, run this checklist. Each category is a
+grep pass across the full repo (scripts/, docs/, *.md, packer/, terraform/, Makefile, memory/).
+
+1. **Deleted files** — grep for every deleted filename (stem, not path). Catches docs and
+   comments still pointing at removed tools.
+2. **Renamed targets/commands** — grep for every old name pattern. Use regex that matches
+   the old prefix but NOT the new one (e.g. `make set-password` but not `make secret-set-password`).
+3. **Renamed variables** — grep for old variable names (REMOTE_STARTUP_SCRIPT, GAME_ENGINE_LOG, etc.)
+4. **Stale script names** — grep for old script names (setup.sh vs refresh.sh, config.sh vs
+   post-checkout.sh). Filter out acceptable hits (build-time scripts that are genuinely named
+   setup.sh, like wine/src/setup.sh).
+5. **Old secret names** — grep for deprecated secret identifiers (rcon-password, nginx-htpasswd).
+6. **Old log names** — grep for log filenames that no longer exist (VRisingServer.log,
+   per-verb logs like barotrauma_startup.log).
+7. **Old paths** — grep for directory structures that moved (scripts/shared/ → scripts/services/shared/).
+8. **Incomplete renames** — grep for patterns that should always have a suffix but sometimes
+   don't (admin-url without -<GAME>, admin-logs without -<GAME>).
+
+**Key principle:** the grep list is derived from the changes, not memorized. After any change,
+ask "what's the old name?" and grep for it. The sweep is complete when every old name returns
+zero hits (or only acceptable contextual references like architecture docs describing history).
+
 ## Makefile shortcuts
 
 The full menu uses consistent `object-verb-<GAME>` naming. Consider adding short aliases
