@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # vm_checks.sh — internal smoke test, runs ON the VM.
-# Self-identifying: reads /etc/baroboys/active-game (written by setup.sh) to determine
+# Self-identifying: reads /etc/baroboys/active-game (written by refresh.sh) to determine
 # which game is running. Sources env-vars.sh so all checks are game-aware.
 # Exit code: 0 = all passed, 1 = one or more failed.
 #
@@ -9,7 +9,7 @@ set -uo pipefail
 
 ACTIVE_GAME_FILE="/etc/baroboys/active-game"
 if [[ ! -f "$ACTIVE_GAME_FILE" ]]; then
-    echo "❌ $ACTIVE_GAME_FILE not found — setup.sh may not have run yet"
+    echo "❌ $ACTIVE_GAME_FILE not found — refresh.sh may not have run yet"
     exit 1
 fi
 GAME=$(cat "$ACTIVE_GAME_FILE")
@@ -50,7 +50,7 @@ for svc in game-refresh.service game-startup.service admin-server-startup.servic
     if [[ "$svc" == "xvfb-startup.service" && "$GAME_NAME" != "VRising" ]]; then
         continue
     fi
-    # game-setup is oneshot — "inactive" after successful completion is correct
+    # game-refresh is oneshot — "inactive" after successful completion is correct
     if [[ "$svc" == "game-refresh.service" ]]; then
         result_state=$(systemctl show "$svc" --property=Result --value 2>/dev/null)
         if [[ "$result_state" == "success" ]]; then
@@ -97,6 +97,30 @@ else
         check "game process RAM" "fail" "${rss_mb}MB — below 500MB, game may not have loaded"
     else
         check "game process RAM" "fail" "${rss_mb}MB — above 5.5GB, OOM risk"
+    fi
+fi
+
+# --- VRising-specific: Wine environment ---
+if [[ "$GAME_NAME" == "VRising" ]]; then
+    echo "--- Wine Environment ---"
+
+    wine_bin=$(command -v wine 2>/dev/null || true)
+    if [[ -n "$wine_bin" ]]; then
+        check "wine binary exists" "pass" "$wine_bin"
+        wine_arch=$(file "$(realpath "$wine_bin")" 2>/dev/null | grep -Eo '64-bit|32-bit' || echo "unknown")
+        if [[ "$wine_arch" == "64-bit" ]]; then
+            check "wine binary architecture" "pass" "$wine_arch"
+        else
+            check "wine binary architecture" "fail" "$wine_arch — VRising requires 64-bit Wine"
+        fi
+    else
+        check "wine binary exists" "fail" "wine not found in PATH"
+    fi
+
+    if [[ "$(printenv WINEARCH 2>/dev/null)" == "win64" ]]; then
+        check "WINEARCH=win64" "pass"
+    else
+        check "WINEARCH=win64" "fail" "WINEARCH=${WINEARCH:-unset} — must be win64 for VRising"
     fi
 fi
 
