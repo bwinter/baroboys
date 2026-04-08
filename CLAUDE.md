@@ -54,6 +54,8 @@ VRising/            Game state: saves, admin/ban lists, config
 
 ## Common Commands
 
+All targets follow `object-verb-<GAME>` convention. Run `make help` for the full menu.
+
 ```bash
 # Images — always build in this order
 make build-base-core
@@ -65,10 +67,12 @@ make build                   # all images
 make terraform-apply-VRising   # or terraform-apply-Barotrauma
 make destroy
 
-# VM access + game control
-make game-ssh-VRising            # or game-ssh-iap-VRising
-make game-restart-VRising
-make game-shutdown-VRising
+# Game VM operations
+make game-start-VRising        # boot the VM
+make game-ssh-VRising          # or game-ssh-iap-VRising
+make game-restart-VRising      # restart game service (VM stays up)
+make game-shutdown-VRising     # graceful: save → git push → poweroff
+make game-status-VRising       # fetch status.json from running VM
 
 # Test
 make smoke-test-VRising        # full E2E: terraform + checks + destroy
@@ -77,6 +81,10 @@ make smoke-test-VRising        # full E2E: terraform + checks + destroy
 make admin-local               # Flask + Nginx locally, fetches real secrets
 make clean                     # delete old GCP images/disks/IPs
 ```
+
+After building images, run smoke tests to verify the changes work end-to-end before
+trusting them in production. `make smoke-test-<GAME>` provisions a VM, validates it,
+and tears it down.
 
 ---
 
