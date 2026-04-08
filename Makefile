@@ -44,7 +44,7 @@ destroy: $(addprefix terraform-destroy-, $(GAMES))
 # =======================
 # 🐍 Flask Admin Panel
 # =======================
-.PHONY: admin-local $(addprefix admin-logs-, $(GAMES)) $(addprefix admin-url-, $(GAMES))
+.PHONY: admin-local $(addprefix admin-logs-, $(GAMES)) $(addprefix admin-url-, $(GAMES)) $(addprefix status-, $(GAMES))
 
 admin-local:
 	cd $(TOOLS_DIR) && \
@@ -56,6 +56,13 @@ admin-logs-$(1):
 		$(TOOLS_DIR)/admin/get_admin_server_logs.sh
 endef
 $(foreach game,$(GAMES),$(eval $(call admin_logs_recipe,$(game))))
+
+define status_recipe
+status-$(1):
+	MACHINE_NAME=$(call machine_name,$(1)) \
+		$(TOOLS_DIR)/status.sh
+endef
+$(foreach game,$(GAMES),$(eval $(call status_recipe,$(game))))
 
 define admin_url_recipe
 admin-url-$(1): terraform-init
@@ -304,6 +311,7 @@ help:
 	@echo "  make stop-<GAME>                     - Hard stop (no save — use save-and-shutdown)"
 	@echo "  make restart-game-<GAME>             - Trigger remote restart of game service"
 	@echo "  make save-and-shutdown-<GAME>        - Graceful shutdown: save then power off"
+	@echo "  make status-<GAME>                   - Fetch and display VM status (requires running VM)"
 	@echo ""
 
 	@echo "🔐 SSH Access:"
