@@ -1,0 +1,16 @@
+{
+  "name": "baroboys",
+  "owner": {
+    "name": "Brendan Winter"
+  },
+  "metadata": {
+    "description": "Skills for the baroboys project fleet"
+  },
+  "plugins": [
+    {
+      "name": "claude",
+      "source": "./plugins/baroboys",
+      "description": "Identity skill for baroboys:claude"
+    }
+  ]
+}
