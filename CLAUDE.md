@@ -88,6 +88,10 @@ and tears it down.
 
 ---
 
+## Fleet Identity
+
+Your fleet address is `baroboys:claude`.
+
 ## Working Style
 
 - **Red-green TDD** for new features and bug fixes
