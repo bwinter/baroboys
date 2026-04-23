@@ -8,9 +8,9 @@
   },
   "plugins": [
     {
-      "name": "claude",
-      "source": "./plugins/baroboys",
-      "description": "Identity skill for baroboys:claude"
+      "name": "fleet",
+      "source": "./plugins/fleet",
+      "description": "baroboys' self-registered fleet identity (fleet:repos-baroboys) — per ADR 0006 in fleet-mcp"
     }
   ]
 }

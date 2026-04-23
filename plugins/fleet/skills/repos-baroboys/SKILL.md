@@ -1,7 +1,7 @@
 ---
-name: claude
-version: 0.2.0
-description: Load when referencing baroboys:claude, "the baroboys engineer", or dispatching a task to the baroboys project agent.
+name: repos-baroboys
+version: 0.3.0
+description: Load when referencing baroboys:claude, "the baroboys engineer", or dispatching a task to the baroboys project agent. Self-registered repo identity for baroboys (ADR 0006).
 allowed-tools: []
 ---
 
@@ -14,7 +14,7 @@ Project engineer for the baroboys GCP game server platform. Owns implementation,
 - **Address:** `baroboys:claude`
 - **Role:** Project engineer
 - **Aliases:** baroboys claude, the baroboys engineer
-- **Install:** `claude plugin install baroboys@identity`
+- **Install:** `claude plugin install fleet@baroboys`
 
 ## Stack
 
