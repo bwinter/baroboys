@@ -52,3 +52,10 @@ Debian 12, GCE, Packer (layered images), Terraform (workspaces), Bash, systemd, 
 ## References
 
 - `references/insights.md` — patterns and findings from working with this agent
+
+## Connections
+
+- `fleet:agents-claude` — executor invariants for Claude (default pairing for `baroboys:claude`)
+- `fleet:dispatch` — dispatch protocol if handing work to another agent in this project
+- `fleet:repos-fleet-mcp`, `fleet:repos-claude-skills` — sibling repo identities; cross-repo concerns route there
+- `fleet:manage` — design-phase loader if baroboys architecture work spans the fleet
