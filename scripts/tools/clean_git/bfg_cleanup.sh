@@ -79,6 +79,11 @@ if [[ ! -f "$BFG_JAR" ]]; then
 fi
 
 ### 5️⃣ Build file list and run BFG ###
+# Engine note: this loop is the only real BFG coupling in the pipeline.
+# pre/post scripts are engine-agnostic. To swap engines, this loop becomes:
+#   git filter-repo --invert-paths --paths-from-file "$ORIG_LIST" --force
+# filter-repo is the official `git filter-branch` replacement and supports
+# a paths file in one invocation (BFG is one-pattern-per-call).
 step "5️⃣ Running BFG cleanup loop"
 mapfile -t FILENAMES < <(xargs -n1 basename < "$ORIG_LIST" | sort -u)
 TOTAL=${#FILENAMES[@]}
