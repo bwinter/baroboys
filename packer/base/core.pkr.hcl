@@ -53,6 +53,9 @@ build {
       "/usr/bin/sudo chmod +x /tmp/clone_repo.sh",
       "/usr/bin/sudo /tmp/clone_repo.sh",
 
+      "echo '🔧 Provision infrastructure (log/app dirs)'",
+      "/usr/bin/sudo /root/baroboys/scripts/services/infrastructure/refresh.sh",
+
       "echo '🔧 Ensure both users have latest copy of repo'",
       "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/refresh.sh",
       "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/startup.sh",

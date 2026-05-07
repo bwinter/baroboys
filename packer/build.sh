@@ -62,7 +62,14 @@ cp "$TF_VARS_FILE" "$BUILD_DIR/$PACKER_VARS_FILE"
 cd "$BUILD_DIR"
 packer init .
 
-packer build --force \
-  -var-file="$PACKER_SHARED_VARS_FILE" \
-  -var-file="$PACKER_VARS_FILE" \
-  .
+# Base layers don't use per-game vars, but Packer requires every declared var
+# to have a value or default. Per-game vars (machine_name, game_image, game_tags)
+# are intentionally default-less in terraform/variables.tf so Terraform fails
+# fast when a game tfvars file is missing. Pass empty placeholders for base.
+PACKER_BUILD_ARGS=(--force -var-file="$PACKER_SHARED_VARS_FILE" -var-file="$PACKER_VARS_FILE")
+if [[ "$META" == "base" ]]; then
+  PACKER_BUILD_ARGS+=(-var "machine_name=" -var "game_image=" -var "game_tags=[]")
+fi
+PACKER_BUILD_ARGS+=(.)
+
+packer build "${PACKER_BUILD_ARGS[@]}"
