@@ -63,14 +63,14 @@ build {
       "/usr/bin/sudo /root/baroboys/scripts/dependencies/wine/apt_wine.sh",
 
       "echo '🔧 Install McRcon'",
-      "/usr/bin/sudo -u bwinter_sc81 -H -- /root/baroboys/scripts/dependencies/mcrcon/refresh.sh",
+      "/usr/bin/sudo -u bwinter_sc81 -H -- /home/bwinter_sc81/baroboys/scripts/dependencies/mcrcon/refresh.sh",
 
       "echo '🔧 Record active game'",
       "/usr/bin/sudo mkdir -p /etc/baroboys",
       "/usr/bin/sudo echo VRising > /etc/baroboys/active-game",
 
       "echo '🔧 Install latest version of VRising'",
-      "/usr/bin/sudo -u bwinter_sc81 -H -- /root/baroboys/scripts/services/shared/refresh.sh",
+      "/usr/bin/sudo -u bwinter_sc81 -H -- /home/bwinter_sc81/baroboys/scripts/services/shared/refresh.sh",
 
       "echo '🔧 Install game systemd units'",
       "/usr/bin/sudo /root/baroboys/scripts/services/shared/install-game-units.sh",
