@@ -68,10 +68,13 @@ done
 PROCESS_ALIVE=false
 PROCESS_RSS_MB=0
 if [[ -n "$MANIFEST_PROCESS" ]]; then
+  # `|| true` because pgrep returns 1 when no process matches, and that's
+  # an expected state at the boot-time fire (game-startup hasn't completed
+  # yet). Without this the pipeline-failure trips set -e.
   pid=$(pgrep -f "$MANIFEST_PROCESS" 2>/dev/null | while read -r p; do
     rss=$(awk '/VmRSS/ {print $2}' "/proc/$p/status" 2>/dev/null || echo 0)
     echo "$rss $p"
-  done | sort -n | tail -1 | awk '{print $2}')
+  done | sort -n | tail -1 | awk '{print $2}' || true)
   if [[ -n "$pid" ]]; then
     PROCESS_ALIVE=true
     rss_kb=$(awk '/VmRSS/ {print $2}' "/proc/$pid/status" 2>/dev/null || echo 0)
