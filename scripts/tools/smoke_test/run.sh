@@ -226,9 +226,10 @@ case "$GAME" in
         ports_tcp=()
         ;;
     Barotrauma)
-        # Barotrauma uses Steam-style ports for both protocols.
+        # Barotrauma uses Steam-style ports but binds UDP only (TCP firewall
+        # rule from the original 2025 setup is dead — game never listened on TCP).
         ports_udp=(27015 27016)
-        ports_tcp=(27015 27016)
+        ports_tcp=()
         ;;
     *)
         fail "no port spec for game '$GAME' — extend smoke test"

@@ -88,13 +88,21 @@ done | sort -n | tail -1 | awk '{print $2}')
 if [[ -z "$pid" ]]; then
     check "game process ($PROCESS_NAME)" "fail" "not found"
 else
-    # RAM check: RSS in kB from /proc
+    # RAM check: RSS in kB from /proc.
+    # Per-game floor: VRising's Unity+Wine stack typically settles 1-3GB,
+    # Barotrauma is leaner at ~300-500MB. Common ceiling: 5.5GB (VRising's
+    # observed peak under load).
+    case "$GAME_NAME" in
+        VRising)    ram_min_mb=500 ;;
+        Barotrauma) ram_min_mb=200 ;;
+        *)          ram_min_mb=200 ;;
+    esac
     rss_kb=$(awk '/VmRSS/ {print $2}' "/proc/$pid/status" 2>/dev/null || echo 0)
     rss_mb=$((rss_kb / 1024))
-    if (( rss_mb >= 500 && rss_mb <= 5632 )); then
-        check "game process RAM" "pass" "${rss_mb}MB (expected 500–5632MB)"
-    elif (( rss_mb < 500 )); then
-        check "game process RAM" "fail" "${rss_mb}MB — below 500MB, game may not have loaded"
+    if (( rss_mb >= ram_min_mb && rss_mb <= 5632 )); then
+        check "game process RAM" "pass" "${rss_mb}MB (expected ${ram_min_mb}–5632MB for $GAME_NAME)"
+    elif (( rss_mb < ram_min_mb )); then
+        check "game process RAM" "fail" "${rss_mb}MB — below ${ram_min_mb}MB floor for $GAME_NAME, game may not have loaded"
     else
         check "game process RAM" "fail" "${rss_mb}MB — above 5.5GB, OOM risk"
     fi
