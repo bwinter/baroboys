@@ -152,6 +152,14 @@ if [[ -n "$ready_port" ]]; then
             fail "$GAME never bound $ready_proto:$ready_port after 6 minutes"
         fi
     done
+
+    # Port-bind is the earliest "ready" signal — game has opened its socket
+    # but Unity's full bootstrap (map loading, EOS handshake, settings parse)
+    # continues for tens of seconds after. vm_checks's RAM/log-content
+    # thresholds can fire false negatives if probed at this exact edge. Brief
+    # grace period before internal checks lets the game settle.
+    echo "Grace period: 60s for game to finish bootstrap..."
+    sleep 60
 fi
 
 # ============================================================
