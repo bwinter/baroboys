@@ -51,20 +51,20 @@ build {
 
       "echo '🔧 Cloning Baroboys repo'",
       "/usr/bin/sudo chmod +x /tmp/clone_repo.sh",
-      "/usr/bin/sudo /tmp/clone_repo.sh",
+      "/usr/bin/sudo -u bwinter_sc81 -H -- /tmp/clone_repo.sh",
 
       "echo '🔧 Provision infrastructure (log/app dirs)'",
-      "/usr/bin/sudo /root/baroboys/scripts/services/infrastructure/refresh.sh",
+      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/infrastructure/refresh.sh",
 
       "echo '🔧 Ensure both users have latest copy of repo'",
-      "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/refresh.sh",
-      "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/startup.sh",
+      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/refresh_repo/refresh.sh",
+      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/refresh_repo/startup.sh",
 
       "echo '🔧 Update linux'",
-      "/usr/bin/sudo /root/baroboys/scripts/dependencies/apt_core/apt_core.sh",
+      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/dependencies/apt_core/apt_core.sh",
 
       "echo '🔧 Update gcloud'",
-      "/usr/bin/sudo /root/baroboys/scripts/dependencies/gcloud/apt_gcloud.sh",
+      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/dependencies/gcloud/apt_gcloud.sh",
 
       "echo '🧹 Running autoremove'",
       "/usr/bin/sudo apt-get -yq autoremove"

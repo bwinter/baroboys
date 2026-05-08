@@ -5,13 +5,10 @@
 _SHARED_ENV_LOADED=1
 
 # Repo location — single source of truth for both base- and game-layer scripts.
-# Currently $HOME-derived: refresh_repo dual-clones into /root/baroboys (root)
-# and /home/bwinter_sc81/baroboys (bwinter), so each user resolves to its own
-# clone. To migrate to a single canonical clone, change this one line to a
-# fixed path like "/home/bwinter_sc81/baroboys" — every script that uses
-# $BAROBOYS picks it up; only systemd unit files and Packer template strings
-# remain hardcoded and need a separate sweep.
-export BAROBOYS="$HOME/baroboys"
+# Canonical single-clone lives in bwinter_sc81's home (mode 755 traversable by
+# all users including root). Root-context scripts read from here without
+# permission issues, bwinter owns the working tree for git ops + game saves.
+export BAROBOYS="/home/bwinter_sc81/baroboys"
 
 export LOG_PATH="/var/log/baroboys"
 export LOG_FILE="${LOG_PATH}/game.log"

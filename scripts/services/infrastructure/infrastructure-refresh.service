@@ -9,7 +9,7 @@ RemainAfterExit=yes
 WorkingDirectory=/root
 User=root
 
-ExecStart=/root/baroboys/scripts/services/infrastructure/refresh.sh
+ExecStart=/home/bwinter_sc81/baroboys/scripts/services/infrastructure/refresh.sh
 
 SuccessExitStatus=0
 KillMode=control-group

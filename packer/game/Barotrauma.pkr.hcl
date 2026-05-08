@@ -47,11 +47,11 @@ build {
     inline = [
       "echo '🔧 Cloning Baroboys repo'",
       "/usr/bin/sudo chmod +x /tmp/clone_repo.sh",
-      "/usr/bin/sudo /tmp/clone_repo.sh",
+      "/usr/bin/sudo -u bwinter_sc81 -H -- /tmp/clone_repo.sh",
 
       "echo '🔧 Ensure both users have latest copy of repo'",
-      "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/refresh.sh",
-      "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/startup.sh",
+      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/refresh_repo/refresh.sh",
+      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/refresh_repo/startup.sh",
 
       "echo '🔧 Record active game'",
       "/usr/bin/sudo mkdir -p /etc/baroboys",
@@ -61,7 +61,7 @@ build {
       "/usr/bin/sudo -u bwinter_sc81 -H -- /home/bwinter_sc81/baroboys/scripts/services/shared/refresh.sh",
 
       "echo '🔧 Install game systemd units'",
-      "/usr/bin/sudo /root/baroboys/scripts/services/shared/install-game-units.sh",
+      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/shared/install-game-units.sh",
 
       "echo '🧹 Running autoremove'",
       "/usr/bin/sudo apt-get -yq autoremove"

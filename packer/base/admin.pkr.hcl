@@ -47,29 +47,29 @@ build {
     inline = [
       "echo '🔧 Cloning Baroboys repo'",
       "/usr/bin/sudo chmod +x /tmp/clone_repo.sh",
-      "/usr/bin/sudo /tmp/clone_repo.sh",
+      "/usr/bin/sudo -u bwinter_sc81 -H -- /tmp/clone_repo.sh",
 
       "echo '🔧 Ensure both users have latest copy of repo'",
-      "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/refresh.sh",
-      "/usr/bin/sudo /root/baroboys/scripts/services/refresh_repo/startup.sh",
+      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/refresh_repo/refresh.sh",
+      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/refresh_repo/startup.sh",
 
       "echo '🔧 Install sudoers for bwinter_sc81'",
-      "/usr/bin/sudo install -m 440 -o root -g root /root/baroboys/scripts/services/shared/sudoers-bwinter /etc/sudoers.d/bwinter",
+      "/usr/bin/sudo install -m 440 -o root -g root /home/bwinter_sc81/baroboys/scripts/services/shared/sudoers-bwinter /etc/sudoers.d/bwinter",
 
       "echo '🔧 Install infrastructure service'",
-      "/usr/bin/sudo /root/baroboys/scripts/services/infrastructure/refresh.sh",
+      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/infrastructure/refresh.sh",
 
       "echo '🔧 Install Nginx'",
-      "/usr/bin/sudo /root/baroboys/scripts/dependencies/nginx/apt_nginx.sh",
+      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/dependencies/nginx/apt_nginx.sh",
 
       "echo '🔧 Install Steam'",
-      "/usr/bin/sudo /root/baroboys/scripts/dependencies/steam/apt_steam.sh",
+      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/dependencies/steam/apt_steam.sh",
 
       "echo '🔧 Install Admin Server'",
-      "/usr/bin/sudo /root/baroboys/scripts/services/admin_server/refresh.sh",
+      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/admin_server/refresh.sh",
 
       "echo '🔧 Install idle check service'",
-      "/usr/bin/sudo /root/baroboys/scripts/services/idle_check/refresh.sh",
+      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/idle_check/refresh.sh",
 
       "echo '🧹 Running autoremove'",
       "/usr/bin/sudo apt-get -yq autoremove"

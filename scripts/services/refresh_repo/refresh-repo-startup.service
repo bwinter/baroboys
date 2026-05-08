@@ -6,10 +6,10 @@ After=refresh-repo-refresh.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-WorkingDirectory=/root
-User=root
+WorkingDirectory=/home/bwinter_sc81
+User=bwinter_sc81
 
-ExecStart=/root/baroboys/scripts/services/refresh_repo/startup.sh
+ExecStart=/home/bwinter_sc81/baroboys/scripts/services/refresh_repo/startup.sh
 
 SuccessExitStatus=0
 KillMode=control-group
