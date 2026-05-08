@@ -4,14 +4,6 @@
 
 ## Active
 
-### Immediate
-
-- **Verify refactor on live VM** — the full refactor (refresh.sh rename, multi-VM workspaces,
-  secret consolidation, log consolidation) has not been tested on a live VM:
-  1. `make secret-set-password` (if not already set)
-  2. `make build-game-VRising` + `make smoke-test-VRising`
-  3. `make build-game-Barotrauma` + `make smoke-test-Barotrauma`
-
 ### Near-term
 - **Project rename** — "baroboys" → something generic. Image/tag prefixes already stripped as prep.
 - [Games](todo/games.md) — Zomboid, Valheim, template-based onboarding

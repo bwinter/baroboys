@@ -5,12 +5,6 @@ do today vs. what needs infrastructure.
 
 ## Smoke tests (ready now)
 
-- **Smoke test both games** — `make smoke-test-VRising` is exercised; `make smoke-test-Barotrauma`
-  hasn't been run end-to-end. Verify it passes clean.
-
-- **Smoke test: verify game is joinable** — extend `vm_checks.sh` to check that the game port
-  is accepting connections, not just that the process is running. `nc -z -w5 <host> <port>`.
-
 - **Manual QA: connect and play both games** — provision, launch game client, verify real
   connection. Port checks confirm listening; only a human client confirms playable.
 
