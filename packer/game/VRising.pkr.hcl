@@ -67,7 +67,7 @@ build {
 
       "echo '🔧 Record active game'",
       "/usr/bin/sudo mkdir -p /etc/baroboys",
-      "/usr/bin/sudo echo VRising > /etc/baroboys/active-game",
+      "echo VRising | /usr/bin/sudo tee /etc/baroboys/active-game > /dev/null",
 
       "echo '🔧 Install latest version of VRising'",
       "/usr/bin/sudo -u bwinter_sc81 -H -- /home/bwinter_sc81/baroboys/scripts/services/shared/refresh.sh",
