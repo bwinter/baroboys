@@ -80,7 +80,7 @@ actual usage after the rename settles in.
   - Verify systemd unit template pairing (refresh/startup/shutdown)
   - Verify `Requires=` always accompanied by `After=` in unit templates
   - Verify all `.template` files contain only known `${VAR}` placeholders
-  - Verify `SAVE_NAME` is exported in VRising/post-checkout.sh before `envsubst`
+  - Verify `SAVE_NAME` is exported in VRising/env-vars.sh (templates referencing it run via shared/post-checkout.sh)
   - Verify `shared/shutdown.sh` contains the stash-pull-push-pop sequence
   - Verify every game dir has an `env-vars.sh` with all `SETUP: REQUIRED` vars set
   - Verify `.envrc` and `shared.tfvars` agree on project/zone/region

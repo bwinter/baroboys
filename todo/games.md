@@ -1,9 +1,10 @@
 # Games
 
-Adding new game servers. Each game needs three config files: the cross-language JSON
-(`terraform/game/<Game>.tfvars.json`), `env-vars.sh`, and `post-checkout.sh`, plus a
-Packer template. Firewall rules are generic, driven by `game_ports_udp/tcp` in the JSON.
-See `docs/adding-a-game.md`.
+Adding new game servers. Each game needs two config files: the cross-language JSON
+(`terraform/game/<Game>.tfvars.json`, including the `templates` list) and `env-vars.sh`.
+Plus a Packer template. Firewall rules are generic, driven by `game_ports_udp/tcp` in
+the JSON. Template envsubst is handled by `shared/post-checkout.sh`. See
+`docs/adding-a-game.md`.
 
 ## Next up
 
@@ -39,7 +40,8 @@ See `docs/adding-a-game.md`.
   export SAVE_FILE_PREFIX="BaroboysWorld"
   export SAVE_FILE_PATH="$HOME/.config/unity3d/IronGate/Valheim/worlds_local"
   ```
-  No Wine, no Xvfb, no RCON. Minimal post-checkout.sh (just password fetch).
+  No Wine, no Xvfb, no RCON. `templates: []` in the JSON since Valheim uses CLI args
+  instead of config files.
 
 ## Process
 
@@ -47,5 +49,5 @@ See `docs/adding-a-game.md`.
   Start by creating filled-in markdown versions for VRising and Barotrauma (we know all the
   details). Derive the blank template from those. Then fill it out for Zomboid as the test.
   Markdown works well: prose around code blocks lets you annotate "research the save path here"
-  alongside the actual config. The filled template becomes the source for generating env-vars.sh
-  and post-checkout.sh.
+  alongside the actual config. The filled template becomes the source for generating
+  `tfvars.json` and `env-vars.sh`.

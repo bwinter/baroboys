@@ -84,10 +84,14 @@ targets. `game-startup.service` auto-starts via `WantedBy=multi-user.target`; `g
 hooks into `poweroff/halt/reboot` targets.
 
 Per-game config is the single JSON file `terraform/game/<Game>.tfvars.json` — the cross-language
-source of truth. Terraform reads it natively (`-var-file=...tfvars.json`); bash readers parse it
-via python3 (`shared/refresh.sh` to build the runtime manifest, `post-checkout.sh` for ports,
-`smoke_test/run.sh` for readiness/RAM checks). Schema: `machine_name`, `game_image`, `game_tags`,
-`game_ports_udp/tcp`, `game_name`, `process_name`, `uses_wine`, `accent_color`, `process_ram_mb_min`.
+source of truth. Terraform reads it natively (`-var-file=...tfvars.json`); bash reads it once
+via python3 in `shared/refresh.sh` to project the runtime manifest at `/etc/baroboys/manifest.json`.
+All other consumers (`shared/post-checkout.sh`, `shared/shutdown.sh`, `idle_check.sh`,
+`smoke_test/vm_checks.sh`) read the manifest via jq. The local `smoke_test/run.sh` reads the
+JSON directly because it runs on the laptop, where the manifest doesn't exist. Schema:
+`machine_name`, `game_image`, `game_tags`, `game_ports_udp/tcp`, `game_name`, `process_name`,
+`uses_wine`, `accent_color`, `process_ram_mb_min`, `templates` (list of `[input, output]`
+pairs envsubst'd by `shared/post-checkout.sh`).
 Each game gets its own Terraform workspace (lowercase game name), so `terraform apply` for one
 game doesn't affect another. `make terraform-apply-VRising` or `make terraform-destroy-Barotrauma`.
 
@@ -214,7 +218,7 @@ Two secrets live in GCP Secret Manager. All fetched at runtime by the `vm-runtim
 | Secret | Used by | Purpose |
 |--------|---------|---------|
 | `github-deploy-key` | `refresh_repo.sh` at every boot | ECDSA SSH key to clone/pull private repo |
-| `server-password` | `post-checkout.sh` (game config), `env-vars.sh` (RCON), `nginx/refresh.sh` (htpasswd) | Single password for game join, admin panel, and RCON |
+| `server-password` | `shared/post-checkout.sh` (game config), `env-vars.sh` (RCON), `nginx/refresh.sh` (htpasswd) | Single password for game join, admin panel, and RCON |
 
 Admin panel auth: `nginx/refresh.sh` derives htpasswd format from `server-password` at boot
 using `htpasswd -cbB` — no separate `nginx-htpasswd` secret needed.
@@ -227,6 +231,12 @@ regenerates the live files at each boot.
 Password injection:
 - **Barotrauma**: `Barotrauma/serversettings.xml.template` → `envsubst` → `serversettings.xml` (placeholder: `${GAME_PASSWORD}`)
 - **VRising**: `VRising/ServerHostSettings.json.template` → `envsubst` → `StreamingAssets/Settings/ServerHostSettings.json` (gitignored, regenerated each boot)
+
+VRising also ships a `VRising/ServerGameSettings.jsonc` file alongside its `.template` —
+that's an annotated reference doc (every field with type/range/notes, JSON-with-Comments
+convention from VS Code), **not loaded by the game**. The actual game settings template is
+`ServerGameSettings.json.template`. Tuned settings as of 2026-05: 5x stack size, 40% cheaper
+builds, no castle decay, no raids.
 
 ---
 
@@ -268,7 +278,7 @@ The VM's `.gitconfig` identifies commits as `Game Server <bwinter.sc81+gameserve
 | Systemd unit files | `scripts/services/<component>/` |
 | Infrastructure (OS dirs, perms) | `scripts/services/infrastructure/` |
 | Shared game lifecycle | `scripts/services/shared/` (refresh.sh, startup.sh, shutdown.sh, env-vars.sh) |
-| Per-game config | `scripts/services/<Game>/` (env-vars.sh, post-checkout.sh) |
+| Per-game config | `scripts/services/<Game>/` (env-vars.sh) + `terraform/game/<Game>.tfvars.json` |
 | Dependency installers | `scripts/dependencies/` |
 | Admin Flask app | `scripts/services/admin_server/src/admin_server.py` |
 | Admin static files | `scripts/services/admin_server/src/static/` |
@@ -301,6 +311,17 @@ At VM boot, Wine simply uses the pre-built prefix — no initialisation needed a
 
 **Wine 11 (Jan 2026):** The `wine64` binary was removed; the unified `wine` binary handles both
 32-bit and 64-bit PE binaries based on the PE header. `WINEARCH=win64` still works as expected.
+
+**Non-obvious traps (worth flagging because they don't surface as obvious errors):**
+- **Init order is load-bearing.** `unset DISPLAY` → `wineboot` → `export DISPLAY=:0` → `winetricks`.
+  If `DISPLAY` is set before `wineboot`, you get `start_rpcss Failed` followed by a `kernel32.dll`
+  error that's hard to trace back to the cause.
+- **`WINEARCH=win64` isn't decorative.** Without it, Wine builds a wow64 prefix whose 32-bit layer
+  fragments the address space enough to fail VRising's ~6GB allocation. `WINEPREFIX` was removed
+  (Wine 11 defaults to `~/.wine`), but `WINEARCH` must stay.
+- **`winetricks` from GitHub source, not apt.** Debian's `winetricks` package depends on Debian's
+  `wine` (8.x), which would shadow WineHQ's `wine` at `/opt/wine-stable/bin/`. The `apt_wine.sh`
+  script `curl`s `winetricks` directly to `/usr/local/bin/`.
 
 ---
 
