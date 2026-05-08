@@ -104,8 +104,12 @@ fi
 if [[ "$GAME_NAME" == "VRising" ]]; then
     echo "--- Wine Environment ---"
 
-    wine_bin=$(command -v wine 2>/dev/null || true)
-    if [[ -n "$wine_bin" ]]; then
+    # Wine is installed at a fixed path. PATH is set system-wide via
+    # /etc/profile.d/winehq.sh (login shells), but `bash -c` from `gcloud
+    # compute ssh` doesn't source profile.d, so `command -v wine` returns
+    # nothing here. Check the actual install path directly.
+    wine_bin="/opt/wine-stable/bin/wine"
+    if [[ -x "$wine_bin" ]]; then
         check "wine binary exists" "pass" "$wine_bin"
         wine_arch=$(file "$(realpath "$wine_bin")" 2>/dev/null | grep -Eo '64-bit|32-bit' || echo "unknown")
         if [[ "$wine_arch" == "64-bit" ]]; then
@@ -114,7 +118,7 @@ if [[ "$GAME_NAME" == "VRising" ]]; then
             check "wine binary architecture" "fail" "$wine_arch — VRising requires 64-bit Wine"
         fi
     else
-        check "wine binary exists" "fail" "wine not found in PATH"
+        check "wine binary exists" "fail" "$wine_bin missing or not executable"
     fi
 
     if [[ "$(printenv WINEARCH 2>/dev/null)" == "win64" ]]; then
