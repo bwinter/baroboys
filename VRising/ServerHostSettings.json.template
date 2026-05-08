@@ -1,8 +1,8 @@
 {
   "Name": "Mc's Playground",
   "Description": "Co-op PvE. Safe castles, faster progression, chill survival.",
-  "Port": 27015,
-  "QueryPort": 27016,
+  "Port": 9876,
+  "QueryPort": 9877,
   "Address": "",
   "HideIPAddress": false,
   "MaxConnectedUsers": 8,
