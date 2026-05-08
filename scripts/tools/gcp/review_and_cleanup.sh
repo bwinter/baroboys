@@ -45,7 +45,7 @@ else
     count=0
     while IFS= read -r img; do
       [[ -z "$img" ]] && continue
-      ((count++))
+      count=$((count + 1))
       if (( count > KEEP_PER_FAMILY )); then
         echo "🗑 Deleting image: $img (family: $family)"
         gcloud compute images delete "$img" --project="$PROJECT" --quiet || \
