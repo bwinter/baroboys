@@ -84,6 +84,17 @@ if [[ -n "$MANIFEST_PROCESS" ]]; then
 fi
 
 # === IDLE TRACKING ===
+# /tmp on Debian 12 GCE images is on the root partition (no tmpfs), so files
+# written during Packer build persist into the runtime image. Without this
+# guard, a stale IDLE_FLAG from build time would compute IDLE_DURATION as
+# (now - build_time) — potentially exceeding COOLDOWN_MINUTES on the very
+# first boot-time fire and triggering shutdown of a brand-new VM.
+boot_unix=$(date -d "$(uptime -s)" +%s)
+if [[ -f "$IDLE_FLAG" ]] && (( $(stat -c %Y "$IDLE_FLAG") < boot_unix )); then
+  echo "🧹 Discarding pre-boot IDLE_FLAG (mtime predates current uptime)"
+  rm -f "$IDLE_FLAG"
+fi
+
 IDLE_FLAG_SET=false
 IDLE_DURATION=0
 IDLE_SINCE_ISO=""
