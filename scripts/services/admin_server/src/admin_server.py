@@ -92,6 +92,34 @@ def trigger_shutdown():
         }, 500
 
 
+@app.route("/restart-game", methods=["POST"])
+def restart_game():
+    """Restart the game process without poweroff. Useful when the game
+    crashes or hangs but the VM itself is fine — saves the cost of a
+    full provision cycle."""
+    try:
+        now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+
+        if ENV == "dev":
+            print("🔧 [Dev Mode] Mock game-restart triggered.")
+            return {
+                "status": "[Dev Mode] Game restart triggered",
+                "time": now,
+                "note": "This is mock data."
+            }, 200
+
+        subprocess.Popen(["sudo", "systemctl", "restart", "game-startup.service"])
+        return {
+            "status": "Game restart triggered",
+            "time": now
+        }, 200
+
+    except Exception as e:
+        return {
+            "status": f"Game restart failed: {type(e).__name__}: {e}"
+        }, 500
+
+
 @app.route("/manifest")
 def get_manifest():
     """Expose the game manifest so the admin panel JS can render

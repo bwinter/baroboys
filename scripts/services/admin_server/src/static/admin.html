@@ -72,24 +72,68 @@
 </head>
 <body class="bg-black py-4">
 <div class="container">
-    <h1 class="text-primary fw-bold text-center mb-5">
+    <h1 class="text-primary fw-bold text-center mb-4"
+        style="color: var(--game-accent, var(--bs-primary)) !important;">
         <i class="bi bi-speedometer2 me-2"></i> <span id="dashboard-title">Admin Dashboard</span>
     </h1>
+
+    <!-- Health banner: at-a-glance status. Driven by status.json health
+         fields (services_healthy, process_alive, process_rss_mb). -->
+    <div class="card shadow-sm border-secondary mb-4" id="health-card"
+         style="border-left: 4px solid var(--game-accent, var(--bs-primary)) !important;">
+        <div class="card-body d-flex align-items-center">
+            <span class="display-3 me-3" id="health-icon">⏳</span>
+            <div class="flex-grow-1">
+                <h3 class="mb-1" id="health-title">Checking…</h3>
+                <p class="mb-0 small text-muted" id="health-detail">Loading server status…</p>
+            </div>
+            <small class="text-muted text-end" id="health-updated">–</small>
+        </div>
+    </div>
+
+    <!-- Connection card: tells friends how to actually connect. Populated
+         from /api/manifest (game_name, ports). -->
+    <div class="card shadow-sm border-secondary mb-4" id="connection-card">
+        <div class="card-header fw-semibold d-flex align-items-center">
+            <i class="bi bi-cloud-arrow-up text-info me-2"></i> Connect to Server
+        </div>
+        <div class="card-body">
+            <p class="small text-muted mb-2">Add via Steam → Server Browser → Favorites → Add Server:</p>
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+                <code class="fs-5 text-info user-select-all" id="connection-string">…</code>
+                <button class="btn btn-sm btn-outline-secondary" id="copy-connection" type="button">
+                    <i class="bi bi-clipboard me-1"></i> <span id="copy-label">Copy</span>
+                </button>
+                <span class="small text-muted ms-auto" id="connection-note">…</span>
+            </div>
+        </div>
+    </div>
 
     <div class="row g-4 mb-4">
         <div class="col-md-4">
             <div class="card shadow-sm border-secondary" id="shutdown-card">
                 <div class="card-header fw-semibold d-flex align-items-center">
-                    <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i> Shutdown
+                    <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i> Server Actions
                 </div>
                 <div class="card-body text-center">
-                    <p class="small text-muted mb-4">Shutdown the game server.</p>
-                    <form id="shutdown-form">
-                        <button class="btn btn-outline-warning" type="submit">
-                            <i class="bi bi-power me-2"></i> Trigger Shutdown
-                        </button>
-                    </form>
+                    <p class="small text-muted mb-3">
+                        <strong>Restart</strong> reloads the game without poweroff.
+                        <strong>Shutdown</strong> saves and powers off the VM.
+                    </p>
+                    <div class="d-flex flex-column gap-2">
+                        <form id="restart-game-form">
+                            <button class="btn btn-outline-info w-100" type="submit">
+                                <i class="bi bi-arrow-clockwise me-2"></i> Restart Game
+                            </button>
+                        </form>
+                        <form id="shutdown-form">
+                            <button class="btn btn-outline-warning w-100" type="submit">
+                                <i class="bi bi-power me-2"></i> Trigger Shutdown
+                            </button>
+                        </form>
+                    </div>
                     <div class="mt-3 small text-warning" id="shutdown-confirm"></div>
+                    <div class="mt-1 small text-info" id="restart-game-confirm"></div>
                 </div>
             </div>
 
@@ -115,6 +159,20 @@
                             <span class="text-muted" id="summary-ram">–</span>
                         </li>
 
+                        <!-- === Game Health (from status.json health fields) === -->
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-controller text-muted me-2"></i>Game Process</span>
+                            <span class="text-muted" id="summary-process">–</span>
+                        </li>
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-hdd-stack text-muted me-2"></i>Game RAM</span>
+                            <span class="text-muted" id="summary-process-rss">–</span>
+                        </li>
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span><i class="bi bi-shield-check text-muted me-2"></i>Services</span>
+                            <span class="text-muted" id="summary-services">–</span>
+                        </li>
+
                         <!-- === Server State === -->
                         <li class="d-flex justify-content-between align-items-center py-1">
                             <span><i class="bi bi-calendar-check-fill text-muted me-2"></i>Idle Set</span>
@@ -134,10 +192,15 @@
         </div>
 
         <div class="col-md-8">
-            <div class="card shadow-sm border-secondary" id="status-card">
-                <div class="card-header fw-semibold d-flex align-items-center justify-content-between">
+            <!-- Raw status JSON: useful for debugging but not the primary
+                 surface — hidden by default; expand on demand. The parsed
+                 fields are surfaced in the health banner + summary card. -->
+            <details class="card shadow-sm border-secondary" id="status-card">
+                <summary class="card-header fw-semibold d-flex align-items-center justify-content-between"
+                         style="cursor: pointer;">
                     <span>
                         <i class="bi bi-bar-chart-line text-success me-2"></i> Server Raw Status
+                        <span class="text-muted small ms-2">(click to expand)</span>
                     </span>
                     <div class="d-flex align-items-center gap-2">
                         <span class="text-warning small fw-semibold d-none"
@@ -147,7 +210,7 @@
                             <i class="bi bi-pause me-1"></i> Pause Status
                         </button>
                     </div>
-                </div>
+                </summary>
                 <div class="card-body">
                     <div class="terminal-block" id="status-output">No status loaded yet.</div>
                     <small class="text-muted d-block mt-2" id="status-refresh-label">
@@ -155,7 +218,7 @@
                     </small>
                     <small class="text-muted d-block mt-2" id="summary-refresh-timestamp"></small>
                 </div>
-            </div>
+            </details>
         </div>
     </div>
 
@@ -193,6 +256,7 @@
     const shutdownCard = document.getElementById('shutdown-card');
     const statusCard = document.getElementById('status-card');
     const summaryCard = document.getElementById('summary-card');
+    const healthCard = document.getElementById('health-card');
 
     // === Log Section ===
     const output = document.getElementById('log-output');
@@ -211,9 +275,18 @@
     const summaryTime = document.getElementById('summary-time');
     const summaryCPU = document.getElementById('summary-cpu');
     const summaryRAM = document.getElementById('summary-ram');
+    const summaryProcess = document.getElementById('summary-process');
+    const summaryProcessRSS = document.getElementById('summary-process-rss');
+    const summaryServices = document.getElementById('summary-services');
     const summaryIdleFlagSet = document.getElementById('summary-idle-flag-set');
     const summaryIdleSince = document.getElementById('summary-idle-since');
     const summaryIdleMinutes = document.getElementById('summary-idle-minutes');
+
+    // === Health Banner Fields ===
+    const healthIcon = document.getElementById('health-icon');
+    const healthTitle = document.getElementById('health-title');
+    const healthDetail = document.getElementById('health-detail');
+    const healthUpdated = document.getElementById('health-updated');
 
     // === Metadata Footer ===
     const refreshTimestamp = document.getElementById('summary-refresh-timestamp');
@@ -243,11 +316,46 @@
                 summaryTime.innerText = data.timestamp_utc || "Unknown";
                 summaryCPU.innerText = `${data.cpu_percent?.toFixed(1) ?? "Unknown"}%`;
                 summaryRAM.innerText = `${data.mem_percent?.toFixed(1) ?? "Unknown"}%`;
+                summaryProcess.innerText = data.process_alive ? "✅ alive" : "❌ not running";
+                summaryProcessRSS.innerText =
+                    data.process_rss_mb != null ? `${data.process_rss_mb} MB` : "n/a";
+                summaryServices.innerText = data.services_healthy ? "✅ healthy" : "❌ failed";
                 summaryIdleFlagSet.innerText = data.idle_flag_set ?? "false";
                 summaryIdleSince.innerText =   data.idle_since === "" || data.idle_since == null
                     ? "n/a"
                     : data.idle_since;
                 summaryIdleMinutes.innerText = `${data.idle_duration_minutes} min`;
+
+                // === Health Banner: classify from health fields ===
+                // Healthy:        services + alive + RAM ≥ floor (game fully bootstrapped)
+                // Bootstrapping:  alive but RAM below floor (game starting up)
+                // Issues:         services failed OR process not running
+                const ramFloor = data.game_name === "VRising" ? 500 : 200;
+                const ramOk = (data.process_rss_mb ?? 0) >= ramFloor;
+                const game = data.game_name || "Server";
+                if (data.services_healthy && data.process_alive && ramOk) {
+                    healthIcon.textContent = '🟢';
+                    healthTitle.textContent = `${game} — Healthy`;
+                    healthDetail.textContent =
+                        `Game running (${data.process_rss_mb} MB RAM), all services active.`;
+                } else if (data.process_alive) {
+                    healthIcon.textContent = '🟡';
+                    healthTitle.textContent = `${game} — Bootstrapping`;
+                    healthDetail.textContent =
+                        `Game starting up (${data.process_rss_mb} MB RAM, floor ${ramFloor} MB). ` +
+                        `Services healthy: ${data.services_healthy}.`;
+                } else {
+                    healthIcon.textContent = '🔴';
+                    healthTitle.textContent = `${game} — Issues`;
+                    healthDetail.textContent =
+                        `Game process not running. ` +
+                        `services_healthy=${data.services_healthy}, process_alive=${data.process_alive}.`;
+                }
+                if (data.timestamp_utc) {
+                    const ts = new Date(data.timestamp_utc);
+                    const ageSec = Math.max(0, Math.round((Date.now() - ts.getTime()) / 1000));
+                    healthUpdated.textContent = `Updated ${ageSec}s ago`;
+                }
 
                 // === Metadata Footer ===
                 refreshTimestamp.innerText = `Last update: ${data.timestamp_utc ?? "unknown"}`;
@@ -279,6 +387,19 @@
         summaryCard.classList.remove('disconnected-orange');
         offlineMsg.classList.add('d-none');
     }
+
+    const restartGameForm = document.getElementById('restart-game-form');
+    const restartGameConfirm = document.getElementById('restart-game-confirm');
+    restartGameForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!confirm('Restart the game process? This kicks players but does not poweroff the VM.')) return;
+        restartGameConfirm.innerText = '⏳ Restarting…';
+        const res = await fetch('/api/restart-game', {method: 'POST'});
+        const data = await res.json();
+        restartGameConfirm.innerText = data.time
+            ? `🔄 ${data.status} at ${data.time}`
+            : `⚠️ ${data.status}`;
+    });
 
     shutdownForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -326,6 +447,34 @@
             // Update dashboard title to include game name.
             const title = document.getElementById('dashboard-title');
             title.textContent = `${manifest.game_name} — Admin Dashboard`;
+
+            // Apply per-game accent color via CSS variable. Cards that
+            // reference `var(--game-accent, ...)` (header, health card)
+            // pick it up immediately. Falls back to bs-primary if unset.
+            if (manifest.accent_color) {
+                document.documentElement.style.setProperty('--game-accent', manifest.accent_color);
+            }
+
+            // Connection card — IP from window.location, port from manifest.
+            const ip = window.location.hostname;
+            const udpPorts = manifest.ports?.udp ?? [];
+            const tcpPorts = manifest.ports?.tcp ?? [];
+            const primaryPort = udpPorts[0] ?? tcpPorts[0];
+            const connStr = primaryPort ? `${ip}:${primaryPort}` : ip;
+            document.getElementById('connection-string').textContent = connStr;
+            const protoNote = [];
+            if (udpPorts.length) protoNote.push(`UDP ${udpPorts.join(', ')}`);
+            if (tcpPorts.length) protoNote.push(`TCP ${tcpPorts.join(', ')}`);
+            document.getElementById('connection-note').textContent =
+                protoNote.join(' · ') || 'no game ports declared';
+            document.getElementById('copy-connection').addEventListener('click', () => {
+                navigator.clipboard.writeText(connStr).then(() => {
+                    const lbl = document.getElementById('copy-label');
+                    const orig = lbl.textContent;
+                    lbl.textContent = 'Copied!';
+                    setTimeout(() => lbl.textContent = orig, 1500);
+                });
+            });
 
             // Replace dropdown contents with game-aware log set + nginx.
             const labelize = name =>

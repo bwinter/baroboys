@@ -63,12 +63,29 @@ manifest_log_files=(game.log admin_server.log refresh_repo.log idle_check.log in
 manifest_log_files_json="$(printf '"%s",' "${manifest_log_files[@]}" | sed 's/,$//')"
 manifest_uses_wine=$([[ -n "${WINEARCH:-}" ]] && echo true || echo false)
 
+# Ports (per-game env-vars defines GAME_PORTS_UDP / GAME_PORTS_TCP as
+# space-separated strings; turn into JSON arrays).
+ports_json_array() {
+  local raw="$1"
+  [[ -z "$raw" ]] && { echo "[]"; return; }
+  local out=""
+  for p in $raw; do out+="${p},"; done
+  echo "[${out%,}]"
+}
+manifest_ports_udp=$(ports_json_array "${GAME_PORTS_UDP:-}")
+manifest_ports_tcp=$(ports_json_array "${GAME_PORTS_TCP:-}")
+
 cat > /tmp/baroboys-manifest.json <<EOF
 {
   "game_name": "${GAME_NAME}",
   "process_name": "${PROCESS_NAME}",
   "uses_wine": ${manifest_uses_wine},
-  "log_files": [${manifest_log_files_json}]
+  "log_files": [${manifest_log_files_json}],
+  "ports": {
+    "udp": ${manifest_ports_udp},
+    "tcp": ${manifest_ports_tcp}
+  },
+  "accent_color": "${GAME_ACCENT_COLOR:-#0d6efd}"
 }
 EOF
 sudo install -m 644 /tmp/baroboys-manifest.json /etc/baroboys/manifest.json

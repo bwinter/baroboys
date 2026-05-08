@@ -1,4 +1,5 @@
 bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart game-shutdown.service
+bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart game-startup.service
 bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/systemctl poweroff
 bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/systemctl daemon-reload
 bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/systemctl enable *

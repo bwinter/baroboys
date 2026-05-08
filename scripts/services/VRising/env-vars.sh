@@ -35,3 +35,11 @@ export WINEDEBUG=-all  # suppress verbose wine debug noise from logs
 
 # SETUP: REQUIRED — the command that launches the game server
 export LAUNCH_CMD="/opt/wine-stable/bin/wine VRisingServer.exe -persistentDataPath ./Data -logFile $LOG_FILE"
+
+# Manifest fields (consumed by admin panel via /etc/baroboys/manifest.json)
+# SETUP: REQUIRED — game-listen ports, space-separated. VRising binds UDP only.
+export GAME_PORTS_UDP="9876 9877"
+export GAME_PORTS_TCP=""
+# SETUP: OPTIONAL — accent color for admin panel branding (CSS hex).
+# VRising: gothic blood red.
+export GAME_ACCENT_COLOR="#dc2626"
