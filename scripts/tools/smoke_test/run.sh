@@ -123,6 +123,38 @@ for i in $(seq 1 30); do
 done
 
 # ============================================================
+# Stage 3b — Game readiness (wait for game to bind its listen port)
+# ============================================================
+# `Started game-startup.service` only means systemd kicked off the unit, not
+# that the game is ready. Wine games (VRising) take 2-5 minutes to bootstrap
+# Unity + EOS before binding their port. Probe the actual game port until
+# it's reachable; that's the real readiness signal.
+header "Stage 3b — Game Readiness (port bind)"
+
+case "$GAME" in
+    VRising)    ready_port=9876; ready_proto=udp ;;
+    Barotrauma) ready_port=27015; ready_proto=udp ;;
+    *)          ready_port=""; ready_proto="" ;;
+esac
+
+if [[ -n "$ready_port" ]]; then
+    nc_flag="-zvw 5"; [[ "$ready_proto" == "udp" ]] && nc_flag="-zuvw 5"
+    echo "Waiting for $GAME to bind $ready_proto:$ready_port..."
+    for i in $(seq 1 36); do
+        # shellcheck disable=SC2086
+        if nc $nc_flag "$IP" "$ready_port" >/dev/null 2>&1; then
+            pass "$GAME ready on $ready_proto:$ready_port (after ${i}x polls / ~$((i*10))s)"
+            break
+        fi
+        echo "  not yet ready, retrying in 10s..."
+        sleep 10
+        if [[ "$i" -eq 36 ]]; then
+            fail "$GAME never bound $ready_proto:$ready_port after 6 minutes"
+        fi
+    done
+fi
+
+# ============================================================
 # Stage 4 — Internal checks (run vm_checks.sh on the VM)
 # ============================================================
 header "Stage 4 — Internal Checks (via SSH)"
