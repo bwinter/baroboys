@@ -24,6 +24,15 @@ apt-get install -yq google-cloud-cli
 GCP_PROJECT="$(curl -sf -H 'Metadata-Flavor: Google' http://metadata.google.internal/computeMetadata/v1/project/project-id)"
 gcloud config set --installation core/project "$GCP_PROJECT"
 
+# Same shape for account: gcloud sees the GCE service account in `auth list`
+# but doesn't mark it ACTIVE for non-root users at first boot — secret access
+# fails with "You do not currently have an active account selected" even
+# though the SA credentials are reachable via metadata. Bake the SA email as
+# installation-level core/account so resolution doesn't depend on per-user
+# initialization or first-call timing.
+SA_EMAIL="$(curl -sf -H 'Metadata-Flavor: Google' http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/email)"
+gcloud config set --installation core/account "$SA_EMAIL"
+
 echo "📦 [install-ops-agent] Installing Ops Agent..."
 
 # Install the agent via official script
