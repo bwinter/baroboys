@@ -7,9 +7,26 @@ STATUS_JSON="$STATIC_NGINX/status.json"
 IDLE_FLAG="/tmp/server_idle_since.flag"
 COOLDOWN_MINUTES=30
 CPU_THRESHOLD=5.0
+MANIFEST_PATH="/etc/baroboys/manifest.json"
 
 # === DEPENDENCY CHECK ===
 command -v mpstat >/dev/null 2>&1 || { echo >&2 "mpstat not found. Install with: sudo apt install sysstat"; exit 1; }
+
+# === GAME MANIFEST ===
+# The manifest tells us which process to look for and which services should
+# be active. Parsed via python rather than jq to avoid an extra apt package.
+# Falls back to defaults if manifest is missing (smoke-test before first
+# game-refresh, or dev-stub scenarios).
+read -r MANIFEST_GAME_NAME MANIFEST_PROCESS MANIFEST_USES_WINE < <(python3 -c '
+import json, sys
+try:
+    m = json.load(open("'"$MANIFEST_PATH"'"))
+    print(m.get("game_name", "Unknown"),
+          m.get("process_name", ""),
+          str(m.get("uses_wine", False)).lower())
+except (FileNotFoundError, json.JSONDecodeError):
+    print("Unknown", "", "false")
+')
 
 # === TIMING METRICS ===
 NOW_UNIX=$(date +%s)
@@ -24,6 +41,43 @@ MEM_USED=$(free | awk '/Mem:/ {print $3}')
 MEM_TOTAL=$(free | awk '/Mem:/ {print $2}')
 MEM_PERCENT=$(awk -v used="$MEM_USED" -v total="$MEM_TOTAL" \
     'BEGIN { printf("%.2f", (used/total) * 100) }')
+
+# === HEALTH: SERVICES ===
+# Required services for any game; xvfb-* added when manifest says wine.
+HEALTH_SERVICES=(infrastructure-refresh refresh-repo-refresh refresh-repo-startup
+                 admin-server-refresh admin-server-startup
+                 game-refresh game-startup)
+[[ "$MANIFEST_USES_WINE" == "true" ]] && HEALTH_SERVICES+=(xvfb-refresh xvfb-startup)
+SERVICES_HEALTHY=true
+for svc in "${HEALTH_SERVICES[@]}"; do
+  if [[ "$svc" == *-refresh ]]; then
+    # oneshot: check Result=success rather than active (oneshots go inactive
+    # after success and that's fine).
+    result=$(systemctl show "$svc.service" --property=Result --value 2>/dev/null || echo "")
+    [[ "$result" == "success" ]] || SERVICES_HEALTHY=false
+  else
+    state=$(systemctl is-active "$svc.service" 2>/dev/null || echo "")
+    [[ "$state" == "active" ]] || SERVICES_HEALTHY=false
+  fi
+done
+
+# === HEALTH: GAME PROCESS ===
+# Pick the largest-RSS process matching the game's PROCESS_NAME — Wine games
+# have multiple matches (start.exe, wineserver, the game proper), and we
+# want the actual game.
+PROCESS_ALIVE=false
+PROCESS_RSS_MB=0
+if [[ -n "$MANIFEST_PROCESS" ]]; then
+  pid=$(pgrep -f "$MANIFEST_PROCESS" 2>/dev/null | while read -r p; do
+    rss=$(awk '/VmRSS/ {print $2}' "/proc/$p/status" 2>/dev/null || echo 0)
+    echo "$rss $p"
+  done | sort -n | tail -1 | awk '{print $2}')
+  if [[ -n "$pid" ]]; then
+    PROCESS_ALIVE=true
+    rss_kb=$(awk '/VmRSS/ {print $2}' "/proc/$pid/status" 2>/dev/null || echo 0)
+    PROCESS_RSS_MB=$((rss_kb / 1024))
+  fi
+fi
 
 # === IDLE TRACKING ===
 IDLE_FLAG_SET=false
@@ -47,11 +101,17 @@ else
 fi
 
 # === WRITE STATUS.JSON ===
+# Health fields self-report game state — admin panel and external smoke
+# tests can poll status.json instead of SSHing in to run vm_checks.sh.
 tee "$STATUS_JSON" > /dev/null <<EOF
 {
   "timestamp_utc": "$NOW_ISO",
+  "game_name": "$MANIFEST_GAME_NAME",
   "cpu_percent": $CPU_PERCENT,
   "mem_percent": $MEM_PERCENT,
+  "services_healthy": $SERVICES_HEALTHY,
+  "process_alive": $PROCESS_ALIVE,
+  "process_rss_mb": $PROCESS_RSS_MB,
   "idle_flag_set": $IDLE_FLAG_SET,
   "idle_since": "$IDLE_SINCE_ISO",
   "idle_duration_minutes": $IDLE_DURATION
