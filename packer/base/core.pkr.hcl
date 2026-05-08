@@ -58,7 +58,6 @@ build {
 
       "echo '🔧 Ensure both users have latest copy of repo'",
       "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/refresh_repo/refresh.sh",
-      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/refresh_repo/startup.sh",
 
       "echo '🔧 Update linux'",
       "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/dependencies/apt_core/apt_core.sh",

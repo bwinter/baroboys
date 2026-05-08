@@ -51,7 +51,6 @@ build {
 
       "echo '🔧 Ensure both users have latest copy of repo'",
       "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/refresh_repo/refresh.sh",
-      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/refresh_repo/startup.sh",
 
       "echo '🔧 Install sudoers for bwinter_sc81'",
       "/usr/bin/sudo install -m 440 -o root -g root /home/bwinter_sc81/baroboys/scripts/services/shared/sudoers-bwinter /etc/sudoers.d/bwinter",
