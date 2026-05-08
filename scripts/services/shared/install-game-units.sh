@@ -4,8 +4,19 @@ set -euxo pipefail
 # Install and enable game systemd units. Runs as root at Packer build time only.
 # Units are baked into the image — not reinstalled at boot.
 
+# shellcheck source=scripts/services/shared/env-vars.sh
+# shellcheck disable=SC1091
 source "$(dirname "${BASH_SOURCE[0]}")/env-vars.sh"
-export BAROBOYS GAME_NAME GAME_DIR LOG_FILE
+
+# env-vars.sh sets BAROBOYS=$HOME/baroboys, which resolves to /root/baroboys when
+# this script runs as root. But the game-* units declare User=bwinter_sc81 — and
+# /root has mode 700, so bwinter_sc81 can't traverse it. Override BAROBOYS to
+# point at bwinter_sc81's copy of the repo (the dual-clone done by refresh_repo)
+# before envsubst captures the path into the templates.
+TARGET_USER="bwinter_sc81"
+export BAROBOYS="/home/$TARGET_USER/baroboys"
+export GAME_DIR="$BAROBOYS/$GAME_NAME"
+export GAME_NAME LOG_FILE
 
 TEMPLATE_DIR="$BAROBOYS/scripts/templates"
 
