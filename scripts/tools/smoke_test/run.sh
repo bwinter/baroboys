@@ -47,7 +47,7 @@ teardown() {
     terraform workspace select "$WORKSPACE" 2>/dev/null || true
     terraform destroy -auto-approve \
         -var-file="shared.tfvars" \
-        -var-file="game/${GAME}.tfvars"
+        -var-file="game/${GAME}.tfvars.json"
     pass "Terraform destroy complete"
 }
 trap teardown EXIT
@@ -75,7 +75,7 @@ terraform init -backend-config="backend/prod.hcl" -input=false
 terraform workspace select "$WORKSPACE" || terraform workspace new "$WORKSPACE"
 terraform apply -auto-approve \
     -var-file="shared.tfvars" \
-    -var-file="game/${GAME}.tfvars"
+    -var-file="game/${GAME}.tfvars.json"
 pass "Terraform apply complete"
 
 # ============================================================
@@ -131,11 +131,22 @@ done
 # it's reachable; that's the real readiness signal.
 header "Stage 3b — Game Readiness (port bind)"
 
-case "$GAME" in
-    VRising)    ready_port=9876; ready_proto=udp ;;
-    Barotrauma) ready_port=27015; ready_proto=udp ;;
-    *)          ready_port=""; ready_proto="" ;;
-esac
+# Pull readiness port from the per-game JSON (single source of truth).
+# Drift between firewall, game listen, and this check would now surface
+# as a readiness-timeout — not as a hardcoded mismatch.
+GAME_TFVARS="$REPO_ROOT/terraform/game/${GAME}.tfvars.json"
+read -r ready_port ready_proto < <(python3 -c "
+import json
+d = json.load(open('$GAME_TFVARS'))
+udp = d.get('game_ports_udp', [])
+tcp = d.get('game_ports_tcp', [])
+if udp:
+    print(udp[0], 'udp')
+elif tcp:
+    print(tcp[0], 'tcp')
+else:
+    print('', '')
+")
 
 if [[ -n "$ready_port" ]]; then
     nc_flag="-zvw 5"; [[ "$ready_proto" == "udp" ]] && nc_flag="-zuvw 5"
@@ -219,24 +230,17 @@ fi
 # would have been caught here.
 header "Stage 5b — Game Port Reachability"
 
-case "$GAME" in
-    VRising)
-        # VRising listens UDP only on 9876/9877 (game/query). Match firewall.
-        ports_udp=(9876 9877)
-        ports_tcp=()
-        ;;
-    Barotrauma)
-        # Barotrauma uses Steam-style ports but binds UDP only (TCP firewall
-        # rule from the original 2025 setup is dead — game never listened on TCP).
-        ports_udp=(27015 27016)
-        ports_tcp=()
-        ;;
-    *)
-        fail "no port spec for game '$GAME' — extend smoke test"
-        ports_udp=()
-        ports_tcp=()
-        ;;
-esac
+# Port spec from the per-game JSON (single source of truth — same file
+# Terraform reads for firewall rules and shared/refresh.sh reads to write
+# the manifest).
+read -r -a ports_udp < <(python3 -c "
+import json
+print(' '.join(str(p) for p in json.load(open('$GAME_TFVARS')).get('game_ports_udp', [])))
+")
+read -r -a ports_tcp < <(python3 -c "
+import json
+print(' '.join(str(p) for p in json.load(open('$GAME_TFVARS')).get('game_ports_tcp', [])))
+")
 
 for p in "${ports_udp[@]}"; do
     if nc -zuvw 5 "$IP" "$p" >/dev/null 2>&1; then

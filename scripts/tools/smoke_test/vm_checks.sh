@@ -88,15 +88,14 @@ done | sort -n | tail -1 | awk '{print $2}')
 if [[ -z "$pid" ]]; then
     check "game process ($PROCESS_NAME)" "fail" "not found"
 else
-    # RAM check: RSS in kB from /proc.
-    # Per-game floor: VRising's Unity+Wine stack typically settles 1-3GB,
-    # Barotrauma is leaner at ~300-500MB. Common ceiling: 5.5GB (VRising's
-    # observed peak under load).
-    case "$GAME_NAME" in
-        VRising)    ram_min_mb=500 ;;
-        Barotrauma) ram_min_mb=200 ;;
-        *)          ram_min_mb=200 ;;
-    esac
+    # RAM floor comes from the manifest (process_ram_mb_min) which derives
+    # from the per-game tfvars.json. Single source: same JSON Terraform
+    # uses for firewall rules. Common ceiling: 5.5GB (VRising's observed
+    # peak under load).
+    ram_min_mb=$(python3 -c "
+import json
+print(json.load(open('/etc/baroboys/manifest.json')).get('process_ram_mb_min', 200))
+" 2>/dev/null || echo 200)
     rss_kb=$(awk '/VmRSS/ {print $2}' "/proc/$pid/status" 2>/dev/null || echo 0)
     rss_mb=$((rss_kb / 1024))
     if (( rss_mb >= ram_min_mb && rss_mb <= 5632 )); then

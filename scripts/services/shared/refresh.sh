@@ -53,40 +53,41 @@ fi
 # (runs as root at Packer build time only — units are baked into the image).
 
 # --- Write game manifest for cross-language consumers ---
-# bash knows the game env-vars; admin_server.py needs them as JSON. The
-# manifest at /etc/baroboys/manifest.json is the cross-language hand-off —
-# same pattern as /etc/baroboys/active-game. Updated every game-refresh so
-# a game switch (after image rebuild) propagates without admin_server
-# needing a restart.
+# Cross-language source of truth lives in terraform/game/<Game>.tfvars.json
+# (Terraform reads it natively for firewall + VM config; we read it here to
+# build the runtime manifest). Manifest at /etc/baroboys/manifest.json is
+# what admin_server.py reads — narrower projection (adds log_files derived
+# from runtime context like Wine/Xvfb).
+GAME_TFVARS="$BAROBOYS/terraform/game/${GAME_NAME}.tfvars.json"
+
 manifest_log_files=(game.log admin_server.log refresh_repo.log idle_check.log infrastructure.log)
-[[ -n "${WINEARCH:-}" ]] && manifest_log_files+=(xvfb.log)
+# Whether to add xvfb.log: read uses_wine from the per-game JSON. The
+# python3 dependency is already used by idle_check.sh; no new install.
+if python3 -c "import json,sys; sys.exit(0 if json.load(open('$GAME_TFVARS')).get('uses_wine', False) else 1)"; then
+  manifest_log_files+=(xvfb.log)
+fi
 manifest_log_files_json="$(printf '"%s",' "${manifest_log_files[@]}" | sed 's/,$//')"
-manifest_uses_wine=$([[ -n "${WINEARCH:-}" ]] && echo true || echo false)
 
-# Ports (per-game env-vars defines GAME_PORTS_UDP / GAME_PORTS_TCP as
-# space-separated strings; turn into JSON arrays).
-ports_json_array() {
-  local raw="$1"
-  [[ -z "$raw" ]] && { echo "[]"; return; }
-  local out=""
-  for p in $raw; do out+="${p},"; done
-  echo "[${out%,}]"
+# Splice log_files into the source JSON to produce the manifest. Everything
+# else (game_name, process_name, uses_wine, ports, accent_color) is copied
+# straight from the per-game tfvars.json. This keeps the manifest a strict
+# function of the source-of-truth file plus runtime-derived log_files.
+python3 <<PY > /tmp/baroboys-manifest.json
+import json
+src = json.load(open("$GAME_TFVARS"))
+manifest = {
+    "game_name":     src["game_name"],
+    "process_name":  src["process_name"],
+    "uses_wine":     src["uses_wine"],
+    "log_files":     [${manifest_log_files_json}],
+    "ports": {
+        "udp": src.get("game_ports_udp", []),
+        "tcp": src.get("game_ports_tcp", []),
+    },
+    "accent_color":  src.get("accent_color", "#0d6efd"),
+    "process_ram_mb_min": src.get("process_ram_mb_min", 200),
 }
-manifest_ports_udp=$(ports_json_array "${GAME_PORTS_UDP:-}")
-manifest_ports_tcp=$(ports_json_array "${GAME_PORTS_TCP:-}")
-
-cat > /tmp/baroboys-manifest.json <<EOF
-{
-  "game_name": "${GAME_NAME}",
-  "process_name": "${PROCESS_NAME}",
-  "uses_wine": ${manifest_uses_wine},
-  "log_files": [${manifest_log_files_json}],
-  "ports": {
-    "udp": ${manifest_ports_udp},
-    "tcp": ${manifest_ports_tcp}
-  },
-  "accent_color": "${GAME_ACCENT_COLOR:-#0d6efd}"
-}
-EOF
+print(json.dumps(manifest, indent=2))
+PY
 sudo install -m 644 /tmp/baroboys-manifest.json /etc/baroboys/manifest.json
 rm -f /tmp/baroboys-manifest.json

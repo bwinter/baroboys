@@ -79,6 +79,59 @@ variable "game_tags" {
 }
 
 variable "game_image" {
-  description = "Image used for the Game layer — set per-game in terraform/game/<Game>.tfvars"
+  description = "Image used for the Game layer — set per-game in terraform/game/<Game>.tfvars.json"
   type        = string
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Cross-language config — Terraform reads these from the per-game JSON
+# tfvars file. The same file is also read by bash (shared/refresh.sh,
+# smoke test) to populate the manifest and runtime state, so port lists,
+# game name, accent, etc. are declared exactly once per game.
+# ─────────────────────────────────────────────────────────────────────────────
+
+variable "game_ports_udp" {
+  description = "UDP ports the game binds — opens matching firewall rules"
+  type        = list(number)
+  default     = []
+}
+
+variable "game_ports_tcp" {
+  description = "TCP ports the game binds — opens matching firewall rules"
+  type        = list(number)
+  default     = []
+}
+
+# These exist as Terraform variables so JSON tfvars loads cleanly without
+# warnings, but they're consumed by bash readers (shared/refresh.sh) and
+# don't shape any Terraform resources. Defaults make them optional.
+
+variable "game_name" {
+  description = "Display name (e.g. VRising). Used by admin panel via manifest."
+  type        = string
+  default     = ""
+}
+
+variable "process_name" {
+  description = "Process name for pgrep/pkill (e.g. VRisingServer.exe)"
+  type        = string
+  default     = ""
+}
+
+variable "uses_wine" {
+  description = "Whether the game uses Wine — drives xvfb dependency in manifest"
+  type        = bool
+  default     = false
+}
+
+variable "accent_color" {
+  description = "CSS hex color for admin panel branding"
+  type        = string
+  default     = "#0d6efd"
+}
+
+variable "process_ram_mb_min" {
+  description = "Minimum process RSS in MB to consider the game 'fully bootstrapped'"
+  type        = number
+  default     = 200
 }

@@ -79,7 +79,7 @@ terraform-destroy-$(1): terraform-init
 	$(call tf_in_workspace,$(1)) && \
 		terraform destroy \
 		-var-file=$(TF_SHARED) \
-		-var-file=game/$(1).tfvars
+		-var-file=game/$(1).tfvars.json
 endef
 $(foreach game,$(GAMES),$(eval $(call terraform_destroy_recipe,$(game))))
 

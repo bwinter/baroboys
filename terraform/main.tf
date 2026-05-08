@@ -77,83 +77,43 @@ resource "google_compute_instance" "default" {
 // ─────────────────────────────────────────────────────────────────────────────
 // 🔥 Firewall Rules
 //
-// Each firewall is per-workspace (count guarded on terraform.workspace) so
-// that two workspaces — say `terraform-apply-VRising` and
-// `terraform-apply-Barotrauma` — don't both try to create the same global
-// GCP firewall resource and collide. Names are workspace-scoped to stay
-// unique across the project even when both workspaces are applied.
+// Game ports come from the per-game tfvars.json (game_ports_udp/tcp).
+// Single source of truth: same file feeds Terraform here AND bash readers
+// (shared/refresh.sh, smoke test). Each workspace owns its own firewall
+// rules; per-workspace names + count guards prevent collisions when both
+// workspaces are deployed.
 // ─────────────────────────────────────────────────────────────────────────────
 
-resource "google_compute_firewall" "barotrauma_ports" {
-  count   = terraform.workspace == "barotrauma" ? 1 : 0
-  name    = "barotrauma-ports"
+resource "google_compute_firewall" "game_ports_tcp" {
+  count   = length(var.game_ports_tcp) > 0 ? 1 : 0
+  name    = "${var.machine_name}-ports-tcp"
   network = "default"
 
   allow {
     protocol = "tcp"
-    ports    = ["27015", "27016"]
+    ports    = [for p in var.game_ports_tcp : tostring(p)]
   }
 
-  direction = "INGRESS"
-  priority  = 1000
-
+  direction     = "INGRESS"
+  priority      = 1000
   source_ranges = ["0.0.0.0/0"]
-
-  target_tags = ["barotrauma"]
+  target_tags   = var.game_tags
 }
 
-resource "google_compute_firewall" "barotrauma_ports_udp" {
-  count   = terraform.workspace == "barotrauma" ? 1 : 0
-  name    = "barotrauma-ports-udp"
+resource "google_compute_firewall" "game_ports_udp" {
+  count   = length(var.game_ports_udp) > 0 ? 1 : 0
+  name    = "${var.machine_name}-ports-udp"
   network = "default"
 
   allow {
     protocol = "udp"
-    ports    = ["27015", "27016"]
+    ports    = [for p in var.game_ports_udp : tostring(p)]
   }
 
-  direction = "INGRESS"
-  priority  = 1000
-
+  direction     = "INGRESS"
+  priority      = 1000
   source_ranges = ["0.0.0.0/0"]
-
-  target_tags = ["barotrauma"]
-}
-
-resource "google_compute_firewall" "vrising_ports" {
-  count   = terraform.workspace == "vrising" ? 1 : 0
-  name    = "vrising-ports"
-  network = "default"
-
-  allow {
-    protocol = "tcp"
-    ports    = ["9876", "9877"]
-  }
-
-  direction = "INGRESS"
-  priority  = 1000
-
-  source_ranges = ["0.0.0.0/0"]
-
-  target_tags = ["vrising"]
-}
-
-resource "google_compute_firewall" "vrising_ports_udp" {
-  count   = terraform.workspace == "vrising" ? 1 : 0
-  name    = "vrising-ports-udp"
-  network = "default"
-
-  allow {
-    protocol = "udp"
-    ports    = ["9876", "9877"]
-  }
-
-  direction = "INGRESS"
-  priority  = 1000
-
-  source_ranges = ["0.0.0.0/0"]
-
-  target_tags = ["vrising"]
+  target_tags   = var.game_tags
 }
 
 // Admin server firewall is shared in concept (port 8080 reaches whichever

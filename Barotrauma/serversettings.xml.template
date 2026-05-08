@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <serversettings
-  port="27015"
-  queryport="27016"
+  port="${GAME_PORT}"
+  queryport="${GAME_QUERY_PORT}"
   password="${GAME_PASSWORD}"
   enableupnp="false"
   HiddenSubs=""

@@ -34,12 +34,6 @@ export CHECKOUT_LIST="$CLIENT_PERMISSIONS_XML $PERMISSION_PRESETS_XML"
 # SETUP: REQUIRED — the command that launches the game server
 export LAUNCH_CMD="./DedicatedServer"
 
-# Manifest fields (consumed by admin panel via /etc/baroboys/manifest.json)
-# SETUP: REQUIRED — game-listen ports, space-separated. Used by admin
-# panel to render "connect to server" instructions and by smoke test
-# port-reachability check.
-export GAME_PORTS_UDP="27015 27016"
-export GAME_PORTS_TCP=""
-# SETUP: OPTIONAL — accent color for admin panel branding (CSS hex).
-# Barotrauma: industrial amber.
-export GAME_ACCENT_COLOR="#f59e0b"
+# Cross-language config (ports, accent_color, process_name, uses_wine,
+# game_name) lives in terraform/game/Barotrauma.tfvars.json — single source
+# read by both Terraform (firewall, VM) and bash (manifest, smoke test).

@@ -36,9 +36,17 @@ PACKER_SHARED_VARS_FILE="shared.pkrvars.hcl"
 PACKER_VAR_DEFS_FILE="variables.pkr.hcl"
 REFRESH_SCRIPT_SRC="${SCRIPT_DIR}/src/refresh_repo.sh"
 
-# Game-only vars
-TF_VARS_FILE="${TERRAFORM_DIR}/${META}/${NAME}.tfvars"
-PACKER_VARS_FILE="${META}-${NAME}.pkrvars.hcl"
+# Per-layer vars. Base layers use HCL .tfvars (empty/comment-only is fine);
+# game layers use .tfvars.json — single source of truth shared with bash
+# readers. Packer accepts both formats; matching extensions keep the var
+# loader correct.
+if [[ "$META" == "game" ]]; then
+  TF_VARS_FILE="${TERRAFORM_DIR}/${META}/${NAME}.tfvars.json"
+  PACKER_VARS_FILE="${META}-${NAME}.pkrvars.json"
+else
+  TF_VARS_FILE="${TERRAFORM_DIR}/${META}/${NAME}.tfvars"
+  PACKER_VARS_FILE="${META}-${NAME}.pkrvars.hcl"
+fi
 
 ### ---- Validation ----
 for f in "$PACKER_TEMPLATE_FILE" "$REFRESH_SCRIPT_SRC" "$TF_SHARED_VARS_FILE" "$TF_VAR_DEFS_FILE" "$TF_VARS_FILE"; do

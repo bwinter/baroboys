@@ -2,8 +2,9 @@
 set -euxo pipefail
 
 # Contract:
-# - CLI: <game-name>
-# - terraform/game/<name>.tfvars must exist
+# - CLI: <game-name> <env>
+# - terraform/game/<name>.tfvars.json must exist (cross-language config:
+#   Terraform reads it natively; bash readers parse with python3/jq).
 # - Only applies games, uses shared.tfvars
 
 if [[ $# -ne 2 ]]; then
@@ -14,9 +15,9 @@ fi
 GAME="$1"
 ENV="$2"
 TF_DIR="terraform"
+GAME_VARS="$TF_DIR/game/$GAME.tfvars.json"
 
-# Validate vars file exists **relative to repo root**
-[[ -f "$TF_DIR/game/$GAME.tfvars" ]] || { echo "Missing Terraform vars file: $TF_DIR/game/$GAME.tfvars"; exit 1; }
+[[ -f "$GAME_VARS" ]] || { echo "Missing per-game vars file: $GAME_VARS"; exit 1; }
 
 # Change to terraform dir for apply
 cd "$TF_DIR"
@@ -24,7 +25,6 @@ cd "$TF_DIR"
 # Workspace per game — each game gets independent state.
 WORKSPACE="$(echo "$GAME" | tr '[:upper:]' '[:lower:]')"
 
-# Now paths are relative to current directory
 terraform init -backend-config="backend/${ENV}.hcl"
 terraform workspace select "$WORKSPACE" || terraform workspace new "$WORKSPACE"
-terraform apply -var-file="shared.tfvars" -var-file="game/$GAME.tfvars"
+terraform apply -var-file="shared.tfvars" -var-file="game/$GAME.tfvars.json"
