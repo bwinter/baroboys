@@ -13,6 +13,17 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloud.google.gpg] https://pa
 apt-get update -yq
 apt-get install -yq google-cloud-cli
 
+# Bake the GCP project into installation-level gcloud config. Without this,
+# every gcloud call has to resolve project via the metadata server — which
+# can race transiently at first boot of a fresh VM, leaving resource-parsing
+# commands (`gcloud secrets versions access`, etc.) without project context
+# even though `gcloud config list` works. Installation-level config is
+# system-wide and inherited by all users, removing the per-call dependency
+# on metadata-server availability and timing at runtime. Read from metadata
+# at build time (reliably available during Packer) and persist to the image.
+GCP_PROJECT="$(curl -sf -H 'Metadata-Flavor: Google' http://metadata.google.internal/computeMetadata/v1/project/project-id)"
+gcloud config set --installation core/project "$GCP_PROJECT"
+
 echo "📦 [install-ops-agent] Installing Ops Agent..."
 
 # Install the agent via official script
