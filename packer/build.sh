@@ -26,7 +26,11 @@ esac
 PACKER_DIR="packer"
 TERRAFORM_DIR="terraform"
 SCRIPT_DIR="scripts/services/refresh_repo"
-BUILD_DIR="packer/tmp"
+# Per-invocation build dir so concurrent invocations (e.g. parallel game
+# builds) don't fight over the same path. A shared `packer/tmp` previously
+# led to one build's `rm -rf` wiping another build's staged files between
+# the second build's start and its packer file-provisioner stat.
+BUILD_DIR="packer/tmp-${META}-${NAME}"
 
 ### ---- Files ----
 PACKER_TEMPLATE_FILE="${PACKER_DIR}/${META}/${NAME}.pkr.hcl"
