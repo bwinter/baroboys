@@ -6,7 +6,6 @@ set -euxo pipefail
 # these are pure infrastructure, not code-derived config.
 
 # shellcheck source=scripts/services/shared/env-vars.sh
-# shellcheck disable=SC1091
 source "$(dirname "${BASH_SOURCE[0]}")/../shared/env-vars.sh"
 
 # Log directory — owned by bwinter_sc81, all services write here

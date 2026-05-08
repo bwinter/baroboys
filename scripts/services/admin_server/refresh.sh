@@ -2,7 +2,6 @@
 set -euxo pipefail
 
 # shellcheck source=scripts/services/shared/env-vars.sh
-# shellcheck disable=SC1091
 source "$(dirname "${BASH_SOURCE[0]}")/../shared/env-vars.sh"
 
 echo "Ensure Nginx service is refreshed."

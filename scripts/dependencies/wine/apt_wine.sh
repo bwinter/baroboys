@@ -25,6 +25,9 @@ curl -fsSL "https://raw.githubusercontent.com/Winetricks/winetricks/master/src/w
 chmod +x /usr/local/bin/winetricks
 
 # Add WineHQ bin to front of PATH system-wide so 'wine' always resolves to WineHQ, not Debian's.
+# Single quotes intentional: we write the literal string `export PATH=...$PATH"` to the file
+# so $PATH expands at profile-source time, not at file-write time.
+# shellcheck disable=SC2016
 echo 'export PATH="/opt/wine-stable/bin:$PATH"' > /etc/profile.d/winehq.sh
 chmod 644 /etc/profile.d/winehq.sh
 export PATH="/opt/wine-stable/bin:$PATH"

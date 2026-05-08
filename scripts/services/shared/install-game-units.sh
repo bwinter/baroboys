@@ -5,7 +5,6 @@ set -euxo pipefail
 # Units are baked into the image — not reinstalled at boot.
 
 # shellcheck source=scripts/services/shared/env-vars.sh
-# shellcheck disable=SC1091
 source "$(dirname "${BASH_SOURCE[0]}")/env-vars.sh"
 
 # env-vars.sh now sets BAROBOYS to the canonical /home/bwinter_sc81/baroboys

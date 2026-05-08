@@ -9,6 +9,7 @@ touch "$LOG_FILE"
 printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "$LOG_FILE"
 
 # shellcheck source=scripts/services/$GAME_NAME/env-vars.sh
+# shellcheck disable=SC1091  # $GAME_NAME is runtime-resolved; shellcheck can't follow
 source "$(dirname "${BASH_SOURCE[0]}")/../$GAME_NAME/env-vars.sh"
 
 # Preconditions — fail fast before any side effects
@@ -38,6 +39,7 @@ cd "$GAME_DIR"
 git checkout -- $CHECKOUT_LIST
 
 # shellcheck source=scripts/services/$GAME_NAME/post-checkout.sh
+# shellcheck disable=SC1091  # $GAME_NAME is runtime-resolved; shellcheck can't follow
 source "$(dirname "${BASH_SOURCE[0]}")/../$GAME_NAME/post-checkout.sh"
 
 # === Decompress saves ===

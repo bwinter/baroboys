@@ -2,7 +2,6 @@
 set -euxo pipefail
 
 # shellcheck source=scripts/services/shared/env-vars.sh
-# shellcheck disable=SC1091
 source "$(dirname "${BASH_SOURCE[0]}")/../../services/shared/env-vars.sh"
 
 echo "🔐 [nginx] Generating .htpasswd from server-password..."

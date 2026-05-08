@@ -1,0 +1,11 @@
+# external-sources=true tells shellcheck to follow `# shellcheck source=PATH`
+# directives, which lets it lint cross-file imports without each invocation
+# needing the -x flag.
+external-sources=true
+
+# Source paths in directives are resolved relative to the .shellcheckrc
+# location (this file, at repo root). So `# shellcheck source=scripts/foo.sh`
+# resolves to {repo_root}/scripts/foo.sh — matches the convention already in
+# the codebase.
+source-path=SCRIPTDIR
+source-path=.
