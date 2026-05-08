@@ -181,7 +181,7 @@ Auto-generates: `make build-game-<Game>`, `make terraform-apply-<Game>`, `make s
 ### Valheim
 - Linux native; no Wine, no Xvfb — use Barotrauma as the Packer template
 - `LAUNCH_CMD="./valheim_server.x86_64 -name ... -world ... -password ..."`
-- Config is command-line args; minimal post-checkout.sh
+- Config is command-line args; `templates: []` in the tfvars.json
 - Shutdown: SIGTERM — no RCON
 - Saves: `~/.config/unity3d/IronGate/Valheim/worlds_local/`
 - Ports: UDP 2456–2458
