@@ -1,7 +1,9 @@
 # Games
 
-Adding new game servers. Each game needs just two files (`env-vars.sh` + `post-checkout.sh`)
-plus a Packer template and Terraform tfvars/firewall. See `docs/adding-a-game.md`.
+Adding new game servers. Each game needs three config files: the cross-language JSON
+(`terraform/game/<Game>.tfvars.json`), `env-vars.sh`, and `post-checkout.sh`, plus a
+Packer template. Firewall rules are generic, driven by `game_ports_udp/tcp` in the JSON.
+See `docs/adding-a-game.md`.
 
 ## Next up
 
@@ -12,17 +14,32 @@ plus a Packer template and Terraform tfvars/firewall. See `docs/adding-a-game.md
 
 - **Add Valheim (game 4)** — Linux-native, simplest possible addition.
 
+  **terraform/game/Valheim.tfvars.json sketch:**
+  ```json
+  {
+    "game_image": "valheim",
+    "machine_name": "valheim",
+    "game_tags": ["valheim"],
+    "game_ports_udp": [2456, 2457, 2458],
+    "game_ports_tcp": [],
+    "game_name": "Valheim",
+    "process_name": "valheim_server.x86_64",
+    "uses_wine": false,
+    "accent_color": "#3b82f6",
+    "process_ram_mb_min": 200
+  }
+  ```
+
   **env-vars.sh sketch:**
   ```bash
   export STEAM_APP_ID=896660
   export STEAM_PLATFORM="linux"
-  export PROCESS_NAME="valheim_server.x86_64"
   export LAUNCH_CMD="./valheim_server.x86_64 -name BaroboysServer -world BaroboysWorld -password \$GAME_PASSWORD -port 2456"
   export SAVE_NAME="BaroboysWorld"
   export SAVE_FILE_PREFIX="BaroboysWorld"
   export SAVE_FILE_PATH="$HOME/.config/unity3d/IronGate/Valheim/worlds_local"
   ```
-  Ports: UDP 2456-2458. No Wine, no Xvfb, no RCON. Minimal post-checkout.sh (just password fetch).
+  No Wine, no Xvfb, no RCON. Minimal post-checkout.sh (just password fetch).
 
 ## Process
 

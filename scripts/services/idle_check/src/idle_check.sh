@@ -17,15 +17,16 @@ command -v mpstat >/dev/null 2>&1 || { echo >&2 "mpstat not found. Install with:
 # be active. Parsed via python rather than jq to avoid an extra apt package.
 # Falls back to defaults if manifest is missing (smoke-test before first
 # game-refresh, or dev-stub scenarios).
-read -r MANIFEST_GAME_NAME MANIFEST_PROCESS MANIFEST_USES_WINE < <(python3 -c '
+read -r MANIFEST_GAME_NAME MANIFEST_PROCESS MANIFEST_USES_WINE MANIFEST_RAM_MIN_MB < <(python3 -c '
 import json, sys
 try:
     m = json.load(open("'"$MANIFEST_PATH"'"))
     print(m.get("game_name", "Unknown"),
           m.get("process_name", ""),
-          str(m.get("uses_wine", False)).lower())
+          str(m.get("uses_wine", False)).lower(),
+          m.get("process_ram_mb_min", 200))
 except (FileNotFoundError, json.JSONDecodeError):
-    print("Unknown", "", "false")
+    print("Unknown", "", "false", 200)
 ')
 
 # === TIMING METRICS ===
@@ -62,7 +63,7 @@ for svc in "${HEALTH_SERVICES[@]}"; do
 done
 
 # === HEALTH: GAME PROCESS ===
-# Pick the largest-RSS process matching the game's PROCESS_NAME — Wine games
+# Pick the largest-RSS process matching the manifest's process_name — Wine games
 # have multiple matches (start.exe, wineserver, the game proper), and we
 # want the actual game.
 PROCESS_ALIVE=false
@@ -115,6 +116,7 @@ tee "$STATUS_JSON" > /dev/null <<EOF
   "services_healthy": $SERVICES_HEALTHY,
   "process_alive": $PROCESS_ALIVE,
   "process_rss_mb": $PROCESS_RSS_MB,
+  "process_ram_mb_min": $MANIFEST_RAM_MIN_MB,
   "idle_flag_set": $IDLE_FLAG_SET,
   "idle_since": "$IDLE_SINCE_ISO",
   "idle_duration_minutes": $IDLE_DURATION

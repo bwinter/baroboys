@@ -330,7 +330,7 @@
                 // Healthy:        services + alive + RAM ≥ floor (game fully bootstrapped)
                 // Bootstrapping:  alive but RAM below floor (game starting up)
                 // Issues:         services failed OR process not running
-                const ramFloor = data.game_name === "VRising" ? 500 : 200;
+                const ramFloor = data.process_ram_mb_min ?? 200;
                 const ramOk = (data.process_rss_mb ?? 0) >= ramFloor;
                 const game = data.game_name || "Server";
                 if (data.services_healthy && data.process_alive && ramOk) {

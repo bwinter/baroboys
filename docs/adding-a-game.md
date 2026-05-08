@@ -9,18 +9,19 @@ for the title-case game name (e.g. `VRising`, `Barotrauma`, `Zomboid`).
 
 | Layer | What to create/modify |
 |-------|----------------------|
-| `scripts/services/<Game>/env-vars.sh` | Game-specific variables (Steam, saves, process name, launch command) |
+| `terraform/game/<Game>.tfvars.json` | Cross-language source of truth: machine name, image, tags, ports, accent, process name, RAM floor, uses_wine. Read by Terraform AND by bash (manifest, smoke test). |
+| `scripts/services/<Game>/env-vars.sh` | Bash-only game-specific variables (Steam app id, save paths, RCON, CHECKOUT_LIST, LAUNCH_CMD) |
 | `scripts/services/<Game>/post-checkout.sh` | Post-checkout hook: secret fetch + envsubst templates (if needed) |
 | `scripts/dependencies/` | New apt installers if the game needs them (Java, Wine, etc.) |
 | `<Game>/` (repo root) | Game state: saves, config templates, admin/ban lists |
 | `packer/game/<Game>.pkr.hcl` | Packer image template |
-| `terraform/game/<Game>.tfvars` | One-line file pointing Terraform at the right image family |
-| `terraform/main.tf` | Firewall rules for game ports |
 | `Makefile` | Add to `GAMES` list — auto-generates 3 targets |
-| `admin_server.py` | Log map entries for the admin panel |
 
-**You do NOT need to create:** startup.sh, shutdown.sh, refresh.sh, or systemd units.
-These are all shared scripts driven by env-vars.sh.
+**You do NOT need to create:** startup.sh, shutdown.sh, refresh.sh, systemd units, firewall
+rules, or admin-server log entries. Firewall rules are generated from
+`game_ports_udp/tcp` in the JSON; admin-panel log dropdown reads from the runtime manifest
+which `shared/refresh.sh` projects from the same JSON. Lifecycle scripts are shared and driven
+by env-vars.sh + manifest.
 
 Build order: always `base/core → base/admin → game/<Game>`.
 
@@ -28,16 +29,45 @@ Build order: always `base/core → base/admin → game/<Game>`.
 
 ## Checklist
 
-### 1. Game config — `scripts/services/<Game>/env-vars.sh`
+### 1. Cross-language config — `terraform/game/<Game>.tfvars.json`
 
-The game manifest. Copy the nearest existing game and set the `SETUP:` marked variables.
+The single source of truth for everything Terraform AND bash both need to know about the game.
+Read natively by Terraform; parsed by python3 in `shared/refresh.sh`, `post-checkout.sh`, and
+the smoke test. Copy `terraform/game/Barotrauma.tfvars.json` and edit:
+
+```json
+{
+  "game_image": "<game>",
+  "machine_name": "<game>",
+  "game_tags": ["<game>"],
+
+  "game_ports_udp": [<port>, <port>],
+  "game_ports_tcp": [],
+
+  "game_name": "<Game>",
+  "process_name": "<binary>",
+  "uses_wine": false,
+  "accent_color": "#<hex>",
+  "process_ram_mb_min": 200
+}
+```
+
+Notes:
+- `game_image`/`machine_name`/`game_tags` are GCP/Terraform identifiers — keep them lowercase.
+- `game_name` is the title-case display name; matches the directory and Makefile entry.
+- `process_name` is what `pgrep` / `pkill` matches in `shared/shutdown.sh` and `idle_check.sh`.
+- `uses_wine: true` makes `shared/refresh.sh` add `xvfb.log` to the manifest's log list.
+- `process_ram_mb_min` is the floor below which the smoke test marks the game "still booting".
+
+### 2. Game config — `scripts/services/<Game>/env-vars.sh`
+
+Bash-only game state. Copy the nearest existing game and set the `SETUP:` marked variables.
 Use `grep SETUP scripts/services/` to see every decision point across existing games.
 
 ```bash
 # SETUP: REQUIRED
 export STEAM_APP_ID=<id>
 export STEAM_PLATFORM="linux"     # "linux" for native; "windows" for Wine
-export PROCESS_NAME="<binary>"    # process name for pgrep/pkill
 export LAUNCH_CMD="./<binary>"    # the command that starts the game server
 
 # SETUP: OPTIONAL — saves
@@ -54,7 +84,10 @@ export SHUTDOWN_DELAY_MINUTES=1
 export CHECKOUT_LIST="<path1> <path2>"
 ```
 
-### 2. Post-checkout hook — `scripts/services/<Game>/post-checkout.sh`
+`process_name`, ports, accent color, and uses_wine all live in the JSON tfvars (step 1) — do
+not duplicate them here.
+
+### 3. Post-checkout hook — `scripts/services/<Game>/post-checkout.sh`
 
 Runs after SteamCMD install and `git checkout` of canonical configs. Use this for:
 - Fetching secrets: `GAME_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)"`
@@ -66,7 +99,7 @@ just the password fetch and exports.
 
 ---
 
-### 3. Dependencies — `scripts/dependencies/`
+### 4. Dependencies — `scripts/dependencies/`
 
 If the game needs a system package not already installed in `base/core` or `base/admin`,
 add an installer script:
@@ -75,14 +108,14 @@ add an installer script:
 scripts/dependencies/<dep>/apt_<dep>.sh
 ```
 
-Call it from the Packer template (step 5) before `shared/refresh.sh`.
+Call it from the Packer template (step 6) before `shared/refresh.sh`.
 
 Examples: VRising needed Wine + Xvfb. Project Zomboid needs openjdk.
 Barotrauma and Valheim (Linux native) need nothing extra.
 
 ---
 
-### 4. Game data directory — `<Game>/` (repo root)
+### 5. Game data directory — `<Game>/` (repo root)
 
 Create the directory and commit files that should live in version control:
 - Config templates (`.template` files for envsubst, or plain ini/xml files)
@@ -94,7 +127,7 @@ shutdown.sh and decompressed by refresh.sh on each boot.
 
 ---
 
-### 5. Packer template — `packer/game/<Game>.pkr.hcl`
+### 6. Packer template — `packer/game/<Game>.pkr.hcl`
 
 Copy `packer/game/Barotrauma.pkr.hcl`. Make these substitutions:
 
@@ -115,36 +148,7 @@ See `VRising.pkr.hcl` for the full pattern with extra dependencies.
 
 ---
 
-### 6. Terraform — `terraform/game/<Game>.tfvars`
-
-One line:
-
-```hcl
-game_image = "baroboys-<game>"
-```
-
----
-
-### 7. Terraform — firewall rules in `terraform/main.tf`
-
-Add a `google_compute_firewall` resource for the game's ports:
-
-```hcl
-resource "google_compute_firewall" "<game>_ports" {
-  name    = "<game>-ports"
-  network = "default"
-  allow {
-    protocol = "tcp"   # or "udp", or both
-    ports    = ["<port>"]
-  }
-  source_ranges = ["0.0.0.0/0"]
-  target_tags   = ["game-server"]
-}
-```
-
----
-
-### 8. Makefile — `GAMES` list
+### 7. Makefile — `GAMES` list
 
 Add `<Game>` (title case) to the `GAMES` variable:
 
@@ -153,17 +157,6 @@ GAMES := Barotrauma VRising <Game>
 ```
 
 Auto-generates: `make build-game-<Game>`, `make terraform-apply-<Game>`, `make smoke-test-<Game>`.
-
----
-
-### 9. Admin server — `admin_server.py`
-
-Two places in `tail_log()`:
-
-**`log_map` dict:** add entries for `<game>_startup.log`, `<game>_shutdown.log`, `<game>.log`.
-All game output goes to `game.log` (`$LOG_FILE` from shared env-vars).
-
-**`links` list:** add corresponding entries for the admin panel directory page.
 
 ---
 

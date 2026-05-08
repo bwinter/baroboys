@@ -23,9 +23,9 @@ app = Flask(__name__, template_folder=TEMPLATE_DIR)
 def load_manifest():
     """Game manifest written by shared/refresh.sh on every game-refresh.
 
-    Cross-language hand-off: bash knows the env-vars (GAME_NAME, PROCESS_NAME,
-    WINEARCH, etc.); Python needs them as JSON to render the right log set
-    and game name in the admin panel.
+    Cross-language source of truth lives in terraform/game/<Game>.tfvars.json:
+    Terraform reads it natively; refresh.sh projects it into this manifest for
+    Python and JS consumers (game name, log set, accent, ports, RAM floor).
 
     Falls back to a minimal default if the file is missing or malformed —
     happens in dev mode without a stub, or briefly at first boot before

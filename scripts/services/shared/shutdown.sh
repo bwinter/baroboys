@@ -7,8 +7,14 @@ source "$(dirname "${BASH_SOURCE[0]}")/env-vars.sh"
 # shellcheck disable=SC1091  # $GAME_NAME is runtime-resolved; shellcheck can't follow
 source "$(dirname "${BASH_SOURCE[0]}")/../$GAME_NAME/env-vars.sh"
 
+# process_name comes from the manifest (written by shared/refresh.sh from the
+# per-game tfvars.json). Manifest is guaranteed present before shutdown runs:
+# game-refresh writes it on every boot, before game-startup, before any
+# poweroff path that would invoke this script.
+PROCESS_NAME=$(python3 -c 'import json; print(json.load(open("/etc/baroboys/manifest.json"))["process_name"])')
+
 # Preconditions — fail fast before any side effects
-: "${PROCESS_NAME:?PROCESS_NAME not set — check game env-vars.sh}"
+: "${PROCESS_NAME:?process_name missing from /etc/baroboys/manifest.json}"
 : "${GAME_DIR:?GAME_DIR not set — check shared env-vars.sh}"
 
 # === Graceful shutdown ===

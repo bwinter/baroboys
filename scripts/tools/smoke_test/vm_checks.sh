@@ -78,6 +78,14 @@ fi
 # --- Game process + RAM ---
 echo "--- Process ---"
 
+# Read process_name + ram floor from the manifest (written by shared/refresh.sh
+# from the per-game tfvars.json). Same JSON Terraform reads for firewall rules.
+read -r PROCESS_NAME ram_min_mb < <(python3 -c "
+import json
+m = json.load(open('/etc/baroboys/manifest.json'))
+print(m['process_name'], m.get('process_ram_mb_min', 200))
+" 2>/dev/null || echo " 200")
+
 # For Wine games (VRising), multiple processes match the pattern — pick the one
 # with highest RSS to avoid selecting the Wine launcher (start.exe) over the game itself.
 pid=$(pgrep -f "$PROCESS_NAME" | while read -r p; do
@@ -88,14 +96,7 @@ done | sort -n | tail -1 | awk '{print $2}')
 if [[ -z "$pid" ]]; then
     check "game process ($PROCESS_NAME)" "fail" "not found"
 else
-    # RAM floor comes from the manifest (process_ram_mb_min) which derives
-    # from the per-game tfvars.json. Single source: same JSON Terraform
-    # uses for firewall rules. Common ceiling: 5.5GB (VRising's observed
-    # peak under load).
-    ram_min_mb=$(python3 -c "
-import json
-print(json.load(open('/etc/baroboys/manifest.json')).get('process_ram_mb_min', 200))
-" 2>/dev/null || echo 200)
+    # Common ceiling: 5.5GB (VRising's observed peak under load).
     rss_kb=$(awk '/VmRSS/ {print $2}' "/proc/$pid/status" 2>/dev/null || echo 0)
     rss_mb=$((rss_kb / 1024))
     if (( rss_mb >= ram_min_mb && rss_mb <= 5632 )); then

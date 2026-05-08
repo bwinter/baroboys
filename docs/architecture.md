@@ -75,14 +75,19 @@ one source of truth for project, zone, machine type, and image names.
 
 `terraform/main.tf` provisions:
 - One GCE VM per game (`vrising` or `barotrauma`, `n2-custom-2-6144`, `us-west1-c`, 20GB pd-ssd)
-- Firewall rules per game (targeted via network tags from `game_tags` variable):
-  Barotrauma (TCP+UDP 27015, 27016), VRising (TCP+UDP 9876, 9877), admin panel (TCP 8080, all VMs)
+- Generic UDP/TCP firewall rules driven by `var.game_ports_udp` / `var.game_ports_tcp` (count
+  guards skip the resource when the list is empty). Workspace-scoped admin firewall on TCP 8080
+  targets the `admin` tag both VMs carry.
 
 No metadata startup/shutdown scripts — game lifecycle is entirely owned by systemd `[Install]`
 targets. `game-startup.service` auto-starts via `WantedBy=multi-user.target`; `game-shutdown.service`
 hooks into `poweroff/halt/reboot` targets.
 
-Per-game variables (`machine_name`, `game_image`, `game_tags`) are set in `terraform/game/<Game>.tfvars`.
+Per-game config is the single JSON file `terraform/game/<Game>.tfvars.json` — the cross-language
+source of truth. Terraform reads it natively (`-var-file=...tfvars.json`); bash readers parse it
+via python3 (`shared/refresh.sh` to build the runtime manifest, `post-checkout.sh` for ports,
+`smoke_test/run.sh` for readiness/RAM checks). Schema: `machine_name`, `game_image`, `game_tags`,
+`game_ports_udp/tcp`, `game_name`, `process_name`, `uses_wine`, `accent_color`, `process_ram_mb_min`.
 Each game gets its own Terraform workspace (lowercase game name), so `terraform apply` for one
 game doesn't affect another. `make terraform-apply-VRising` or `make terraform-destroy-Barotrauma`.
 
@@ -144,7 +149,7 @@ Triggered by any of:
 
 **Unified shutdown flow (all games):**
 1. If RCON configured: `mcrcon` sends shutdown notice, waits for graceful exit
-2. Otherwise: `pkill $PROCESS_NAME`, wait for clean exit (up to 300s)
+2. Otherwise: `pkill` the manifest's `process_name`, wait for clean exit (up to 300s)
 3. Compress saves: `find $SAVE_FILE_PATH -name "$SAVE_FILE_PREFIX*" | gzip -kf`
 4. `git rm --cached` older `.gz` files, `git add` current ones
 5. `git commit -m "Auto-save before shutdown <timestamp>"`
