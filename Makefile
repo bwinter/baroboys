@@ -229,13 +229,22 @@ iam-add-admin:
 # =======================
 # 🧪 Smoke Test
 # =======================
-.PHONY: $(addprefix smoke-test-, $(GAMES))
+.PHONY: $(addprefix smoke-test-, $(GAMES)) $(addprefix smoke-test-debug-, $(GAMES))
 
 define smoke_test_recipe
 smoke-test-$(1):
 	./scripts/tools/smoke_test/run.sh --game=$(1)
 endef
 $(foreach game,$(GAMES),$(eval $(call smoke_test_recipe,$(game))))
+
+# Debug variant: --skip-destroy leaves the VM up for SSH iteration after the
+# test runs. Pair with `gcloud compute ssh ... <game>` for inspection.
+# Remember to `make terraform-destroy-<GAME>` when done — the VM costs money.
+define smoke_test_debug_recipe
+smoke-test-debug-$(1):
+	./scripts/tools/smoke_test/run.sh --game=$(1) --skip-destroy
+endef
+$(foreach game,$(GAMES),$(eval $(call smoke_test_debug_recipe,$(game))))
 
 
 # =======================
@@ -322,6 +331,7 @@ help:
 
 	@echo "🧪 Smoke Test:"
 	@echo "  make smoke-test-<GAME>               - Full deploy+verify+destroy smoke test"
+	@echo "  make smoke-test-debug-<GAME>         - Smoke test that leaves VM running (--skip-destroy)"
 	@echo ""
 
 	@echo "🧹 Cleanup:"

@@ -35,6 +35,7 @@ header() { echo ""; echo "=== $* ==="; }
 
 # --- Teardown trap ---
 # Always destroy on exit unless --skip-destroy. Prevents runaway VMs if script errors.
+# shellcheck disable=SC2329  # invoked via `trap teardown EXIT` below
 teardown() {
     if [[ "$SKIP_DESTROY" == "true" ]]; then
         echo ""
@@ -143,7 +144,7 @@ else
 fi
 
 # ============================================================
-# Stage 5 — External checks (admin panel)
+# Stage 5 — External checks (admin panel + game ports)
 # ============================================================
 header "Stage 5 — External Checks (Admin Panel)"
 
@@ -170,6 +171,46 @@ if (( log_lines >= 5 )); then
 else
     fail "game.log endpoint returned ${log_lines} lines — expected ≥5"
 fi
+
+# --- Game port reachability ---
+# Catches drift between the game's actual listen config (rendered from the
+# .template at runtime) and the terraform firewall config. The recent
+# c909a08-vs-2be922b mismatch (template said 27015, firewall opened 9876)
+# would have been caught here.
+header "Stage 5b — Game Port Reachability"
+
+case "$GAME" in
+    VRising)
+        # VRising listens UDP only on 9876/9877 (game/query). Match firewall.
+        ports_udp=(9876 9877)
+        ports_tcp=()
+        ;;
+    Barotrauma)
+        # Barotrauma uses Steam-style ports for both protocols.
+        ports_udp=(27015 27016)
+        ports_tcp=(27015 27016)
+        ;;
+    *)
+        fail "no port spec for game '$GAME' — extend smoke test"
+        ports_udp=()
+        ports_tcp=()
+        ;;
+esac
+
+for p in "${ports_udp[@]}"; do
+    if nc -zuvw 5 "$IP" "$p" >/dev/null 2>&1; then
+        pass "UDP $p reachable from internet"
+    else
+        fail "UDP $p NOT reachable from internet (firewall vs game-listen drift?)"
+    fi
+done
+for p in "${ports_tcp[@]}"; do
+    if nc -zvw 5 "$IP" "$p" >/dev/null 2>&1; then
+        pass "TCP $p reachable from internet"
+    else
+        fail "TCP $p NOT reachable from internet (firewall vs game-listen drift?)"
+    fi
+done
 
 # ============================================================
 # Summary
