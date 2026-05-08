@@ -1,3 +1,4 @@
+import json
 import os
 import subprocess
 from datetime import datetime, timezone
@@ -11,11 +12,49 @@ STATIC_DIR = os.path.join(THIS_DIR, "static") if ENV == "dev" else "/opt/baroboy
 TEMPLATE_DIR = os.path.join(THIS_DIR, "templates") if ENV == "dev" else "/opt/baroboys/templates"
 LOG_DIR = os.path.join(THIS_DIR, "dev/logs") if ENV == "dev" else "/var/log/baroboys"
 STATUS_DIR = os.path.join(THIS_DIR, "dev/status") if ENV == "dev" else "/dev/null"
+MANIFEST_PATH = os.path.join(THIS_DIR, "dev/manifest.json") if ENV == "dev" else "/etc/baroboys/manifest.json"
 
 if ENV == "dev":
     print("🧪 Flask running in dev mode – using stubbed logs.")
 
 app = Flask(__name__, template_folder=TEMPLATE_DIR)
+
+
+def load_manifest():
+    """Game manifest written by shared/refresh.sh on every game-refresh.
+
+    Cross-language hand-off: bash knows the env-vars (GAME_NAME, PROCESS_NAME,
+    WINEARCH, etc.); Python needs them as JSON to render the right log set
+    and game name in the admin panel.
+
+    Falls back to a minimal default if the file is missing or malformed —
+    happens in dev mode without a stub, or briefly at first boot before
+    game-refresh has run.
+    """
+    try:
+        with open(MANIFEST_PATH, encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return {
+            "game_name": "Unknown",
+            "process_name": "",
+            "uses_wine": False,
+            "log_files": ["game.log", "admin_server.log"],
+        }
+
+
+# nginx logs are subprocess-fetched (root-owned, sudo'd via tail). Not in the
+# game manifest because they're infrastructure-shared across games.
+def _nginx_log_sources():
+    if ENV == "dev":
+        return {
+            "nginx_access": os.path.join(LOG_DIR, "nginx_access.log"),
+            "nginx_error": os.path.join(LOG_DIR, "nginx_error.log"),
+        }
+    return {
+        "nginx_access": ["tail", "-n", "500", "/var/log/nginx/access.log"],
+        "nginx_error": ["tail", "-n", "500", "/var/log/nginx/error.log"],
+    }
 
 
 @app.route("/")
@@ -53,30 +92,25 @@ def trigger_shutdown():
         }, 500
 
 
+@app.route("/manifest")
+def get_manifest():
+    """Expose the game manifest so the admin panel JS can render
+    game-aware UI (log dropdown, game name, etc.) without hardcoding."""
+    return load_manifest(), 200
+
+
 @app.route("/logs/<name>")
 def tail_log(name):
-    log_map = {
-        # Game lifecycle (refresh + startup + shutdown + engine output all write here)
-        "game.log": os.path.join(LOG_DIR, "game.log"),
-        # Infrastructure
-        "admin_server.log": os.path.join(LOG_DIR, "admin_server.log"),
-        "refresh_repo.log": os.path.join(LOG_DIR, "refresh_repo.log"),
-        "idle_check.log": os.path.join(LOG_DIR, "idle_check.log"),
-        "xvfb.log": os.path.join(LOG_DIR, "xvfb.log"),
-        # Nginx (subprocess, not file read)
-        "nginx_access": ["tail", "-n", "500", "/var/log/nginx/access.log"],
-        "nginx_error": ["tail", "-n", "500", "/var/log/nginx/error.log"],
-    }
+    manifest = load_manifest()
+    nginx_sources = _nginx_log_sources()
 
-    if ENV == "dev":
-        log_map.update({
-            "nginx_access": os.path.join(LOG_DIR, "nginx_access.log"),
-            "nginx_error": os.path.join(LOG_DIR, "nginx_error.log"),
-        })
-
-    cmd = log_map.get(name)
-    if cmd is None:
+    if name in manifest["log_files"]:
+        cmd = os.path.join(LOG_DIR, name)
+    elif name in nginx_sources:
+        cmd = nginx_sources[name]
+    else:
         return f"Unknown log: {name}", 404
+
     try:
         if isinstance(cmd, str):
             with open(cmd, encoding="utf-8", errors="ignore") as f:
@@ -90,6 +124,23 @@ def tail_log(name):
 
 @app.route("/directory")
 def directory():
+    manifest = load_manifest()
+
+    # Categorize manifest log_files. Anything that wasn't in the original
+    # hardcoded "game" set ends up in "system" — works for current set
+    # (game.log, idle_check.log are game; the rest are infra) and for
+    # any new logs added to the manifest from a future game.
+    game_log_names = {"game.log", "idle_check.log"}
+    game_logs = []
+    system_logs = []
+    for f in manifest["log_files"]:
+        display = f.replace(".log", "").replace("_", " ").title()
+        link = (f"/api/logs/{f}", display, "GET")
+        if f in game_log_names:
+            game_logs.append(link)
+        else:
+            system_logs.append(link)
+
     sections = [
         {
             "icon": "🛠",
@@ -98,11 +149,12 @@ def directory():
                 ("/", "Admin Panel", "GET"),
                 ("/directory", "Site Directory", "GET"),
                 ("/api/ping", "Health Check", "GET"),
+                ("/api/manifest", "Game Manifest (JSON)", "GET"),
             ]
         },
         {
             "icon": "🎮",
-            "title": "Game Control",
+            "title": f"Game Control — {manifest['game_name']}",
             "links": [
                 ("/status.json", "Structured Server Status", "GET"),
                 ("/api/trigger-shutdown", "Trigger Graceful Shutdown", "POST"),
@@ -111,19 +163,12 @@ def directory():
         {
             "icon": "📄",
             "title": "Game Logs",
-            "links": [
-                ("/api/logs/game.log", "Game Log", "GET"),
-                ("/api/logs/idle_check.log", "Idle Check", "GET"),
-            ]
+            "links": game_logs,
         },
         {
             "icon": "🌀",
             "title": "System Logs",
-            "links": [
-                ("/api/logs/admin_server.log", "Admin Server", "GET"),
-                ("/api/logs/refresh_repo.log", "Refresh Repo", "GET"),
-                ("/api/logs/xvfb.log", "Xvfb", "GET"),
-            ]
+            "links": system_logs,
         },
         {
             "icon": "🌐",

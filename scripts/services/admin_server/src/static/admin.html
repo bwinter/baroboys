@@ -73,7 +73,7 @@
 <body class="bg-black py-4">
 <div class="container">
     <h1 class="text-primary fw-bold text-center mb-5">
-        <i class="bi bi-speedometer2 me-2"></i> Admin Dashboard
+        <i class="bi bi-speedometer2 me-2"></i> <span id="dashboard-title">Admin Dashboard</span>
     </h1>
 
     <div class="row g-4 mb-4">
@@ -170,13 +170,10 @@
             <div class="mb-3" id="log-form">
                 <label class="form-label text-muted" for="log-select">Select log file:</label>
                 <select class="form-select bg-dark text-light border-secondary" id="log-select">
+                    <!-- Options populated by populateLogOptions() from /api/manifest. -->
+                    <!-- Fallback: game.log is universal so list it as a sensible default
+                         while the manifest fetch resolves. -->
                     <option value="game.log">Game Log</option>
-                    <option value="idle_check.log">Idle Check</option>
-                    <option value="admin_server.log">Admin Server</option>
-                    <option value="refresh_repo.log">Refresh Repo</option>
-                    <option value="xvfb.log">Xvfb</option>
-                    <option value="nginx_access">Nginx Access</option>
-                    <option value="nginx_error">Nginx Error</option>
                 </select>
             </div>
             <div class="terminal-block" id="log-output">Loading log...</div>
@@ -316,8 +313,51 @@
             statusAutoRefreshEnabled ? '<i class="bi bi-pause me-1"></i> Pause Status' : '<i class="bi bi-play me-1"></i> Resume Status';
     });
 
+    // Populate the log dropdown + dashboard title from /api/manifest. The
+    // manifest is written by shared/refresh.sh on the VM and reflects the
+    // running game (VRising includes xvfb.log; Barotrauma doesn't). Without
+    // this, the dropdown was hardcoded to VRising's log set and showed
+    // entries that 404 on Barotrauma.
+    async function populateFromManifest() {
+        try {
+            const res = await fetch('/api/manifest');
+            const manifest = await res.json();
+
+            // Update dashboard title to include game name.
+            const title = document.getElementById('dashboard-title');
+            title.textContent = `${manifest.game_name} — Admin Dashboard`;
+
+            // Replace dropdown contents with game-aware log set + nginx.
+            const labelize = name =>
+                name.replace(/\.log$/, '').replace(/_/g, ' ')
+                    .replace(/\b\w/g, c => c.toUpperCase());
+            const options = [];
+            for (const name of manifest.log_files) {
+                options.push({value: name, label: labelize(name)});
+            }
+            // nginx logs are infrastructure-shared, not in manifest.
+            options.push({value: 'nginx_access', label: 'Nginx Access'});
+            options.push({value: 'nginx_error', label: 'Nginx Error'});
+
+            // Clear existing options via DOM removal (avoids innerHTML).
+            while (select.firstChild) {
+                select.removeChild(select.firstChild);
+            }
+            for (const {value, label} of options) {
+                const opt = document.createElement('option');
+                opt.value = value;
+                opt.textContent = label;
+                select.appendChild(opt);
+            }
+        } catch (err) {
+            // Keep the fallback option from the static HTML.
+            console.warn('manifest fetch failed:', err);
+        }
+    }
+
     select.addEventListener('change', loadLog);
-    window.addEventListener('load', () => {
+    window.addEventListener('load', async () => {
+        await populateFromManifest();
         loadLog();
         refreshStatus();
         checkHeartbeat();

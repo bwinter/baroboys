@@ -51,3 +51,25 @@ fi
 
 # Systemd unit installation is handled separately by install-game-units.sh
 # (runs as root at Packer build time only — units are baked into the image).
+
+# --- Write game manifest for cross-language consumers ---
+# bash knows the game env-vars; admin_server.py needs them as JSON. The
+# manifest at /etc/baroboys/manifest.json is the cross-language hand-off —
+# same pattern as /etc/baroboys/active-game. Updated every game-refresh so
+# a game switch (after image rebuild) propagates without admin_server
+# needing a restart.
+manifest_log_files=(game.log admin_server.log refresh_repo.log idle_check.log infrastructure.log)
+[[ -n "${WINEARCH:-}" ]] && manifest_log_files+=(xvfb.log)
+manifest_log_files_json="$(printf '"%s",' "${manifest_log_files[@]}" | sed 's/,$//')"
+manifest_uses_wine=$([[ -n "${WINEARCH:-}" ]] && echo true || echo false)
+
+cat > /tmp/baroboys-manifest.json <<EOF
+{
+  "game_name": "${GAME_NAME}",
+  "process_name": "${PROCESS_NAME}",
+  "uses_wine": ${manifest_uses_wine},
+  "log_files": [${manifest_log_files_json}]
+}
+EOF
+sudo install -m 644 /tmp/baroboys-manifest.json /etc/baroboys/manifest.json
+rm -f /tmp/baroboys-manifest.json
