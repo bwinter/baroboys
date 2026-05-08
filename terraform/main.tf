@@ -75,10 +75,17 @@ resource "google_compute_instance" "default" {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 🔥 Firewall Rules – Barotrauma
+// 🔥 Firewall Rules
+//
+// Each firewall is per-workspace (count guarded on terraform.workspace) so
+// that two workspaces — say `terraform-apply-VRising` and
+// `terraform-apply-Barotrauma` — don't both try to create the same global
+// GCP firewall resource and collide. Names are workspace-scoped to stay
+// unique across the project even when both workspaces are applied.
 // ─────────────────────────────────────────────────────────────────────────────
 
 resource "google_compute_firewall" "barotrauma_ports" {
+  count   = terraform.workspace == "barotrauma" ? 1 : 0
   name    = "barotrauma-ports"
   network = "default"
 
@@ -96,6 +103,7 @@ resource "google_compute_firewall" "barotrauma_ports" {
 }
 
 resource "google_compute_firewall" "barotrauma_ports_udp" {
+  count   = terraform.workspace == "barotrauma" ? 1 : 0
   name    = "barotrauma-ports-udp"
   network = "default"
 
@@ -112,11 +120,8 @@ resource "google_compute_firewall" "barotrauma_ports_udp" {
   target_tags = ["barotrauma"]
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 🔥 Firewall Rules – V Rising
-// ─────────────────────────────────────────────────────────────────────────────
-
 resource "google_compute_firewall" "vrising_ports" {
+  count   = terraform.workspace == "vrising" ? 1 : 0
   name    = "vrising-ports"
   network = "default"
 
@@ -134,6 +139,7 @@ resource "google_compute_firewall" "vrising_ports" {
 }
 
 resource "google_compute_firewall" "vrising_ports_udp" {
+  count   = terraform.workspace == "vrising" ? 1 : 0
   name    = "vrising-ports-udp"
   network = "default"
 
@@ -150,12 +156,13 @@ resource "google_compute_firewall" "vrising_ports_udp" {
   target_tags = ["vrising"]
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 🌐 Firewall – Admin Server Port (8080)
-// ─────────────────────────────────────────────────────────────────────────────
-
+// Admin server firewall is shared in concept (port 8080 reaches whichever
+// game's VM is up) but per-workspace in implementation: each workspace
+// creates its own admin-server-${workspace} firewall targeting the "admin"
+// tag, which both games' VMs carry. Workspace-scoped names avoid the
+// "resource already exists" conflict that a single shared name would cause.
 resource "google_compute_firewall" "admin_server" {
-  name        = "admin-server"
+  name        = "admin-server-${terraform.workspace}"
   network     = "default"
   description = "Allow HTTP access to exposed Admin server on port 8080"
 
