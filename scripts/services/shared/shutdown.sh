@@ -11,7 +11,7 @@ source "$(dirname "${BASH_SOURCE[0]}")/../$GAME_NAME/env-vars.sh"
 # per-game tfvars.json). Manifest is guaranteed present before shutdown runs:
 # game-refresh writes it on every boot, before game-startup, before any
 # poweroff path that would invoke this script.
-PROCESS_NAME=$(python3 -c 'import json; print(json.load(open("/etc/baroboys/manifest.json"))["process_name"])')
+PROCESS_NAME=$(jq -r .process_name /etc/baroboys/manifest.json)
 
 # Preconditions — fail fast before any side effects
 : "${PROCESS_NAME:?process_name missing from /etc/baroboys/manifest.json}"

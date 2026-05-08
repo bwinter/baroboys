@@ -80,11 +80,8 @@ echo "--- Process ---"
 
 # Read process_name + ram floor from the manifest (written by shared/refresh.sh
 # from the per-game tfvars.json). Same JSON Terraform reads for firewall rules.
-read -r PROCESS_NAME ram_min_mb < <(python3 -c "
-import json
-m = json.load(open('/etc/baroboys/manifest.json'))
-print(m['process_name'], m.get('process_ram_mb_min', 200))
-" 2>/dev/null || echo " 200")
+PROCESS_NAME=$(jq -r .process_name /etc/baroboys/manifest.json)
+ram_min_mb=$(jq -r '.process_ram_mb_min // 200' /etc/baroboys/manifest.json)
 
 # For Wine games (VRising), multiple processes match the pattern — pick the one
 # with highest RSS to avoid selecting the Wine launcher (start.exe) over the game itself.

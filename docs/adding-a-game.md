@@ -9,19 +9,18 @@ for the title-case game name (e.g. `VRising`, `Barotrauma`, `Zomboid`).
 
 | Layer | What to create/modify |
 |-------|----------------------|
-| `terraform/game/<Game>.tfvars.json` | Cross-language source of truth: machine name, image, tags, ports, accent, process name, RAM floor, uses_wine. Read by Terraform AND by bash (manifest, smoke test). |
+| `terraform/game/<Game>.tfvars.json` | Cross-language source of truth: machine name, image, tags, ports, accent, process name, RAM floor, uses_wine, template list. Read by Terraform AND by bash (manifest, smoke test, post-checkout). |
 | `scripts/services/<Game>/env-vars.sh` | Bash-only game-specific variables (Steam app id, save paths, RCON, CHECKOUT_LIST, LAUNCH_CMD) |
-| `scripts/services/<Game>/post-checkout.sh` | Post-checkout hook: secret fetch + envsubst templates (if needed) |
 | `scripts/dependencies/` | New apt installers if the game needs them (Java, Wine, etc.) |
 | `<Game>/` (repo root) | Game state: saves, config templates, admin/ban lists |
 | `packer/game/<Game>.pkr.hcl` | Packer image template |
 | `Makefile` | Add to `GAMES` list — auto-generates 3 targets |
 
-**You do NOT need to create:** startup.sh, shutdown.sh, refresh.sh, systemd units, firewall
-rules, or admin-server log entries. Firewall rules are generated from
-`game_ports_udp/tcp` in the JSON; admin-panel log dropdown reads from the runtime manifest
-which `shared/refresh.sh` projects from the same JSON. Lifecycle scripts are shared and driven
-by env-vars.sh + manifest.
+**You do NOT need to create:** post-checkout.sh, startup.sh, shutdown.sh, refresh.sh, systemd
+units, firewall rules, or admin-server log entries. Firewall rules generate from
+`game_ports_udp/tcp` in the JSON; admin-panel log dropdown reads the runtime manifest
+projected from the same JSON; `shared/post-checkout.sh` envsubst's every `(input, output)`
+pair declared in `templates`. Lifecycle scripts are shared and driven by env-vars.sh + manifest.
 
 Build order: always `base/core → base/admin → game/<Game>`.
 
@@ -32,8 +31,11 @@ Build order: always `base/core → base/admin → game/<Game>`.
 ### 1. Cross-language config — `terraform/game/<Game>.tfvars.json`
 
 The single source of truth for everything Terraform AND bash both need to know about the game.
-Read natively by Terraform; parsed by python3 in `shared/refresh.sh`, `post-checkout.sh`, and
-the smoke test. Copy `terraform/game/Barotrauma.tfvars.json` and edit:
+Read natively by Terraform; read by `shared/refresh.sh` to project the runtime manifest at
+`/etc/baroboys/manifest.json`; downstream consumers (`shared/post-checkout.sh`,
+`shared/shutdown.sh`, `idle_check.sh`, smoke test) read from the manifest via `jq`.
+
+Copy `terraform/game/Barotrauma.tfvars.json` and edit:
 
 ```json
 {
@@ -48,7 +50,11 @@ the smoke test. Copy `terraform/game/Barotrauma.tfvars.json` and edit:
   "process_name": "<binary>",
   "uses_wine": false,
   "accent_color": "#<hex>",
-  "process_ram_mb_min": 200
+  "process_ram_mb_min": 200,
+
+  "templates": [
+    ["<input>.template", "<output-path-in-game-dir>"]
+  ]
 }
 ```
 
@@ -58,6 +64,10 @@ Notes:
 - `process_name` is what `pgrep` / `pkill` matches in `shared/shutdown.sh` and `idle_check.sh`.
 - `uses_wine: true` makes `shared/refresh.sh` add `xvfb.log` to the manifest's log list.
 - `process_ram_mb_min` is the floor below which the smoke test marks the game "still booting".
+- `templates` is the list of `(input, output)` pairs `shared/post-checkout.sh` envsubst's on
+  every boot. Both paths are relative to `GAME_DIR`. Available substitutions: `${GAME_PORT}`,
+  `${GAME_QUERY_PORT}` (from `game_ports_udp[0..1]`), `${GAME_PASSWORD}` (server-password
+  secret), `${SAVE_NAME}`, `${RCON_PORT}`, `${RCON_PASSWORD}` (from env-vars.sh).
 
 ### 2. Game config — `scripts/services/<Game>/env-vars.sh`
 
@@ -84,22 +94,17 @@ export SHUTDOWN_DELAY_MINUTES=1
 export CHECKOUT_LIST="<path1> <path2>"
 ```
 
-`process_name`, ports, accent color, and uses_wine all live in the JSON tfvars (step 1) — do
-not duplicate them here.
+`process_name`, ports, accent color, uses_wine, and the template list all live in the JSON
+tfvars (step 1) — do not duplicate them here.
 
-### 3. Post-checkout hook — `scripts/services/<Game>/post-checkout.sh`
-
-Runs after SteamCMD install and `git checkout` of canonical configs. Use this for:
-- Fetching secrets: `GAME_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)"`
-- Exporting vars that envsubst needs: `export GAME_PASSWORD SAVE_NAME RCON_PASSWORD`
-- Running envsubst on config templates
-
-If the game uses command-line args only (no config templates), this file can be minimal —
-just the password fetch and exports.
+There is no per-game `post-checkout.sh`. `shared/post-checkout.sh` reads the manifest's
+`templates` list and envsubst's every pair. If a new game needs game-specific bash beyond
+template rendering, that logic belongs in `env-vars.sh` (which is sourced before
+`post-checkout.sh` runs) — see Barotrauma's symlink dance for the reference pattern.
 
 ---
 
-### 4. Dependencies — `scripts/dependencies/`
+### 3. Dependencies — `scripts/dependencies/`
 
 If the game needs a system package not already installed in `base/core` or `base/admin`,
 add an installer script:
@@ -108,14 +113,14 @@ add an installer script:
 scripts/dependencies/<dep>/apt_<dep>.sh
 ```
 
-Call it from the Packer template (step 6) before `shared/refresh.sh`.
+Call it from the Packer template (step 5) before `shared/refresh.sh`.
 
 Examples: VRising needed Wine + Xvfb. Project Zomboid needs openjdk.
 Barotrauma and Valheim (Linux native) need nothing extra.
 
 ---
 
-### 5. Game data directory — `<Game>/` (repo root)
+### 4. Game data directory — `<Game>/` (repo root)
 
 Create the directory and commit files that should live in version control:
 - Config templates (`.template` files for envsubst, or plain ini/xml files)
@@ -127,7 +132,7 @@ shutdown.sh and decompressed by refresh.sh on each boot.
 
 ---
 
-### 6. Packer template — `packer/game/<Game>.pkr.hcl`
+### 5. Packer template — `packer/game/<Game>.pkr.hcl`
 
 Copy `packer/game/Barotrauma.pkr.hcl`. Make these substitutions:
 
@@ -148,7 +153,7 @@ See `VRising.pkr.hcl` for the full pattern with extra dependencies.
 
 ---
 
-### 7. Makefile — `GAMES` list
+### 6. Makefile — `GAMES` list
 
 Add `<Game>` (title case) to the `GAMES` variable:
 

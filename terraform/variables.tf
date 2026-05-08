@@ -135,3 +135,9 @@ variable "process_ram_mb_min" {
   type        = number
   default     = 200
 }
+
+variable "templates" {
+  description = "List of [input, output] pairs envsubst'd at boot by shared/post-checkout.sh. Paths are relative to GAME_DIR."
+  type        = list(list(string))
+  default     = []
+}

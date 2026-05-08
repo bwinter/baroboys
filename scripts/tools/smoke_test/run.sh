@@ -135,18 +135,11 @@ header "Stage 3b — Game Readiness (port bind)"
 # Drift between firewall, game listen, and this check would now surface
 # as a readiness-timeout — not as a hardcoded mismatch.
 GAME_TFVARS="$REPO_ROOT/terraform/game/${GAME}.tfvars.json"
-read -r ready_port ready_proto < <(python3 -c "
-import json
-d = json.load(open('$GAME_TFVARS'))
-udp = d.get('game_ports_udp', [])
-tcp = d.get('game_ports_tcp', [])
-if udp:
-    print(udp[0], 'udp')
-elif tcp:
-    print(tcp[0], 'tcp')
-else:
-    print('', '')
-")
+read -r ready_port ready_proto < <(jq -r '
+    if (.game_ports_udp | length) > 0 then "\(.game_ports_udp[0]) udp"
+    elif (.game_ports_tcp | length) > 0 then "\(.game_ports_tcp[0]) tcp"
+    else "" end
+' "$GAME_TFVARS")
 
 if [[ -n "$ready_port" ]]; then
     nc_flag="-zvw 5"; [[ "$ready_proto" == "udp" ]] && nc_flag="-zuvw 5"
@@ -233,14 +226,8 @@ header "Stage 5b — Game Port Reachability"
 # Port spec from the per-game JSON (single source of truth — same file
 # Terraform reads for firewall rules and shared/refresh.sh reads to write
 # the manifest).
-read -r -a ports_udp < <(python3 -c "
-import json
-print(' '.join(str(p) for p in json.load(open('$GAME_TFVARS')).get('game_ports_udp', [])))
-")
-read -r -a ports_tcp < <(python3 -c "
-import json
-print(' '.join(str(p) for p in json.load(open('$GAME_TFVARS')).get('game_ports_tcp', [])))
-")
+mapfile -t ports_udp < <(jq -r '.game_ports_udp[]' "$GAME_TFVARS")
+mapfile -t ports_tcp < <(jq -r '.game_ports_tcp[]' "$GAME_TFVARS")
 
 for p in "${ports_udp[@]}"; do
     if nc -zuvw 5 "$IP" "$p" >/dev/null 2>&1; then
