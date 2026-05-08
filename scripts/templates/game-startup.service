@@ -3,11 +3,24 @@ Description=${GAME_NAME} Startup
 Requires=game-refresh.service
 After=game-refresh.service
 
+# Wine-based games (VRising) need Xvfb up before the launcher creates its
+# window. Wants/After is soft: enforces ordering when xvfb-startup.service
+# exists on the image, no-op for non-Wine games like Barotrauma where the
+# unit isn't installed. The original VRising-only unit had this as Requires/
+# After explicitly; lost in the 11fc3a7 consolidation to a shared template.
+Wants=xvfb-startup.service
+After=xvfb-startup.service
+
 [Service]
 Type=simple
 WorkingDirectory=${GAME_DIR}
 User=bwinter_sc81
 Group=bwinter_sc81
+
+# DISPLAY for Wine. Harmless for non-Wine games. Lost in 11fc3a7's
+# consolidation; restored here to keep the shared template valid for both
+# Wine and native games.
+Environment=DISPLAY=:0
 
 ExecStart=${BAROBOYS}/scripts/services/shared/startup.sh
 ExecStartPost=/usr/bin/bash -c 'echo "✅ game-startup.service launched at $(date)" >> ${LOG_FILE}'
