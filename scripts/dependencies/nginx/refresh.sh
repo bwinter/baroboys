@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
+# shellcheck source=scripts/services/shared/env-vars.sh
+# shellcheck disable=SC1091
+source "$(dirname "${BASH_SOURCE[0]}")/../../services/shared/env-vars.sh"
+
 echo "🔐 [nginx] Generating .htpasswd from server-password..."
 PASSWORD="$(gcloud secrets versions access latest --secret=server-password --quiet)"
 htpasswd -cbB "/etc/nginx/.htpasswd" "Hex" "$PASSWORD"
@@ -8,7 +12,7 @@ chown root:www-data "/etc/nginx/.htpasswd"
 chmod 640 "/etc/nginx/.htpasswd"
 
 # === Full nginx.conf replacement mode ===
-CUSTOM_CONF="/root/baroboys/scripts/dependencies/nginx/assets/nginx.conf"
+CUSTOM_CONF="$BAROBOYS/scripts/dependencies/nginx/assets/nginx.conf"
 TARGET_CONF="/etc/nginx/nginx.conf"
 
 echo "📄 [nginx] Looking for custom nginx.conf at: $CUSTOM_CONF"

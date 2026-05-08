@@ -5,6 +5,10 @@ set -euxo pipefail
 # Ensures directories and permissions are correct. No repo dependency —
 # these are pure infrastructure, not code-derived config.
 
+# shellcheck source=scripts/services/shared/env-vars.sh
+# shellcheck disable=SC1091
+source "$(dirname "${BASH_SOURCE[0]}")/../shared/env-vars.sh"
+
 # Log directory — owned by bwinter_sc81, all services write here
 mkdir -p "/var/log/baroboys/"
 chown bwinter_sc81:bwinter_sc81 "/var/log/baroboys/"
@@ -15,7 +19,7 @@ mkdir -p /opt/baroboys
 chown -R bwinter_sc81:bwinter_sc81 /opt/baroboys
 
 # Self-heal own unit file
-install -m 644 '/root/baroboys/scripts/services/infrastructure/infrastructure-refresh.service' \
+install -m 644 "$BAROBOYS/scripts/services/infrastructure/infrastructure-refresh.service" \
   '/etc/systemd/system/'
 systemctl daemon-reload
 systemctl enable infrastructure-refresh.service

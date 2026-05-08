@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-SCRIPT_DIR="/root/baroboys/scripts/services/refresh_repo"
+# shellcheck source=scripts/services/shared/env-vars.sh
+# shellcheck disable=SC1091
+source "$(dirname "${BASH_SOURCE[0]}")/../shared/env-vars.sh"
+
+SCRIPT_DIR="$BAROBOYS/scripts/services/refresh_repo"
 
 # Refresh root
+# shellcheck source=scripts/services/refresh_repo/src/refresh_repo.sh
+# shellcheck disable=SC1091
 source "$SCRIPT_DIR/src/refresh_repo.sh"
 
 cp "$SCRIPT_DIR/src/refresh_repo.sh" "/tmp/refresh_repo.sh"
