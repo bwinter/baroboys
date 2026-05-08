@@ -9,9 +9,13 @@ curl -fsSL "https://dl.winehq.org/wine-builds/winehq.key" \
 echo "deb [signed-by=/usr/share/keyrings/winehq.gpg] https://dl.winehq.org/wine-builds/debian bookworm main" \
   > "/etc/apt/sources.list.d/winehq.list"
 
-apt-get -yq update
+# Wait up to 5 minutes for the apt lock — Packer can race with
+# unattended-upgrades on a freshly-booted VM.
+APT_OPTS=(-o DPkg::Lock::Timeout=300)
 
-apt -yq install \
+apt-get "${APT_OPTS[@]}" -yq update
+
+apt-get "${APT_OPTS[@]}" -yq install \
   wine-stable \
   cabextract  # needed by winetricks to extract .cab font archives (corefonts, tahoma)
 
