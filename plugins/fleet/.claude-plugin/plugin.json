@@ -1,4 +1,4 @@
 {
   "name": "fleet",
-  "description": "baroboys' self-registered fleet identity (fleet:repos-baroboys)"
+  "description": "Repo-identity skill for the baroboys project — dispatch target for fleet cross-talk"
 }
