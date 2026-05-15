@@ -164,3 +164,29 @@ currently open issues. When you find a new bug, add it there.
 - `packer/tmp/` — gitignored build scratch dir, safe to delete
 - `.claude/settings.local.json` — repo-level auto-approval list. Commands not in this list
   require manual confirmation — run them as standalone Bash calls, never chained with others.
+
+---
+
+## Plugin Curation (project scope)
+
+This repo trims auto-loaded plugins via `--scope project` to keep context lean. Audit periodically
+with `claude plugin list` + `claude plugin details <p>`; err toward keeping when in doubt.
+
+**Disabled at project scope** (not load-bearing for GCP game server work):
+
+| Plugin | Why disabled |
+|--------|-------------|
+| `example-skills@anthropic-agent-skills` | ~3.7k always-on; pdf/docx/xlsx/pptx/slack-gifs/algorithmic-art — no fit |
+| `pr-review-toolkit@claude-plugins-official` | ~3.6k always-on; solo work, no PR review flow active here |
+| `mcp-server-dev@claude-plugins-official` | No MCP server work in this repo |
+| `agent-sdk-dev@claude-plugins-official` | No Agent SDK apps in this repo |
+| `frontend-design@claude-plugins-official` | Admin Flask UI is minimal; not real frontend work |
+| `session-report@claude-plugins-official` | One-shot analytics tool; run on demand via marketplace install |
+| `claude-code-setup@claude-plugins-official` | One-shot automation recommender; not routine |
+
+**Kept** (load-bearing or cheap to keep): `session`, `engineering`, `craft`, `catalog`, `collaboration`,
+`fleet@*` (all sibling identities for routing), `commit-commands`, `claude-md-management`, `hookify`,
+`context7`, `plugin-dev` (for fleet@baroboys edits), `feature-dev`, `superpowers`, `code-simplifier`,
+`security-guidance` (0-cost hook), `pyright-lsp` (0-cost LSP).
+
+Re-enable any time with `claude plugin enable <plugin> --scope project`.
