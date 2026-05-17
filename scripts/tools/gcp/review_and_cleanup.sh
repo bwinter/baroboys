@@ -99,6 +99,24 @@ else
   echo "✅ No stopped VMs found."
 fi
 
+# =================== Stale-Resource Probe ===================
+# Reports (does not delete) any RUNNING VM older than STALE_VM_HOURS. Smoke tests,
+# packer builds, and game sessions normally last minutes-to-a-few-hours. Anything
+# older is suspicious and warrants human inspection before deletion.
+# Why: orphan VMs are silent — they emit no events, only steady billing. The
+# timestamp threshold turns "blindness" into a flag at next cleanup invocation.
+
+STALE_VM_HOURS="${STALE_VM_HOURS:-6}"
+
+echo -e "\n🕰  Stale-resource probe — any RUNNING VM older than ${STALE_VM_HOURS}h..."
+echo '```'
+gcloud compute instances list \
+  --project="$PROJECT" \
+  --filter="creationTimestamp<-PT${STALE_VM_HOURS}H AND status=RUNNING" \
+  --format="table[box](name, zone.basename(), status, creationTimestamp.date('%Y-%m-%d %H:%M %Z'))" 2>&1
+echo '```'
+echo "  (informational — review and delete by hand if unexpected)"
+
 # =================== Hung Packer Instances ===================
 # Packer instances left RUNNING after a failed/interrupted build are not caught by the
 # TERMINATED filter above. They're identifiable by the packer-* naming convention.
