@@ -164,6 +164,8 @@ currently open issues. When you find a new bug, add it there.
 - `packer/tmp/` — gitignored build scratch dir, safe to delete
 - `.claude/settings.local.json` — repo-level auto-approval list. Commands not in this list
   require manual confirmation — run them as standalone Bash calls, never chained with others.
+- `.claude/settings.json` — committed; PostToolUse hooks (shellcheck, terraform fmt) + project-scope
+  plugin disables (see "Plugin Curation" below). Edit via `claude plugin` CLI, not by hand.
 
 ---
 
