@@ -31,6 +31,5 @@
     "frontend-design@claude-plugins-official": false,
     "session-report@claude-plugins-official": false,
     "claude-code-setup@claude-plugins-official": false
-  },
-  "model": "claude-sonnet-4-6"
+  }
 }
