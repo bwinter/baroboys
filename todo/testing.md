@@ -52,7 +52,7 @@ grep pass across the full repo (scripts/, docs/, *.md, packer/, terraform/, Make
 4. **Stale script names** — grep for old script names (setup.sh vs refresh.sh, config.sh vs
    post-checkout.sh). Filter out acceptable hits (build-time scripts that are genuinely named
    setup.sh, like wine/src/setup.sh).
-5. **Old secret names** — grep for deprecated secret identifiers (rcon-password, nginx-htpasswd).
+5. ~~**Old secret names** — grep for deprecated secret identifiers (rcon-password, nginx-htpasswd).~~ ✅ Done — code clean, SM secrets deleted 2026-05-20.
 6. **Old log names** — grep for log filenames that no longer exist (VRisingServer.log,
    per-verb logs like barotrauma_startup.log).
 7. **Old paths** — grep for directory structures that moved (scripts/shared/ → scripts/services/shared/).
