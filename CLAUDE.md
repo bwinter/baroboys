@@ -100,15 +100,8 @@ Your fleet address is `baroboys:claude`.
 - **TODO.md** = long-term aspirations, not current sprint work
 - **Fix protocol** — task-specific steps (code → docs → stage) then calls wrap (`memory/fix-protocol.md`)
 - **Wrap protocol** — universal ending after any completed task: full memory sweep → commit → push.
-  Always the full version — no shortcuts (`memory/wrap-protocol.md`)
-
-### Wrap obligation: GCP-orphan check
-
-Before commit on every wrap, run `gcloud compute instances list` and confirm
-`Listed 0 items.` — anything else means a VM is running and may be an orphan.
-Cost of skipping is real: a Packer build VM orphaned 2026-03-09 ran 60 days
-silently and cost $96. If a VM is intentional (active play session, in-progress
-build), confirm that explicitly with the user before proceeding to commit.
+  Always the full version — no shortcuts (see `session:wrap` skill)
+- **Wrap targets** — repo-specific files and gates wrap should attend to: see `docs/wrap-targets.md`
 
 ---
 
