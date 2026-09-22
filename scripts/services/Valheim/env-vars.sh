@@ -33,4 +33,4 @@ export SAVE_FILE_PATH="$GAME_DIR/worlds_local" # SETUP: OPTIONAL — directory c
 #export CHECKOUT_LIST="$ADMIN_LIST $BAN_LIST $PERMISSION_LIST"
 
 # SETUP: REQUIRED — the command that launches the game server
-export LAUNCH_CMD="./valheim_server.x86_64 -name SnowCrashServer -world \$SAVE_NAME -password \$GAME_PASSWORD -port 2456"
+export LAUNCH_CMD="./valheim_server.x86_64 -name SnowCrashServer -world $SAVE_NAME -password $GAME_PASSWORD -port 2456"
