@@ -6,7 +6,7 @@ STATIC_NGINX="/opt/baroboys/static"
 STATUS_JSON="$STATIC_NGINX/status.json"
 IDLE_FLAG="/tmp/server_idle_since.flag"
 COOLDOWN_MINUTES=30
-CPU_THRESHOLD=5.0
+CPU_THRESHOLD=7.0
 MANIFEST_PATH="/etc/baroboys/manifest.json"
 
 # === DEPENDENCY CHECK ===
