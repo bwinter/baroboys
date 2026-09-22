@@ -16,7 +16,6 @@ source "$(dirname "${BASH_SOURCE[0]}")/../$GAME_NAME/env-vars.sh"
 : "${STEAM_APP_ID:?STEAM_APP_ID not set — check game env-vars.sh}"
 : "${STEAM_PLATFORM:?STEAM_PLATFORM not set — check game env-vars.sh}"
 : "${GAME_DIR:?GAME_DIR not set — check shared env-vars.sh}"
-: "${CHECKOUT_LIST:?CHECKOUT_LIST not set — check game env-vars.sh}"
 
 # Warm login before the real app_update. This works around intermittent SteamCMD failures
 # that occur when the depot cache or config hasn't been initialised yet. Root cause is
