@@ -1,0 +1,70 @@
+# === packer-VRising.pkr.hcl ===
+
+packer {
+  required_plugins {
+    googlecompute = {
+      version = ">= 1.1.9"
+      source  = "github.com/hashicorp/googlecompute"
+    }
+  }
+}
+
+source "googlecompute" "valheim" {
+  project_id   = var.project
+  zone         = var.zone
+  machine_type = var.machine_type
+
+  disk_size = 20
+  disk_type = "pd-ssd"
+
+  min_cpu_platform      = "Intel Cascade Lake"
+  service_account_email = var.service_account_email
+  scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+
+  source_image = var.admin_image
+  source_image_project_id = [var.project]
+
+  image_name   = var.game_image
+  image_family = var.game_image
+
+  ssh_username = "packer"
+
+  image_labels = {
+    role = "valheim" # SETUP: REQUIRED
+  }
+}
+
+build {
+  name = "valheim-image" # SETUP: REQUIRED
+  sources = ["source.googlecompute.valheim"] # SETUP: REQUIRED
+
+  provisioner "file" {
+    source      = "refresh_repo.sh"
+    destination = "/tmp/clone_repo.sh"
+  }
+
+  # SETUP: REQUIRED
+  provisioner "shell" {
+    inline = [
+       "echo '🔧 Cloning Baroboys repo'",
+       "/usr/bin/sudo chmod +x /tmp/clone_repo.sh",
+       "/usr/bin/sudo -u bwinter_sc81 -H -- /tmp/clone_repo.sh",
+
+       "echo '🔧 Ensure both users have latest copy of repo'",
+       "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/refresh_repo/refresh.sh",
+
+       "echo '🔧 Record active game'",
+       "/usr/bin/sudo mkdir -p /etc/baroboys",
+       "echo Valheim | /usr/bin/sudo tee /etc/baroboys/active-game > /dev/null",
+
+       "echo '🔧 Install Valheim'",
+       "/usr/bin/sudo -u bwinter_sc81 -H -- /home/bwinter_sc81/baroboys/scripts/services/shared/refresh.sh",
+
+       "echo '🔧 Install game systemd units'",
+       "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/shared/install-game-units.sh",
+
+       "echo '🧹 Running autoremove'",
+       "/usr/bin/sudo apt-get -yq autoremove"
+     ]
+  }
+}

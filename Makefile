@@ -13,7 +13,7 @@ GCP_USER     ?= bwinter_sc81
 machine_name = $(shell echo '$(1)' | tr '[:upper:]' '[:lower:]')
 
 # Games — extend this list when adding a new game.
-GAMES := Barotrauma VRising
+GAMES := Barotrauma VRising Valheim
 ENV   ?= prod
 
 # Paths
