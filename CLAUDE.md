@@ -14,14 +14,14 @@ committed to Git on every shutdown.
 
 ## Key Facts (Memorise These)
 
-| Item | Value |
-|------|-------|
-| GCP project | `europan-world` |
-| VM naming | `<game>` (e.g. `vrising`, `barotrauma`), `us-west1-c`, `n2-custom-2-6144` |
-| VM user | `bwinter_sc81` |
-| Service account | `vm-runtime@europan-world.iam.gserviceaccount.com` |
-| TF state | `gs://tf-state-baroboys/terraform/prod` |
-| Admin panel | `http://<VM-IP>:8080/` — user `Hex`, pw = server-password secret |
+| Item | Value                                                                     |
+|------|---------------------------------------------------------------------------|
+| GCP project | `europan-world`                                                           |
+| VM naming | `<game>` (e.g. `vrising`, `barotrauma`), `us-west1-b`, `n2-custom-2-6144` |
+| VM user | `bwinter_sc81`                                                            |
+| Service account | `vm-runtime@europan-world.iam.gserviceaccount.com`                        |
+| TF state | `gs://tf-state-baroboys/terraform/prod`                                   |
+| Admin panel | `http://<VM-IP>:8080/` — user `Hex`, pw = server-password secret          |
 
 Secrets, ports, log paths, file locations: see `docs/architecture.md`.
 

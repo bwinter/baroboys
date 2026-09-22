@@ -6,7 +6,7 @@ SHELL := /bin/bash
 # Infrastructure — defer to .envrc (exported by direnv) when available.
 # Canonical source: .envrc for shell/Make; terraform/shared.tfvars for Terraform/Packer.
 PROJECT      ?= europan-world
-ZONE         ?= us-west1-c
+ZONE         ?= us-west1-b
 GCP_USER     ?= bwinter_sc81
 
 # Game name → VM machine name (lowercase). Used by foreach-generated targets.

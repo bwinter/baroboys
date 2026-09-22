@@ -23,7 +23,7 @@ variable "region" {
 variable "zone" {
   description = "Zone"
   type        = string
-  default     = "us-west1-c"
+  default     = "us-west1-b"
 }
 
 variable "project" {
