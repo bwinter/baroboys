@@ -74,7 +74,7 @@ one source of truth for project, zone, machine type, and image names.
 ## Terraform
 
 `terraform/main.tf` provisions:
-- One GCE VM per game (`vrising` or `barotrauma`, `n2-custom-2-6144`, `us-west1-b`, 20GB pd-ssd)
+- One GCE VM per game (`vrising` or `barotrauma`, `n2-custom-2-6144`, `us-west1-c`, 20GB pd-ssd)
 - Generic UDP/TCP firewall rules driven by `var.game_ports_udp` / `var.game_ports_tcp` (count
   guards skip the resource when the list is empty). Workspace-scoped admin firewall on TCP 8080
   targets the `admin` tag both VMs carry.

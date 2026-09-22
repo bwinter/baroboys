@@ -18,7 +18,7 @@
 
 ```bash
 gcloud compute instances get-serial-port-output <MACHINE_NAME> \
-  --zone=us-west1-b
+  --zone=us-west1-c
 ```
 
 Where `<MACHINE_NAME>` is the game's VM name (e.g. `vrising`, `barotrauma`).
@@ -27,7 +27,7 @@ Optional full boot output:
 
 ```bash
 gcloud compute instances get-serial-port-output <MACHINE_NAME> \
-  --zone=us-west1-b --port=1
+  --zone=us-west1-c --port=1
 ```
 
 ---
@@ -51,7 +51,7 @@ gcloud logging read \
 ```bash
 gcloud compute ssh <GCP_USER>@<MACHINE_NAME> \
   --project=europan-world \
-  --zone=us-west1-b
+  --zone=us-west1-c
 ```
 
 ### SSH via IAP (no external IP):
@@ -59,7 +59,7 @@ gcloud compute ssh <GCP_USER>@<MACHINE_NAME> \
 ```bash
 gcloud compute ssh <GCP_USER>@<MACHINE_NAME> \
   --project=europan-world \
-  --zone=us-west1-b \
+  --zone=us-west1-c \
   --tunnel-through-iap
 ```
 

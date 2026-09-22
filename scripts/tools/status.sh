@@ -5,7 +5,7 @@ set -euo pipefail
 # Requires: MACHINE_NAME (set by Makefile via make game-status-<GAME>)
 
 PROJECT="${PROJECT:-$(gcloud config get-value project 2>/dev/null)}"
-ZONE="${ZONE:-us-west1-b}"
+ZONE="${ZONE:-us-west1-c}"
 
 : "${MACHINE_NAME:?MACHINE_NAME not set}"
 

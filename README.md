@@ -135,7 +135,7 @@ make help
 
 | Goal              | Command                                                                            |
 |-------------------|------------------------------------------------------------------------------------|
-| View startup logs | `gcloud compute instances get-serial-port-output <MACHINE_NAME> --zone=us-west1-b` |
+| View startup logs | `gcloud compute instances get-serial-port-output <MACHINE_NAME> --zone=us-west1-c` |
 | View service logs | `make admin-logs-<GAME>`                                                           |
 
 ---
