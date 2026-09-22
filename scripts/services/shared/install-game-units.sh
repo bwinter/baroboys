@@ -7,6 +7,11 @@ set -euxo pipefail
 # shellcheck source=scripts/services/shared/env-vars.sh
 source "$(dirname "${BASH_SOURCE[0]}")/env-vars.sh"
 
+: "${BAROBOYS:?BAROBOYS not set — check shared env-vars.sh}"
+: "${GAME_DIR:?GAME_DIR not set — check shared env-vars.sh}"
+: "${GAME_NAME:?GAME_NAME not set — check shared env-vars.sh}"
+: "${LOG_FILE:?LOG_FILE not set — check shared env-vars.sh}"
+
 # env-vars.sh now sets BAROBOYS to the canonical /home/bwinter_sc81/baroboys
 # regardless of who runs this script. No need to override.
 export BAROBOYS GAME_NAME GAME_DIR LOG_FILE
