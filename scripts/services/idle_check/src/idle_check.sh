@@ -16,17 +16,20 @@ command -v mpstat >/dev/null 2>&1 || { echo >&2 "mpstat not found. Install with:
 # The manifest tells us which process to look for and which services should
 # be active. Parsed via python rather than jq to avoid an extra apt package.
 # Falls back to defaults if manifest is missing (smoke-test before first
-# game-refresh, or dev-stub scenarios).
-read -r MANIFEST_GAME_NAME MANIFEST_PROCESS MANIFEST_USES_WINE MANIFEST_RAM_MIN_MB < <(python3 -c '
+# game-refresh, or dev-stub scenarios). Use a non-whitespace delimiter because
+# the process name may be empty; Bash `read` collapses adjacent whitespace and
+# would otherwise shift the remaining fields left.
+IFS='|' read -r MANIFEST_GAME_NAME MANIFEST_PROCESS MANIFEST_USES_WINE MANIFEST_RAM_MIN_MB < <(python3 -c '
 import json, sys
 try:
     m = json.load(open("'"$MANIFEST_PATH"'"))
-    print(m.get("game_name", "Unknown"),
-          m.get("process_name", ""),
-          str(m.get("uses_wine", False)).lower(),
-          m.get("process_ram_mb_min", 200))
-except (FileNotFoundError, json.JSONDecodeError):
-    print("Unknown", "", "false", 200)
+    ram_min = m.get("process_ram_mb_min") or 200
+    print("|".join((str(m.get("game_name", "Unknown")),
+                    str(m.get("process_name", "")),
+                    str(m.get("uses_wine", False)).lower(),
+                    str(ram_min))))
+except (FileNotFoundError, json.JSONDecodeError, OSError):
+    print("Unknown|||200")
 ')
 
 # === TIMING METRICS ===
