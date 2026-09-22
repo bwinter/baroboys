@@ -12,6 +12,9 @@ export SAVE_NAME="SnowCrashWorld" # SETUP: OPTIONAL — save/world identity; fee
 export SAVE_FILE_PREFIX="SnowCrashWorld" # SETUP: OPTIONAL — filename prefix for save compression
 export SAVE_FILE_PATH="$GAME_DIR/worlds_local" # SETUP: OPTIONAL — directory containing saves
 
+GAME_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)"
+export GAME_PASSWORD
+
 # WORKSHOP_MODS_PATH="$GAME_DIR/WorkshopMods" # SETUP: OPTIONAL
 
 # Saves and mods live in user-land
