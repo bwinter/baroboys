@@ -33,9 +33,12 @@ source "$(dirname "${BASH_SOURCE[0]}")/../$GAME_NAME/env-vars.sh"
 
 # Restore canonical server configs
 cd "$GAME_DIR"
-# Intentional word splitting — CHECKOUT_LIST is space-separated paths.
-# shellcheck disable=SC2086
-git checkout -- $CHECKOUT_LIST
+# CHECKOUT_LIST is optional: some games have no repository-owned files to restore.
+if [[ -n "$CHECKOUT_LIST" ]]; then
+  # Intentional word splitting — CHECKOUT_LIST is space-separated paths.
+  # shellcheck disable=SC2086
+  git checkout -- $CHECKOUT_LIST
+fi
 
 # --- Write game manifest for cross-language consumers ---
 # Cross-language source of truth lives in terraform/game/<Game>.tfvars.json
