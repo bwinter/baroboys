@@ -154,7 +154,7 @@ Triggered by any of:
 **Unified shutdown flow (all games):**
 1. If RCON configured: `mcrcon` sends shutdown notice, waits for graceful exit
 2. Otherwise: `pkill` the manifest's `process_name`, wait for clean exit (up to 300s)
-3. Compress saves: `find $SAVE_FILE_PATH -name "$SAVE_FILE_PREFIX*" | gzip -kf`
+3. Compress saves: `find $SAVE_FILE_PATH -name "$SAVE_FILE_PATTERN" | gzip -kf`
 4. `git rm --cached` older `.gz` files, `git add` current ones
 5. `git commit -m "Auto-save before shutdown <timestamp>"`
 6. `git stash push` → `git pull --rebase` → `git push origin main` → `git stash pop`
@@ -262,7 +262,7 @@ The repo serves as a game-state database. Saves are committed and pushed on ever
 | Game | Tracked paths | Format |
 |------|--------------|--------|
 | VRising | `VRising/Data/Saves/v4/$SAVE_NAME/AutoSave_*.save.gz` (`SAVE_NAME="TestWorld-1"`) | Compressed .gz tracked; old .gz removed with `git rm --cached` |
-| Barotrauma | `Barotrauma/Multiplayer/Arkham Aquatics*.gz` | Compressed .gz tracked via `SAVE_FILE_PREFIX` |
+| Barotrauma | `Barotrauma/Multiplayer/Arkham Aquatics*.gz` | Compressed .gz tracked via `SAVE_FILE_PATTERN` |
 
 The VM's `.gitconfig` identifies commits as `Game Server <bwinter.sc81+gameserver@gmail.com>`.
 

@@ -43,17 +43,20 @@ fi
 cd "$GAME_DIR"
 
 # === Stage saves for commit ===
-# Compress all save files matching the prefix, git-add the .gz versions.
+# Compress all save files matching the pattern, git-add the .gz versions.
 # Same path for all games — no branching on save format.
-if [[ -n "${SAVE_FILE_PREFIX:-}" && -d "${SAVE_FILE_PATH:-}" ]]; then
+if [[ -n "${SAVE_FILE_PATTERN:-}" && -d "${SAVE_FILE_PATH:-}" ]]; then
   # Compress all matching non-gz files
-  find "$SAVE_FILE_PATH" -maxdepth 1 -name "${SAVE_FILE_PREFIX}*" -type f ! -name "*.gz" -exec gzip -kf {} \;
+  find "$SAVE_FILE_PATH" -maxdepth 1 -name "$SAVE_FILE_PATTERN" -type f ! -name "*.gz" -exec gzip -kf {} \;
 
   # Remove old .gz from git tracking, then add current ones
-  for tracked in $(git ls-files "$SAVE_FILE_PATH/${SAVE_FILE_PREFIX}*.gz"); do
-    git rm --cached "$tracked" 2>/dev/null || true
-  done
-  git add "$SAVE_FILE_PATH/${SAVE_FILE_PREFIX}"*.gz
+  while IFS= read -r -d '' tracked; do
+    git rm --cached -- "$tracked" 2>/dev/null || true
+  done < <(git ls-files -z -- "$SAVE_FILE_PATH/${SAVE_FILE_PATTERN}.gz")
+
+  while IFS= read -r -d '' compressed; do
+    git add -- "$compressed"
+  done < <(find "$SAVE_FILE_PATH" -maxdepth 1 -name "${SAVE_FILE_PATTERN}.gz" -type f -print0)
 fi
 
 git commit -m "Auto-save before shutdown $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "Nothing to commit"

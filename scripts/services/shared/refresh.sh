@@ -87,10 +87,10 @@ rm -f /tmp/baroboys-manifest.json
 source "$(dirname "${BASH_SOURCE[0]}")/post-checkout.sh"
 
 # === Decompress saves ===
-# Decompress all .gz saves matching the prefix. Without -f, gunzip skips files
+# Decompress all .gz saves matching the pattern. Without -f, gunzip skips files
 # that already exist — protecting uncommitted saves from being overwritten.
-if [[ -d "${SAVE_FILE_PATH:-}" && -n "${SAVE_FILE_PREFIX:-}" ]]; then
-  find "$SAVE_FILE_PATH" -maxdepth 1 -name "${SAVE_FILE_PREFIX}*.gz" -exec gunzip -k {} \; 2>/dev/null || true
+if [[ -d "${SAVE_FILE_PATH:-}" && -n "${SAVE_FILE_PATTERN:-}" ]]; then
+  find "$SAVE_FILE_PATH" -maxdepth 1 -name "${SAVE_FILE_PATTERN}.gz" -exec gunzip -k {} \; 2>/dev/null || true
 fi
 
 # Systemd unit installation is handled separately by install-game-units.sh

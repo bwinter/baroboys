@@ -9,7 +9,7 @@ export STEAM_APP_ID=1829350 # SETUP: REQUIRED
 export STEAM_APP_PLATFORM="windows" # SETUP: OPTIONAL
 
 export SAVE_NAME="TestWorld-1" # SETUP: OPTIONAL — save/world identity; feeds config template and path
-export SAVE_FILE_PREFIX="AutoSave_" # SETUP: OPTIONAL — filename prefix for save compression
+export SAVE_FILE_PATTERN="AutoSave_*" # SETUP: OPTIONAL — filename glob for save compression
 export SAVE_FILE_PATH="$GAME_DIR/Data/Saves/v4/$SAVE_NAME" # SETUP: OPTIONAL — directory containing saves
 
 RCON_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)" # SETUP: same secret as game join password

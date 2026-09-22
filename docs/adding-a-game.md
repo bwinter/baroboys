@@ -82,7 +82,7 @@ export LAUNCH_CMD="./<binary>"    # the command that starts the game server
 
 # SETUP: OPTIONAL — saves
 export SAVE_NAME="<world>"        # save/world identity (if game uses one)
-export SAVE_FILE_PREFIX="<prefix>" # filename prefix for save compression
+export SAVE_FILE_PATTERN="<glob>" # complete filename glob for save compression
 export SAVE_FILE_PATH="<dir>"     # directory containing saves
 
 # SETUP: OPTIONAL — RCON (if game supports it)

@@ -37,7 +37,7 @@ the JSON. Template envsubst is handled by `shared/post-checkout.sh`. See
   export STEAM_APP_PLATFORM="linux"
   export LAUNCH_CMD="./valheim_server.x86_64 -name BaroboysServer -world BaroboysWorld -password \$GAME_PASSWORD -port 2456"
   export SAVE_NAME="BaroboysWorld"
-  export SAVE_FILE_PREFIX="BaroboysWorld"
+  export SAVE_FILE_PATTERN="BaroboysWorld*"
   export SAVE_FILE_PATH="$HOME/.config/unity3d/IronGate/Valheim/worlds_local"
   ```
   No Wine, no Xvfb, no RCON. `templates: []` in the JSON since Valheim uses CLI args

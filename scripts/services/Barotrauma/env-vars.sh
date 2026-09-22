@@ -9,7 +9,7 @@ export STEAM_APP_ID=1026340 # SETUP: REQUIRED
 export STEAM_APP_PLATFORM="linux" # SETUP: OPTIONAL — "linux" for native; "windows" for Wine games
 
 export SAVE_NAME="Arkham Aquatics" # SETUP: OPTIONAL — active campaign name
-export SAVE_FILE_PREFIX="Arkham Aquatics" # SETUP: OPTIONAL — filename prefix for saves
+export SAVE_FILE_PATTERN="Arkham Aquatics*" # SETUP: OPTIONAL — filename glob for saves
 export SAVE_FILE_PATH="$GAME_DIR/Multiplayer" # SETUP: OPTIONAL — directory containing saves
 
 WORKSHOP_MODS_PATH="$GAME_DIR/WorkshopMods" # SETUP: OPTIONAL
