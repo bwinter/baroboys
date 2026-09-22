@@ -42,6 +42,15 @@ scripts/services/admin_server/src/dev/*
 
 # Barofiles
 
+# Valheim is installed directly into the repository game directory. Keep only
+# runtime saves and permission lists; Steam/Unity payloads stay untracked.
+Valheim/*
+!Valheim/worlds_local/
+!Valheim/worlds_local/**
+!Valheim/adminlist.txt
+!Valheim/bannedlist.txt
+!Valheim/permittedlist.txt
+
 # This specific file is tracked but gets interpolated on the remote. I want to ignore it there.
 Barotrauma/serversettings.xml
 
