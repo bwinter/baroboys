@@ -17,7 +17,6 @@ source "googlecompute" "valheim" {
   disk_size = 20
   disk_type = "pd-ssd"
 
-  min_cpu_platform      = "Intel Cascade Lake"
   service_account_email = var.service_account_email
   scopes = ["https://www.googleapis.com/auth/cloud-platform"]
 

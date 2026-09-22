@@ -59,8 +59,6 @@ resource "google_compute_instance" "default" {
     }
   }
 
-  min_cpu_platform = "Intel Cascade Lake"
-
   network_interface {
     network = "default"
     access_config {}
