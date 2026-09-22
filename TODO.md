@@ -31,6 +31,10 @@
      gcloud auth quirks, systemd unit ordering), draft a local skill from training data + repo
      experience — then refine via search as a correction pass rather than building from scratch.
 
+### Brendan Notes
+
+- Can `python3 -c` be swapped with bash native jq etc?
+
 ---
 
 ## Future / Big Ideas
