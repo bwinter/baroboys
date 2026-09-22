@@ -6,7 +6,7 @@ source "$(dirname "${BASH_SOURCE[0]}")/../shared/env-vars.sh"
 
 # Steam
 export STEAM_APP_ID=1026340 # SETUP: REQUIRED
-export STEAM_PLATFORM="linux" # SETUP: OPTIONAL — "linux" for native; "windows" for Wine games
+export STEAM_APP_PLATFORM="linux" # SETUP: OPTIONAL — "linux" for native; "windows" for Wine games
 
 export SAVE_NAME="Arkham Aquatics" # SETUP: OPTIONAL — active campaign name
 export SAVE_FILE_PREFIX="Arkham Aquatics" # SETUP: OPTIONAL — filename prefix for saves

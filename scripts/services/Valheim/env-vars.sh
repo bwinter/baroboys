@@ -6,7 +6,7 @@ source "$(dirname "${BASH_SOURCE[0]}")/../shared/env-vars.sh"
 
 # Steam
 export STEAM_APP_ID=896660 # SETUP: REQUIRED
-export STEAM_PLATFORM="linux" # SETUP: OPTIONAL
+export STEAM_APP_PLATFORM="linux" # SETUP: OPTIONAL
 
 export SAVE_NAME="SnowCrashWorld" # SETUP: OPTIONAL — save/world identity; feeds config template and path
 export SAVE_FILE_PREFIX="SnowCrashWorld" # SETUP: OPTIONAL — filename prefix for save compression

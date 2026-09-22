@@ -77,7 +77,7 @@ Use `grep SETUP scripts/services/` to see every decision point across existing g
 ```bash
 # SETUP: REQUIRED
 export STEAM_APP_ID=<id>
-export STEAM_PLATFORM="linux"     # "linux" for native; "windows" for Wine
+export STEAM_APP_PLATFORM="linux"     # "linux" for native; "windows" for Wine
 export LAUNCH_CMD="./<binary>"    # the command that starts the game server
 
 # SETUP: OPTIONAL — saves

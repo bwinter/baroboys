@@ -14,7 +14,7 @@ source "$(dirname "${BASH_SOURCE[0]}")/../$GAME_NAME/env-vars.sh"
 
 # Preconditions — fail fast before any side effects
 : "${STEAM_APP_ID:?STEAM_APP_ID not set — check game env-vars.sh}"
-: "${STEAM_PLATFORM:?STEAM_PLATFORM not set — check game env-vars.sh}"
+: "${STEAM_APP_PLATFORM:?STEAM_APP_PLATFORM not set — check game env-vars.sh}"
 : "${GAME_DIR:?GAME_DIR not set — check shared env-vars.sh}"
 
 # Warm login before the real app_update. This works around intermittent SteamCMD failures
@@ -25,7 +25,7 @@ source "$(dirname "${BASH_SOURCE[0]}")/../$GAME_NAME/env-vars.sh"
   +quit
 
 /usr/games/steamcmd \
-  +@sSteamCmdForcePlatformType "$STEAM_PLATFORM" \
+  +@sSteamCmdForcePlatformType "$STEAM_APP_PLATFORM" \
   +force_install_dir "$GAME_DIR" \
   +login anonymous \
   +app_update "$STEAM_APP_ID" validate \

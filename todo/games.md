@@ -34,7 +34,7 @@ the JSON. Template envsubst is handled by `shared/post-checkout.sh`. See
   **env-vars.sh sketch:**
   ```bash
   export STEAM_APP_ID=896660
-  export STEAM_PLATFORM="linux"
+  export STEAM_APP_PLATFORM="linux"
   export LAUNCH_CMD="./valheim_server.x86_64 -name BaroboysServer -world BaroboysWorld -password \$GAME_PASSWORD -port 2456"
   export SAVE_NAME="BaroboysWorld"
   export SAVE_FILE_PREFIX="BaroboysWorld"
