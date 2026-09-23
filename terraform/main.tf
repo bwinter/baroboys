@@ -33,6 +33,16 @@ data "google_compute_image" "game_image" {
   project = var.project
 }
 
+// Static IPs are intentionally looked up rather than managed here. The game
+// workspace routinely destroys and recreates its VM; the reserved address
+// must survive that lifecycle.
+data "google_compute_address" "game_ip" {
+  count   = var.static_ip_name != "" ? 1 : 0
+  name    = var.static_ip_name
+  project = var.project
+  region  = var.region
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 🖥️ Compute Engine VM
 // ─────────────────────────────────────────────────────────────────────────────
@@ -61,8 +71,11 @@ resource "google_compute_instance" "default" {
 
   network_interface {
     network = "default"
-    access_config {}
-    // Ephemeral external IP
+
+    access_config {
+      // null leaves the address ephemeral for games without static_ip_name.
+      nat_ip = var.static_ip_name != "" ? data.google_compute_address.game_ip[0].address : null
+    }
   }
 
   service_account {

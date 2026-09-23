@@ -83,6 +83,12 @@ variable "game_image" {
   type        = string
 }
 
+variable "static_ip_name" {
+  description = "Optional pre-reserved regional external IP name to attach to the VM"
+  type        = string
+  default     = ""
+}
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Cross-language config — Terraform reads these from the per-game JSON
 # tfvars file. The same file is also read by bash (shared/refresh.sh,
