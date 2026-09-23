@@ -49,7 +49,7 @@ git clone git@github.com:<YOUR_USER>/<YOUR_FORK>.git
 
 ---
 
-### 2. Create Service Accounts and Terraform Buckets
+### 2. Bootstrap GCP infrastructure
 
 Ensure you are authenticated as a project owner:
 
@@ -58,13 +58,15 @@ gcloud auth application-default login
 gcloud config set project <YOUR_PROJECT>
 ````
 
-Boostrap Service Account:
+This creates the Terraform state bucket, runtime service account, and shared
+static game-server IP. It is safe to run again in the same project.
 
 ```bash
 make bootstrap
 ```
 
-- See [`docs/setup/gcp-service-account.md`](docs/setup/gcp-service-accounts.md) for details.
+- See [`docs/setup/cold-boot.md`](docs/setup/cold-boot.md) for the full setup flow.
+- See [`docs/setup/gcp-service-accounts.md`](docs/setup/gcp-service-accounts.md) for IAM details.
 
 ---
 
@@ -105,8 +107,9 @@ make build
 make terraform-apply-<Game>
 ```
 
-* Replace `<Game>` with `VRising` or `Barotrauma`.
+* Replace `<Game>` with `VRising`, `Barotrauma`, or `Valheim`.
 * This boots the game VM in its own Terraform workspace.
+* All games use the shared static IP reserved during bootstrap. Only one game VM can be attached to it at a time.
 * The server shuts down after 30 minutes of inactivity, saving the game automatically.
 * To restart: `make game-start-<Game>`
 * To grant others the ability to start the server: `make iam-add-admin`
@@ -150,7 +153,7 @@ make help
     - [`docs/admin/using_admin.md`](docs/admin/using_admin.md) — admin panel usage guide
 
 - **Bootstrapping** (`/bootstrap`)
-    - Sets up service accounts and TF buckets.
+    - Sets up service accounts, the Terraform state bucket, and the shared static IP.
 
 - **VM Image** (`/packer`)
     - Installs dependencies and enables services that run on boot.

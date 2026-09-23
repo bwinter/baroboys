@@ -40,11 +40,16 @@ direnv allow   # loads .envrc
 
 ### 2. Bootstrap GCP infrastructure
 
-Creates the Terraform state bucket and the `vm-runtime` service account with IAM roles.
+Creates the Terraform state bucket, the `vm-runtime` service account with IAM roles,
+and the shared regional static IP used by all game VMs.
 
 ```bash
 make bootstrap
 ```
+
+Note: Only one game VM can use the shared address at a time. Destroy or detach the current
+game VM before applying a different game workspace. The address remains stable across
+VM stop/start, recreation, and zone changes.
 
 **If this fails:** Check `gcloud auth list` — you need project-owner permissions.
 See [gcp-service-accounts.md](gcp-service-accounts.md) for what gets created.
@@ -90,8 +95,8 @@ The VM boots, pulls the latest repo, and starts the game automatically (~3-5 min
 
 ### 6. Connect
 
-- **Game:** Connect using the server's external IP and the password from step 3
-- **Admin panel:** `http://<VM-IP>:8080/` — username `Hex`, password from step 3
+- **Game:** Connect using the shared static IP printed by `make bootstrap` or the `make terraform-apply-<GAME>` commands and the password from step 3
+- **Admin panel:** `http://<STATIC-IP>:8080/` — username `Hex`, password from step 3
 - **SSH:** `make game-ssh-VRising`
 
 ### 7. Shut down
@@ -112,7 +117,7 @@ make terraform-destroy-VRising   # or: make destroy (all games)
 
 ## What's happening under the hood
 
-- `make bootstrap` → `bootstrap/bootstrap_tf_state_bucket.sh` + `bootstrap/bootstrap_vm_runtime_sa.sh`
+- `make bootstrap` → Terraform state bucket + runtime IAM + Static IP
 - `make secret-set-password` → `scripts/tools/set_secret.sh`
 - `make secret-set-deploy-key` → `scripts/tools/set_deploy_key.sh`
 - `make build` → `packer/build.sh` (layered images, shares vars with Terraform)

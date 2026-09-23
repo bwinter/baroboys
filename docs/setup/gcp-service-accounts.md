@@ -1,6 +1,6 @@
 # GCP Service Account — Reference
 
-> Created by `make bootstrap` (`bootstrap/bootstrap_vm_runtime_sa.sh`).
+> Created by `make bootstrap` or `make iam-bootstrap` (`bootstrap/bootstrap_vm_runtime_sa.sh`).
 
 ## Service Account
 

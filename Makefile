@@ -294,7 +294,7 @@ clean-git: clean-git-pre clean-git-bfg clean-git-post
 
 help:
 	@echo "🛠️  Common Targets:"
-	@echo "  make bootstrap                       - Bootstraps terraform and iam"
+	@echo "  make bootstrap                       - Bootstraps Terraform, IAM, and shared static IP"
 	@echo "  make build                           - Build all Packer images in order"
 	@echo "  make apply                           - Apply all games"
 	@echo "  make destroy                         - Destroy all games"
@@ -341,8 +341,8 @@ help:
 	@echo "  make iam-add-admin                   - Add administrator emails (can start VMs)"
 	@echo ""
 
-	@echo "🔗 Static IP Address:"
-	@echo "  make static-ip-bootstrap             - Bootstrap static IP"
+	@echo "🌐 Networking:"
+	@echo "  make static-ip-bootstrap             - Reserve or verify the shared game-server IP"
 	@echo ""
 
 	@echo "🧪 Smoke Test:"

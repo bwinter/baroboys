@@ -31,13 +31,21 @@ if address_info=$(gcloud compute addresses describe "$ADDRESS_NAME" \
     exit 1
   fi
 
-  echo "✔ Static IP already exists: $ADDRESS_NAME ($REGION, $NETWORK_TIER)"
+  address=$(gcloud compute addresses describe "$ADDRESS_NAME" \
+    --project="$PROJECT" \
+    --region="$REGION" \
+    --format='value(address)')
+  echo "✔ Static IP already exists: $ADDRESS_NAME ($address) ($REGION, $NETWORK_TIER)"
 else
   echo "➕ Reserving static IP: $ADDRESS_NAME ($REGION, $NETWORK_TIER)"
   gcloud compute addresses create "$ADDRESS_NAME" \
     --project="$PROJECT" \
     --region="$REGION" \
     --network-tier="$NETWORK_TIER"
+  address=$(gcloud compute addresses describe "$ADDRESS_NAME" \
+    --project="$PROJECT" \
+    --region="$REGION" \
+    --format='value(address)')
 fi
 
-echo "✅ Static IP bootstrap complete: $ADDRESS_NAME"
+echo "✅ Static IP bootstrap complete: $ADDRESS_NAME ($address)"
