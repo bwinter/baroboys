@@ -56,11 +56,12 @@ See [gcp-service-accounts.md](gcp-service-accounts.md) for what gets created.
 
 ### 3. Create secrets
 
-Two secrets are needed. Both are created idempotently (safe to re-run).
+Three secrets are needed. Each setter is safe to re-run.
 
 ```bash
 make secret-set-password      # server password (game join, admin panel, RCON)
 make secret-set-deploy-key    # SSH key for VM to clone/push this repo
+make secret-set-duckdns-token # DuckDNS token for baroboys.duckdns.org
 ```
 
 `secret-set-deploy-key` generates an ECDSA key, adds it to GitHub as a deploy key (write access),
@@ -68,6 +69,11 @@ and stores the private key in Secret Manager. Requires `gh` CLI.
 
 **If `secret-set-deploy-key` fails:** Check `gh auth status`. The deploy key can also be created
 manually — see [github-deploy-key.md](github-deploy-key.md).
+
+The DuckDNS token comes from the [DuckDNS account page](https://www.duckdns.org/login?generateRequest=persona).
+The local Terraform apply workflow will update `baroboys.duckdns.org` after applying
+the VM's static IP. The static IP remains the primary endpoint; DuckDNS provides a
+recoverable hostname if the address ever changes.
 
 ### 4. Build Packer images
 
@@ -120,6 +126,7 @@ make terraform-destroy-VRising   # or: make destroy (all games)
 - `make bootstrap` → Terraform state bucket + runtime IAM + Static IP
 - `make secret-set-password` → `scripts/tools/set_secret.sh`
 - `make secret-set-deploy-key` → `scripts/tools/set_deploy_key.sh`
+- `make secret-set-duckdns-token` → `scripts/tools/set_duckdns_token.sh`
 - `make build` → `packer/build.sh` (layered images, shares vars with Terraform)
 - `make terraform-apply-<Game>` → `terraform/build.sh` (workspace select + apply)
 

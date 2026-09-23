@@ -78,6 +78,13 @@ Set the shared password for game servers, admin panel, and RCON:
 make secret-set-password
 ```
 
+Store the DuckDNS token used by the local Terraform apply workflow to update
+`baroboys.duckdns.org`:
+
+```bash
+make secret-set-duckdns-token
+```
+
 Create the GitHub deploy key so the VM can clone this repo (requires `gh` CLI):
 
 ```bash

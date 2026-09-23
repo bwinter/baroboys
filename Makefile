@@ -201,7 +201,7 @@ $(foreach game,$(GAMES),$(eval $(call admin_url_recipe,$(game))))
 # =======================
 # 🔑 Secrets
 # =======================
-.PHONY: secret-set-password secret-set-deploy-key
+.PHONY: secret-set-password secret-set-deploy-key secret-set-duckdns-token
 
 secret-set-password:
 	cd $(TOOLS_DIR) && \
@@ -210,6 +210,10 @@ secret-set-password:
 secret-set-deploy-key:
 	cd $(TOOLS_DIR) && \
 	./set_deploy_key.sh
+
+secret-set-duckdns-token:
+	cd $(TOOLS_DIR) && \
+	./set_duckdns_token.sh
 
 
 # =======================
@@ -334,6 +338,7 @@ help:
 	@echo "🔑 Secrets:"
 	@echo "  make secret-set-password             - Set server password (game, admin, RCON)"
 	@echo "  make secret-set-deploy-key           - Generate and store GitHub deploy key"
+	@echo "  make secret-set-duckdns-token        - Store DuckDNS update token"
 	@echo ""
 
 	@echo "🔐 IAM:"
