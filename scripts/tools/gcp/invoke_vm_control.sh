@@ -14,7 +14,10 @@ fi
 
 URL="$(gcloud run services describe "$SERVICE_NAME" --project="$PROJECT" --region="$REGION" \
   --format='value(status.url)')"
-TOKEN="$(gcloud auth print-identity-token --audiences="$URL")"
+# User-account identity tokens do not support --audiences. Cloud Run accepts
+# these tokens for development when the user has roles/run.invoker; audience-
+# restricted tokens can be used later with service-account impersonation.
+TOKEN="$(gcloud auth print-identity-token)"
 
 case "$ACTION" in
   status)
