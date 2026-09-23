@@ -14,7 +14,8 @@ fi
 
 GAME="$1"
 ENV="$2"
-TF_DIR="terraform"
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+TF_DIR="$REPO_ROOT/terraform"
 GAME_VARS="$TF_DIR/game/$GAME.tfvars.json"
 
 [[ -f "$GAME_VARS" ]] || { echo "Missing per-game vars file: $GAME_VARS"; exit 1; }
@@ -28,3 +29,7 @@ WORKSPACE="$(echo "$GAME" | tr '[:upper:]' '[:lower:]')"
 terraform init -backend-config="backend/${ENV}.hcl"
 terraform workspace select "$WORKSPACE" || terraform workspace new "$WORKSPACE"
 terraform apply -var-file="shared.tfvars" -var-file="game/$GAME.tfvars.json"
+
+EXTERNAL_IP="$(terraform output -raw game_external_ip)"
+PROJECT_ID="$(terraform output -raw terraform_project_id)"
+"$REPO_ROOT/scripts/tools/update_duckdns.sh" "$EXTERNAL_IP" "$PROJECT_ID"

@@ -308,7 +308,7 @@ help:
 	@echo "  make terraform-bootstrap             - Bootstrap Terraform state bucket"
 	@echo "  make terraform-init                  - Initialize Terraform"
 	@echo "  make terraform-plan                  - Show Terraform plan"
-	@echo "  make terraform-apply-<GAME>          - Apply Terraform (build VM for game)"
+	@echo "  make terraform-apply-<GAME>          - Apply VM and update DuckDNS"
 	@echo "  make terraform-destroy-<GAME>        - Destroy game VM"
 	@echo "  make terraform-refresh               - Refresh Terraform state"
 	@echo ""
