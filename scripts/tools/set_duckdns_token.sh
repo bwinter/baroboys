@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-set -euxo pipefail
+set -euo pipefail
 
-# Stores the DuckDNS update token used by the VM boot-time updater.
+# Stores the DuckDNS update token used by the local Terraform apply workflow.
 SECRET_NAME="duckdns-token"
 PROJECT="${PROJECT:-$(gcloud config get-value project 2>/dev/null)}"
 
