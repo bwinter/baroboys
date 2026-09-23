@@ -22,7 +22,7 @@ for arg in "$@"; do
 done
 
 PROJECT="${PROJECT:-europan-world}"
-ZONE="${ZONE:-us-west1-c}"
+ZONE="${ZONE:-us-west1-b}"
 MACHINE_NAME="${MACHINE_NAME:-$(echo "$GAME" | tr '[:upper:]' '[:lower:]')}"
 GCP_USER="${GCP_USER:-bwinter_sc81}"
 

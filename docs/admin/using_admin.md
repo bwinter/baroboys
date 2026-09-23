@@ -11,7 +11,7 @@
 
 ## 🖥️ The Server
 
-👉 Open the GCP VM page for your game: `https://console.cloud.google.com/compute/instancesDetail/zones/us-west1-c/instances/<MACHINE_NAME>?project=europan-world`
+👉 Open the GCP VM page for your game: `https://console.cloud.google.com/compute/instancesDetail/zones/us-west1-b/instances/<MACHINE_NAME>?project=europan-world`
 
 1. 🟢 Click **Start**
 

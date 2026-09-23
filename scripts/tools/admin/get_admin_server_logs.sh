@@ -10,7 +10,7 @@ fi
 
 # Requires MACHINE_NAME (e.g. via: make admin-logs-VRising)
 REMOTE="${REMOTE:-bwinter_sc81@${MACHINE_NAME:?MACHINE_NAME not set}}"
-ZONE="${ZONE:-us-west1-c}"
+ZONE="${ZONE:-us-west1-b}"
 SERVICE="admin-server-startup.service"
 LOG_LINES=200
 
