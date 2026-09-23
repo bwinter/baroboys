@@ -38,7 +38,9 @@ REMOTE_SHUTDOWN_CMD := sudo systemctl restart game-shutdown.service
 
 .DEFAULT_GOAL := help
 
-bootstrap: terraform-bootstrap iam-bootstrap
+.PHONY: bootstrap apply destroy
+
+bootstrap: terraform-bootstrap iam-bootstrap static-ip-bootstrap
 
 apply: $(addprefix terraform-apply-, $(GAMES))
 
@@ -227,6 +229,16 @@ iam-add-admin:
 
 
 # =======================
+# 🔗 Static IP Address
+# =======================
+.PHONY: static-ip-bootstrap
+
+static-ip-bootstrap:
+	cd $(BOOTSTRAP_DIR) && \
+		./bootstrap_static_ip.sh
+
+
+# =======================
 # 🧪 Smoke Test
 # =======================
 .PHONY: $(addprefix smoke-test-, $(GAMES)) $(addprefix smoke-test-debug-, $(GAMES))
@@ -327,6 +339,10 @@ help:
 	@echo "🔐 IAM:"
 	@echo "  make iam-bootstrap                   - Bootstrap IAM service accounts"
 	@echo "  make iam-add-admin                   - Add administrator emails (can start VMs)"
+	@echo ""
+
+	@echo "🔗 Static IP Address:"
+	@echo "  make static-ip-bootstrap             - Bootstrap static IP"
 	@echo ""
 
 	@echo "🧪 Smoke Test:"

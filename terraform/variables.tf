@@ -89,6 +89,12 @@ variable "static_ip_name" {
   default     = ""
 }
 
+variable "network_tier" {
+  description = "Network Service Tier for the VM external IP"
+  type        = string
+  default     = "PREMIUM"
+}
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Cross-language config — Terraform reads these from the per-game JSON
 # tfvars file. The same file is also read by bash (shared/refresh.sh,

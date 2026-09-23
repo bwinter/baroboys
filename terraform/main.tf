@@ -74,7 +74,8 @@ resource "google_compute_instance" "default" {
 
     access_config {
       // null leaves the address ephemeral for games without static_ip_name.
-      nat_ip = var.static_ip_name != "" ? data.google_compute_address.game_ip[0].address : null
+      nat_ip       = var.static_ip_name != "" ? data.google_compute_address.game_ip[0].address : null
+      network_tier = var.network_tier
     }
   }
 

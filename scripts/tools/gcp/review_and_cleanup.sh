@@ -195,6 +195,7 @@ fi
 # =================== External IPs ===================
 
 echo -e "\n🌐 Releasing RESERVED but unused static IPs..."
+PRESERVED_STATIC_IP="${STATIC_IP_NAME:-baroboys-ip}"
 echo '```'
 gcloud compute addresses list \
   --project="$PROJECT" \
@@ -208,6 +209,10 @@ ip_csv=$(gcloud compute addresses list \
   --format="csv(name,region,address)")
 
 { echo "$ip_csv" | tail -n +2 || true; } | while IFS=',' read -r name region address; do
+  if [[ "$name" == "$PRESERVED_STATIC_IP" ]]; then
+    echo "🔒 Preserving shared static IP: $name ($region)"
+    continue
+  fi
   echo "🗑 Releasing static IP: $name ($address) in $region"
   gcloud compute addresses delete "$name" --region="$region" --project="$PROJECT" --quiet || \
     echo "❌ Failed to release $name — skipping."
