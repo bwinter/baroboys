@@ -48,3 +48,13 @@ make vm-control-deploy
 The first version uses IAM-authenticated local requests. A future Discord-facing
 layer can call this private service for VM lifecycle commands, keeping game-specific
 control in the VM's admin service.
+
+The Discord bot token is stored separately from the VM-control service:
+
+```bash
+make secret-set-discord-bot-token
+```
+
+The Discord application ID, public key, guild ID, and control-channel ID are
+configuration values and should be wired into the Discord integration when that
+layer is implemented. They are not bot-token secrets.
