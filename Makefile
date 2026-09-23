@@ -201,7 +201,7 @@ $(foreach game,$(GAMES),$(eval $(call admin_url_recipe,$(game))))
 # =======================
 # 🔑 Secrets
 # =======================
-.PHONY: secret-set-password secret-set-deploy-key secret-set-duckdns-token secret-set-discord-bot-token
+.PHONY: secret-set-password secret-set-deploy-key secret-set-duckdns-token secret-set-discord-bot-token discord-register-commands
 
 secret-set-password:
 	cd $(TOOLS_DIR) && \
@@ -218,6 +218,9 @@ secret-set-duckdns-token:
 secret-set-discord-bot-token:
 	cd $(TOOLS_DIR) && \
 	./discord/set_bot_token.sh
+
+discord-register-commands:
+	./$(TOOLS_DIR)/discord/register_commands.sh
 
 
 # =======================
@@ -364,8 +367,9 @@ help:
 
 	@echo "☁️  Cloud Run VM Control:"
 	@echo "  make vm-control-bootstrap            - Bootstrap and deploy VM-control service"
-	@echo "  make vm-control-deploy               - Deploy the private VM-control service"
+	@echo "  make vm-control-deploy               - Deploy the public VM-control service"
 	@echo "  make vm-control-invoke ACTION=status [INSTANCE=...] - Invoke VM-control manually"
+	@echo "  make discord-register-commands       - Register Discord guild commands"
 	@echo ""
 
 	@echo "🔐 IAM:"

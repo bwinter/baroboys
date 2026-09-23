@@ -1,6 +1,6 @@
 # VM Control Cloud Run Service
 
-The VM-control service is a private Cloud Run service that can inspect and start
+The VM-control service is a Cloud Run service that can inspect and start
 configured VM instances. It is intentionally separate from the per-game Terraform
 workspaces: Terraform creates and destroys VMs, while this service starts existing
 stopped instances.
@@ -16,8 +16,9 @@ stopped instances.
 - Grants the service account permission to inspect and start instances.
 - Deploys the initial private Cloud Run revision.
 
-The service is deployed privately. Local invocations use a Google identity token;
-there is no unauthenticated HTTP endpoint.
+The service is publicly reachable for Discord interactions. Every Discord request
+must pass Ed25519 signature validation and match the configured guild and control
+channel. Manual invocations still use a Google identity token.
 
 ## Manual invocation
 
@@ -45,9 +46,9 @@ After changing `cloud_run/vm_control/`, deploy a new revision with:
 make vm-control-deploy
 ```
 
-The first version uses IAM-authenticated local requests. A future Discord-facing
-layer can call this private service for VM lifecycle commands, keeping game-specific
-control in the VM's admin service.
+The deploy script passes the Discord public key and guild/channel IDs from
+`scripts/tools/discord/config.sh`. Override those variables in the environment when
+using a different Discord application or server. The public key is not a secret.
 
 The Discord bot token is stored separately from the VM-control service:
 
@@ -55,6 +56,11 @@ The Discord bot token is stored separately from the VM-control service:
 make secret-set-discord-bot-token
 ```
 
-The Discord application ID, public key, guild ID, and control-channel ID are
-configuration values and should be wired into the Discord integration when that
-layer is implemented. They are not bot-token secrets.
+Register the development commands with the bot token:
+
+```bash
+make discord-register-commands
+```
+
+The commands are guild-scoped so updates appear immediately. The bot token is
+read from Secret Manager and is not passed to Cloud Run.
