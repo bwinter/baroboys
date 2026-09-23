@@ -126,7 +126,7 @@ make terraform-destroy-VRising   # or: make destroy (all games)
 - `make bootstrap` → Terraform state bucket + runtime IAM + Static IP
 - `make secret-set-password` → `scripts/tools/set_secret.sh`
 - `make secret-set-deploy-key` → `scripts/tools/set_deploy_key.sh`
-- `make secret-set-duckdns-token` → `scripts/tools/set_duckdns_token.sh`
+- `make secret-set-duckdns-token` → `scripts/tools/duckdns/set_duckdns_token.sh`
 - `make build` → `packer/build.sh` (layered images, shares vars with Terraform)
 - `make terraform-apply-<Game>` → `terraform/build.sh` (workspace select + apply)
 

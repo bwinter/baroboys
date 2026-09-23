@@ -213,7 +213,7 @@ secret-set-deploy-key:
 
 secret-set-duckdns-token:
 	cd $(TOOLS_DIR) && \
-	./set_duckdns_token.sh
+	./duckdns/set_duckdns_token.sh
 
 
 # =======================

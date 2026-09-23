@@ -32,4 +32,4 @@ terraform apply -var-file="shared.tfvars" -var-file="game/$GAME.tfvars.json"
 
 EXTERNAL_IP="$(terraform output -raw game_external_ip)"
 PROJECT_ID="$(terraform output -raw terraform_project_id)"
-"$REPO_ROOT/scripts/tools/update_duckdns.sh" "$EXTERNAL_IP" "$PROJECT_ID"
+"$REPO_ROOT/scripts/tools/duckdns/update_duckdns.sh" "$EXTERNAL_IP" "$PROJECT_ID"
