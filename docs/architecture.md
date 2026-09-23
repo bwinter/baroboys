@@ -95,6 +95,11 @@ pairs envsubst'd by `shared/post-checkout.sh`).
 Each game gets its own Terraform workspace (lowercase game name), so `terraform apply` for one
 game doesn't affect another. `make terraform-apply-VRising` or `make terraform-destroy-Barotrauma`.
 
+The private `cloud_run/vm_control` service is shared infrastructure outside those game workspaces.
+It reads a fixed VM-instance mapping and can inspect or start existing VMs; it does not create
+or destroy them. `make bootstrap` establishes and deploys it, while `make vm-control-deploy` publishes
+later code changes.
+
 State is stored remotely in `gs://tf-state-baroboys/terraform/prod`, with per-game workspace isolation.
 
 ---

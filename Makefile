@@ -40,7 +40,7 @@ REMOTE_SHUTDOWN_CMD := sudo systemctl restart game-shutdown.service
 
 .PHONY: bootstrap apply destroy
 
-bootstrap: terraform-bootstrap iam-bootstrap static-ip-bootstrap
+bootstrap: terraform-bootstrap iam-bootstrap static-ip-bootstrap vm-control-bootstrap
 
 apply: $(addprefix terraform-apply-, $(GAMES))
 
@@ -233,6 +233,22 @@ iam-add-admin:
 
 
 # =======================
+# ☁️ Cloud Run VM Control
+# =======================
+.PHONY: vm-control-bootstrap vm-control-deploy vm-control-invoke
+
+vm-control-bootstrap:
+	cd $(BOOTSTRAP_DIR) && \
+		./bootstrap_vm_control.sh
+
+vm-control-deploy:
+	./$(TOOLS_DIR)/gcp/deploy_vm_control.sh
+
+vm-control-invoke:
+	./$(TOOLS_DIR)/gcp/invoke_vm_control.sh $(ACTION) $(INSTANCE)
+
+
+# =======================
 # 🔗 Static IP Address
 # =======================
 .PHONY: static-ip-bootstrap
@@ -298,7 +314,7 @@ clean-git: clean-git-pre clean-git-bfg clean-git-post
 
 help:
 	@echo "🛠️  Common Targets:"
-	@echo "  make bootstrap                       - Bootstraps Terraform, IAM, and shared static IP"
+	@echo "  make bootstrap                       - Bootstraps Terraform, IAM, static IP, and VM control"
 	@echo "  make build                           - Build all Packer images in order"
 	@echo "  make apply                           - Apply all games"
 	@echo "  make destroy                         - Destroy all games"
@@ -339,6 +355,12 @@ help:
 	@echo "  make secret-set-password             - Set server password (game, admin, RCON)"
 	@echo "  make secret-set-deploy-key           - Generate and store GitHub deploy key"
 	@echo "  make secret-set-duckdns-token        - Store DuckDNS update token"
+	@echo ""
+
+	@echo "☁️  Cloud Run VM Control:"
+	@echo "  make vm-control-bootstrap            - Bootstrap and deploy VM-control service"
+	@echo "  make vm-control-deploy               - Deploy the private VM-control service"
+	@echo "  make vm-control-invoke ACTION=status [INSTANCE=...] - Invoke VM-control manually"
 	@echo ""
 
 	@echo "🔐 IAM:"

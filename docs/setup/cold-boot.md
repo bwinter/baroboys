@@ -47,6 +47,10 @@ and the shared regional static IP used by all game VMs.
 make bootstrap
 ```
 
+This also bootstraps and deploys the private Cloud Run VM-control service used to
+start existing stopped game VMs. See [vm-control.md](vm-control.md) for manual
+invocation and maintenance.
+
 Note: Only one game VM can use the shared address at a time. Destroy or detach the current
 game VM before applying a different game workspace. The address remains stable across
 VM stop/start, recreation, and zone changes.
