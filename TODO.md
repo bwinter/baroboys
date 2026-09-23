@@ -34,6 +34,9 @@
 ### Brendan Notes
 
 - Can `python3 -c` be swapped with bash native jq etc?
+- Larger Saves
+- Discord Bot
+- Constant Address
 
 ---
 
