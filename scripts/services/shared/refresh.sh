@@ -74,7 +74,8 @@ manifest = {
         "tcp": src.get("game_ports_tcp", []),
     },
     "accent_color":  src.get("accent_color", "#0d6efd"),
-    "process_ram_mb_min": src.get("process_ram_mb_min", 200),
+    # Treat a missing or explicit null RAM floor as the same default.
+    "process_ram_mb_min": src.get("process_ram_mb_min") or 200,
     "templates":     src.get("templates", []),
 }
 print(json.dumps(manifest, indent=2))

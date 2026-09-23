@@ -61,7 +61,9 @@ Copy `terraform/game/Barotrauma.tfvars.json` and edit:
 Notes:
 - `game_image`/`machine_name`/`game_tags` are GCP/Terraform identifiers — keep them lowercase.
 - `game_name` is the title-case display name; matches the directory and Makefile entry.
-- `process_name` is what `pgrep` / `pkill` matches in `shared/shutdown.sh` and `idle_check.sh`.
+- `process_name` is matched literally within the full command line by the shutdown,
+  idle-check, and smoke-test scripts. Use the executable name as it appears in the
+  launch command, without shell quoting or a regular-expression pattern.
 - `uses_wine: true` makes `shared/refresh.sh` add `xvfb.log` to the manifest's log list.
 - `process_ram_mb_min` is the floor below which the smoke test marks the game "still booting".
 - `templates` is the list of `(input, output)` pairs `shared/post-checkout.sh` envsubst's on

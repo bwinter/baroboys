@@ -72,10 +72,13 @@ done
 PROCESS_ALIVE=false
 PROCESS_RSS_MB=0
 if [[ -n "$MANIFEST_PROCESS" ]]; then
+  # Match the full command line, with the configured process name treated as
+  # a literal string rather than a regular expression.
+  PROCESS_PATTERN=$(printf '%s' "$MANIFEST_PROCESS" | sed 's/[][\\.^$*+?(){}|]/\\&/g')
   # `|| true` because pgrep returns 1 when no process matches, and that's
   # an expected state at the boot-time fire (game-startup hasn't completed
   # yet). Without this the pipeline-failure trips set -e.
-  pid=$(pgrep -f "$MANIFEST_PROCESS" 2>/dev/null | while read -r p; do
+  pid=$(pgrep -f "$PROCESS_PATTERN" 2>/dev/null | while read -r p; do
     rss=$(awk '/VmRSS/ {print $2}' "/proc/$p/status" 2>/dev/null || echo 0)
     echo "$rss $p"
   done | sort -n | tail -1 | awk '{print $2}' || true)

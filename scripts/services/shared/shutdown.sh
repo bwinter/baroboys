@@ -17,6 +17,15 @@ PROCESS_NAME=$(jq -r .process_name /etc/baroboys/manifest.json)
 : "${PROCESS_NAME:?process_name missing from /etc/baroboys/manifest.json}"
 : "${GAME_DIR:?GAME_DIR not set — check shared env-vars.sh}"
 
+# `ps -C`/`pkill` match the kernel's 15-character comm name, which truncates
+# Valheim's `valheim_server.x86_64`. Match the full command line instead, but
+# escape the configured name so punctuation is treated literally as a string.
+PROCESS_PATTERN=$(printf '%s' "$PROCESS_NAME" | sed 's/[][\\.^$*+?(){}|]/\\&/g')
+
+process_pids() {
+  pgrep -f -- "$PROCESS_PATTERN" 2>/dev/null || true
+}
+
 # === Graceful shutdown ===
 # RCON-capable games warn players and let the engine save before killing.
 # Others get a direct signal.
@@ -26,15 +35,21 @@ if [[ -n "${RCON_PORT:-}" && -n "${RCON_PASSWORD:-}" ]]; then
     || echo "⚠️ mcrcon failed to send shutdown command"
   echo "⏳ Waiting ${SHUTDOWN_DELAY_MINUTES:-1} minutes for graceful shutdown..."
   sleep "$(( ${SHUTDOWN_DELAY_MINUTES:-1} * 60 + 30 ))"
-elif pkill -0 "$PROCESS_NAME" 2>/dev/null; then
-  pkill "$PROCESS_NAME"
 else
-  echo "$PROCESS_NAME not running, nothing to kill"
+  mapfile -t pids < <(process_pids)
+  if ((${#pids[@]})); then
+    kill "${pids[@]}"
+  else
+    echo "$PROCESS_NAME not running, nothing to kill"
+  fi
 fi
 
 # === Wait for process exit ===
 echo "🔃 Monitoring $PROCESS_NAME status..."
-if ! timeout 300 bash -c "while ps -C $PROCESS_NAME >/dev/null; do sleep 1; done"; then
+# The child shell intentionally expands PROCESS_PATTERN from its environment.
+# shellcheck disable=SC2016
+if ! PROCESS_PATTERN="$PROCESS_PATTERN" timeout 300 bash -c \
+  'while pgrep -f -- "$PROCESS_PATTERN" >/dev/null 2>&1; do sleep 1; done'; then
   echo "⚠️ $PROCESS_NAME did not exit in time."
 else
   echo "✅ $PROCESS_NAME exited cleanly."

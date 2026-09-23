@@ -82,10 +82,12 @@ echo "--- Process ---"
 # from the per-game tfvars.json). Same JSON Terraform reads for firewall rules.
 PROCESS_NAME=$(jq -r .process_name /etc/baroboys/manifest.json)
 ram_min_mb=$(jq -r '.process_ram_mb_min // 200' /etc/baroboys/manifest.json)
+PROCESS_PATTERN=$(printf '%s' "$PROCESS_NAME" | sed 's/[][\\.^$*+?(){}|]/\\&/g')
 
-# For Wine games (VRising), multiple processes match the pattern — pick the one
+# Match the configured name literally within the full command line. For Wine
+# games (VRising), multiple processes match the pattern — pick the one
 # with highest RSS to avoid selecting the Wine launcher (start.exe) over the game itself.
-pid=$(pgrep -f "$PROCESS_NAME" | while read -r p; do
+pid=$(pgrep -f "$PROCESS_PATTERN" | while read -r p; do
     rss=$(awk '/VmRSS/ {print $2}' "/proc/$p/status" 2>/dev/null || echo 0)
     echo "$rss $p"
 done | sort -n | tail -1 | awk '{print $2}')
