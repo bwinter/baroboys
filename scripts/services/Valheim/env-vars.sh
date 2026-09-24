@@ -8,7 +8,7 @@ source "$(dirname "${BASH_SOURCE[0]}")/../shared/env-vars.sh"
 export STEAM_APP_ID=896660 # SETUP: REQUIRED
 export STEAM_APP_PLATFORM="linux" # SETUP: OPTIONAL
 
-export SAVE_NAME="SnowCrashWorld" # SETUP: OPTIONAL — save/world identity; feeds config template and path
+export SAVE_NAME="Donaldsheim" # SETUP: OPTIONAL — save/world identity; feeds config template and path
 export SAVE_FILE_PATTERN="*" # SETUP: OPTIONAL — filename glob for save compression
 export SAVE_FILE_PATH="$GAME_DIR/worlds_local/$SAVE_NAME" # SETUP: OPTIONAL — directory containing saves
 
