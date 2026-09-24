@@ -17,7 +17,7 @@ fi
 
 gcloud run deploy "$SERVICE_NAME" --project="$PROJECT" --region="$REGION" \
   --source="$REPO_ROOT/cloud_run/vm_control" --service-account="$SA_EMAIL" \
-  --set-env-vars="GCP_PROJECT=$PROJECT,DISCORD_PUBLIC_KEY=$DISCORD_PUBLIC_KEY,DISCORD_GUILD_ID=$DISCORD_GUILD_ID,DISCORD_CONTROL_CHANNEL_ID=$DISCORD_CONTROL_CHANNEL_ID" \
+  --set-env-vars="GCP_PROJECT=$PROJECT,DISCORD_PUBLIC_KEY=$DISCORD_PUBLIC_KEY,DISCORD_ALLOWED_LOCATIONS=$DISCORD_ALLOWED_LOCATIONS" \
   --allow-unauthenticated --quiet
 
 CALLER="$(gcloud config get-value account 2>/dev/null)"

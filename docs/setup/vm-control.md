@@ -46,9 +46,11 @@ After changing `cloud_run/vm_control/`, deploy a new revision with:
 make vm-control-deploy
 ```
 
-The deploy script passes the Discord public key and guild/channel IDs from
-`scripts/tools/discord/config.sh`. Override those variables in the environment when
-using a different Discord application or server. The public key is not a secret.
+The deploy script passes the Discord public key and allowed guild/channel pairs from
+`scripts/tools/discord/config.sh`. Locations use the format
+`guild_id:channel_id;guild_id:channel_id`, allowing one service to support multiple
+Discord servers or channels. Override this configuration when using a different
+Discord application or server. The public key is not a secret.
 
 The Discord bot token is stored separately from the VM-control service:
 
@@ -64,3 +66,7 @@ make discord-register-commands
 
 The commands are guild-scoped so updates appear immediately. The bot token is
 read from Secret Manager and is not passed to Cloud Run.
+
+The initial Discord interface is intentionally single-server: `/status` and
+`/start` automatically target the only deployed VM. The underlying VM-control
+API remains instance-aware for manual use and future multi-game support.

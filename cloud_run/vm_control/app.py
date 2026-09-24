@@ -129,18 +129,24 @@ def discord_response(content, ephemeral=False):
 
 
 def discord_location_allowed(payload):
-    return (
-        os.environ.get("DISCORD_GUILD_ID")
-        and os.environ.get("DISCORD_CONTROL_CHANNEL_ID")
-        and payload.get("guild_id") == os.environ["DISCORD_GUILD_ID"]
-        and payload.get("channel_id") == os.environ["DISCORD_CONTROL_CHANNEL_ID"]
-    )
+    locations = os.environ.get("DISCORD_ALLOWED_LOCATIONS", "")
+    allowed = {
+        tuple(location.split(":", 1))
+        for location in locations.split(";")
+        if ":" in location
+    }
+    return (payload.get("guild_id"), payload.get("channel_id")) in allowed
 
 
-def discord_game(payload):
-    options = payload.get("data", {}).get("options", [])
-    game_option = next((option for option in options if option.get("name") == "game"), None)
-    return str(game_option.get("value", "")).lower() if game_option else ""
+def discord_target(compute):
+    """Return the only deployed instance, or None when selection is ambiguous."""
+    states = configured_states(compute, load_instances())
+    deployed = [
+        (instance, status)
+        for instance, status in states.items()
+        if status.get("state") != "NOT_DEPLOYED"
+    ]
+    return deployed[0] if len(deployed) == 1 else (None, None)
 
 
 def discord_status_message(game, status):
@@ -151,7 +157,7 @@ def discord_status_message(game, status):
     if state in {"PROVISIONING", "STAGING", "STOPPING", "SUSPENDING"}:
         return f"🟡 **{name}** is {state.lower()} right now."
     if state == "TERMINATED":
-        return f"⚪ **{name}** is offline. Use `/start {game}` to start it."
+        return f"⚪ **{name}** is offline. Use `/start` to start it."
     if state == "NOT_DEPLOYED":
         return f"⚪ **{name}** is not deployed."
     return f"⚪ **{name}** has status `{state or 'unknown'}`."
@@ -193,25 +199,27 @@ def discord_interactions():
     if command == "help":
         return jsonify(discord_response(
             "**Game Server Controller**\n"
-            "`/status game` — check a server\n"
-            "`/start game` — start a server\n"
+            "`/status` — check the game server\n"
+            "`/start` — start the game server\n"
             "`/help` — show this help"
         ))
 
     if command not in {"status", "start"}:
         return jsonify(discord_response("I don't recognize that command.", ephemeral=True))
 
-    game = discord_game(payload)
-    if game not in DISPLAY_NAMES:
-        return jsonify(discord_response("Choose a supported game from the command options.", ephemeral=True))
+    game, status = discord_target(compute_client())
+    if game is None:
+        return jsonify(discord_response(
+            "I need exactly one deployed game server before I can control it.",
+            ephemeral=True,
+        ))
 
     if command == "status":
-        status = instance_state(compute_client(), load_instances()[game])
         return jsonify(discord_response(discord_status_message(game, status)))
 
     body, status_code = start_instance_result(game)
     if status_code == 202:
-        message = f"🟡 Starting **{DISPLAY_NAMES[game]}** now. Use `/status {game}` in a moment to check it."
+        message = f"🟡 Starting **{DISPLAY_NAMES[game]}** now. Use `/status` in a moment to check it."
     elif status_code == 200:
         message = f"🟢 **{DISPLAY_NAMES[game]}** is already online."
     elif body.get("error") == "another_instance_active":
