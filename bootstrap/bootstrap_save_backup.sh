@@ -47,6 +47,9 @@ gsutil lifecycle set "$LIFECYCLE_FILE" "gs://${BUCKET_NAME}"
 echo "🔑 Granting $SA_EMAIL permission to create backup objects"
 gsutil iam ch "serviceAccount:${SA_EMAIL}:roles/storage.objectCreator" \
   "gs://${BUCKET_NAME}"
+echo "🔎 Granting $SA_EMAIL permission to verify backup objects"
+gsutil iam ch "serviceAccount:${SA_EMAIL}:roles/storage.objectViewer" \
+  "gs://${BUCKET_NAME}"
 
 echo "✅ Save-backup bucket ready:"
 echo "   gs://${BUCKET_NAME}"
