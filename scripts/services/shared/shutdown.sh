@@ -55,6 +55,16 @@ else
   echo "✅ $PROCESS_NAME exited cleanly."
 fi
 
+# Create a durable bucket snapshot after the game has stopped. systemd keeps
+# periodic and shutdown invocations of the same oneshot service serialized.
+if systemctl cat save-backup.service >/dev/null 2>&1; then
+  echo "☁️ Waiting for save-backup.service..."
+  sudo systemctl start --wait save-backup.service \
+    || echo "⚠️ Save-backup service failed; continuing shutdown"
+else
+  echo "ℹ️ save-backup.service is not installed; skipping bucket snapshot"
+fi
+
 cd "$GAME_DIR"
 
 # === Stage saves for commit ===

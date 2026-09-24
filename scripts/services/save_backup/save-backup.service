@@ -1,0 +1,14 @@
+[Unit]
+Description=Archive and upload the active game save
+Wants=network-online.target
+After=network-online.target game-refresh.service
+ConditionPathExists=/etc/baroboys/manifest.json
+
+[Service]
+Type=oneshot
+User=bwinter_sc81
+Group=bwinter_sc81
+ExecStart=/home/bwinter_sc81/baroboys/scripts/services/save_backup/save_backup.sh
+TimeoutStartSec=900
+StandardOutput=journal
+StandardError=journal

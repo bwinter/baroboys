@@ -1,0 +1,11 @@
+[Unit]
+Description=Periodically archive the active game save
+
+[Timer]
+OnBootSec=30min
+OnUnitActiveSec=30min
+Persistent=false
+Unit=save-backup.service
+
+[Install]
+WantedBy=timers.target

@@ -69,6 +69,9 @@ build {
       "echo '🔧 Install idle check service'",
       "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/idle_check/refresh.sh",
 
+      "echo '🔧 Install save backup service'",
+      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/save_backup/refresh.sh",
+
       "echo '🧹 Running autoremove'",
       "/usr/bin/sudo apt-get -yq autoremove"
     ]
