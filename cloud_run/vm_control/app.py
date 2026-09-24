@@ -11,6 +11,7 @@ from nacl.signing import VerifyKey
 
 app = Flask(__name__)
 PROJECT = os.environ.get("GCP_PROJECT")
+VM_ADMIN_URL = os.environ.get("VM_ADMIN_URL", "").rstrip("/")
 CONFIG_PATH = Path(__file__).with_name("instances.json")
 ACTIVE_STATES = {"PROVISIONING", "STAGING", "RUNNING", "STOPPING", "SUSPENDING"}
 DISPLAY_NAMES = {
@@ -152,8 +153,9 @@ def discord_target(compute):
 def discord_status_message(game, status):
     name = DISPLAY_NAMES[game]
     state = status.get("state")
+    admin_link = f"\n[Open the admin page]({VM_ADMIN_URL}/)" if VM_ADMIN_URL else ""
     if state == "RUNNING":
-        return f"🟢 **{name}** is online."
+        return f"🟢 **{name}** VM is online. The game may still be starting.{admin_link}"
     if state in {"PROVISIONING", "STAGING", "STOPPING", "SUSPENDING"}:
         return f"🟡 **{name}** is {state.lower()} right now."
     if state == "TERMINATED":
@@ -161,6 +163,10 @@ def discord_status_message(game, status):
     if state == "NOT_DEPLOYED":
         return f"⚪ **{name}** is not deployed."
     return f"⚪ **{name}** has status `{state or 'unknown'}`."
+
+
+def discord_admin_link():
+    return f"\n[Open the admin page]({VM_ADMIN_URL}/)" if VM_ADMIN_URL else ""
 
 
 @app.get("/healthz")
@@ -219,9 +225,16 @@ def discord_interactions():
 
     body, status_code = start_instance_result(game)
     if status_code == 202:
-        message = f"🟡 Starting **{DISPLAY_NAMES[game]}** now. Use `/status` in a moment to check it."
+        message = (
+            f"🟡 Starting **{DISPLAY_NAMES[game]}** now. "
+            f"It may take a few minutes before the game is ready. "
+            f"Use `/status` or check the admin page.{discord_admin_link()}"
+        )
     elif status_code == 200:
-        message = f"🟢 **{DISPLAY_NAMES[game]}** is already online."
+        message = (
+            f"🟢 **{DISPLAY_NAMES[game]}** VM is already online. "
+            f"The game may still be starting.{discord_admin_link()}"
+        )
     elif body.get("error") == "another_instance_active":
         message = "⚠️ Another game server is already active. Check `/status game` before starting this one."
     elif body.get("error") == "unknown_instance":

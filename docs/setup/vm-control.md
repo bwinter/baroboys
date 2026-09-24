@@ -49,8 +49,10 @@ make vm-control-deploy
 The deploy script passes the Discord public key and allowed guild/channel pairs from
 `scripts/tools/discord/config.sh`. Locations use the format
 `guild_id:channel_id;guild_id:channel_id`, allowing one service to support multiple
-Discord servers or channels. Override this configuration when using a different
-Discord application or server. The public key is not a secret.
+Discord servers or channels. It also passes `VM_ADMIN_URL`, the human-facing admin
+page URL linked in Discord responses. Override this configuration when using a
+different DuckDNS hostname or admin endpoint. The public key and admin URL are not
+secrets.
 
 The Discord bot token is stored separately from the VM-control service:
 

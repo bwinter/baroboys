@@ -8,3 +8,6 @@ DISCORD_PUBLIC_KEY="${DISCORD_PUBLIC_KEY:-19fcc04f19c646459ce07aa876988a15208ed2
 # been installed in that server, for example:
 # guild-a:channel-a;guild-b:channel-b
 DISCORD_ALLOWED_LOCATIONS="${DISCORD_ALLOWED_LOCATIONS:-691814072483840071:1552460843092938842}"
+# Human-facing admin page linked from Discord responses. Keep this separate
+# from the Cloud Run URL: it points at the game VM through DuckDNS.
+VM_ADMIN_URL="${VM_ADMIN_URL:-http://baroboys.duckdns.org:8080/}"
