@@ -91,7 +91,9 @@ All other consumers (`shared/post-checkout.sh`, `shared/shutdown.sh`, `idle_chec
 JSON directly because it runs on the laptop, where the manifest doesn't exist. Schema:
 `machine_name`, `game_image`, `game_tags`, `game_ports_udp/tcp`, `game_name`, `process_name`,
 `uses_wine`, `accent_color`, `process_ram_mb_min`, `templates` (list of `[input, output]`
-pairs envsubst'd by `shared/post-checkout.sh`).
+pairs envsubst'd by `shared/post-checkout.sh`), plus runtime paths `game_dir`, `save_name`,
+and `save_path` projected from the active game's env-vars. Shared services should consume
+these manifest paths instead of reconstructing per-game paths independently.
 Each game gets its own Terraform workspace (lowercase game name), so `terraform apply` for one
 game doesn't affect another. `make terraform-apply-VRising` or `make terraform-destroy-Barotrauma`.
 

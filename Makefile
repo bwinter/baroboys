@@ -38,9 +38,9 @@ REMOTE_SHUTDOWN_CMD := sudo systemctl restart game-shutdown.service
 
 .DEFAULT_GOAL := help
 
-.PHONY: bootstrap apply destroy
+.PHONY: bootstrap apply destroy save-backup-bootstrap
 
-bootstrap: terraform-bootstrap iam-bootstrap static-ip-bootstrap vm-control-bootstrap
+bootstrap: terraform-bootstrap iam-bootstrap static-ip-bootstrap save-backup-bootstrap vm-control-bootstrap
 
 apply: $(addprefix terraform-apply-, $(GAMES))
 
@@ -60,6 +60,9 @@ destroy: $(addprefix terraform-destroy-, $(GAMES))
 
 terraform-bootstrap:
 	cd $(BOOTSTRAP_DIR) && ./bootstrap_tf_state_bucket.sh
+
+save-backup-bootstrap:
+	cd $(BOOTSTRAP_DIR) && ./bootstrap_save_backup.sh
 
 terraform-init:
 	cd $(TF_DIR) && terraform init -backend-config=$(TF_BACKEND)
@@ -321,7 +324,7 @@ clean-git: clean-git-pre clean-git-bfg clean-git-post
 
 help:
 	@echo "🛠️  Common Targets:"
-	@echo "  make bootstrap                       - Bootstraps Terraform, IAM, static IP, and VM control"
+	@echo "  make bootstrap                       - Bootstraps Terraform, IAM, static IP, save backups, and VM control"
 	@echo "  make build                           - Build all Packer images in order"
 	@echo "  make apply                           - Apply all games"
 	@echo "  make destroy                         - Destroy all games"
@@ -379,6 +382,7 @@ help:
 
 	@echo "🌐 Networking:"
 	@echo "  make static-ip-bootstrap             - Reserve or verify the shared game-server IP"
+	@echo "  make save-backup-bootstrap           - Create/configure the game-save backup bucket"
 	@echo ""
 
 	@echo "🧪 Smoke Test:"

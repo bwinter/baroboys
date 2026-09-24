@@ -57,16 +57,19 @@ if [[ "$(jq -r '.uses_wine // false' "$GAME_TFVARS")" == "true" ]]; then
 fi
 manifest_log_files_json="$(printf '"%s",' "${manifest_log_files[@]}" | sed 's/,$//')"
 
-# Splice log_files into the source JSON to produce the manifest. Everything
-# else (game_name, process_name, uses_wine, ports, accent_color, templates)
-# is copied straight from the per-game tfvars.json. This keeps the manifest
-# a strict function of the source-of-truth file plus runtime-derived log_files.
+# Splice runtime-derived fields into the source JSON to produce the manifest.
+# Cross-language game metadata comes from tfvars; paths come from the active
+# game's env-vars so shared services do not rebuild per-game paths themselves.
 python3 <<PY > /tmp/baroboys-manifest.json
 import json
+import os
 src = json.load(open("$GAME_TFVARS"))
 manifest = {
+    "game_dir":      os.environ.get("GAME_DIR"),
     "game_name":     src["game_name"],
     "process_name":  src["process_name"],
+    "save_name":     os.environ.get("SAVE_NAME"),
+    "save_path":     os.environ.get("SAVE_FILE_PATH"),
     "uses_wine":     src["uses_wine"],
     "log_files":     [${manifest_log_files_json}],
     "ports": {

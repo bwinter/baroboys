@@ -41,13 +41,14 @@ direnv allow   # loads .envrc
 ### 2. Bootstrap GCP infrastructure
 
 Creates the Terraform state bucket, the `vm-runtime` service account with IAM roles,
-and the shared regional static IP used by all game VMs.
+the save-backup bucket with lifecycle rules, and the shared regional static IP used by
+all game VMs.
 
 ```bash
 make bootstrap
 ```
 
-This also bootstraps and deploys the private Cloud Run VM-control service used to
+This also bootstraps and deploys the public, signature-protected Cloud Run VM-control service used to
 start existing stopped game VMs. See [vm-control.md](vm-control.md) for manual
 invocation and maintenance.
 
@@ -127,7 +128,7 @@ make terraform-destroy-VRising   # or: make destroy (all games)
 
 ## What's happening under the hood
 
-- `make bootstrap` → Terraform state bucket + runtime IAM + Static IP
+- `make bootstrap` → Terraform state bucket + runtime IAM + save-backup bucket + Static IP + VM control
 - `make secret-set-password` → `scripts/tools/set_secret.sh`
 - `make secret-set-deploy-key` → `scripts/tools/set_deploy_key.sh`
 - `make secret-set-duckdns-token` → `scripts/tools/duckdns/set_duckdns_token.sh`
