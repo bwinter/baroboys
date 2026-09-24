@@ -17,37 +17,10 @@ source "$(dirname "${BASH_SOURCE[0]}")/../$GAME_NAME/env-vars.sh"
 : "${STEAM_APP_PLATFORM:?STEAM_APP_PLATFORM not set — check game env-vars.sh}"
 : "${GAME_DIR:?GAME_DIR not set — check shared env-vars.sh}"
 
-# Warm login before the real app_update. This works around intermittent SteamCMD failures
-# that occur when the depot cache or config hasn't been initialised yet. Root cause is
-# unknown; removing this call makes builds flaky. Do not simplify.
-/usr/games/steamcmd \
-  +login anonymous \
-  +quit
-
-/usr/games/steamcmd \
-  +@sSteamCmdForcePlatformType "$STEAM_APP_PLATFORM" \
-  +force_install_dir "$GAME_DIR" \
-  +login anonymous \
-  +app_update "$STEAM_APP_ID" validate \
-  +quit
-
-# Restore canonical server configs
-cd "$GAME_DIR"
-# CHECKOUT_LIST is optional: some games have no repository-owned files to restore.
-if [[ -n "${CHECKOUT_LIST:-}" ]]; then
-  # Intentional word splitting — CHECKOUT_LIST is space-separated paths.
-  # shellcheck disable=SC2086
-  git checkout -- $CHECKOUT_LIST
-fi
-
 # --- Write game manifest for cross-language consumers ---
-# Cross-language source of truth lives in terraform/game/<Game>.tfvars.json
-# (Terraform reads it natively for firewall + VM config; we read it here to
-# build the runtime manifest). Manifest at /etc/baroboys/manifest.json is
-# what admin_server.py + shared/post-checkout.sh + shutdown.sh + idle_check.sh
-# all read — narrower projection (adds log_files derived from runtime context
-# like Wine/Xvfb). Written before post-checkout.sh runs so post-checkout can
-# read templates and ports from it.
+# The manifest only depends on the active game configuration and Terraform
+# metadata. Write it before SteamCMD validation so admin_server.py can expose
+# /api/manifest while a slow game refresh is still in progress.
 GAME_TFVARS="$BAROBOYS/terraform/game/${GAME_NAME}.tfvars.json"
 
 manifest_log_files=(game.log admin_server.log refresh_repo.log idle_check.log infrastructure.log)
@@ -85,6 +58,29 @@ print(json.dumps(manifest, indent=2))
 PY
 sudo install -m 644 /tmp/baroboys-manifest.json /etc/baroboys/manifest.json
 rm -f /tmp/baroboys-manifest.json
+
+# Warm login before the real app_update. This works around intermittent SteamCMD failures
+# that occur when the depot cache or config hasn't been initialised yet. Root cause is
+# unknown; removing this call makes builds flaky. Do not simplify.
+/usr/games/steamcmd \
+  +login anonymous \
+  +quit
+
+/usr/games/steamcmd \
+  +@sSteamCmdForcePlatformType "$STEAM_APP_PLATFORM" \
+  +force_install_dir "$GAME_DIR" \
+  +login anonymous \
+  +app_update "$STEAM_APP_ID" validate \
+  +quit
+
+# Restore canonical server configs
+cd "$GAME_DIR"
+# CHECKOUT_LIST is optional: some games have no repository-owned files to restore.
+if [[ -n "${CHECKOUT_LIST:-}" ]]; then
+  # Intentional word splitting — CHECKOUT_LIST is space-separated paths.
+  # shellcheck disable=SC2086
+  git checkout -- $CHECKOUT_LIST
+fi
 
 # Run shared post-checkout: secret fetch + envsubst all manifest.templates.
 # shellcheck source=scripts/services/shared/post-checkout.sh
