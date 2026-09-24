@@ -27,4 +27,6 @@ PERMISSION_LIST="$GAME_DIR/$PERMISSION_LIST"
 export CHECKOUT_LIST="$ADMIN_LIST $BAN_LIST $PERMISSION_LIST"
 
 # SETUP: REQUIRED — the command that launches the game server
-export LAUNCH_CMD="./valheim_server.x86_64 -name SnowCrashServer -world $SAVE_NAME -password $GAME_PASSWORD -port 2456 -savedir $GAME_DIR"
+# Keep Valheim's bounded automatic-backup policy explicit instead of relying on
+# version-dependent defaults: one 2-hour backup and three 12-hour backups.
+export LAUNCH_CMD="./valheim_server.x86_64 -name SnowCrashServer -world $SAVE_NAME -password $GAME_PASSWORD -port 2456 -savedir $GAME_DIR -backups 4 -backupshort 7200 -backuplong 43200"

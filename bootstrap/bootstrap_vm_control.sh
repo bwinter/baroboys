@@ -18,7 +18,8 @@ gcloud services enable compute.googleapis.com run.googleapis.com cloudbuild.goog
 
 if ! gcloud iam service-accounts describe "$SA_EMAIL" --project="$PROJECT" >/dev/null 2>&1; then
   gcloud iam service-accounts create "$SA_NAME" --project="$PROJECT" \
-    --description="Private Cloud Run VM lifecycle controller" --display-name="VM Control"
+    --description="Cloud Run VM lifecycle controller and Discord interaction endpoint" \
+    --display-name="VM Control"
 fi
 
 ROLE_PERMISSIONS="compute.instances.get,compute.instances.list,compute.instances.start"
