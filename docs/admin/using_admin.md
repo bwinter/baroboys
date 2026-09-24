@@ -37,7 +37,7 @@
 
 2. **Login**:
 
-    * **Username:** `Hex`
+    * **Username:** the active world/save name (for example, `Donaldsheim`); `admin` also works for tooling
     * **Password:** *(same as game password)*
 
 3. **💾 Save & Shutdown**

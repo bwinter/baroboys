@@ -9,6 +9,10 @@ ZONE="${ZONE:-us-west1-b}"
 
 : "${MACHINE_NAME:?MACHINE_NAME not set}"
 
+# Production Nginx accepts the stable tooling username by default, while also
+# accepting the active save/world name for human-facing login.
+ADMIN_USERNAME="${ADMIN_USERNAME:-admin}"
+
 if [[ -z "$PROJECT" ]]; then
   echo "ERROR: PROJECT not set and no gcloud default project."
   exit 1
@@ -27,7 +31,7 @@ PASSWORD=$(gcloud secrets versions access latest \
   --secret=server-password --project="$PROJECT" --quiet)
 
 RESPONSE=$(curl -sf --max-time 10 \
-  -u "Hex:${PASSWORD}" \
+  -u "${ADMIN_USERNAME}:${PASSWORD}" \
   "http://${IP}:8080/status.json" 2>/dev/null) || {
   echo "ERROR: Could not reach status endpoint at $IP:8080"
   echo "  VM may still be booting, or nginx/auth may be misconfigured."

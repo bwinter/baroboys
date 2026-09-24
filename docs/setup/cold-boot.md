@@ -107,7 +107,7 @@ The VM boots, pulls the latest repo, and starts the game automatically (~3-5 min
 ### 6. Connect
 
 - **Game:** Connect using the shared static IP printed by `make bootstrap` or the `make terraform-apply-<GAME>` commands and the password from step 3
-- **Admin panel:** `http://<STATIC-IP>:8080/` — username `Hex`, password from step 3
+- **Admin panel:** `http://<STATIC-IP>:8080/` — username is the active world/save name, password from step 3
 - **SSH:** `make game-ssh-VRising`
 
 ### 7. Shut down

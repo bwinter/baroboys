@@ -77,8 +77,10 @@ If missing, htpasswd is derived from `server-password` at boot by `nginx/refresh
 To regenerate manually:
 
 ```bash
+ADMIN_USERNAME="<active-world-name>"
 PASSWORD=$(gcloud secrets versions access latest --secret=server-password)
-sudo htpasswd -cbB /etc/nginx/.htpasswd Hex "$PASSWORD"
+sudo htpasswd -cbB /etc/nginx/.htpasswd "$ADMIN_USERNAME" "$PASSWORD"
+sudo htpasswd -bB /etc/nginx/.htpasswd admin "$PASSWORD"
 sudo systemctl reload nginx
 ```
 

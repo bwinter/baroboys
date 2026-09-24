@@ -21,6 +21,10 @@ for arg in "$@"; do
     esac
 done
 
+# Use the stable tooling username; Nginx also accepts the active save/world
+# name for human-facing login.
+ADMIN_USERNAME="${ADMIN_USERNAME:-admin}"
+
 PROJECT="${PROJECT:-europan-world}"
 ZONE="${ZONE:-us-west1-b}"
 MACHINE_NAME="${MACHINE_NAME:-$(echo "$GAME" | tr '[:upper:]' '[:lower:]')}"
@@ -198,7 +202,7 @@ ADMIN_URL="http://${IP}:8080"
 
 # Full external stack: nginx auth + proxy + Flask
 ping_response=$(curl -sf --max-time 10 \
-    -u "Hex:${GAME_PASSWORD}" \
+    -u "${ADMIN_USERNAME}:${GAME_PASSWORD}" \
     "${ADMIN_URL}/api/ping" 2>/dev/null || echo "")
 if [[ "$ping_response" == "pong" ]]; then
     pass "Admin panel /api/ping → pong (nginx + auth + Flask)"
@@ -208,7 +212,7 @@ fi
 
 # game.log via admin panel — exercises log_map + nginx end-to-end
 log_lines=$(curl -sf --max-time 10 \
-    -u "Hex:${GAME_PASSWORD}" \
+    -u "${ADMIN_USERNAME}:${GAME_PASSWORD}" \
     "${ADMIN_URL}/api/logs/game.log" 2>/dev/null | wc -l || echo 0)
 if (( log_lines >= 5 )); then
     pass "game.log endpoint returned ${log_lines} lines (log_map verified)"

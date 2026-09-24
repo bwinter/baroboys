@@ -40,6 +40,7 @@ src = json.load(open("$GAME_TFVARS"))
 manifest = {
     "game_dir":      os.environ.get("GAME_DIR"),
     "game_name":     src["game_name"],
+    "admin_username": os.environ.get("SAVE_NAME") or src["game_name"],
     "process_name":  src["process_name"],
     "save_name":     os.environ.get("SAVE_NAME"),
     "save_path":     os.environ.get("SAVE_FILE_PATH"),

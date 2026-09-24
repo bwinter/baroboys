@@ -79,7 +79,11 @@ sudo cp "$NGINX_CONFIG_SOURCE" "$NGINX_CONF_MAIN"
 echo "🔐 Generating .htpasswd from server-password..."
 sudo mkdir -p "$(dirname "$HTPASSWD_DEST")"
 PASSWORD="$(gcloud secrets versions access latest --secret=server-password --quiet)"
-sudo htpasswd -cbB "$HTPASSWD_DEST" "Hex" "$PASSWORD"
+ADMIN_USERNAME="${ADMIN_USERNAME:-${SAVE_NAME:-admin}}"
+sudo htpasswd -cbB "$HTPASSWD_DEST" "$ADMIN_USERNAME" "$PASSWORD"
+if [[ "$ADMIN_USERNAME" != "admin" ]]; then
+    sudo htpasswd -bB "$HTPASSWD_DEST" "admin" "$PASSWORD"
+fi
 sudo chmod 644 "$HTPASSWD_DEST"
 sudo chown "$(whoami)" "$HTPASSWD_DEST"
 

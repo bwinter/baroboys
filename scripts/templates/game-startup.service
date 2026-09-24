@@ -24,6 +24,7 @@ Environment=DISPLAY=:0
 
 ExecStart=${BAROBOYS}/scripts/services/shared/startup.sh
 ExecStartPost=/usr/bin/bash -c 'echo "✅ game-startup.service launched at $(date)" >> ${LOG_FILE}'
+ExecStartPost=/usr/bin/bash -c '/usr/bin/sudo /usr/bin/systemctl start --no-block idle-check.service || true'
 ExecStopPost=/usr/bin/bash -c 'echo "🛑 game-startup.service finished shutdown at $(date)" >> ${LOG_FILE}'
 
 SuccessExitStatus=0
