@@ -55,10 +55,6 @@ Debian 12, GCE, Packer (layered images), Terraform (workspaces), Bash, systemd, 
 - **Terraform provisions once, systemd owns runtime.** VM pulls scripts from `origin/main` on every boot via `refresh-repo` — script changes deploy via Git, not Terraform.
 - **Cost-constrained: near-zero idle is a hard constraint.** No always-on infra except Cloud Run (free at idle); idle-check auto-shutdown after 30min CPU-quiet; saves committed to Git on shutdown so `terraform destroy` reclaims everything.
 
-## References
-
-- `references/insights.md` — patterns and findings from working with this agent
-
 ## Connections
 
 - `fleet:agents-claude` — executor invariants for Claude (default pairing for `baroboys:claude`)
