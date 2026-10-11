@@ -57,10 +57,13 @@ fi
 
 # Create a durable bucket snapshot after the game has stopped. systemd keeps
 # periodic and shutdown invocations of the same oneshot service serialized.
-if systemctl cat save-backup.service >/dev/null 2>&1; then
+if [[ "${SAVE_BUCKET_BACKUP_ENABLED:-1}" == "1" ]] && \
+   systemctl cat save-backup.service >/dev/null 2>&1; then
   echo "☁️ Waiting for save-backup.service..."
   sudo systemctl start --wait save-backup.service \
     || echo "⚠️ Save-backup service failed; continuing shutdown"
+elif [[ "${SAVE_BUCKET_BACKUP_ENABLED:-1}" != "1" ]]; then
+  echo "ℹ️ Save bucket backup disabled by SAVE_BUCKET_BACKUP_ENABLED"
 else
   echo "ℹ️ save-backup.service is not installed; skipping bucket snapshot"
 fi
@@ -69,8 +72,9 @@ cd "$GAME_DIR"
 
 # === Stage saves for commit ===
 # Compress all save files matching the pattern, git-add the .gz versions.
-# Same path for all games — no branching on save format.
-if [[ -n "${SAVE_FILE_PATTERN:-}" && -d "${SAVE_FILE_PATH:-}" ]]; then
+# Same legacy path for all games — no branching on save format.
+if [[ "${SAVE_COMPRESSION_ENABLED:-1}" == "1" && \
+      -n "${SAVE_FILE_PATTERN:-}" && -d "${SAVE_FILE_PATH:-}" ]]; then
   # Compress all matching non-gz files
   find "$SAVE_FILE_PATH" -maxdepth 1 -name "$SAVE_FILE_PATTERN" -type f ! -name "*.gz" -exec gzip -kf {} \;
 
@@ -82,6 +86,8 @@ if [[ -n "${SAVE_FILE_PATTERN:-}" && -d "${SAVE_FILE_PATH:-}" ]]; then
   while IFS= read -r -d '' compressed; do
     git add -- "$compressed"
   done < <(find "$SAVE_FILE_PATH" -maxdepth 1 -name "${SAVE_FILE_PATTERN}.gz" -type f -print0)
+elif [[ "${SAVE_COMPRESSION_ENABLED:-1}" != "1" ]]; then
+  echo "ℹ️ Save compression disabled by SAVE_COMPRESSION_ENABLED"
 fi
 
 git commit -m "Auto-save before shutdown $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "Nothing to commit"
