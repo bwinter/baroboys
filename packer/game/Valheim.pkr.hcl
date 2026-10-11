@@ -56,6 +56,9 @@ build {
        "/usr/bin/sudo mkdir -p /etc/baroboys",
        "echo Valheim | /usr/bin/sudo tee /etc/baroboys/active-game > /dev/null",
 
+       "echo '🔧 Install crossplay runtime libs (libparty.so needs PulseAudio; -crossplay fails without them)'",
+       "/usr/bin/sudo apt-get install -yq libpulse0 libpulse-mainloop-glib0 libatomic1",
+
        "echo '🔧 Install Valheim'",
        "/usr/bin/sudo -u bwinter_sc81 -H -- /home/bwinter_sc81/baroboys/scripts/services/shared/refresh.sh",
 
