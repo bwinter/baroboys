@@ -80,7 +80,12 @@ if [[ -n "${SAVE_FILE_PATH:-}" && -d "$SAVE_FILE_PATH" ]]; then
   if find "$SAVE_FILE_PATH" -type f -name '*.gz' -print -quit | grep -q .; then
     echo "⚠️ Ignoring leftover .gz files under $SAVE_FILE_PATH"
   fi
-  git add -- "$SAVE_FILE_PATH" ':(exclude,glob)**/*.gz'
+  SAVE_STAGE_PATH="$SAVE_FILE_PATH"
+  if [[ "$SAVE_FILE_PATH" == "$GAME_DIR/"* ]]; then
+    SAVE_STAGE_PATH="${SAVE_FILE_PATH#"$GAME_DIR/"}"
+  fi
+  echo "📦 Staging raw save path: $SAVE_STAGE_PATH"
+  git add -- "$SAVE_STAGE_PATH" ':(exclude,glob)**/*.gz'
 else
   echo "ℹ️ Save path is not configured or does not exist; skipping save staging"
 fi
