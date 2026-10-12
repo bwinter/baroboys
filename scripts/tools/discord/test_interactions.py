@@ -49,6 +49,11 @@ class DiscordInteractionTests(unittest.TestCase):
         response = self.client.post("/discord/interactions", json={"type": 1})
         self.assertEqual(response.status_code, 401)
 
+    def test_health(self):
+        response = self.client.get("/health")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json, {"status": "ok"})
+
     def test_handles_ping(self):
         response = self.post_interaction({"type": 1})
         self.assertEqual(response.status_code, 200)

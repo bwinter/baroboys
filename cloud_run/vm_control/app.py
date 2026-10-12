@@ -279,8 +279,8 @@ def deferred_start_message(game, status_code, body):
     return f"⚠️ **{DISPLAY_NAMES[game]}** could not be started right now."
 
 
-@app.get("/healthz")
-def healthz():
+@app.get("/health")
+def health():
     return jsonify({"status": "ok"})
 
 
