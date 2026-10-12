@@ -253,7 +253,11 @@ def edit_original_response(application_id, interaction_token, content):
         url,
         data=body,
         method="PATCH",
-        headers={"Content-Type": "application/json"},
+        headers={
+            "Content-Type": "application/json",
+            # Discord's edge rejects urllib's default Python-urllib user agent.
+            "User-Agent": "baroboys-vm-control/1.0",
+        },
     )
     try:
         with urllib.request.urlopen(request_data, timeout=10) as response:
