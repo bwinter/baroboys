@@ -19,7 +19,7 @@ fi
 SAVE_PATH="$(jq -r '.save_path // empty' "$MANIFEST_PATH")"
 GAME_NAME="$(jq -r '.game_name // empty' "$MANIFEST_PATH")"
 SAVE_NAME="$(jq -r '.save_name // empty' "$MANIFEST_PATH")"
-BACKUP_ENABLED="$(jq -r '.save_bucket_backup_enabled // true' "$MANIFEST_PATH")"
+BACKUP_ENABLED="$(jq -r '.save_bucket_backup_enabled // false' "$MANIFEST_PATH")"
 
 if [[ "$BACKUP_ENABLED" != "true" ]]; then
   echo "event=save_backup result=disabled game=${GAME_NAME:-unknown} save=${SAVE_NAME:-unknown}"

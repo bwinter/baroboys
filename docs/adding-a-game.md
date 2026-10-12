@@ -85,6 +85,7 @@ export LAUNCH_CMD="./<binary>"    # the command that starts the game server
 # SETUP: OPTIONAL — saves
 export SAVE_NAME="<world>"        # save/world identity (if game uses one)
 export SAVE_FILE_PATH="<dir>"     # directory containing the complete save
+export SAVE_BUCKET_BACKUP_ENABLED=0 # SETUP: OPTIONAL — set to 1 to upload whole-save backups
 
 # SETUP: OPTIONAL — RCON (if game supports it)
 export RCON_PASSWORD="$(gcloud secrets versions access latest --secret=<secret>)"

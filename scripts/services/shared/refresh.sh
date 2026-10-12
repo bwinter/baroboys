@@ -44,7 +44,7 @@ manifest = {
     "process_name":  src["process_name"],
     "save_name":     os.environ.get("SAVE_NAME"),
     "save_path":     os.environ.get("SAVE_FILE_PATH"),
-    "save_bucket_backup_enabled": os.environ.get("SAVE_BUCKET_BACKUP_ENABLED", "1") == "1",
+    "save_bucket_backup_enabled": os.environ.get("SAVE_BUCKET_BACKUP_ENABLED", "0") == "1",
     "uses_wine":     src["uses_wine"],
     "log_files":     [${manifest_log_files_json}],
     "ports": {

@@ -57,12 +57,12 @@ fi
 
 # Create a durable bucket snapshot after the game has stopped. systemd keeps
 # periodic and shutdown invocations of the same oneshot service serialized.
-if [[ "${SAVE_BUCKET_BACKUP_ENABLED:-1}" == "1" ]] && \
+if [[ "${SAVE_BUCKET_BACKUP_ENABLED:-0}" == "1" ]] && \
    systemctl cat save-backup.service >/dev/null 2>&1; then
   echo "☁️ Waiting for save-backup.service..."
   sudo systemctl start --wait save-backup.service \
     || echo "⚠️ Save-backup service failed; continuing shutdown"
-elif [[ "${SAVE_BUCKET_BACKUP_ENABLED:-1}" != "1" ]]; then
+elif [[ "${SAVE_BUCKET_BACKUP_ENABLED:-0}" != "1" ]]; then
   echo "ℹ️ Save bucket backup disabled by SAVE_BUCKET_BACKUP_ENABLED"
 else
   echo "ℹ️ save-backup.service is not installed; skipping bucket snapshot"
