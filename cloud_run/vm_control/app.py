@@ -185,9 +185,15 @@ def task_client():
     return tasks_v2.CloudTasksClient()
 
 
+def service_base_url():
+    # Cloud Run terminates TLS before forwarding the request to Flask, but the
+    # forwarded scheme can appear as HTTP. Cloud Tasks requires HTTPS targets.
+    return f"https://{request.host}"
+
+
 def enqueue_discord_task(command, interaction_id, interaction_token):
     """Queue the slow part of a Discord interaction exactly once."""
-    base_url = request.url_root.rstrip("/")
+    base_url = service_base_url()
     client = task_client()
     parent = client.queue_path(PROJECT, TASKS_LOCATION, TASKS_QUEUE)
     task_name = f"{parent}/tasks/discord-{interaction_id}"
@@ -225,7 +231,7 @@ def verify_task_request():
         claims = id_token.verify_oauth2_token(
             authorization.removeprefix("Bearer ").strip(),
             Request(),
-            audience=request.url_root.rstrip("/"),
+            audience=service_base_url(),
         )
     except ValueError:
         return False
