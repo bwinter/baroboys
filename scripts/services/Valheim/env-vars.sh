@@ -12,7 +12,7 @@ export SAVE_NAME="Donaldsheim" # SETUP: OPTIONAL — save/world identity; feeds 
 export SAVE_FILE_PATH="$GAME_DIR/worlds_local/$SAVE_NAME" # SETUP: OPTIONAL — directory containing saves
 # Valheim saves are a coordinated directory of generation-specific files.
 # Keep the raw Git save authoritative; bucket backup remains independently gated.
-export SAVE_BUCKET_BACKUP_ENABLED=0
+export SAVE_BUCKET_BACKUP_ENABLED=1 # SETUP: OPTIONAL — upload whole-save shutdown backups
 
 GAME_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)"
 
