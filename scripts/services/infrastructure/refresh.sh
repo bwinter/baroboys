@@ -10,7 +10,17 @@ source "$(dirname "${BASH_SOURCE[0]}")/../shared/env-vars.sh"
 
 # Log directory — owned by bwinter_sc81, all services write here
 mkdir -p "/var/log/baroboys/"
-chown bwinter_sc81:bwinter_sc81 "/var/log/baroboys/"
+touch \
+  /var/log/baroboys/game.log \
+  /var/log/baroboys/game_startup.log \
+  /var/log/baroboys/game_refresh.log \
+  /var/log/baroboys/game_shutdown.log \
+  /var/log/baroboys/game_unit_refresh.log \
+  /var/log/baroboys/admin_server.log \
+  /var/log/baroboys/refresh_repo.log \
+  /var/log/baroboys/idle_check.log \
+  /var/log/baroboys/infrastructure.log
+chown -R bwinter_sc81:bwinter_sc81 "/var/log/baroboys/"
 chmod 700 "/var/log/baroboys/"
 
 # Application directory — Flask, static assets, status.json
