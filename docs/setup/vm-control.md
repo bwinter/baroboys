@@ -10,15 +10,20 @@ stopped instances.
 `make bootstrap` includes the VM-control bootstrap. It is idempotent and:
 
 - Enables the required Cloud Run, Cloud Build, Artifact Registry, Compute Engine,
-  and IAM APIs.
+  IAM, and Cloud Tasks APIs.
 - Creates the `vm-control` runtime service account.
 - Creates or updates the project-level `vmController` custom role.
 - Grants the service account permission to inspect and start instances.
+- Creates the `vm-control` Cloud Tasks queue and its `vm-control-dead-letter` queue,
+  with bounded retries.
 - Deploys the initial private Cloud Run revision.
 
 The service is publicly reachable for Discord interactions. Every Discord request
 must pass Ed25519 signature validation and match the configured guild and control
-channel. Manual invocations still use a Google identity token.
+channel. `/status` and `/start` return Discord's deferred-response acknowledgement
+immediately; Cloud Tasks performs the slow Compute Engine call and edits the original
+Discord response. The worker endpoint only accepts a Cloud Tasks OIDC token from the
+`vm-control` service account. Manual invocations still use a Google identity token.
 
 ## Manual invocation
 
@@ -72,3 +77,10 @@ read from Secret Manager and is not passed to Cloud Run.
 The initial Discord interface is intentionally single-server: `/status` and
 `/start` automatically target the only deployed VM. The underlying VM-control
 API remains instance-aware for manual use and future multi-game support.
+
+Inspect queued or exhausted tasks with:
+
+```bash
+gcloud tasks tasks list --queue=vm-control --location=us-west1
+gcloud tasks tasks list --queue=vm-control-dead-letter --location=us-west1
+```

@@ -14,7 +14,7 @@ fi
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 gcloud services enable compute.googleapis.com run.googleapis.com cloudbuild.googleapis.com \
-  artifactregistry.googleapis.com iam.googleapis.com --project="$PROJECT"
+  artifactregistry.googleapis.com iam.googleapis.com cloudtasks.googleapis.com --project="$PROJECT"
 
 if ! gcloud iam service-accounts describe "$SA_EMAIL" --project="$PROJECT" >/dev/null 2>&1; then
   gcloud iam service-accounts create "$SA_NAME" --project="$PROJECT" \
@@ -33,5 +33,40 @@ fi
 
 gcloud projects add-iam-policy-binding "$PROJECT" --member="serviceAccount:$SA_EMAIL" \
   --role="$ROLE_NAME" --quiet
+
+# Cloud Run enqueues the work, while Cloud Tasks uses the same identity for its
+# authenticated callback to the public Discord endpoint.
+gcloud projects add-iam-policy-binding "$PROJECT" --member="serviceAccount:$SA_EMAIL" \
+  --role="roles/cloudtasks.enqueuer" --quiet
+
+# The Cloud Run identity is also the identity Cloud Tasks uses to mint the
+# worker's OIDC token; it therefore needs actAs on itself when creating tasks.
+gcloud iam service-accounts add-iam-policy-binding "$SA_EMAIL" \
+  --member="serviceAccount:$SA_EMAIL" --role="roles/iam.serviceAccountUser" --quiet
+
+QUEUE_LOCATION="${TASKS_LOCATION:-us-west1}"
+QUEUE_NAME="${TASKS_QUEUE:-vm-control}"
+DLQ_NAME="${TASKS_DEAD_LETTER_QUEUE:-${QUEUE_NAME}-dead-letter}"
+for queue in "$QUEUE_NAME" "$DLQ_NAME"; do
+  if ! gcloud tasks queues describe "$queue" --location="$QUEUE_LOCATION" \
+    --project="$PROJECT" >/dev/null 2>&1; then
+    gcloud tasks queues create "$queue" --location="$QUEUE_LOCATION" --project="$PROJECT"
+  fi
+done
+
+gcloud tasks queues update "$QUEUE_NAME" --location="$QUEUE_LOCATION" --project="$PROJECT" \
+  --max-attempts=5 --max-retry-duration=600s --min-backoff=5s --max-backoff=60s \
+  --max-doublings=3 --log-sampling-ratio=1.0
+
+# gcloud exposes retry settings but not deadLetterPolicy. PATCH the queue API
+# directly so exhausted tasks remain inspectable instead of disappearing.
+QUEUE_RESOURCE="projects/$PROJECT/locations/$QUEUE_LOCATION/queues/$QUEUE_NAME"
+DLQ_RESOURCE="projects/$PROJECT/locations/$QUEUE_LOCATION/queues/$DLQ_NAME"
+ACCESS_TOKEN="$(gcloud auth print-access-token)"
+curl -fsS -X PATCH \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  --data "{\"deadLetterPolicy\":{\"deadLetterQueue\":\"$DLQ_RESOURCE\",\"maxAttempts\":5}}" \
+  "https://cloudtasks.googleapis.com/v2/$QUEUE_RESOURCE?updateMask=deadLetterPolicy" >/dev/null
 
 "$REPO_ROOT/scripts/tools/gcp/deploy_vm_control.sh"

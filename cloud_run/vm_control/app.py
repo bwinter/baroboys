@@ -1,8 +1,14 @@
 import json
 import os
+import urllib.error
+import urllib.request
 from pathlib import Path
 
 from flask import Flask, jsonify, request
+from google.api_core.exceptions import AlreadyExists
+from google.auth.transport.requests import Request
+from google.cloud import tasks_v2
+from google.oauth2 import id_token
 from googleapiclient import discovery
 from googleapiclient.errors import HttpError
 from nacl.exceptions import BadSignatureError
@@ -12,6 +18,12 @@ from nacl.signing import VerifyKey
 app = Flask(__name__)
 PROJECT = os.environ.get("GCP_PROJECT")
 VM_ADMIN_URL = os.environ.get("VM_ADMIN_URL", "").rstrip("/")
+TASKS_LOCATION = os.environ.get("TASKS_LOCATION", "us-west1")
+TASKS_QUEUE = os.environ.get("TASKS_QUEUE", "vm-control")
+TASK_SERVICE_ACCOUNT = os.environ.get(
+    "TASK_SERVICE_ACCOUNT", f"vm-control@{PROJECT}.iam.gserviceaccount.com"
+)
+DISCORD_APPLICATION_ID = os.environ.get("DISCORD_APPLICATION_ID")
 CONFIG_PATH = Path(__file__).with_name("instances.json")
 ACTIVE_STATES = {"PROVISIONING", "STAGING", "RUNNING", "STOPPING", "SUSPENDING"}
 DISPLAY_NAMES = {
@@ -169,6 +181,104 @@ def discord_admin_link():
     return f"\n[Open the admin page]({VM_ADMIN_URL}/)" if VM_ADMIN_URL else ""
 
 
+def task_client():
+    return tasks_v2.CloudTasksClient()
+
+
+def enqueue_discord_task(command, interaction_id, interaction_token):
+    """Queue the slow part of a Discord interaction exactly once."""
+    base_url = request.url_root.rstrip("/")
+    client = task_client()
+    parent = client.queue_path(PROJECT, TASKS_LOCATION, TASKS_QUEUE)
+    task_name = f"{parent}/tasks/discord-{interaction_id}"
+    payload = json.dumps({
+        "command": command,
+        "interaction_id": interaction_id,
+        "interaction_token": interaction_token,
+    }).encode()
+    task = {
+        "name": task_name,
+        "http_request": {
+            "http_method": tasks_v2.HttpMethod.POST,
+            "url": f"{base_url}/discord/tasks",
+            "headers": {"Content-Type": "application/json"},
+            "body": payload,
+            "oidc_token": {
+                "service_account_email": TASK_SERVICE_ACCOUNT,
+                "audience": base_url,
+            },
+        },
+    }
+    try:
+        client.create_task(parent=parent, task=task)
+    except AlreadyExists:
+        # Discord can retry an interaction. The first task is still the work item.
+        app.logger.info("Discord task already queued: %s", task_name)
+
+
+def verify_task_request():
+    """Validate the OIDC token that Cloud Tasks adds to worker requests."""
+    authorization = request.headers.get("Authorization", "")
+    if not authorization.startswith("Bearer "):
+        return False
+    try:
+        claims = id_token.verify_oauth2_token(
+            authorization.removeprefix("Bearer ").strip(),
+            Request(),
+            audience=request.url_root.rstrip("/"),
+        )
+    except ValueError:
+        return False
+    return claims.get("email") == TASK_SERVICE_ACCOUNT and claims.get("email_verified") is True
+
+
+def edit_original_response(interaction_token, content):
+    """Replace Discord's deferred response, retrying transient HTTP failures."""
+    if not DISCORD_APPLICATION_ID:
+        raise RuntimeError("DISCORD_APPLICATION_ID is not configured")
+    url = (
+        f"https://discord.com/api/v10/webhooks/{DISCORD_APPLICATION_ID}/"
+        f"{interaction_token}/messages/@original"
+    )
+    body = json.dumps({"content": content}).encode()
+    request_data = urllib.request.Request(
+        url,
+        data=body,
+        method="PATCH",
+        headers={"Content-Type": "application/json"},
+    )
+    try:
+        with urllib.request.urlopen(request_data, timeout=10) as response:
+            response.read()
+    except urllib.error.HTTPError as error:
+        if 400 <= error.code < 500:
+            # Expired/invalid interaction tokens are permanent failures. Do not
+            # keep replaying a task whose Discord response can no longer exist.
+            app.logger.warning("Discord response rejected with HTTP %s", error.code)
+            return False
+        raise
+    return True
+
+
+def deferred_start_message(game, status_code, body):
+    if status_code == 202:
+        return (
+            f"🟡 Starting **{DISPLAY_NAMES[game]}** now. "
+            f"It may take a few minutes before the game is ready. "
+            f"Use `/status` or check the admin page.{discord_admin_link()}"
+        )
+    if status_code == 200:
+        return (
+            f"🟢 **{DISPLAY_NAMES[game]}** VM is already online. "
+            f"The game may still be starting.{discord_admin_link()}"
+        )
+    if body.get("error") == "another_instance_active":
+        return "⚠️ Another game server is already active. Check `/status game` before starting this one."
+    if body.get("error") == "unknown_instance":
+        return f"⚪ **{DISPLAY_NAMES[game]}** is not configured."
+    return f"⚠️ **{DISPLAY_NAMES[game]}** could not be started right now."
+
+
 @app.get("/healthz")
 def healthz():
     return jsonify({"status": "ok"})
@@ -213,35 +323,38 @@ def discord_interactions():
     if command not in {"status", "start"}:
         return jsonify(discord_response("I don't recognize that command.", ephemeral=True))
 
+    enqueue_discord_task(
+        command,
+        payload.get("id"),
+        payload.get("token"),
+    )
+    # Discord requires an acknowledgement within a few seconds. Cloud Tasks
+    # performs Compute Engine work and edits this deferred response afterward.
+    return jsonify({"type": 5})
+
+
+@app.post("/discord/tasks")
+def discord_task():
+    if not verify_task_request():
+        return jsonify({"error": "invalid_task_identity"}), 401
+
+    payload = request.get_json(silent=True) or {}
+    command = payload.get("command")
+    interaction_token = payload.get("interaction_token")
+    if command not in {"status", "start"} or not interaction_token:
+        return jsonify({"error": "invalid_task"}), 400
+
     game, status = discord_target(compute_client())
     if game is None:
-        return jsonify(discord_response(
-            "I need exactly one deployed game server before I can control it.",
-            ephemeral=True,
-        ))
-
-    if command == "status":
-        return jsonify(discord_response(discord_status_message(game, status)))
-
-    body, status_code = start_instance_result(game)
-    if status_code == 202:
-        message = (
-            f"🟡 Starting **{DISPLAY_NAMES[game]}** now. "
-            f"It may take a few minutes before the game is ready. "
-            f"Use `/status` or check the admin page.{discord_admin_link()}"
-        )
-    elif status_code == 200:
-        message = (
-            f"🟢 **{DISPLAY_NAMES[game]}** VM is already online. "
-            f"The game may still be starting.{discord_admin_link()}"
-        )
-    elif body.get("error") == "another_instance_active":
-        message = "⚠️ Another game server is already active. Check `/status game` before starting this one."
-    elif body.get("error") == "unknown_instance":
-        message = f"⚪ **{DISPLAY_NAMES[game]}** is not configured."
+        message = "I need exactly one deployed game server before I can control it."
+    elif command == "status":
+        message = discord_status_message(game, status)
     else:
-        message = f"⚠️ **{DISPLAY_NAMES[game]}** could not be started right now."
-    return jsonify(discord_response(message))
+        body, status_code = start_instance_result(game)
+        message = deferred_start_message(game, status_code, body)
+
+    edit_original_response(interaction_token, message)
+    return jsonify({"status": "completed"})
 
 
 @app.errorhandler(HttpError)

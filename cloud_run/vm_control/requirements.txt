@@ -1,4 +1,6 @@
 Flask>=3.0,<4
+google-auth>=2.0,<3
 google-api-python-client>=2.150,<3
+google-cloud-tasks>=2.16,<3
 gunicorn>=22,<24
 PyNaCl>=1.5,<2

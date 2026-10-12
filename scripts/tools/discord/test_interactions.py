@@ -21,6 +21,8 @@ signing_key = SigningKey.generate()
 os.environ["DISCORD_PUBLIC_KEY"] = signing_key.verify_key.encode().hex()
 os.environ["DISCORD_ALLOWED_LOCATIONS"] = "test-guild:test-channel"
 os.environ["GCP_PROJECT"] = "test-project"
+os.environ["TASK_SERVICE_ACCOUNT"] = "vm-control@test-project.iam.gserviceaccount.com"
+os.environ["DISCORD_APPLICATION_ID"] = "test-application"
 
 from app import app  # noqa: E402
 
@@ -72,23 +74,41 @@ class DiscordInteractionTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json["data"]["flags"], 64)
 
-    @patch("app.compute_client")
-    @patch("app.load_instances")
-    @patch("app.configured_states")
-    def test_status_response(self, configured_states, load_instances, compute_client):
-        load_instances.return_value = {
-            "valheim": {"instance": "valheim", "zone": "us-west1-b"}
-        }
-        compute_client.return_value = object()
-        configured_states.return_value = {"valheim": {"state": "RUNNING"}}
+    @patch("app.enqueue_discord_task")
+    def test_status_is_deferred(self, enqueue_task):
         response = self.post_interaction({
             "type": 2,
+            "id": "interaction-id",
+            "token": "interaction-token",
             "guild_id": "test-guild",
             "channel_id": "test-channel",
             "data": {"name": "status", "options": []},
         })
         self.assertEqual(response.status_code, 200)
-        self.assertIn("Valheim", response.json["data"]["content"])
+        self.assertEqual(response.json, {"type": 5})
+        enqueue_task.assert_called_once_with("status", "interaction-id", "interaction-token")
+
+    @patch("app.edit_original_response")
+    @patch("app.verify_task_request", return_value=True)
+    @patch("app.compute_client")
+    @patch("app.load_instances")
+    @patch("app.configured_states")
+    def test_status_worker_response(
+        self, configured_states, load_instances, compute_client, verify_task, edit_response
+    ):
+        load_instances.return_value = {
+            "valheim": {"instance": "valheim", "zone": "us-west1-b"}
+        }
+        compute_client.return_value = object()
+        configured_states.return_value = {"valheim": {"state": "RUNNING"}}
+        response = self.client.post("/discord/tasks", json={
+            "command": "status",
+            "interaction_token": "interaction-token",
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json, {"status": "completed"})
+        edit_response.assert_called_once()
+        self.assertIn("Valheim", edit_response.call_args.args[1])
 
 
 if __name__ == "__main__":

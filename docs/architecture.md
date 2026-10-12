@@ -103,6 +103,11 @@ or destroy them. Its public Discord interaction endpoint is protected by Discord
 guild/channel allowlists. `make bootstrap` establishes and deploys it, while
 `make vm-control-deploy` publishes later code changes.
 
+Discord interactions that need Compute Engine API calls are acknowledged immediately,
+then dispatched through a Cloud Tasks queue to avoid Discord's short interaction deadline.
+The worker authenticates with a Cloud Tasks OIDC token and edits Discord's original
+deferred response. The queue has bounded retries and a dead-letter queue for inspection.
+
 State is stored remotely in `gs://tf-state-baroboys/terraform/prod`, with per-game workspace isolation.
 
 ---
