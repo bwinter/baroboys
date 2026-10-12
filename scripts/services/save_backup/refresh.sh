@@ -14,4 +14,7 @@ sudo install -m 644 "$SCRIPT_DIR/save-backup-refresh.service" \
 
 sudo systemctl daemon-reload
 sudo systemctl enable save-backup-refresh.service
-sudo systemctl enable save-backup.timer
+# Bucket backups are intentionally shutdown-only for now. Keep the timer unit
+# installed as a future opt-in, but prevent an enabled timer from uploading a
+# live, potentially changing save directory.
+sudo systemctl disable --now save-backup.timer
