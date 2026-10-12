@@ -14,8 +14,7 @@ stopped instances.
 - Creates the `vm-control` runtime service account.
 - Creates or updates the project-level `vmController` custom role.
 - Grants the service account permission to inspect and start instances.
-- Creates the `vm-control` Cloud Tasks queue and its `vm-control-dead-letter` queue,
-  with bounded retries.
+- Creates the `vm-control` Cloud Tasks queue with bounded retries.
 - Deploys the initial private Cloud Run revision.
 
 The service is publicly reachable for Discord interactions. Every Discord request
@@ -78,9 +77,8 @@ The initial Discord interface is intentionally single-server: `/status` and
 `/start` automatically target the only deployed VM. The underlying VM-control
 API remains instance-aware for manual use and future multi-game support.
 
-Inspect queued or exhausted tasks with:
+Inspect queued tasks and retry attempts with:
 
 ```bash
 gcloud tasks tasks list --queue=vm-control --location=us-west1
-gcloud tasks tasks list --queue=vm-control-dead-letter --location=us-west1
 ```

@@ -106,7 +106,8 @@ guild/channel allowlists. `make bootstrap` establishes and deploys it, while
 Discord interactions that need Compute Engine API calls are acknowledged immediately,
 then dispatched through a Cloud Tasks queue to avoid Discord's short interaction deadline.
 The worker authenticates with a Cloud Tasks OIDC token and edits Discord's original
-deferred response. The queue has bounded retries and a dead-letter queue for inspection.
+deferred response. The queue has bounded retries; failed tasks are visible in Cloud Tasks
+logs before Cloud Tasks removes them after the retry limit.
 
 State is stored remotely in `gs://tf-state-baroboys/terraform/prod`, with per-game workspace isolation.
 

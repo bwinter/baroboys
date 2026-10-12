@@ -46,27 +46,13 @@ gcloud iam service-accounts add-iam-policy-binding "$SA_EMAIL" \
 
 QUEUE_LOCATION="${TASKS_LOCATION:-us-west1}"
 QUEUE_NAME="${TASKS_QUEUE:-vm-control}"
-DLQ_NAME="${TASKS_DEAD_LETTER_QUEUE:-${QUEUE_NAME}-dead-letter}"
-for queue in "$QUEUE_NAME" "$DLQ_NAME"; do
-  if ! gcloud tasks queues describe "$queue" --location="$QUEUE_LOCATION" \
+if ! gcloud tasks queues describe "$QUEUE_NAME" --location="$QUEUE_LOCATION" \
     --project="$PROJECT" >/dev/null 2>&1; then
-    gcloud tasks queues create "$queue" --location="$QUEUE_LOCATION" --project="$PROJECT"
-  fi
-done
+  gcloud tasks queues create "$QUEUE_NAME" --location="$QUEUE_LOCATION" --project="$PROJECT"
+fi
 
 gcloud tasks queues update "$QUEUE_NAME" --location="$QUEUE_LOCATION" --project="$PROJECT" \
   --max-attempts=5 --max-retry-duration=600s --min-backoff=5s --max-backoff=60s \
   --max-doublings=3 --log-sampling-ratio=1.0
-
-# gcloud exposes retry settings but not deadLetterPolicy. PATCH the queue API
-# directly so exhausted tasks remain inspectable instead of disappearing.
-QUEUE_RESOURCE="projects/$PROJECT/locations/$QUEUE_LOCATION/queues/$QUEUE_NAME"
-DLQ_RESOURCE="projects/$PROJECT/locations/$QUEUE_LOCATION/queues/$DLQ_NAME"
-ACCESS_TOKEN="$(gcloud auth print-access-token)"
-curl -fsS -X PATCH \
-  -H "Authorization: Bearer $ACCESS_TOKEN" \
-  -H "Content-Type: application/json" \
-  --data "{\"deadLetterPolicy\":{\"deadLetterQueue\":\"$DLQ_RESOURCE\",\"maxAttempts\":5}}" \
-  "https://cloudtasks.googleapis.com/v2/$QUEUE_RESOURCE?updateMask=deadLetterPolicy" >/dev/null
 
 "$REPO_ROOT/scripts/tools/gcp/deploy_vm_control.sh"
