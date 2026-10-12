@@ -44,7 +44,6 @@ manifest = {
     "process_name":  src["process_name"],
     "save_name":     os.environ.get("SAVE_NAME"),
     "save_path":     os.environ.get("SAVE_FILE_PATH"),
-    "save_compression_enabled": os.environ.get("SAVE_COMPRESSION_ENABLED", "1") == "1",
     "save_bucket_backup_enabled": os.environ.get("SAVE_BUCKET_BACKUP_ENABLED", "1") == "1",
     "uses_wine":     src["uses_wine"],
     "log_files":     [${manifest_log_files_json}],
@@ -88,15 +87,6 @@ fi
 # Run shared post-checkout: secret fetch + envsubst all manifest.templates.
 # shellcheck source=scripts/services/shared/post-checkout.sh
 source "$(dirname "${BASH_SOURCE[0]}")/post-checkout.sh"
-
-# === Decompress saves ===
-# Per-file compression is an opt-in/opt-out policy because save formats differ.
-# Without -f, gunzip skips files that already exist — protecting uncommitted
-# saves from being overwritten when this legacy path is enabled.
-if [[ "${SAVE_COMPRESSION_ENABLED:-1}" == "1" && \
-      -d "${SAVE_FILE_PATH:-}" && -n "${SAVE_FILE_PATTERN:-}" ]]; then
-  find "$SAVE_FILE_PATH" -maxdepth 1 -name "${SAVE_FILE_PATTERN}.gz" -exec gunzip -k {} \; 2>/dev/null || true
-fi
 
 # Systemd unit installation is handled separately by install-game-units.sh
 # (runs as root at Packer build time only — units are baked into the image).

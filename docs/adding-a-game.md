@@ -84,8 +84,7 @@ export LAUNCH_CMD="./<binary>"    # the command that starts the game server
 
 # SETUP: OPTIONAL — saves
 export SAVE_NAME="<world>"        # save/world identity (if game uses one)
-export SAVE_FILE_PATTERN="<glob>" # complete filename glob for save compression
-export SAVE_FILE_PATH="<dir>"     # directory containing saves
+export SAVE_FILE_PATH="<dir>"     # directory containing the complete save
 
 # SETUP: OPTIONAL — RCON (if game supports it)
 export RCON_PASSWORD="$(gcloud secrets versions access latest --secret=<secret>)"
@@ -130,10 +129,8 @@ Create the directory and commit files that should live in version control:
 - Any seed files needed for a fresh install
 
 Gitignore generated config and save files unless the save is intentionally part of
-the repository state. Raw save files are the default committed format. The legacy
-per-file `.gz` workflow is an explicit opt-in for older game configurations and is
-disabled for the current games because it can mix compressed artifacts into a live
-save directory.
+the repository state. Raw save files are the committed format. Keep the complete
+save directory free of tool-generated archive or compression artifacts.
 
 ---
 

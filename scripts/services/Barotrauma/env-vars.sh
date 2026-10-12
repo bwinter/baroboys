@@ -9,11 +9,8 @@ export STEAM_APP_ID=1026340 # SETUP: REQUIRED
 export STEAM_APP_PLATFORM="linux" # SETUP: OPTIONAL — "linux" for native; "windows" for Wine games
 
 export SAVE_NAME="Arkham Aquatics" # SETUP: OPTIONAL — active campaign name
-export SAVE_FILE_PATTERN="Arkham Aquatics*" # SETUP: OPTIONAL — filename glob for saves
 export SAVE_FILE_PATH="$GAME_DIR/Multiplayer" # SETUP: OPTIONAL — directory containing saves
-# Keep the raw game files authoritative. The legacy per-file gzip path is
-# disabled until a format-safe whole-save snapshot workflow exists.
-export SAVE_COMPRESSION_ENABLED=0
+# Keep the raw game files authoritative; bucket backup remains independently gated.
 export SAVE_BUCKET_BACKUP_ENABLED=0
 
 WORKSHOP_MODS_PATH="$GAME_DIR/WorkshopMods" # SETUP: OPTIONAL

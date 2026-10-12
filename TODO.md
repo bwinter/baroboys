@@ -9,8 +9,8 @@
 - [Games](todo/games.md) — Zomboid, Valheim, template-based onboarding
 - [Testing](todo/testing.md) — smoke tests, CI tiers, manual QA
 - [Admin & UX](todo/admin.md) — Cloud Run URL, multi-game awareness, game manifest
-- **Redesign save compression** — replace per-file gzip with a format-safe whole-save archive or
-  folder snapshot; blocked until raw Git save recovery is stable and tested across all games.
+- **Add whole-save bucket staging** — optionally let each game prepare a complete save directory
+  before the common backup code creates one archive object.
 - **Add save snapshot retention** — regularly preserve clean, cohesive per-game save directories
   (including Valheim auto-backup generations) as recovery points, with an explicit retention policy.
 - **Validate bucket backup independently** — test archive creation/upload after raw Git save handling

@@ -71,25 +71,19 @@ fi
 cd "$GAME_DIR"
 
 # === Stage saves for commit ===
-# Compress all save files matching the pattern, git-add the .gz versions.
-# Same legacy path for all games — no branching on save format.
-if [[ "${SAVE_COMPRESSION_ENABLED:-1}" == "1" && \
-      -n "${SAVE_FILE_PATTERN:-}" && -d "${SAVE_FILE_PATH:-}" ]]; then
-  # Compress all matching non-gz files
-  find "$SAVE_FILE_PATH" -maxdepth 1 -name "$SAVE_FILE_PATTERN" -type f ! -name "*.gz" -exec gzip -kf {} \;
-
-  # Remove old .gz from git tracking, then add current ones
-  while IFS= read -r -d '' tracked; do
-    git rm --cached -- "$tracked" 2>/dev/null || true
-  done < <(git ls-files -z -- "$SAVE_FILE_PATH/${SAVE_FILE_PATTERN}.gz")
-
-  while IFS= read -r -d '' compressed; do
-    git add -- "$compressed"
-  done < <(find "$SAVE_FILE_PATH" -maxdepth 1 -name "${SAVE_FILE_PATTERN}.gz" -type f -print0)
-elif [[ "${SAVE_COMPRESSION_ENABLED:-1}" != "1" ]]; then
-  echo "ℹ️ Save compression disabled by SAVE_COMPRESSION_ENABLED"
+# Git tracks the game's raw save files. Do not create compression artifacts in
+# the live save directory: game formats differ, and per-file gzip can leave a
+# mixture of game files and tool-generated files that the game may inspect.
+if [[ -n "${SAVE_FILE_PATH:-}" && -d "$SAVE_FILE_PATH" ]]; then
+  # Exclude leftover tool-generated gzip files from older deployments. Do not
+  # delete them automatically: recovery may still need them inspected first.
+  if find "$SAVE_FILE_PATH" -type f -name '*.gz' -print -quit | grep -q .; then
+    echo "⚠️ Ignoring leftover .gz files under $SAVE_FILE_PATH"
+  fi
+  git add -- "$SAVE_FILE_PATH" ':(exclude,glob)**/*.gz'
+else
+  echo "ℹ️ Save path is not configured or does not exist; skipping save staging"
 fi
-
 git commit -m "Auto-save before shutdown $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "Nothing to commit"
 
 # === Git sync ===

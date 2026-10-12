@@ -9,12 +9,9 @@ export STEAM_APP_ID=896660 # SETUP: REQUIRED
 export STEAM_APP_PLATFORM="linux" # SETUP: OPTIONAL
 
 export SAVE_NAME="Donaldsheim" # SETUP: OPTIONAL — save/world identity; feeds config template and path
-export SAVE_FILE_PATTERN="*" # SETUP: OPTIONAL — filename glob for save compression
 export SAVE_FILE_PATH="$GAME_DIR/worlds_local/$SAVE_NAME" # SETUP: OPTIONAL — directory containing saves
 # Valheim saves are a coordinated directory of generation-specific files.
-# Keep the raw Git save authoritative until the legacy per-file compression path
-# has been redesigned and validated for this format.
-export SAVE_COMPRESSION_ENABLED=0
+# Keep the raw Git save authoritative; bucket backup remains independently gated.
 export SAVE_BUCKET_BACKUP_ENABLED=0
 
 GAME_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)"

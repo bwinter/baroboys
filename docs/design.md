@@ -22,9 +22,9 @@ The VM treats its working tree as **tainted**. Local state accumulates (envsubst
 SteamCMD artifacts, in-progress writes). The shutdown sequence deliberately stashes this taint,
 rebases against origin, pushes, then restores. The VM only trusts what's in `origin/main`.
 
-The repo also serves as the game-state database. Each clean shutdown commits the latest
-compressed save and pushes. This gives version history and simple restore at the cost of binary
-bloat over time (managed periodically by `make clean-git`).
+The repo also serves as the game-state database. Each clean shutdown commits the latest raw save
+and pushes. This gives version history and simple restore at the cost of binary bloat over time
+(managed periodically by `make clean-git`).
 
 ### 3. systemd owns all lifecycle
 
