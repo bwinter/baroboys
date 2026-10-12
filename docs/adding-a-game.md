@@ -129,8 +129,11 @@ Create the directory and commit files that should live in version control:
 - Admin/ban lists (if the game has them)
 - Any seed files needed for a fresh install
 
-Gitignore generated config and save files. Save `.gz` files are committed by
-shutdown.sh and decompressed by refresh.sh on each boot.
+Gitignore generated config and save files unless the save is intentionally part of
+the repository state. Raw save files are the default committed format. The legacy
+per-file `.gz` workflow is an explicit opt-in for older game configurations and is
+disabled for the current games because it can mix compressed artifacts into a live
+save directory.
 
 ---
 

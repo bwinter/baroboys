@@ -146,7 +146,7 @@ network-online.target
                     - Updates game files via SteamCMD
                     - Fetches GAME_PASSWORD from Secret Manager
                     - Runs envsubst on server config template
-                    - (VRising) decompresses latest AutoSave_*.save.gz
+                    - restores the tracked raw save files; legacy gzip decompression is disabled
                     - Writes /etc/baroboys/active-game (game name for admin panel + smoke test)
                     └── game-startup.service   (simple, bwinter_sc81)
                           Barotrauma: ./DedicatedServer
@@ -169,10 +169,11 @@ Triggered by any of:
 1. If RCON configured: `mcrcon` sends shutdown notice, waits for graceful exit
 2. Otherwise: find and signal processes matching the manifest's `process_name` in their
    full command line, then wait for clean exit (up to 300s)
-3. Compress saves: `find $SAVE_FILE_PATH -name "$SAVE_FILE_PATTERN" | gzip -kf`
-4. `git rm --cached` older `.gz` files, `git add` current ones
-5. `git commit -m "Auto-save before shutdown <timestamp>"`
-6. `git stash push` → `git pull --rebase` → `git push origin main` → `git stash pop`
+3. Stage raw save files. The legacy per-file gzip path remains available only as an
+   explicit opt-in and is disabled for the configured games because it can pollute a
+   save directory with game files and backup artifacts.
+4. `git commit -m "Auto-save before shutdown <timestamp>"`
+5. `git stash push` → `git pull --rebase` → `git push origin main` → `git stash pop`
    (stash is intentional — clears working-tree taint so rebase succeeds; do not simplify)
 7. `sudo systemctl poweroff`
 
@@ -276,8 +277,8 @@ The repo serves as a game-state database. Saves are committed and pushed on ever
 
 | Game | Tracked paths | Format |
 |------|--------------|--------|
-| VRising | `VRising/Data/Saves/v4/$SAVE_NAME/AutoSave_*.save.gz` (`SAVE_NAME="TestWorld-1"`) | Compressed .gz tracked; old .gz removed with `git rm --cached` |
-| Barotrauma | `Barotrauma/Multiplayer/Arkham Aquatics*.gz` | Compressed .gz tracked via `SAVE_FILE_PATTERN` |
+| VRising | `VRising/Data/Saves/v4/$SAVE_NAME/AutoSave_*.save` (`SAVE_NAME="TestWorld-1"`) | Raw `.save` files tracked; legacy gzip disabled |
+| Barotrauma | `Barotrauma/Multiplayer/Arkham Aquatics.save` and `Arkham Aquatics_CharacterData.xml` | Raw game files tracked; the `.save` file is itself gzip-compressed internally by Barotrauma, while legacy outer gzip is disabled |
 
 The VM's `.gitconfig` identifies commits as `Game Server <bwinter.sc81+gameserver@gmail.com>`.
 

@@ -11,6 +11,10 @@ export STEAM_APP_PLATFORM="windows" # SETUP: OPTIONAL
 export SAVE_NAME="TestWorld-1" # SETUP: OPTIONAL — save/world identity; feeds config template and path
 export SAVE_FILE_PATTERN="AutoSave_*" # SETUP: OPTIONAL — filename glob for save compression
 export SAVE_FILE_PATH="$GAME_DIR/Data/Saves/v4/$SAVE_NAME" # SETUP: OPTIONAL — directory containing saves
+# Keep the raw game save authoritative. The legacy per-file gzip path is
+# disabled until a format-safe whole-save snapshot workflow exists.
+export SAVE_COMPRESSION_ENABLED=0
+export SAVE_BUCKET_BACKUP_ENABLED=0
 
 RCON_PASSWORD="$(gcloud secrets versions access latest --secret=server-password)" # SETUP: same secret as game join password
 export RCON_PASSWORD
