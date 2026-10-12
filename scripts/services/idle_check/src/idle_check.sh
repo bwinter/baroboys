@@ -50,7 +50,7 @@ MEM_PERCENT=$(awk -v used="$MEM_USED" -v total="$MEM_TOTAL" \
 # Required services for any game; xvfb-* added when manifest says wine.
 HEALTH_SERVICES=(infrastructure-refresh refresh-repo-refresh refresh-repo-startup
                  admin-server-refresh admin-server-startup
-                 game-refresh game-startup)
+                 game-unit-refresh game-refresh game-startup)
 [[ "$MANIFEST_USES_WINE" == "true" ]] && HEALTH_SERVICES+=(xvfb-refresh xvfb-startup)
 SERVICES_HEALTHY=true
 for svc in "${HEALTH_SERVICES[@]}"; do

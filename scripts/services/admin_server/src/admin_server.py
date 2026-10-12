@@ -41,7 +41,7 @@ def load_manifest():
             "uses_wine": False,
             "log_files": [
                 "game.log", "game_startup.log", "game_refresh.log",
-                "game_shutdown.log", "admin_server.log"
+                "game_shutdown.log", "game_unit_refresh.log", "admin_server.log"
             ],
         }
 
@@ -163,7 +163,7 @@ def directory():
     # any new logs added to the manifest from a future game.
     game_log_names = {
         "game.log", "game_startup.log", "game_refresh.log",
-        "game_shutdown.log", "idle_check.log"
+        "game_shutdown.log", "game_unit_refresh.log", "idle_check.log"
     }
     game_logs = []
     system_logs = []

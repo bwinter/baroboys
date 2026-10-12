@@ -1,0 +1,23 @@
+[Unit]
+Description=Game Unit Refresh
+Requires=network-online.target refresh-repo-startup.service infrastructure-refresh.service
+After=network-online.target refresh-repo-startup.service infrastructure-refresh.service
+Before=game-refresh.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/home/bwinter_sc81
+User=root
+
+ExecStart=/home/bwinter_sc81/baroboys/scripts/services/shared/install-game-units.sh
+
+SuccessExitStatus=0
+KillMode=control-group
+TimeoutStartSec=300
+
+StandardOutput=append:/var/log/baroboys/game_unit_refresh.log
+StandardError=append:/var/log/baroboys/game_unit_refresh.log
+
+[Install]
+WantedBy=multi-user.target

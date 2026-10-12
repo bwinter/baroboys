@@ -141,16 +141,18 @@ network-online.target
               │           Xvfb :0 -screen 0 1024x768x24
               │           ExecStartPost= polls /tmp/.X11-unix/X0 — blocks until display is live
               │
-              └── game-refresh.service           (oneshot, bwinter_sc81)
-                    Calls scripts/services/shared/refresh.sh:
+              └── game-unit-refresh.service      (oneshot, root)
+                    Installs current game units from Git and daemon-reloads
+                    └── game-refresh.service     (oneshot, bwinter_sc81)
+                          Calls scripts/services/shared/refresh.sh:
                     - Updates game files via SteamCMD
                     - Fetches GAME_PASSWORD from Secret Manager
                     - Runs envsubst on server config template
                     - restores the tracked raw save files
                     - Writes /etc/baroboys/active-game (game name for admin panel + smoke test)
-                    └── game-startup.service   (simple, bwinter_sc81)
-                          Barotrauma: ./DedicatedServer
-                          VRising:    wine VRisingServer.exe (DISPLAY=:0, Wine 11+)
+                          └── game-startup.service   (simple, bwinter_sc81)
+                                Barotrauma: ./DedicatedServer
+                                VRising:    wine VRisingServer.exe (DISPLAY=:0, Wine 11+)
 ```
 
 ---
@@ -304,7 +306,7 @@ The VM's `.gitconfig` identifies commits as `Game Server <bwinter.sc81+gameserve
 | On-VM Flask install | `/opt/baroboys/admin_server.py` |
 | On-VM static files | `/opt/baroboys/static/` |
 | On-VM logs | `/var/log/baroboys/` |
-| On-VM game logs | `/var/log/baroboys/game.log` (engine), `game_startup.log`, `game_refresh.log`, and `game_shutdown.log` |
+| On-VM game logs | `/var/log/baroboys/game.log` (engine), `game_startup.log`, `game_refresh.log`, `game_shutdown.log`, and `game_unit_refresh.log` |
 | Active game file | `/etc/baroboys/active-game` |
 | E2E smoke test | `scripts/tools/smoke_test/` — `make smoke-test-VRising` |
 

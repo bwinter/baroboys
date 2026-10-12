@@ -59,6 +59,7 @@ Click the **📜 Logs** dropdown in the admin panel to inspect server various be
 | **game_startup.log**   | Game process startup and lifecycle output.                            |
 | **game_refresh.log**   | SteamCMD, config refresh, and boot provisioning output.               |
 | **game_shutdown.log**  | Graceful shutdown, save staging, Git push, and poweroff output.       |
+| **game_unit_refresh.log** | Systemd game-unit installation and reload output.                  |
 | ***.logs**             | More system level logs exists, this is not an exhaustive list.       |
 
 Logs are automatically refreshed.

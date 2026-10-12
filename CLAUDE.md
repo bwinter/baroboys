@@ -130,7 +130,7 @@ needed if the game uses that feature (e.g. save decompression, RCON, template in
 
 ## systemd Unit Conventions
 
-All units follow a two-phase pattern per component: `*-refresh.service` (oneshot, root, ensures current state) → `*-startup.service` (long-running or oneshot, bwinter_sc81, runs the thing). Always pair `Requires=X` with `After=X` — `Requires` alone does not enforce order. For shutdown services use `Wants=` not `Requires=` for network dependency (network may stop during poweroff sequence). Unit changes require image rebuild to take effect.
+All units follow a two-phase pattern per component: `*-refresh.service` (oneshot, root, ensures current state) → `*-startup.service` (long-running or oneshot, bwinter_sc81, runs the thing). Always pair `Requires=X` with `After=X` — `Requires` alone does not enforce order. For shutdown services use `Wants=` not `Requires=` for network dependency (network may stop during poweroff sequence). Game unit definitions are refreshed from Git at boot after the bootstrap image installs `game-unit-refresh.service`.
 
 `idle-check.service` has `WantedBy=multi-user.target` intentionally — runs once at boot to seed `status.json` before the timer's first 5-minute fire.
 
