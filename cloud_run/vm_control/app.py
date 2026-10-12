@@ -191,7 +191,7 @@ def service_base_url():
     return f"https://{request.host}"
 
 
-def enqueue_discord_task(command, interaction_id, interaction_token):
+def enqueue_discord_task(command, interaction_id, interaction_token, application_id):
     """Queue the slow part of a Discord interaction exactly once."""
     base_url = service_base_url()
     client = task_client()
@@ -201,6 +201,7 @@ def enqueue_discord_task(command, interaction_id, interaction_token):
         "command": command,
         "interaction_id": interaction_id,
         "interaction_token": interaction_token,
+        "application_id": application_id,
     }).encode()
     task = {
         "name": task_name,
@@ -238,12 +239,13 @@ def verify_task_request():
     return claims.get("email") == TASK_SERVICE_ACCOUNT and claims.get("email_verified") is True
 
 
-def edit_original_response(interaction_token, content):
+def edit_original_response(application_id, interaction_token, content):
     """Replace Discord's deferred response, retrying transient HTTP failures."""
-    if not DISCORD_APPLICATION_ID:
+    application_id = application_id or DISCORD_APPLICATION_ID
+    if not application_id:
         raise RuntimeError("DISCORD_APPLICATION_ID is not configured")
     url = (
-        f"https://discord.com/api/v10/webhooks/{DISCORD_APPLICATION_ID}/"
+        f"https://discord.com/api/v10/webhooks/{application_id}/"
         f"{interaction_token}/messages/@original"
     )
     body = json.dumps({"content": content}).encode()
@@ -260,7 +262,8 @@ def edit_original_response(interaction_token, content):
         if 400 <= error.code < 500:
             # Expired/invalid interaction tokens are permanent failures. Do not
             # keep replaying a task whose Discord response can no longer exist.
-            app.logger.warning("Discord response rejected with HTTP %s", error.code)
+            details = error.read().decode(errors="replace")[:500]
+            app.logger.warning("Discord response rejected with HTTP %s: %s", error.code, details)
             return False
         raise
     return True
@@ -333,6 +336,7 @@ def discord_interactions():
         command,
         payload.get("id"),
         payload.get("token"),
+        payload.get("application_id"),
     )
     # Discord requires an acknowledgement within a few seconds. Cloud Tasks
     # performs Compute Engine work and edits this deferred response afterward.
@@ -347,6 +351,7 @@ def discord_task():
     payload = request.get_json(silent=True) or {}
     command = payload.get("command")
     interaction_token = payload.get("interaction_token")
+    application_id = payload.get("application_id")
     if command not in {"status", "start"} or not interaction_token:
         return jsonify({"error": "invalid_task"}), 400
 
@@ -359,7 +364,7 @@ def discord_task():
         body, status_code = start_instance_result(game)
         message = deferred_start_message(game, status_code, body)
 
-    edit_original_response(interaction_token, message)
+    edit_original_response(application_id, interaction_token, message)
     return jsonify({"status": "completed"})
 
 

@@ -85,13 +85,16 @@ class DiscordInteractionTests(unittest.TestCase):
             "type": 2,
             "id": "interaction-id",
             "token": "interaction-token",
+            "application_id": "test-application",
             "guild_id": "test-guild",
             "channel_id": "test-channel",
             "data": {"name": "status", "options": []},
         })
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json, {"type": 5})
-        enqueue_task.assert_called_once_with("status", "interaction-id", "interaction-token")
+        enqueue_task.assert_called_once_with(
+            "status", "interaction-id", "interaction-token", "test-application"
+        )
 
     @patch("app.edit_original_response")
     @patch("app.verify_task_request", return_value=True)
@@ -109,11 +112,12 @@ class DiscordInteractionTests(unittest.TestCase):
         response = self.client.post("/discord/tasks", json={
             "command": "status",
             "interaction_token": "interaction-token",
+            "application_id": "test-application",
         })
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json, {"status": "completed"})
         edit_response.assert_called_once()
-        self.assertIn("Valheim", edit_response.call_args.args[1])
+        self.assertIn("Valheim", edit_response.call_args.args[2])
 
 
 if __name__ == "__main__":
