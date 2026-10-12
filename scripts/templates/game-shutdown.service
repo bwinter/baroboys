@@ -13,15 +13,15 @@ User=bwinter_sc81
 Group=bwinter_sc81
 
 ExecStart=${BAROBOYS}/scripts/services/shared/shutdown.sh
-ExecStartPost=/usr/bin/bash -c 'echo "✅ game-shutdown.service launched at $(date)" >> ${LOG_FILE}'
-ExecStopPost=/usr/bin/bash -c 'echo "🛑 game-shutdown.service finished shutdown at $(date)" >> ${LOG_FILE}'
+ExecStartPost=/usr/bin/bash -c 'echo "✅ game-shutdown.service launched at $(date)" >> ${GAME_SHUTDOWN_LOG_FILE}'
+ExecStopPost=/usr/bin/bash -c 'echo "🛑 game-shutdown.service finished at $(date)" >> ${GAME_SHUTDOWN_LOG_FILE}'
 
 SuccessExitStatus=0
 KillMode=control-group
 TimeoutStartSec=600
 
-StandardOutput=append:${LOG_FILE}
-StandardError=append:${LOG_FILE}
+StandardOutput=append:${GAME_SHUTDOWN_LOG_FILE}
+StandardError=append:${GAME_SHUTDOWN_LOG_FILE}
 
 [Install]
 WantedBy=poweroff.target halt.target reboot.target

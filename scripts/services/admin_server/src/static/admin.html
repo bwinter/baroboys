@@ -68,6 +68,14 @@
             white-space: pre-wrap;
             height: 300px;
         }
+
+        #log-output {
+            height: 620px;
+        }
+
+        #status-output {
+            height: 220px;
+        }
     </style>
 </head>
 <body class="bg-black py-4">
@@ -189,13 +197,12 @@
                     </ul>
                 </div>
             </div>
-        </div>
-
-        <div class="col-md-8">
+            <!-- Raw status JSON stays available below the summary so the
+                 larger log panel can use the right-hand column. -->
             <!-- Raw status JSON: useful for debugging but not the primary
                  surface — hidden by default; expand on demand. The parsed
                  fields are surfaced in the health banner + summary card. -->
-            <details class="card shadow-sm border-secondary" id="status-card">
+            <details class="card shadow-sm border-secondary mt-3" id="status-card">
                 <summary class="card-header fw-semibold d-flex align-items-center justify-content-between"
                          style="cursor: pointer;">
                     <span>
@@ -220,26 +227,27 @@
                 </div>
             </details>
         </div>
-    </div>
-
-    <div class="card shadow-sm border-secondary mb-3" id="log-card">
-        <div class="card-header fw-semibold d-flex align-items-center justify-content-between">
-            <span><i class="bi bi-journal-text text-info me-2"></i> Logs</span>
-            <button class="btn btn-sm btn-outline-dark" id="toggle-log-refresh" title="Toggle auto-refresh">
-                <i class="bi bi-pause me-1"></i> Pause Logs
-            </button>
-        </div>
-        <div class="card-body">
-            <div class="mb-3" id="log-form">
-                <label class="form-label text-muted" for="log-select">Select log file:</label>
-                <select class="form-select bg-dark text-light border-secondary" id="log-select">
-                    <!-- Options populated by populateLogOptions() from /api/manifest. -->
-                    <!-- Fallback: game.log is universal so list it as a sensible default
-                         while the manifest fetch resolves. -->
-                    <option value="game.log">Game Log</option>
-                </select>
+        <div class="col-md-8">
+            <div class="card shadow-sm border-secondary mb-3" id="log-card">
+                <div class="card-header fw-semibold d-flex align-items-center justify-content-between">
+                    <span><i class="bi bi-journal-text text-info me-2"></i> Logs</span>
+                    <button class="btn btn-sm btn-outline-dark" id="toggle-log-refresh" title="Toggle auto-refresh">
+                        <i class="bi bi-pause me-1"></i> Pause Logs
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3" id="log-form">
+                        <label class="form-label text-muted" for="log-select">Select log file:</label>
+                        <select class="form-select bg-dark text-light border-secondary" id="log-select">
+                            <!-- Options populated by populateLogOptions() from /api/manifest. -->
+                            <!-- Fallback: game.log is universal so list it as a sensible default
+                                 while the manifest fetch resolves. -->
+                            <option value="game.log">Game Log</option>
+                        </select>
+                    </div>
+                    <div class="terminal-block" id="log-output">Loading log...</div>
+                </div>
             </div>
-            <div class="terminal-block" id="log-output">Loading log...</div>
         </div>
     </div>
 

@@ -304,7 +304,7 @@ The VM's `.gitconfig` identifies commits as `Game Server <bwinter.sc81+gameserve
 | On-VM Flask install | `/opt/baroboys/admin_server.py` |
 | On-VM static files | `/opt/baroboys/static/` |
 | On-VM logs | `/var/log/baroboys/` |
-| On-VM game logs | `/var/log/baroboys/game.log` (all games, including engine output via `-logFile`) |
+| On-VM game logs | `/var/log/baroboys/game.log` (engine), `game_startup.log`, `game_refresh.log`, and `game_shutdown.log` |
 | Active game file | `/etc/baroboys/active-game` |
 | E2E smoke test | `scripts/tools/smoke_test/` — `make smoke-test-VRising` |
 

@@ -39,7 +39,10 @@ def load_manifest():
             "game_name": "Unknown",
             "process_name": "",
             "uses_wine": False,
-            "log_files": ["game.log", "admin_server.log"],
+            "log_files": [
+                "game.log", "game_startup.log", "game_refresh.log",
+                "game_shutdown.log", "admin_server.log"
+            ],
         }
 
 
@@ -158,7 +161,10 @@ def directory():
     # hardcoded "game" set ends up in "system" — works for current set
     # (game.log, idle_check.log are game; the rest are infra) and for
     # any new logs added to the manifest from a future game.
-    game_log_names = {"game.log", "idle_check.log"}
+    game_log_names = {
+        "game.log", "game_startup.log", "game_refresh.log",
+        "game_shutdown.log", "idle_check.log"
+    }
     game_logs = []
     system_logs = []
     for f in manifest["log_files"]:

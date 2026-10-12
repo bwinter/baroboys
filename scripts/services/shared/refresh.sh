@@ -5,8 +5,8 @@ set -euxo pipefail
 source "$(dirname "${BASH_SOURCE[0]}")/env-vars.sh"
 
 # Mark refresh start in log (dir already created by admin_server/refresh.sh as root)
-touch "$LOG_FILE"
-printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "$LOG_FILE"
+touch "$GAME_REFRESH_LOG_FILE"
+printf "\n==== %s ====\n" "$(date +%Y/%m/%d-%H:%M:%S)" >> "$GAME_REFRESH_LOG_FILE"
 
 # shellcheck source=scripts/services/$GAME_NAME/env-vars.sh
 # shellcheck disable=SC1091  # $GAME_NAME is runtime-resolved; shellcheck can't follow
@@ -23,7 +23,7 @@ source "$(dirname "${BASH_SOURCE[0]}")/../$GAME_NAME/env-vars.sh"
 # /api/manifest while a slow game refresh is still in progress.
 GAME_TFVARS="$BAROBOYS/terraform/game/${GAME_NAME}.tfvars.json"
 
-manifest_log_files=(game.log admin_server.log refresh_repo.log idle_check.log infrastructure.log)
+manifest_log_files=(game.log game_startup.log game_refresh.log game_shutdown.log admin_server.log refresh_repo.log idle_check.log infrastructure.log)
 # Whether to add xvfb.log: read uses_wine from the per-game JSON.
 if [[ "$(jq -r '.uses_wine // false' "$GAME_TFVARS")" == "true" ]]; then
   manifest_log_files+=(xvfb.log)

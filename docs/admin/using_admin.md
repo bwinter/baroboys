@@ -55,8 +55,10 @@ Click the **📜 Logs** dropdown in the admin panel to inspect server various be
 
 | Log File               | Description                                                          |
 |------------------------|----------------------------------------------------------------------|
-| **game-startup.logs**  | Game's erver Logs.                                                   |
-| **game-shutdown.logs** | Actions taken during graceful shutdown, including save confirmation. |
+| **game.log**           | Game engine output.                                                   |
+| **game_startup.log**   | Game process startup and lifecycle output.                            |
+| **game_refresh.log**   | SteamCMD, config refresh, and boot provisioning output.               |
+| **game_shutdown.log**  | Graceful shutdown, save staging, Git push, and poweroff output.       |
 | ***.logs**             | More system level logs exists, this is not an exhaustive list.       |
 
 Logs are automatically refreshed.

@@ -10,15 +10,15 @@ WorkingDirectory=${GAME_DIR}
 User=bwinter_sc81
 
 ExecStart=${BAROBOYS}/scripts/services/shared/refresh.sh
-ExecStartPost=/usr/bin/bash -c 'echo "✅ game-refresh.service launched at $(date)" >> ${LOG_FILE}'
-ExecStopPost=/usr/bin/bash -c 'echo "🛑 game-refresh.service finished shutdown at $(date)" >> ${LOG_FILE}'
+ExecStartPost=/usr/bin/bash -c 'echo "✅ game-refresh.service launched at $(date)" >> ${GAME_REFRESH_LOG_FILE}'
+ExecStopPost=/usr/bin/bash -c 'echo "🛑 game-refresh.service finished at $(date)" >> ${GAME_REFRESH_LOG_FILE}'
 
 SuccessExitStatus=0
 KillMode=control-group
 TimeoutStartSec=300
 
-StandardOutput=append:${LOG_FILE}
-StandardError=append:${LOG_FILE}
+StandardOutput=append:${GAME_REFRESH_LOG_FILE}
+StandardError=append:${GAME_REFRESH_LOG_FILE}
 
 [Install]
 WantedBy=multi-user.target

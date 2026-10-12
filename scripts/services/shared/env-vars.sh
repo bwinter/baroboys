@@ -12,6 +12,9 @@ export BAROBOYS="/home/bwinter_sc81/baroboys"
 
 export LOG_PATH="/var/log/baroboys"
 export LOG_FILE="${LOG_PATH}/game.log"
+export GAME_STARTUP_LOG_FILE="${LOG_PATH}/game_startup.log"
+export GAME_REFRESH_LOG_FILE="${LOG_PATH}/game_refresh.log"
+export GAME_SHUTDOWN_LOG_FILE="${LOG_PATH}/game_shutdown.log"
 
 # Game-layer state. Optional — only set when /etc/baroboys/active-game exists.
 # Base-layer scripts (refresh_repo, infrastructure, admin_server install, nginx)
