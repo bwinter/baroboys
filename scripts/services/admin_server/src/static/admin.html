@@ -106,7 +106,7 @@
             <i class="bi bi-cloud-arrow-up text-info me-2"></i> Connect to Server
         </div>
         <div class="card-body">
-            <p class="small text-muted mb-2">Add via Steam → Server Browser → Favorites → Add Server:</p>
+            <p class="small text-muted mb-2">Use the game's multiplayer menu to add this server address:</p>
             <div class="d-flex align-items-center gap-2 flex-wrap">
                 <code class="fs-5 text-info user-select-all" id="connection-string">…</code>
                 <button class="btn btn-sm btn-outline-secondary" id="copy-connection" type="button">
@@ -124,20 +124,18 @@
                     <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i> Server Actions
                 </div>
                 <div class="card-body text-center">
-                    <p class="small text-muted mb-3">
-                        <strong>Restart</strong> reloads the game without poweroff.
-                        <strong>Shutdown</strong> saves and powers off the VM.
-                    </p>
                     <div class="d-flex flex-column gap-2">
                         <form id="restart-game-form">
                             <button class="btn btn-outline-info w-100" type="submit">
                                 <i class="bi bi-arrow-clockwise me-2"></i> Restart Game
                             </button>
+                            <small class="d-block text-muted mt-1">Restarts the game process only; the VM stays running.</small>
                         </form>
                         <form id="shutdown-form">
                             <button class="btn btn-outline-warning w-100" type="submit">
                                 <i class="bi bi-power me-2"></i> Trigger Shutdown
                             </button>
+                            <small class="d-block text-muted mt-1">Saves the game and turns off the VM.</small>
                         </form>
                     </div>
                     <div class="mt-3 small text-warning" id="shutdown-confirm"></div>
@@ -153,7 +151,7 @@
                     <ul class="list-unstyled mb-0 small">
 
                         <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-clock-fill text-muted me-2"></i>UTC Time</span>
+                            <span><i class="bi bi-clock-fill text-muted me-2"></i>Last Checked</span>
                             <span class="text-muted" id="summary-time">–</span>
                         </li>
 
@@ -163,7 +161,7 @@
                             <span class="text-muted" id="summary-cpu">–</span>
                         </li>
                         <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-memory text-muted me-2"></i>Free RAM</span>
+                            <span><i class="bi bi-memory text-muted me-2"></i>Memory Used</span>
                             <span class="text-muted" id="summary-ram">–</span>
                         </li>
 
@@ -304,6 +302,16 @@
         setTimeout(() => el.classList.remove(className), duration);
     }
 
+    function formatLocalTime(timestamp) {
+        if (!timestamp) return "Unknown";
+        const date = new Date(timestamp);
+        if (Number.isNaN(date.getTime())) return timestamp;
+        return date.toLocaleString(undefined, {
+            dateStyle: 'medium',
+            timeStyle: 'short'
+        });
+    }
+
     async function loadLog() {
         blinkElement(logCard, 'refreshing-green');
         const val = select.value;
@@ -321,8 +329,12 @@
                 const data = JSON.parse(text);
 
                 // === Summary Panel Fields ===
-                summaryTime.innerText = data.timestamp_utc || "Unknown";
-                summaryCPU.innerText = `${data.cpu_percent?.toFixed(1) ?? "Unknown"}%`;
+                summaryTime.innerText = formatLocalTime(data.timestamp_utc);
+                const cpu = data.cpu_percent?.toFixed(1) ?? "Unknown";
+                const threshold = data.cpu_threshold_percent?.toFixed(2);
+                summaryCPU.innerText = threshold == null
+                    ? `${cpu}%`
+                    : `${cpu}% / ${threshold}% idle threshold`;
                 summaryRAM.innerText = `${data.mem_percent?.toFixed(1) ?? "Unknown"}%`;
                 summaryProcess.innerText = data.process_alive ? "✅ alive" : "❌ not running";
                 summaryProcessRSS.innerText =
@@ -331,12 +343,12 @@
                 summaryIdleFlagSet.innerText = data.idle_flag_set ?? "false";
                 summaryIdleSince.innerText =   data.idle_since === "" || data.idle_since == null
                     ? "n/a"
-                    : data.idle_since;
+                    : formatLocalTime(data.idle_since);
                 summaryIdleMinutes.innerText = `${data.idle_duration_minutes} min`;
 
                 // === Health Banner: classify from health fields ===
-                // Healthy:        services + alive + RAM ≥ floor (game fully bootstrapped)
-                // Bootstrapping:  alive but RAM below floor (game starting up)
+                // Healthy:        services + alive + RAM ≥ startup threshold
+                // Bootstrapping:  alive but RAM below startup threshold
                 // Issues:         services failed OR process not running
                 const ramFloor = data.process_ram_mb_min ?? 200;
                 const ramOk = (data.process_rss_mb ?? 0) >= ramFloor;
@@ -350,7 +362,7 @@
                     healthIcon.textContent = '🟡';
                     healthTitle.textContent = `${game} — Bootstrapping`;
                     healthDetail.textContent =
-                        `Game starting up (${data.process_rss_mb} MB RAM, floor ${ramFloor} MB). ` +
+                        `Game starting up (${data.process_rss_mb} MB RAM; startup check ${ramFloor} MB). ` +
                         `Services healthy: ${data.services_healthy}.`;
                 } else {
                     healthIcon.textContent = '🔴';
@@ -366,7 +378,7 @@
                 }
 
                 // === Metadata Footer ===
-                refreshTimestamp.innerText = `Last update: ${data.timestamp_utc ?? "unknown"}`;
+                refreshTimestamp.innerText = `Last update: ${formatLocalTime(data.timestamp_utc)}`;
 
                 // === Full JSON View ===
                 statusOutput.textContent = JSON.stringify(data, null, 2);
@@ -400,7 +412,7 @@
     const restartGameConfirm = document.getElementById('restart-game-confirm');
     restartGameForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if (!confirm('Restart the game process? This kicks players but does not poweroff the VM.')) return;
+        if (!confirm('Restart the game process? This kicks players but keeps the VM running.')) return;
         restartGameConfirm.innerText = '⏳ Restarting…';
         const res = await fetch('/api/restart-game', {method: 'POST'});
         const data = await res.json();
