@@ -1,5 +1,8 @@
 bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart game-shutdown.service
 bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart game-startup.service
+bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart refresh-repo-startup.service
+bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart admin-server-refresh.service
+bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart admin-server-startup.service
 bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/systemctl start --wait save-backup.service
 bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/systemctl start --no-block idle-check.service
 bwinter_sc81 ALL=(ALL) NOPASSWD: /usr/bin/systemctl poweroff

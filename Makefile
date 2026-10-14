@@ -180,11 +180,19 @@ $(foreach game,$(GAMES),$(eval $(call game_ssh_iap_recipe,$(game))))
 # =======================
 # 🐍 Admin Panel
 # =======================
-.PHONY: admin-local $(addprefix admin-logs-, $(GAMES)) $(addprefix admin-url-, $(GAMES))
+.PHONY: admin-local $(addprefix admin-deploy-, $(GAMES)) $(addprefix admin-logs-, $(GAMES)) $(addprefix admin-url-, $(GAMES))
 
 admin-local:
 	cd $(TOOLS_DIR) && \
 	./admin/run_admin_server_local.sh
+
+define admin_deploy_recipe
+admin-deploy-$(1):
+	PROJECT="$(PROJECT)" ZONE="$(ZONE)" GCP_USER="$(GCP_USER)" \
+	MACHINE_NAME="$(call machine_name,$(1))" \
+		./$(TOOLS_DIR)/admin/deploy_admin.sh
+endef
+$(foreach game,$(GAMES),$(eval $(call admin_deploy_recipe,$(game))))
 
 define admin_logs_recipe
 admin-logs-$(1):
@@ -357,6 +365,7 @@ help:
 
 	@echo "🐍 Admin Panel:"
 	@echo "  make admin-local                     - Run admin server locally (macOS only)"
+	@echo "  make admin-deploy-<GAME>             - Pull and deploy admin code to a game VM"
 	@echo "  make admin-logs-<GAME>               - Fetch logs from admin systemd service"
 	@echo "  make admin-url-<GAME>                - Print the live admin panel URL"
 	@echo ""
