@@ -215,12 +215,29 @@ nginx log read access. No other elevated permissions.
 `idle_check.sh` runs every 5 minutes via systemd timer:
 
 1. Measures CPU with `mpstat 1 1` (1-second sample)
-2. If CPU > 5%: clears idle flag, continues
-3. If CPU ≤ 5%: creates `/tmp/server_idle_since.flag` if not present; tracks elapsed minutes
-4. Writes `/opt/baroboys/static/status.json` (served directly by Nginx, read by admin panel)
-5. If idle ≥ 30 minutes: triggers `game-shutdown.service`
+2. Reads the online vCPU count with `getconf _NPROCESSORS_ONLN` and computes the effective CPU threshold as `14 / vCPU_count` (7% on 2 vCPUs, 3.5% on 4 vCPUs)
+3. If CPU exceeds the effective threshold: clears idle flag, continues
+4. If CPU is at or below the effective threshold: creates `/tmp/server_idle_since.flag` if not present; tracks elapsed minutes
+5. Writes `/opt/baroboys/static/status.json` (served directly by Nginx, read by admin panel)
+6. If idle ≥ 30 minutes: triggers `game-shutdown.service`
 
-Status JSON fields: `timestamp_utc`, `cpu_percent`, `mem_percent`, `idle_flag_set`, `idle_since`, `idle_duration_minutes`
+Status JSON fields:
+
+| Field | Meaning |
+|---|---|
+| `timestamp_utc` | Time of the most recent idle check. |
+| `game_name` | Display name from the active game manifest. |
+| `cpu_percent` | Aggregate CPU usage measured during the one-second sample. |
+| `vcpu_count` | Number of online vCPUs detected on the VM. |
+| `cpu_threshold_percent` | Effective idle threshold, calculated as `14 / vcpu_count`. |
+| `mem_percent` | Percentage of VM memory currently in use. |
+| `services_healthy` | Whether required systemd services are healthy. |
+| `process_alive` | Whether the configured game process was found. |
+| `process_rss_mb` | Resident memory used by the largest matching game process. |
+| `process_ram_mb_min` | Manifest-provided minimum process memory used by startup checks. |
+| `idle_flag_set` | Whether the current check is tracking a low-CPU period. |
+| `idle_since` | UTC time when the current low-CPU period began, if any. |
+| `idle_duration_minutes` | Minutes elapsed in the current low-CPU period. |
 
 `/etc/baroboys/active-game` contains the running game name (written by `refresh.sh` at boot).
 Consumed by the admin panel (log dropdown filtering) and `smoke_test/vm_checks.sh` (self-identification).

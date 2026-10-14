@@ -6,7 +6,10 @@ STATIC_NGINX="/opt/baroboys/static"
 STATUS_JSON="$STATIC_NGINX/status.json"
 IDLE_FLAG="/tmp/server_idle_since.flag"
 COOLDOWN_MINUTES=30
-CPU_THRESHOLD=7.0
+# Express the cutoff as total CPU work for one vCPU. The effective aggregate
+# threshold scales down on larger VMs so the same workload is classified the
+# same way across machine types (14 / 2 vCPUs = 7%; 14 / 4 = 3.5%).
+BASE_CPU_THRESHOLD=14.0
 MANIFEST_PATH="/etc/baroboys/manifest.json"
 
 # === DEPENDENCY CHECK ===
@@ -39,6 +42,12 @@ NOW_ISO=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 # === CPU USAGE ===
 CPU_IDLE=$(mpstat 1 1 | awk '/Average:/ {print $NF}')
 CPU_PERCENT=$(awk "BEGIN {print 100 - $CPU_IDLE}")
+VCPU_COUNT=$(getconf _NPROCESSORS_ONLN)
+[[ "$VCPU_COUNT" =~ ^[1-9][0-9]*$ ]] || VCPU_COUNT=2
+CPU_THRESHOLD=$(awk \
+  -v base="$BASE_CPU_THRESHOLD" \
+  -v vcpus="$VCPU_COUNT" \
+  'BEGIN { print base / vcpus }')
 
 # === MEMORY USAGE ===
 MEM_USED=$(free | awk '/Mem:/ {print $3}')
@@ -129,6 +138,8 @@ tee "$STATUS_JSON" > /dev/null <<EOF
   "timestamp_utc": "$NOW_ISO",
   "game_name": "$MANIFEST_GAME_NAME",
   "cpu_percent": $CPU_PERCENT,
+  "vcpu_count": $VCPU_COUNT,
+  "cpu_threshold_percent": $CPU_THRESHOLD,
   "mem_percent": $MEM_PERCENT,
   "services_healthy": $SERVICES_HEALTHY,
   "process_alive": $PROCESS_ALIVE,
