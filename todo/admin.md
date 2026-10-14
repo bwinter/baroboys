@@ -10,6 +10,11 @@ The admin panel, friend-facing UX, and the plumbing that connects bash config to
 
 ## Admin panel
 
+- **Assess VM target autodetection** — evaluate whether Make targets and helper tools should discover
+  the active/deployed VM instead of requiring `<GAME>`. Review all current game-targeted commands,
+  ambiguous multi-VM states, stopped VMs, and the cleanest shared implementation before changing
+  any individual command.
+
 - **Multi-game awareness** — log dropdown shows all games regardless of which is running.
   Filter to active game:
   1. ✅ `active-game` written at Packer build time (in each game's .pkr.hcl)
