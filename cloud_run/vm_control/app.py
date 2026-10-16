@@ -340,9 +340,8 @@ def discord_interactions():
     if command == "help":
         return jsonify(discord_response(
             "**Game Server Controller**\n"
-            "`/status` — check the game server\n"
             "Server address: `baroboys.duckdns.org`\n"
-            "Use `/status` for the current connection address.\n"
+            "`/status` — check the game server\n"
             "`/start` — start the game server\n"
             "`/help` — show this help"
         ))
