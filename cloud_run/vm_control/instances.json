@@ -1,5 +1,5 @@
 {
-  "barotrauma": {"instance": "barotrauma", "zone": "us-west1-b"},
-  "vrising": {"instance": "vrising", "zone": "us-west1-b"},
-  "valheim": {"instance": "valheim", "zone": "us-west1-b"}
+  "barotrauma": {"instance": "barotrauma", "zone": "us-west1-b", "game_port": 27015},
+  "vrising": {"instance": "vrising", "zone": "us-west1-b", "game_port": 9876},
+  "valheim": {"instance": "valheim", "zone": "us-west1-b", "game_port": 2456}
 }

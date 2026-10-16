@@ -3,6 +3,7 @@ import os
 import urllib.error
 import urllib.request
 from pathlib import Path
+from urllib.parse import urlparse
 
 from flask import Flask, jsonify, request
 from google.api_core.exceptions import AlreadyExists
@@ -167,7 +168,9 @@ def discord_status_message(game, status):
     state = status.get("state")
     admin_link = f"\n[Open the admin page]({VM_ADMIN_URL}/)" if VM_ADMIN_URL else ""
     if state == "RUNNING":
-        return f"🟢 **{name}** VM is online. The game may still be starting.{admin_link}"
+        connection = discord_connection_address(game)
+        connection_line = f"\nConnect here: `{connection}`" if connection else ""
+        return f"🟢 **{name}** VM is online.{connection_line} The game may still be starting.{admin_link}"
     if state in {"PROVISIONING", "STAGING", "STOPPING", "SUSPENDING"}:
         return f"🟡 **{name}** is {state.lower()} right now."
     if state == "TERMINATED":
@@ -175,6 +178,15 @@ def discord_status_message(game, status):
     if state == "NOT_DEPLOYED":
         return f"⚪ **{name}** is not deployed."
     return f"⚪ **{name}** has status `{state or 'unknown'}`."
+
+
+def discord_connection_address(game):
+    config = load_instances().get(game, {})
+    game_port = config.get("game_port")
+    if not game_port or not VM_ADMIN_URL:
+        return ""
+    hostname = urlparse(VM_ADMIN_URL).hostname
+    return f"{hostname}:{game_port}" if hostname else ""
 
 
 def discord_admin_link():
@@ -329,6 +341,8 @@ def discord_interactions():
         return jsonify(discord_response(
             "**Game Server Controller**\n"
             "`/status` — check the game server\n"
+            "Server address: `baroboys.duckdns.org`\n"
+            "Use `/status` for the current connection address.\n"
             "`/start` — start the game server\n"
             "`/help` — show this help"
         ))

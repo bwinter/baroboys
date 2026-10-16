@@ -68,6 +68,8 @@ class DiscordInteractionTests(unittest.TestCase):
         })
         self.assertEqual(response.status_code, 200)
         self.assertIn("/status", response.json["data"]["content"])
+        self.assertIn("baroboys.duckdns.org", response.json["data"]["content"])
+        self.assertIn("current connection address", response.json["data"]["content"])
 
     def test_rejects_wrong_channel(self):
         response = self.post_interaction({
@@ -118,6 +120,7 @@ class DiscordInteractionTests(unittest.TestCase):
         self.assertEqual(response.json, {"status": "completed"})
         edit_response.assert_called_once()
         self.assertIn("Valheim", edit_response.call_args.args[2])
+        self.assertIn("baroboys.duckdns.org:2456", edit_response.call_args.args[2])
 
 
 if __name__ == "__main__":
