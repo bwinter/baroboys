@@ -334,6 +334,10 @@
         });
     }
 
+    function formatInteger(value) {
+        return value == null ? "n/a" : new Intl.NumberFormat().format(value);
+    }
+
     async function loadLog() {
         blinkElement(logCard, 'refreshing-green');
         const val = select.value;
@@ -360,7 +364,7 @@
                 summaryRAM.innerText = `${data.mem_percent?.toFixed(1) ?? "Unknown"}%`;
                 summaryProcess.innerText = data.process_alive ? "✅ alive" : "❌ not running";
                 summaryProcessRSS.innerText =
-                    data.process_rss_mb != null ? `${data.process_rss_mb} MB` : "n/a";
+                    data.process_rss_mb == null ? "n/a" : `${formatInteger(data.process_rss_mb)} MB`;
                 summaryServices.innerText = data.services_healthy ? "✅ healthy" : "❌ failed";
                 summaryIdleFlagSet.innerText = data.idle_flag_set ?? "false";
                 summaryIdleSince.innerText =   data.idle_since === "" || data.idle_since == null
