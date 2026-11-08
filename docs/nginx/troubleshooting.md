@@ -1,6 +1,6 @@
 # 🧪 Nginx Log Access Troubleshooter
 
-Having trouble accessing your admin logs at `http://<your-ip>:8080/logs/`?
+Having trouble accessing your admin logs at `http://<your-ip>:8080/api/logs/game.log`?
 
 Start here:
 
@@ -91,20 +91,13 @@ sudo systemctl reload nginx
 Visit:
 
 ```
-http://<your-ip>:8080/logs/
+http://<your-ip>:8080/api/logs/game.log
 ```
 
 If you get a `403 Forbidden`, fix log dir permissions:
 
 ```bash
 /usr/bin/sudo chmod -R o+r /var/log/baroboys
-```
-
-If you get a `404`, ensure the trailing slash is present:
-
-```
-http://<your-ip>:8080/logs/   ✅
-http://<your-ip>:8080/logs    ❌
 ```
 
 ---

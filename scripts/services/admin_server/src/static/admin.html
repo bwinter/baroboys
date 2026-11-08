@@ -505,6 +505,90 @@
         }
     }
 
+    function renderStatusSummary(data) {
+        summaryTime.innerText = formatLocalTime(data.timestamp_utc);
+        const cpu = data.cpu_percent?.toFixed(1) ?? "Unknown";
+        const threshold = data.cpu_threshold_percent?.toFixed(2);
+        summaryCPU.innerText = threshold == null
+            ? `${cpu}%`
+            : `${cpu}% / ${threshold}% idle threshold`;
+
+        const cpuValue = data.cpu_percent == null ? NaN : Number(data.cpu_percent);
+        const thresholdValue = data.cpu_threshold_percent == null
+            ? NaN
+            : Number(data.cpu_threshold_percent);
+        if (Number.isFinite(cpuValue)) {
+            const meterCPU = Math.max(0, Math.min(100, cpuValue));
+            healthCPUBar.style.width = `${meterCPU}%`;
+            healthCPUBar.classList.toggle(
+                'above-threshold',
+                Number.isFinite(thresholdValue) && cpuValue >= thresholdValue
+            );
+        } else {
+            healthCPUBar.style.width = '0%';
+            healthCPUBar.classList.remove('above-threshold');
+        }
+        if (Number.isFinite(thresholdValue)) {
+            healthCPUThresholdMarker.style.left =
+                `${Math.max(0, Math.min(100, thresholdValue))}%`;
+            healthCPUMeterNote.textContent =
+                `Idle threshold: ${thresholdValue.toFixed(2)}%`;
+        } else {
+            healthCPUThresholdMarker.style.left = '-2px';
+            healthCPUMeterNote.textContent = 'CPU threshold unavailable';
+        }
+
+        summaryRAM.innerText = `${data.mem_percent?.toFixed(1) ?? "Unknown"}%`;
+        summaryProcess.innerText = data.process_alive ? "✅ alive" : "❌ not running";
+        summaryProcessRSS.innerText =
+            data.process_rss_mb == null ? "n/a" : `${formatInteger(data.process_rss_mb)} MB`;
+        summaryServices.innerText = data.services_healthy ? "✅ healthy" : "❌ failed";
+        summaryIdleFlagSet.innerText = data.idle_flag_set ?? "false";
+        summaryIdleSince.innerText = data.idle_since === "" || data.idle_since == null
+            ? "n/a"
+            : formatLocalTime(data.idle_since);
+        summaryIdleMinutes.innerText = `${data.idle_duration_minutes} min`;
+    }
+
+    function renderHealth(data) {
+        // Healthy:        services + alive + RAM ≥ startup threshold
+        // Bootstrapping:  alive but RAM below startup threshold
+        // Issues:         services failed OR process not running
+        const ramFloor = data.process_ram_mb_min ?? 200;
+        const ramOk = (data.process_rss_mb ?? 0) >= ramFloor;
+        const game = data.game_name || "Server";
+        if (data.services_healthy && data.process_alive && ramOk) {
+            healthIcon.textContent = '🟢';
+            healthTitle.textContent = `${game} — Healthy`;
+            healthDetail.textContent =
+                `Game running (${data.process_rss_mb} MB RAM), all services active.`;
+        } else if (data.process_alive) {
+            healthIcon.textContent = '🟡';
+            healthTitle.textContent = `${game} — Bootstrapping`;
+            healthDetail.textContent =
+                `Game starting up (${data.process_rss_mb} MB RAM; startup check ${ramFloor} MB). ` +
+                `Services healthy: ${data.services_healthy}.`;
+        } else {
+            healthIcon.textContent = '🔴';
+            healthTitle.textContent = 'Issues';
+            healthDetail.textContent =
+                `Game process not running. ` +
+                `services_healthy=${data.services_healthy}, process_alive=${data.process_alive}.`;
+        }
+        if (data.timestamp_utc) {
+            const ts = new Date(data.timestamp_utc);
+            const ageSec = Math.max(0, Math.round((Date.now() - ts.getTime()) / 1000));
+            healthUpdated.textContent = `Updated ${ageSec}s ago`;
+        }
+    }
+
+    function renderStatus(data) {
+        renderStatusSummary(data);
+        renderHealth(data);
+        refreshTimestamp.innerText = `Last update: ${formatLocalTime(data.timestamp_utc)}`;
+        statusOutput.textContent = JSON.stringify(data, null, 2);
+    }
+
     async function refreshStatus() {
         const refreshStartedAt = performance.now();
         statusRefreshIcon.className = 'bi bi-arrow-clockwise refreshing-icon';
@@ -512,93 +596,18 @@
         try {
             const res = await fetch('/status.json');
             const text = await res.text();
-
+            if (!res.ok) {
+                throw new Error(`Status request failed (${res.status})`);
+            }
+            let data;
             try {
-                const data = JSON.parse(text);
-
-                // === Summary Panel Fields ===
-                summaryTime.innerText = formatLocalTime(data.timestamp_utc);
-                const cpu = data.cpu_percent?.toFixed(1) ?? "Unknown";
-                const threshold = data.cpu_threshold_percent?.toFixed(2);
-                summaryCPU.innerText = threshold == null
-                    ? `${cpu}%`
-                    : `${cpu}% / ${threshold}% idle threshold`;
-                const cpuValue = data.cpu_percent == null ? NaN : Number(data.cpu_percent);
-                const thresholdValue = data.cpu_threshold_percent == null
-                    ? NaN
-                    : Number(data.cpu_threshold_percent);
-                if (Number.isFinite(cpuValue)) {
-                    const meterCPU = Math.max(0, Math.min(100, cpuValue));
-                    healthCPUBar.style.width = `${meterCPU}%`;
-                    healthCPUBar.classList.toggle(
-                        'above-threshold',
-                        Number.isFinite(thresholdValue) && cpuValue >= thresholdValue
-                    );
-                } else {
-                    healthCPUBar.style.width = '0%';
-                    healthCPUBar.classList.remove('above-threshold');
-                }
-                if (Number.isFinite(thresholdValue)) {
-                    healthCPUThresholdMarker.style.left =
-                        `${Math.max(0, Math.min(100, thresholdValue))}%`;
-                    healthCPUMeterNote.textContent =
-                        `Idle threshold: ${thresholdValue.toFixed(2)}%`;
-                } else {
-                    healthCPUThresholdMarker.style.left = '-2px';
-                    healthCPUMeterNote.textContent = 'CPU threshold unavailable';
-                }
-                summaryRAM.innerText = `${data.mem_percent?.toFixed(1) ?? "Unknown"}%`;
-                summaryProcess.innerText = data.process_alive ? "✅ alive" : "❌ not running";
-                summaryProcessRSS.innerText =
-                    data.process_rss_mb == null ? "n/a" : `${formatInteger(data.process_rss_mb)} MB`;
-                summaryServices.innerText = data.services_healthy ? "✅ healthy" : "❌ failed";
-                summaryIdleFlagSet.innerText = data.idle_flag_set ?? "false";
-                summaryIdleSince.innerText =   data.idle_since === "" || data.idle_since == null
-                    ? "n/a"
-                    : formatLocalTime(data.idle_since);
-                summaryIdleMinutes.innerText = `${data.idle_duration_minutes} min`;
-
-                // === Health Banner: classify from health fields ===
-                // Healthy:        services + alive + RAM ≥ startup threshold
-                // Bootstrapping:  alive but RAM below startup threshold
-                // Issues:         services failed OR process not running
-                const ramFloor = data.process_ram_mb_min ?? 200;
-                const ramOk = (data.process_rss_mb ?? 0) >= ramFloor;
-                const game = data.game_name || "Server";
-                if (data.services_healthy && data.process_alive && ramOk) {
-                    healthIcon.textContent = '🟢';
-                    healthTitle.textContent = `${game} — Healthy`;
-                    healthDetail.textContent =
-                        `Game running (${data.process_rss_mb} MB RAM), all services active.`;
-                } else if (data.process_alive) {
-                    healthIcon.textContent = '🟡';
-                    healthTitle.textContent = `${game} — Bootstrapping`;
-                    healthDetail.textContent =
-                        `Game starting up (${data.process_rss_mb} MB RAM; startup check ${ramFloor} MB). ` +
-                        `Services healthy: ${data.services_healthy}.`;
-                } else {
-                    healthIcon.textContent = '🔴';
-                    healthTitle.textContent = 'Issues';
-                    healthDetail.textContent =
-                        `Game process not running. ` +
-                        `services_healthy=${data.services_healthy}, process_alive=${data.process_alive}.`;
-                }
-                if (data.timestamp_utc) {
-                    const ts = new Date(data.timestamp_utc);
-                    const ageSec = Math.max(0, Math.round((Date.now() - ts.getTime()) / 1000));
-                    healthUpdated.textContent = `Updated ${ageSec}s ago`;
-                }
-
-                // === Metadata Footer ===
-                refreshTimestamp.innerText = `Last update: ${formatLocalTime(data.timestamp_utc)}`;
-
-                // === Full JSON View ===
-                statusOutput.textContent = JSON.stringify(data, null, 2);
+                data = JSON.parse(text);
             } catch (parseErr) {
                 const detail = 'The status response was invalid. Check the admin logs.';
                 statusOutput.textContent = `⚠️ ${detail}\n\n${text}`;
                 showStatusUnavailable(detail);
             }
+            if (data) renderStatus(data);
         } catch (err) {
             const detail = 'The server status could not be loaded. Check the admin logs.';
             statusOutput.textContent = `⚠️ ${detail}\n\n${err.message}`;

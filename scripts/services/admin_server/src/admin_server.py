@@ -11,7 +11,7 @@ THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(THIS_DIR, "static") if ENV == "dev" else "/opt/baroboys/static"
 TEMPLATE_DIR = os.path.join(THIS_DIR, "templates") if ENV == "dev" else "/opt/baroboys/templates"
 LOG_DIR = os.path.join(THIS_DIR, "dev/logs") if ENV == "dev" else "/var/log/baroboys"
-STATUS_DIR = os.path.join(THIS_DIR, "dev/status") if ENV == "dev" else "/dev/null"
+STATUS_DIR = os.path.join(THIS_DIR, "dev") if ENV == "dev" else "/opt/baroboys/static"
 MANIFEST_PATH = os.path.join(THIS_DIR, "dev/manifest.json") if ENV == "dev" else "/etc/baroboys/manifest.json"
 
 if ENV == "dev":
@@ -40,8 +40,8 @@ def load_manifest():
 def _nginx_log_sources():
     if ENV == "dev":
         return {
-            "nginx_access": os.path.join(LOG_DIR, "nginx_access.log"),
-            "nginx_error": os.path.join(LOG_DIR, "nginx_error.log"),
+            "nginx_access": "/var/log/nginx/access.log",
+            "nginx_error": "/var/log/nginx/error.log",
         }
     return {
         "nginx_access": ["tail", "-n", "500", "/var/log/nginx/access.log"],
@@ -54,12 +54,17 @@ def serve_admin():
     return send_from_directory(STATIC_DIR, "admin.html")
 
 
-@app.route("/ping")
+@app.route("/status.json")
+def status():
+    return send_from_directory(STATUS_DIR, "status.json")
+
+
+@app.route("/api/ping")
 def ping():
     return "pong", 200
 
 
-@app.route("/trigger-shutdown", methods=["POST"])
+@app.route("/api/trigger-shutdown", methods=["POST"])
 def trigger_shutdown():
     try:
         now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
@@ -84,7 +89,7 @@ def trigger_shutdown():
         }, 500
 
 
-@app.route("/restart-game", methods=["POST"])
+@app.route("/api/restart-game", methods=["POST"])
 def restart_game():
     """Restart the game process without poweroff. Useful when the game
     crashes or hangs but the VM itself is fine — saves the cost of a
@@ -112,14 +117,14 @@ def restart_game():
         }, 500
 
 
-@app.route("/manifest")
+@app.route("/api/manifest")
 def get_manifest():
     """Expose the game manifest so the admin panel JS can render
     game-aware UI (log dropdown, game name, etc.) without hardcoding."""
     return load_manifest(), 200
 
 
-@app.route("/logs/<name>")
+@app.route("/api/logs/<name>")
 def tail_log(name):
     manifest = load_manifest()
     nginx_sources = _nginx_log_sources()
@@ -143,7 +148,7 @@ def tail_log(name):
         return f"Error loading log: {type(e).__name__}: {e}", 500
 
 
-@app.route("/directory")
+@app.route("/api/directory")
 def directory():
     manifest = load_manifest()
 
@@ -171,7 +176,7 @@ def directory():
             "title": "Admin",
             "links": [
                 ("/", "Admin Panel", "GET"),
-                ("/directory", "Site Directory", "GET"),
+                ("/api/directory", "Site Directory", "GET"),
                 ("/api/ping", "Health Check", "GET"),
                 ("/api/manifest", "Game Manifest (JSON)", "GET"),
             ]

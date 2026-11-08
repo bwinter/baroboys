@@ -189,16 +189,16 @@ External browser
       │
       ├── /              →  /opt/baroboys/static/admin.html     (static)
       ├── /status.json   →  /opt/baroboys/static/status.json    (static, written by idle_check.sh)
-      ├── /api/*         →  http://127.0.0.1:5000/              (Flask proxy, /api/ prefix stripped)
+      ├── /api/*         →  http://127.0.0.1:5000/api/*         (Flask proxy, prefix preserved)
       └── 404            →  /opt/baroboys/static/404.html
 ```
 
 Flask (`admin_server.py`) routes:
 - `GET /` → admin.html
-- `GET /ping` → health check
-- `POST /trigger-shutdown` → `systemctl restart game-shutdown.service`
-- `GET /logs/<name>` → last 500 lines of a whitelisted log file
-- `GET /directory` → Jinja template listing all routes
+- `GET /api/ping` → health check
+- `POST /api/trigger-shutdown` → `systemctl restart game-shutdown.service`
+- `GET /api/logs/<name>` → last 500 lines of a whitelisted log file
+- `GET /api/directory` → Jinja template listing all routes
 
 The admin panel auto-refreshes status every 5 seconds and streams the selected log.
 UI theme: Bootstrap 5 + Bootswatch Cyborg (dark). See `docs/admin/style_guide.md`.
