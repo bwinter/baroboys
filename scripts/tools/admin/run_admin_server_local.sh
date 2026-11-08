@@ -21,6 +21,8 @@ STATUS_JSON="$STATIC_DEST/status.json"
 NGINX_LOG_DIR="/var/log/nginx"
 NGINX_RUN_DIR="/var/run"
 NGINX_CONFIG_SOURCE="$REPO_ROOT/scripts/dependencies/nginx/assets/nginx.conf"
+LOCAL_NGINX_USER="$(whoami)"
+LOCAL_NGINX_GROUP="$(id -gn)"
 
 # Function to clean up on SIGINT
 cleanup() {
@@ -73,7 +75,10 @@ sudo find "$STATIC_DEST" "$TEMPLATE_DEST" -type d -exec chmod 755 {} +
 
 # === Install nginx.conf ===
 echo "📝 Installing nginx.conf to $NGINX_CONF_MAIN..."
-sudo cp "$NGINX_CONFIG_SOURCE" "$NGINX_CONF_MAIN"
+# Production uses Debian's www-data account. Homebrew Nginx on macOS runs
+# under the local account instead, so derive a local-only config copy.
+sed "s/^user www-data;$/user $LOCAL_NGINX_USER $LOCAL_NGINX_GROUP;/" "$NGINX_CONFIG_SOURCE" \
+  | sudo tee "$NGINX_CONF_MAIN" >/dev/null
 
 # === Install .htpasswd ===
 echo "🔐 Generating .htpasswd from server-password..."
@@ -98,8 +103,6 @@ sudo truncate -s 0 "$NGINX_LOG_DIR/error.log" || true
 
 # === Start Flask ===
 echo "🚀 Starting Flask admin server..."
-FLASK_ENV=development python3 "$ADMIN_DIR/admin_server.py" &
-FLASK_PID=$!
 
 # === Start nginx (manual) ===
 echo "🌐 Starting nginx manually..."
@@ -114,7 +117,9 @@ echo "   Flask:  http://localhost:5000"
 echo "   Nginx:  http://localhost:8080"
 echo "   Ctrl+C to stop..."
 
-# === Wait ===
-wait "$FLASK_PID"
+# Keep Flask in the foreground so make admin-local has one obvious process to
+# interrupt and restart. The SIGINT trap above still cleans up Nginx and any
+# process left on the service ports.
+FLASK_ENV=development python3 "$ADMIN_DIR/admin_server.py"
 
 echo -e "\n✅ Done"
