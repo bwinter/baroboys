@@ -76,6 +76,28 @@
         #status-output {
             height: 220px;
         }
+
+        /* Keep the expandable status heading readable when the card is
+           narrower than the heading plus its controls. */
+        .status-summary {
+            gap: 0.5rem 1rem;
+        }
+
+        .status-summary-title {
+            min-width: 0;
+            flex: 1 1 12rem;
+            line-height: 1.4;
+        }
+
+        .status-summary-controls {
+            flex: 0 0 auto;
+        }
+
+        @media (max-width: 480px) {
+            .status-summary-controls {
+                flex-basis: 100%;
+            }
+        }
     </style>
 </head>
 <body class="bg-black py-4">
@@ -201,13 +223,13 @@
                  surface — hidden by default; expand on demand. The parsed
                  fields are surfaced in the health banner + summary card. -->
             <details class="card shadow-sm border-secondary mt-3" id="status-card">
-                <summary class="card-header fw-semibold d-flex align-items-center justify-content-between"
+                <summary class="card-header fw-semibold d-flex align-items-center justify-content-between status-summary"
                          style="cursor: pointer;">
-                    <span>
+                    <span class="status-summary-title">
                         <i class="bi bi-bar-chart-line text-success me-2"></i> Server Raw Status
                         <span class="text-muted small ms-2">(click to expand)</span>
                     </span>
-                    <div class="d-flex align-items-center gap-2">
+                    <div class="d-flex align-items-center gap-2 status-summary-controls">
                         <span class="text-warning small fw-semibold d-none"
                               id="status-offline-msg">Server Offline</span>
                         <button class="btn btn-sm btn-outline-dark" id="toggle-status-refresh"
