@@ -24,8 +24,6 @@
             scrollbar-color: var(--bs-secondary) var(--bs-dark);
         }
 
-        .card.refreshing-green,
-        .card.refreshing-blue,
         .card.shutting-down,
         .card.disconnected-orange {
             border-radius: var(--bs-border-radius-sm);
@@ -36,26 +34,18 @@
             border-color 0.5s ease-in-out;
         }
 
-        .card.refreshing-green {
-            border-color: var(--bs-success) !important;
-            box-shadow: 0 0 4px 2px var(--bs-success), 0 0 12px 4px var(--bs-success);
-        }
-
-        .card.refreshing-blue {
-            border-color: var(--bs-primary) !important;
-            box-shadow: 0 0 4px 2px var(--bs-primary), 0 0 12px 4px var(--bs-primary);
-        }
-
         .card.shutting-down,
         .card.disconnected-orange {
             border-color: var(--bs-warning) !important;
             box-shadow: 0 0 4px 2px var(--bs-warning), 0 0 12px 4px var(--bs-warning);
         }
 
-        #status-refresh-label.glow-text {
-            color: var(--bs-success) !important;
-            opacity: 0.9;
-            transition: color 0.5s ease-in-out;
+        .refreshing-icon {
+            animation: status-spin 0.9s linear infinite;
+        }
+
+        @keyframes status-spin {
+            to { transform: rotate(360deg); }
         }
 
         .terminal-block {
@@ -77,6 +67,179 @@
             height: 220px;
         }
 
+        .card {
+            border-radius: 0.65rem;
+        }
+
+        .card-header {
+            letter-spacing: 0.01em;
+        }
+
+        #health-card {
+            background: linear-gradient(115deg, rgba(13, 110, 253, 0.12), rgba(0, 0, 0, 0.1));
+        }
+
+        #health-card .card-body {
+            gap: 0.75rem;
+        }
+
+        #health-updated {
+            min-width: 5.5rem;
+        }
+
+        .health-meter {
+            margin-top: 0.7rem;
+            max-width: 30rem;
+        }
+
+        .health-meter .summary-meter-note {
+            margin-left: 0;
+        }
+
+        .connection-address {
+            background: rgba(13, 202, 240, 0.07);
+            border: 1px solid rgba(13, 202, 240, 0.2);
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+        }
+
+        .summary-section-label {
+            color: var(--bs-secondary-color);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            margin-bottom: 0.35rem;
+            text-transform: uppercase;
+        }
+
+        .summary-group {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 0.5rem;
+            padding: 0.65rem 0.75rem;
+        }
+
+        .summary-group + .summary-group {
+            margin-top: 0.65rem;
+        }
+
+        #summary-tabs .nav-link {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 0.375rem;
+            color: var(--bs-light);
+            font-size: 0.78rem;
+        }
+
+        #summary-tabs .nav-link.active {
+            background: rgba(255, 255, 255, 0.14);
+            border-color: rgba(255, 255, 255, 0.28);
+            color: var(--bs-light);
+        }
+
+        .summary-row {
+            gap: 1rem;
+            min-height: 2rem;
+        }
+
+        .summary-row > span:first-child {
+            min-width: 0;
+        }
+
+        .summary-value {
+            max-width: 62%;
+            overflow-wrap: anywhere;
+            text-align: right;
+        }
+
+        .cpu-meter {
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            height: 0.35rem;
+            margin: 0.2rem 0 0.15rem 1.65rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .cpu-meter-fill {
+            background: var(--bs-success);
+            border-radius: inherit;
+            height: 100%;
+            min-width: 2px;
+            transition: width 0.4s ease, background-color 0.4s ease;
+        }
+
+        .cpu-meter-fill.above-threshold {
+            background: var(--bs-warning);
+        }
+
+        .cpu-meter-threshold {
+            background: var(--bs-warning);
+            height: 100%;
+            position: absolute;
+            top: 0;
+            width: 2px;
+        }
+
+        .summary-meter-note {
+            color: var(--bs-secondary-color);
+            display: block;
+            font-size: 0.7rem;
+            margin-left: 1.65rem;
+        }
+
+        .action-groups {
+            display: grid;
+            gap: 0.7rem;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .action-group {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 0.5rem;
+            min-width: 0;
+            padding: 0.65rem;
+        }
+
+        .action-group-title {
+            color: var(--bs-secondary-color);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .action-group-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .action-group-buttons form,
+        .action-group-buttons > div {
+            min-width: 0;
+        }
+
+        .action-group-buttons .btn {
+            align-items: center;
+            display: flex;
+            gap: 0.35rem;
+            justify-content: center;
+            line-height: 1.2;
+            min-height: 4.5rem;
+            padding: 0.55rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        @media (max-width: 480px) {
+            .action-groups {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Keep the expandable status heading readable when the card is
            narrower than the heading plus its controls. */
         .status-summary {
@@ -84,9 +247,10 @@
         }
 
         .status-summary-title {
-            min-width: 0;
-            flex: 1 1 12rem;
+            flex: 1 1 auto;
             line-height: 1.4;
+            min-width: 0;
+            white-space: nowrap;
         }
 
         .status-summary-controls {
@@ -94,8 +258,13 @@
         }
 
         @media (max-width: 480px) {
+            .status-summary-title {
+                flex-basis: 100%;
+            }
+
             .status-summary-controls {
                 flex-basis: 100%;
+                justify-content: flex-end;
             }
         }
     </style>
@@ -116,6 +285,13 @@
             <div class="flex-grow-1">
                 <h3 class="mb-1" id="health-title">Checking…</h3>
                 <p class="mb-0 small text-muted" id="health-detail">Loading server status…</p>
+                <div class="health-meter">
+                    <div class="cpu-meter" aria-label="CPU usage relative to idle threshold">
+                        <div class="cpu-meter-fill" id="health-cpu-bar"></div>
+                        <div class="cpu-meter-threshold" id="health-cpu-threshold-marker"></div>
+                    </div>
+                    <small class="summary-meter-note" id="health-cpu-meter-note">CPU threshold unavailable</small>
+                </div>
             </div>
             <small class="text-muted text-end" id="health-updated">–</small>
         </div>
@@ -129,7 +305,8 @@
         </div>
         <div class="card-body">
             <p class="small text-muted mb-2">Use the game's multiplayer menu to add this server address:</p>
-            <div class="d-flex align-items-center gap-2 flex-wrap">
+            <div class="connection-address d-flex align-items-center gap-2 flex-wrap">
+                <span class="small text-muted">Server address</span>
                 <code class="fs-5 text-info user-select-all" id="connection-string">…</code>
                 <button class="btn btn-sm btn-outline-secondary" id="copy-connection" type="button">
                     <i class="bi bi-clipboard me-1"></i> <span id="copy-label">Copy</span>
@@ -143,22 +320,50 @@
         <div class="col-md-4">
             <div class="card shadow-sm border-secondary" id="shutdown-card">
                 <div class="card-header fw-semibold d-flex align-items-center">
-                    <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i> Server Actions
+                    <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i> Actions
                 </div>
                 <div class="card-body text-center">
-                    <div class="d-flex flex-column gap-2">
-                        <form id="restart-game-form">
-                            <button class="btn btn-outline-info w-100" type="submit">
-                                <i class="bi bi-arrow-clockwise me-2"></i> Restart Game
-                            </button>
-                            <small class="d-block text-muted mt-1">Restarts the game process only; the VM stays running.</small>
-                        </form>
-                        <form id="shutdown-form">
-                            <button class="btn btn-outline-warning w-100" type="submit">
-                                <i class="bi bi-power me-2"></i> Trigger Shutdown
-                            </button>
-                            <small class="d-block text-muted mt-1">Saves the game and turns off the VM.</small>
-                        </form>
+                    <div class="action-groups">
+                        <div class="action-group">
+                            <div class="action-group-title">Server</div>
+                            <div class="action-group-buttons">
+                                <form id="shutdown-form">
+                                    <button class="btn btn-outline-warning w-100" type="submit"
+                                            aria-label="Save the game and shut down the server"
+                                            title="Saves the game and turns off the VM.">
+                                        <i class="bi bi-power"></i> Shutdown
+                                    </button>
+                                </form>
+                                <div>
+                                    <button class="btn btn-outline-secondary w-100" disabled
+                                            id="restart-vm-button"
+                                            aria-label="Restart the virtual machine, planned"
+                                            data-confirm="Restart the VM? This will disconnect players and reboot the server."
+                                            title="Reboots the VM without changing its disks. Backend action is not available yet.">
+                                        <i class="bi bi-arrow-repeat"></i> Restart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="action-group">
+                            <div class="action-group-title">Game</div>
+                            <div class="action-group-buttons">
+                                <form id="restart-game-form">
+                                    <button class="btn btn-outline-warning w-100" type="submit"
+                                            aria-label="Restart the game process"
+                                            title="Restarts the game process only; the VM stays running.">
+                                        <i class="bi bi-arrow-clockwise"></i> Restart
+                                    </button>
+                                </form>
+                                <div>
+                                    <button class="btn btn-outline-success w-100" disabled
+                                            aria-label="Save the game, planned"
+                                            title="Saves the current game state without shutting down. Backend action is not available yet.">
+                                        <i class="bi bi-cloud-arrow-up"></i> Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="mt-3 small text-warning" id="shutdown-confirm"></div>
                     <div class="mt-1 small text-info" id="restart-game-confirm"></div>
@@ -166,93 +371,97 @@
             </div>
 
             <div class="card shadow-sm border-secondary mt-3" id="summary-card">
-                <div class="card-header fw-semibold d-flex align-items-center">
-                    <i class="bi bi-info-circle-fill text-primary me-2"></i> Server Summary
-                </div>
-                <div class="card-body p-3">
-                    <ul class="list-unstyled mb-0 small">
-
-                        <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-clock-fill text-muted me-2"></i>Last Checked</span>
-                            <span class="text-muted" id="summary-time">–</span>
-                        </li>
-
-                        <!-- === System Metrics === -->
-                        <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-cpu-fill text-muted me-2"></i>CPU Usage</span>
-                            <span class="text-muted" id="summary-cpu">–</span>
-                        </li>
-                        <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-memory text-muted me-2"></i>Memory Used</span>
-                            <span class="text-muted" id="summary-ram">–</span>
-                        </li>
-
-                        <!-- === Game Health (from status.json health fields) === -->
-                        <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-controller text-muted me-2"></i>Game Process</span>
-                            <span class="text-muted" id="summary-process">–</span>
-                        </li>
-                        <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-hdd-stack text-muted me-2"></i>Game RAM</span>
-                            <span class="text-muted" id="summary-process-rss">–</span>
-                        </li>
-                        <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-shield-check text-muted me-2"></i>Services</span>
-                            <span class="text-muted" id="summary-services">–</span>
-                        </li>
-
-                        <!-- === Server State === -->
-                        <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-calendar-check-fill text-muted me-2"></i>Idle Set</span>
-                            <span class="text-muted" id="summary-idle-flag-set">–</span>
-                        </li>
-                        <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-calendar-check-fill text-muted me-2"></i>Idle Since</span>
-                            <span class="text-muted" id="summary-idle-since">–</span>
-                        </li>
-                        <li class="d-flex justify-content-between align-items-center py-1">
-                            <span><i class="bi bi-hourglass-split text-muted me-2"></i>Idle Duration</span>
-                            <span class="text-muted" id="summary-idle-minutes">–</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Raw status JSON stays available below the summary so the
-                 larger log panel can use the right-hand column. -->
-            <!-- Raw status JSON: useful for debugging but not the primary
-                 surface — hidden by default; expand on demand. The parsed
-                 fields are surfaced in the health banner + summary card. -->
-            <details class="card shadow-sm border-secondary mt-3" id="status-card">
-                <summary class="card-header fw-semibold d-flex align-items-center justify-content-between status-summary"
-                         style="cursor: pointer;">
+                <div class="card-header fw-semibold d-flex align-items-center justify-content-between status-summary">
                     <span class="status-summary-title">
-                        <i class="bi bi-bar-chart-line text-success me-2"></i> Server Raw Status
-                        <span class="text-muted small ms-2">(click to expand)</span>
+                        Server
                     </span>
                     <div class="d-flex align-items-center gap-2 status-summary-controls">
-                        <span class="text-warning small fw-semibold d-none"
-                              id="status-offline-msg">Server Offline</span>
-                        <button class="btn btn-sm btn-outline-dark" id="toggle-status-refresh"
-                                title="Toggle auto-refresh">
-                            <i class="bi bi-pause me-1"></i> Pause Status
+                        <ul class="nav nav-tabs border-0" id="summary-tabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active py-1 px-2" data-panel="details-panel" type="button">
+                                    Details
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link py-1 px-2" data-panel="raw-status-panel" type="button">
+                                    Raw
+                                </button>
+                            </li>
+                        </ul>
+                        <button class="btn btn-sm btn-outline-secondary" id="toggle-status-refresh"
+                                aria-label="Pause status updates" title="Pause status updates">
+                            <i class="bi bi-pause-fill" id="status-refresh-icon"></i>
                         </button>
                     </div>
-                </summary>
-                <div class="card-body">
-                    <div class="terminal-block" id="status-output">No status loaded yet.</div>
-                    <small class="text-muted d-block mt-2" id="status-refresh-label">
-                        Auto-refreshing status (every 5 seconds)
-                    </small>
-                    <small class="text-muted d-block mt-2" id="summary-refresh-timestamp"></small>
                 </div>
-            </details>
+                <div class="card-body p-3">
+                    <div id="details-panel">
+                        <div class="summary-group">
+                            <div class="summary-section-label">System</div>
+                            <div class="summary-row d-flex justify-content-between align-items-center py-1">
+                                <span><i class="bi bi-clock-fill text-muted me-2"></i>Last Checked</span>
+                                <span class="summary-value text-muted" id="summary-time">–</span>
+                            </div>
+                            <div class="summary-row d-flex justify-content-between align-items-center py-1">
+                                <span><i class="bi bi-cpu-fill text-muted me-2"></i>CPU Usage</span>
+                                <span class="summary-value text-muted" id="summary-cpu">–</span>
+                            </div>
+                            <div class="summary-row d-flex justify-content-between align-items-center py-1">
+                                <span><i class="bi bi-memory text-muted me-2"></i>Memory Used</span>
+                                <span class="summary-value text-muted" id="summary-ram">–</span>
+                            </div>
+                        </div>
+
+                        <div class="summary-group">
+                            <div class="summary-section-label">Game</div>
+                            <div class="summary-row d-flex justify-content-between align-items-center py-1">
+                                <span><i class="bi bi-controller text-muted me-2"></i>Game Process</span>
+                                <span class="summary-value text-muted" id="summary-process">–</span>
+                            </div>
+                            <div class="summary-row d-flex justify-content-between align-items-center py-1">
+                                <span><i class="bi bi-hdd-stack text-muted me-2"></i>Game RAM</span>
+                                <span class="summary-value text-muted" id="summary-process-rss">–</span>
+                            </div>
+                            <div class="summary-row d-flex justify-content-between align-items-center py-1">
+                                <span><i class="bi bi-shield-check text-muted me-2"></i>Services</span>
+                                <span class="summary-value text-muted" id="summary-services">–</span>
+                            </div>
+                        </div>
+
+                        <div class="summary-group">
+                            <div class="summary-section-label">Idle shutdown</div>
+                            <div class="summary-row d-flex justify-content-between align-items-center py-1">
+                                <span><i class="bi bi-calendar-check-fill text-muted me-2"></i>Idle Set</span>
+                                <span class="summary-value text-muted" id="summary-idle-flag-set">–</span>
+                            </div>
+                            <div class="summary-row d-flex justify-content-between align-items-center py-1">
+                                <span><i class="bi bi-calendar-check-fill text-muted me-2"></i>Idle Since</span>
+                                <span class="summary-value text-muted" id="summary-idle-since">–</span>
+                            </div>
+                            <div class="summary-row d-flex justify-content-between align-items-center py-1">
+                                <span><i class="bi bi-hourglass-split text-muted me-2"></i>Idle Duration</span>
+                                <span class="summary-value text-muted" id="summary-idle-minutes">–</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-none" id="raw-status-panel">
+                        <span class="text-warning small fw-semibold d-none" id="status-offline-msg">Server Offline</span>
+                        <div class="terminal-block" id="status-output">No status loaded yet.</div>
+                        <small class="text-muted d-block mt-2" id="status-refresh-label">
+                            Auto-refreshing status (every 5 seconds)
+                        </small>
+                        <small class="text-muted d-block mt-2" id="summary-refresh-timestamp"></small>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-8">
             <div class="card shadow-sm border-secondary mb-3" id="log-card">
                 <div class="card-header fw-semibold d-flex align-items-center justify-content-between">
                     <span><i class="bi bi-journal-text text-info me-2"></i> Logs</span>
-                    <button class="btn btn-sm btn-outline-dark" id="toggle-log-refresh" title="Toggle auto-refresh">
-                        <i class="bi bi-pause me-1"></i> Pause Logs
+                    <button class="btn btn-sm btn-outline-dark" id="toggle-log-refresh"
+                            aria-label="Pause log updates" title="Pause log updates">
+                        <i class="bi bi-pause-fill" id="log-refresh-icon"></i>
                     </button>
                 </div>
                 <div class="card-body">
@@ -282,13 +491,14 @@
     // === Card Containers ===
     const logCard = document.getElementById('log-card');
     const shutdownCard = document.getElementById('shutdown-card');
-    const statusCard = document.getElementById('status-card');
     const summaryCard = document.getElementById('summary-card');
-    const healthCard = document.getElementById('health-card');
 
     // === Log Section ===
     const output = document.getElementById('log-output');
     const select = document.getElementById('log-select');
+    const logRefreshButton = document.getElementById('toggle-log-refresh');
+    const logRefreshIcon = document.getElementById('log-refresh-icon');
+    let logAutoRefreshEnabled = true;
 
     // === Shutdown Section ===
     const shutdownForm = document.getElementById('shutdown-form');
@@ -296,12 +506,17 @@
 
     // === Status Section ===
     const statusOutput = document.getElementById('status-output');
-    const refreshLabel = document.getElementById('status-refresh-label');
     const offlineMsg = document.getElementById('status-offline-msg');
+    const statusRefreshButton = document.getElementById('toggle-status-refresh');
+    const statusRefreshIcon = document.getElementById('status-refresh-icon');
+    let statusAutoRefreshEnabled = true;
 
     // === Summary Fields ===
     const summaryTime = document.getElementById('summary-time');
     const summaryCPU = document.getElementById('summary-cpu');
+    const healthCPUBar = document.getElementById('health-cpu-bar');
+    const healthCPUThresholdMarker = document.getElementById('health-cpu-threshold-marker');
+    const healthCPUMeterNote = document.getElementById('health-cpu-meter-note');
     const summaryRAM = document.getElementById('summary-ram');
     const summaryProcess = document.getElementById('summary-process');
     const summaryProcessRSS = document.getElementById('summary-process-rss');
@@ -319,11 +534,6 @@
     // === Metadata Footer ===
     const refreshTimestamp = document.getElementById('summary-refresh-timestamp');
 
-    function blinkElement(el, className, duration = 1000) {
-        el.classList.add(className);
-        setTimeout(() => el.classList.remove(className), duration);
-    }
-
     function formatLocalTime(timestamp) {
         if (!timestamp) return "Unknown";
         const date = new Date(timestamp);
@@ -338,15 +548,35 @@
         return value == null ? "n/a" : new Intl.NumberFormat().format(value);
     }
 
+    async function keepRefreshIndicatorVisible(startedAt) {
+        const remaining = 300 - (performance.now() - startedAt);
+        if (remaining > 0) {
+            await new Promise(resolve => setTimeout(resolve, remaining));
+        }
+    }
+
     async function loadLog() {
-        blinkElement(logCard, 'refreshing-green');
-        const val = select.value;
-        const res = await fetch(`/api/logs/${val}`);
-        output.textContent = await res.text();
-        output.scrollTop = output.scrollHeight;
+        const refreshStartedAt = performance.now();
+        logRefreshIcon.className = 'bi bi-arrow-clockwise refreshing-icon';
+        logRefreshButton.setAttribute('aria-busy', 'true');
+        try {
+            const val = select.value;
+            const res = await fetch(`/api/logs/${val}`);
+            output.textContent = await res.text();
+            output.scrollTop = output.scrollHeight;
+        } finally {
+            await keepRefreshIndicatorVisible(refreshStartedAt);
+            logRefreshButton.setAttribute('aria-busy', 'false');
+            logRefreshIcon.className = logAutoRefreshEnabled
+                ? 'bi bi-pause-fill'
+                : 'bi bi-play-fill';
+        }
     }
 
     async function refreshStatus() {
+        const refreshStartedAt = performance.now();
+        statusRefreshIcon.className = 'bi bi-arrow-clockwise refreshing-icon';
+        statusRefreshButton.setAttribute('aria-busy', 'true');
         try {
             const res = await fetch('/status.json');
             const text = await res.text();
@@ -361,6 +591,30 @@
                 summaryCPU.innerText = threshold == null
                     ? `${cpu}%`
                     : `${cpu}% / ${threshold}% idle threshold`;
+                const cpuValue = data.cpu_percent == null ? NaN : Number(data.cpu_percent);
+                const thresholdValue = data.cpu_threshold_percent == null
+                    ? NaN
+                    : Number(data.cpu_threshold_percent);
+                if (Number.isFinite(cpuValue)) {
+                    const meterCPU = Math.max(0, Math.min(100, cpuValue));
+                    healthCPUBar.style.width = `${meterCPU}%`;
+                    healthCPUBar.classList.toggle(
+                        'above-threshold',
+                        Number.isFinite(thresholdValue) && cpuValue >= thresholdValue
+                    );
+                } else {
+                    healthCPUBar.style.width = '0%';
+                    healthCPUBar.classList.remove('above-threshold');
+                }
+                if (Number.isFinite(thresholdValue)) {
+                    healthCPUThresholdMarker.style.left =
+                        `${Math.max(0, Math.min(100, thresholdValue))}%`;
+                    healthCPUMeterNote.textContent =
+                        `Idle threshold: ${thresholdValue.toFixed(2)}%`;
+                } else {
+                    healthCPUThresholdMarker.style.left = '-2px';
+                    healthCPUMeterNote.textContent = 'CPU threshold unavailable';
+                }
                 summaryRAM.innerText = `${data.mem_percent?.toFixed(1) ?? "Unknown"}%`;
                 summaryProcess.innerText = data.process_alive ? "✅ alive" : "❌ not running";
                 summaryProcessRSS.innerText =
@@ -417,9 +671,11 @@
 
         // === Visual Feedback ===
         statusOutput.scrollTop = statusOutput.scrollHeight;
-        blinkElement(summaryCard, 'refreshing-blue');
-        blinkElement(statusCard, 'refreshing-green');
-        blinkElement(refreshLabel, 'glow-text');
+        await keepRefreshIndicatorVisible(refreshStartedAt);
+        statusRefreshButton.setAttribute('aria-busy', 'false');
+        statusRefreshIcon.className = statusAutoRefreshEnabled
+            ? 'bi bi-pause-fill'
+            : 'bi bi-play-fill';
     }
 
 
@@ -427,7 +683,6 @@
         const res = await fetch('/api/ping');
         if (!res.ok) throw new Error("Ping failed");
 
-        statusCard.classList.remove('disconnected-orange');
         shutdownCard.classList.remove('disconnected-orange');
         logCard.classList.remove('disconnected-orange');
         summaryCard.classList.remove('disconnected-orange');
@@ -449,6 +704,7 @@
 
     shutdownForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        if (!confirm('Save the game and shut down the server? This disconnects players.')) return;
         let pulseCount = 0;
         const interval = setInterval(() => {
             shutdownCard.classList.toggle('shutting-down');
@@ -465,19 +721,48 @@
             : `⚠️ ${data.status} (see logs for details)`;
     });
 
-    let logAutoRefreshEnabled = true;
-    let statusAutoRefreshEnabled = true;
-
-    document.getElementById('toggle-log-refresh').addEventListener('click', () => {
-        logAutoRefreshEnabled = !logAutoRefreshEnabled;
-        document.getElementById('toggle-log-refresh').innerHTML =
-            logAutoRefreshEnabled ? '<i class="bi bi-pause me-1"></i> Pause Logs' : '<i class="bi bi-play me-1"></i> Resume Logs';
+    document.getElementById('restart-vm-button').addEventListener('click', (e) => {
+        const message = e.currentTarget.dataset.confirm;
+        if (message && !confirm(message)) e.preventDefault();
     });
 
-    document.getElementById('toggle-status-refresh').addEventListener('click', () => {
+    document.querySelectorAll('#summary-tabs [data-panel]').forEach((tab) => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('#summary-tabs .nav-link').forEach((item) => {
+                item.classList.toggle('active', item === tab);
+            });
+            document.querySelectorAll('#details-panel, #raw-status-panel').forEach((panel) => {
+                panel.classList.toggle('d-none', panel.id !== tab.dataset.panel);
+            });
+        });
+    });
+
+    logRefreshButton.addEventListener('click', () => {
+        logAutoRefreshEnabled = !logAutoRefreshEnabled;
+        logRefreshIcon.className = logAutoRefreshEnabled
+            ? 'bi bi-pause-fill'
+            : 'bi bi-play-fill';
+        logRefreshButton.setAttribute(
+            'aria-label',
+            logAutoRefreshEnabled ? 'Pause log updates' : 'Resume log updates'
+        );
+        logRefreshButton.title = logAutoRefreshEnabled
+            ? 'Pause log updates'
+            : 'Resume log updates';
+    });
+
+    statusRefreshButton.addEventListener('click', () => {
         statusAutoRefreshEnabled = !statusAutoRefreshEnabled;
-        document.getElementById('toggle-status-refresh').innerHTML =
-            statusAutoRefreshEnabled ? '<i class="bi bi-pause me-1"></i> Pause Status' : '<i class="bi bi-play me-1"></i> Resume Status';
+        statusRefreshIcon.className = statusAutoRefreshEnabled
+            ? 'bi bi-pause-fill'
+            : 'bi bi-play-fill';
+        statusRefreshButton.setAttribute(
+            'aria-label',
+            statusAutoRefreshEnabled ? 'Pause status updates' : 'Resume status updates'
+        );
+        statusRefreshButton.title = statusAutoRefreshEnabled
+            ? 'Pause status updates'
+            : 'Resume status updates';
     });
 
     // Populate the log dropdown + dashboard title from /api/manifest. The
