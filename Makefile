@@ -38,13 +38,16 @@ REMOTE_SHUTDOWN_CMD := sudo systemctl restart game-shutdown.service
 
 .DEFAULT_GOAL := help
 
-.PHONY: bootstrap apply destroy save-backup-bootstrap
+.PHONY: bootstrap apply destroy save-backup-bootstrap lint-tools
 
 bootstrap: terraform-bootstrap iam-bootstrap static-ip-bootstrap save-backup-bootstrap vm-control-bootstrap
 
 apply: $(addprefix terraform-apply-, $(GAMES))
 
 destroy: $(addprefix terraform-destroy-, $(GAMES))
+
+lint-tools:
+	./$(TOOLS_DIR)/install_lint_tools.sh
 
 
 # =======================
@@ -336,6 +339,7 @@ help:
 	@echo "  make build                           - Build all Packer images in order"
 	@echo "  make apply                           - Apply all games"
 	@echo "  make destroy                         - Destroy all games"
+	@echo "  make lint-tools                      - Install or repair local lint tools (macOS/Homebrew)"
 	@echo ""
 
 	@echo "🌍 Terraform:"
