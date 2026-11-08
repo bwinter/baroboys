@@ -5,7 +5,7 @@ set -euxo pipefail
 STATIC_NGINX="/opt/baroboys/static"
 STATUS_JSON="$STATIC_NGINX/status.json"
 IDLE_FLAG="/tmp/server_idle_since.flag"
-COOLDOWN_MINUTES=30
+COOLDOWN_MINUTES=60
 # Express the cutoff as total CPU work for one vCPU. The effective aggregate
 # threshold scales down on larger VMs so the same workload is classified the
 # same way across machine types (14 / 2 vCPUs = 7%; 14 / 4 = 3.5%).

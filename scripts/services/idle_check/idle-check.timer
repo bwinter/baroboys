@@ -1,9 +1,9 @@
 [Unit]
-Description=Every 5 minutes, check if server is idle.
+Description=Every minute, check if server is idle.
 
 [Timer]
-OnBootSec=5min
-OnUnitActiveSec=5min
+OnBootSec=1min
+OnUnitActiveSec=1min
 Persistent=true
 Unit=idle-check.service
 

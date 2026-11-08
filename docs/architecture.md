@@ -74,7 +74,7 @@ one source of truth for project, zone, machine type, and image names.
 ## Terraform
 
 `terraform/main.tf` provisions:
-- One GCE VM per game (`vrising` or `barotrauma`, `n2-custom-2-6144`, `us-west1-b`, 20GB pd-ssd)
+- One GCE VM per game (`vrising` or `barotrauma`, `e2-standard-2`, `us-west1-b`, 20GB pd-ssd)
 - Generic UDP/TCP firewall rules driven by `var.game_ports_udp` / `var.game_ports_tcp` (count
   guards skip the resource when the list is empty). Workspace-scoped admin firewall on TCP 8080
   targets the `admin` tag both VMs carry.
@@ -212,14 +212,14 @@ nginx log read access. No other elevated permissions.
 
 ## Idle Check / Auto-Shutdown
 
-`idle_check.sh` runs every 5 minutes via systemd timer:
+`idle_check.sh` runs every minute via systemd timer:
 
 1. Measures CPU with `mpstat 1 1` (1-second sample)
 2. Reads the online vCPU count with `getconf _NPROCESSORS_ONLN` and computes the effective CPU threshold as `14 / vCPU_count` (7% on 2 vCPUs, 3.5% on 4 vCPUs)
 3. If CPU exceeds the effective threshold: clears idle flag, continues
 4. If CPU is at or below the effective threshold: creates `/tmp/server_idle_since.flag` if not present; tracks elapsed minutes
 5. Writes `/opt/baroboys/static/status.json` (served directly by Nginx, read by admin panel)
-6. If idle ≥ 30 minutes: triggers `game-shutdown.service`
+6. If idle ≥ 60 minutes: triggers `game-shutdown.service`
 
 Status JSON fields:
 

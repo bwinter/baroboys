@@ -112,7 +112,7 @@ The VM boots, pulls the latest repo, and starts the game automatically (~3-5 min
 
 ### 7. Shut down
 
-The VM auto-shuts down after 30 minutes of CPU idle. To shut down manually:
+The VM auto-shuts down after 60 minutes of CPU idle. To shut down manually:
 
 ```bash
 make game-shutdown-VRising       # graceful: save → git push → poweroff
