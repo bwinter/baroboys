@@ -14,17 +14,13 @@
     <style>
         .card.shutting-down,
         .card.disconnected-orange {
+            border-color: var(--bs-warning) !important;
+            box-shadow: 0 0 4px 2px var(--bs-warning), 0 0 12px 4px var(--bs-warning);
             opacity: 0.9;
             filter: brightness(1.1);
             transition: color 0.5s ease-in-out,
-            box-shadow 0.5s ease-in-out,
-            border-color 0.5s ease-in-out;
-        }
-
-        .card.shutting-down,
-        .card.disconnected-orange {
-            border-color: var(--bs-warning) !important;
-            box-shadow: 0 0 4px 2px var(--bs-warning), 0 0 12px 4px var(--bs-warning);
+                box-shadow 0.5s ease-in-out,
+                border-color 0.5s ease-in-out;
         }
 
         .refreshing-icon {
@@ -67,6 +63,13 @@
             min-width: 5.5rem;
         }
 
+        .summary-meter-note {
+            color: var(--bs-secondary-color);
+            display: block;
+            font-size: 0.7rem;
+            margin-left: 1.65rem;
+        }
+
         .health-meter {
             margin-top: 0.7rem;
             max-width: 30rem;
@@ -92,7 +95,7 @@
         }
 
         .cpu-meter {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgb(255 255 255 / 12%);
             border-radius: 999px;
             height: 0.35rem;
             margin: 0.2rem 0 0.15rem 1.65rem;
@@ -120,13 +123,6 @@
             width: 2px;
         }
 
-        .summary-meter-note {
-            color: var(--bs-secondary-color);
-            display: block;
-            font-size: 0.7rem;
-            margin-left: 1.65rem;
-        }
-
         .summary-group + .summary-group {
             margin-top: 1rem;
         }
@@ -152,7 +148,7 @@
             display: none;
         }
 
-        @media (max-width: 480px) {
+        @media (width <= 480px) {
             .action-groups {
                 grid-template-columns: 1fr;
             }
@@ -175,7 +171,7 @@
             flex: 0 0 auto;
         }
 
-        @media (max-width: 480px) {
+        @media (width <= 480px) {
             .status-summary-title {
                 flex-basis: 100%;
             }
@@ -602,7 +598,7 @@
             let data;
             try {
                 data = JSON.parse(text);
-            } catch (parseErr) {
+            } catch {
                 const detail = 'The status response was invalid. Check the admin logs.';
                 statusOutput.textContent = `⚠️ ${detail}\n\n${text}`;
                 showStatusUnavailable(detail);
