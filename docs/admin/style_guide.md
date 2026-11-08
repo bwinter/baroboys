@@ -160,3 +160,40 @@ These states override any default or `.border-*` classes. They exist purely for 
 ## 🧠 Design Intent Reminder
 
 This dashboard reflects a **developer-friendly**, clean, minimalist admin experience. Every style exists to support clarity, not decoration. Avoid visual clutter, preserve whitespace, and **trust Cyborg + Bootstrap defaults unless there's a clear need to override.**
+
+## 🔍 Lightweight Validation
+
+The admin page intentionally remains a small HTML file rather than adopting a frontend build
+system. These optional command-line checks provide useful feedback without requiring a full
+toolchain:
+
+```bash
+# HTML structure
+htmlhint scripts/services/admin_server/src/static/admin.html
+
+# Inline CSS, using the checked-in standard configuration
+sed -n '/<style>/,/<\/style>/p' scripts/services/admin_server/src/static/admin.html \
+  | sed '1d;$d' \
+  | stylelint --stdin --stdin-filename admin.css --config .stylelintrc.json
+```
+
+The Stylelint configuration extends `stylelint-config-standard`. Install that preset separately
+when Stylelint is installed globally:
+
+```bash
+npm install --global stylelint-config-standard
+```
+
+For the inline JavaScript, the lightweight syntax check is:
+
+```bash
+node - <<'NODE'
+const fs = require('fs');
+const html = fs.readFileSync('scripts/services/admin_server/src/static/admin.html', 'utf8');
+new Function(html.match(/<script>([\\s\\S]*?)<\\/script>/)[1]);
+console.log('admin JS syntax: OK');
+NODE
+```
+
+These are advisory scans, not a required frontend build step. Keep the page simple and use the
+checks to catch clear structural or syntax problems, not to justify broad formatting churn.
