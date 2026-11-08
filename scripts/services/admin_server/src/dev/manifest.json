@@ -8,15 +8,7 @@
   "save_bucket_backup_enabled": false,
   "uses_wine": false,
   "log_files": [
-    "game.log",
-    "game_startup.log",
-    "game_refresh.log",
-    "game_shutdown.log",
-    "game_unit_refresh.log",
-    "admin_server.log",
-    "refresh_repo.log",
-    "idle_check.log",
-    "infrastructure.log"
+    "game.log"
   ],
   "ports": {
     "udp": [2456, 2457, 2458],
