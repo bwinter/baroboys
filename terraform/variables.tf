@@ -46,7 +46,7 @@ variable "machine_name" {
 variable "machine_type" {
   description = "Machine Type"
   type        = string
-  default     = "n2-custom-2-6144"
+  default     = "e2-standard-2"
 }
 
 variable "gcp_image_family" {
