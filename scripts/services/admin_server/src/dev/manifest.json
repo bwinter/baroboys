@@ -1,0 +1,28 @@
+{
+  "game_dir": "/dev/baroboys/Valheim",
+  "game_name": "Valheim",
+  "admin_username": "Donaldsheim",
+  "process_name": "valheim_server.x86_64",
+  "save_name": "Donaldsheim",
+  "save_path": "/dev/baroboys/Valheim/worlds_local/Donaldsheim",
+  "save_bucket_backup_enabled": false,
+  "uses_wine": false,
+  "log_files": [
+    "game.log",
+    "game_startup.log",
+    "game_refresh.log",
+    "game_shutdown.log",
+    "game_unit_refresh.log",
+    "admin_server.log",
+    "refresh_repo.log",
+    "idle_check.log",
+    "infrastructure.log"
+  ],
+  "ports": {
+    "udp": [2456, 2457, 2458],
+    "tcp": []
+  },
+  "accent_color": "#3b82f6",
+  "process_ram_mb_min": 500,
+  "templates": []
+}

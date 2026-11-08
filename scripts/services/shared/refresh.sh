@@ -51,9 +51,8 @@ manifest = {
         "udp": src.get("game_ports_udp", []),
         "tcp": src.get("game_ports_tcp", []),
     },
-    "accent_color":  src.get("accent_color", "#0d6efd"),
-    # Treat a missing or explicit null RAM floor as the same default.
-    "process_ram_mb_min": src.get("process_ram_mb_min") or 200,
+    "accent_color":  src["accent_color"],
+    "process_ram_mb_min": src["process_ram_mb_min"],
     "templates":     src.get("templates", []),
 }
 print(json.dumps(manifest, indent=2))

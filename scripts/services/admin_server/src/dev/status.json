@@ -1,0 +1,15 @@
+{
+  "timestamp_utc": "2026-11-07T00:00:00Z",
+  "game_name": "Valheim",
+  "cpu_percent": 3.2,
+  "vcpu_count": 2,
+  "cpu_threshold_percent": 7.0,
+  "mem_percent": 22.5,
+  "services_healthy": true,
+  "process_alive": true,
+  "process_rss_mb": 1234,
+  "process_ram_mb_min": 500,
+  "idle_flag_set": false,
+  "idle_since": "",
+  "idle_duration_minutes": 0
+}

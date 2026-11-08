@@ -50,23 +50,22 @@ sudo mkdir -p "$STATIC_DEST" "$TEMPLATE_DEST"
 sudo cp "$STATIC_SOURCE/"* "$STATIC_DEST/"
 sudo cp "$TEMPLATE_SOURCE/"* "$TEMPLATE_DEST/"
 
-# === Dummy status.json ===
-echo "📄 Creating dummy status.json at $STATUS_JSON..."
+# === Fixture status.json ===
+echo "📄 Installing dev status fixture at $STATUS_JSON..."
 NOW_ISO="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
-IDLE_SINCE_ISO="$(date -u -v -45M +"%Y-%m-%dT%H:%M:%SZ")"
-sudo tee "$STATUS_JSON" >/dev/null <<EOF
-{
-  "timestamp_utc": "$NOW_ISO",
-  "cpu_percent": 30,
-  "idle_flag_set": true,
-  "idle_duration_minutes": 45,
-  "idle_since": "$IDLE_SINCE_ISO",
-  "players": {
-    "count": null,
-    "list": []
-  }
-}
-EOF
+sudo cp "$ADMIN_DIR/dev/status.json" "$STATUS_JSON"
+sudo python3 - "$STATUS_JSON" "$NOW_ISO" <<'PY'
+import json
+import sys
+
+path, timestamp = sys.argv[1:]
+with open(path, encoding="utf-8") as f:
+    status = json.load(f)
+status["timestamp_utc"] = timestamp
+with open(path, "w", encoding="utf-8") as f:
+    json.dump(status, f, indent=2)
+    f.write("\n")
+PY
 
 
 sudo chown -R "$(whoami)" "$STATIC_DEST" "$TEMPLATE_DEST"
@@ -120,6 +119,6 @@ echo "   Ctrl+C to stop..."
 # Keep Flask in the foreground so make admin-local has one obvious process to
 # interrupt and restart. The SIGINT trap above still cleans up Nginx and any
 # process left on the service ports.
-FLASK_ENV=development python3 "$ADMIN_DIR/admin_server.py"
+FLASK_ENV=dev python3 "$ADMIN_DIR/admin_server.py"
 
 echo -e "\n✅ Done"

@@ -39,6 +39,10 @@ scripts/tools/barotrauma/Barotrauma-Save-Decompressor.lnk
 
 # Dev (basically temp dir)
 scripts/services/admin_server/src/dev/*
+!scripts/services/admin_server/src/dev/manifest.json
+!scripts/services/admin_server/src/dev/status.json
+!scripts/services/admin_server/src/dev/logs/
+!scripts/services/admin_server/src/dev/logs/game.log
 
 # Barofiles
 

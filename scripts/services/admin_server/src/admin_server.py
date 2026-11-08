@@ -27,23 +27,12 @@ def load_manifest():
     Terraform reads it natively; refresh.sh projects it into this manifest for
     Python and JS consumers (game name, log set, accent, ports, RAM floor).
 
-    Falls back to a minimal default if the file is missing or malformed —
-    happens in dev mode without a stub, or briefly at first boot before
-    game-refresh has run.
+    Missing or malformed manifests are configuration errors. Let Flask's
+    default error handling expose them instead of masking them with guessed
+    game metadata.
     """
-    try:
-        with open(MANIFEST_PATH, encoding="utf-8") as f:
-            return json.load(f)
-    except (OSError, json.JSONDecodeError):
-        return {
-            "game_name": "Unknown",
-            "process_name": "",
-            "uses_wine": False,
-            "log_files": [
-                "game.log", "game_startup.log", "game_refresh.log",
-                "game_shutdown.log", "game_unit_refresh.log", "admin_server.log"
-            ],
-        }
+    with open(MANIFEST_PATH, encoding="utf-8") as f:
+        return json.load(f)
 
 
 # nginx logs are subprocess-fetched (root-owned, sudo'd via tail). Not in the
@@ -135,7 +124,8 @@ def tail_log(name):
     manifest = load_manifest()
     nginx_sources = _nginx_log_sources()
 
-    if name in manifest["log_files"]:
+    dev_log_path = os.path.join(LOG_DIR, name)
+    if name in manifest["log_files"] or (ENV == "dev" and os.path.isfile(dev_log_path)):
         cmd = os.path.join(LOG_DIR, name)
     elif name in nginx_sources:
         cmd = nginx_sources[name]

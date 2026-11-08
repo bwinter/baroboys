@@ -18,22 +18,28 @@ command -v mpstat >/dev/null 2>&1 || { echo >&2 "mpstat not found. Install with:
 # === GAME MANIFEST ===
 # The manifest tells us which process to look for and which services should
 # be active. Parsed via python rather than jq to avoid an extra apt package.
-# Falls back to defaults if manifest is missing (smoke-test before first
-# game-refresh, or dev-stub scenarios). Use a non-whitespace delimiter because
-# the process name may be empty; Bash `read` collapses adjacent whitespace and
-# would otherwise shift the remaining fields left.
-IFS='|' read -r MANIFEST_GAME_NAME MANIFEST_PROCESS MANIFEST_USES_WINE MANIFEST_RAM_MIN_MB < <(python3 -c '
+# Use a non-whitespace delimiter because the process name may be empty; Bash
+# `read` collapses adjacent whitespace and would otherwise shift fields left.
+# A missing or malformed manifest is unsafe to interpret as an idle server:
+# fail closed and leave the VM running until refresh-repo repairs it.
+MANIFEST_FIELDS=$(python3 -c '
 import json, sys
-try:
-    m = json.load(open("'"$MANIFEST_PATH"'"))
-    ram_min = m.get("process_ram_mb_min") or 200
-    print("|".join((str(m.get("game_name", "Unknown")),
-                    str(m.get("process_name", "")),
-                    str(m.get("uses_wine", False)).lower(),
-                    str(ram_min))))
-except (FileNotFoundError, json.JSONDecodeError, OSError):
-    print("Unknown|||200")
-')
+path = sys.argv[1]
+with open(path, encoding="utf-8") as f:
+    m = json.load(f)
+required = ("game_name", "process_name", "uses_wine", "process_ram_mb_min")
+missing = [key for key in required if key not in m or m[key] is None]
+if missing:
+    raise ValueError("missing required fields: " + ", ".join(missing))
+if not m["game_name"] or not m["process_name"] or float(m["process_ram_mb_min"]) <= 0:
+    raise ValueError("game_name, process_name, and process_ram_mb_min must be non-empty/positive")
+print("|".join((str(m["game_name"]), str(m["process_name"]),
+                str(m["uses_wine"]).lower(), str(m["process_ram_mb_min"]))))
+' "$MANIFEST_PATH") || {
+  echo "ERROR: cannot load valid game manifest at $MANIFEST_PATH; refusing idle shutdown" >&2
+  exit 1
+}
+IFS='|' read -r MANIFEST_GAME_NAME MANIFEST_PROCESS MANIFEST_USES_WINE MANIFEST_RAM_MIN_MB <<< "$MANIFEST_FIELDS"
 
 # === TIMING METRICS ===
 NOW_UNIX=$(date +%s)
