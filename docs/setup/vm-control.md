@@ -18,11 +18,13 @@ stopped instances.
 - Deploys the initial private Cloud Run revision.
 
 The service is publicly reachable for Discord interactions. Every Discord request
-must pass Ed25519 signature validation and match the configured guild and control
-channel. `/status` and `/start` return Discord's deferred-response acknowledgement
-immediately; Cloud Tasks performs the slow Compute Engine call and edits the original
-Discord response. The worker endpoint only accepts a Cloud Tasks OIDC token from the
-`vm-control` service account. Manual invocations still use a Google identity token.
+must pass
+Ed25519 signature validation and match the configured guild and control channel.
+`/status` and `/start` return Discord's deferred-response acknowledgement immediately;
+Cloud Tasks performs the slow Compute Engine call and edits the original Discord
+response. The worker endpoint only accepts a Cloud Tasks OIDC token from the
+`vm-control` service
+account. Manual invocations still use a Google identity token.
 
 ## Manual invocation
 
@@ -39,8 +41,8 @@ make vm-control-invoke ACTION=start INSTANCE=valheim
 ```
 
 Possible responses include `starting`, `already_running`, `NOT_DEPLOYED`, and
-`another_instance_active`. A destroyed VM is reported as not deployed; this service
-does not run Terraform.
+`another_instance_active`. A destroyed VM is reported as not deployed; this
+service does not run Terraform.
 
 ## Deploying changes
 
@@ -50,7 +52,8 @@ After changing `cloud_run/vm_control/`, deploy a new revision with:
 make vm-control-deploy
 ```
 
-The deploy script passes the Discord public key and allowed guild/channel pairs from
+The deploy script passes the Discord public key and allowed guild/channel pairs
+from
 `scripts/tools/discord/config.sh`. Locations use the format
 `guild_id:channel_id;guild_id:channel_id`, allowing one service to support multiple
 Discord servers or channels. It also passes `VM_ADMIN_URL`, the human-facing admin

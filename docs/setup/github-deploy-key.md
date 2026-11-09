@@ -35,5 +35,6 @@ gcloud secrets versions add github-deploy-key --data-file=github-deploy-key
 
 ## Notes
 
-* The `vm-runtime` service account has `roles/secretmanager.secretAccessor` — it can read this secret at boot.
+* The `vm-runtime` service account has
+  `roles/secretmanager.secretAccessor` — it can read this secret at boot.
 * The key is retrieved by `refresh_repo.sh` on every boot for cloning/pulling.

@@ -1,21 +1,24 @@
 
+# Local Mods Notes
+
 - Jail Cell
 - Proximity Sensors
 - External Cameras
-
 
 - Links from storage to fabs
 
 OP?
 
 General
+
 - Tons of space
 - Batteries
 - 2x Caps
 
 - Links from storage to fabs. (Avoid annoying labor?)
 
-Gunnery 
+Gunnery
+
 - Extra storage.
 - Repositioned Guns.
 Capitan Area
@@ -30,6 +33,7 @@ Engineering:
 Extra exit with suits.
 
 Time sync:
+
 - Bot Paths
 - Hulls
 - Style

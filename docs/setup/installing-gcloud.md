@@ -1,6 +1,6 @@
-## ✅ Install `gcloud` on macOS (2024+)
+# ✅ Install `gcloud` on macOS (2024+)
 
-### 🔧 Option 1: Homebrew (recommended)
+## 🔧 Option 1: Homebrew (recommended)
 
 If you already have Homebrew:
 
@@ -16,25 +16,27 @@ This will:
 
 ---
 
-### 📦 Optional: Enable shell integration
+## 📦 Optional: Enable shell integration
 
 If prompted, you can manually initialize your shell config:
 
 ```bash
+GCLOUD_SDK="$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+
 # For bash
-echo 'source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"' >> ~/.bash_profile
-echo 'source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"' >> ~/.bash_profile
+echo "source \"$GCLOUD_SDK/path.bash.inc\"" >> ~/.bash_profile
+echo "source \"$GCLOUD_SDK/completion.bash.inc\"" >> ~/.bash_profile
 
 # For zsh
-echo 'source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"' >> ~/.zshrc
-echo 'source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"' >> ~/.zshrc
+echo "source \"$GCLOUD_SDK/path.zsh.inc\"" >> ~/.zshrc
+echo "source \"$GCLOUD_SDK/completion.zsh.inc\"" >> ~/.zshrc
 ```
 
 Then restart your shell or `source ~/.zshrc`.
 
 ---
 
-### 🔧 Option 2: Manual install (if avoiding Homebrew)
+## 🔧 Option 2: Manual install (if avoiding Homebrew)
 
 1. Download from:
    [https://cloud.google.com/sdk/docs/install](https://cloud.google.com/sdk/docs/install)
@@ -56,7 +58,7 @@ Then restart your shell or `source ~/.zshrc`.
 
 ## ✅ Post-Install Setup
 
-### Run:
+### Run
 
 ```bash
 gcloud init

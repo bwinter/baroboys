@@ -1,4 +1,4 @@
-### Getting submarine out of the save file
+# Getting Submarine out of the Save File
 
 (Can use VirtualBox to get Windows on Mac)
 

@@ -12,7 +12,7 @@ SSH into the VM and check:
 
 ```bash
 /usr/bin/sudo tail -n 50 /var/log/nginx/error.log
-````
+```
 
 Look for messages like:
 
@@ -47,7 +47,7 @@ Or to apply config changes:
 
 Error:
 
-```
+```text
 open() "/etc/nginx/.htpasswd" failed (13: Permission denied)
 ```
 
@@ -63,7 +63,7 @@ Fix it:
 
 Error:
 
-```
+```text
 user "vrising" was not found in "/etc/nginx/.htpasswd"
 ```
 
@@ -90,7 +90,7 @@ sudo systemctl reload nginx
 
 Visit:
 
-```
+```text
 http://<your-ip>:8080/api/logs/game.log
 ```
 
@@ -102,4 +102,5 @@ If you get a `403 Forbidden`, fix log dir permissions:
 
 ---
 
-> ℹ️ Once fixed, log files like `game.log` will be browsable via web browser with Basic Auth.
+> ℹ️ Once fixed, log files like `game.log` will be browsable via a web browser
+> with Basic Auth.
