@@ -49,7 +49,8 @@ terraform -chdir=terraform validate
 loading a provider schema, repair the local installation with:
 
 ```bash
-terraform -chdir=terraform init -upgrade
+terraform -chdir=terraform init -upgrade \
+  -reconfigure -backend-config=backend/prod.hcl -input=false
 ```
 
 Do not treat provider startup errors as configuration findings without checking the error text.
@@ -97,11 +98,19 @@ working-directory content such as Python virtual environments.
 
 ### Nginx
 
-The local Nginx configuration depends on the current host user. Test it with the same generated
-configuration used by the local admin workflow when possible:
+The production Nginx configuration depends on privileged Debian paths and the `www-data` user.
+For production or image validation, test it with:
 
 ```bash
 sudo nginx -t -c "$PWD/scripts/dependencies/nginx/assets/nginx.conf"
+```
+
+The local admin workflow generates a host-user-specific configuration at
+`/usr/local/etc/nginx/nginx.conf`. After `make admin-local` has installed it, the syntax check
+does not require sudo:
+
+```bash
+nginx -t -c /usr/local/etc/nginx/nginx.conf
 ```
 
 ### Dockerfile
