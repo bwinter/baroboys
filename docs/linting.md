@@ -88,11 +88,12 @@ reviewing even when they do not indicate a runtime failure.
 ### Markdown
 
 ```bash
-markdownlint-cli2 '**/*.md' '#.git' '#terraform/.terraform'
+git ls-files -z '*.md' | xargs -0 markdownlint-cli2
 ```
 
 Markdownlint is advisory. Fix clear consistency issues, but do not rewrite documentation broadly
-just to satisfy a formatter.
+just to satisfy a formatter. The tracked-file command intentionally avoids scanning ignored
+working-directory content such as Python virtual environments.
 
 ### Nginx
 
