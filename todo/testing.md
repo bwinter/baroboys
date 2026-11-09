@@ -8,24 +8,23 @@ do today vs. what needs infrastructure.
 - **Manual QA: connect and play both games** — provision, launch game client, verify real
   connection. Port checks confirm listening; only a human client confirms playable.
 
-## Self-reporting health (design ready, blocked on smoke test passing)
+## Self-reporting health
 
-The VM should self-report health, not require external probing. Design:
+The VM should self-report health, not require external probing. Most of this is
+implemented; the smoke-test simplification remains open.
 
-1. **Fold vm_checks.sh logic into idle_check.sh** — health checks become additional fields in
-   status.json. Boot-time seed runs all checks (static + runtime). Timer runs only runtime
-   checks (process alive, services healthy, RAM). Static checks (Wine arch, WINEARCH) don't
-   change after boot.
+1. ✅ **Fold vm_checks.sh logic into idle_check.sh** — health fields are written to
+   `status.json` by `idle_check.sh` (`ad3b786`).
 
-2. **`make game-status-<GAME>` already exists** — curls status.json from running VM. Once health
-   fields are in status.json, this becomes the single "how's my server" command.
+2. ✅ **`make game-status-<GAME>`** — fetches the VM's `status.json`, including the
+   self-reported health fields.
 
-3. **Thin out run.sh** — replace SSH + vm_checks.sh stage with a curl to the health endpoint.
-   External smoke test becomes: provision → poll health endpoint → verify external reachability
-   (nginx + auth + Flask) → tear down. No SSH needed.
+3. **Thin out run.sh** — replace the SSH + `vm_checks.sh` stage with a curl to the
+   health endpoint. The external smoke test would then be: provision → poll health
+   endpoint → verify external reachability → tear down. No SSH needed.
 
-4. **Admin panel** — status.json is already served by nginx. HTML changes to display health
-   fields are a separate step (see todo/admin.md).
+4. ✅ **Admin panel** — displays the health fields from `status.json` (`431ad8a`,
+   with later admin UI refinements).
 
 ## LLM-Executor-Test (document the pattern)
 

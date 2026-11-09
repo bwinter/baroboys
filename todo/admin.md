@@ -15,12 +15,12 @@ The admin panel, friend-facing UX, and the plumbing that connects bash config to
   ambiguous multi-VM states, stopped VMs, and the cleanest shared implementation before changing
   any individual command.
 
-- **Multi-game awareness** — log dropdown shows all games regardless of which is running.
-  Filter to active game:
-  1. ✅ `active-game` written at Packer build time (in each game's .pkr.hcl)
-  2. In `idle_check.sh`: read `active-game`, add `"game": "<name>"` to status.json
-  3. Admin panel JS: read `status.json.game`, hide non-matching log entries
+- **Multi-game awareness** — ✅ implemented through the active-game manifest path
+  (`aee5b03`, `ad3b786`, `431ad8a`). Packer records the active game, the shared
+  refresh writes `/etc/baroboys/manifest.json`, idle-check publishes game-aware
+  health fields, and the admin panel consumes the manifest instead of hardcoded
+  per-game configuration.
 
-- **Game manifest (bridges bash → Python)** — a JSON manifest at `/etc/baroboys/manifest.json`
-  written by shared/refresh.sh, consumed by admin_server.py. Replaces hardcoded log paths in Python
-  with config derived from env-vars.sh. Unlocks multi-game awareness without a separate mechanism.
+- **Game manifest (bridges bash → Python)** — ✅ implemented in `aee5b03`. The
+  shared refresh writes `/etc/baroboys/manifest.json`, and `admin_server.py`
+  consumes it for game metadata, ports, logs, and templates.
