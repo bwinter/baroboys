@@ -21,6 +21,10 @@ brew upgrade ruff markdownlint-cli2 checkmake hadolint
 
 The tools are local development dependencies, not VM runtime dependencies.
 
+If `brew doctor` reports compromised roots in `/etc/ssl/cert.pem`, run the exact remediation
+command printed by `brew doctor` in an interactive terminal. Homebrew's script backs up the
+bundle before removing only the flagged roots; it requires an interactive `sudo` password.
+
 ## Manual checks
 
 ### Shell
@@ -54,6 +58,9 @@ terraform -chdir=terraform init -upgrade \
 ```
 
 Do not treat provider startup errors as configuration findings without checking the error text.
+If the trace reports `listen unix ...: bind: operation not permitted`, the execution environment
+is blocking provider RPC sockets; rerun validation from a normal terminal or an execution mode
+that permits local Unix sockets.
 
 ### Packer
 
