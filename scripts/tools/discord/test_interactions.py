@@ -13,7 +13,6 @@ from unittest.mock import patch
 
 from nacl.signing import SigningKey
 
-
 APP_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../cloud_run/vm_control"))
 sys.path.insert(0, APP_DIR)
 
@@ -24,7 +23,7 @@ os.environ["GCP_PROJECT"] = "test-project"
 os.environ["TASK_SERVICE_ACCOUNT"] = "vm-control@test-project.iam.gserviceaccount.com"
 os.environ["DISCORD_APPLICATION_ID"] = "test-application"
 
-from app import app  # noqa: E402
+from app import app
 
 
 class DiscordInteractionTests(unittest.TestCase):

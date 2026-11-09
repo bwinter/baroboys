@@ -18,9 +18,9 @@ source "googlecompute" "admin" {
   disk_type = "pd-ssd"
 
   service_account_email = var.service_account_email
-  scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+  scopes                = ["https://www.googleapis.com/auth/cloud-platform"]
 
-  source_image = var.core_image
+  source_image            = var.core_image
   source_image_project_id = [var.project]
 
   image_name   = var.admin_image
@@ -34,7 +34,7 @@ source "googlecompute" "admin" {
 }
 
 build {
-  name = "admin-image"
+  name    = "admin-image"
   sources = ["source.googlecompute.admin"]
 
   provisioner "file" {

@@ -15,7 +15,6 @@ from googleapiclient.errors import HttpError
 from nacl.exceptions import BadSignatureError
 from nacl.signing import VerifyKey
 
-
 app = Flask(__name__)
 PROJECT = os.environ.get("GCP_PROJECT")
 VM_ADMIN_URL = os.environ.get("VM_ADMIN_URL", "").rstrip("/")

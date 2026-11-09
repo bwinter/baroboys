@@ -18,9 +18,9 @@ source "googlecompute" "barotrauma" {
   disk_type = "pd-ssd"
 
   service_account_email = var.service_account_email
-  scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+  scopes                = ["https://www.googleapis.com/auth/cloud-platform"]
 
-  source_image = var.admin_image
+  source_image            = var.admin_image
   source_image_project_id = [var.project]
 
   image_name   = var.game_image
@@ -34,7 +34,7 @@ source "googlecompute" "barotrauma" {
 }
 
 build {
-  name = "barotrauma-image"
+  name    = "barotrauma-image"
   sources = ["source.googlecompute.barotrauma"]
 
   provisioner "file" {

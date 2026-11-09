@@ -1,9 +1,9 @@
 import json
 import os
 import subprocess
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
-from flask import Flask, render_template, send_from_directory, Response
+from flask import Flask, Response, render_template, send_from_directory
 
 # Environment-aware paths
 ENV = os.getenv("FLASK_ENV", "prod")
@@ -67,7 +67,7 @@ def ping():
 @app.route("/api/trigger-shutdown", methods=["POST"])
 def trigger_shutdown():
     try:
-        now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+        now = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S UTC")
 
         if ENV == "dev":
             print("🔧 [Dev Mode] Mock shutdown triggered.")
@@ -83,7 +83,7 @@ def trigger_shutdown():
             "time": now
         }, 200
 
-    except Exception as e:
+    except (OSError, subprocess.SubprocessError) as e:
         return {
             "status": f"Shutdown Failed: {type(e).__name__}: {e}"
         }, 500
@@ -95,7 +95,7 @@ def restart_game():
     crashes or hangs but the VM itself is fine — saves the cost of a
     full provision cycle."""
     try:
-        now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+        now = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S UTC")
 
         if ENV == "dev":
             print("🔧 [Dev Mode] Mock game-restart triggered.")
@@ -111,7 +111,7 @@ def restart_game():
             "time": now
         }, 200
 
-    except Exception as e:
+    except (OSError, subprocess.SubprocessError) as e:
         return {
             "status": f"Game restart failed: {type(e).__name__}: {e}"
         }, 500
@@ -144,7 +144,7 @@ def tail_log(name):
         else:
             out = subprocess.check_output(cmd, stderr=subprocess.STDOUT, text=True)
             return Response(out, mimetype="text/html")
-    except Exception as e:
+    except (OSError, subprocess.SubprocessError) as e:
         return f"Error loading log: {type(e).__name__}: {e}", 500
 
 

@@ -18,9 +18,9 @@ source "googlecompute" "core" {
   disk_type = "pd-ssd"
 
   service_account_email = var.service_account_email
-  scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+  scopes                = ["https://www.googleapis.com/auth/cloud-platform"]
 
-  source_image_family = var.gcp_image_family
+  source_image_family     = var.gcp_image_family
   source_image_project_id = [var.gcp_image_project]
 
   image_name   = var.core_image
@@ -34,7 +34,7 @@ source "googlecompute" "core" {
 }
 
 build {
-  name = "core-image"
+  name    = "core-image"
   sources = ["source.googlecompute.core"]
 
   provisioner "file" {

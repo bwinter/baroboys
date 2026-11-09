@@ -18,9 +18,9 @@ source "googlecompute" "valheim" {
   disk_type = "pd-ssd"
 
   service_account_email = var.service_account_email
-  scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+  scopes                = ["https://www.googleapis.com/auth/cloud-platform"]
 
-  source_image = var.admin_image
+  source_image            = var.admin_image
   source_image_project_id = [var.project]
 
   image_name   = var.game_image
@@ -34,7 +34,7 @@ source "googlecompute" "valheim" {
 }
 
 build {
-  name = "valheim-image" # SETUP: REQUIRED
+  name    = "valheim-image"                  # SETUP: REQUIRED
   sources = ["source.googlecompute.valheim"] # SETUP: REQUIRED
 
   provisioner "file" {
@@ -45,28 +45,28 @@ build {
   # SETUP: REQUIRED
   provisioner "shell" {
     inline = [
-       "echo '🔧 Cloning Baroboys repo'",
-       "/usr/bin/sudo chmod +x /tmp/clone_repo.sh",
-       "/usr/bin/sudo -u bwinter_sc81 -H -- /tmp/clone_repo.sh",
+      "echo '🔧 Cloning Baroboys repo'",
+      "/usr/bin/sudo chmod +x /tmp/clone_repo.sh",
+      "/usr/bin/sudo -u bwinter_sc81 -H -- /tmp/clone_repo.sh",
 
-       "echo '🔧 Ensure both users have latest copy of repo'",
-       "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/refresh_repo/refresh.sh",
+      "echo '🔧 Ensure both users have latest copy of repo'",
+      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/refresh_repo/refresh.sh",
 
-       "echo '🔧 Record active game'",
-       "/usr/bin/sudo mkdir -p /etc/baroboys",
-       "echo Valheim | /usr/bin/sudo tee /etc/baroboys/active-game > /dev/null",
+      "echo '🔧 Record active game'",
+      "/usr/bin/sudo mkdir -p /etc/baroboys",
+      "echo Valheim | /usr/bin/sudo tee /etc/baroboys/active-game > /dev/null",
 
-       "echo '🔧 Install crossplay runtime libs (libparty.so needs PulseAudio; -crossplay fails without them)'",
-       "/usr/bin/sudo apt-get install -yq libpulse0 libpulse-mainloop-glib0 libatomic1",
+      "echo '🔧 Install crossplay runtime libs (libparty.so needs PulseAudio; -crossplay fails without them)'",
+      "/usr/bin/sudo apt-get install -yq libpulse0 libpulse-mainloop-glib0 libatomic1",
 
-       "echo '🔧 Install Valheim'",
-       "/usr/bin/sudo -u bwinter_sc81 -H -- /home/bwinter_sc81/baroboys/scripts/services/shared/refresh.sh",
+      "echo '🔧 Install Valheim'",
+      "/usr/bin/sudo -u bwinter_sc81 -H -- /home/bwinter_sc81/baroboys/scripts/services/shared/refresh.sh",
 
-       "echo '🔧 Install game systemd units'",
-       "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/shared/install-game-units.sh",
+      "echo '🔧 Install game systemd units'",
+      "/usr/bin/sudo /home/bwinter_sc81/baroboys/scripts/services/shared/install-game-units.sh",
 
-       "echo '🧹 Running autoremove'",
-       "/usr/bin/sudo apt-get -yq autoremove"
-     ]
+      "echo '🧹 Running autoremove'",
+      "/usr/bin/sudo apt-get -yq autoremove"
+    ]
   }
 }
