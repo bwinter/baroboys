@@ -181,6 +181,26 @@ $(foreach game,$(GAMES),$(eval $(call game_ssh_iap_recipe,$(game))))
 
 
 # =======================
+# 🔄 Remote Refresh
+# =======================
+REFRESH_COMPONENTS := repo idle game-units admin
+
+.PHONY: $(foreach component,$(REFRESH_COMPONENTS),$(foreach game,$(GAMES),refresh-$(component)-$(game)))
+
+define refresh_recipe
+refresh-$(1)-$(2):
+	$(call gcloud_ssh,$(2)) \
+		--command="sudo systemctl restart $(3)"
+endef
+
+$(foreach game,$(GAMES),\
+	$(eval $(call refresh_recipe,repo,$(game),refresh-repo-startup.service))\
+	$(eval $(call refresh_recipe,idle,$(game),idle-check-refresh.service))\
+	$(eval $(call refresh_recipe,game-units,$(game),game-unit-refresh.service))\
+	$(eval $(call refresh_recipe,admin,$(game),admin-server-refresh.service)))
+
+
+# =======================
 # 🐍 Admin Panel
 # =======================
 .PHONY: admin-local $(addprefix admin-deploy-, $(GAMES)) $(addprefix admin-logs-, $(GAMES)) $(addprefix admin-url-, $(GAMES))
@@ -365,6 +385,12 @@ help:
 	@echo "  make game-status-<GAME>              - Fetch and display VM status"
 	@echo "  make game-ssh-<GAME>                 - SSH into VM"
 	@echo "  make game-ssh-iap-<GAME>             - SSH using IAP tunnel"
+	@echo ""
+	@echo "🔄 Remote Refresh (does not restart the game):"
+	@echo "  make refresh-repo-<GAME>             - Pull latest repo"
+	@echo "  make refresh-idle-<GAME>             - Refresh idle-check units"
+	@echo "  make refresh-game-units-<GAME>       - Refresh generated game units"
+	@echo "  make refresh-admin-<GAME>            - Refresh admin files and units"
 	@echo ""
 
 	@echo "🐍 Admin Panel:"
