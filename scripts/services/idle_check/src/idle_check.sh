@@ -8,8 +8,10 @@ IDLE_FLAG="/tmp/server_idle_since.flag"
 COOLDOWN_MINUTES=60
 # Express the cutoff as total CPU work for one vCPU. The effective aggregate
 # threshold scales down on larger VMs so the same workload is classified the
-# same way across machine types (14 / 2 vCPUs = 7%; 14 / 4 = 3.5%).
-BASE_CPU_THRESHOLD=14.0
+# same way across machine types (22 / 2 vCPUs = 11%; 22 / 4 = 5.5%).
+# This leaves headroom above the observed 8–9% idle baseline while keeping
+# normal one-player activity around 13–15% classified as active.
+BASE_CPU_THRESHOLD=22.0
 MANIFEST_PATH="/etc/baroboys/manifest.json"
 
 # === DEPENDENCY CHECK ===

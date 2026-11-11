@@ -215,7 +215,7 @@ nginx log read access. No other elevated permissions.
 `idle_check.sh` runs every minute via systemd timer:
 
 1. Measures CPU with `mpstat 1 1` (1-second sample)
-2. Reads the online vCPU count with `getconf _NPROCESSORS_ONLN` and computes the effective CPU threshold as `14 / vCPU_count` (7% on 2 vCPUs, 3.5% on 4 vCPUs)
+2. Reads the online vCPU count with `getconf _NPROCESSORS_ONLN` and computes the effective CPU threshold as `22 / vCPU_count` (11% on 2 vCPUs, 5.5% on 4 vCPUs)
 3. If CPU exceeds the effective threshold: clears idle flag, continues
 4. If CPU is at or below the effective threshold: creates `/tmp/server_idle_since.flag` if not present; tracks elapsed minutes
 5. Writes `/opt/baroboys/static/status.json` (served directly by Nginx, read by admin panel)
@@ -229,7 +229,7 @@ Status JSON fields:
 | `game_name` | Display name from the active game manifest. |
 | `cpu_percent` | Aggregate CPU usage measured during the one-second sample. |
 | `vcpu_count` | Number of online vCPUs detected on the VM. |
-| `cpu_threshold_percent` | Effective idle threshold, calculated as `14 / vcpu_count`. |
+| `cpu_threshold_percent` | Effective idle threshold, calculated as `22 / vcpu_count`. |
 | `mem_percent` | Percentage of VM memory currently in use. |
 | `services_healthy` | Whether required systemd services are healthy. |
 | `process_alive` | Whether the configured game process was found. |

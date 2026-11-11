@@ -3,7 +3,7 @@
   "game_name": "Valheim",
   "cpu_percent": 3.2,
   "vcpu_count": 2,
-  "cpu_threshold_percent": 7.0,
+  "cpu_threshold_percent": 11.0,
   "mem_percent": 22.5,
   "services_healthy": true,
   "process_alive": true,
