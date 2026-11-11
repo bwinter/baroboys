@@ -5,6 +5,7 @@ set -euxo pipefail
 STATIC_NGINX="/opt/baroboys/static"
 STATUS_JSON="$STATIC_NGINX/status.json"
 IDLE_FLAG="/tmp/server_idle_since.flag"
+NETWORK_STATE="/tmp/server_network_counters"
 COOLDOWN_MINUTES=60
 # Express the cutoff as total CPU work for one vCPU. The effective aggregate
 # threshold scales down on larger VMs so the same workload is classified the
@@ -56,6 +57,50 @@ CPU_THRESHOLD=$(awk \
   -v base="$BASE_CPU_THRESHOLD" \
   -v vcpus="$VCPU_COUNT" \
   'BEGIN { print base / vcpus }')
+
+# === NETWORK RATES ===
+# Linux exposes cumulative per-interface byte counters. Compare against the
+# previous timer run (normally one minute ago); keep this observational until
+# we have enough runtime data to choose a safe shutdown signal.
+NETWORK_RATES=$(python3 - "$NETWORK_STATE" <<'PY'
+import json
+import os
+import sys
+import time
+
+state_path = sys.argv[1]
+now = time.time()
+received = sent = 0
+with open("/proc/net/dev", encoding="utf-8") as dev:
+    for line in dev.readlines()[2:]:
+        interface, counters = line.split(":", 1)
+        if interface.strip() == "lo":
+            continue
+        values = [int(value) for value in counters.split()]
+        received += values[0]
+        sent += values[8]
+
+try:
+    with open(state_path, encoding="utf-8") as state_file:
+        previous = json.load(state_file)
+except (OSError, ValueError):
+    previous = None
+
+elapsed = now - previous["timestamp"] if previous else 0
+if elapsed > 0 and received >= previous["received_bytes"] and sent >= previous["sent_bytes"]:
+    rx_rate = (received - previous["received_bytes"]) / elapsed
+    tx_rate = (sent - previous["sent_bytes"]) / elapsed
+else:
+    rx_rate = tx_rate = 0
+
+temporary_path = state_path + ".tmp"
+with open(temporary_path, "w", encoding="utf-8") as state_file:
+    json.dump({"timestamp": now, "received_bytes": received, "sent_bytes": sent}, state_file)
+os.replace(temporary_path, state_path)
+print(f"{rx_rate:.2f} {tx_rate:.2f}")
+PY
+)
+read -r NETWORK_RX_BPS NETWORK_TX_BPS <<< "$NETWORK_RATES"
 
 # === MEMORY USAGE ===
 MEM_USED=$(free | awk '/Mem:/ {print $3}')
@@ -148,6 +193,8 @@ tee "$STATUS_JSON" > /dev/null <<EOF
   "cpu_percent": $CPU_PERCENT,
   "vcpu_count": $VCPU_COUNT,
   "cpu_threshold_percent": $CPU_THRESHOLD,
+  "network_received_bytes_per_second": $NETWORK_RX_BPS,
+  "network_sent_bytes_per_second": $NETWORK_TX_BPS,
   "mem_percent": $MEM_PERCENT,
   "services_healthy": $SERVICES_HEALTHY,
   "process_alive": $PROCESS_ALIVE,
