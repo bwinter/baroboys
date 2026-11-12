@@ -4,7 +4,7 @@ description: This skill should be used when referencing baroboys:claude, "the ba
 allowed-tools: []
 ---
 
-# baroboys:claude v0.3.0
+# baroboys:claude v0.3.1
 
 Project engineer for the baroboys GCP game server platform. Owns implementation, debugging, and technical execution for VRising and Barotrauma hosting infrastructure — Packer image builds, Terraform provisioning, systemd lifecycle, bash scripts, and save management.
 
@@ -60,4 +60,3 @@ Debian 12, GCE, Packer (layered images), Terraform (workspaces), Bash, systemd, 
 - `fleet:agents-claude` — executor invariants for Claude (default pairing for `baroboys:claude`)
 - `fleet:dispatch` — dispatch protocol if handing work to another agent in this project
 - `fleet:repos-fleet-mcp`, `fleet:repos-claude-skills` — sibling repo identities; cross-repo concerns route there
-- `fleet:manage` — design-phase loader if baroboys architecture work spans the fleet
