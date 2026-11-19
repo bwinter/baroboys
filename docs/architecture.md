@@ -37,11 +37,11 @@ VM, bypassing the Git-based stability guarantees the rest of the system relies o
                                          │
                                     systemd units
                                     ├── refresh-repo
-                                    ├── game-setup
+                                    ├── game-refresh
                                     ├── game-startup  ──► VRising.exe (Wine) / DedicatedServer
                                     ├── game-shutdown ──► save → git commit → git push → poweroff
                                     ├── admin-server  ──► Flask :5000 ← Nginx :8080
-                                    └── idle-check    ──► auto-shutdown after 30min CPU idle
+                                    └── idle-check    ──► auto-shutdown after 60min CPU idle
 ```
 
 ---
@@ -55,7 +55,8 @@ debian-12 (upstream)
   └── core             packer/base/core.pkr.hcl
         └── admin            packer/base/admin.pkr.hcl
               ├── barotrauma       packer/game/Barotrauma.pkr.hcl
-              └── vrising          packer/game/VRising.pkr.hcl
+              ├── vrising          packer/game/VRising.pkr.hcl
+              └── valheim          packer/game/Valheim.pkr.hcl
 ```
 
 | Layer | Adds |
@@ -64,9 +65,10 @@ debian-12 (upstream)
 | **admin** | Nginx, SteamCMD, Flask admin server, idle-check service |
 | **barotrauma** | Barotrauma dedicated server binaries (Steam app 1026340), game systemd services |
 | **vrising** | Xvfb, WineHQ stable, winetricks fonts, VRising server binaries (Steam app 1829350, Windows platform), game systemd services |
+| **valheim** | PulseAudio/libatomic runtime libs for `-crossplay`, Valheim server binaries (Steam app 896660), game systemd services |
 
 **How `packer/build.sh` works:** it copies `terraform/shared.tfvars` and `terraform/variables.tf`
-into `packer/tmp/` and passes them as Packer variable files. This means Packer and Terraform share
+into a per-invocation `packer/tmp-<meta>-<name>/` build dir and passes them as Packer variable files. This means Packer and Terraform share
 one source of truth for project, zone, machine type, and image names.
 
 ---
@@ -74,7 +76,7 @@ one source of truth for project, zone, machine type, and image names.
 ## Terraform
 
 `terraform/main.tf` provisions:
-- One GCE VM per game (`vrising` or `barotrauma`, `e2-standard-2`, `us-west1-b`, 20GB pd-ssd)
+- One GCE VM per game (`vrising`, `barotrauma` or `valheim`, `e2-standard-2`, `us-west1-b`, 20GB pd-ssd)
 - Generic UDP/TCP firewall rules driven by `var.game_ports_udp` / `var.game_ports_tcp` (count
   guards skip the resource when the list is empty). Workspace-scoped admin firewall on TCP 8080
   targets the `admin` tag both VMs carry.
@@ -121,9 +123,9 @@ auto-starts via `WantedBy=multi-user.target` — no metadata scripts involved:
 ```
 network-online.target
   ├── refresh-repo-refresh.service   (oneshot, root)
-  │     └── refresh-repo-startup.service  (oneshot, root)
-  │           Clones/pulls latest Git for both /root and /home/bwinter_sc81
-  │           Installs sudoers from repo (self-heal)
+  │     Installs sudoers from repo (self-heal)
+  │     └── refresh-repo-startup.service  (oneshot, bwinter_sc81)
+  │           Clones/pulls latest Git into /home/bwinter_sc81/baroboys
   │
   └── infrastructure-refresh.service (oneshot, root, parallel with refresh-repo)
         Ensures /var/log/baroboys/ and /opt/baroboys ownership
@@ -134,7 +136,7 @@ network-online.target
               │           Flask app at /opt/baroboys/admin_server.py on :5000
               │
               ├── idle-check-refresh.service     (oneshot, bwinter_sc81)
-              │     └── idle-check.timer  →  idle-check.service  (every 5 min)
+              │     └── idle-check.timer  →  idle-check.service  (every 1 min)
               │
               ├── xvfb-refresh.service           (VRising only, oneshot, bwinter_sc81)
               │     └── xvfb-startup.service   (simple, always restart)
@@ -149,10 +151,10 @@ network-online.target
                     - Fetches GAME_PASSWORD from Secret Manager
                     - Runs envsubst on server config template
                     - restores the tracked raw save files
-                    - Writes /etc/baroboys/active-game (game name for admin panel + smoke test)
                           └── game-startup.service   (simple, bwinter_sc81)
                                 Barotrauma: ./DedicatedServer
                                 VRising:    wine VRisingServer.exe (DISPLAY=:0, Wine 11+)
+                                Valheim:    ./valheim_server.x86_64
 ```
 
 ---
@@ -161,7 +163,7 @@ network-online.target
 
 Triggered by any of:
 - Admin panel "Trigger Shutdown" button → POST `/api/trigger-shutdown` → `systemctl restart game-shutdown.service`
-- `idle_check.sh` after 30 min CPU below 5% → `systemctl restart game-shutdown.service`
+- `idle_check.sh` after 60 min CPU at or below the idle threshold (22 / vCPU count %) → `systemctl restart game-shutdown.service`
 - VM stop event (poweroff/halt/reboot) → `game-shutdown.service` via `[Install] WantedBy=poweroff.target`
 
 `game-shutdown.service` runs `scripts/services/shared/shutdown.sh` as `bwinter_sc81`.
@@ -175,7 +177,7 @@ Triggered by any of:
 4. `git commit -m "Auto-save before shutdown <timestamp>"`
 5. `git stash push` → `git pull --rebase` → `git push origin main` → `git stash pop`
    (stash is intentional — clears working-tree taint so rebase succeeds; do not simplify)
-7. `sudo systemctl poweroff`
+6. `sudo systemctl poweroff`
 
 ---
 
@@ -195,8 +197,11 @@ External browser
 
 Flask (`admin_server.py`) routes:
 - `GET /` → admin.html
+- `GET /status.json` → `status.json` from `/opt/baroboys/static` (written by `idle_check.sh`)
 - `GET /api/ping` → health check
 - `POST /api/trigger-shutdown` → `systemctl restart game-shutdown.service`
+- `POST /api/restart-game` → `systemctl restart game-startup.service`
+- `GET /api/manifest` → the game manifest JSON
 - `GET /api/logs/<name>` → last 500 lines of a whitelisted log file
 - `GET /api/directory` → Jinja template listing all routes
 
@@ -204,9 +209,10 @@ The admin panel auto-refreshes status every 5 seconds and streams the selected l
 UI theme: Bootstrap 5 + Bootswatch Cyborg (dark). See `docs/admin/style_guide.md`.
 
 **Security model:** Flask runs as `bwinter_sc81` (not root). A sudoers drop-in
-(`/etc/sudoers.d/bwinter`, mode 440) grants the single permission needed:
-`systemctl restart game-shutdown.service`. `bwinter_sc81` is in the `adm` group for
-nginx log read access. No other elevated permissions.
+(`/etc/sudoers.d/bwinter`, mode 440, installed from `scripts/services/shared/sudoers-bwinter`)
+grants passwordless sudo for the 14 `systemctl` and `install` command rules listed there; the
+Flask routes use `systemctl restart game-shutdown.service` and `game-startup.service`.
+`bwinter_sc81` is in the `adm` group for nginx log read access.
 
 ---
 
@@ -242,8 +248,8 @@ Status JSON fields:
 | `idle_since` | UTC time when the current low-CPU period began, if any. |
 | `idle_duration_minutes` | Minutes elapsed in the current low-CPU period. |
 
-`/etc/baroboys/active-game` contains the running game name (written by `refresh.sh` at boot).
-Consumed by the admin panel (log dropdown filtering) and `smoke_test/vm_checks.sh` (self-identification).
+`/etc/baroboys/active-game` contains the running game name (written by each game's Packer image build).
+Consumed by `shared/env-vars.sh` (sets `GAME_NAME`), `smoke_test/vm_checks.sh` (self-identification) and the local `smoke_test/run.sh` (cross-check).
 
 ---
 
@@ -299,6 +305,7 @@ The repo serves as a game-state database. Saves are committed and pushed on ever
 |------|--------------|--------|
 | VRising | `VRising/Data/Saves/v4/$SAVE_NAME/AutoSave_*.save` (`SAVE_NAME="TestWorld-1"`) | Raw `.save` files tracked |
 | Barotrauma | `Barotrauma/Multiplayer/Arkham Aquatics.save` and `Arkham Aquatics_CharacterData.xml` | Raw game files tracked; the `.save` file is itself gzip-compressed internally by Barotrauma |
+| Valheim | `Valheim/worlds_local/$SAVE_NAME/` (`SAVE_NAME="Donaldsheim"`) | Raw save directory tracked |
 
 The VM's `.gitconfig` identifies commits as `Game Server <bwinter.sc81+gameserver@gmail.com>`.
 

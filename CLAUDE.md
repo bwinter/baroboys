@@ -2,7 +2,7 @@
 
 ## What This Repo Is
 
-GCP game server hosting platform for **VRising** and **Barotrauma**. Packer builds layered GCE
+GCP game server hosting platform for **VRising**, **Barotrauma** and **Valheim**. Packer builds layered GCE
 images; Terraform provisions the VM; systemd + bash scripts manage the game lifecycle; saves are
 committed to Git on every shutdown.
 
@@ -21,7 +21,7 @@ committed to Git on every shutdown.
 | VM user | `bwinter_sc81`                                                            |
 | Service account | `vm-runtime@europan-world.iam.gserviceaccount.com`                        |
 | TF state | `gs://tf-state-baroboys/terraform/prod`                                   |
-| Admin panel | `http://<VM-IP>:8080/` — user `Hex`, pw = server-password secret          |
+| Admin panel | `http://<VM-IP>:8080/` — user = game `SAVE_NAME` (falling back to `GAME_NAME`, then `admin`; `scripts/dependencies/nginx/refresh.sh:16`), pw = server-password secret |
 
 Secrets, ports, log paths, file locations: see `docs/architecture.md`.
 
@@ -39,6 +39,7 @@ scripts/
     admin_server/   Flask admin app
     Barotrauma/     Game lifecycle
     VRising/        Game lifecycle
+    Valheim/        Game lifecycle
     shared/         Shared refresh/startup/shutdown/env-vars
     infrastructure/ OS-level dirs and permissions (no repo dependency)
     idle_check/     CPU-based auto-shutdown
@@ -48,6 +49,7 @@ scripts/
 docs/               Documentation
 Barotrauma/         Game state: saves, mods, config template
 VRising/            Game state: saves, admin/ban lists, config
+Valheim/            Game state: saves, admin/ban lists
 ```
 
 ---
@@ -111,11 +113,12 @@ Always build in this order (each bakes in the previous):
 
 ```
 debian-12 → core → admin → barotrauma
-                        └→ vrising
+                        ├→ vrising
+                        └→ valheim
 ```
 
-`packer/build.sh` copies `terraform/shared.tfvars` + `terraform/variables.tf` into `packer/tmp/`
-as Packer var files — Packer and Terraform share the same variable definitions.
+`packer/build.sh` copies `terraform/shared.tfvars` + `terraform/variables.tf` into a
+per-invocation `packer/tmp-<meta>-<name>/` as Packer var files — Packer and Terraform share the same variable definitions.
 
 ---
 
@@ -132,7 +135,7 @@ needed if the game uses that feature (e.g. save decompression, RCON, template in
 
 All units follow a two-phase pattern per component: `*-refresh.service` (oneshot, root, ensures current state) → `*-startup.service` (long-running or oneshot, bwinter_sc81, runs the thing). Always pair `Requires=X` with `After=X` — `Requires` alone does not enforce order. For shutdown services use `Wants=` not `Requires=` for network dependency (network may stop during poweroff sequence). Game unit definitions are refreshed from Git at boot after the bootstrap image installs `game-unit-refresh.service`.
 
-`idle-check.service` has `WantedBy=multi-user.target` intentionally — runs once at boot to seed `status.json` before the timer's first 5-minute fire.
+`idle-check.service` has `WantedBy=multi-user.target` intentionally — runs once at boot to seed `status.json` before the timer's first 1-minute fire.
 
 ---
 
@@ -143,7 +146,7 @@ idle_check.sh OR admin panel OR any VM stop (poweroff/halt/reboot)
   → game-shutdown.service (hooks into poweroff.target via [Install])
   → shutdown.sh (as bwinter_sc81)
       → kill game process, wait for clean exit
-      → compress/stage save file
+      → stage raw save files
       → git commit + pull --rebase + push origin main
       → sudo systemctl poweroff
 ```
@@ -162,7 +165,7 @@ currently open issues. When you find a new bug, add it there.
 - `.envrc` — direnv: sets PROJECT, ZONE, REGION, GCP_USER, activates `.venv`
 - `.gitconfig` — VM git identity (`Game Server`, `bwinter.sc81+gameserver@gmail.com`)
 - `terraform/.terraform.lock.hcl` — committed; keeps provider versions pinned
-- `packer/tmp/` — gitignored build scratch dir, safe to delete
+- `packer/tmp-*/` — gitignored per-build scratch dirs, safe to delete
 - `.claude/settings.local.json` — repo-level auto-approval list. Commands not in this list
   require manual confirmation — run them as standalone Bash calls, never chained with others.
 - `.claude/settings.json` — committed; PostToolUse hooks (shellcheck, terraform fmt) + project-scope
