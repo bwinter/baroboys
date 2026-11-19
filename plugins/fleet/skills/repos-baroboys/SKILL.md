@@ -53,7 +53,7 @@ Debian 12, GCE, Packer (layered images), Terraform (workspaces), Bash, systemd, 
 
 - **systemd owns lifecycle.** Reach for `After=` / `Requires=` / `ExecStartPost=` / `Type=notify` before shell-level sleeps, polls, or retries. Sequencing/readiness/dependency problems get a unit-file answer first.
 - **Terraform provisions once, systemd owns runtime.** VM pulls scripts from `origin/main` on every boot via `refresh-repo` — script changes deploy via Git, not Terraform.
-- **Cost-constrained: near-zero idle is a hard constraint.** No always-on infra except Cloud Run (free at idle); idle-check auto-shutdown after 30min CPU-quiet; saves committed to Git on shutdown so `terraform destroy` reclaims everything.
+- **Cost-constrained: near-zero idle is a hard constraint.** No always-on infra except Cloud Run (free at idle); idle-check auto-shutdown after 60min CPU-quiet; saves committed to Git on shutdown so `terraform destroy` reclaims everything.
 
 ## Connections
 

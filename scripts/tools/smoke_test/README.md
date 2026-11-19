@@ -22,8 +22,8 @@ the VM, runs checks from outside and inside, then tears down.
 
 **Internal** (`vm_checks.sh` runs on the VM, sources `env-vars.sh`):
 
-- Self-identifies the game from `/etc/baroboys/active-game` (written by `refresh.sh`
-  at boot)
+- Self-identifies the game from `/etc/baroboys/active-game` (written by each game's Packer image
+  build)
 - All required systemd services active
 - Game log has real content (not just boot stub)
 - Game process running with sane RAM usage (500MB–5.5GB)

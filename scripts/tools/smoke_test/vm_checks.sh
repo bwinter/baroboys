@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # vm_checks.sh — internal smoke test, runs ON the VM.
-# Self-identifying: reads /etc/baroboys/active-game (written by refresh.sh) to determine
+# Self-identifying: reads /etc/baroboys/active-game (written by each game's Packer image build) to determine
 # which game is running. Sources env-vars.sh so all checks are game-aware.
 # Exit code: 0 = all passed, 1 = one or more failed.
 #
@@ -9,7 +9,7 @@ set -uo pipefail
 
 ACTIVE_GAME_FILE="/etc/baroboys/active-game"
 if [[ ! -f "$ACTIVE_GAME_FILE" ]]; then
-    echo "❌ $ACTIVE_GAME_FILE not found — refresh.sh may not have run yet"
+    echo "❌ $ACTIVE_GAME_FILE not found — the Packer image build did not write it"
     exit 1
 fi
 GAME=$(cat "$ACTIVE_GAME_FILE")

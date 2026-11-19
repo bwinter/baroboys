@@ -117,7 +117,7 @@ make terraform-apply-<Game>
 * Replace `<Game>` with `VRising`, `Barotrauma`, or `Valheim`.
 * This boots the game VM in its own Terraform workspace.
 * All games use the shared static IP reserved during bootstrap. Only one game VM can be attached to it at a time.
-* The server shuts down after 30 minutes of inactivity, saving the game automatically.
+* The server shuts down after 60 minutes of inactivity (CPU at or below the idle threshold), saving the game automatically.
 * To restart: `make game-start-<Game>`
 * To grant others the ability to start the server: `make iam-add-admin`
 * To get the admin panel URL: `make admin-url-<Game>`
