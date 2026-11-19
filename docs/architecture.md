@@ -173,11 +173,14 @@ Triggered by any of:
 1. If RCON configured: `mcrcon` sends shutdown notice, waits for graceful exit
 2. Otherwise: find and signal processes matching the manifest's `process_name` in their
    full command line, then wait for clean exit (up to 300s)
-3. Stage the raw save directory without creating archive artifacts inside it.
-4. `git commit -m "Auto-save before shutdown <timestamp>"`
-5. `git stash push` → `git pull --rebase` → `git push origin main` → `git stash pop`
+3. If `SAVE_BUCKET_BACKUP_ENABLED=1` (set in `Valheim/env-vars.sh`; `Barotrauma` and `VRising` set 0)
+   and `save-backup.service` is installed: `sudo systemctl start --wait save-backup.service`
+   uploads a `.tar.gz` of the save to the backup bucket. A failure is logged and shutdown continues.
+4. Stage the raw save directory without creating archive artifacts inside it.
+5. `git commit -m "Auto-save before shutdown <timestamp>"`
+6. `git stash push` → `git pull --rebase` → `git push origin main` → `git stash pop`
    (stash is intentional — clears working-tree taint so rebase succeeds; do not simplify)
-6. `sudo systemctl poweroff`
+7. `sudo systemctl poweroff`
 
 ---
 
@@ -255,12 +258,15 @@ Consumed by `shared/env-vars.sh` (sets `GAME_NAME`), `smoke_test/vm_checks.sh` (
 
 ## Secrets
 
-Two secrets live in GCP Secret Manager. All fetched at runtime by the `vm-runtime` SA.
+Four secrets live in GCP Secret Manager. The VM fetches the first two at runtime as the
+`vm-runtime` SA; the other two are read only by local operator scripts.
 
 | Secret | Used by | Purpose |
 |--------|---------|---------|
 | `github-deploy-key` | `refresh_repo.sh` at every boot | ECDSA SSH key to clone/pull private repo |
 | `server-password` | `shared/post-checkout.sh` (game config), `env-vars.sh` (RCON), `nginx/refresh.sh` (htpasswd) | Single password for game join, admin panel, and RCON |
+| `duckdns-token` | `tools/duckdns/update_duckdns.sh`, called by `terraform/build.sh` after apply (local) | Updates `baroboys.duckdns.org` to the VM's IP |
+| `discord-bot-token` | `tools/discord/register_commands.sh` (local, `make discord-register-commands`) | Registers Discord guild commands; not passed to Cloud Run (see `docs/setup/vm-control.md`) |
 
 Admin panel auth: `nginx/refresh.sh` derives htpasswd format from `server-password` at boot
 using `htpasswd -cbB` — no separate `nginx-htpasswd` secret needed.
@@ -290,7 +296,7 @@ One service account: `vm-runtime@europan-world.iam.gserviceaccount.com`
 |------|---------|
 | `roles/logging.logWriter` | Ops Agent log forwarding |
 | `roles/monitoring.metricWriter` | Ops Agent metrics |
-| `roles/secretmanager.secretAccessor` | Both secrets above |
+| `roles/secretmanager.secretAccessor` | Secret Manager reads (bound project-wide; the VM reads the first two secrets above) |
 
 To grant someone the ability to start/stop the VM via GCP Console: `make iam-add-admin`
 (grants `roles/compute.instanceAdmin.v1` to the provided email).

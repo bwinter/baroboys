@@ -14,7 +14,7 @@
 |------|---------|
 | `roles/logging.logWriter` | Ops Agent log forwarding |
 | `roles/monitoring.metricWriter` | Ops Agent metrics |
-| `roles/secretmanager.secretAccessor` | Read all secrets (server-password, github-deploy-key) |
+| `roles/secretmanager.secretAccessor` | Read all secrets in the project (bound project-wide); the VM itself reads server-password and github-deploy-key |
 
 ## APIs Enabled
 

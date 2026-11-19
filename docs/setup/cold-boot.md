@@ -61,7 +61,8 @@ See [gcp-service-accounts.md](gcp-service-accounts.md) for what gets created.
 
 ### 3. Create secrets
 
-Three secrets are needed. Each setter is safe to re-run.
+Three secrets are needed. Each setter is safe to re-run. A fourth, `discord-bot-token`, is
+only for Discord command registration — see [vm-control.md](vm-control.md).
 
 ```bash
 make secret-set-password      # server password (game join, admin panel, RCON)
@@ -132,6 +133,7 @@ make terraform-destroy-VRising   # or: make destroy (all games)
 - `make secret-set-password` → `scripts/tools/set_secret.sh`
 - `make secret-set-deploy-key` → `scripts/tools/set_deploy_key.sh`
 - `make secret-set-duckdns-token` → `scripts/tools/duckdns/set_duckdns_token.sh`
+- `make secret-set-discord-bot-token` → `scripts/tools/discord/set_bot_token.sh` (optional; see [vm-control.md](vm-control.md))
 - `make build` → `packer/build.sh` (layered images, shares vars with Terraform)
 - `make terraform-apply-<Game>` → `terraform/build.sh` (workspace select + apply)
 

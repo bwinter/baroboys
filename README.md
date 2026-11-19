@@ -91,6 +91,9 @@ Create the GitHub deploy key so the VM can clone this repo (requires `gh` CLI):
 make secret-set-deploy-key
 ```
 
+A fourth secret, the Discord bot token (`make secret-set-discord-bot-token`), is only
+needed to register Discord commands; see [`docs/setup/vm-control.md`](docs/setup/vm-control.md).
+
 ---
 
 ### 4. Build all packer images

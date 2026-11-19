@@ -44,8 +44,10 @@ Concretely:
 
 ### 4. Two-phase service pattern
 
-Every component has two units: `*-refresh.service` (oneshot, root, installs/configures) followed by
-`*-startup.service` (long-running or oneshot, `bwinter_sc81`, runs the process). This is a
+Every component has two units: `*-refresh.service` (oneshot, installs/configures; `User=root` for
+refresh-repo, infrastructure, admin-server and game-unit, `User=bwinter_sc81` for idle-check,
+save-backup, xvfb and game-refresh) followed by `*-startup.service` (long-running or oneshot,
+`bwinter_sc81`, runs the process). Where the refresh unit runs as root this is a
 **security boundary** — root does system-level setup once, then hands off to an unprivileged user
 for the long-running process. See `docs/architecture.md` for the full dependency graph.
 

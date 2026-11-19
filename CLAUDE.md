@@ -133,7 +133,7 @@ needed if the game uses that feature (e.g. save decompression, RCON, template in
 
 ## systemd Unit Conventions
 
-All units follow a two-phase pattern per component: `*-refresh.service` (oneshot, root, ensures current state) → `*-startup.service` (long-running or oneshot, bwinter_sc81, runs the thing). Always pair `Requires=X` with `After=X` — `Requires` alone does not enforce order. For shutdown services use `Wants=` not `Requires=` for network dependency (network may stop during poweroff sequence). Game unit definitions are refreshed from Git at boot after the bootstrap image installs `game-unit-refresh.service`.
+All units follow a two-phase pattern per component: `*-refresh.service` (oneshot, ensures current state; `User=root` for refresh-repo, infrastructure, admin-server and game-unit, `User=bwinter_sc81` for idle-check, save-backup, xvfb and game-refresh) → `*-startup.service` (long-running or oneshot, bwinter_sc81, runs the thing). Always pair `Requires=X` with `After=X` — `Requires` alone does not enforce order. For shutdown services use `Wants=` not `Requires=` for network dependency (network may stop during poweroff sequence). Game unit definitions are refreshed from Git at boot after the bootstrap image installs `game-unit-refresh.service`.
 
 `idle-check.service` has `WantedBy=multi-user.target` intentionally — runs once at boot to seed `status.json` before the timer's first 1-minute fire.
 
@@ -146,6 +146,7 @@ idle_check.sh OR admin panel OR any VM stop (poweroff/halt/reboot)
   → game-shutdown.service (hooks into poweroff.target via [Install])
   → shutdown.sh (as bwinter_sc81)
       → kill game process, wait for clean exit
+      → save-backup.service bucket snapshot (only if SAVE_BUCKET_BACKUP_ENABLED=1)
       → stage raw save files
       → git commit + pull --rebase + push origin main
       → sudo systemctl poweroff
