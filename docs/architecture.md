@@ -138,6 +138,10 @@ network-online.target
               ├── idle-check-refresh.service     (oneshot, bwinter_sc81)
               │     └── idle-check.timer  →  idle-check.service  (every 1 min)
               │
+              ├── save-backup-refresh.service    (oneshot, bwinter_sc81)
+              │     Installs save-backup.service and its timer; the timer is disabled,
+              │     so bucket backups run only from the shutdown flow
+              │
               ├── xvfb-refresh.service           (VRising only, oneshot, bwinter_sc81)
               │     └── xvfb-startup.service   (simple, always restart)
               │           Xvfb :0 -screen 0 1024x768x24
