@@ -88,4 +88,4 @@ fi
 source "$(dirname "${BASH_SOURCE[0]}")/post-checkout.sh"
 
 # Systemd unit installation is handled separately by install-game-units.sh
-# (runs as root at Packer build time only — units are baked into the image).
+# (runs as root at Packer build time and from game-unit-refresh.service on every boot).
