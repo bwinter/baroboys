@@ -137,11 +137,11 @@ fi
 
 # --- Admin server internal ping ---
 echo "--- Admin Server ---"
-ping_response=$(curl -s --max-time 5 http://localhost:5000/ping 2>/dev/null)
+ping_response=$(curl -s --max-time 5 http://localhost:5000/api/ping 2>/dev/null)
 if [[ "$ping_response" == "pong" ]]; then
-    check "Flask :5000 /ping" "pass"
+    check "Flask :5000 /api/ping" "pass"
 else
-    check "Flask :5000 /ping" "fail" "response: $ping_response"
+    check "Flask :5000 /api/ping" "fail" "response: $ping_response"
 fi
 
 # --- Game log has real content (not just boot stub) ---
