@@ -32,4 +32,16 @@ terraform apply -var-file="shared.tfvars" -var-file="game/$GAME.tfvars.json"
 
 EXTERNAL_IP="$(terraform output -raw game_external_ip)"
 PROJECT_ID="$(terraform output -raw terraform_project_id)"
-"$REPO_ROOT/scripts/tools/duckdns/update_duckdns.sh" "$EXTERNAL_IP" "$PROJECT_ID"
+
+# The DuckDNS update stays fatal (its secret is part of the core setup), but say
+# what happened: the apply above already succeeded and only this step failed.
+"$REPO_ROOT/scripts/tools/duckdns/update_duckdns.sh" "$EXTERNAL_IP" "$PROJECT_ID" || {
+  DUCKDNS_STATUS=$?
+  {
+    echo "ERROR: terraform apply succeeded; the VM exists at $EXTERNAL_IP."
+    echo "Only the DuckDNS update failed (exit $DUCKDNS_STATUS). After fixing the cause"
+    echo "(e.g. 'make secret-set-duckdns-token'), re-run just that step:"
+    echo "  $REPO_ROOT/scripts/tools/duckdns/update_duckdns.sh $EXTERNAL_IP $PROJECT_ID"
+  } >&2
+  exit "$DUCKDNS_STATUS"
+}

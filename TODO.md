@@ -15,14 +15,6 @@
   (including Valheim auto-backup generations) as recovery points, with an explicit retention policy.
 - **Validate bucket backup independently** — test archive creation/upload after raw Git save handling
   is stable; bucket restore is intentionally not part of the current workflow.
-- **DuckDNS failure after a successful `terraform apply`** — `terraform/build.sh` applies at :31 and then
-  runs `scripts/tools/duckdns/update_duckdns.sh` as its last line (:35), under `set -euxo pipefail` (:2)
-  with no guard. A missing `duckdns-token` secret (gcloud fails, `update_duckdns.sh:33-35`) or an empty one
-  (exit 1, :37-40) therefore makes `build.sh` and `make terraform-apply-<GAME>` exit nonzero after the VM
-  already exists; the apply itself completes. No doc says so (checked `docs/setup/cold-boot.md`, `README.md`,
-  `docs/architecture.md:268`, `Makefile:369`). Decide: make the DNS step best-effort with a clear message, or
-  document that a nonzero exit after apply can mean only the DNS step failed. Found 2026-11-19 by claude-home's
-  read-only trace of those lines; nothing was run.
 
 ### Medium-term
 
